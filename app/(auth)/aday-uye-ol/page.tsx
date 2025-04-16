@@ -5,7 +5,7 @@ import AuthImage from "../components/AuthImage";
 import TermsModal from "../components/TermsModal";
 import GoBack from "@/components/GoBack";
 import { IoClose } from "react-icons/io5";
-import AuthForm from "../components/AuthForm";
+import CandidateForm from "../components/candidate/CandidateForm";
 
 const CandidateSignup = () => {
   const [termsModal, setTermsModal] = useState<boolean>(false);
@@ -20,13 +20,12 @@ const CandidateSignup = () => {
               color="899CC9"
             />
           }
-          url="/"
           position="top-[25px] right-[100px]"
         />
 
         <AuthImage text="Kariyer Yolculuğuna Bizimle Başla" />
 
-        <AuthForm setTermsModal={setTermsModal} />
+        <CandidateForm setTermsModal={setTermsModal} />
       </div>
 
       <TermsModal termsModal={termsModal} setTermsModal={setTermsModal} />
