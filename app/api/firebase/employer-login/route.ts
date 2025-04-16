@@ -14,13 +14,15 @@ export async function POST(req: NextRequest) {
       password
     );
 
-    if (userCredential.user) {
-      cookieStore.set("VV9SVA", btoa(userCredential.user.refreshToken), {
-        secure: process.env.NODE_ENV === "production",
-      });
-    }
+    cookieStore.set("VVLOPQS", btoa(userCredential.user.refreshToken), {
+      secure: process.env.NODE_ENV === "production",
+    });
 
-    return NextResponse.json({ user: userCredential.user });
+    return NextResponse.json({
+      user: userCredential.user,
+      status: 200,
+      message: "Giriş Başarılı",
+    });
   } catch (error) {
     if (error instanceof Error) {
       return NextResponse.json({ message: error.message, status: 400 });

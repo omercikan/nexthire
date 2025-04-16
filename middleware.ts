@@ -4,9 +4,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const cookieStore = await cookies();
-  const token = cookieStore.get("VV9SVA");
+  const candidateToken = cookieStore.get("VV9SVA");
+  const employerToken = cookieStore.get("VVLOPQS");
 
-  if (token && (pathname === "/aday-uye-ol" || "/aday-giris")) {
+  if (candidateToken || employerToken && (pathname === "/aday-uye-ol" || "/aday-giris")) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
@@ -14,5 +15,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/aday-uye-ol", "/aday-giris"],
+  matcher: ["/aday-uye-ol", "/aday-giris", "/isveren-giris", "/isveren-kayit"],
 };

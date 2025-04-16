@@ -15,8 +15,7 @@ export async function POST(req: NextRequest) {
 
     await setDoc(doc(db, "candidates", userCredential?.user.uid), {
       cid: userCredential.user.uid,
-      name: name,
-      surname: surname,
+      name: `${name} ${surname}`,
       acceptedTerms: acceptedTerms,
       email: email,
       createdAt: new Date(Timestamp.now().seconds * 1000).toLocaleDateString(
@@ -24,6 +23,20 @@ export async function POST(req: NextRequest) {
       ),
       emailVerified: userCredential.user.emailVerified,
       createdWith: "Email/Password Provider",
+      role: "candidate",
+    });
+
+    await setDoc(doc(db, "users", userCredential.user.uid), {
+      id: userCredential.user.uid,
+      name: `${name} ${surname}`,
+      acceptedTerms: acceptedTerms,
+      email: email,
+      createdAt: new Date(Timestamp.now().seconds * 1000).toLocaleDateString(
+        "tr"
+      ),
+      emailVerified: userCredential.user.emailVerified,
+      createdWith: "Email/Password Provider",
+      role: "candidate",
     });
 
     return NextResponse.json({ user: userCredential?.user });
