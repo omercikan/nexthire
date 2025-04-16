@@ -2,7 +2,7 @@ import { AuthInputProps } from "@/types";
 import { useField } from "formik";
 import React from "react";
 
-const AuthInput = ({
+const CustomInput = ({
   label,
   icon,
   extraIcon,
@@ -33,11 +33,11 @@ const AuthInput = ({
           {extraIcon}
         </span>
       </div>
-      {meta.touched && meta.error ? (
-        <div className="text-[#D91B1B] text-sm mt-1">{meta.error}</div>
+      {meta.error ? (
+        <div className="text-[#D91B1B] text-xs mt-1">{meta.error}</div>
       ) : null}
     </div>
   );
 };
 
-export default AuthInput;
+export default CustomInput;

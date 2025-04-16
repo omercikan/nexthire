@@ -41,10 +41,10 @@ body {
     border: 1px solid var(--primary-color);
     width: 100%;
     height: 100%;
-    display: inline-block;
-    border-radius: 2px !important;
-    outline: none;
-    transition: all 0.3s ease;
+    display: inline-block; 
+    border-radius: 2px !important; 
+    outline: none;  
+    transition: all 0.3s ease;  
 
     &:checked {
       background-color: var(--primary-color) !important;
@@ -60,13 +60,21 @@ body {
     background-image: url("../public/assets/images/thumb-image.png");
     background-size: cover;
   }
+
+  .none-spin-button {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      appearance: none;
+      -webkit-appearance: none;
+    }
+  }
 }
 /*! Custom layers end !*/
 
 /*! - Custom components class group start - !*/
 .form__wrapper {
-  @apply flex-[1] max-[1026px]:bg-white z-10 max-[1026px]:fixed max-[1026px]:top-[50%] max-[1026px]:left-[50%] max-[1026px]:-translate-[50%] max-[1026px]:w-[95%] max-[1026px]:rounded-3xl max-[1026px]:px-5 max-[1026px]:py-8 max-[1026px]:shadow-2xl max-[1026px]:drop-shadow-2xl;
-
+  @apply flex-[1] max-[1026px]:bg-white z-10 max-[1026px]:fixed max-[1026px]:top-[50%] max-[1026px]:left-[50%] max-[1026px]:-translate-[50%] max-[1026px]:w-[95%] max-[1026px]:rounded-3xl max-[1026px]:px-5 max-[1026px]:py-8 max-[1026px]:shadow-2xl max-[1026px]:drop-shadow-2xl; 
+ 
   @media screen and (height <= 440px) and (orientation: landscape) {
     height: 350px;
   }
@@ -81,7 +89,7 @@ body {
 }
 
 .custom__input {
-  @apply border focus:border-[var(--primary-color)] transition duration-300 px-9 py-2 w-full rounded-full outline-none;
+  @apply border focus:border-[var(--primary-color)] transition duration-300 px-9 py-2.5 text-sm w-full rounded-full outline-none;
 }
 
 /*! Auth image component's class start !*/
@@ -94,7 +102,7 @@ body {
 }
 
 .auth__image {
-  @apply flex-[1] max-[1026px]:absolute max-[1026px]:-top-[50%] w-screen h-screen flex flex-col relative shadow-2xl drop-shadow-2xl;
+  @apply flex-[1] max-[1026px]:absolute max-[1026px]:-top-[50%] w-screen h-auto flex flex-col relative shadow-2xl drop-shadow-2xl;
 }
 /*! Auth image component's class end !*/
 

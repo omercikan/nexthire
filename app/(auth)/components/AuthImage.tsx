@@ -9,13 +9,13 @@ const inter = Inter({
 
 const AuthImage = ({ text }: { text: string }) => {
   return (
-    <div className="auth__image auth-bg-image">
+    <section className="auth__image auth-bg-image">
       <div className="relative h-screen select-none">
         <h1 className={`${inter.className} auth__title gradient-text`}>
           {text}
         </h1>
       </div>
-    </div>
+    </section>
   );
 };
 
