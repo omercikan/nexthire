@@ -1,4 +1,8 @@
-import { InputHTMLAttributes, ReactNode } from "react";
+import {
+  ChangeEvent,
+  InputHTMLAttributes,
+  ReactNode,
+} from "react";
 
 //! General properties interface of the layout component !//
 export interface LayoutComponentProps {
@@ -40,11 +44,50 @@ export interface TermsData {
 //! Auth input properties type fields !//
 export type AuthInputProps = {
   label: string;
-  icon: ReactNode;
+  icon?: ReactNode;
   extraIcon?: ReactNode;
   handleClickPasswordDisplay?: () => void;
   className?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
+
+interface AuthSelectDataItem {
+  id: number;
+  name: string;
+}
+
+export interface AuthSelectProps {
+  handleChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
+  handleChangeCapture?: (e: ChangeEvent<HTMLSelectElement>) => void;
+  data: AuthSelectDataItem[];
+  defaultValue: string;
+  name: string;
+  isSubmitting: boolean;
+  value: string;
+}
+
+export interface EmployerSignupFormFields {
+  nameAndSurname: string;
+  phone: string;
+  email: string;
+  password: string;
+  companyName: string;
+  taxNumber: string;
+  checkboxFirst: boolean;
+  checkboxSecond: boolean;
+  selectCity: string;
+  selectDistricts: string;
+  selectTaxOfficiesCity: string;
+  selectTaxOffice: string;
+}
+
+export interface AuthCheckboxProps {
+  errors?: string | undefined;
+  values: boolean;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  isSubmitting: boolean;
+  text?: string;
+  name: string;
+}
 
 //! Custom button component properties interface !//
 export interface CustomButtonProps {
@@ -58,11 +101,33 @@ export interface SuccessProps {
   icon: ReactNode;
   title: string;
   subtitle: string;
+  message?: string;
 }
 
 //! Go back properties interface for auth pages !//
 export interface GoBackProps {
   icon: ReactNode;
-  url: string;
   position: string;
 }
+
+//! Json data city, districts and tax officies interfaces START !//
+export interface CitiesJsonInterface {
+  id: number;
+  name: string;
+  plate_code: string;
+}
+
+export interface DistrictsJsonInterface {
+  id: number;
+  city_id: string;
+  name: string;
+}
+
+export interface TaxOfficiesJsonInterface {
+  id: number;
+  plate_code: string;
+  city: string;
+  district: string;
+  name: string;
+}
+//! Json data city, districts and tax officies interfaces END !//
