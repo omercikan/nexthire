@@ -4,21 +4,22 @@ import React, { useState } from "react";
 import { Form, Formik, FormikHelpers } from "formik";
 import PasswordImage from "@/public/assets/images/reset-password-thumb.png";
 import Image from "next/image";
-import AuthInput from "../components/AuthInput";
+import AuthInput from "../../../components/ui/CustomInput";
 import { HiOutlineArrowLeft, HiOutlineMail } from "react-icons/hi";
 import { GrSecure } from "react-icons/gr";
 import { ResetPasswordSchema } from "../schema/ResetPasswordSchema";
 import { ResetPasswordField } from "@/types";
-import CustomButton from "@/components/Button";
+import CustomButton from "@/components/ui/CustomButton";
 import axios from "axios";
 import Success from "@/components/Success";
 import { HiMiniCheckCircle } from "react-icons/hi2";
-import Link from "next/link";
 import toast from "react-hot-toast";
 import GoBack from "@/components/GoBack";
+import { useRouter } from "next/navigation";
 
 const ResetPassword = () => {
   const [sendingEmail, setSendingEmail] = useState<boolean>(false);
+  const router = useRouter();
 
   const onSubmit = async (
     values: ResetPasswordField,
@@ -57,7 +58,6 @@ const ResetPassword = () => {
             color="899CC9"
           />
         }
-        url="/aday-giris"
         position="top-[60px] right-[calc(50%-40px)] max-[1026px]:left-7 go-back-query"
       />
 
@@ -87,11 +87,12 @@ const ResetPassword = () => {
               subtitle="E-posta gelmediyse lütfen spam klasörünüzü kontrol edin."
             />
 
-            <Link href="/aday-giris">
-              <button className="custom__button w-[calc(100%-80px)] max-[1026px]:w-full mt-12">
-                Giriş Yap
-              </button>
-            </Link>
+            <button
+              className="custom__button w-[calc(100%-80px)] max-[1026px]:w-full mt-12"
+              onClick={() => router.back()}
+            >
+              Giriş Yap
+            </button>
           </>
         ) : (
           <>
