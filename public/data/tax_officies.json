@@ -1,0 +1,7324 @@
+[
+  {
+    "id": 1,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "FEKE",
+    "name": "FEKE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 2,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "KARA\u0130SALI",
+    "name": "KARA\u0130SALI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 3,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "POZANTI",
+    "name": "POZANTI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 4,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "SA\u0130MBEYL\u0130",
+    "name": "SA\u0130MBEYL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 5,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "TUFANBEYL\u0130",
+    "name": "TUFANBEYL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 6,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "YUMURTALIK",
+    "name": "YUMURTALIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 7,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "ALADA\u011e",
+    "name": "ALADA\u011e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 8,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "\u0130MAMO\u011eLU",
+    "name": "\u0130MAMO\u011eLU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 9,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "CEYHAN",
+    "name": "CEYHAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 10,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "KOZAN",
+    "name": "KOZAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 11,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "KARATA\u015e",
+    "name": "KARATA\u015e VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 12,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "Y\u00dcRE\u011e\u0130R",
+    "name": "ADANA \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 13,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "SEYHAN",
+    "name": "5OCAK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 14,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "Y\u00dcRE\u011e\u0130R",
+    "name": "Y\u00dcRE\u011e\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 15,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "SEYHAN",
+    "name": "SEYHAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 16,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "Y\u00dcRE\u011e\u0130R",
+    "name": "Z\u0130YAPA\u015eA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 17,
+    "plate_code": "01",
+    "city": "Adana",
+    "district": "\u00c7UKUROVA",
+    "name": "\u00c7UKUROVA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 18,
+    "plate_code": "02",
+    "city": "Ad\u0131yaman",
+    "district": "BESN\u0130",
+    "name": "BESN\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 19,
+    "plate_code": "02",
+    "city": "Ad\u0131yaman",
+    "district": "\u00c7EL\u0130KHAN",
+    "name": "\u00c7EL\u0130KHAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 20,
+    "plate_code": "02",
+    "city": "Ad\u0131yaman",
+    "district": "GERGER",
+    "name": "GERGER MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 21,
+    "plate_code": "02",
+    "city": "Ad\u0131yaman",
+    "district": "G\u00d6LBA\u015eI",
+    "name": "G\u00d6LBA\u015eI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 22,
+    "plate_code": "02",
+    "city": "Ad\u0131yaman",
+    "district": "SAMSAT",
+    "name": "SAMSAT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 23,
+    "plate_code": "02",
+    "city": "Ad\u0131yaman",
+    "district": "S\u0130NC\u0130K",
+    "name": "S\u0130NC\u0130K MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 24,
+    "plate_code": "02",
+    "city": "Ad\u0131yaman",
+    "district": "TUT",
+    "name": "TUT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 25,
+    "plate_code": "02",
+    "city": "Ad\u0131yaman",
+    "district": "ADIYAMAN MERKEZ",
+    "name": "ADIYAMAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 26,
+    "plate_code": "02",
+    "city": "Ad\u0131yaman",
+    "district": "KAHTA",
+    "name": "KAHTA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 27,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "DAZKIRI",
+    "name": "DAZKIRI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 28,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "\u0130HSAN\u0130YE",
+    "name": "\u0130HSAN\u0130YE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 29,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "S\u0130NANPA\u015eA",
+    "name": "S\u0130NANPA\u015eA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 30,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "SULTANDA\u011eI",
+    "name": "SULTANDA\u011eI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 31,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "\u015eUHUT",
+    "name": "\u015eUHUT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 32,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "BA\u015eMAK\u00c7I",
+    "name": "BA\u015eMAK\u00c7I MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 33,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "BAYAT",
+    "name": "BAYAT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 34,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "\u00c7OBANLAR",
+    "name": "\u00c7OBANLAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 35,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "EVC\u0130LER",
+    "name": "EVC\u0130LER MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 36,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "HOCALAR",
+    "name": "HOCALAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 37,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "KIZIL\u00d6REN",
+    "name": "KIZIL\u00d6REN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 38,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "AFYONKARAH\u0130SAR MERKEZ",
+    "name": "TINAZTEPE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 39,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "\u00c7AY",
+    "name": "\u00c7AY VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 40,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "D\u0130NAR",
+    "name": "D\u0130NAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 41,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "BOLVAD\u0130N",
+    "name": "BOLVAD\u0130N VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 42,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "EM\u0130RDA\u011e",
+    "name": "EM\u0130RDA\u011e VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 43,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "SANDIKLI",
+    "name": "SANDIKLI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 44,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "\u0130SCEH\u0130SAR",
+    "name": "\u0130SCEH\u0130SAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 45,
+    "plate_code": "03",
+    "city": "Afyon",
+    "district": "AFYONKARAH\u0130SAR MERKEZ",
+    "name": "KOCATEPE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 46,
+    "plate_code": "04",
+    "city": "A\u011fr\u0131",
+    "district": "D\u0130YAD\u0130N",
+    "name": "D\u0130YAD\u0130N MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 47,
+    "plate_code": "04",
+    "city": "A\u011fr\u0131",
+    "district": "ELE\u015eK\u0130RT",
+    "name": "ELE\u015eK\u0130RT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 48,
+    "plate_code": "04",
+    "city": "A\u011fr\u0131",
+    "district": "HAMUR",
+    "name": "HAMUR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 49,
+    "plate_code": "04",
+    "city": "A\u011fr\u0131",
+    "district": "TA\u015eLI\u00c7AY",
+    "name": "TA\u015eLI\u00c7AY MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 50,
+    "plate_code": "04",
+    "city": "A\u011fr\u0131",
+    "district": "TUTAK",
+    "name": "TUTAK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 51,
+    "plate_code": "04",
+    "city": "A\u011fr\u0131",
+    "district": "A\u011eRI MERKEZ",
+    "name": "A\u011eRI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 52,
+    "plate_code": "04",
+    "city": "A\u011fr\u0131",
+    "district": "DO\u011eUBAYAZIT",
+    "name": "DO\u011eUBEYAZIT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 53,
+    "plate_code": "04",
+    "city": "A\u011fr\u0131",
+    "district": "PATNOS",
+    "name": "PATNOS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 54,
+    "plate_code": "05",
+    "city": "Amasya",
+    "district": "G\u00d6YN\u00dcCEK",
+    "name": "G\u00d6YN\u00dcCEK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 55,
+    "plate_code": "05",
+    "city": "Amasya",
+    "district": "HAMAM\u00d6Z\u00dc",
+    "name": "HAMAM\u00d6Z\u00dc MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 56,
+    "plate_code": "05",
+    "city": "Amasya",
+    "district": "AMASYA MERKEZ",
+    "name": "AMASYA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 57,
+    "plate_code": "05",
+    "city": "Amasya",
+    "district": "MERZ\u0130FON",
+    "name": "MERZ\u0130FON VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 58,
+    "plate_code": "05",
+    "city": "Amasya",
+    "district": "G\u00dcM\u00dc\u015eHACIK\u00d6Y",
+    "name": "G. HACIK\u00d6Y VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 59,
+    "plate_code": "05",
+    "city": "Amasya",
+    "district": "TA\u015eOVA",
+    "name": "TA\u015eOVA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 60,
+    "plate_code": "05",
+    "city": "Amasya",
+    "district": "SULUOVA",
+    "name": "SULUOVA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 61,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "AYA\u015e",
+    "name": "AYA\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 62,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "BALA",
+    "name": "BALA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 63,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "\u00c7AMLIDERE",
+    "name": "\u00c7AMLIDERE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 64,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "G\u00dcD\u00dcL",
+    "name": "G\u00dcD\u00dcL MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 65,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "KALEC\u0130K",
+    "name": "KALEC\u0130K MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 66,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "KIZILCAHAMAM",
+    "name": "KIZILCAHAMAM MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 67,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "NALLIHAN",
+    "name": "NALLIHAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 68,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "AKYURT",
+    "name": "AKYURT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 69,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "EVREN",
+    "name": "EVREN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 70,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "POLATLI",
+    "name": "POLATLI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 71,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "\u015eEREFL\u0130KO\u00c7H\u0130SAR",
+    "name": "\u015eEREFL\u0130KO\u00c7H\u0130SAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 72,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "BEYPAZARI",
+    "name": "BEYPAZARI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 73,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "\u00c7UBUK",
+    "name": "\u00c7UBUK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 74,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "HAYMANA",
+    "name": "HAYMANA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 75,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "ELMADA\u011e",
+    "name": "ELMADA\u011e VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 76,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "\u00c7ANKAYA",
+    "name": "VERASET VE \u0130NT\u0130KAL VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 77,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "KAVAKLIDERE",
+    "name": "KAVAKLIDERE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 78,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "MALTEPE",
+    "name": "MALTEPE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 79,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "YEN\u0130MAHALLE",
+    "name": "YEN\u0130MAHALLE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 80,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "\u00c7ANKAYA",
+    "name": "\u00c7ANKAYA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 81,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "ALTINDA\u011e",
+    "name": "KIZILBEY VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 82,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "\u00c7ANKAYA",
+    "name": "M\u0130THATPA\u015eA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 83,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "ULUS",
+    "name": "ULUS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 84,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "ALTINDA\u011e",
+    "name": "YILDIRIMBEYAZIT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 85,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "\u00c7ANKAYA",
+    "name": "SE\u011eMENLER VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 86,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "\u00c7ANKAYA",
+    "name": "D\u0130K\u0130MEV\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 87,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "YEN\u0130MAHALLE",
+    "name": "DO\u011eANBEY VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 88,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "YEN\u0130MAHALLE",
+    "name": "YE\u011eENBEY VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 89,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "\u00c7ANKAYA",
+    "name": "H\u0130T\u0130T VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 90,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "ALTINDA\u011e",
+    "name": "Y.GAL\u0130P VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 91,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "ALTINDA\u011e",
+    "name": "M.KARAG\u00dcZEL VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 92,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "YEN\u0130MAHALLE",
+    "name": "OST\u0130M VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 93,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "G\u00d6LBA\u015eI",
+    "name": "G\u00d6LBA\u015eI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 94,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "S\u0130NCAN",
+    "name": "S\u0130NCAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 95,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "ALTINDA\u011e",
+    "name": "DI\u015eKAPI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 96,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "ET\u0130MESGUT",
+    "name": "ET\u0130MESGUT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 97,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "\u00c7ANKAYA",
+    "name": "BA\u015eKENT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 98,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "\u00c7ANKAYA",
+    "name": "CUMHUR\u0130YET VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 99,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "KE\u00c7\u0130\u00d6REN",
+    "name": "KE\u00c7\u0130\u00d6REN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 100,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "KAHRAMANKAZAN",
+    "name": "KAHRAMANKAZAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 101,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "YEN\u0130MAHALLE",
+    "name": "ANADOLU \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 102,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "YEN\u0130MAHALLE",
+    "name": "ANKARA \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 103,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "ALTINDA\u011e",
+    "name": "HAR\u00c7LAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 104,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "YEN\u0130MAHALLE",
+    "name": "ANKARA KURUMLAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 105,
+    "plate_code": "06",
+    "city": "Ankara",
+    "district": "YEN\u0130MAHALLE",
+    "name": "\u0130VED\u0130K VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 106,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "AKSEK\u0130",
+    "name": "AKSEK\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 107,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "F\u0130N\u0130KE",
+    "name": "F\u0130N\u0130KE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 108,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "GAZ\u0130PA\u015eA",
+    "name": "GAZ\u0130PA\u015eA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 109,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "G\u00dcNDO\u011eMU\u015e",
+    "name": "G\u00dcNDO\u011eMU\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 110,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "KA\u015e",
+    "name": "KA\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 111,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "DEMRE",
+    "name": "DEMRE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 112,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "\u0130BRADI",
+    "name": "\u0130BRADI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 113,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "ALANYA",
+    "name": "ALANYA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 114,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "SER\u0130K",
+    "name": "SER\u0130K VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 115,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "MANAVGAT",
+    "name": "MANAVGAT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 116,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "ELMALI",
+    "name": "ELMALI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 117,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "KEMER",
+    "name": "KEMER VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 118,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "KUMLUCA",
+    "name": "KUMLUCA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 119,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "MURATPA\u015eA",
+    "name": "\u00dc\u00c7KAPILAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 120,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "MURATPA\u015eA",
+    "name": "KALEKAPI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 121,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "MURATPA\u015eA",
+    "name": "MURATPA\u015eA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 122,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "MURATPA\u015eA",
+    "name": "D\u00dcDEN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 123,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "MURATPA\u015eA",
+    "name": "ANTALYA KURUMLAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 124,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "ANTALYA MERKEZ",
+    "name": "ANTALYA \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 125,
+    "plate_code": "07",
+    "city": "Antalya",
+    "district": "KORKUTEL\u0130",
+    "name": "KORKUTEL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 126,
+    "plate_code": "08",
+    "city": "Artvin",
+    "district": "ARDANU\u00c7",
+    "name": "ARDANU\u00c7 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 127,
+    "plate_code": "08",
+    "city": "Artvin",
+    "district": "BOR\u00c7KA",
+    "name": "BOR\u00c7KA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 128,
+    "plate_code": "08",
+    "city": "Artvin",
+    "district": "\u015eAV\u015eAT",
+    "name": "\u015eAV\u015eAT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 129,
+    "plate_code": "08",
+    "city": "Artvin",
+    "district": "YUSUFEL\u0130",
+    "name": "YUSUFEL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 130,
+    "plate_code": "08",
+    "city": "Artvin",
+    "district": "MURGUL",
+    "name": "MURGUL MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 131,
+    "plate_code": "08",
+    "city": "Artvin",
+    "district": "ARTV\u0130N MERKEZ",
+    "name": "ARTV\u0130N VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 132,
+    "plate_code": "08",
+    "city": "Artvin",
+    "district": "HOPA",
+    "name": "HOPA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 133,
+    "plate_code": "08",
+    "city": "Artvin",
+    "district": "ARHAV\u0130",
+    "name": "ARHAV\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 134,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "BOZDO\u011eAN",
+    "name": "BOZDO\u011eAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 135,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "KARACASU",
+    "name": "KARACASU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 136,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "KO\u00c7ARLI",
+    "name": "KO\u00c7ARLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 137,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "KUYUCAK",
+    "name": "KUYUCAK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 138,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "SULTANH\u0130SAR",
+    "name": "SULTANH\u0130SAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 139,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "YEN\u0130PAZAR",
+    "name": "YEN\u0130PAZAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 140,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "BUHARKENT",
+    "name": "BUHARKENT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 141,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "\u0130NC\u0130RL\u0130OVA",
+    "name": "\u0130NC\u0130RL\u0130OVA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 142,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "KARPUZLU",
+    "name": "KARPUZLU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 143,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "K\u00d6\u015eK",
+    "name": "K\u00d6\u015eK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 144,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "EFELER",
+    "name": "EFELER VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 145,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "NAZ\u0130LL\u0130",
+    "name": "NAZ\u0130LL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 146,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "S\u00d6KE",
+    "name": "S\u00d6KE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 147,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "\u00c7\u0130NE",
+    "name": "\u00c7\u0130NE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 148,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "GERMENC\u0130K",
+    "name": "GERMENC\u0130K VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 149,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "KU\u015eADASI",
+    "name": "KU\u015eADASI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 150,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "EFELER",
+    "name": "G\u00dcZELH\u0130SAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 151,
+    "plate_code": "09",
+    "city": "Ayd\u0131n",
+    "district": "D\u0130D\u0130M",
+    "name": "D\u0130D\u0130M VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 152,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "BALYA",
+    "name": "BALYA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 153,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "HAVRAN",
+    "name": "HAVRAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 154,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "\u0130VR\u0130ND\u0130",
+    "name": "\u0130VR\u0130ND\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 155,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "KEPSUT",
+    "name": "KEPSUT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 156,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "MANYAS",
+    "name": "MANYAS MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 157,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "SAVA\u015eTEPE",
+    "name": "SAVA\u015eTEPE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 158,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "MARMARA",
+    "name": "MARMARA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 159,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "G\u00d6ME\u00c7",
+    "name": "G\u00d6ME\u00c7 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 160,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "KARES\u0130",
+    "name": "KARES\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 161,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "AYVALIK",
+    "name": "AYVALIK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 162,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "BANDIRMA",
+    "name": "BANDIRMA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 163,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "BURHAN\u0130YE",
+    "name": "BURHAN\u0130YE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 164,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "EDREM\u0130T",
+    "name": "EDREM\u0130T VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 165,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "G\u00d6NEN",
+    "name": "G\u00d6NEN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 166,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "SUSURLUK",
+    "name": "SUSURLUK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 167,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "ERDEK",
+    "name": "ERDEK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 168,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "B\u0130GAD\u0130\u00c7",
+    "name": "B\u0130GAD\u0130\u00c7 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 169,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "SINDIRGI",
+    "name": "SINDIRGI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 170,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "DURSUNBEY",
+    "name": "DURSUNBEY VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 171,
+    "plate_code": "10",
+    "city": "Bal\u0131kesir",
+    "district": "ALTIEYL\u00dcL",
+    "name": "KURTDEREL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 172,
+    "plate_code": "11",
+    "city": "Bilecik",
+    "district": "G\u00d6LPAZARI",
+    "name": "G\u00d6LPAZARI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 173,
+    "plate_code": "11",
+    "city": "Bilecik",
+    "district": "OSMANEL\u0130",
+    "name": "OSMANEL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 174,
+    "plate_code": "11",
+    "city": "Bilecik",
+    "district": "PAZARYER\u0130",
+    "name": "PAZARYER\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 175,
+    "plate_code": "11",
+    "city": "Bilecik",
+    "district": "S\u00d6\u011e\u00dcT",
+    "name": "S\u00d6\u011e\u00dcT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 176,
+    "plate_code": "11",
+    "city": "Bilecik",
+    "district": "YEN\u0130PAZAR",
+    "name": "YEN\u0130PAZAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 177,
+    "plate_code": "11",
+    "city": "Bilecik",
+    "district": "\u0130NH\u0130SAR",
+    "name": "\u0130NH\u0130SAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 178,
+    "plate_code": "11",
+    "city": "Bilecik",
+    "district": "B\u0130LEC\u0130K MERKEZ",
+    "name": "B\u0130LEC\u0130K VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 179,
+    "plate_code": "11",
+    "city": "Bilecik",
+    "district": "BOZ\u00dcY\u00dcK",
+    "name": "BOZ\u00dcY\u00dcK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 180,
+    "plate_code": "12",
+    "city": "Bing\u00f6l",
+    "district": "GEN\u00c7",
+    "name": "GEN\u00c7 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 181,
+    "plate_code": "12",
+    "city": "Bing\u00f6l",
+    "district": "KARLIOVA",
+    "name": "KARLIOVA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 182,
+    "plate_code": "12",
+    "city": "Bing\u00f6l",
+    "district": "KI\u011eI",
+    "name": "KI\u011eI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 183,
+    "plate_code": "12",
+    "city": "Bing\u00f6l",
+    "district": "SOLHAN",
+    "name": "SOLHAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 184,
+    "plate_code": "12",
+    "city": "Bing\u00f6l",
+    "district": "ADAKLI",
+    "name": "ADAKLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 185,
+    "plate_code": "12",
+    "city": "Bing\u00f6l",
+    "district": "YAYLADERE",
+    "name": "YAYLADERE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 186,
+    "plate_code": "12",
+    "city": "Bing\u00f6l",
+    "district": "YED\u0130SU",
+    "name": "YED\u0130SU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 187,
+    "plate_code": "12",
+    "city": "Bing\u00f6l",
+    "district": "B\u0130NG\u00d6L MERKEZ",
+    "name": "B\u0130NG\u00d6L VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 188,
+    "plate_code": "13",
+    "city": "Bitlis",
+    "district": "AD\u0130LCEVAZ",
+    "name": "AD\u0130LCEVAZ MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 189,
+    "plate_code": "13",
+    "city": "Bitlis",
+    "district": "AHLAT",
+    "name": "AHLAT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 190,
+    "plate_code": "13",
+    "city": "Bitlis",
+    "district": "H\u0130ZAN",
+    "name": "H\u0130ZAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 191,
+    "plate_code": "13",
+    "city": "Bitlis",
+    "district": "MUTK\u0130",
+    "name": "MUTK\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 192,
+    "plate_code": "13",
+    "city": "Bitlis",
+    "district": "G\u00dcROYMAK",
+    "name": "G\u00dcROYMAK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 193,
+    "plate_code": "13",
+    "city": "Bitlis",
+    "district": "B\u0130TL\u0130S MERKEZ",
+    "name": "B\u0130TL\u0130S VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 194,
+    "plate_code": "13",
+    "city": "Bitlis",
+    "district": "TATVAN",
+    "name": "TATVAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 195,
+    "plate_code": "14",
+    "city": "Bolu",
+    "district": "G\u00d6YN\u00dcK",
+    "name": "G\u00d6YN\u00dcK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 196,
+    "plate_code": "14",
+    "city": "Bolu",
+    "district": "KIBRISCIK",
+    "name": "KIBRISCIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 197,
+    "plate_code": "14",
+    "city": "Bolu",
+    "district": "MENGEN",
+    "name": "MENGEN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 198,
+    "plate_code": "14",
+    "city": "Bolu",
+    "district": "MUDURNU",
+    "name": "MUDURNU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 199,
+    "plate_code": "14",
+    "city": "Bolu",
+    "district": "SEBEN",
+    "name": "SEBEN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 200,
+    "plate_code": "14",
+    "city": "Bolu",
+    "district": "D\u00d6RTD\u0130VAN",
+    "name": "D\u00d6RTD\u0130VAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 201,
+    "plate_code": "14",
+    "city": "Bolu",
+    "district": "YEN\u0130\u00c7A\u011eA",
+    "name": "YEN\u0130\u00c7A\u011eA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 202,
+    "plate_code": "14",
+    "city": "Bolu",
+    "district": "BOLU MERKEZ",
+    "name": "BOLU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 203,
+    "plate_code": "14",
+    "city": "Bolu",
+    "district": "GEREDE",
+    "name": "GEREDE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 204,
+    "plate_code": "15",
+    "city": "Burdur",
+    "district": "A\u011eLASUN",
+    "name": "A\u011eLASUN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 205,
+    "plate_code": "15",
+    "city": "Burdur",
+    "district": "G\u00d6LH\u0130SAR",
+    "name": "G\u00d6LH\u0130SAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 206,
+    "plate_code": "15",
+    "city": "Burdur",
+    "district": "TEFENN\u0130",
+    "name": "TEFENN\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 207,
+    "plate_code": "15",
+    "city": "Burdur",
+    "district": "YE\u015e\u0130LOVA",
+    "name": "YE\u015e\u0130LOVA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 208,
+    "plate_code": "15",
+    "city": "Burdur",
+    "district": "KARAMANLI",
+    "name": "KARAMANLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 209,
+    "plate_code": "15",
+    "city": "Burdur",
+    "district": "KEMER",
+    "name": "KEMER MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 210,
+    "plate_code": "15",
+    "city": "Burdur",
+    "district": "ALTINYAYLA",
+    "name": "ALTINYAYLA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 211,
+    "plate_code": "15",
+    "city": "Burdur",
+    "district": "\u00c7AVDIR",
+    "name": "\u00c7AVDIR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 212,
+    "plate_code": "15",
+    "city": "Burdur",
+    "district": "\u00c7ELT\u0130K\u00c7\u0130",
+    "name": "\u00c7ELT\u0130K\u00c7\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 213,
+    "plate_code": "15",
+    "city": "Burdur",
+    "district": "BURDUR MERKEZ",
+    "name": "BURDUR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 214,
+    "plate_code": "15",
+    "city": "Burdur",
+    "district": "BUCAK",
+    "name": "BUCAK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 215,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "KELES",
+    "name": "KELES MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 216,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "ORHANEL\u0130",
+    "name": "ORHANEL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 217,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "HARMANCIK",
+    "name": "HARMANCIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 218,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "B\u00dcY\u00dcKORHAN",
+    "name": "B\u00dcY\u00dcKORHAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 219,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "GEML\u0130K",
+    "name": "GEML\u0130K VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 220,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "\u0130NEG\u00d6L",
+    "name": "\u0130NEG\u00d6L VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 221,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "KARACABEY",
+    "name": "KARACABEY VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 222,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "MUSTAFAKEMALPA\u015eA",
+    "name": "MUSTAFAKEMALPA\u015eA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 223,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "MUDANYA",
+    "name": "MUDANYA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 224,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "ORHANGAZ\u0130",
+    "name": "ORHANGAZ\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 225,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "\u0130ZN\u0130K",
+    "name": "\u0130ZN\u0130K VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 226,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "YEN\u0130\u015eEH\u0130R",
+    "name": "YEN\u0130\u015eEH\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 227,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "BURSA MERKEZ",
+    "name": "BURSA \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 228,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "OSMANGAZ\u0130",
+    "name": "OSMANGAZ\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 229,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "YILDIRIM",
+    "name": "YILDIRIM VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 230,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "N\u0130L\u00dcFER",
+    "name": "\u00c7EK\u0130RGE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 231,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "OSMANGAZ\u0130",
+    "name": "SETBA\u015eI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 232,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "N\u0130L\u00dcFER",
+    "name": "ULUDA\u011e VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 233,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "N\u0130L\u00dcFER",
+    "name": "YE\u015e\u0130L VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 234,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "N\u0130L\u00dcFER",
+    "name": "N\u0130L\u00dcFER VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 235,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "N\u0130L\u00dcFER",
+    "name": "ERTU\u011eRULGAZ\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 236,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "OSMANGAZ\u0130",
+    "name": "G\u00d6KDERE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 237,
+    "plate_code": "16",
+    "city": "Bursa",
+    "district": "OSMANGAZ\u0130",
+    "name": "BURSA VER.HAR\u00c7. VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 238,
+    "plate_code": "17",
+    "city": "\u00c7anakkale",
+    "district": "AYVACIK",
+    "name": "AYVACIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 239,
+    "plate_code": "17",
+    "city": "\u00c7anakkale",
+    "district": "BAYRAM\u0130\u00c7",
+    "name": "BAYRAM\u0130\u00c7 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 240,
+    "plate_code": "17",
+    "city": "\u00c7anakkale",
+    "district": "BOZCAADA",
+    "name": "BOZCAADA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 241,
+    "plate_code": "17",
+    "city": "\u00c7anakkale",
+    "district": "ECEABAT",
+    "name": "ECEABAT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 242,
+    "plate_code": "17",
+    "city": "\u00c7anakkale",
+    "district": "EZ\u0130NE",
+    "name": "EZ\u0130NE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 243,
+    "plate_code": "17",
+    "city": "\u00c7anakkale",
+    "district": "G\u00d6K\u00c7EADA",
+    "name": "G\u00d6K\u00c7EADA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 244,
+    "plate_code": "17",
+    "city": "\u00c7anakkale",
+    "district": "LAPSEK\u0130",
+    "name": "LAPSEK\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 245,
+    "plate_code": "17",
+    "city": "\u00c7anakkale",
+    "district": "YEN\u0130CE",
+    "name": "YEN\u0130CE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 246,
+    "plate_code": "17",
+    "city": "\u00c7anakkale",
+    "district": "\u00c7ANAKKALE MERKEZ",
+    "name": "\u00c7ANAKKALE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 247,
+    "plate_code": "17",
+    "city": "\u00c7anakkale",
+    "district": "B\u0130GA",
+    "name": "B\u0130GA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 248,
+    "plate_code": "17",
+    "city": "\u00c7anakkale",
+    "district": "\u00c7AN",
+    "name": "\u00c7AN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 249,
+    "plate_code": "17",
+    "city": "\u00c7anakkale",
+    "district": "GEL\u0130BOLU",
+    "name": "GEL\u0130BOLU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 250,
+    "plate_code": "18",
+    "city": "\u00c7ank\u0131r\u0131",
+    "district": "\u00c7ERKE\u015e",
+    "name": "\u00c7ERKE\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 251,
+    "plate_code": "18",
+    "city": "\u00c7ank\u0131r\u0131",
+    "district": "ELD\u0130VAN",
+    "name": "ELD\u0130VAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 252,
+    "plate_code": "18",
+    "city": "\u00c7ank\u0131r\u0131",
+    "district": "ILGAZ",
+    "name": "ILGAZ MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 253,
+    "plate_code": "18",
+    "city": "\u00c7ank\u0131r\u0131",
+    "district": "KUR\u015eUNLU",
+    "name": "KUR\u015eUNLU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 254,
+    "plate_code": "18",
+    "city": "\u00c7ank\u0131r\u0131",
+    "district": "ORTA",
+    "name": "ORTA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 255,
+    "plate_code": "18",
+    "city": "\u00c7ank\u0131r\u0131",
+    "district": "\u015eABAN\u00d6Z\u00dc",
+    "name": "\u015eABAN\u00d6Z\u00dc MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 256,
+    "plate_code": "18",
+    "city": "\u00c7ank\u0131r\u0131",
+    "district": "YAPRAKLI",
+    "name": "YAPRAKLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 257,
+    "plate_code": "18",
+    "city": "\u00c7ank\u0131r\u0131",
+    "district": "ATKARACALAR",
+    "name": "ATKARACALAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 258,
+    "plate_code": "18",
+    "city": "\u00c7ank\u0131r\u0131",
+    "district": "KIZILIRMAK",
+    "name": "KIZILIRMAK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 259,
+    "plate_code": "18",
+    "city": "\u00c7ank\u0131r\u0131",
+    "district": "BAYRAM\u00d6REN",
+    "name": "BAYRAM\u00d6REN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 260,
+    "plate_code": "18",
+    "city": "\u00c7ank\u0131r\u0131",
+    "district": "KORGUN",
+    "name": "KORGUN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 261,
+    "plate_code": "18",
+    "city": "\u00c7ank\u0131r\u0131",
+    "district": "\u00c7ANKIRI MERKEZ",
+    "name": "\u00c7ANKIRI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 262,
+    "plate_code": "19",
+    "city": "\u00c7orum",
+    "district": "ALACA",
+    "name": "ALACA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 263,
+    "plate_code": "19",
+    "city": "\u00c7orum",
+    "district": "BAYAT",
+    "name": "BAYAT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 264,
+    "plate_code": "19",
+    "city": "\u00c7orum",
+    "district": "\u0130SK\u0130L\u0130P",
+    "name": "\u0130SK\u0130L\u0130P MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 265,
+    "plate_code": "19",
+    "city": "\u00c7orum",
+    "district": "KARGI",
+    "name": "KARGI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 266,
+    "plate_code": "19",
+    "city": "\u00c7orum",
+    "district": "MEC\u0130T\u00d6Z\u00dc",
+    "name": "MEC\u0130T\u00d6Z\u00dc MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 267,
+    "plate_code": "19",
+    "city": "\u00c7orum",
+    "district": "ORTAK\u00d6Y",
+    "name": "ORTAK\u00d6Y MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 268,
+    "plate_code": "19",
+    "city": "\u00c7orum",
+    "district": "OSMANCIK",
+    "name": "OSMANCIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 269,
+    "plate_code": "19",
+    "city": "\u00c7orum",
+    "district": "BO\u011eAZKALE",
+    "name": "BO\u011eAZKALE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 270,
+    "plate_code": "19",
+    "city": "\u00c7orum",
+    "district": "U\u011eURLUDA\u011e",
+    "name": "U\u011eURLUDA\u011e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 271,
+    "plate_code": "19",
+    "city": "\u00c7orum",
+    "district": "DODURGA",
+    "name": "DODURGA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 272,
+    "plate_code": "19",
+    "city": "\u00c7orum",
+    "district": "O\u011eUZLAR",
+    "name": "O\u011eUZLAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 273,
+    "plate_code": "19",
+    "city": "\u00c7orum",
+    "district": "LA\u00c7\u0130N",
+    "name": "LA\u00c7\u0130N MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 274,
+    "plate_code": "19",
+    "city": "\u00c7orum",
+    "district": "\u00c7ORUM MERKEZ",
+    "name": "\u00c7ORUM VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 275,
+    "plate_code": "19",
+    "city": "\u00c7orum",
+    "district": "SUNGURLU",
+    "name": "SUNGURLU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 276,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "\u00c7AMEL\u0130",
+    "name": "\u00c7AMEL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 277,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "\u00c7ARDAK",
+    "name": "\u00c7ARDAK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 278,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "G\u00dcNEY",
+    "name": "G\u00dcNEY MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 279,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "KALE",
+    "name": "KALE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 280,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "BABADA\u011e",
+    "name": "BABADA\u011e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 281,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "BEK\u0130LL\u0130",
+    "name": "BEK\u0130LL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 282,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "HONAZ",
+    "name": "HONAZ MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 283,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "SER\u0130NH\u0130SAR",
+    "name": "SER\u0130NH\u0130SAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 284,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "PAMUKKALE",
+    "name": "PAMUKKALE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 285,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "BAKLAN",
+    "name": "BAKLAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 286,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "BEYA\u011eA\u00c7",
+    "name": "BEYA\u011eA\u00c7 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 287,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "BOZKURT",
+    "name": "BOZKURT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 288,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "MERKEZEFEND\u0130",
+    "name": "SARAYLAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 289,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "\u00c7INAR",
+    "name": "\u00c7INAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 290,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "MERKEZEFEND\u0130",
+    "name": "G\u00d6KPINAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 291,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "MERKEZEFEND\u0130",
+    "name": "DEN\u0130ZL\u0130 \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 292,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "SARAYK\u00d6Y",
+    "name": "SARAYK\u00d6Y VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 293,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "ACIPAYAM",
+    "name": "ACIPAYAM VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 294,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "TAVAS",
+    "name": "TAVAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 295,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "BULDAN",
+    "name": "BULDAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 296,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "\u00c7AL",
+    "name": "\u00c7AL VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 297,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "\u00c7\u0130VR\u0130L",
+    "name": "\u00c7\u0130VR\u0130L VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 298,
+    "plate_code": "20",
+    "city": "Denizli",
+    "district": "PAMUKKALE",
+    "name": "PAMUKKALE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 299,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "\u00c7ERM\u0130K",
+    "name": "\u00c7ERM\u0130K MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 300,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "\u00c7INAR",
+    "name": "\u00c7INAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 301,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "\u00c7\u00dcNG\u00dc\u015e",
+    "name": "\u00c7\u00dcNG\u00dc\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 302,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "D\u0130CLE",
+    "name": "D\u0130CLE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 303,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "HAN\u0130",
+    "name": "HAN\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 304,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "HAZRO",
+    "name": "HAZRO MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 305,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "KULP",
+    "name": "KULP MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 306,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "L\u0130CE",
+    "name": "L\u0130CE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 307,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "S\u0130LVAN",
+    "name": "S\u0130LVAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 308,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "E\u011e\u0130L",
+    "name": "E\u011e\u0130L MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 309,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "KOCAK\u00d6Y",
+    "name": "KOCAK\u00d6Y MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 310,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "YEN\u0130\u015eEH\u0130R",
+    "name": "G\u00d6KALP VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 311,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "YEN\u0130\u015eEH\u0130R",
+    "name": "S\u00dcLEYMANNAZ\u0130F VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 312,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "YEN\u0130\u015eEH\u0130R",
+    "name": "C.SITKI TARANCI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 313,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "ERGAN\u0130",
+    "name": "ERGAN\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 314,
+    "plate_code": "21",
+    "city": "Diyarbak\u0131r",
+    "district": "B\u0130SM\u0130L",
+    "name": "B\u0130SM\u0130L VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 315,
+    "plate_code": "22",
+    "city": "Edirne",
+    "district": "ENEZ",
+    "name": "ENEZ MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 316,
+    "plate_code": "22",
+    "city": "Edirne",
+    "district": "LALAPA\u015eA",
+    "name": "LALAPA\u015eA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 317,
+    "plate_code": "22",
+    "city": "Edirne",
+    "district": "MER\u0130\u00c7",
+    "name": "MER\u0130\u00c7 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 318,
+    "plate_code": "22",
+    "city": "Edirne",
+    "district": "S\u00dcLO\u011eLU",
+    "name": "S\u00dcLO\u011eLU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 319,
+    "plate_code": "22",
+    "city": "Edirne",
+    "district": "ED\u0130RNE MERKEZ",
+    "name": "ARDA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 320,
+    "plate_code": "22",
+    "city": "Edirne",
+    "district": "ED\u0130RNE MERKEZ",
+    "name": "KIRKPINAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 321,
+    "plate_code": "22",
+    "city": "Edirne",
+    "district": "KE\u015eAN",
+    "name": "KE\u015eAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 322,
+    "plate_code": "22",
+    "city": "Edirne",
+    "district": "UZUNK\u00d6PR\u00dc",
+    "name": "UZUNK\u00d6PR\u00dc VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 323,
+    "plate_code": "22",
+    "city": "Edirne",
+    "district": "HAVSA",
+    "name": "HAVSA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 324,
+    "plate_code": "22",
+    "city": "Edirne",
+    "district": "\u0130PSALA",
+    "name": "\u0130PSALA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 325,
+    "plate_code": "23",
+    "city": "Elaz\u0131\u011f",
+    "district": "A\u011eIN",
+    "name": "A\u011eIN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 326,
+    "plate_code": "23",
+    "city": "Elaz\u0131\u011f",
+    "district": "BASK\u0130L",
+    "name": "BASK\u0130L MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 327,
+    "plate_code": "23",
+    "city": "Elaz\u0131\u011f",
+    "district": "KARAKO\u00c7AN",
+    "name": "KARAKO\u00c7AN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 328,
+    "plate_code": "23",
+    "city": "Elaz\u0131\u011f",
+    "district": "KEBAN",
+    "name": "KEBAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 329,
+    "plate_code": "23",
+    "city": "Elaz\u0131\u011f",
+    "district": "MADEN",
+    "name": "MADEN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 330,
+    "plate_code": "23",
+    "city": "Elaz\u0131\u011f",
+    "district": "PALU",
+    "name": "PALU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 331,
+    "plate_code": "23",
+    "city": "Elaz\u0131\u011f",
+    "district": "S\u0130VR\u0130CE",
+    "name": "S\u0130VR\u0130CE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 332,
+    "plate_code": "23",
+    "city": "Elaz\u0131\u011f",
+    "district": "ARICAK",
+    "name": "ARICAK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 333,
+    "plate_code": "23",
+    "city": "Elaz\u0131\u011f",
+    "district": "KOVANCILAR",
+    "name": "KOVANCILAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 334,
+    "plate_code": "23",
+    "city": "Elaz\u0131\u011f",
+    "district": "ALACAKAYA",
+    "name": "ALACAKAYA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 335,
+    "plate_code": "23",
+    "city": "Elaz\u0131\u011f",
+    "district": "ELAZI\u011e MERKEZ",
+    "name": "HARPUT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 336,
+    "plate_code": "23",
+    "city": "Elaz\u0131\u011f",
+    "district": "ELAZI\u011e MERKEZ",
+    "name": "HAZAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 337,
+    "plate_code": "24",
+    "city": "Erzincan",
+    "district": "\u00c7AYIRLI",
+    "name": "\u00c7AYIRLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 338,
+    "plate_code": "24",
+    "city": "Erzincan",
+    "district": "\u0130L\u0130\u00c7",
+    "name": "\u0130L\u0130\u00c7 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 339,
+    "plate_code": "24",
+    "city": "Erzincan",
+    "district": "KEMAH",
+    "name": "KEMAH MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 340,
+    "plate_code": "24",
+    "city": "Erzincan",
+    "district": "KEMAL\u0130YE",
+    "name": "KEMAL\u0130YE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 341,
+    "plate_code": "24",
+    "city": "Erzincan",
+    "district": "REFAH\u0130YE",
+    "name": "REFAH\u0130YE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 342,
+    "plate_code": "24",
+    "city": "Erzincan",
+    "district": "TERCAN",
+    "name": "TERCAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 343,
+    "plate_code": "24",
+    "city": "Erzincan",
+    "district": "\u00dcZ\u00dcML\u00dc",
+    "name": "\u00dcZ\u00dcML\u00dc MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 344,
+    "plate_code": "24",
+    "city": "Erzincan",
+    "district": "OTLUKBEL\u0130",
+    "name": "OTLUKBEL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 345,
+    "plate_code": "24",
+    "city": "Erzincan",
+    "district": "ERZ\u0130NCAN MERKEZ",
+    "name": "FEVZ\u0130PA\u015eA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 346,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "A\u015eKALE",
+    "name": "A\u015eKALE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 347,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "\u00c7AT",
+    "name": "\u00c7AT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 348,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "HINIS",
+    "name": "HINIS MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 349,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "HORASAN",
+    "name": "HOROSAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 350,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "\u0130SP\u0130R",
+    "name": "\u0130SP\u0130R MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 351,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "KARAYAZI",
+    "name": "KARAYAZI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 352,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "NARMAN",
+    "name": "NARMAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 353,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "OLTU",
+    "name": "OLTU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 354,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "OLUR",
+    "name": "OLUR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 355,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "PAS\u0130NLER",
+    "name": "PAS\u0130NLER MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 356,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "\u015eENKAYA",
+    "name": "\u015eENKAYA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 357,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "TEKMAN",
+    "name": "TEKMAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 358,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "TORTUM",
+    "name": "TORTUM MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 359,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "KARA\u00c7OBAN",
+    "name": "KARA\u00c7OBAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 360,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "UZUNDERE",
+    "name": "UZUNDERE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 361,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "PAZARYOLU",
+    "name": "PAZARYOLU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 362,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "AZ\u0130Z\u0130YE",
+    "name": "AZ\u0130Z\u0130YE (ILICA) MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 363,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "K\u00d6PR\u00dcK\u00d6Y",
+    "name": "K\u00d6PR\u00dcK\u00d6Y MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 364,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "AZ\u0130Z\u0130YE",
+    "name": "AZ\u0130Z\u0130YE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 365,
+    "plate_code": "25",
+    "city": "Erzurum",
+    "district": "YAKUT\u0130YE",
+    "name": "KAZIMKARABEK\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 366,
+    "plate_code": "26",
+    "city": "Eski\u015fehir",
+    "district": "MAHMUD\u0130YE",
+    "name": "MAHMUD\u0130YE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 367,
+    "plate_code": "26",
+    "city": "Eski\u015fehir",
+    "district": "M\u0130HALI\u00c7\u00c7IK",
+    "name": "M\u0130HALI\u00c7\u00c7IK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 368,
+    "plate_code": "26",
+    "city": "Eski\u015fehir",
+    "district": "SARICAKAYA",
+    "name": "SARICAKAYA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 369,
+    "plate_code": "26",
+    "city": "Eski\u015fehir",
+    "district": "SEY\u0130TGAZ\u0130",
+    "name": "SEY\u0130TGAZ\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 370,
+    "plate_code": "26",
+    "city": "Eski\u015fehir",
+    "district": "ALPU",
+    "name": "ALPU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 371,
+    "plate_code": "26",
+    "city": "Eski\u015fehir",
+    "district": "BEYL\u0130KOVA",
+    "name": "BEYL\u0130KOVA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 372,
+    "plate_code": "26",
+    "city": "Eski\u015fehir",
+    "district": "\u0130N\u00d6N\u00dc",
+    "name": "\u0130N\u00d6N\u00dc MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 373,
+    "plate_code": "26",
+    "city": "Eski\u015fehir",
+    "district": "G\u00dcNY\u00dcZ\u00dc",
+    "name": "G\u00dcNY\u00dcZ\u00dc MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 374,
+    "plate_code": "26",
+    "city": "Eski\u015fehir",
+    "district": "HAN",
+    "name": "HAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 375,
+    "plate_code": "26",
+    "city": "Eski\u015fehir",
+    "district": "M\u0130HALGAZ\u0130",
+    "name": "M\u0130HALGAZ\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 376,
+    "plate_code": "26",
+    "city": "Eski\u015fehir",
+    "district": "ODUNPAZARI",
+    "name": "ESK\u0130\u015eEH\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 377,
+    "plate_code": "27",
+    "city": "Gaziantep",
+    "district": "ARABAN",
+    "name": "ARABAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 378,
+    "plate_code": "27",
+    "city": "Gaziantep",
+    "district": "O\u011eUZEL\u0130",
+    "name": "O\u011eUZEL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 379,
+    "plate_code": "27",
+    "city": "Gaziantep",
+    "district": "YAVUZEL\u0130",
+    "name": "YAVUZEL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 380,
+    "plate_code": "27",
+    "city": "Gaziantep",
+    "district": "KARKAMI\u015e",
+    "name": "KARKAMI\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 381,
+    "plate_code": "27",
+    "city": "Gaziantep",
+    "district": "NURDA\u011eI",
+    "name": "NURDA\u011eI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 382,
+    "plate_code": "27",
+    "city": "Gaziantep",
+    "district": "N\u0130Z\u0130P",
+    "name": "N\u0130Z\u0130P VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 383,
+    "plate_code": "27",
+    "city": "Gaziantep",
+    "district": "\u0130SLAH\u0130YE",
+    "name": "\u0130SLAH\u0130YE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 384,
+    "plate_code": "27",
+    "city": "Gaziantep",
+    "district": "\u015eEH\u0130TKAM\u0130L",
+    "name": "G.ANTEP \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 385,
+    "plate_code": "27",
+    "city": "Gaziantep",
+    "district": "\u015eEH\u0130TKAM\u0130L",
+    "name": "SUBURCU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 386,
+    "plate_code": "27",
+    "city": "Gaziantep",
+    "district": "\u015eEH\u0130TKAM\u0130L",
+    "name": "\u015eEH\u0130TKAM\u0130L VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 387,
+    "plate_code": "27",
+    "city": "Gaziantep",
+    "district": "\u015eAH\u0130NBEY",
+    "name": "\u015eAH\u0130NBEY VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 388,
+    "plate_code": "27",
+    "city": "Gaziantep",
+    "district": "\u015eEH\u0130TKAM\u0130L",
+    "name": "GAZ\u0130KENT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 389,
+    "plate_code": "27",
+    "city": "Gaziantep",
+    "district": "\u015eEH\u0130TKAM\u0130L",
+    "name": "KOZANLI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 390,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "ALUCRA",
+    "name": "ALUCRA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 391,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "DEREL\u0130",
+    "name": "DEREL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 392,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "ESP\u0130YE",
+    "name": "ESP\u0130YE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 393,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "EYNES\u0130L",
+    "name": "EYNES\u0130L MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 394,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "G\u00d6RELE",
+    "name": "G\u00d6RELE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 395,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "KE\u015eAP",
+    "name": "KE\u015eAP MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 396,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "\u015eEB\u0130NKARAH\u0130SAR",
+    "name": "\u015eEB\u0130NKARAH\u0130SAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 397,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "T\u0130REBOLU",
+    "name": "T\u0130REBOLU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 398,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "P\u0130RAZ\u0130Z",
+    "name": "P\u0130RAZ\u0130Z MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 399,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "YA\u011eLIDERE",
+    "name": "YA\u011eLIDERE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 400,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "\u00c7ANAK\u00c7I",
+    "name": "\u00c7ANAK\u00c7I MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 401,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "G\u00dcCE",
+    "name": "G\u00dcCE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 402,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "\u00c7AMOLUK",
+    "name": "\u00c7AMOLUK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 403,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "DO\u011eANKENT",
+    "name": "DO\u011eANKENT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 404,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "G\u0130RESUN MERKEZ",
+    "name": "G\u0130RESUN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 405,
+    "plate_code": "28",
+    "city": "Giresun",
+    "district": "BULANCAK",
+    "name": "BULANCAK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 406,
+    "plate_code": "29",
+    "city": "G\u00fcm\u00fc\u015fhane",
+    "district": "KELK\u0130T",
+    "name": "KELK\u0130T MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 407,
+    "plate_code": "29",
+    "city": "G\u00fcm\u00fc\u015fhane",
+    "district": "\u015e\u0130RAN",
+    "name": "\u015e\u0130RAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 408,
+    "plate_code": "29",
+    "city": "G\u00fcm\u00fc\u015fhane",
+    "district": "TORUL",
+    "name": "TORUL MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 409,
+    "plate_code": "29",
+    "city": "G\u00fcm\u00fc\u015fhane",
+    "district": "K\u00d6SE",
+    "name": "K\u00d6SE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 410,
+    "plate_code": "29",
+    "city": "G\u00fcm\u00fc\u015fhane",
+    "district": "K\u00dcRT\u00dcN",
+    "name": "K\u00dcRT\u00dcN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 411,
+    "plate_code": "29",
+    "city": "G\u00fcm\u00fc\u015fhane",
+    "district": "G\u00dcM\u00dc\u015eHANE MERKEZ",
+    "name": "G\u00dcM\u00dc\u015eHANE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 412,
+    "plate_code": "30",
+    "city": "Hakkari",
+    "district": "\u00c7UKURCA",
+    "name": "\u00c7UKURCA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 413,
+    "plate_code": "30",
+    "city": "Hakkari",
+    "district": "\u015eEMD\u0130NL\u0130",
+    "name": "\u015eEMD\u0130NL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 414,
+    "plate_code": "30",
+    "city": "Hakkari",
+    "district": "DEREC\u0130K",
+    "name": "DEREC\u0130K MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 415,
+    "plate_code": "30",
+    "city": "Hakkari",
+    "district": "HAKKAR\u0130 MERKEZ",
+    "name": "HAKKAR\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 416,
+    "plate_code": "30",
+    "city": "Hakkari",
+    "district": "Y\u00dcKSEKOVA",
+    "name": "Y\u00dcKSEKOVA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 417,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "ALTIN\u00d6Z\u00dc",
+    "name": "ALTIN\u00d6Z\u00dc MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 418,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "HASSA",
+    "name": "HASSA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 419,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "YAYLADA\u011eI",
+    "name": "YAYLADA\u011e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 420,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "ERZ\u0130N",
+    "name": "ERZ\u0130N MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 421,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "BELEN",
+    "name": "BELEN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 422,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "KUMLU",
+    "name": "KUMLU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 423,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "ANTAKYA",
+    "name": "23TEMMUZ VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 424,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "\u0130SKENDERUN",
+    "name": "SAH\u0130L VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 425,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "ANTAKYA",
+    "name": "ANTAKYA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 426,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "D\u00d6RTYOL",
+    "name": "D\u00d6RTYOL VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 427,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "KIRIKHAN",
+    "name": "KIRIKHAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 428,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "REYHANLI",
+    "name": "REYHANLI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 429,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "SAMANDA\u011e",
+    "name": "SAMANDA\u011e VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 430,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "ANTAKYA",
+    "name": "\u015e\u00dcKR\u00dcKANATLI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 431,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "AKDEN\u0130Z",
+    "name": "AKDEN\u0130Z VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 432,
+    "plate_code": "31",
+    "city": "Hatay",
+    "district": "\u0130SKENDERUN",
+    "name": "ASIM G\u00dcND\u00dcZ VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 433,
+    "plate_code": "32",
+    "city": "Isparta",
+    "district": "ATABEY",
+    "name": "ATABEY MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 434,
+    "plate_code": "32",
+    "city": "Isparta",
+    "district": "GELENDOST",
+    "name": "GELENDOST MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 435,
+    "plate_code": "32",
+    "city": "Isparta",
+    "district": "KE\u00c7\u0130BORLU",
+    "name": "KE\u00c7\u0130BORLU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 436,
+    "plate_code": "32",
+    "city": "Isparta",
+    "district": "SEN\u0130RKENT",
+    "name": "SEN\u0130RKENT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 437,
+    "plate_code": "32",
+    "city": "Isparta",
+    "district": "S\u00dcT\u00c7\u00dcLER",
+    "name": "S\u00dcT\u00c7\u00dcLER MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 438,
+    "plate_code": "32",
+    "city": "Isparta",
+    "district": "\u015eARK\u0130KARAA\u011eA\u00c7",
+    "name": "\u015eARK\u0130KARAA\u011eA\u00c7 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 439,
+    "plate_code": "32",
+    "city": "Isparta",
+    "district": "ULUBORLU",
+    "name": "ULUBORLU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 440,
+    "plate_code": "32",
+    "city": "Isparta",
+    "district": "AKSU",
+    "name": "AKSU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 441,
+    "plate_code": "32",
+    "city": "Isparta",
+    "district": "G\u00d6NEN",
+    "name": "G\u00d6NEN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 442,
+    "plate_code": "32",
+    "city": "Isparta",
+    "district": "YEN\u0130\u015eARBADEML\u0130",
+    "name": "YEN\u0130\u015eARBADEML\u0130 M MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 443,
+    "plate_code": "32",
+    "city": "Isparta",
+    "district": "ISPARTA MERKEZ",
+    "name": "DAVRAZ VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 444,
+    "plate_code": "32",
+    "city": "Isparta",
+    "district": "ISPARTA MERKEZ",
+    "name": "KAYMAKKAPI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 445,
+    "plate_code": "32",
+    "city": "Isparta",
+    "district": "E\u011e\u0130RD\u0130R",
+    "name": "E\u011e\u0130RD\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 446,
+    "plate_code": "32",
+    "city": "Isparta",
+    "district": "YALVA\u00c7",
+    "name": "YALVA\u00c7 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 447,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "G\u00dcLNAR",
+    "name": "G\u00dcLNAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 448,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "AYDINCIK",
+    "name": "AYDINCIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 449,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "BOZYAZI",
+    "name": "BOZYAZI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 450,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "\u00c7AMLIYAYLA",
+    "name": "\u00c7AMLIYAYLA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 451,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "ERDEML\u0130",
+    "name": "ERDEML\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 452,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "S\u0130L\u0130FKE",
+    "name": "S\u0130L\u0130FKE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 453,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "ANAMUR",
+    "name": "ANAMUR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 454,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "TARSUS",
+    "name": "KIZILMURAT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 455,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "TARSUS",
+    "name": "\u015eEH\u0130TKER\u0130M VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 456,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "AKDEN\u0130Z",
+    "name": "\u0130ST\u0130KLAL VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 457,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "AKDEN\u0130Z",
+    "name": "URAY VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 458,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "AKDEN\u0130Z",
+    "name": "L\u0130MAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 459,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "AKDEN\u0130Z",
+    "name": "TOROS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 460,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "AKDEN\u0130Z",
+    "name": "MERS\u0130N \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 461,
+    "plate_code": "33",
+    "city": "Mersin",
+    "district": "MUT",
+    "name": "MUT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 462,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "S\u0130L\u0130VR\u0130",
+    "name": "S\u0130L\u0130VR\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 463,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "B\u00dcY\u00dcK\u00c7EKMECE",
+    "name": "B\u00dcY\u00dcK\u00c7EKMECE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 464,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "\u015e\u0130LE",
+    "name": "\u015e\u0130LE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 465,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "FAT\u0130H",
+    "name": "HAL\u0130\u00c7 \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 466,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "FAT\u0130H",
+    "name": "VATAN \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 467,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "\u00dcMRAN\u0130YE",
+    "name": "\u00c7AMLICA \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 468,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "\u00dcMRAN\u0130YE",
+    "name": "ALEMDA\u011e VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 469,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "FAT\u0130H",
+    "name": "YEN\u0130KAPI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 470,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "ATA\u015eEH\u0130R",
+    "name": "B\u00dcY\u00dcK M\u00dcK. VD. B VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 471,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "FAT\u0130H",
+    "name": "BO\u011eAZ\u0130\u00c7\u0130 KUR. VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 472,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "MARMARA",
+    "name": "MARMARA KUR. VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 473,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "FAT\u0130H",
+    "name": "DAVUTPA\u015eA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 474,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "ESENLER",
+    "name": "ESENLER VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 475,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "FAT\u0130H",
+    "name": "FAT\u0130H VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 476,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "ESENLER",
+    "name": "K\u00dc\u00c7\u00dcKK\u00d6Y VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 477,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "BAH\u00c7EL\u0130EVLER",
+    "name": "MERTER VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 478,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "SULTANBEYL\u0130",
+    "name": "SULTANBEYL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 479,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "ATA\u015eEH\u0130R",
+    "name": "ANADOLU KURUMLAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 480,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "TUZLA",
+    "name": "TUZLA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 481,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "ATA\u015eEH\u0130R",
+    "name": "KOZYATA\u011eI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 482,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "\u015e\u0130\u015eL\u0130",
+    "name": "MASLAK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 483,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "\u015e\u0130\u015eL\u0130",
+    "name": "Z\u0130NC\u0130RL\u0130KUYU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 484,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "BA\u015eAK\u015eEH\u0130R",
+    "name": "\u0130K\u0130TELL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 485,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "BE\u015e\u0130KTA\u015e",
+    "name": "BE\u015e\u0130KTA\u015e VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 486,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "\u00dcMRAN\u0130YE",
+    "name": "\u00dcMRAN\u0130YE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 487,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "FAT\u0130H",
+    "name": "YED\u0130TEPE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 488,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "\u015e\u0130\u015eL\u0130",
+    "name": "KASIMPA\u015eA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 489,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "ATA\u015eEH\u0130R",
+    "name": "ERENK\u00d6Y VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 490,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "FAT\u0130H",
+    "name": "H\u0130SAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 491,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "ESENLER",
+    "name": "TUNA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 492,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "ATA\u015eEH\u0130R",
+    "name": "RIHTIM VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 493,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "G\u00dcNG\u00d6REN",
+    "name": "G\u00dcNG\u00d6REN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 494,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "KOCAS\u0130NAN",
+    "name": "KOCAS\u0130NAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 495,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "BAH\u00c7EL\u0130EVLER",
+    "name": "G\u00dcNE\u015eL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 496,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "KARTAL",
+    "name": "K\u00dc\u00c7\u00dcKYALI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 497,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "PEND\u0130K",
+    "name": "PEND\u0130K VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 498,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "BAYRAMPA\u015eA",
+    "name": "BAYRAMPA\u015eA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 499,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "FAT\u0130H",
+    "name": "BEYAZIT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 500,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "BEYO\u011eLU",
+    "name": "BEYO\u011eLU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 501,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "GAZ\u0130OSMANPA\u015eA",
+    "name": "GAZ\u0130OSMANPA\u015eA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 502,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "KADIK\u00d6Y",
+    "name": "G\u00d6ZTEPE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 503,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "FAT\u0130H",
+    "name": "HOCAPA\u015eA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 504,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "KADIK\u00d6Y",
+    "name": "KADIK\u00d6Y VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 505,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "FAT\u0130H",
+    "name": "KOCAMUSTAFAPA\u015eA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 506,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "\u015e\u0130\u015eL\u0130",
+    "name": "MEC\u0130D\u0130YEK\u00d6Y VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 507,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "\u015e\u0130\u015eL\u0130",
+    "name": "\u015e\u0130\u015eL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 508,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "\u00dcSK\u00dcDAR",
+    "name": "\u00dcSK\u00dcDAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 509,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "BA\u015eAK\u015eEH\u0130R",
+    "name": "HALKALI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 510,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "KA\u011eITHANE",
+    "name": "KA\u011eITHANE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 511,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "ZEYT\u0130NBURNU",
+    "name": "ZEYT\u0130NBURNU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 512,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "BEYKOZ",
+    "name": "BEYKOZ VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 513,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "SARIYER",
+    "name": "SARIYER VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 514,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "BAKIRK\u00d6Y",
+    "name": "BAKIRK\u00d6Y VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 515,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "KARTAL",
+    "name": "KARTAL VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 516,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "\u00dcMRAN\u0130YE",
+    "name": "NAK\u0130L VASITA. VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 517,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "\u00dcMRAN\u0130YE",
+    "name": "SARIGAZ\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 518,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "ESENLER",
+    "name": "ATI\u015eALANI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 519,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "KARTAL",
+    "name": "YAKACIK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 520,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "BAH\u00c7EL\u0130EVLER",
+    "name": "YEN\u0130 BOSNA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 521,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "AVCILAR",
+    "name": "AVCILAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 522,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "ADALAR",
+    "name": "ADALAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 523,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "K\u00dc\u00c7\u00dcK\u00c7EKMECE",
+    "name": "K\u00dc\u00c7\u00dcK\u00c7EKMECE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 524,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "BEYL\u0130KD\u00dcZ\u00dc",
+    "name": "BEYL\u0130KD\u00dcZ\u00dc VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 525,
+    "plate_code": "34",
+    "city": "\u0130stanbul",
+    "district": "ESENYURT",
+    "name": "ESENYURT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 526,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "D\u0130K\u0130L\u0130",
+    "name": "D\u0130K\u0130L\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 527,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "FO\u00c7A",
+    "name": "FO\u00c7A MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 528,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "KARABURUN",
+    "name": "KARABURUN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 529,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "SEFER\u0130H\u0130SAR",
+    "name": "SEFER\u0130H\u0130SAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 530,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "BEYDA\u011e",
+    "name": "BEYDA\u011e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 531,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "BAYINDIR",
+    "name": "BAYINDIR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 532,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "BERGAMA",
+    "name": "BERGAMA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 533,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "MENEMEN",
+    "name": "MENEMEN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 534,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "\u00d6DEM\u0130\u015e",
+    "name": "\u00d6DEM\u0130\u015e VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 535,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "T\u0130RE",
+    "name": "T\u0130RE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 536,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "TORBALI",
+    "name": "TORBALI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 537,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "KEMALPA\u015eA",
+    "name": "KEMALPA\u015eA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 538,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "URLA",
+    "name": "URLA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 539,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "SEL\u00c7UK",
+    "name": "SEL\u00c7UK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 540,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "KINIK",
+    "name": "KINIK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 541,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "K\u0130RAZ",
+    "name": "K\u0130RAZ VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 542,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "\u00c7E\u015eME",
+    "name": "\u00c7E\u015eME VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 543,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "AL\u0130A\u011eA",
+    "name": "AL\u0130A\u011eA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 544,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "MENDERES",
+    "name": "MENDERES VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 545,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "KARABA\u011eLAR",
+    "name": "\u0130ZM\u0130R \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 546,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "KARABA\u011eLAR",
+    "name": "9 EYL\u00dcL VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 547,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "KAR\u015eIYAKA",
+    "name": "YAMANLAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 548,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "BORNOVA",
+    "name": "BELKAHVE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 549,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "KAR\u015eIYAKA",
+    "name": "KAR\u015eIYAKA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 550,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "KONAK",
+    "name": "KEMERALTI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 551,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "KONAK",
+    "name": "KONAK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 552,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "KONAK",
+    "name": "KORDON VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 553,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "BUCA",
+    "name": "\u015e\u0130R\u0130NYER VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 554,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "BUCA",
+    "name": "KAD\u0130FEKALE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 555,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "BUCA",
+    "name": "TA\u015eITLAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 556,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "BORNOVA",
+    "name": "HASAN TAHS\u0130N VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 557,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "BORNOVA",
+    "name": "BORNOVA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 558,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "BAL\u00c7OVA",
+    "name": "BAL\u00c7OVA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 559,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "GAZ\u0130EM\u0130R",
+    "name": "GAZ\u0130EM\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 560,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "KONAK",
+    "name": "EGE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 561,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "\u00c7\u0130\u011eL\u0130",
+    "name": "\u00c7\u0130\u011eL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 562,
+    "plate_code": "35",
+    "city": "\u0130zmir",
+    "district": "BAYRAKLI",
+    "name": "\u00c7AKABEY \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 563,
+    "plate_code": "36",
+    "city": "Kars",
+    "district": "ARPA\u00c7AY",
+    "name": "ARPA\u00c7AY MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 564,
+    "plate_code": "36",
+    "city": "Kars",
+    "district": "D\u0130GOR",
+    "name": "D\u0130GOR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 565,
+    "plate_code": "36",
+    "city": "Kars",
+    "district": "KA\u011eIZMAN",
+    "name": "KA\u011eIZMAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 566,
+    "plate_code": "36",
+    "city": "Kars",
+    "district": "SARIKAMI\u015e",
+    "name": "SARIKAMI\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 567,
+    "plate_code": "36",
+    "city": "Kars",
+    "district": "SEL\u0130M",
+    "name": "SEL\u0130M MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 568,
+    "plate_code": "36",
+    "city": "Kars",
+    "district": "SUSUZ",
+    "name": "SUSUZ MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 569,
+    "plate_code": "36",
+    "city": "Kars",
+    "district": "AKYAKA",
+    "name": "AKYAKA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 570,
+    "plate_code": "36",
+    "city": "Kars",
+    "district": "KARS MERKEZ",
+    "name": "KARS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 571,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "ARA\u00c7",
+    "name": "ARA\u00c7 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 572,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "AZDAVAY",
+    "name": "AZDAVAY MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 573,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "BOZKURT",
+    "name": "BOZKURT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 574,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "C\u0130DE",
+    "name": "C\u0130DE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 575,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "\u00c7ATALZEYT\u0130N",
+    "name": "\u00c7ATALZEYT\u0130N MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 576,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "DADAY",
+    "name": "DADAY MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 577,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "DEVREKAN\u0130",
+    "name": "DEVREKAN\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 578,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "\u0130NEBOLU",
+    "name": "\u0130NEBOLU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 579,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "K\u00dcRE",
+    "name": "K\u00dcRE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 580,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "ABANA",
+    "name": "ABANA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 581,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "\u0130HSANGAZ\u0130",
+    "name": "\u0130HSANGAZ\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 582,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "PINARBA\u015eI",
+    "name": "PINARBA\u015eI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 583,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "\u015eENPAZAR",
+    "name": "\u015eENPAZAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 584,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "A\u011eLI",
+    "name": "A\u011eLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 585,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "DO\u011eANYURT",
+    "name": "DO\u011eANYURT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 586,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "HAN\u00d6N\u00dc",
+    "name": "HAN\u00d6N\u00dc MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 587,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "SEYD\u0130LER",
+    "name": "SEYD\u0130LER MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 588,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "KASTAMONU MERKEZ",
+    "name": "KASTAMONU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 589,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "TOSYA",
+    "name": "TOSYA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 590,
+    "plate_code": "37",
+    "city": "Kastamonu",
+    "district": "TA\u015eK\u00d6PR\u00dc",
+    "name": "TA\u015eK\u00d6PR\u00dc VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 591,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "FELAH\u0130YE",
+    "name": "FELAH\u0130YE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 592,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "\u0130NCESU",
+    "name": "\u0130NCESU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 593,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "SARIO\u011eLAN",
+    "name": "SARIO\u011eLAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 594,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "SARIZ",
+    "name": "SARIZ MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 595,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "TOMARZA",
+    "name": "TOMARZA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 596,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "YAHYALI",
+    "name": "YAHYALI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 597,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "YE\u015e\u0130LH\u0130SAR",
+    "name": "YE\u015e\u0130LH\u0130SAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 598,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "AKKI\u015eLA",
+    "name": "AKKI\u015eLA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 599,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "HACILAR",
+    "name": "HACILAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 600,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "\u00d6ZVATAN",
+    "name": "\u00d6ZVATAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 601,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "DEVEL\u0130",
+    "name": "DEVEL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 602,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "PINARBA\u015eI",
+    "name": "PINARBA\u015eI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 603,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "B\u00dcNYAN",
+    "name": "B\u00dcNYAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 604,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "KOCAS\u0130NAN",
+    "name": "KAYSER\u0130 \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 605,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "KOCAS\u0130NAN",
+    "name": "M\u0130MARS\u0130NAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 606,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "KOCAS\u0130NAN",
+    "name": "ERC\u0130YES VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 607,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "KOCAS\u0130NAN",
+    "name": "KALE\u00d6N\u00dc VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 608,
+    "plate_code": "38",
+    "city": "Kayseri",
+    "district": "KOCAS\u0130NAN",
+    "name": "GEVHER NES\u0130BE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 609,
+    "plate_code": "39",
+    "city": "K\u0131rklareli",
+    "district": "DEM\u0130RK\u00d6Y",
+    "name": "DEM\u0130RK\u00d6Y MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 610,
+    "plate_code": "39",
+    "city": "K\u0131rklareli",
+    "district": "KOFCAZ",
+    "name": "KOFCAZ MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 611,
+    "plate_code": "39",
+    "city": "K\u0131rklareli",
+    "district": "PEHL\u0130VANK\u00d6Y",
+    "name": "PEHL\u0130VANK\u00d6Y MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 612,
+    "plate_code": "39",
+    "city": "K\u0131rklareli",
+    "district": "PINARH\u0130SAR",
+    "name": "PINARH\u0130SAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 613,
+    "plate_code": "39",
+    "city": "K\u0131rklareli",
+    "district": "V\u0130ZE",
+    "name": "V\u0130ZE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 614,
+    "plate_code": "39",
+    "city": "K\u0131rklareli",
+    "district": "KIRKLAREL\u0130 MERKEZ",
+    "name": "KIRKLAREL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 615,
+    "plate_code": "39",
+    "city": "K\u0131rklareli",
+    "district": "L\u00dcLEBURGAZ",
+    "name": "L\u00dcLEBURGAZ VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 616,
+    "plate_code": "39",
+    "city": "K\u0131rklareli",
+    "district": "BABAESK\u0130",
+    "name": "BABAESK\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 617,
+    "plate_code": "40",
+    "city": "K\u0131r\u015fehir",
+    "district": "\u00c7\u0130\u00c7EKDA\u011eI",
+    "name": "\u00c7\u0130\u00c7EKDA\u011eI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 618,
+    "plate_code": "40",
+    "city": "K\u0131r\u015fehir",
+    "district": "MUCUR",
+    "name": "MUCUR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 619,
+    "plate_code": "40",
+    "city": "K\u0131r\u015fehir",
+    "district": "AKPINAR",
+    "name": "AKPINAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 620,
+    "plate_code": "40",
+    "city": "K\u0131r\u015fehir",
+    "district": "AK\u00c7AKENT",
+    "name": "AK\u00c7AKENT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 621,
+    "plate_code": "40",
+    "city": "K\u0131r\u015fehir",
+    "district": "BOZTEPE",
+    "name": "BOZTEPE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 622,
+    "plate_code": "40",
+    "city": "K\u0131r\u015fehir",
+    "district": "KIR\u015eEH\u0130R MERKEZ",
+    "name": "KIR\u015eEH\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 623,
+    "plate_code": "40",
+    "city": "K\u0131r\u015fehir",
+    "district": "KAMAN",
+    "name": "KAMAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 624,
+    "plate_code": "41",
+    "city": "Kocaeli",
+    "district": "KANDIRA",
+    "name": "KANDIRA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 625,
+    "plate_code": "41",
+    "city": "Kocaeli",
+    "district": "GEBZE",
+    "name": "ULU\u00c7INAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 626,
+    "plate_code": "41",
+    "city": "Kocaeli",
+    "district": "GEBZE",
+    "name": "\u0130LYASBEY VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 627,
+    "plate_code": "41",
+    "city": "Kocaeli",
+    "district": "G\u00d6LC\u00dcK",
+    "name": "G\u00d6LC\u00dcK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 628,
+    "plate_code": "41",
+    "city": "Kocaeli",
+    "district": "KARAM\u00dcRSEL",
+    "name": "KARAM\u00dcRSEL VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 629,
+    "plate_code": "41",
+    "city": "Kocaeli",
+    "district": "K\u00d6RFEZ",
+    "name": "K\u00d6RFEZ VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 630,
+    "plate_code": "41",
+    "city": "Kocaeli",
+    "district": "DER\u0130NCE",
+    "name": "DER\u0130NCE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 631,
+    "plate_code": "41",
+    "city": "Kocaeli",
+    "district": "DER\u0130NCE",
+    "name": "KOCAEL\u0130 \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 632,
+    "plate_code": "41",
+    "city": "Kocaeli",
+    "district": "DER\u0130NCE",
+    "name": "TEPEC\u0130K VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 633,
+    "plate_code": "41",
+    "city": "Kocaeli",
+    "district": "\u0130ZM\u0130T",
+    "name": "ALEMDAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 634,
+    "plate_code": "41",
+    "city": "Kocaeli",
+    "district": "GEBZE",
+    "name": "GEBZE \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 635,
+    "plate_code": "41",
+    "city": "Kocaeli",
+    "district": "\u0130ZM\u0130T",
+    "name": "ACISU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 636,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "BOZKIR",
+    "name": "BOZKIR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 637,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "DO\u011eANH\u0130SAR",
+    "name": "DO\u011eANH\u0130SAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 638,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "HAD\u0130M",
+    "name": "HAD\u0130M MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 639,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "KADINHANI",
+    "name": "KADINHAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 640,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "SARAY\u00d6N\u00dc",
+    "name": "SARAY\u00d6N\u00dc MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 641,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "YUNAK",
+    "name": "YUNAK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 642,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "AK\u00d6REN",
+    "name": "AK\u00d6REN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 643,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "ALTINEK\u0130N",
+    "name": "ALTINEK\u0130N MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 644,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "DEREBUCAK",
+    "name": "DEREBUCAK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 645,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "H\u00dcY\u00dcK",
+    "name": "H\u00dcY\u00dcK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 646,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "TA\u015eKENT",
+    "name": "TA\u015eKENT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 647,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "AHIRLI",
+    "name": "AHIRLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 648,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "\u00c7ELT\u0130K",
+    "name": "\u00c7ELT\u0130K MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 649,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "DERBENT",
+    "name": "DERBENT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 650,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "EM\u0130RGAZ\u0130",
+    "name": "EM\u0130RGAZ\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 651,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "G\u00dcNEYSINIR",
+    "name": "G\u00dcNEYSINIR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 652,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "HALKAPINAR",
+    "name": "HALKAPINAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 653,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "TUZLUKCU",
+    "name": "TUZLUKCU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 654,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "YALIH\u00dcY\u00dcK",
+    "name": "YALIH\u00dcY\u00dcK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 655,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "AK\u015eEH\u0130R",
+    "name": "AK\u015eEH\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 656,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "ERE\u011eL\u0130",
+    "name": "ERE\u011eL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 657,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "BEY\u015eEH\u0130R",
+    "name": "BEY\u015eEH\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 658,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "C\u0130HANBEYL\u0130",
+    "name": "C\u0130HANBEYL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 659,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "\u00c7UMRA",
+    "name": "\u00c7UMRA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 660,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "SEYD\u0130\u015eEH\u0130R",
+    "name": "SEYD\u0130\u015eEH\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 661,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "ILGIN",
+    "name": "ILGIN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 662,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "KULU",
+    "name": "KULU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 663,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "KARAPINAR",
+    "name": "KARAPINAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 664,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "SEL\u00c7UKLU",
+    "name": "KONYA \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 665,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "SEL\u00c7UK",
+    "name": "SEL\u00c7UK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 666,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "SEL\u00c7UKLU",
+    "name": "MEVLANA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 667,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "MERAM",
+    "name": "MERAM VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 668,
+    "plate_code": "42",
+    "city": "Konya",
+    "district": "SEL\u00c7UKLU",
+    "name": "ALAADD\u0130N VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 669,
+    "plate_code": "43",
+    "city": "K\u00fctahya",
+    "district": "ALTINTA\u015e",
+    "name": "ALTINTA\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 670,
+    "plate_code": "43",
+    "city": "K\u00fctahya",
+    "district": "DOMAN\u0130\u00c7",
+    "name": "DOMAN\u0130\u00c7 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 671,
+    "plate_code": "43",
+    "city": "K\u00fctahya",
+    "district": "ASLANAPA",
+    "name": "ASLANAPA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 672,
+    "plate_code": "43",
+    "city": "K\u00fctahya",
+    "district": "DUMLUPINAR",
+    "name": "DUMLUPINAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 673,
+    "plate_code": "43",
+    "city": "K\u00fctahya",
+    "district": "H\u0130SARCIK",
+    "name": "H\u0130SARCIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 674,
+    "plate_code": "43",
+    "city": "K\u00fctahya",
+    "district": "\u015eAPHANE",
+    "name": "\u015eAPHANE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 675,
+    "plate_code": "43",
+    "city": "K\u00fctahya",
+    "district": "\u00c7AVDARH\u0130SAR",
+    "name": "\u00c7AVDARH\u0130SAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 676,
+    "plate_code": "43",
+    "city": "K\u00fctahya",
+    "district": "PAZARLAR",
+    "name": "PAZARLAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 677,
+    "plate_code": "43",
+    "city": "K\u00fctahya",
+    "district": "K\u00dcTAHYA MERKEZ",
+    "name": "30 A\u011eUSTOS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 678,
+    "plate_code": "43",
+    "city": "K\u00fctahya",
+    "district": "GED\u0130Z",
+    "name": "GED\u0130Z VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 679,
+    "plate_code": "43",
+    "city": "K\u00fctahya",
+    "district": "S\u0130MAV",
+    "name": "S\u0130MAV VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 680,
+    "plate_code": "43",
+    "city": "K\u00fctahya",
+    "district": "TAV\u015eANLI",
+    "name": "TAV\u015eANLI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 681,
+    "plate_code": "43",
+    "city": "K\u00fctahya",
+    "district": "EMET",
+    "name": "EMET VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 682,
+    "plate_code": "43",
+    "city": "K\u00fctahya",
+    "district": "K\u00dcTAHYA MERKEZ",
+    "name": "\u00c7\u0130N\u0130L\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 683,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "AK\u00c7ADA\u011e",
+    "name": "AK\u00c7ADA\u011e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 684,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "ARAPG\u0130R",
+    "name": "ARAPG\u0130R MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 685,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "ARGUVAN",
+    "name": "ARGUVAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 686,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "DARENDE",
+    "name": "DARENDE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 687,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "DO\u011eAN\u015eEH\u0130R",
+    "name": "DO\u011eAN\u015eEH\u0130R MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 688,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "HEK\u0130MHAN",
+    "name": "HEK\u0130MHAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 689,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "P\u00dcT\u00dcRGE",
+    "name": "P\u00dcT\u00dcRGE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 690,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "YE\u015e\u0130LYURT",
+    "name": "YE\u015e\u0130LYURT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 691,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "BATTALGAZ\u0130",
+    "name": "BATTALGAZ\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 692,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "DO\u011eANYOL",
+    "name": "DO\u011eANYOL MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 693,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "KALE",
+    "name": "KALE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 694,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "KULUNCAK",
+    "name": "KULUNCAK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 695,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "YAZIHAN",
+    "name": "YAZIHAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 696,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "MALATYA MERKEZ",
+    "name": "FIRAT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 697,
+    "plate_code": "44",
+    "city": "Malatya",
+    "district": "BEYDA\u011e",
+    "name": "BEYDA\u011eI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 698,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "SELEND\u0130",
+    "name": "SELEND\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 699,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "AHMETL\u0130",
+    "name": "AHMETL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 700,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "G\u00d6LMARMARA",
+    "name": "G\u00d6LMARMARA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 701,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "K\u00d6PR\u00dcBA\u015eI",
+    "name": "K\u00d6PR\u00dcBA\u015eI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 702,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "AKH\u0130SAR",
+    "name": "AKH\u0130SAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 703,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "ALA\u015eEH\u0130R",
+    "name": "ALA\u015eEH\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 704,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "DEM\u0130RC\u0130",
+    "name": "DEM\u0130RC\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 705,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "KIRKA\u011eA\u00c7",
+    "name": "KIRKA\u011eA\u00c7 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 706,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "SAL\u0130HL\u0130",
+    "name": "SAL\u0130HL\u0130 AD\u0130L ORAL VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 707,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "SARIG\u00d6L",
+    "name": "SARIG\u00d6L VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 708,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "SARUHANLI",
+    "name": "SARUHANLI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 709,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "SOMA",
+    "name": "SOMA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 710,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "TURGUTLU",
+    "name": "TURGUTLU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 711,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "G\u00d6RDES",
+    "name": "G\u00d6RDES VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 712,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "KULA",
+    "name": "KULA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 713,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "MAN\u0130SA MERKEZ",
+    "name": "MAN\u0130SA \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 714,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "MAN\u0130SA MERKEZ",
+    "name": "\u015eEH\u0130T C\u0130HAN G\u00dcNE\u015e VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 715,
+    "plate_code": "45",
+    "city": "Manisa",
+    "district": "MAN\u0130SA MERKEZ",
+    "name": "MES\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 716,
+    "plate_code": "46",
+    "city": "Kahramanmara\u015f",
+    "district": "ANDIRIN",
+    "name": "ANDIRIN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 717,
+    "plate_code": "46",
+    "city": "Kahramanmara\u015f",
+    "district": "G\u00d6KSUN",
+    "name": "G\u00d6KSUN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 718,
+    "plate_code": "46",
+    "city": "Kahramanmara\u015f",
+    "district": "T\u00dcRKO\u011eLU",
+    "name": "T\u00dcRKO\u011eLU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 719,
+    "plate_code": "46",
+    "city": "Kahramanmara\u015f",
+    "district": "\u00c7A\u011eLAYANCER\u0130T",
+    "name": "\u00c7A\u011eLIYANCER\u0130T MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 720,
+    "plate_code": "46",
+    "city": "Kahramanmara\u015f",
+    "district": "EK\u0130N\u00d6Z\u00dc",
+    "name": "EK\u0130N\u00d6Z\u00dc MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 721,
+    "plate_code": "46",
+    "city": "Kahramanmara\u015f",
+    "district": "NURHAK",
+    "name": "NURHAK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 722,
+    "plate_code": "46",
+    "city": "Kahramanmara\u015f",
+    "district": "KAHRAMANMARA\u015e MERKEZ",
+    "name": "ASLANBEY VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 723,
+    "plate_code": "46",
+    "city": "Kahramanmara\u015f",
+    "district": "ELB\u0130STAN",
+    "name": "ELB\u0130STAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 724,
+    "plate_code": "46",
+    "city": "Kahramanmara\u015f",
+    "district": "AF\u015e\u0130N",
+    "name": "AF\u015e\u0130N VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 725,
+    "plate_code": "46",
+    "city": "Kahramanmara\u015f",
+    "district": "PAZARCIK",
+    "name": "PAZARCIK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 726,
+    "plate_code": "46",
+    "city": "Kahramanmara\u015f",
+    "district": "AKSU",
+    "name": "AKSU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 727,
+    "plate_code": "47",
+    "city": "Mardin",
+    "district": "DER\u0130K",
+    "name": "DER\u0130K MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 728,
+    "plate_code": "47",
+    "city": "Mardin",
+    "district": "MAZIDA\u011eI",
+    "name": "MAZIDA\u011eI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 729,
+    "plate_code": "47",
+    "city": "Mardin",
+    "district": "M\u0130DYAT",
+    "name": "M\u0130DYAT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 730,
+    "plate_code": "47",
+    "city": "Mardin",
+    "district": "\u00d6MERL\u0130",
+    "name": "\u00d6MERL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 731,
+    "plate_code": "47",
+    "city": "Mardin",
+    "district": "SAVUR",
+    "name": "SAVUR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 732,
+    "plate_code": "47",
+    "city": "Mardin",
+    "district": "DARGE\u00c7\u0130T",
+    "name": "DARGE\u00c7\u0130T MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 733,
+    "plate_code": "47",
+    "city": "Mardin",
+    "district": "YE\u015e\u0130LL\u0130",
+    "name": "YE\u015e\u0130LL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 734,
+    "plate_code": "47",
+    "city": "Mardin",
+    "district": "ARTUKLU",
+    "name": "MARD\u0130N VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 735,
+    "plate_code": "47",
+    "city": "Mardin",
+    "district": "KIZILTEPE",
+    "name": "KIZILTEPE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 736,
+    "plate_code": "47",
+    "city": "Mardin",
+    "district": "NUSAYB\u0130N",
+    "name": "NUSAYB\u0130N VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 737,
+    "plate_code": "48",
+    "city": "Mu\u011fla",
+    "district": "DAT\u00c7A",
+    "name": "DAT\u00c7A MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 738,
+    "plate_code": "48",
+    "city": "Mu\u011fla",
+    "district": "ULA",
+    "name": "ULA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 739,
+    "plate_code": "48",
+    "city": "Mu\u011fla",
+    "district": "DALAMAN",
+    "name": "DALAMAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 740,
+    "plate_code": "48",
+    "city": "Mu\u011fla",
+    "district": "ORTACA",
+    "name": "ORTACA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 741,
+    "plate_code": "48",
+    "city": "Mu\u011fla",
+    "district": "KAVAKLIDERE",
+    "name": "KAVAKLIDERE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 742,
+    "plate_code": "48",
+    "city": "Mu\u011fla",
+    "district": "SEYD\u0130KEMER",
+    "name": "SEYD\u0130KEMER MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 743,
+    "plate_code": "48",
+    "city": "Mu\u011fla",
+    "district": "MENTE\u015eE",
+    "name": "MU\u011eLA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 744,
+    "plate_code": "48",
+    "city": "Mu\u011fla",
+    "district": "BODRUM",
+    "name": "BODRUM VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 745,
+    "plate_code": "48",
+    "city": "Mu\u011fla",
+    "district": "FETH\u0130YE",
+    "name": "FETH\u0130YE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 746,
+    "plate_code": "48",
+    "city": "Mu\u011fla",
+    "district": "K\u00d6YCE\u011e\u0130Z",
+    "name": "K\u00d6YCE\u011e\u0130Z VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 747,
+    "plate_code": "48",
+    "city": "Mu\u011fla",
+    "district": "M\u0130LAS",
+    "name": "M\u0130LAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 748,
+    "plate_code": "48",
+    "city": "Mu\u011fla",
+    "district": "MARMAR\u0130S",
+    "name": "MARMAR\u0130S VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 749,
+    "plate_code": "48",
+    "city": "Mu\u011fla",
+    "district": "YATA\u011eAN",
+    "name": "YATA\u011eAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 750,
+    "plate_code": "49",
+    "city": "Mu\u015f",
+    "district": "BULANIK",
+    "name": "BULANIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 751,
+    "plate_code": "49",
+    "city": "Mu\u015f",
+    "district": "MALAZG\u0130RT",
+    "name": "MALAZG\u0130RT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 752,
+    "plate_code": "49",
+    "city": "Mu\u015f",
+    "district": "VARTO",
+    "name": "VARTO MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 753,
+    "plate_code": "49",
+    "city": "Mu\u015f",
+    "district": "HASK\u00d6Y",
+    "name": "HASK\u00d6Y MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 754,
+    "plate_code": "49",
+    "city": "Mu\u015f",
+    "district": "KORKUT",
+    "name": "KORKUT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 755,
+    "plate_code": "49",
+    "city": "Mu\u015f",
+    "district": "MU\u015e MERKEZ",
+    "name": "MU\u015e VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 756,
+    "plate_code": "50",
+    "city": "Nev\u015fehir",
+    "district": "AVANOS",
+    "name": "AVANOS MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 757,
+    "plate_code": "50",
+    "city": "Nev\u015fehir",
+    "district": "DER\u0130NKUYU",
+    "name": "DER\u0130NKUYU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 758,
+    "plate_code": "50",
+    "city": "Nev\u015fehir",
+    "district": "G\u00dcL\u015eEH\u0130R",
+    "name": "G\u00dcL\u015eEH\u0130R MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 759,
+    "plate_code": "50",
+    "city": "Nev\u015fehir",
+    "district": "HACIBEKTA\u015e",
+    "name": "HACIBEKTA\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 760,
+    "plate_code": "50",
+    "city": "Nev\u015fehir",
+    "district": "KOZAKLI",
+    "name": "KOZAKLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 761,
+    "plate_code": "50",
+    "city": "Nev\u015fehir",
+    "district": "\u00dcRG\u00dcP",
+    "name": "\u00dcRG\u00dcP MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 762,
+    "plate_code": "50",
+    "city": "Nev\u015fehir",
+    "district": "ACIG\u00d6L",
+    "name": "ACIG\u00d6L MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 763,
+    "plate_code": "50",
+    "city": "Nev\u015fehir",
+    "district": "NEV\u015eEH\u0130R MERKEZ",
+    "name": "NEV\u015eEH\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 764,
+    "plate_code": "51",
+    "city": "Ni\u011fde",
+    "district": "\u00c7AMARDI",
+    "name": "\u00c7AMARDI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 765,
+    "plate_code": "51",
+    "city": "Ni\u011fde",
+    "district": "ULUKI\u015eLA",
+    "name": "ULUKI\u015eLA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 766,
+    "plate_code": "51",
+    "city": "Ni\u011fde",
+    "district": "ALTUNH\u0130SAR",
+    "name": "ALTUNH\u0130SAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 767,
+    "plate_code": "51",
+    "city": "Ni\u011fde",
+    "district": "\u00c7\u0130FTL\u0130K",
+    "name": "\u00c7\u0130FTL\u0130K MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 768,
+    "plate_code": "51",
+    "city": "Ni\u011fde",
+    "district": "N\u0130\u011eDE MERKEZ",
+    "name": "N\u0130\u011eDE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 769,
+    "plate_code": "51",
+    "city": "Ni\u011fde",
+    "district": "BOR",
+    "name": "BOR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 770,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "AKKU\u015e",
+    "name": "AKKU\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 771,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "AYBASTI",
+    "name": "AYBASTI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 772,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "G\u00d6LK\u00d6Y",
+    "name": "G\u00d6LK\u00d6Y MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 773,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "KORGAN",
+    "name": "KORGAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 774,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "KUMRU",
+    "name": "KUMRU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 775,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "MESUD\u0130YE",
+    "name": "MESUD\u0130YE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 776,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "PER\u015eEMBE",
+    "name": "PER\u015eEMBE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 777,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "ULUBEY",
+    "name": "ULUBEY MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 778,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "G\u00dcLYALI",
+    "name": "G\u00dcLYALI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 779,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "G\u00dcRGENTEPE",
+    "name": "G\u00dcRGENTEPE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 780,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "\u00c7AMA\u015e",
+    "name": "\u00c7AMA\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 781,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "\u00c7ATALPINAR",
+    "name": "\u00c7ATALPINAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 782,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "\u00c7AYBA\u015eI",
+    "name": "\u00c7AYBA\u015eI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 783,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "\u0130K\u0130ZCE",
+    "name": "\u0130K\u0130ZCE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 784,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "KABAD\u00dcZ",
+    "name": "KABAD\u00dcZ MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 785,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "KABATA\u015e",
+    "name": "KABATA\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 786,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "BOZTEPE",
+    "name": "BOZTEPE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 787,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "K\u00d6PR\u00dcBA\u015eI",
+    "name": "K\u00d6PR\u00dcBA\u015eI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 788,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "FATSA",
+    "name": "FATSA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 789,
+    "plate_code": "52",
+    "city": "Ordu",
+    "district": "\u00dcNYE",
+    "name": "\u00dcNYE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 790,
+    "plate_code": "53",
+    "city": "Rize",
+    "district": "\u00c7AMLIHEM\u015e\u0130N",
+    "name": "\u00c7AMLIHEM\u015e\u0130N MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 791,
+    "plate_code": "53",
+    "city": "Rize",
+    "district": "FINDIKLI",
+    "name": "FINDIKLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 792,
+    "plate_code": "53",
+    "city": "Rize",
+    "district": "\u0130K\u0130ZDERE",
+    "name": "\u0130K\u0130ZDERE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 793,
+    "plate_code": "53",
+    "city": "Rize",
+    "district": "KALKANDERE",
+    "name": "KALKANDERE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 794,
+    "plate_code": "53",
+    "city": "Rize",
+    "district": "G\u00dcNEYSU",
+    "name": "G\u00dcNEYSU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 795,
+    "plate_code": "53",
+    "city": "Rize",
+    "district": "DEREPAZARI",
+    "name": "DEREPAZARI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 796,
+    "plate_code": "53",
+    "city": "Rize",
+    "district": "HEM\u015e\u0130N",
+    "name": "HEM\u015e\u0130N MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 797,
+    "plate_code": "53",
+    "city": "Rize",
+    "district": "\u0130Y\u0130DERE",
+    "name": "\u0130Y\u0130DERE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 798,
+    "plate_code": "53",
+    "city": "Rize",
+    "district": "R\u0130ZE MERKEZ",
+    "name": "KA\u00c7KAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 799,
+    "plate_code": "53",
+    "city": "Rize",
+    "district": "R\u0130ZE MERKEZ",
+    "name": "YE\u015e\u0130L\u00c7AY VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 800,
+    "plate_code": "53",
+    "city": "Rize",
+    "district": "\u00c7AYEL\u0130",
+    "name": "\u00c7AYEL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 801,
+    "plate_code": "53",
+    "city": "Rize",
+    "district": "PAZAR",
+    "name": "PAZAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 802,
+    "plate_code": "53",
+    "city": "Rize",
+    "district": "ARDE\u015eEN",
+    "name": "ARDE\u015eEN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 803,
+    "plate_code": "54",
+    "city": "Sakarya",
+    "district": "KAYNARCA",
+    "name": "KAYNARCA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 804,
+    "plate_code": "54",
+    "city": "Sakarya",
+    "district": "KOCAAL\u0130",
+    "name": "KOCAAL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 805,
+    "plate_code": "54",
+    "city": "Sakarya",
+    "district": "PAMUKOVA",
+    "name": "PAMUKOVA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 806,
+    "plate_code": "54",
+    "city": "Sakarya",
+    "district": "TARAKLI",
+    "name": "TARAKLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 807,
+    "plate_code": "54",
+    "city": "Sakarya",
+    "district": "KARAP\u00dcR\u00c7EK",
+    "name": "KARAP\u00dcR\u00c7EK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 808,
+    "plate_code": "54",
+    "city": "Sakarya",
+    "district": "AKYAZI",
+    "name": "AKYAZI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 809,
+    "plate_code": "54",
+    "city": "Sakarya",
+    "district": "GEYVE",
+    "name": "GEYVE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 810,
+    "plate_code": "54",
+    "city": "Sakarya",
+    "district": "HENDEK",
+    "name": "HENDEK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 811,
+    "plate_code": "54",
+    "city": "Sakarya",
+    "district": "KARASU",
+    "name": "KARASU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 812,
+    "plate_code": "54",
+    "city": "Sakarya",
+    "district": "ADAPAZARI",
+    "name": "SAKARYA \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 813,
+    "plate_code": "54",
+    "city": "Sakarya",
+    "district": "SERD\u0130VAN",
+    "name": "G\u00dcMR\u00dcK\u00d6N\u00dc VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 814,
+    "plate_code": "54",
+    "city": "Sakarya",
+    "district": "ADAPAZARI",
+    "name": "AL\u0130 FUAT CEBESOY VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 815,
+    "plate_code": "54",
+    "city": "Sakarya",
+    "district": "SAPANCA",
+    "name": "SAPANCA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 816,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "ALA\u00c7AM",
+    "name": "ALA\u00c7AM MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 817,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "KAVAK",
+    "name": "KAVAK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 818,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "LAD\u0130K",
+    "name": "LAD\u0130K MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 819,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "VEZ\u0130RK\u00d6PR\u00dc",
+    "name": "VEZ\u0130RK\u00d6PR\u00dc MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 820,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "ASARCIK",
+    "name": "ASARCIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 821,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "19 MAYIS",
+    "name": "19 MAYIS MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 822,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "SALIPAZARI",
+    "name": "SALIPAZARI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 823,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "TEKKEK\u00d6Y",
+    "name": "TEKKEK\u00d6Y MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 824,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "AYVACIK",
+    "name": "AYVACIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 825,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "YAKAKENT",
+    "name": "YAKAKENT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 826,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "BAFRA",
+    "name": "BAFRA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 827,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "\u00c7AR\u015eAMBA",
+    "name": "\u00c7AR\u015eAMBA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 828,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "TERME",
+    "name": "TERME VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 829,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "HAVZA",
+    "name": "HAVZA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 830,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "19 MAYIS",
+    "name": "19 MAYIS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 831,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "\u0130LKADIM",
+    "name": "GAZ\u0130LER VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 832,
+    "plate_code": "55",
+    "city": "Samsun",
+    "district": "\u0130LKADIM",
+    "name": "ZAFER VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 833,
+    "plate_code": "56",
+    "city": "Siirt",
+    "district": "BAYKAN",
+    "name": "BAYKAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 834,
+    "plate_code": "56",
+    "city": "Siirt",
+    "district": "ERUH",
+    "name": "ERUH MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 835,
+    "plate_code": "56",
+    "city": "Siirt",
+    "district": "KURTALAN",
+    "name": "KURTALAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 836,
+    "plate_code": "56",
+    "city": "Siirt",
+    "district": "PERVAR\u0130",
+    "name": "PERVAR\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 837,
+    "plate_code": "56",
+    "city": "Siirt",
+    "district": "\u015e\u0130RVAN",
+    "name": "\u015e\u0130RVAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 838,
+    "plate_code": "56",
+    "city": "Siirt",
+    "district": "S\u0130\u0130RT MERKEZ",
+    "name": "S\u0130\u0130RT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 839,
+    "plate_code": "57",
+    "city": "Sinop",
+    "district": "AYANCIK",
+    "name": "AYANCIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 840,
+    "plate_code": "57",
+    "city": "Sinop",
+    "district": "DURA\u011eAN",
+    "name": "DURA\u011eAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 841,
+    "plate_code": "57",
+    "city": "Sinop",
+    "district": "ERFELEK",
+    "name": "ERFELEK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 842,
+    "plate_code": "57",
+    "city": "Sinop",
+    "district": "GERZE",
+    "name": "GERZE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 843,
+    "plate_code": "57",
+    "city": "Sinop",
+    "district": "T\u00dcRKEL\u0130",
+    "name": "T\u00dcRKEL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 844,
+    "plate_code": "57",
+    "city": "Sinop",
+    "district": "D\u0130KMEN",
+    "name": "D\u0130KMEN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 845,
+    "plate_code": "57",
+    "city": "Sinop",
+    "district": "SARAYD\u00dcZ\u00dc",
+    "name": "SARAYD\u00dcZ\u00dc MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 846,
+    "plate_code": "57",
+    "city": "Sinop",
+    "district": "S\u0130NOP MERKEZ",
+    "name": "S\u0130NOP VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 847,
+    "plate_code": "57",
+    "city": "Sinop",
+    "district": "BOYABAT",
+    "name": "BOYABAT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 848,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "D\u0130VR\u0130\u011e\u0130",
+    "name": "D\u0130VR\u0130\u011e\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 849,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "GEMEREK",
+    "name": "GEMEREK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 850,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "G\u00dcR\u00dcN",
+    "name": "G\u00dcR\u00dcN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 851,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "HAF\u0130K",
+    "name": "HAF\u0130K MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 852,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "\u0130MRANLI",
+    "name": "\u0130MRANLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 853,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "KANGAL",
+    "name": "KANGAL MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 854,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "KOYULH\u0130SAR",
+    "name": "KOYULH\u0130SAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 855,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "SU\u015eEHR\u0130",
+    "name": "SU\u015eEHR\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 856,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "YILDIZEL\u0130",
+    "name": "YILDIZEL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 857,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "ZARA",
+    "name": "ZARA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 858,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "AKINCILAR",
+    "name": "AKINCILAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 859,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "ALTINYAYLA",
+    "name": "ALTINYAYLA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 860,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "DO\u011eAN\u015eAR",
+    "name": "DO\u011eAN\u015eAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 861,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "G\u00d6LOVA",
+    "name": "G\u00d6LOVA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 862,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "ULA\u015e",
+    "name": "ULA\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 863,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "KALE",
+    "name": "KALE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 864,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "\u015eARKI\u015eLA",
+    "name": "\u015eARKI\u015eLA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 865,
+    "plate_code": "58",
+    "city": "Sivas",
+    "district": "S\u0130VAS MERKEZ",
+    "name": "S\u0130TE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 866,
+    "plate_code": "59",
+    "city": "Tekirda\u011f",
+    "district": "SARAY",
+    "name": "SARAY MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 867,
+    "plate_code": "59",
+    "city": "Tekirda\u011f",
+    "district": "MARMARAERE\u011eL\u0130S\u0130",
+    "name": "MARM. ERE\u011eL\u0130S\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 868,
+    "plate_code": "59",
+    "city": "Tekirda\u011f",
+    "district": "S\u00dcLEYMANPA\u015eA",
+    "name": "S\u00dcLEYMANPA\u015eA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 869,
+    "plate_code": "59",
+    "city": "Tekirda\u011f",
+    "district": "\u00c7ORLU",
+    "name": "\u00c7ORLU \u0130HT\u0130SAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 870,
+    "plate_code": "59",
+    "city": "Tekirda\u011f",
+    "district": "S\u00dcLEYMANPA\u015eA",
+    "name": "NAMIK KEMAL VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 871,
+    "plate_code": "59",
+    "city": "Tekirda\u011f",
+    "district": "\u00c7ERKEZK\u00d6Y",
+    "name": "\u00c7ERKEZK\u00d6Y VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 872,
+    "plate_code": "59",
+    "city": "Tekirda\u011f",
+    "district": "\u00c7ORLU",
+    "name": "\u00c7ORLU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 873,
+    "plate_code": "59",
+    "city": "Tekirda\u011f",
+    "district": "HAYRABOLU",
+    "name": "HAYRABOLU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 874,
+    "plate_code": "59",
+    "city": "Tekirda\u011f",
+    "district": "MALKARA",
+    "name": "MALKARA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 875,
+    "plate_code": "59",
+    "city": "Tekirda\u011f",
+    "district": "MURATLI",
+    "name": "MURATLI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 876,
+    "plate_code": "59",
+    "city": "Tekirda\u011f",
+    "district": "\u015eARK\u00d6Y",
+    "name": "\u015eARK\u00d6Y VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 877,
+    "plate_code": "59",
+    "city": "Tekirda\u011f",
+    "district": "KAPAKLI",
+    "name": "KAPAKLI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 878,
+    "plate_code": "60",
+    "city": "Tokat",
+    "district": "ALMUS",
+    "name": "ALMUS MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 879,
+    "plate_code": "60",
+    "city": "Tokat",
+    "district": "ARTOVA",
+    "name": "ARTOVA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 880,
+    "plate_code": "60",
+    "city": "Tokat",
+    "district": "RE\u015eAD\u0130YE",
+    "name": "RE\u015eAD\u0130YE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 881,
+    "plate_code": "60",
+    "city": "Tokat",
+    "district": "PAZAR",
+    "name": "PAZAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 882,
+    "plate_code": "60",
+    "city": "Tokat",
+    "district": "YE\u015e\u0130LYURT",
+    "name": "YE\u015e\u0130LYURT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 883,
+    "plate_code": "60",
+    "city": "Tokat",
+    "district": "BA\u015e\u00c7\u0130FTL\u0130K",
+    "name": "BA\u015e\u00c7\u0130FTL\u0130K MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 884,
+    "plate_code": "60",
+    "city": "Tokat",
+    "district": "SULUSARAY",
+    "name": "SULUSARAY MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 885,
+    "plate_code": "60",
+    "city": "Tokat",
+    "district": "TOKAT MERKEZ",
+    "name": "TOKAT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 886,
+    "plate_code": "60",
+    "city": "Tokat",
+    "district": "ERBAA",
+    "name": "ERBAA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 887,
+    "plate_code": "60",
+    "city": "Tokat",
+    "district": "N\u0130KSAR",
+    "name": "N\u0130KSAR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 888,
+    "plate_code": "60",
+    "city": "Tokat",
+    "district": "TURHAL",
+    "name": "TURHAL VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 889,
+    "plate_code": "60",
+    "city": "Tokat",
+    "district": "Z\u0130LE",
+    "name": "Z\u0130LE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 890,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "ARAKLI",
+    "name": "ARAKLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 891,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "ARS\u0130N",
+    "name": "ARS\u0130N MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 892,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "\u00c7AYKARA",
+    "name": "\u00c7AYKARA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 893,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "MA\u00c7KA",
+    "name": "MA\u00c7KA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 894,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "S\u00dcRMENE",
+    "name": "S\u00dcRMENE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 895,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "TONYA",
+    "name": "TONYA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 896,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "YOMRA",
+    "name": "YOMRA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 897,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "BE\u015e\u0130KD\u00dcZ\u00dc",
+    "name": "BE\u015e\u0130KD\u00dcZ\u00dc MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 898,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "\u015eALPAZARI",
+    "name": "\u015eALPAZARI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 899,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "\u00c7AR\u015eIBA\u015eI",
+    "name": "\u00c7AR\u015eIBA\u015eI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 900,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "DERNEKPAZARI",
+    "name": "DERNEKPAZARI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 901,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "D\u00dcZK\u00d6Y",
+    "name": "D\u00dcZK\u00d6Y MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 902,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "HAYRAT",
+    "name": "HAYRAT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 903,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "K\u00d6PR\u00dcBA\u015eI",
+    "name": "K\u00d6PR\u00dcBA\u015eI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 904,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "TRABZON MERKEZ",
+    "name": "HIZIRBEY VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 905,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "AK\u00c7AABAT",
+    "name": "AK\u00c7AABAT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 906,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "OF",
+    "name": "OF VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 907,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "VAKFIKEB\u0130R",
+    "name": "VAKFIKEB\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 908,
+    "plate_code": "61",
+    "city": "Trabzon",
+    "district": "ORTAH\u0130SAR",
+    "name": "KARADEN\u0130Z VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 909,
+    "plate_code": "62",
+    "city": "Tunceli",
+    "district": "\u00c7EM\u0130\u015eGEZEK",
+    "name": "\u00c7EM\u0130\u015eGEZEK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 910,
+    "plate_code": "62",
+    "city": "Tunceli",
+    "district": "HOZAT",
+    "name": "HOZAT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 911,
+    "plate_code": "62",
+    "city": "Tunceli",
+    "district": "MAZG\u0130RT",
+    "name": "MAZG\u0130RT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 912,
+    "plate_code": "62",
+    "city": "Tunceli",
+    "district": "NAZ\u0130M\u0130YE",
+    "name": "NAZ\u0130M\u0130YE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 913,
+    "plate_code": "62",
+    "city": "Tunceli",
+    "district": "OVACIK",
+    "name": "OVACIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 914,
+    "plate_code": "62",
+    "city": "Tunceli",
+    "district": "PERTEK",
+    "name": "PERTEK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 915,
+    "plate_code": "62",
+    "city": "Tunceli",
+    "district": "P\u00dcL\u00dcM\u00dcR",
+    "name": "P\u00dcL\u00dcM\u00dcR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 916,
+    "plate_code": "62",
+    "city": "Tunceli",
+    "district": "TUNCEL\u0130 MERKEZ",
+    "name": "TUNCEL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 917,
+    "plate_code": "63",
+    "city": "\u015eanl\u0131urfa",
+    "district": "AK\u00c7AKALE",
+    "name": "AK\u00c7AKALE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 918,
+    "plate_code": "63",
+    "city": "\u015eanl\u0131urfa",
+    "district": "BOZOVA",
+    "name": "BOZOVA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 919,
+    "plate_code": "63",
+    "city": "\u015eanl\u0131urfa",
+    "district": "HALFET\u0130",
+    "name": "HALFET\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 920,
+    "plate_code": "63",
+    "city": "\u015eanl\u0131urfa",
+    "district": "H\u0130LVAN",
+    "name": "H\u0130LVAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 921,
+    "plate_code": "63",
+    "city": "\u015eanl\u0131urfa",
+    "district": "CEYLANPINAR",
+    "name": "CEYLANPINAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 922,
+    "plate_code": "63",
+    "city": "\u015eanl\u0131urfa",
+    "district": "HARRAN",
+    "name": "HARRAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 923,
+    "plate_code": "63",
+    "city": "\u015eanl\u0131urfa",
+    "district": "HAL\u0130L\u0130YE",
+    "name": "\u015eEH\u0130TL\u0130K VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 924,
+    "plate_code": "63",
+    "city": "\u015eanl\u0131urfa",
+    "district": "S\u0130VEREK",
+    "name": "S\u0130VEREK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 925,
+    "plate_code": "63",
+    "city": "\u015eanl\u0131urfa",
+    "district": "V\u0130RAN\u015eEH\u0130R",
+    "name": "V\u0130RAN\u015eEH\u0130R VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 926,
+    "plate_code": "63",
+    "city": "\u015eanl\u0131urfa",
+    "district": "B\u0130REC\u0130K",
+    "name": "B\u0130REC\u0130K VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 927,
+    "plate_code": "63",
+    "city": "\u015eanl\u0131urfa",
+    "district": "SURU\u00c7",
+    "name": "SURU\u00c7 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 928,
+    "plate_code": "63",
+    "city": "\u015eanl\u0131urfa",
+    "district": "HAL\u0130L\u0130YE",
+    "name": "TOP\u00c7UMEYDANI VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 929,
+    "plate_code": "63",
+    "city": "\u015eanl\u0131urfa",
+    "district": "HAL\u0130L\u0130YE",
+    "name": "G\u00d6BEKL\u0130TEPE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 930,
+    "plate_code": "64",
+    "city": "U\u015fak",
+    "district": "KARAHALLI",
+    "name": "KARAHALLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 931,
+    "plate_code": "64",
+    "city": "U\u015fak",
+    "district": "ULUBEY",
+    "name": "ULUBEY MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 932,
+    "plate_code": "64",
+    "city": "U\u015fak",
+    "district": "S\u0130VASLI",
+    "name": "S\u0130VASLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 933,
+    "plate_code": "64",
+    "city": "U\u015fak",
+    "district": "U\u015eAK MERKEZ",
+    "name": "U\u015eAK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 934,
+    "plate_code": "64",
+    "city": "U\u015fak",
+    "district": "BANAZ",
+    "name": "BANAZ VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 935,
+    "plate_code": "64",
+    "city": "U\u015fak",
+    "district": "E\u015eME",
+    "name": "E\u015eME VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 936,
+    "plate_code": "65",
+    "city": "Van",
+    "district": "BA\u015eKALE",
+    "name": "BA\u015eKALE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 937,
+    "plate_code": "65",
+    "city": "Van",
+    "district": "\u00c7ATAK",
+    "name": "\u00c7ATAK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 938,
+    "plate_code": "65",
+    "city": "Van",
+    "district": "GEVA\u015e",
+    "name": "GEVA\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 939,
+    "plate_code": "65",
+    "city": "Van",
+    "district": "G\u00dcRPINAR",
+    "name": "G\u00dcRPINAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 940,
+    "plate_code": "65",
+    "city": "Van",
+    "district": "MURAD\u0130YE",
+    "name": "MURAD\u0130YE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 941,
+    "plate_code": "65",
+    "city": "Van",
+    "district": "\u00d6ZALP",
+    "name": "\u00d6ZALP MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 942,
+    "plate_code": "65",
+    "city": "Van",
+    "district": "BAH\u00c7ESARAY",
+    "name": "BAH\u00c7ESARAY MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 943,
+    "plate_code": "65",
+    "city": "Van",
+    "district": "\u00c7ALDIRAN",
+    "name": "\u00c7ALDIRAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 944,
+    "plate_code": "65",
+    "city": "Van",
+    "district": "EDREM\u0130T",
+    "name": "EDREM\u0130T MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 945,
+    "plate_code": "65",
+    "city": "Van",
+    "district": "SARAY",
+    "name": "SARAY MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 946,
+    "plate_code": "65",
+    "city": "Van",
+    "district": "ERC\u0130\u015e",
+    "name": "ERC\u0130\u015e VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 947,
+    "plate_code": "65",
+    "city": "Van",
+    "district": "VAN MERKEZ",
+    "name": "VAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 948,
+    "plate_code": "66",
+    "city": "Yozgat",
+    "district": "AKDA\u011eMADEN\u0130",
+    "name": "AKDA\u011eMADEN\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 949,
+    "plate_code": "66",
+    "city": "Yozgat",
+    "district": "\u00c7AYIRALAN",
+    "name": "\u00c7AYIRALAN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 950,
+    "plate_code": "66",
+    "city": "Yozgat",
+    "district": "\u00c7EKEREK",
+    "name": "\u00c7EKEREK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 951,
+    "plate_code": "66",
+    "city": "Yozgat",
+    "district": "SARIKAYA",
+    "name": "SARIKAYA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 952,
+    "plate_code": "66",
+    "city": "Yozgat",
+    "district": "\u015eEFAATL\u0130",
+    "name": "\u015eEFAATL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 953,
+    "plate_code": "66",
+    "city": "Yozgat",
+    "district": "AYDINCIK",
+    "name": "AYDINCIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 954,
+    "plate_code": "66",
+    "city": "Yozgat",
+    "district": "\u00c7ANDIR",
+    "name": "\u00c7ANDIR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 955,
+    "plate_code": "66",
+    "city": "Yozgat",
+    "district": "KADI\u015eEHR\u0130",
+    "name": "KADI\u015eEHR\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 956,
+    "plate_code": "66",
+    "city": "Yozgat",
+    "district": "SARAYKENT",
+    "name": "SARAYKENT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 957,
+    "plate_code": "66",
+    "city": "Yozgat",
+    "district": "YEN\u0130FAKILI",
+    "name": "YEN\u0130FAKILI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 958,
+    "plate_code": "66",
+    "city": "Yozgat",
+    "district": "YOZGAT MERKEZ",
+    "name": "YOZGAT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 959,
+    "plate_code": "66",
+    "city": "Yozgat",
+    "district": "BO\u011eAZLIYAN",
+    "name": "BO\u011eAZLIYAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 960,
+    "plate_code": "66",
+    "city": "Yozgat",
+    "district": "SORGUN",
+    "name": "SORGUN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 961,
+    "plate_code": "66",
+    "city": "Yozgat",
+    "district": "YERK\u00d6Y",
+    "name": "YERK\u00d6Y VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 962,
+    "plate_code": "67",
+    "city": "Zonguldak",
+    "district": "ALAPLI",
+    "name": "ALAPLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 963,
+    "plate_code": "67",
+    "city": "Zonguldak",
+    "district": "G\u00d6K\u00c7EBEY",
+    "name": "G\u00d6K\u00c7EBEY MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 964,
+    "plate_code": "67",
+    "city": "Zonguldak",
+    "district": "ZONGULDAK MERKEZ",
+    "name": "UZUNMEHMET VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 965,
+    "plate_code": "67",
+    "city": "Zonguldak",
+    "district": "ERE\u011eL\u0130",
+    "name": "KARADEN\u0130Z ERE\u011eL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 966,
+    "plate_code": "67",
+    "city": "Zonguldak",
+    "district": "\u00c7AYCUMA",
+    "name": "\u00c7AYCUMA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 967,
+    "plate_code": "67",
+    "city": "Zonguldak",
+    "district": "DEVREK",
+    "name": "DEVREK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 968,
+    "plate_code": "67",
+    "city": "Zonguldak",
+    "district": "ZONGULDAK MERKEZ",
+    "name": "KARAELMAS VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 969,
+    "plate_code": "68",
+    "city": "Aksaray",
+    "district": "A\u011eA\u00c7\u00d6REN",
+    "name": "A\u011eA\u00c7\u00d6REN MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 970,
+    "plate_code": "68",
+    "city": "Aksaray",
+    "district": "G\u00dcZELYURT",
+    "name": "G\u00dcZELYURT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 971,
+    "plate_code": "68",
+    "city": "Aksaray",
+    "district": "ORTAK\u00d6Y",
+    "name": "ORTAK\u00d6Y MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 972,
+    "plate_code": "68",
+    "city": "Aksaray",
+    "district": "SARIYAH\u015e\u0130",
+    "name": "SARIYAH\u015e\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 973,
+    "plate_code": "68",
+    "city": "Aksaray",
+    "district": "ESK\u0130L",
+    "name": "ESK\u0130L MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 974,
+    "plate_code": "68",
+    "city": "Aksaray",
+    "district": "G\u00dcLA\u011eA\u00c7",
+    "name": "G\u00dcLA\u011eA\u00c7 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 975,
+    "plate_code": "68",
+    "city": "Aksaray",
+    "district": "SULTANHANI",
+    "name": "SULTANHANI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 976,
+    "plate_code": "68",
+    "city": "Aksaray",
+    "district": "AKSARAY MERKEZ",
+    "name": "AKSARAY VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 977,
+    "plate_code": "69",
+    "city": "Bayburt",
+    "district": "AYDINTEPE",
+    "name": "AYDINTEPE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 978,
+    "plate_code": "69",
+    "city": "Bayburt",
+    "district": "DEM\u0130R\u00d6Z\u00dc",
+    "name": "DEM\u0130R\u00d6Z\u00dc MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 979,
+    "plate_code": "69",
+    "city": "Bayburt",
+    "district": "BAYBURT MERKEZ",
+    "name": "BAYBURT VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 980,
+    "plate_code": "70",
+    "city": "Karaman",
+    "district": "AYRANCI",
+    "name": "AYRANCI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 981,
+    "plate_code": "70",
+    "city": "Karaman",
+    "district": "ERMENEK",
+    "name": "ERMENEK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 982,
+    "plate_code": "70",
+    "city": "Karaman",
+    "district": "KAZIMKARABEK\u0130R",
+    "name": "K.KARABEK\u0130R MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 983,
+    "plate_code": "70",
+    "city": "Karaman",
+    "district": "BA\u015eYAYLA",
+    "name": "BA\u015eYAYLA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 984,
+    "plate_code": "70",
+    "city": "Karaman",
+    "district": "SARIVEL\u0130LER",
+    "name": "SARIVEL\u0130LER MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 985,
+    "plate_code": "70",
+    "city": "Karaman",
+    "district": "KARAMAN MERKEZ",
+    "name": "KARAMAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 986,
+    "plate_code": "71",
+    "city": "K\u0131r\u0131kkale",
+    "district": "DEL\u0130CE",
+    "name": "DEL\u0130CE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 987,
+    "plate_code": "71",
+    "city": "K\u0131r\u0131kkale",
+    "district": "KESK\u0130N",
+    "name": "KESK\u0130N MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 988,
+    "plate_code": "71",
+    "city": "K\u0131r\u0131kkale",
+    "district": "SULAKYURT",
+    "name": "SULAKYURT MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 989,
+    "plate_code": "71",
+    "city": "K\u0131r\u0131kkale",
+    "district": "BALI\u015eEYH",
+    "name": "BALI\u015eEYH MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 990,
+    "plate_code": "71",
+    "city": "K\u0131r\u0131kkale",
+    "district": "\u00c7ELEB\u0130",
+    "name": "\u00c7ELEB\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 991,
+    "plate_code": "71",
+    "city": "K\u0131r\u0131kkale",
+    "district": "KARAKE\u00c7\u0130L\u0130",
+    "name": "KARAKE\u00c7\u0130L\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 992,
+    "plate_code": "71",
+    "city": "K\u0131r\u0131kkale",
+    "district": "KIRIKKALE MERKEZ",
+    "name": "IRMAK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 993,
+    "plate_code": "71",
+    "city": "K\u0131r\u0131kkale",
+    "district": "KIRIKKALE MERKEZ",
+    "name": "KALETEPE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 994,
+    "plate_code": "72",
+    "city": "Batman",
+    "district": "BE\u015e\u0130R\u0130",
+    "name": "BE\u015e\u0130R\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 995,
+    "plate_code": "72",
+    "city": "Batman",
+    "district": "GERC\u00dc\u015e",
+    "name": "GERC\u00dc\u015e MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 996,
+    "plate_code": "72",
+    "city": "Batman",
+    "district": "HASANKEYF",
+    "name": "HASANKEYF MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 997,
+    "plate_code": "72",
+    "city": "Batman",
+    "district": "KOZLUK",
+    "name": "KOZLUK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 998,
+    "plate_code": "72",
+    "city": "Batman",
+    "district": "SASON",
+    "name": "SASON MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 999,
+    "plate_code": "72",
+    "city": "Batman",
+    "district": "BATMAN MERKEZ",
+    "name": "BATMAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 1000,
+    "plate_code": "73",
+    "city": "\u015e\u0131rnak",
+    "district": "BEYT\u00dc\u015e\u015eEBAP",
+    "name": "BEYT\u00dc\u015e\u015eEBAP MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1001,
+    "plate_code": "73",
+    "city": "\u015e\u0131rnak",
+    "district": "G\u00dc\u00c7L\u00dcKONAK",
+    "name": "G\u00dc\u00c7L\u00dcKONAK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1002,
+    "plate_code": "73",
+    "city": "\u015e\u0131rnak",
+    "district": "\u0130D\u0130L",
+    "name": "\u0130D\u0130L MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1003,
+    "plate_code": "73",
+    "city": "\u015e\u0131rnak",
+    "district": "ULUDERE",
+    "name": "ULUDERE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1004,
+    "plate_code": "73",
+    "city": "\u015e\u0131rnak",
+    "district": "\u015eIRNAK MERKEZ",
+    "name": "\u015eIRNAK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 1005,
+    "plate_code": "73",
+    "city": "\u015e\u0131rnak",
+    "district": "C\u0130ZRE",
+    "name": "C\u0130ZRE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 1006,
+    "plate_code": "73",
+    "city": "\u015e\u0131rnak",
+    "district": "S\u0130LOP\u0130",
+    "name": "S\u0130LOP\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 1007,
+    "plate_code": "74",
+    "city": "Bart\u0131n",
+    "district": "AMASRA",
+    "name": "AMASRA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1008,
+    "plate_code": "74",
+    "city": "Bart\u0131n",
+    "district": "KURUCA\u015e\u0130LE",
+    "name": "KURUCA\u015e\u0130LE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1009,
+    "plate_code": "74",
+    "city": "Bart\u0131n",
+    "district": "ULUS",
+    "name": "ULUS MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1010,
+    "plate_code": "74",
+    "city": "Bart\u0131n",
+    "district": "BARTIN MERKEZ",
+    "name": "BARTIN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 1011,
+    "plate_code": "75",
+    "city": "Ardahan",
+    "district": "\u00c7ILDIR",
+    "name": "\u00c7ILDIR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1012,
+    "plate_code": "75",
+    "city": "Ardahan",
+    "district": "DAMAL",
+    "name": "DAMAL MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1013,
+    "plate_code": "75",
+    "city": "Ardahan",
+    "district": "G\u00d6LE",
+    "name": "G\u00d6LE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1014,
+    "plate_code": "75",
+    "city": "Ardahan",
+    "district": "HANAK",
+    "name": "HANAK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1015,
+    "plate_code": "75",
+    "city": "Ardahan",
+    "district": "POSOF",
+    "name": "POSOF MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1016,
+    "plate_code": "75",
+    "city": "Ardahan",
+    "district": "ARDAHAN MERKEZ",
+    "name": "ARDAHAN VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 1017,
+    "plate_code": "76",
+    "city": "I\u011fd\u0131r",
+    "district": "ARALIK",
+    "name": "ARALIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1018,
+    "plate_code": "76",
+    "city": "I\u011fd\u0131r",
+    "district": "KARAKOYUNLU",
+    "name": "KARAKOYUNLU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1019,
+    "plate_code": "76",
+    "city": "I\u011fd\u0131r",
+    "district": "TUZLUCA",
+    "name": "TUZLUCA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1020,
+    "plate_code": "76",
+    "city": "I\u011fd\u0131r",
+    "district": "I\u011eDIR MERKEZ",
+    "name": "I\u011eDIR VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 1021,
+    "plate_code": "77",
+    "city": "Yalova",
+    "district": "ALTINOVA",
+    "name": "ALTINOVA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1022,
+    "plate_code": "77",
+    "city": "Yalova",
+    "district": "ARMUTLU",
+    "name": "ARMUTLU MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1023,
+    "plate_code": "77",
+    "city": "Yalova",
+    "district": "\u00c7INARCIK",
+    "name": "\u00c7INARCIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1024,
+    "plate_code": "77",
+    "city": "Yalova",
+    "district": "YALOVA MERKEZ",
+    "name": "YALOVA VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 1025,
+    "plate_code": "78",
+    "city": "Karab\u00fck",
+    "district": "EFLAN\u0130",
+    "name": "EFLAN\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1026,
+    "plate_code": "78",
+    "city": "Karab\u00fck",
+    "district": "ESK\u0130PAZAR",
+    "name": "ESK\u0130PAZAR MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1027,
+    "plate_code": "78",
+    "city": "Karab\u00fck",
+    "district": "OVACIK",
+    "name": "OVACIK MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1028,
+    "plate_code": "78",
+    "city": "Karab\u00fck",
+    "district": "YEN\u0130CE",
+    "name": "YEN\u0130CE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1029,
+    "plate_code": "78",
+    "city": "Karab\u00fck",
+    "district": "KARAB\u00dcK MERKEZ",
+    "name": "KARAB\u00dcK VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 1030,
+    "plate_code": "78",
+    "city": "Karab\u00fck",
+    "district": "SAFRANBOLU",
+    "name": "SAFRANBOLU VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 1031,
+    "plate_code": "79",
+    "city": "Kilis",
+    "district": "K\u0130L\u0130S MERKEZ",
+    "name": "K\u0130L\u0130S VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 1032,
+    "plate_code": "80",
+    "city": "Osmaniye",
+    "district": "BAH\u00c7E",
+    "name": "BAH\u00c7E MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1033,
+    "plate_code": "80",
+    "city": "Osmaniye",
+    "district": "D\u00dcZ\u0130\u00c7\u0130",
+    "name": "D\u00dcZ\u0130\u00c7\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1034,
+    "plate_code": "80",
+    "city": "Osmaniye",
+    "district": "HASANBEYL\u0130",
+    "name": "HASANBEYL\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1035,
+    "plate_code": "80",
+    "city": "Osmaniye",
+    "district": "SUMBAS",
+    "name": "SUMBAS MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1036,
+    "plate_code": "80",
+    "city": "Osmaniye",
+    "district": "TOPRAKKALE",
+    "name": "TOPRAKKALE MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1037,
+    "plate_code": "80",
+    "city": "Osmaniye",
+    "district": "OSMAN\u0130YE MERKEZ",
+    "name": "OSMAN\u0130YE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 1038,
+    "plate_code": "80",
+    "city": "Osmaniye",
+    "district": "KAD\u0130RL\u0130",
+    "name": "KAD\u0130RL\u0130 VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 1039,
+    "plate_code": "81",
+    "city": "D\u00fczce",
+    "district": "CUMAYER\u0130",
+    "name": "CUMAYER\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1040,
+    "plate_code": "81",
+    "city": "D\u00fczce",
+    "district": "\u00c7\u0130L\u0130ML\u0130",
+    "name": "\u00c7\u0130L\u0130ML\u0130 MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1041,
+    "plate_code": "81",
+    "city": "D\u00fczce",
+    "district": "G\u00d6LYAKA",
+    "name": "G\u00d6LYAKA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1042,
+    "plate_code": "81",
+    "city": "D\u00fczce",
+    "district": "G\u00dcM\u00dc\u015eOVA",
+    "name": "G\u00dcM\u00dc\u015eOVA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1043,
+    "plate_code": "81",
+    "city": "D\u00fczce",
+    "district": "KAYNA\u015eLI",
+    "name": "KAYNA\u015eLI MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1044,
+    "plate_code": "81",
+    "city": "D\u00fczce",
+    "district": "YI\u011eILCA",
+    "name": "YI\u011eILCA MAL M\u00dcD\u00dcRL\u00dc\u011e\u00dc"
+  },
+  {
+    "id": 1045,
+    "plate_code": "81",
+    "city": "D\u00fczce",
+    "district": "D\u00dcZCE MERKEZ",
+    "name": "D\u00dcZCE VERG\u0130 DA\u0130RES\u0130"
+  },
+  {
+    "id": 1046,
+    "plate_code": "81",
+    "city": "D\u00fczce",
+    "district": "AK\u00c7AKOCA",
+    "name": "AK\u00c7AKOCA VERG\u0130 DA\u0130RES\u0130"
+  }
+]
