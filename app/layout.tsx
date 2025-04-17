@@ -8,6 +8,7 @@ import { auth } from "./api/firebase/firebaseConfig";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Loading from "@/components/ui/Loading";
+import { defaultMetadata } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -43,15 +44,12 @@ export default function RootLayout({
     return (
       <html lang="tr" suppressHydrationWarning>
         <head>
-          <title>NextHire | Doğru iş, Doğru Aday</title>
+          <title>{defaultMetadata.title as string}</title>
           <meta
             name="description"
-            content="NextHire, iş arayanlar ve işverenler için doğru iş ve doğru adayları bulma platformudur. En iyi kariyer fırsatları ve adaylarla hızlıca tanışın."
+            content={defaultMetadata.description as string}
           />
-          <meta
-            name="keywords"
-            content="NextHire, iş ilanları, kariyer fırsatları, iş bulma, adaylar, işverenler, iş başvurusu, iş arama platformu, iş ve kariyer"
-          />
+          <meta name="keywords" content={defaultMetadata.keywords as string} />
         </head>
         <body suppressHydrationWarning>
           <Loading />
@@ -63,15 +61,38 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <head>
-        <title>NextHire | Doğru iş, Doğru Aday</title>
+        <title>{defaultMetadata.title as string}</title>
         <meta
           name="description"
-          content="NextHire, iş arayanlar ve işverenler için doğru iş ve doğru adayları bulma platformudur. En iyi kariyer fırsatları ve adaylarla hızlıca tanışın."
+          content={defaultMetadata.description as string}
+        />
+        <meta name="keywords" content={defaultMetadata.keywords as string} />
+        <meta
+          property="og:title"
+          content={defaultMetadata.openGraph?.title as string}
         />
         <meta
-          name="keywords"
-          content="NextHire, iş ilanları, kariyer fırsatları, iş bulma, adaylar, işverenler, iş başvurusu, iş arama platformu, iş ve kariyer"
+          property="og:description"
+          content={defaultMetadata.openGraph?.description as string}
         />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/dvolwkh6r/image/upload/v1744909581/nexthire_d27rhv.png"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content={defaultMetadata.twitter?.title as string}
+        />
+        <meta
+          name="twitter:description"
+          content={defaultMetadata.twitter?.description as string}
+        />
+        <meta
+          name="twitter:image"
+          content="https://res.cloudinary.com/dvolwkh6r/image/upload/v1744909581/nexthire_d27rhv.png"
+        />
+        <meta name="robots" content="index, follow" />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
