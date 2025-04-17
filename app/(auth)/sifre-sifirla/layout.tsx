@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "NextHire | Şifre Sıfırla",
+  title: "NextHire | Şifreni Sıfırla",
   description:
     "NextHire platformunda şifrenizi sıfırlayın ve yeniden hesabınıza güvenli bir şekilde erişin. Kolay ve hızlı şifre sıfırlama işlemi ile iş arayışınıza devam edin.",
   keywords:
