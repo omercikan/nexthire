@@ -1,14 +1,17 @@
 "use client";
 
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { onAuthStateChanged } from "firebase/auth";
+import { Inter } from "next/font/google";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./api/firebase/firebaseConfig";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import Loading from "@/components/ui/Loading";
+import { useEffect } from "react";
 import { defaultMetadata } from "@/lib/seo";
+import Header from "@/components/layout/Header";
+import { Provider } from "react-redux";
+import { store } from "@/lib/store";
+import MobileUserModal from "@/components/layout/Header/MobileUserModal";
+import { AuthContextProvider } from "@/context/authContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,40 +26,18 @@ export default function RootLayout({
 }>) {
   const router = useRouter();
   const pathname = usePathname();
-  const [_user, loading] = useAuthState(auth);
-  const [isLoading, setIsLoading] = useState(true);
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (
-        pathname === "/aday-giris" ||
-        pathname === "/aday-uye-ol" ||
-        pathname === "/isveren-giris" ||
-        pathname === "/isveren-kayit"
-      ) {
-        if (user) router.replace("/");
-      }
-      setIsLoading(false);
-    });
-  }, [pathname, router]);
+    const authPages = [
+      "/aday-giris",
+      "/aday-uye-ol",
+      "/isveren-giris",
+      "/isveren-kayit",
+    ];
 
-  if (isLoading || loading) {
-    return (
-      <html lang="tr" suppressHydrationWarning>
-        <head>
-          <title>{defaultMetadata.title as string}</title>
-          <meta
-            name="description"
-            content={defaultMetadata.description as string}
-          />
-          <meta name="keywords" content={defaultMetadata.keywords as string} />
-        </head>
-        <body suppressHydrationWarning>
-          <Loading />
-        </body>
-      </html>
-    );
-  }
+    if (authPages.includes(pathname) && user) router.replace("/");
+  }, [pathname, router, user]); 
 
   return (
     <html lang="tr">
@@ -94,7 +75,17 @@ export default function RootLayout({
         />
         <meta name="robots" content="index, follow" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Provider store={store}>
+          <AuthContextProvider>
+            {pathname == "/" && <Header />}
+
+            {children}
+
+            {pathname === "/" && <MobileUserModal />}
+          </AuthContextProvider>
+        </Provider>
+      </body>
     </html>
   );
 }

@@ -1,8 +1,4 @@
-import {
-  ChangeEvent,
-  InputHTMLAttributes,
-  ReactNode,
-} from "react";
+import { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
 
 //! General properties interface of the layout component !//
 export interface LayoutComponentProps {
@@ -131,3 +127,30 @@ export interface TaxOfficiesJsonInterface {
   name: string;
 }
 //! Json data city, districts and tax officies interfaces END !//
+
+//! User interface area Employer and Candidate Role interfaces !//
+export interface User {
+  createdAt: string;
+  email: string;
+  emailVerified: boolean;
+  id: string;
+  name: string;
+  phoneNumber: string;
+  role: string;
+}
+
+export interface Employer extends User {
+  companyName: string;
+  location: {
+    city: string;
+    district: string;
+    taxNumber: string;
+    taxOffice: string;
+    taxOfficieCity: string;
+  };
+}
+
+export interface Candidate extends User {
+  acceptedTerms: string;
+  createdWith: string;
+}
