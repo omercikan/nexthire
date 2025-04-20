@@ -1,7 +1,6 @@
 import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
-  updateProfile,
 } from "firebase/auth";
 import { NextRequest, NextResponse } from "next/server";
 import { auth, db } from "../firebaseConfig";

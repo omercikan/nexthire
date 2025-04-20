@@ -14,6 +14,7 @@ const CustomSelect: FC<AuthSelectProps> = ({
   value,
 }) => {
   const { ...props } = { data, defaultValue, name };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_field, meta] = useField(props);
 
   return (

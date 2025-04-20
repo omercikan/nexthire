@@ -208,7 +208,6 @@ const EmployerForm = () => {
               isSubmitting,
               handleChange,
               setFieldValue,
-              submitCount,
             }) => (
               <Form className="mt-6 flex flex-col">
                 {pathname === "/isveren-kayit" && (

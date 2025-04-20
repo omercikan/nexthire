@@ -13,6 +13,7 @@ const CustomCheckbox = ({
   name,
 }: AuthCheckboxProps) => {
   const { ...props } = { text, name, isSubmitting, values, errors };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_fields, meta] = useField(props);
   const pathname = usePathname();
 

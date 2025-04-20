@@ -13,7 +13,7 @@ export const handleSelect = async (
   url: string
 ): handleSelectFuncReturnType<object[]> => {
   const selectedIndex = e.target.selectedIndex;
-  const { data } = await fetchData(url);
+  const { data }: { data: [] } = await fetchData(url);
 
   const matchedData = data.filter(
     (data: matchedDataType<string>) =>
@@ -26,7 +26,7 @@ export const handleSelect = async (
 export const setSelectedData = async (
   e: ChangeEvent<HTMLSelectElement>,
   url: string,
-  setData: any
+  setData: (data: object) => void
 ) => {
   const { matchedData } = await handleSelect(e, url);
   setData(matchedData);
