@@ -41,10 +41,10 @@ body {
     border: 1px solid var(--primary-color);
     width: 100%;
     height: 100%;
-    display: inline-block; 
-    border-radius: 2px !important; 
-    outline: none;  
-    transition: all 0.3s ease;  
+    display: inline-block;
+    border-radius: 2px !important;
+    outline: none;
+    transition: all 0.3s ease;
 
     &:checked {
       background-color: var(--primary-color) !important;
@@ -68,13 +68,17 @@ body {
       -webkit-appearance: none;
     }
   }
+
+  .placeholder-bg {
+    background-color: rgba(32, 33, 36, 0.5);
+  }
 }
 /*! Custom layers end !*/
 
 /*! - Custom components class group start - !*/
 .form__wrapper {
-  @apply flex-[1] max-[1026px]:bg-white z-10 max-[1026px]:fixed max-[1026px]:top-[50%] max-[1026px]:left-[50%] max-[1026px]:-translate-[50%] max-[1026px]:w-[95%] max-[1026px]:rounded-3xl max-[1026px]:px-5 max-[1026px]:py-8 max-[1026px]:shadow-2xl max-[1026px]:drop-shadow-2xl; 
- 
+  @apply flex-[1] max-[1026px]:bg-white z-10 max-[1026px]:fixed max-[1026px]:top-[50%] max-[1026px]:left-[50%] max-[1026px]:-translate-[50%] max-[1026px]:w-[95%] max-[1026px]:rounded-3xl max-[1026px]:px-5 max-[1026px]:py-8 max-[1026px]:shadow-2xl max-[1026px]:drop-shadow-2xl;
+
   @media screen and (height <= 440px) and (orientation: landscape) {
     height: 350px;
   }
@@ -121,6 +125,59 @@ body {
 
 /*! Auth terms modal's class end  */
 
+/*! Main header class start  */
+.main-header {
+  @apply flex items-center justify-between px-[45px] max-[430px]:px-2 max-[375px]:px-1 py-4 relative transition duration-300 z-50;
+}
+
+.main-header__wrapper {
+  @apply flex max-[992px]:flex-col max-[992px]:!items-start items-end pb-1;
+}
+
+.header-login-btn {
+  @apply flex items-center gap-x-1 px-6 py-3 max-[992px]:p-0 max-[375px]:text-xs text-white max-[992px]:text-[#4045ef] max-[992px]:font-medium rounded-full transition duration-300 bg-[#202124] max-[992px]:bg-transparent hover:bg-black max-[992px]:hover:bg-transparent;
+}
+
+.header-user-modal {
+  @apply bg-white border border-[#c6c7c8] rounded-[5px] text-sm transition-all absolute min-[992px]:top-full min-[992px]:right-[45px] max-[992px]:left-[50%] max-[992px]:top-[50%] max-[992px]:-translate-x-[50%] max-[992px]:-translate-y-[50%];
+}
+
+.header-candidate-login-btn {
+  @apply w-full !rounded-[5px] !bg-transparent border border-[#4045ef] !text-[#4045ef] px-[24px] !py-2 font-medium;
+}
+
+.header-user-modal-links {
+  @apply hover:text-[#4045ef] transition-colors w-max;
+}
+
+.large-navlist {
+  @apply max-[992px]:absolute max-[992px]:left-0 max-[992px]:top-0 max-[992px]:w-[350px] max-[576px]:w-full max-[992px]:hidden max-[992px]:h-screen;
+}
+
+.navbar-brand-menu {
+  @apply me-8 max-[992px]:flex max-[992px]:items-center max-[992px]:gap-4;
+}
+
+.small-navlist {
+  @apply max-[992px]:bg-black/30 max-[992px]:fixed max-[992px]:left-0 max-[992px]:top-0 w-full;
+}
+
+.small-navlist__wrapper {
+  @apply max-[992px]:h-screen relative max-[992px]:w-[350px] max-[576px]:w-full z-50;
+}
+
+/*! Main header class end  */
+
+/*! User items class start !*/
+.session-user-modal {
+  @apply pt-6 absolute right-[45px] top-full w-[320px] bg-white border border-[#c6c7c8] rounded-[5px] transition-all invisible group-hover:visible max-[992px]:hidden;
+}
+
+.not-logged-modal {
+  @apply bg-white border border-[#c6c7c8] rounded-[5px] transition-all invisible max-[992px]:w-[500px] max-[576px]:w-screen max-[576px]:h-screen max-[992px]:visible group-hover:visible
+}
+/*! User items class end !*/
+
 /*! - Custom components class group end - !*/
 
 /*! Modal css animation start !*/
@@ -143,6 +200,24 @@ body {
   transition: all 0.3s ease-in-out;
 }
 /*! Modal css animation end !*/
+
+/*! User Header mobile menu start !*/
+.modal-menu-enter {
+  left: -100%;
+}
+.modal-menu-enter-active {
+  left: 0%;
+  transition: all 0.3s ease-in-out;
+}
+.modal-menu-exit {
+  left: 0%;
+}
+.modal-menu-exit-active {
+  left: -100%;
+  transition: all 0.3s ease-in-out;
+}
+
+/*! User Header mobile menu end !*/
 
 .go-back-query {
   @media screen and (height <= 440px) and (orientation: landscape) {
