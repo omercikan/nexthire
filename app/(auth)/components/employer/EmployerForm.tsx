@@ -17,7 +17,6 @@ import {
 import { fetchData } from "@/lib/fetchData";
 import { setSelectedData } from "@/lib/selectData";
 import Image from "next/image";
-import Logo from "@/public/assets/images/nexthire.png";
 import { formatTurkishPhoneNumber } from "@/lib/formatPhoneNumber";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -164,10 +163,11 @@ const EmployerForm = () => {
         <>
           <div className="text-center">
             <Image
-              src={Logo}
+              src="https://res.cloudinary.com/dvolwkh6r/image/upload/v1744909581/nexthire_d27rhv.png"
               alt="Next Hire"
               className="mx-auto"
               quality={100}
+              width={153}
               height={60}
             />
 

@@ -57,7 +57,7 @@ body {
   }
 
   .auth-bg-image {
-    background-image: url("../public/assets/images/thumb-image.png");
+    background-image: url("https://res.cloudinary.com/dvolwkh6r/image/upload/v1745237987/thumb-image_cdf4yj.png");
     background-size: cover;
   }
 

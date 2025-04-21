@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { Form, Formik, FormikHelpers } from "formik";
-import PasswordImage from "@/public/assets/images/reset-password-thumb.png";
 import Image from "next/image";
 import AuthInput from "../../../components/ui/CustomInput";
 import { HiOutlineArrowLeft, HiOutlineMail } from "react-icons/hi";
@@ -63,11 +62,13 @@ const ResetPassword = () => {
 
       <div className="flex-[1] max-[1026px]:absolute max-[1026px]:-top-[50%] w-screen h-screen shadow-2xl drop-shadow-2xl">
         <Image
-          src={PasswordImage}
+          src="https://res.cloudinary.com/dvolwkh6r/image/upload/v1745237987/reset-password-thumb_w1hg9o.png"
           alt="Şifremi Sıfırla"
           quality={100}
           priority
           unoptimized={false}
+          width={500}
+          height={500}
           className="w-full h-full object-cover"
         />
       </div>

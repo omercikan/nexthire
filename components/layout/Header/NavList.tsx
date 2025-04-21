@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
-import Logo from "@/public/assets/images/nexthire.png";
 import { IoCloseOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/lib/store";
@@ -16,7 +15,12 @@ const NavList = () => {
     <ul className="max-[992px]:h-full">
       <li>
         <div className="flex items-end justify-between bg-white p-5 min-[992px]:hidden">
-          <Image src={Logo} alt="NextHire" width={120} />
+          <Image
+            src="https://res.cloudinary.com/dvolwkh6r/image/upload/v1744909581/nexthire_d27rhv.png"
+            alt="NextHire"
+            width={120}
+            height={53}
+          />
           <IoCloseOutline
             size={26}
             cursor="pointer"

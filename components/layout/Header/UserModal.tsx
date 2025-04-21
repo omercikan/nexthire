@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
-import Logo from "@/public/assets/images/nexthire.png";
 import { IoClose } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/lib/store";
@@ -17,7 +16,12 @@ const UserModal = () => {
   return (
     <div className="not-logged-modal">
       <div className="min-[992px]:hidden p-4 border-b border-[#dee2e6] flex justify-between items-center">
-        <Image src={Logo} alt="NextHire" width={111} />
+        <Image
+          src="https://res.cloudinary.com/dvolwkh6r/image/upload/v1744909581/nexthire_d27rhv.png"
+          alt="NextHire"
+          width={111}
+          height={53}
+        />
 
         <IoClose
           size={26}

@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import Logo from "@/public/assets/images/nexthire.png";
 import NavList from "./Header/NavList";
 import UserItems from "./Header/UserItems";
 import Link from "next/link";
@@ -55,7 +54,12 @@ const Header = () => {
           />
 
           <Link href="/">
-            <Image src={Logo} alt="NextHire" width={153} />
+            <Image
+              src="https://res.cloudinary.com/dvolwkh6r/image/upload/v1744909581/nexthire_d27rhv.png"
+              alt="NextHire"
+              width={153}
+              height={53}
+            />
           </Link>
         </div>
 
