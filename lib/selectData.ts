@@ -26,8 +26,8 @@ export const handleSelect = async (
 export const setSelectedData = async (
   e: ChangeEvent<HTMLSelectElement>,
   url: string,
-  setData: (data: object) => void
+  setData: (data: []) => void
 ) => {
   const { matchedData } = await handleSelect(e, url);
-  setData(matchedData);
+  setData(matchedData as []);
 };
