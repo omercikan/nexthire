@@ -168,13 +168,35 @@ body {
 
 /*! Main header class end  */
 
+/*! Home hero section class start !*/
+.hero-section-title {
+  @apply text-[#202124] text-[50px] max-md:text-4xl max-[540px]:!text-3xl font-medium;
+}
+
+.hero-section-form {
+  @apply bg-white rounded-full max-md:rounded-xl border border-[#ECEDF2] w-[1000px] max-lg:w-[95%] py-[19px] px-[20px] mx-auto mt-10;
+}
+
+.hero-section-form__wrapper {
+  @apply flex max-md:flex-col gap-3 items-center max-md:items-start;
+}
+
+.hero-section-form__input-group {
+  @apply flex-[1] max-md:w-full max-md:pb-2.5;
+}
+
+.hero-section-form__button {
+  @apply bg-[#202124] hover:bg-white rounded-full transition-all duration-500 text-white hover:text-[#202124] border hover:border-[#202124] py-[13px] px-[30px] leading-[30px] text-[15px] w-full
+}
+/*! Home hero section class end !*/
+
 /*! User items class start !*/
 .session-user-modal {
   @apply pt-6 absolute right-[45px] top-full w-[320px] bg-white border border-[#c6c7c8] rounded-[5px] transition-all invisible group-hover:visible max-[992px]:hidden;
 }
 
 .not-logged-modal {
-  @apply bg-white border border-[#c6c7c8] rounded-[5px] transition-all invisible max-[992px]:w-[500px] max-[576px]:w-screen max-[576px]:h-screen max-[992px]:visible group-hover:visible
+  @apply bg-white border border-[#c6c7c8] rounded-[5px] transition-all invisible max-[992px]:w-[500px] max-[576px]:w-screen max-[576px]:h-screen max-[992px]:visible group-hover:visible;
 }
 /*! User items class end !*/
 

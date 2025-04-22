@@ -1,0 +1,30 @@
+.homeBg {
+  background-image: url("../img/home-bg.jpg");
+  width: 100%;
+  height: 100vh;
+  background-position: left;
+  background-attachment: fixed;
+  overflow: hidden;
+
+  @media only screen and (width < 992px) {
+    height: 100%;
+    background-position: bottom left;
+    background-attachment: unset;
+  }
+}
+
+.heroAnimation {
+  animation: hero 1s forwards 0.2s ease-out;
+
+  @keyframes hero {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+}

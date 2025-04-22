@@ -41,7 +41,9 @@ const Header = () => {
   return (
     <header
       className={`main-header transition duration-300 ${
-        scroll ? "!fixed w-full shadow-xs bg-white" : ""
+        scroll
+          ? "min-[1024px]:!fixed max-[992px]:!sticky !top-0 w-full shadow-xs bg-white"
+          : "min-[1024px]:!fixed !top-0 w-full"
       }`}
     >
       <div className="main-header__wrapper">
