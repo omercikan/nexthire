@@ -39,11 +39,12 @@ export interface TermsData {
 
 //! Auth input properties type fields !//
 export type AuthInputProps = {
-  label: string;
+  label?: string;
   icon?: ReactNode;
   extraIcon?: ReactNode;
   handleClickPasswordDisplay?: () => void;
   className?: string;
+  iconSpanClass?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 interface AuthSelectDataItem {
@@ -128,7 +129,7 @@ export interface TaxOfficiesJsonInterface {
 }
 //! Json data city, districts and tax officies interfaces END !//
 
-//! User interface area Employer and Candidate Role interfaces !//
+//! User interface area Employer and Candidate Role interfaces START !//
 export interface User {
   createdAt: string;
   email: string;
@@ -153,4 +154,10 @@ export interface Employer extends User {
 export interface Candidate extends User {
   acceptedTerms: string;
   createdWith: string;
+}
+//! User interface area Employer and Candidate Role interfaces END !//
+
+export interface SearchJobFormFields {
+  job: string;
+  location: string;
 }
