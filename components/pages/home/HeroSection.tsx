@@ -9,6 +9,8 @@ import AnimationInputStyles from "@/scss/animation-input.module.scss";
 import HomeStyles from "@/scss/home-bg.module.scss";
 import { SearchJobFormFields } from "@/types";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import HeroBg from "@/img/home-bg.avif";
 
 const jobKeywords: string[] = [
   "Yazılım Geliştirici",
@@ -47,8 +49,18 @@ const HeroSection = () => {
 
   return (
     <section
-      className={`${HomeStyles.homeBg} pt-[170px] max-lg:py-[30px] max-lg:px-[12px]`}
+      className={`pt-[170px] max-lg:py-[30px] max-lg:px-[12px] relative h-screen max-[1024px]:h-[calc(100vh-79.43px)] max-[992px]:h-full`}
     >
+      <picture>
+        <Image
+          src={HeroBg}
+          alt="Ana sayfa kahraman görseli"
+          className="object-cover bg-left"
+          fill
+          priority
+          sizes="100vw"
+        />
+      </picture>
       <div className={`${HomeStyles.heroAnimation} text-center`}>
         <div className="mb-5">
           <h2 className="hero-section-title">
