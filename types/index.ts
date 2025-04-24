@@ -1,3 +1,4 @@
+import { FormikErrors } from "formik";
 import { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
 
 //! General properties interface of the layout component !//
@@ -157,7 +158,28 @@ export interface Candidate extends User {
 }
 //! User interface area Employer and Candidate Role interfaces END !//
 
+//! Hero section search job form input fields !//
 export interface SearchJobFormFields {
   job: string;
   location: string;
+}
+
+//! Auto complete input search data fields !//
+export interface AuthCompoleteSearchFields {
+  id: number;
+  title: string;
+}
+
+//! Auto complete input component props !//
+export interface AuthCompoleteComponentProps {
+  touched: boolean | undefined;
+  searchData: AuthCompoleteSearchFields[];
+  recommendedKeywords: string[];
+  setFieldValue: (
+    field: string,
+    value: string | undefined
+  ) => Promise<void | FormikErrors<SearchJobFormFields>>;
+  setSelectedKeyword: (keyword: string) => void;
+  listText: string;
+  field: string;
 }

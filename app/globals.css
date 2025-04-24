@@ -56,6 +56,11 @@ body {
     scrollbar-width: none !important;
   }
 
+  .visible-scrollbar {
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+
   .auth-bg-image {
     background-image: url("https://res.cloudinary.com/dvolwkh6r/image/upload/v1745237987/thumb-image_cdf4yj.png");
     background-size: cover;
@@ -169,6 +174,10 @@ body {
 /*! Main header class end  */
 
 /*! Home hero section class start !*/
+.hero-section {
+  @apply pt-[170px] max-lg:py-[30px] max-lg:px-[12px] relative h-screen max-[1024px]:h-[calc(100vh-79.43px)] max-[992px]:h-full;
+}
+
 .hero-section-title {
   @apply text-[#202124] text-[50px] max-md:text-4xl max-[540px]:!text-3xl font-medium;
 }
@@ -186,7 +195,15 @@ body {
 }
 
 .hero-section-form__button {
-  @apply bg-[#202124] hover:bg-white rounded-full transition-all duration-500 text-white hover:text-[#202124] border hover:border-[#202124] py-[13px] px-[30px] leading-[30px] text-[15px] w-full
+  @apply bg-[#202124] hover:bg-white rounded-full transition-all duration-500 text-white hover:text-[#202124] border hover:border-[#202124] py-[13px] px-[30px] leading-[30px] text-[15px] w-full;
+}
+
+.hero-section-form__auto-complete-input {
+  @apply absolute top-[159%] max-md:top-[127%] max-md:left-0 border-b border-l border-r border-[#ecedf2] rounded-b-lg bg-white h-max max-h-[200px] w-[calc(100%+21.7px)] max-md:w-full z-10;
+}
+
+.auto-complete-list-span {
+  @apply hover:bg-[#f5f5f5] w-full block py-1.5 px-8 text-sm cursor-pointer text-left;
 }
 /*! Home hero section class end !*/
 

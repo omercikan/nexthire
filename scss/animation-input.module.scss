@@ -2,12 +2,12 @@
   position: relative;
   text-align: left;
 
-  input:focus ~ ul,
-  input:valid ~ ul {
+  input:focus ~ .animationListGroup,
+  input:valid ~ .animationListGroup {
     display: none;
   }
 
-  ul {
+  .animationListGroup {
     li {
       position: absolute;
       left: 35px;

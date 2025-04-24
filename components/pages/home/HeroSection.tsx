@@ -2,25 +2,33 @@
 
 import CustomInput from "@/components/ui/CustomInput";
 import { Form, Formik, FormikHelpers } from "formik";
-import React, { useCallback } from "react";
+import React, { ChangeEvent, useCallback, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { SlLocationPin } from "react-icons/sl";
 import AnimationInputStyles from "@/scss/animation-input.module.scss";
 import HomeStyles from "@/scss/home-bg.module.scss";
-import { SearchJobFormFields } from "@/types";
+import { AuthCompoleteSearchFields, SearchJobFormFields } from "@/types";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import HeroBg from "@/img/home-bg.avif";
-
-const jobKeywords: string[] = [
-  "Yazılım Geliştirici",
-  "Veri Analisti",
-  "Grafik Tasarımcı",
-  "Dijital Pazarlama Uzmanı",
-];
+import jobTitlesList from "@/data/job-titles";
+import AutoCompleteInput from "@/components/ui/AutoCompleteList";
+import citiesList from "@/data/cities";
+import { jobKeywords } from "@/data/job-keywords";
+import { handleSearchData } from "@/lib/searchData";
 
 const HeroSection = () => {
   const router = useRouter();
+
+  //! Search job input results data !//
+  const [jobs, setJobs] = useState<AuthCompoleteSearchFields[]>([]);
+  //! Search city input results data !//
+  const [cities, setCities] = useState<AuthCompoleteSearchFields[]>([]);
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_selectedJob, setSelectedJob] = useState<string | null>(""); //! Selected job data when clicked
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_selectedCity, setSelectedCity] = useState<string | null>(""); //! Selected city data when clicked
 
   const onSubmit = useCallback(
     (
@@ -48,9 +56,7 @@ const HeroSection = () => {
   );
 
   return (
-    <section
-      className={`pt-[170px] max-lg:py-[30px] max-lg:px-[12px] relative h-screen max-[1024px]:h-[calc(100vh-79.43px)] max-[992px]:h-full`}
-    >
+    <section className="hero-section">
       <picture>
         <Image
           src={HeroBg}
@@ -78,8 +84,15 @@ const HeroSection = () => {
           }}
           onSubmit={onSubmit}
         >
-          {({ handleChange }) => (
-            <Form className="hero-section-form" noValidate>
+          {({ handleChange, setTouched, touched, setFieldValue }) => (
+            <Form
+              className={`hero-section-form ${
+                touched.job || touched.location
+                  ? "!rounded-lg !rounded-bl-none"
+                  : ""
+              }`}
+              noValidate
+            >
               <div className="hero-section-form__wrapper">
                 <div
                   className={`hero-section-form__input-group ${AnimationInputStyles.animationInputWrapper} min-md:border-e max-md:border-b border-[#ECEDF2]`}
@@ -93,14 +106,29 @@ const HeroSection = () => {
                     icon={<IoIosSearch size={26} color="696969" />}
                     iconSpanClass="!left-0 !top-[45%]"
                     onChange={handleChange}
+                    onChangeCapture={(e: ChangeEvent<HTMLInputElement>) =>
+                      handleSearchData(e, jobTitlesList, setJobs)
+                    }
+                    onFocus={() => setTouched({ job: true, location: false })}
+                    onBlur={() => setTouched({ ...touched, job: false })}
                   >
-                    <ul>
+                    <ul className={AnimationInputStyles.animationListGroup}>
                       {jobKeywords.map((keyword, i) => (
                         <li key={i}>
                           <span>{keyword}</span>
                         </li>
                       ))}
                     </ul>
+
+                    <AutoCompleteInput
+                      listText="Pozisyon Ara"
+                      recommendedKeywords={jobKeywords}
+                      searchData={jobs}
+                      setSelectedKeyword={setSelectedJob}
+                      touched={touched.job}
+                      field="job"
+                      setFieldValue={setFieldValue}
+                    />
                   </CustomInput>
                 </div>
 
@@ -114,7 +142,27 @@ const HeroSection = () => {
                     iconSpanClass="!left-0"
                     onChange={handleChange}
                     placeholder="Şehir veya ilçe ara"
-                  />
+                    onChangeCapture={(e: ChangeEvent<HTMLInputElement>) =>
+                      handleSearchData(e, citiesList, setCities)
+                    }
+                    onFocus={() => setTouched({ location: true, job: false })}
+                    onBlur={() => setTouched({ ...touched, location: false })}
+                  >
+                    <AutoCompleteInput
+                      listText="Lokasyon Ara"
+                      recommendedKeywords={[
+                        "Ankara",
+                        "İstanbul",
+                        "İzmir",
+                        "Erzurum",
+                      ]}
+                      searchData={cities}
+                      setSelectedKeyword={setSelectedCity}
+                      touched={touched.location}
+                      field="location"
+                      setFieldValue={setFieldValue}
+                    />
+                  </CustomInput>
                 </div>
 
                 <div className="w-full flex-[0.5]">
