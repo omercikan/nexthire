@@ -10,9 +10,9 @@ import HomeStyles from "@/scss/home-bg.module.scss";
 import { AuthCompoleteSearchFields, SearchJobFormFields } from "@/types";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import HeroBg from "@/img/home-bg.avif";
+import HeroBg from "@/img/hero-bg.jpg";
 import jobTitlesList from "@/data/job-titles";
-import AutoCompleteInput from "@/components/ui/AutoCompleteList";
+import AutoCompleteInput from "@/components/ui/AutoCompleteList"; 
 import citiesList from "@/data/cities";
 import { jobKeywords } from "@/data/job-keywords";
 import { handleSearchData } from "@/lib/searchData";
@@ -61,7 +61,7 @@ const HeroSection = () => {
         <Image
           src={HeroBg}
           alt="Ana sayfa kahraman görseli"
-          className="object-cover bg-left"
+          className="object-cover bg-left pointer-events-none"
           fill
           priority
           sizes="100vw"

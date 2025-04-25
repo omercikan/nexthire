@@ -75,7 +75,7 @@ body {
   }
 
   .placeholder-bg {
-    background-color: rgba(32, 33, 36, 0.5);
+    background-color: rgba(127, 149, 214, 0.5);
   }
 }
 /*! Custom layers end !*/
@@ -263,3 +263,36 @@ body {
     left: auto;
   }
 }
+
+/*! Slider class area start !*/
+
+/*! Swiper general container  !*/
+.swiper {
+  margin: 0 8rem !important;
+
+  @media only screen and (width < 1240px) {
+    margin: 0 6rem !important;
+  }
+
+  @media only screen and (width < 1024px) {
+    margin: 0 4rem !important;
+  }
+
+  @media only screen and (width < 768px) {
+    margin: unset !important;
+  }
+}
+
+.slide-image {
+  @apply object-contain cursor-pointer transition duration-300 mx-auto group-hover:scale-90 only:hover:scale-100;
+}
+
+.slider-button-container {
+  @apply max-[1024]:flex justify-between absolute left-0 top-[calc(50%)] -translate-y-[50%] w-full px-8 max-sm:px-3 min-[1024]:hidden z-10 pointer-events-none;
+}
+
+.slide-button {
+  @apply text-[#1967D2] bg-[#1967D226] hover:bg-[#1967D2] hover:text-white transition-colors duration-300 rounded-lg w-[30px] h-[30px] grid place-content-center pointer-events-auto
+}
+
+/*! Slider class area end !*/
