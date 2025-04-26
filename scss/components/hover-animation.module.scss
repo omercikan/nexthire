@@ -1,0 +1,28 @@
+@mixin hoverAnimation($left, $transitionProperty) {
+  left: $left;
+  transition: $transitionProperty 0.4s ease-in-out;
+}
+
+.hoverAnimation {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -2.5px;
+    width: 0%;
+    height: 1px;
+    background-color: #202124;
+    @include hoverAnimation(0, width);
+  }
+
+  &:hover::before {
+    width: 100%;
+  }
+
+  &:not(:hover) {
+    &::before {
+      @include hoverAnimation(100%, all);
+    }
+  }
+}

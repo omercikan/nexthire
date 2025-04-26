@@ -80,6 +80,23 @@ body {
 }
 /*! Custom layers end !*/
 
+@utility container {
+  padding-inline: 10px;
+  margin-inline: auto;
+
+  @variant sm {
+    padding-inline: 20px;
+  }
+
+  @variant lg {
+    padding-inline: 80px;
+  }
+
+  @variant xl {
+    padding-inline: 120px;
+  }
+}
+
 /*! - Custom components class group start - !*/
 .form__wrapper {
   @apply flex-[1] max-[1026px]:bg-white z-10 max-[1026px]:fixed max-[1026px]:top-[50%] max-[1026px]:left-[50%] max-[1026px]:-translate-[50%] max-[1026px]:w-[95%] max-[1026px]:rounded-3xl max-[1026px]:px-5 max-[1026px]:py-8 max-[1026px]:shadow-2xl max-[1026px]:drop-shadow-2xl;
@@ -199,7 +216,7 @@ body {
 }
 
 .hero-section-form__auto-complete-input {
-  @apply absolute top-[159%] max-md:top-[127%] max-md:left-0 border-b border-l border-r border-[#ecedf2] rounded-b-lg bg-white h-max max-h-[200px] w-[calc(100%+21.7px)] max-md:w-full z-10;
+  @apply absolute top-[159%] max-md:top-[127%] max-md:left-0 border-b border-l border-r border-[#ecedf2] rounded-b-lg bg-white h-max max-h-[200px] max-[992px]:!max-h-[120px] max-md:!max-h-[200px] w-[calc(100%+21.7px)] max-md:w-full z-10;
 }
 
 .auto-complete-list-span {
@@ -292,7 +309,21 @@ body {
 }
 
 .slide-button {
-  @apply text-[#1967D2] bg-[#1967D226] hover:bg-[#1967D2] hover:text-white transition-colors duration-300 rounded-lg w-[30px] h-[30px] grid place-content-center pointer-events-auto
+  @apply text-[#1967D2] bg-[#1967D226] hover:bg-[#1967D2] hover:text-white transition-colors duration-300 rounded-lg w-[30px] h-[30px] grid place-content-center pointer-events-auto;
 }
+
+/*! Swiper home page featured job class area start !*/
+.featured-job-swiper-slide {
+  @apply border border-[#ECEDF2] hover:border-[#F9AB00] !transition-colors duration-300 p-[30px] rounded-[18px] !h-auto shadow-[0px_6px_15px_0px_rgba(64,79,104,0.05)];
+}
+
+.featured-job-title-tag {
+  @apply text-[#202124] font-medium hover:text-[#1967d2] transition-colors duration-300 cursor-pointer;
+}
+
+.featured-job-list-item {
+  @apply rounded-full border border-[#ECEDF2] text-[#202124] text-sm py-1 px-3.5;
+}
+/*! Swiper home page featured job class area end !*/
 
 /*! Slider class area end !*/

@@ -143,6 +143,8 @@ export interface User {
 
 export interface Employer extends User {
   companyName: string;
+  companyLogo: string;
+  featured: boolean;
   location: {
     city: string;
     district: string;
@@ -150,6 +152,26 @@ export interface Employer extends User {
     taxOffice: string;
     taxOfficieCity: string;
   };
+  openJobs: [
+    {
+      postId: string;
+      jobTitle: string;
+      jobDescription: {
+        jobIntro: string;
+        jobDetails: string;
+        responsibilities: string[];
+        requirements: string[];
+      };
+      category: string;
+      modeOfWork: string;
+      workModel: string;
+      positionLevel: string;
+      educationLevel: string[];
+      experienceTime: string;
+      applicationDeadlineDate: string;
+      location: string;
+    }
+  ];
 }
 
 export interface Candidate extends User {

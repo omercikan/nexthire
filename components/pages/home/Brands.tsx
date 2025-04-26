@@ -7,8 +7,6 @@ import { BsChevronLeft } from "react-icons/bs";
 import { BsChevronRight } from "react-icons/bs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
-import "swiper/scss/navigation";
-import "swiper/scss/pagination";
 import { Navigation, Autoplay } from "swiper/modules";
 
 const Companies = () => {
