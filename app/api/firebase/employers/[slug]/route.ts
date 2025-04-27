@@ -1,10 +1,15 @@
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { NextResponse } from "next/server";
-import { db } from "../firebaseConfig";
+import { db } from "../../firebaseConfig";
 
-export async function GET() {
+export async function GET(
+  _request: Request,
+  { params }: { params: { slug: string } }
+) {
+  const { slug } = await params;
+
   try {
-    const q = query(collection(db, "employers"), where("featured", "==", true));
+    const q = query(collection(db, "employers"), where(slug, "==", true));
 
     const querySnapshot = await getDocs(q);
     const employers: object[] = [];

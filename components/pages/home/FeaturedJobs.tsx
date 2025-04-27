@@ -22,7 +22,7 @@ const FeaturedJobs = () => {
   useEffect(() => {
     const fetchFeaturedJobs = async () => {
       const { data }: { data: { employers: Employer[]; status: number } } =
-        await fetchData("/api/firebase/featured-jobs");
+        await fetchData("/api/firebase/employers/featured");
       if (data.employers) setFeaturedJobs(data.employers);
     };
 
