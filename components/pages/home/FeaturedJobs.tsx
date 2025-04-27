@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { fetchData } from "@/lib/fetchData";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
@@ -14,20 +14,24 @@ import Skeleton from "@mui/material/Skeleton";
 import { TfiCrown } from "react-icons/tfi";
 import Tooltip from "@mui/material/Tooltip";
 import SectionHeader from "@/components/SectionHeader";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/lib/store";
+import { setEmployers } from "@/lib/features/role/employerSlice";
 
 const FeaturedJobs = () => {
-  const [featuredJobs, setFeaturedJobs] = useState<Employer[]>([]);
+  const { employers } = useSelector((state: RootState) => state.employers);
+  const dispatch = useDispatch<AppDispatch>();
   const placeholderLoader = Array.from({ length: 3 }, (_, i) => i);
 
   useEffect(() => {
     const fetchFeaturedJobs = async () => {
       const { data }: { data: { employers: Employer[]; status: number } } =
         await fetchData("/api/firebase/employers/featured");
-      if (data.employers) setFeaturedJobs(data.employers);
+      if (data.employers) dispatch(setEmployers(data.employers));
     };
 
     fetchFeaturedJobs();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="container">
@@ -65,8 +69,8 @@ const FeaturedJobs = () => {
               },
             }}
           >
-            {featuredJobs.length ? (
-              featuredJobs.concat(featuredJobs).map((job, index) => (
+            {employers.length ? (
+              employers.concat(employers).map((job, index) => (
                 <SwiperSlide key={index} className="featured-job-swiper-slide">
                   <div className="flex items-center justify-between">
                     <Link
