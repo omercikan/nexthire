@@ -2,6 +2,7 @@ import { Jost } from "next/font/google";
 import HeroSection from "@/components/pages/home/HeroSection";
 import Brands from "@/components/pages/home/Brands";
 import FeaturedJobs from "@/components/pages/home/FeaturedJobs";
+import Categories from "@/components/pages/home/Categories";
 
 const jost = Jost({
   display: "swap",
@@ -14,6 +15,7 @@ export default function Home() {
       <HeroSection />
       <Brands />
       <FeaturedJobs />
+      <Categories />
     </main>
   );
 }

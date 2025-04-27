@@ -158,7 +158,7 @@ const FeaturedJobs = () => {
                       sx={{
                         borderRadius: "18px",
                         width: "100%",
-                        height: "303px",
+                        height: "284.200px",
                       }}
                     />
                   </SwiperSlide>

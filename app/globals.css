@@ -61,6 +61,11 @@ body {
     scrollbar-width: thin;
   }
 
+  .x-scrollbar {
+    overflow-x: auto;
+    scrollbar-width: none !important;
+  }
+
   .auth-bg-image {
     background-image: url("https://res.cloudinary.com/dvolwkh6r/image/upload/v1745237987/thumb-image_cdf4yj.png");
     background-size: cover;
@@ -233,6 +238,24 @@ body {
   @apply bg-white border border-[#c6c7c8] rounded-[5px] transition-all invisible max-[992px]:w-[500px] max-[576px]:w-screen max-[576px]:h-screen max-[992px]:visible group-hover:visible;
 }
 /*! User items class end !*/
+
+/*! Home page Categories class start */
+.category-list {
+  @apply grid grid-cols-6 max-lg:grid-cols-3 max-md:flex gap-[35px] max-lg:gap-[25px] mt-4 snap-mandatory;
+}
+
+.category-list-item {
+  @apply flex flex-col items-center border border-[#ECEDF2] h-full hover:bg-[#F5F2EA] transition-colors duration-500 py-[35px] px-[15px] rounded-[18px] cursor-pointer max-md:w-[300px];
+}
+
+.category-list-item-wrapper {
+  @apply w-[80px] h-[80px] rounded-full bg-[#F5F2EA] group-hover:bg-white transition-colors duration-500 mb-2.5 grid place-content-center;
+}
+
+.category-item-text {
+  @apply text-[#202124] font-medium whitespace-nowrap overflow-ellipsis overflow-hidden w-full text-center;
+}
+/*! Home page Categories class end */
 
 /*! - Custom components class group end - !*/
 

@@ -145,6 +145,7 @@ export interface Employer extends User {
   companyName: string;
   companyLogo: string;
   featured: boolean;
+  serviceArea: string;
   location: {
     city: string;
     district: string;
@@ -211,5 +212,5 @@ export interface SectionHeaderProps {
   title: string;
   subtitle: string;
   linkText: string;
-  link: string
+  link: string;
 }
