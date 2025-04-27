@@ -1,11 +1,17 @@
+"use client";
+
 import ListItem from "@/components/helpers/ListItem";
 import SectionHeader from "@/components/SectionHeader";
 import { categories } from "@/data/categories";
 import { routeFormatter } from "@/lib/routeFormat";
+import { RootState } from "@/lib/store";
 import Link from "next/link";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Categories = () => {
+  const { employers } = useSelector((state: RootState) => state.employers);
+
   return (
     <div className="container pt-[70px] pb-[100px]">
       <SectionHeader
@@ -20,7 +26,7 @@ const Categories = () => {
           <Link
             href={`/is-ilanlari/?${new URLSearchParams({
               meslek: routeFormatter(category.name),
-            })}`}
+            })}`} 
             key={category.id}
             className="w-full"
           >
@@ -32,6 +38,12 @@ const Categories = () => {
                 name: category.name,
                 icon: category.icon,
               }}
+              subtext={`${
+                employers.filter(
+                  (employer) => employer.serviceArea == category.name
+                ).length
+              } açık pozisyon`}
+              subTextClass="category-subtext"
             />
           </Link>
         ))}

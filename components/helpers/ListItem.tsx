@@ -9,6 +9,8 @@ export interface ListemItemProps {
     icon: IconType;
     name: string;
   };
+  subtext: string;
+  subTextClass: string;
 }
 
 const ListItem = ({
@@ -16,6 +18,8 @@ const ListItem = ({
   itemWrapperClass,
   itemTextClass,
   content,
+  subtext,
+  subTextClass
 }: ListemItemProps) => {
   return (
     <li className={itemClass}>
@@ -23,6 +27,7 @@ const ListItem = ({
         {content.icon && <content.icon size={40} color="202124" />}
       </div>
       <h4 className={itemTextClass}>{content.name}</h4>
+      <span className={subTextClass}>( {subtext} )</span>
     </li>
   );
 };

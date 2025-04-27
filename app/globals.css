@@ -241,7 +241,7 @@ body {
 
 /*! Home page Categories class start */
 .category-list {
-  @apply grid grid-cols-6 max-lg:grid-cols-3 max-md:flex gap-[35px] max-lg:gap-[25px] mt-4 snap-mandatory;
+  @apply grid grid-cols-6 max-lg:grid-cols-3 max-md:flex gap-[30px] max-lg:gap-[25px] mt-4 snap-mandatory;
 }
 
 .category-list-item {
@@ -253,7 +253,11 @@ body {
 }
 
 .category-item-text {
-  @apply text-[#202124] font-medium whitespace-nowrap overflow-ellipsis overflow-hidden w-full text-center;
+  @apply text-[#202124] font-medium whitespace-nowrap overflow-ellipsis overflow-hidden w-full text-center mb-0.5;
+}
+
+.category-subtext {
+  @apply text-[#696969] text-sm whitespace-nowrap overflow-ellipsis overflow-hidden w-full text-center;
 }
 /*! Home page Categories class end */
 
