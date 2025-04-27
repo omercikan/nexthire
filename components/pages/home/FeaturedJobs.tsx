@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { GoArrowUpRight } from "react-icons/go";
-import HoverStyles from "@/scss/components/hover-animation.module.scss";
 import { fetchData } from "@/lib/fetchData";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
@@ -15,6 +13,7 @@ import { routeFormatter } from "@/lib/routeFormat";
 import Skeleton from "@mui/material/Skeleton";
 import { TfiCrown } from "react-icons/tfi";
 import Tooltip from "@mui/material/Tooltip";
+import SectionHeader from "@/components/SectionHeader";
 
 const FeaturedJobs = () => {
   const [featuredJobs, setFeaturedJobs] = useState<Employer[]>([]);
@@ -32,27 +31,12 @@ const FeaturedJobs = () => {
 
   return (
     <div className="container">
-      <section className="flex max-sm:flex-col gap-y-[15px] justify-between max-sm:justify-start items-center max-sm:items-start py-[15px]">
-        <div className="text-[#202124]">
-          <h1 className="text-3xl max-[992px]:text-2xl font-medium">
-            Öne Çıkan İşler
-          </h1>
-          <p className="text-[15px] leading-7">
-            Kendinizi keşfedin, değerinizin karşılığını alacağınız işe adım
-            atın.
-          </p>
-        </div>
-
-        <div>
-          <Link
-            href="/is-ilanlari"
-            className={`${HoverStyles.hoverAnimation} flex items-center gap-1 text-[#202124] text-[15px]`}
-          >
-            Tüm İşlere Göz Atın
-            <GoArrowUpRight />
-          </Link>
-        </div>
-      </section>
+      <SectionHeader
+        title="Öne Çıkan İşler"
+        subtitle="Kendinizi keşfedin, değerinizin karşılığını alacağınız işe adım"
+        link="/is-ilanlari"
+        linkText="Tüm İşlere Göz Atın"
+      />
 
       <section className="pt-[25px]">
         <div className="relative">

@@ -205,3 +205,11 @@ export interface AuthCompoleteComponentProps {
   listText: string;
   field: string;
 }
+
+//! Section header component props !//
+export interface SectionHeaderProps {
+  title: string;
+  subtitle: string;
+  linkText: string;
+  link: string
+}
