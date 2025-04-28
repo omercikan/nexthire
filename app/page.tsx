@@ -4,6 +4,7 @@ import Brands from "@/components/pages/home/Brands";
 import FeaturedJobs from "@/components/pages/home/FeaturedJobs";
 import Categories from "@/components/pages/home/Categories";
 import PostingJob from "@/components/pages/home/PostingJob";
+import CitiesCategory from "@/components/pages/home/CitiesCategory";
 
 const jost = Jost({
   display: "swap",
@@ -18,6 +19,7 @@ export default function Home() {
       <FeaturedJobs />
       <Categories />
       <PostingJob />
+      <CitiesCategory />
     </main>
   );
 }
