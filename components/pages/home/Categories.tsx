@@ -40,7 +40,7 @@ const Categories = () => {
               }}
               subtext={`${
                 employers.filter(
-                  (employer) => employer.serviceArea == category.name
+                  (employer) => employer.companyInformations.serviceArea == category.name
                 ).length
               } açık pozisyon`}
               subTextClass="category-subtext"

@@ -31,18 +31,20 @@ export async function POST(req: NextRequest) {
     await sendPasswordResetEmail(auth, email);
 
     await setDoc(doc(db, "employers", userCredential.user.uid), {
-      eid: userCredential.user.uid,
-      name: nameAndSurname,
-      phoneNumber: formatTurkishPhoneNumber(phoneNumber),
-      email: email,
-      companyName: companyName,
-      location: {
-        city: city,
-        district: FormatText(district),
-        taxOfficieCity: TaxOfficieCity,
-        taxOffice: FormatText(TaxOffice),
-        taxNumber: taxNumber,
+      companyInformations: {
+        name: nameAndSurname,
+        companyName: companyName,
+        phoneNumber: formatTurkishPhoneNumber(phoneNumber),
+        email: email,
+        location: {
+          city: city,
+          district: FormatText(district),
+          taxOfficieCity: TaxOfficieCity,
+          taxOffice: FormatText(TaxOffice),
+          taxNumber: taxNumber,
+        },
       },
+      eid: userCredential.user.uid,
       createdAt: new Date(Timestamp.now().seconds * 1000).toLocaleDateString(
         "tr"
       ),
@@ -51,18 +53,20 @@ export async function POST(req: NextRequest) {
     });
 
     await setDoc(doc(db, "users", userCredential.user.uid), {
-      id: userCredential.user.uid,
-      name: nameAndSurname,
-      phoneNumber: formatTurkishPhoneNumber(phoneNumber),
-      email: email,
-      companyName: companyName,
-      location: {
-        city: city,
-        district: FormatText(district),
-        taxOfficieCity: TaxOfficieCity,
-        taxOffice: FormatText(TaxOffice),
-        taxNumber: taxNumber,
+      companyInformations: {
+        name: nameAndSurname,
+        companyName: companyName,
+        phoneNumber: formatTurkishPhoneNumber(phoneNumber),
+        email: email,
+        location: {
+          city: city,
+          district: FormatText(district),
+          taxOfficieCity: TaxOfficieCity,
+          taxOffice: FormatText(TaxOffice),
+          taxNumber: taxNumber,
+        },
       },
+      eid: userCredential.user.uid,
       createdAt: new Date(Timestamp.now().seconds * 1000).toLocaleDateString(
         "tr"
       ),

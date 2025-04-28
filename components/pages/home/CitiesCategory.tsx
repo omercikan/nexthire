@@ -49,7 +49,9 @@ const CitiesCategory = () => {
                 itemTextClass={`category-item-text !text-left text-[18px]`}
                 subtext={`${
                   employers.filter(
-                    (employer) => employer.location.city === city.cityName
+                    (employer) =>
+                      employer.companyInformations.location.city ===
+                      city.cityName
                   ).length
                 } aktif iş`}
                 subTextClass="category-subtext !text-[#202124]"

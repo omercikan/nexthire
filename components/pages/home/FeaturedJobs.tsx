@@ -80,8 +80,8 @@ const FeaturedJobs = () => {
                       )}`}
                     >
                       <Image
-                        src={job.companyLogo}
-                        alt={job.companyName}
+                        src={job.companyInformations.companyLogo}
+                        alt={job.companyInformations.companyName}
                         width={60}
                         height={60}
                         className="rounded-full mb-2.5"
@@ -108,11 +108,11 @@ const FeaturedJobs = () => {
                       <p className="text-[15px] mt-2.5">
                         <Link
                           href={`firma-profil/${routeFormatter(
-                            `${job.companyName}-${job.id}`
+                            `${job.companyInformations.companyName}-${job.id}`
                           )}`}
                         >
                           <strong className="featured-job-title-tag">
-                            {job.companyName}
+                            {job.companyInformations.companyName}
                           </strong>
                         </Link>{" "}
                         <span className="text-[#696969]">tarafından</span>{" "}

@@ -142,17 +142,20 @@ export interface User {
 }
 
 export interface Employer extends User {
-  companyName: string;
-  companyLogo: string;
-  featured: boolean;
-  serviceArea: string;
-  location: {
-    city: string;
-    district: string;
-    taxNumber: string;
-    taxOffice: string;
-    taxOfficieCity: string;
+  companyInformations: {
+    companyName: string;
+    companyLogo: string;
+    serviceArea: string;
+    phoneNumber: string;
+    location: {
+      city: string;
+      district: string;
+      taxNumber: string;
+      taxOffice: string;
+      taxOfficieCity: string;
+    };
   };
+  featured: boolean;
   openJobs: [
     {
       postId: string;

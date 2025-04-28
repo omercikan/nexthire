@@ -8,11 +8,11 @@ export interface ListemItemProps {
   content?: {
     icon?: IconType;
     name: string;
-    className: string;
+    className?: string;
   };
   subtext: string;
   subTextClass: string;
-  image: ReactNode;
+  image?: ReactNode;
 }
 
 const ListItem = ({
