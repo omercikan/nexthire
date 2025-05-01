@@ -142,11 +142,13 @@ export interface User {
 }
 
 export interface Employer extends User {
+  eid: string;
   companyInformations: {
     companyName: string;
     companyLogo: string;
     serviceArea: string;
     phoneNumber: string;
+    numberOfEmployees: string;
     location: {
       city: string;
       district: string;
@@ -156,6 +158,7 @@ export interface Employer extends User {
     };
   };
   featured: boolean;
+  bestCompany: boolean;
   openJobs: [
     {
       postId: string;
@@ -179,8 +182,18 @@ export interface Employer extends User {
 }
 
 export interface Candidate extends User {
+  cid: string;
   acceptedTerms: string;
   createdWith: string;
+  favoriteEmployers: [
+    {
+      companyEID: string;
+      companyLocation: string;
+      companyLogo: string;
+      companyName: string;
+      numberOfEmployees: string;
+    }
+  ];
 }
 //! User interface area Employer and Candidate Role interfaces END !//
 

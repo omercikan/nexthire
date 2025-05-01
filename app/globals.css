@@ -339,6 +339,28 @@ body {
   @apply text-[#1967D2] bg-[#1967D226] hover:bg-[#1967D2] hover:text-white transition-colors duration-300 rounded-lg w-[30px] h-[30px] grid place-content-center pointer-events-auto;
 }
 
+.swiper-pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background-color: #bfc8cb;
+  display: inline-block;
+  margin: 0 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out 0s;
+  -webkit-transition: all 0.5s ease-in-out 0s;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #202124;
+  width: 20px;
+}
+
 /*! Swiper home page featured job class area start !*/
 .featured-job-swiper-slide {
   @apply border border-[#ECEDF2] hover:border-[#F9AB00] !transition-colors duration-300 p-[30px] rounded-[18px] !h-auto shadow-[0px_6px_15px_0px_rgba(64,79,104,0.05)];

@@ -108,7 +108,7 @@ const FeaturedJobs = () => {
                       <p className="text-[15px] mt-2.5">
                         <Link
                           href={`firma-profil/${routeFormatter(
-                            `${job.companyInformations.companyName}-${job.id}`
+                            `${job.companyInformations.companyName}-${job.eid}`
                           )}`}
                         >
                           <strong className="featured-job-title-tag">
