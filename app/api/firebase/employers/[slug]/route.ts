@@ -5,12 +5,15 @@ import { Employer } from "@/types";
 
 export async function GET(
   _request: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string[] }> }
 ) {
   const { slug } = await params;
 
   try {
-    const q = query(collection(db, "employers"), where(slug, "==", true));
+    const q = query(
+      collection(db, "employers"),
+      where(String(slug), "==", true)
+    );
 
     const querySnapshot = await getDocs(q);
     const employers: Employer[] = [];

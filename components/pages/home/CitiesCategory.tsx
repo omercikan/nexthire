@@ -1,6 +1,5 @@
 "use client";
 
-import ListItem from "@/components/helpers/ListItem";
 import SectionHeader from "@/components/SectionHeader";
 import { citiesCategory } from "@/data/citiesCategory";
 import { routeFormatter } from "@/lib/routeFormat";
@@ -25,15 +24,14 @@ const CitiesCategory = () => {
 
         <ul className="grid grid-cols-6 max-lg:grid-cols-3 max-md:grid-cols-2 gap-3 items-center justify-between">
           {citiesCategory.map((city) => (
-            <Link
-              key={city.id}
-              href={`/is-ilanlari/?${new URLSearchParams({
-                konum: routeFormatter(city.cityName),
-              })}`}
-            >
-              <ListItem
-                itemClass="group"
-                image={
+            <li key={city.id} className="group">
+              <Link
+                className="inline-block"
+                href={`/is-ilanlari/?${new URLSearchParams({
+                  konum: routeFormatter(city.cityName),
+                })}`}
+              >
+                <div className="pb-[15px] w-full">
                   <Image
                     src={city.cityImage}
                     alt={city.cityName}
@@ -41,22 +39,22 @@ const CitiesCategory = () => {
                     height={219.89}
                     className="w-full h-[219.89px] max-sm:!h-[160px] object-cover rounded-[18px] group-hover:opacity-90 transition duration-500"
                   />
-                }
-                content={{
-                  name: city.cityName,
-                  className: "pb-[15px] w-full",
-                }}
-                itemTextClass={`category-item-text !text-left text-[18px]`}
-                subtext={`${
-                  employers.filter(
-                    (employer) =>
-                      employer.companyInformations.location.city ===
-                      city.cityName
-                  ).length
-                } aktif iş`}
-                subTextClass="category-subtext !text-[#202124]"
-              />
-            </Link>
+                </div>
+                <h1 className="category-item-text !text-left text-[18px]">
+                  {city.cityName}
+                </h1>
+                <span className="category-subtext !text-[#202124]">
+                  {
+                    employers.filter((employer) =>
+                      employer.companyInformations.location.city.includes(
+                        city.cityName
+                      )
+                    ).length
+                  }{" "}
+                  aktif iş
+                </span>
+              </Link>
+            </li>
           ))}
         </ul>
       </div>

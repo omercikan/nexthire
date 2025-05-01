@@ -1,6 +1,5 @@
 "use client";
 
-import ListItem from "@/components/helpers/ListItem";
 import SectionHeader from "@/components/SectionHeader";
 import { categories } from "@/data/categories";
 import { routeFormatter } from "@/lib/routeFormat";
@@ -23,29 +22,29 @@ const Categories = () => {
 
       <ul className="category-list x-scrollbar">
         {categories.map((category) => (
-          <Link
-            href={`/is-ilanlari/?${new URLSearchParams({
-              meslek: routeFormatter(category.name),
-            })}`} 
-            key={category.id}
-            className="w-full"
-          >
-            <ListItem
-              itemClass="category-list-item group"
-              itemWrapperClass="category-list-item-wrapper"
-              itemTextClass="category-item-text"
-              content={{
-                name: category.name,
-                icon: category.icon,
-              }}
-              subtext={`${
-                employers.filter(
-                  (employer) => employer.companyInformations.serviceArea == category.name
-                ).length
-              } açık pozisyon`}
-              subTextClass="category-subtext"
-            />
-          </Link>
+          <li key={category.id} className="group">
+            <Link
+              className="category-list-item w-full"
+              href={`/is-ilanlari/?${new URLSearchParams({
+                meslek: routeFormatter(category.name),
+              })}`}
+            >
+              <div className="category-list-item-wrapper">
+                <category.icon size={40} color="202124" />
+              </div>
+              <h1 className="category-item-text">{category?.name}</h1>
+              <span className="category-subtext">
+                ({" "}
+                {`${
+                  employers.filter(
+                    (employer) =>
+                      employer.companyInformations.serviceArea == category.name
+                  ).length
+                } açık pozisyon`}{" "}
+                )
+              </span>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>

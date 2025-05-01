@@ -7,7 +7,7 @@ import { BsChevronLeft } from "react-icons/bs";
 import { BsChevronRight } from "react-icons/bs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Navigation, Autoplay, A11y } from "swiper/modules";
 
 const Companies = () => {
   return (
@@ -18,13 +18,18 @@ const Companies = () => {
 
       <div className="relative">
         <Swiper
-          modules={[Navigation, Autoplay]}
+          modules={[A11y, Navigation, Autoplay]}
+          a11y={{
+            firstSlideMessage: "Bu, ilk slayt. Önceki bir içerik yok.",
+            lastSlideMessage: "Bu, son slayt. Sonraki bir içerik yok.",
+            nextSlideMessage: "Sonraki Slayt",
+            prevSlideMessage: "Önceki Slay",
+          }}
           navigation={{
             nextEl: ".next",
             prevEl: ".prev",
           }}
           className="group"
-          pagination={{ clickable: true }}
           loop={true}
           breakpoints={{
             320: {
@@ -57,11 +62,19 @@ const Companies = () => {
         </Swiper>
 
         <div className="slider-button-container">
-          <button className="prev slide-button">
+          <button
+            className="prev slide-button"
+            role="button"
+            aria-label="önceki"
+          >
             <BsChevronLeft size={18} />
           </button>
 
-          <button className="next slide-button">
+          <button
+            className="next slide-button"
+            role="button"
+            aria-label="sonraki"
+          >
             <BsChevronRight size={18} />
           </button>
         </div>

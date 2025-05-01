@@ -87,8 +87,10 @@ const BestCompanies = () => {
             >
               Giriş Yap
             </Link>
-          </div>, {
-            id: "favorite-toast"
+          </div>,
+          {
+            id: "favorite-toast",
+            duration: 2500,
           }
         );
       }
@@ -114,10 +116,10 @@ const BestCompanies = () => {
           className="!mx-0 !mt-[30px]"
           modules={[A11y, Pagination, Autoplay]}
           a11y={{
-            firstSlideMessage: "İlk Slider",
-            lastSlideMessage: "Son Slider",
-            nextSlideMessage: "Sonraki Slide",
-            prevSlideMessage: "Önceki Slide",
+            firstSlideMessage: "Bu, ilk slayt. Önceki bir içerik yok.",
+            lastSlideMessage: "Bu, son slayt. Sonraki bir içerik yok.",
+            nextSlideMessage: "Sonraki Slayt",
+            prevSlideMessage: "Önceki Slay",
           }}
           autoplay={{
             delay: 3000,

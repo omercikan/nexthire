@@ -336,7 +336,7 @@ body {
 }
 
 .slide-button {
-  @apply text-[#1967D2] bg-[#1967D226] hover:bg-[#1967D2] hover:text-white transition-colors duration-300 rounded-lg w-[30px] h-[30px] grid place-content-center pointer-events-auto;
+  @apply text-[#0B3C91] bg-[#1967D226] hover:bg-[#1967D2] hover:text-white transition-colors duration-300 rounded-lg w-[30px] h-[30px] grid place-content-center pointer-events-auto;
 }
 
 .swiper-pagination {
