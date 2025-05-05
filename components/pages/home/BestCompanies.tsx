@@ -20,6 +20,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { db } from "@/app/api/firebase/firebaseConfig";
 import { arrayUnion, doc, DocumentData, onSnapshot } from "firebase/firestore";
 import CircularProgress from "@mui/material/CircularProgress";
+import Skeleton from "@mui/material/Skeleton";
 import axios from "axios";
 
 const BestCompanies = () => {
@@ -27,6 +28,7 @@ const BestCompanies = () => {
   const { user } = useContext(AuthContext);
   const candidateUser = user as Candidate;
   const [updatedData, setUpdatedData] = useState<Candidate>();
+  const placeholderLoader = Array.from({ length: 4 }, (_, i) => i);
   const [isAdding, setIsAdding] = useState({
     inital: false,
     id: "",
@@ -142,127 +144,147 @@ const BestCompanies = () => {
             },
           }}
         >
-          {bestCompanies.map((company, index) => (
-            <SwiperSlide
-              key={index}
-              className="featured-job-swiper-slide bg-white max-lg:!p-[15px] !p-[30px] !flex !flex-col text-center group"
-            >
-              {user?.role === "candidate" || typeof user === "undefined" ? (
-                <div
-                  className="absolute right-2 top-2 invisible group-hover:visible hover:bg-[#ECEDF2] rounded-full w-[30px] h-[30px] transition-colors duration-300 grid place-content-center cursor-pointer"
-                  onClick={() =>
-                    addFavoriteCompany(
-                      {
-                        favoriteEmployers: arrayUnion({
-                          companyEID: company.eid,
-                          companyLogo: company.companyInformations.companyLogo,
-                          companyName: company.companyInformations.companyName,
-                          companyLocation:
-                            company.companyInformations.location.city,
-                          numberOfEmployees:
-                            company.companyInformations.numberOfEmployees,
-                        }),
-                      },
-                      company?.eid
-                    )
-                  }
-                >
-                  {isAdding.id === company.eid && isAdding.inital ? (
-                    <CircularProgress size={18} className="!text-[#696969]" />
-                  ) : updatedData?.favoriteEmployers?.some((favorite) =>
-                      favorite.companyEID.includes(company?.eid)
-                    ) ? (
-                    <GoBookmarkFill
-                      color="696969"
-                      size={18}
-                      className="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500"
-                    />
-                  ) : (
-                    <GoBookmark
-                      color="696969"
-                      size={18}
-                      className="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500"
-                    />
-                  )}
-                </div>
-              ) : null}
-
-              <Link
-                className="w-max mx-auto"
-                href={`/firma-profil/${routeFormatter(
-                  company.companyInformations.companyName
-                )}-${company.eid}`}
+          {bestCompanies.length ? (
+            bestCompanies.map((company, index) => (
+              <SwiperSlide
+                key={index}
+                className="featured-job-swiper-slide bg-white max-lg:!p-[15px] !p-[30px] !flex !flex-col text-center group"
               >
-                <Image
-                  src={company.companyInformations.companyLogo}
-                  alt={company.companyInformations.companyName}
-                  width={70}
-                  height={70}
-                  className="rounded-full mb-[15px]"
-                />
-              </Link>
-              <h2 className="mb-2.5 text-lg font-medium">
+                {user?.role === "candidate" || typeof user === "undefined" ? (
+                  <div
+                    className="absolute right-2 top-2 invisible group-hover:visible hover:bg-[#ECEDF2] rounded-full w-[30px] h-[30px] transition-colors duration-300 grid place-content-center cursor-pointer"
+                    onClick={() =>
+                      addFavoriteCompany(
+                        {
+                          favoriteEmployers: arrayUnion({
+                            companyEID: company.eid,
+                            companyLogo:
+                              company.companyInformations.companyLogo,
+                            companyName:
+                              company.companyInformations.companyName,
+                            companyLocation:
+                              company.companyInformations.location.city,
+                            numberOfEmployees:
+                              company.companyInformations.numberOfEmployees,
+                          }),
+                        },
+                        company?.eid
+                      )
+                    }
+                  >
+                    {isAdding.id === company.eid && isAdding.inital ? (
+                      <CircularProgress size={18} className="!text-[#696969]" />
+                    ) : updatedData?.favoriteEmployers?.some((favorite) =>
+                        favorite.companyEID.includes(company?.eid)
+                      ) ? (
+                      <GoBookmarkFill
+                        color="696969"
+                        size={18}
+                        className="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500"
+                      />
+                    ) : (
+                      <GoBookmark
+                        color="696969"
+                        size={18}
+                        className="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500"
+                      />
+                    )}
+                  </div>
+                ) : null}
+
                 <Link
+                  className="w-max mx-auto"
                   href={`/firma-profil/${routeFormatter(
                     company.companyInformations.companyName
                   )}-${company.eid}`}
                 >
-                  {company.companyInformations.companyName}
+                  <Image
+                    src={company.companyInformations.companyLogo}
+                    alt={company.companyInformations.companyName}
+                    width={70}
+                    height={70}
+                    className="rounded-full mb-[15px]"
+                  />
                 </Link>
-              </h2>
-
-              <div>
-                <ul className="flex flex-wrap items-center justify-center gap-2.5 text-[#202124]">
-                  <li className="flex items-center gap-[5px]">
-                    <SlLocationPin size={18} />
-                    <Link
-                      href={`/is-ilanlari/?${new URLSearchParams({
-                        konum: routeFormatter(
-                          company.companyInformations.location.city
-                        ),
-                      })}`}
-                    >
-                      {company.companyInformations.location.city}
-                    </Link>
-                  </li>
-
-                  <li className="flex items-center gap-[5px]">
-                    <LiaUserSolid size={22} />
-                    {company.companyInformations.numberOfEmployees}
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <p className="mt-2.5">
-                  <strong className="font-medium">
+                <h2 className="mb-2.5 text-lg font-medium">
+                  <Link
+                    href={`/firma-profil/${routeFormatter(
+                      company.companyInformations.companyName
+                    )}-${company.eid}`}
+                  >
                     {company.companyInformations.companyName}
-                  </strong>{" "}
-                  şirketi{" "}
-                  <strong className="font-medium">
-                    {company.companyInformations.serviceArea}
-                  </strong>{" "}
-                  alanında hizmet vermektedir.
-                </p>
-              </div>
+                  </Link>
+                </h2>
 
-              <div className="grow"></div>
+                <div>
+                  <ul className="flex flex-wrap items-center justify-center gap-2.5 text-[#202124]">
+                    <li className="flex items-center gap-[5px]">
+                      <SlLocationPin size={18} />
+                      <Link
+                        href={`/is-ilanlari/?${new URLSearchParams({
+                          konum: routeFormatter(
+                            company.companyInformations.location.city
+                          ),
+                        })}`}
+                      >
+                        {company.companyInformations.location.city}
+                      </Link>
+                    </li>
 
-              <div className="mt-[15px]">
-                <Link
-                  className="slide-button !w-full !h-full !py-[11px] !flex !items-center !justify-center !gap-[5px]"
-                  href={`/firma-profil/${routeFormatter(
-                    company.companyInformations.companyName
-                  )}-${company.eid}`}
-                >
-                  {`Açık iş -
+                    <li className="flex items-center gap-[5px]">
+                      <LiaUserSolid size={22} />
+                      {company.companyInformations.numberOfEmployees}
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <p className="mt-2.5">
+                    <strong className="font-medium">
+                      {company.companyInformations.companyName}
+                    </strong>{" "}
+                    şirketi{" "}
+                    <strong className="font-medium">
+                      {company.companyInformations.serviceArea}
+                    </strong>{" "}
+                    alanında hizmet vermektedir.
+                  </p>
+                </div>
+
+                <div className="grow"></div>
+
+                <div className="mt-[15px]">
+                  <Link
+                    className="slide-button !w-full !h-full !py-[11px] !flex !items-center !justify-center !gap-[5px]"
+                    href={`/firma-profil/${routeFormatter(
+                      company.companyInformations.companyName
+                    )}-${company.eid}`}
+                  >
+                    {`Açık iş -
                   ${company.openJobs ? company.openJobs.length : 0}
                   `}
-                  <GoArrowUpRight />
-                </Link>
-              </div>
-            </SwiperSlide>
-          ))}
+                    <GoArrowUpRight />
+                  </Link>
+                </div>
+              </SwiperSlide>
+            ))
+          ) : (
+            <>
+              {placeholderLoader.map((_, i) => (
+                <SwiperSlide key={i}>
+                  <Skeleton
+                    animation="wave"
+                    variant="rectangular"
+                    sx={{
+                      borderRadius: "18px",
+                      width: "100%",
+                      height: "351.6px",
+                    }}
+                  />
+                </SwiperSlide>
+              ))}
+            </>
+          )}
         </Swiper>
       </div>
     </section>

@@ -42,7 +42,7 @@ const Header = () => {
     <header
       className={`main-header transition duration-300 ${
         scroll
-          ? "min-[1024px]:!fixed max-[992px]:!sticky !top-0 w-full shadow-xs bg-white"
+          ? "!fixed !top-0 w-full shadow-xs bg-white"
           : "min-[1024px]:!fixed !top-0 w-full"
       }`}
     >
@@ -52,7 +52,10 @@ const Header = () => {
             className="min-[992px]:hidden"
             size={26}
             cursor="pointer"
-            onClick={() => dispatch(changeMenuState())}
+            onClick={() => {
+              dispatch(changeMenuState());
+              document.body.style.overflow = "hidden";
+            }}
           />
 
           <Link href="/">

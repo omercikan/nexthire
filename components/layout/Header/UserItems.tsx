@@ -96,9 +96,11 @@ const UserItems = () => {
             {!user && !loading && (
               <button
                 className="header-login-btn group"
-                onClick={() =>
-                  window.innerWidth < 992 && dispatch(changeModalState())
-                }
+                onClick={() => {
+                  if (window.innerWidth < 992) dispatch(changeModalState());
+                  if (window.innerWidth >= 576)
+                    document.body.style.overflow = "hidden";
+                }}
               >
                 Giriş Yap / Üye Ol
                 <HiMiniChevronDown

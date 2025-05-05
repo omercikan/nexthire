@@ -1,11 +1,14 @@
 "use client";
 
 import { GoBackProps } from "@/types";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
+import { HiOutlineArrowLeft } from "react-icons/hi2";
+import { IoClose } from "react-icons/io5";
 
-const GoBack = ({ icon, position }: GoBackProps) => {
+const GoBack = ({ position, url }: GoBackProps) => {
   const router = useRouter();
+  const pathaname = usePathname();
 
   return (
     <div
@@ -13,7 +16,25 @@ const GoBack = ({ icon, position }: GoBackProps) => {
         position ? position : ""
       }`}
     >
-      <button onClick={() => router.back()}>{icon}</button>
+      <button
+        onClick={() =>
+          pathaname === "/sifre-sifirla"
+            ? router.back()
+            : router.replace(String(url))
+        }
+      >
+        {pathaname === "/sifre-sifirla" ? (
+          <HiOutlineArrowLeft
+            className="text-[28px] max-[1026px]:text-[46px]"
+            color="899CC9"
+          />
+        ) : (
+          <IoClose
+            className="text-[32px] max-[1026px]:text-[46px]"
+            color="899CC9"
+          />
+        )}
+      </button>
     </div>
   );
 };

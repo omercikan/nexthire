@@ -24,7 +24,10 @@ const NavList = () => {
           <IoCloseOutline
             size={26}
             cursor="pointer"
-            onClick={() => dispatch(changeMenuState())}
+            onClick={() => {
+              dispatch(changeMenuState());
+              document.body.style.overflow = "visible";
+            }}
           />
         </div>
       </li>

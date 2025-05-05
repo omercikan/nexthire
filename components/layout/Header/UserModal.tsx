@@ -26,7 +26,10 @@ const UserModal = () => {
         <IoClose
           size={26}
           cursor="pointer"
-          onClick={() => dispatch(changeModalState())}
+          onClick={() => {
+            dispatch(changeModalState());
+            document.body.style.overflow = "visible";
+          }}
         />
       </div>
 

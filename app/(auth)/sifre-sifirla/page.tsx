@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Form, Formik, FormikHelpers } from "formik";
 import Image from "next/image";
 import AuthInput from "../../../components/ui/CustomInput";
-import { HiOutlineArrowLeft, HiOutlineMail } from "react-icons/hi";
+import { HiOutlineMail } from "react-icons/hi";
 import { GrSecure } from "react-icons/gr";
 import { ResetPasswordSchema } from "../schema/ResetPasswordSchema";
 import { ResetPasswordField } from "@/types";
@@ -50,15 +50,7 @@ const ResetPassword = () => {
 
   return (
     <div className="flex max-[1026px]:flex-col gap-x-20 max-[1026px]:bg-[#F1F6FF] max-[1026px]:h-screen">
-      <GoBack
-        icon={
-          <HiOutlineArrowLeft
-            className="text-[28px] max-[1026px]:text-[46px]"
-            color="899CC9"
-          />
-        }
-        position="top-[60px] right-[calc(50%-40px)] max-[1026px]:left-7 go-back-query"
-      />
+      <GoBack position="top-[60px] right-[calc(50%-40px)] max-[1026px]:left-7 go-back-query" />
 
       <div className="flex-[1] max-[1026px]:absolute max-[1026px]:-top-[50%] w-screen h-screen shadow-2xl drop-shadow-2xl">
         <Image

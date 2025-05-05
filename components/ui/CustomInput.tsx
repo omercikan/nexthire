@@ -27,6 +27,7 @@ const CustomInput = ({
         </span>
 
         <input
+          autoComplete="on"
           {...field}
           {...props}
           className={`custom__input ${

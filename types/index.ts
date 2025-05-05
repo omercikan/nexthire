@@ -104,8 +104,8 @@ export interface SuccessProps {
 
 //! Go back properties interface for auth pages !//
 export interface GoBackProps {
-  icon: ReactNode;
   position: string;
+  url?: string;
 }
 
 //! Json data city, districts and tax officies interfaces START !//

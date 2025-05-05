@@ -26,7 +26,7 @@ const CitiesCategory = () => {
           {citiesCategory.map((city) => (
             <li key={city.id} className="group">
               <Link
-                className="inline-block"
+                className="inline-block w-full"
                 href={`/is-ilanlari/?${new URLSearchParams({
                   konum: routeFormatter(city.cityName),
                 })}`}
