@@ -230,3 +230,13 @@ export interface SectionHeaderProps {
   linkText: string;
   link: string;
 }
+
+//! Step card item components props !//
+export interface StepCardItemProps {
+  card: {
+    id: number;
+    cardImage: string;
+    cardTitle: string;
+    cardDescription: string;
+  };
+}

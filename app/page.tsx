@@ -6,7 +6,7 @@ import Categories from "@/components/pages/home/Categories";
 import PostingJob from "@/components/pages/home/PostingJob";
 import CitiesCategory from "@/components/pages/home/CitiesCategory";
 import BestCompanies from "@/components/pages/home/BestCompanies";
-import StepCards from "@/components/pages/home/StepCards";
+import StepCards from "@/components/pages/home/stepCard/StepCardList";
 
 const jost = Jost({
   display: "swap",
