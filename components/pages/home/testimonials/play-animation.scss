@@ -1,0 +1,59 @@
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin large {
+  @media only screen and (width <= 1024px) {
+    @content;
+  }
+}
+
+//! Play icon wrapper animation start !//
+.play-wrapper {
+  @include large {
+    @include size(50px, 50px);
+  }
+
+  &::after {
+    content: "";
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    opacity: 0.2;
+    position: absolute;
+    border-radius: 100%;
+    transform: translate(-50%, -50%) scale(1);
+    animation: play 3s infinite ease-in-out;
+    @include size(90px, 90px);
+
+    @include large {
+      @include size(50px, 50px);
+    }
+
+    @keyframes play {
+      0%,
+      100% {
+        box-shadow: 0px 0px 0px 0px #fff;
+      }
+
+      50% {
+        box-shadow: 0px 0px 0px 10px #fff;
+      }
+    }
+  }
+}
+//! Play icon wrapper animation end !//
+
+//! YouTube iframe video enter animation start !//
+.iframe-video-enter {
+  top: -100%;
+  opacity: 0;
+}
+
+.iframe-video-enter-active {
+  top: 0px;
+  opacity: 1;
+  transition: all 0.3s ease-out;
+}
+//! YouTube iframe video enter animation end !//

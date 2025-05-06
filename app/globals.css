@@ -263,6 +263,17 @@ body {
 }
 /*! Home page Categories class end */
 
+/*! Home page Testimonials class start  */
+.testimonials-wrapper-container {
+  @apply container max-md:px-[7.5px] flex max-md:flex-col items-center gap-[220px] max-md:!gap-10 py-[120px] max-lg:py-[30px] max-[1280px]:!px-4 max-[1280px]:!gap-20;
+}
+
+.play-wrapper {
+  @apply absolute top-1/2 -translate-y-1/2 -left-12 max-[1024px]:-left-7 max-md:left-1/2 max-md:-translate-x-1/2 bg-white w-[90px] h-[90px] rounded-full grid place-content-center scale-90 hover:scale-100 transition-transform duration-300 cursor-pointer hover:first:text-[#1967d2];
+}
+
+/*! Home page Testimonials class end  */
+
 /*! - Custom components class group end - !*/
 
 /*! Modal css animation start !*/
@@ -349,6 +360,12 @@ body {
 .swiper-pagination {
   text-align: center;
   margin-top: 20px;
+
+  &:has(.testimonials) {
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .swiper-pagination-bullet {
@@ -361,11 +378,18 @@ body {
   cursor: pointer;
   transition: all 0.5s ease-in-out 0s;
   -webkit-transition: all 0.5s ease-in-out 0s;
-}
 
-.swiper-pagination-bullet-active {
-  background-color: #202124;
-  width: 20px;
+  &.swiper-pagination-bullet-active {
+    background-color: #202124;
+    width: 20px;
+  }
+
+  &.testimonials {
+    width: 50px !important;
+    height: 3px;
+    border-radius: unset;
+    margin: 0px;
+  }
 }
 
 /*! Swiper home page featured job class area start !*/
