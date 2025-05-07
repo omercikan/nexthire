@@ -8,6 +8,7 @@ import CitiesCategory from "@/components/pages/home/CitiesCategory";
 import BestCompanies from "@/components/pages/home/BestCompanies";
 import StepCards from "@/components/pages/home/stepCard/StepCardList";
 import Testimonials from "@/components/pages/home/testimonials/Testimonials";
+import TrendingKeywords from "@/components/pages/home/TrendingKeywords/TrendingKeywords";
 
 const jost = Jost({
   display: "swap",
@@ -26,6 +27,7 @@ export default function Home() {
       <BestCompanies />
       <StepCards />
       <Testimonials />
+      <TrendingKeywords />
     </main>
   );
 }
