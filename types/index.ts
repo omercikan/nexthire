@@ -240,3 +240,13 @@ export interface StepCardItemProps {
     cardDescription: string;
   };
 }
+
+//! Testimonial slide component props fields !//
+export interface testimonialSlideProps {
+  testimonial: {
+    id: number;
+    name: string;
+    role: string;
+    content: string;
+  };
+}
