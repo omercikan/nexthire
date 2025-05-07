@@ -266,13 +266,20 @@ body {
 /*! Home page Testimonials class start  */
 .testimonials-wrapper-container {
   @apply container max-md:px-[7.5px] flex max-md:flex-col items-center gap-[220px] max-md:!gap-10 py-[120px] max-lg:py-[30px] max-[1280px]:!px-4 max-[1280px]:!gap-20;
-}
+} 
 
 .play-wrapper {
   @apply absolute top-1/2 -translate-y-1/2 -left-12 max-[1024px]:-left-7 max-md:left-1/2 max-md:-translate-x-1/2 bg-white w-[90px] h-[90px] rounded-full grid place-content-center scale-90 hover:scale-100 transition-transform duration-300 cursor-pointer hover:first:text-[#1967d2];
 }
 
 /*! Home page Testimonials class end  */
+
+/*! Home page trending keywords item component class start !*/
+.keyword-link {
+  @apply py-2.5 px-5 inline-block text-[#131a51] font-medium transition-colors duration-300 ease-in-out hover:bg-[#F5F2EA] border border-[#F5F2EA] rounded-full shadow-lg;
+}
+
+/*! Home page trending keywords item component class end !*/
 
 /*! - Custom components class group end - !*/
 
