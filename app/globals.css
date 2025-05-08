@@ -266,7 +266,7 @@ body {
 /*! Home page Testimonials class start  */
 .testimonials-wrapper-container {
   @apply container max-md:px-[7.5px] flex max-md:flex-col items-center gap-[220px] max-md:!gap-10 py-[120px] max-lg:py-[30px] max-[1280px]:!px-4 max-[1280px]:!gap-20;
-} 
+}
 
 .play-wrapper {
   @apply absolute top-1/2 -translate-y-1/2 -left-12 max-[1024px]:-left-7 max-md:left-1/2 max-md:-translate-x-1/2 bg-white w-[90px] h-[90px] rounded-full grid place-content-center scale-90 hover:scale-100 transition-transform duration-300 cursor-pointer hover:first:text-[#1967d2];
@@ -280,6 +280,33 @@ body {
 }
 
 /*! Home page trending keywords item component class end !*/
+
+/*! Blog class start */
+.blog-figure {
+  @apply h-[300px] max-[1280px]:h-[250px] max-lg:h-[222px] max-[992px]:!h-[200px] max-[480px]:!h-[235px] overflow-hidden rounded-xl;
+}
+
+.blog-image {
+  @apply w-full h-full object-cover rounded-xl hover:scale-105 transition duration-300;
+}
+
+.blog-category-text {
+  @apply text-sm bg-white hover:text-[#1967d2] py-[5px] px-[15px] rounded-full absolute top-5 left-5 z-10;
+}
+
+.blog-time-text {
+  @apply text-[#77838f] border-r border-[#ECEDF2] me-2.5 pe-2.5;
+}
+
+.blog-title-text {
+  @apply text-[#202124] hover:text-[#1967d2] transition-colors duration-300 font-medium text-[20px] mt-3;
+}
+
+.blog-title-link-text {
+  @apply whitespace-nowrap overflow-hidden text-ellipsis inline-block w-full;
+}
+
+/*! Blog class end */
 
 /*! - Custom components class group end - !*/
 
