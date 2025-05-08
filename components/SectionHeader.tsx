@@ -20,7 +20,7 @@ const SectionHeader = ({
       <div>
         <Link
           href={link}
-          className={`${HoverStyles.hoverAnimation} flex items-center gap-1 text-[#202124] text-[15px]`}
+          className={`${HoverStyles.hoverAnimation} flex items-center gap-1 text-[#202124] text-[15px] whitespace-nowrap`}
         >
           {linkText}
           <GoArrowUpRight />

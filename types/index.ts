@@ -250,3 +250,21 @@ export interface testimonialSlideProps {
     content: string;
   };
 }
+
+//! Blogs data interface !//
+export interface BlogPost {
+  id: string;
+  blogId: string;
+  title: string;
+  createdAt: number;
+  category: string;
+  image: string;
+  description: string;
+  quote: {
+    text: string;
+    author: string;
+  };
+  takeaways: string[];
+  tags: string[];
+  requirements: string[];
+}
