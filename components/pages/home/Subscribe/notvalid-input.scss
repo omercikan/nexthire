@@ -1,0 +1,15 @@
+.subscribe-form {
+  animation: notvalid 0.3s forwards linear;
+  transform: translateX(0px);
+
+  @keyframes notvalid {
+    25%,
+    75% {
+      transform: translateX(5px);
+    }
+    50%,
+    100% {
+      transform: translateX(-5px);
+    }
+  }
+}

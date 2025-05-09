@@ -10,6 +10,7 @@ import StepCards from "@/components/pages/home/stepCard/StepCardList";
 import Testimonials from "@/components/pages/home/testimonials/Testimonials";
 import TrendingKeywords from "@/components/pages/home/TrendingKeywords/TrendingKeywords";
 import BlogSection from "@/components/pages/home/Blogs/BlogSection";
+import SubscribeSection from "@/components/pages/home/Subscribe/SubscribeSection";
 
 const jost = Jost({
   display: "swap",
@@ -30,6 +31,7 @@ export default function Home() {
       <Testimonials />
       <TrendingKeywords />
       <BlogSection />
+      <SubscribeSection />
     </main>
   );
 }

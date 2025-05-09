@@ -92,6 +92,7 @@ export interface CustomButtonProps {
   isSubmitting: boolean;
   className?: string;
   text: string;
+  circularColor: string;
 }
 
 //! Success component properties interface for reset email page !//

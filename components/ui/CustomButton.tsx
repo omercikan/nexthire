@@ -2,7 +2,12 @@ import { CustomButtonProps } from "@/types";
 import { Box, CircularProgress } from "@mui/material";
 import React from "react";
 
-const CustomButton = ({ isSubmitting, className, text }: CustomButtonProps) => {
+const CustomButton = ({
+  isSubmitting,
+  className,
+  text,
+  circularColor,
+}: CustomButtonProps) => {
   return (
     <button
       type="submit"
@@ -11,7 +16,10 @@ const CustomButton = ({ isSubmitting, className, text }: CustomButtonProps) => {
     >
       {isSubmitting ? (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <CircularProgress size={23} sx={{ color: "4045EF" }} />
+          <CircularProgress
+            size={23}
+            sx={{ color: circularColor ? circularColor : "4045EF" }}
+          />
         </Box>
       ) : (
         text
