@@ -40,6 +40,7 @@ const Header = () => {
 
   return (
     <header
+    id="header"
       className={`main-header transition duration-300 ${
         scroll
           ? "!fixed !top-0 w-full shadow-xs bg-white"

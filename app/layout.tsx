@@ -12,12 +12,20 @@ import { Provider } from "react-redux";
 import { store } from "@/lib/store";
 import MobileUserModal from "@/components/layout/Header/MobileUserModal";
 import { AuthContextProvider } from "@/context/authContext";
+import Footer from "@/components/layout/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
 });
+
+const authPages = [
+  "/aday-giris",
+  "/aday-uye-ol",
+  "/isveren-giris",
+  "/isveren-kayit",
+];
 
 export default function RootLayout({
   children,
@@ -29,15 +37,8 @@ export default function RootLayout({
   const [user] = useAuthState(auth);
 
   useEffect(() => {
-    const authPages = [
-      "/aday-giris",
-      "/aday-uye-ol",
-      "/isveren-giris",
-      "/isveren-kayit",
-    ];
-
     if (authPages.includes(pathname) && user) router.replace("/");
-  }, [pathname, router, user]); 
+  }, [pathname, router, user]);
 
   return (
     <html lang="tr">
@@ -78,11 +79,19 @@ export default function RootLayout({
       <body className={inter.className}>
         <Provider store={store}>
           <AuthContextProvider>
-            {pathname == "/" && <Header />}
+            {!authPages.includes(pathname) && pathname !== "/sifre-sifirla" && (
+              <Header />
+            )}
 
             {children}
 
-            {pathname === "/" && <MobileUserModal />}
+            {!authPages.includes(pathname) && pathname !== "/sifre-sifirla" && (
+              <MobileUserModal />
+            )}
+
+            {!authPages.includes(pathname) && pathname !== "/sifre-sifirla" && (
+              <Footer />
+            )}
           </AuthContextProvider>
         </Provider>
       </body>

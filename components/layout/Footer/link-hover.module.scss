@@ -1,0 +1,22 @@
+@mixin icon-inline($width, $mr) {
+  width: $width;
+  margin-right: $mr;
+}
+
+.footerLink {
+  display: flex;
+  align-items: center;
+  width: max-content;
+
+  &:hover span {
+    @include icon-inline(15px, 0.5rem);
+  }
+
+  span {
+    background-color: white;
+    height: 2px;
+    width: 0px;
+    transition: all 0.3s ease;
+    @include icon-inline(0px, 0px);
+  }
+}

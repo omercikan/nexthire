@@ -22,6 +22,10 @@ body {
   width: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @custom-variant hover (&:hover);
 
 /*! Custom layers start !*/
@@ -196,6 +200,17 @@ body {
 }
 
 /*! Main header class end  */
+
+/*! Main footer class start  */
+.footer-store-item {
+  @apply flex items-center gap-5 bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.2)] transition-colors duration-300 py-[9px] max-xl:py-[7px] max-xl:px-[15px] px-[22px] rounded-[60px] max-xl:rounded-lg;
+}
+
+.footer-copyright-wrapper {
+  @apply flex max-md:flex-col max-md:items-center max-md:gap-y-[15px] max-md:text-center justify-between text-white py-[35px] max-md:py-5;
+}
+
+/*! Main footer class end  */
 
 /*! Home hero section class start !*/
 .hero-section {
