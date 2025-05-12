@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./api/firebase/firebaseConfig";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { defaultMetadata } from "@/lib/seo";
 import Header from "@/components/layout/Header";
 import { Provider } from "react-redux";
@@ -20,13 +20,6 @@ const inter = Inter({
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-const authPages = [
-  "/aday-giris",
-  "/aday-uye-ol",
-  "/isveren-giris",
-  "/isveren-kayit",
-];
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -36,9 +29,13 @@ export default function RootLayout({
   const pathname = usePathname();
   const [user] = useAuthState(auth);
 
+  const authPages = useMemo(() => {
+    return ["/aday-giris", "/aday-uye-ol", "/isveren-giris", "/isveren-kayit"];
+  }, []);
+
   useEffect(() => {
     if (authPages.includes(pathname) && user) router.replace("/");
-  }, [pathname, router, user]);
+  }, [authPages, pathname, router, user]);
 
   return (
     <html lang="tr">
