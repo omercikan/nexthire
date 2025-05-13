@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
         )
       ) {
         const setFavoriteDatabase = (path: string) => {
-          const ref = doc(db, path, user?.id);
+          const ref = doc(db, path, user?.id ?? user?.cid);
           setDoc(
             ref,
             { favoriteEmployers: arrayUnion(data.favoriteEmployers.Hu[0]) },
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
         setFavoriteDatabase("users");
       } else {
         const removeFavoriteDatabase = async (path: string): Promise<void> => {
-          const ref = doc(db, path, user?.id);
+          const ref = doc(db, path, user?.id ? user?.id : user?.cid);
           await updateDoc(ref, {
             favoriteEmployers: arrayRemove({
               companyEID,

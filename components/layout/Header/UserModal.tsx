@@ -8,6 +8,7 @@ import { changeModalState } from "@/lib/features/users/userModalSlice";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { AuthContext } from "@/context/authContext";
 import { handleLogout } from "@/lib/logout";
+import { FormatText } from "@/lib/formatText";
 
 const UserModal = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -47,7 +48,13 @@ const UserModal = () => {
               <HiOutlineUserCircle size={32} />
               <div className="ms-2.5">
                 <strong className="block text-[16px] text-[#212529] font-medium">
-                  {user?.name}
+                  {typeof user?.name !== "undefined"
+                    ? `${FormatText(user?.name.split(" ")[0])} ${FormatText(
+                        user?.name.split(" ")[1]
+                      )}`
+                    : `${FormatText(
+                        user.displayName.split(" ")[0]
+                      )} ${FormatText(user.displayName.split(" ")[1])}`}
                 </strong>
                 <Link
                   href="/hesabim"

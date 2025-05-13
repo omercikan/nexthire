@@ -92,7 +92,7 @@ export interface CustomButtonProps {
   isSubmitting: boolean;
   className?: string;
   text: string;
-  circularColor: string;
+  circularColor?: string;
 }
 
 //! Success component properties interface for reset email page !//
@@ -138,6 +138,7 @@ export interface User {
   emailVerified: boolean;
   id: string;
   name: string;
+  displayName: string;
   phoneNumber: string;
   role: string;
 }

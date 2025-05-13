@@ -25,13 +25,14 @@
   <li><strong>ESLint</strong> – To maintain code quality</li>
 </ul>
 
-<h2>🛠️ Recent Updates (dev branch)</h2>
+<h2>🛠️ Recent Updates (Last 24 Hours)</h2>
 <ul>
   <li>✅ Integrated <strong>Framer Motion</strong> for smooth UI animations.</li>
   <li>✅ Fixed Google Fonts loading and rendering issues via proper <code>subsets</code> configuration.</li>
   <li>✅ Refactored component styles for improved consistency and maintainability.</li>
   <li>✅ Implemented a fully working <strong>newsletter subscription</strong> system on the landing page.</li>
   <li>✅ Refactored Firebase user data handling: introduced <code>setUserDatabase</code> utility to reduce code repetition and improve maintainability.</li>
+  <li>✅ Ensured safe and type-consistent access to <code>user</code> object properties across components. Optional chaining replaced with explicit conditional checks to prevent runtime errors.</li>
 </ul>
 
 <h2>📌 Notes</h2>

@@ -11,11 +11,12 @@ import Link from "next/link";
 import { AuthContext } from "@/context/authContext";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { handleLogout } from "@/lib/logout";
+import { FormatText } from "@/lib/formatText";
 
 const roboto = Roboto({
   display: "swap",
   weight: ["400", "500"],
-  subsets: ["latin"],
+  subsets: ["latin-ext"],
 });
 
 const UserItems = () => {
@@ -37,7 +38,7 @@ const UserItems = () => {
         {user && (
           <ol className="flex items-center gap-1">
             <li className="relative">
-              <Link href="/gelen-kutusu">
+              <Link href="/hesabim/gelen-kutusu">
                 <span className="bg-[#4045ef] text-white w-2 h-2 p-2 grid place-content-center rounded-full absolute right-0 -top-1 text-xs">
                   0
                 </span>
@@ -54,7 +55,9 @@ const UserItems = () => {
                 }
               />
               <span className="max-[992px]:hidden">
-                {user?.name.split(" ")[0]}
+                {typeof user?.name !== "undefined"
+                  ? FormatText(user?.name).split(" ")[0]
+                  : FormatText(user?.displayName).split(" ")[0]}
               </span>
               <MdArrowDropDown
                 size={22}
@@ -63,7 +66,15 @@ const UserItems = () => {
 
               <ul className="session-user-modal">
                 <li className="pb-6 px-6 border-b border-[#e4e4e4]">
-                  <h1 className="text-[#212529]">{user?.name}</h1>
+                  <h1 className="text-[#212529]">
+                    {typeof user?.name !== "undefined"
+                      ? `${FormatText(user?.name.split(" ")[0])} ${FormatText(
+                          user?.name.split(" ")[1]
+                        )}`
+                      : `${FormatText(
+                          user.displayName.split(" ")[0]
+                        )} ${FormatText(user.displayName.split(" ")[1])}`}
+                  </h1>
                   <Link
                     href="/hesabim"
                     className="text-[#4045ef] hover:underline text-sm"
