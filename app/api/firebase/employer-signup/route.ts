@@ -3,10 +3,10 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { NextRequest, NextResponse } from "next/server";
-import { auth, db } from "../firebaseConfig";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
+import { auth } from "../firebaseConfig";
 import { FormatText } from "@/lib/formatText";
 import { formatTurkishPhoneNumber } from "@/lib/formatPhoneNumber";
+import { setUserDatabase } from "@/lib/setUserDatabase";
 
 export async function POST(req: NextRequest) {
   const {
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
 
     await sendPasswordResetEmail(auth, email);
 
-    await setDoc(doc(db, "employers", userCredential.user.uid), {
+    const createdData = {
       companyInformations: {
         name: nameAndSurname,
         companyName: companyName,
@@ -45,34 +45,12 @@ export async function POST(req: NextRequest) {
         },
       },
       eid: userCredential.user.uid,
-      createdAt: new Date(Timestamp.now().seconds * 1000).toLocaleDateString(
-        "tr"
-      ),
       emailVerified: userCredential.user.emailVerified,
       role: "employer",
-    });
+    };
 
-    await setDoc(doc(db, "users", userCredential.user.uid), {
-      companyInformations: {
-        name: nameAndSurname,
-        companyName: companyName,
-        phoneNumber: formatTurkishPhoneNumber(phoneNumber),
-        email: email,
-        location: {
-          city: city,
-          district: FormatText(district),
-          taxOfficieCity: TaxOfficieCity,
-          taxOffice: FormatText(TaxOffice),
-          taxNumber: taxNumber,
-        },
-      },
-      eid: userCredential.user.uid,
-      createdAt: new Date(Timestamp.now().seconds * 1000).toLocaleDateString(
-        "tr"
-      ),
-      emailVerified: userCredential.user.emailVerified,
-      role: "employer",
-    });
+    await setUserDatabase("employers", userCredential, createdData);
+    await setUserDatabase("users", userCredential, createdData);
 
     return NextResponse.json({ user: userCredential.user, status: 200 });
   } catch (error) {

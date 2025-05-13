@@ -1,7 +1,6 @@
 import { SignInWithGooglePopup } from "@/lib/firebase";
 import { usePathname } from "next/navigation";
 import React from "react";
-import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 const GoogleAuth = () => {
@@ -9,9 +8,6 @@ const GoogleAuth = () => {
 
   const handleSigninGoogle = async () => {
     await SignInWithGooglePopup();
-    toast.success(
-      pathname === "/aday-uye-ol" ? "Kayıt başarılı!" : "Giriş başarılı!"
-    );
   };
 
   return (

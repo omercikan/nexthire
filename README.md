@@ -31,6 +31,7 @@
   <li>✅ Fixed Google Fonts loading and rendering issues via proper <code>subsets</code> configuration.</li>
   <li>✅ Refactored component styles for improved consistency and maintainability.</li>
   <li>✅ Implemented a fully working <strong>newsletter subscription</strong> system on the landing page.</li>
+  <li>✅ Refactored Firebase user data handling: introduced <code>setUserDatabase</code> utility to reduce code repetition and improve maintainability.</li>
 </ul>
 
 <h2>📌 Notes</h2>

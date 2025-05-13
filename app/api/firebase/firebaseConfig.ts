@@ -16,8 +16,13 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export const app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
+export const app = !getApps().length
+  ? initializeApp(firebaseConfig)
+  : getApps()[0];
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const provider = new GoogleAuthProvider();
+provider.setCustomParameters({
+  prompt: "select_account",
+});
 auth.languageCode = "tr";

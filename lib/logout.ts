@@ -5,5 +5,5 @@ import { DeleteCookie } from "./deleteCookie";
 export const handleLogout = async () => {
   await signOut(auth);
   DeleteCookie("VV9SVA", "VVLOPQS");
-  window.location.href = "/isveren-giris";
+  window.location.href = "/";
 };
