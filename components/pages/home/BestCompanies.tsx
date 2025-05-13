@@ -22,6 +22,7 @@ import { arrayUnion, doc, DocumentData, onSnapshot } from "firebase/firestore";
 import CircularProgress from "@mui/material/CircularProgress";
 import Skeleton from "@mui/material/Skeleton";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 const BestCompanies = () => {
   const [bestCompanies, setBestCompanies] = useState<Employer[]>([]);
@@ -36,9 +37,12 @@ const BestCompanies = () => {
 
   useEffect(() => {
     if (candidateUser) {
-      const unsub = onSnapshot(doc(db, "users", candidateUser?.id), (doc) => {
-        setUpdatedData(doc.data() as Candidate);
-      });
+      const unsub = onSnapshot(
+        doc(db, "users", candidateUser?.id ?? candidateUser?.cid),
+        (doc) => {
+          setUpdatedData(doc.data() as Candidate);
+        }
+      );
 
       return () => unsub();
     }
@@ -105,7 +109,13 @@ const BestCompanies = () => {
     <section className="py-[100px] max-lg:py-[35px] bg-[#f5f2ea]">
       <Toaster position="top-right" />
 
-      <div className="container">
+      <motion.div
+        className="container"
+        initial={{ scale: 0.8, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+      >
         <SectionHeader
           title="Lider Şirketler Yeni Yetenekler Arıyor"
           subtitle="Kariyerine yön vermek için şimdi harekete geç &minus; seni bekleyen fırsatları keşfet!"
@@ -286,7 +296,7 @@ const BestCompanies = () => {
             </>
           )}
         </Swiper>
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -25,14 +25,20 @@
   <li><strong>ESLint</strong> – To maintain code quality</li>
 </ul>
 
-<h2>🛠️ Recent Updates (Last 24 Hours)</h2>
+<h2>🛠️ Recent Updates (dev branch)</h2>
 <ul>
   <li>✅ Integrated <strong>Framer Motion</strong> for smooth UI animations.</li>
   <li>✅ Fixed Google Fonts loading and rendering issues via proper <code>subsets</code> configuration.</li>
   <li>✅ Refactored component styles for improved consistency and maintainability.</li>
   <li>✅ Implemented a fully working <strong>newsletter subscription</strong> system on the landing page.</li>
-  <li>✅ Refactored Firebase user data handling: introduced <code>setUserDatabase</code> utility to reduce code repetition and improve maintainability.</li>
-  <li>✅ Ensured safe and type-consistent access to <code>user</code> object properties across components. Optional chaining replaced with explicit conditional checks to prevent runtime errors.</li>
+  <li>✅ Fixed Google sign-up issue where user data wasn't being updated immediately.</li>
+  <li>✅ Extracted <code>setUserDatabase</code> function for cleaner and reusable Firestore logic (applied clean code principles, reduced duplication).</li>
+  <li>✅ Enhanced <strong>BestCompanies</strong> component with:
+    <ul>
+      <li>🔁 Fallback logic for Firestore user reference (<code>id</code> or <code>cid</code>)</li>
+      <li>🎞️ Entry animation using <strong>Framer Motion</strong></li>
+    </ul>
+  </li>
 </ul>
 
 <h2>📌 Notes</h2>
