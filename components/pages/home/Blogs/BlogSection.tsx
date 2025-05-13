@@ -5,12 +5,19 @@ import { BlogPost } from "@/types";
 import React, { useState } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import BlogsSwiper from "./Swiper/BlogSwiper";
+import { motion } from "framer-motion";
 
 const BlogSection = () => {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
 
   return (
-    <div className="container pt-[100px] pb-[70px] max-lg:py-[15px]">
+    <motion.div
+      className="container pt-[100px] pb-[70px] max-lg:py-[15px]"
+      initial={{ translateY: 70, opacity: 0 }}
+      whileInView={{ translateY: 0, opacity: 1 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
       <SectionHeader
         title="NextHire Blog: Kariyeriniz İçin Bilgiler ve İpuçları"
         subtitle="Kariyerinize yön verecek yazılar ve iş dünyası ipuçları."
@@ -45,7 +52,7 @@ const BlogSection = () => {
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 };
 

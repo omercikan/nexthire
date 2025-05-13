@@ -30,6 +30,12 @@ import Link from "next/link";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/app/api/firebase/firebaseConfig";
 import { useRouter } from "next/navigation";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin-ext"],
+  display: "swap",
+});
 
 const EmployerForm = () => {
   const [cities, setCities] = useState<CitiesJsonInterface[]>([]);
@@ -135,8 +141,8 @@ const EmployerForm = () => {
   return (
     <section
       className={`flex-[1] py-6 px-12 max-sm:px-4 h-[100vh] overflow-auto ${
-        registered ? "relative" : ""
-      } ${
+        inter.className
+      } ${registered ? "relative" : ""} ${
         pathname === "/isveren-giris" ? "flex flex-col justify-center" : ""
       } `}
     >

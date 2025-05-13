@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/lib/store";
 import { changeMenuState } from "@/lib/features/users/userMenuSlice";
 import { CSSTransition } from "react-transition-group";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [scroll, setScroll] = useState<boolean>(false);
@@ -17,6 +18,7 @@ const Header = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { menu } = useSelector((state: RootState) => state.userMenu);
   const menuRef = useRef<HTMLDivElement>(null);
+  const pathanme = usePathname();
 
   useEffect(() => {
     const handleResize = () => {
@@ -40,8 +42,10 @@ const Header = () => {
 
   return (
     <header
-    id="header"
+      id="header"
       className={`main-header transition duration-300 ${
+        pathanme !== "/" ? "!fixed !top-0 w-full shadow-xs bg-white" : ""
+      } ${
         scroll
           ? "!fixed !top-0 w-full shadow-xs bg-white"
           : "min-[1024px]:!fixed !top-0 w-full"

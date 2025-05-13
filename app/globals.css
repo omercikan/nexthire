@@ -168,7 +168,7 @@ html {
 }
 
 .header-login-btn {
-  @apply flex items-center gap-x-1 px-6 py-3 max-[992px]:p-0 max-[375px]:text-xs text-white max-[992px]:text-[#4045ef] max-[992px]:font-medium rounded-full transition duration-300 bg-[#202124] max-[992px]:bg-transparent hover:bg-black max-[992px]:hover:bg-transparent;
+  @apply flex items-center gap-x-1 px-6 py-3 max-[992px]:p-0 max-[375px]:text-xs text-white max-[992px]:text-[#4045ef] max-[992px]:font-medium rounded-full transition duration-300 bg-[#202124] max-[992px]:bg-transparent hover:bg-black max-[992px]:hover:bg-transparent whitespace-nowrap;
 }
 
 .header-user-modal {
@@ -262,7 +262,7 @@ html {
 }
 
 .category-list-item {
-  @apply flex flex-col items-center border border-[#ECEDF2] h-full hover:bg-[#F5F2EA] transition-colors duration-500 py-[35px] px-[15px] rounded-[18px] cursor-pointer max-md:w-[300px];
+  @apply flex flex-col items-center border border-[#ECEDF2] h-full hover:bg-[#F5F2EA] transition-colors duration-500 py-[35px] max-xl:py-[20px] px-[15px] rounded-[18px] cursor-pointer max-md:w-[300px];
 }
 
 .category-list-item-wrapper {

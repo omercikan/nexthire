@@ -20,7 +20,7 @@ import GoogleAuth from "../GoogleAuth";
 import CustomInput from "../../../../components/ui/CustomInput";
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin-ext"],
   display: "swap",
 });
 
@@ -101,12 +101,14 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
   return (
     <section
       className={`form__wrapper relative overflow-auto self-center ${
+        inter.className
+      } ${
         pathname === "/aday-uye-ol"
           ? "max-[376px]:max-h-full max-[376px]:h-[550px] max-[321px]:h-[465px] min-[1026px]:py-[35.4px] min-[1026px]:h-screen"
           : ""
       }`}
     >
-      <div className={`${inter.className}`}>
+      <div>
         <h1 className="text-[32px] max-[400px]:text-[24px] text-[#2E3139] font-bold">
           {pathname === "/aday-uye-ol" ? "Şimdi Başlayın" : "Tekrar Hoş Geldin"}
         </h1>

@@ -8,12 +8,18 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 
 const CitiesCategory = () => {
   const { employers } = useSelector((state: RootState) => state.employers);
 
   return (
-    <section>
+    <motion.section
+      initial={{ translateY: 25, scale: 0.8, opacity: 0 }}
+      whileInView={{ translateY: 0, scale: 1, opacity: 1 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
       <div className="container py-[100px] max-lg:py-[30px]">
         <SectionHeader
           title="Popüler Şehirler"
@@ -58,7 +64,7 @@ const CitiesCategory = () => {
           ))}
         </ul>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -1,29 +1,41 @@
 <h1>NextHire (dev)</h1>
-  <p>NextHire, aday ve işverenleri bir araya getiren modern bir iş platformudur.</p>
-  <p>Kullanıcı kayıt, giriş ve paneller gibi temel işlevler üzerinde aktif olarak çalışılmaktadır.</p>
-  <p>Bu branch geliştirme aşamasına aittir ve proje ilerledikçe yeni özellikler eklenecektir.</p>
 
-  <h2>🚀 Kullanılan Teknolojiler</h2>
-  <ul>
-      <li><strong>Next.js</strong> – App Router mimarisiyle</li>
-      <li><strong>React 19</strong> – En güncel sürümle</li>
-      <li><strong>TypeScript</strong> – Daha güvenli ve ölçeklenebilir kod yapısı</li>
-      <li><strong>Tailwind CSS</strong> – Hızlı ve esnek stil altyapısı</li>
-      <li><strong>SCSS</strong> – Gerektiğinde özel stiller için hazır</li>
-      <li><strong>Firebase</strong> – Auth ve veritabanı (Firestore) işlemleri</li>
-      <li><strong>Redux Toolkit</strong> – Global state yönetimi</li>
-      <li><strong>Axios</strong> – API istekleri için</li>
-      <li><strong>Formik & Yup</strong> – Form yapıları ve validasyon</li>
-      <li><strong>React Firebase Hooks</strong> – Firebase işlemlerini kolaylaştırmak için</li>
-      <li><strong>React Icons</strong> – UI ikonları</li>
-      <li><strong>React Transition Group</strong> – Animasyon desteği</li>
-      <li><strong>React Hot Toast</strong> – Bildirim sistemi</li>
-      <li><strong>Material UI (MUI)</strong> – Bazı UI bileşenleri için</li>
-      <li><strong>Turbopack</strong> – Hızlı geliştirme deneyimi</li>
-      <li><strong>ESLint</strong> – Kod kalitesini korumak için yapılandırıldı</li>
-  </ul>
+<p><strong>NextHire</strong> is a modern job platform that connects candidates and employers in a streamlined, user-friendly environment.</p>
 
-  <h2>📌 Not</h2>
-  <p>Bu repo <strong>dev</strong> branch'idir.</p>
-  <p>Proje şu an aktif geliştirme sürecindedir.</p>
-  <p>İlerledikçe detaylar ve yeni özellikler README dosyasına eklenecektir.</p>
+<p>The <strong>authentication system</strong> (sign up, login) and the <strong>landing page</strong> have been completed. A <strong>newsletter subscription</strong> feature is also functional on the homepage. Development has now moved on to building the <strong>job listings</strong> section.</p>
+
+<h2>🚀 Tech Stack</h2>
+<ul>
+  <li><strong>Next.js</strong> – Using the App Router architecture</li>
+  <li><strong>React 19</strong> – With the latest stable version</li>
+  <li><strong>TypeScript</strong> – For a safer and scalable codebase</li>
+  <li><strong>Tailwind CSS</strong> – Fast and flexible styling system</li>
+  <li><strong>SCSS</strong> – For writing custom styles when needed</li>
+  <li><strong>Firebase</strong> – Authentication and Firestore database</li>
+  <li><strong>Redux Toolkit</strong> – Global state management</li>
+  <li><strong>Axios</strong> – For making API requests</li>
+  <li><strong>Formik & Yup</strong> – For form handling and validation</li>
+  <li><strong>React Firebase Hooks</strong> – Simplified Firebase integration</li>
+  <li><strong>React Icons</strong> – Icon set for UI components</li>
+  <li><strong>React Transition Group</strong> – Basic animation support</li>
+  <li><strong>Framer Motion</strong> – Advanced UI animations</li>
+  <li><strong>React Hot Toast</strong> – Notification system</li>
+  <li><strong>Material UI (MUI)</strong> – For select UI components</li>
+  <li><strong>Turbopack</strong> – For a faster development experience</li>
+  <li><strong>ESLint</strong> – To maintain code quality</li>
+</ul>
+
+<h2>🛠️ Recent Updates (dev branch)</h2>
+<ul>
+  <li>✅ Integrated <strong>Framer Motion</strong> for smooth UI animations.</li>
+  <li>✅ Fixed Google Fonts loading and rendering issues via proper <code>subsets</code> configuration.</li>
+  <li>✅ Refactored component styles for improved consistency and maintainability.</li>
+  <li>✅ Implemented a fully working <strong>newsletter subscription</strong> system on the landing page.</li>
+</ul>
+
+<h2>📌 Notes</h2>
+<ul>
+  <li>This is the <strong>dev</strong> branch of the repository.</li>
+  <li>The project is actively being developed.</li>
+  <li>New features and updates will be added to this README as development progresses.</li>
+</ul>

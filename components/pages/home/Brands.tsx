@@ -8,10 +8,17 @@ import { BsChevronRight } from "react-icons/bs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
 import { Navigation, Autoplay, A11y } from "swiper/modules";
+import { motion } from "framer-motion";
 
 const Companies = () => {
   return (
-    <section className="py-[85px] max-[992px]:py-[30px]">
+    <motion.section
+      className="py-[85px] max-lg:py-[30px]"
+      initial={{ translateY: 50, scale: 0.8, opacity: 0 }}
+      whileInView={{ translateY: 0, scale: 1, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+    >
       <div className="mb-[40px] text-center">
         <h2 className="text-[#202124] text-[15px]">Öncü markaların tercihi</h2>
       </div>
@@ -79,7 +86,7 @@ const Companies = () => {
           </button>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

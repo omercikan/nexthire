@@ -1,7 +1,7 @@
 "use client";
 
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Jost } from "next/font/google";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./api/firebase/firebaseConfig";
 import { usePathname, useRouter } from "next/navigation";
@@ -14,10 +14,10 @@ import MobileUserModal from "@/components/layout/Header/MobileUserModal";
 import { AuthContextProvider } from "@/context/authContext";
 import Footer from "@/components/layout/Footer";
 
-const inter = Inter({
-  subsets: ["latin"],
+const inter = Jost({
+  subsets: ["latin-ext"],
   display: "swap",
-  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export default function RootLayout({

@@ -17,6 +17,7 @@ import SectionHeader from "@/components/SectionHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/lib/store";
 import { setEmployers } from "@/lib/features/role/employerSlice";
+import { motion } from "framer-motion";
 
 const FeaturedJobs = () => {
   const { employers } = useSelector((state: RootState) => state.employers);
@@ -34,7 +35,13 @@ const FeaturedJobs = () => {
   }, [dispatch]);
 
   return (
-    <div className="container">
+    <motion.div
+      className="container"
+      initial={{ translateY: 50, scale: 0.8, opacity: 0 }}
+      whileInView={{ translateY: 0, scale: 1, opacity: 1 }}
+      transition={{ duration: 0.5, delay: 0.3 }}
+      viewport={{ once: true }}
+    >
       <SectionHeader
         title="Öne Çıkan İşler"
         subtitle="Kendinizi keşfedin, değerinizin karşılığını alacağınız işe adım"
@@ -201,7 +208,7 @@ const FeaturedJobs = () => {
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 };
 

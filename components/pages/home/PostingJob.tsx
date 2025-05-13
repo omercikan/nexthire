@@ -6,16 +6,34 @@ import PostingJobImage from "@/img/home/employer-banner.png";
 import { GoArrowUpRight } from "react-icons/go";
 import Link from "next/link";
 import { AuthContext } from "@/context/authContext";
+import { motion } from "framer-motion";
 
 const PostingJob = () => {
   const { user } = useContext(AuthContext);
 
   return (
     <section className="bg-[#f5f2ea] pt-[100px] max-lg:pt-[30px] pb-[20px] max-lg:pb-0">
-      <div className="flex max-md:flex-col items-center max-md:items-start justify-center gap-[80px] max-lg:gap-5 max-md:gap-4">
-        <Image src={PostingJobImage} alt="İş ilanı ver" className="px-[15px]" />
+      <div className="flex max-md:flex-col items-center max-md:items-start justify-center gap-[80px] max-lg:gap-5 max-md:gap-4 overflow-hidden">
+        <motion.div
+          initial={{ translateX: -200, scale: 0.8, opacity: 0 }}
+          whileInView={{ translateX: 0, scale: 1, opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
+          <Image
+            src={PostingJobImage}
+            alt="İş ilanı ver"
+            className="px-[15px]"
+          />
+        </motion.div>
 
-        <div className="p-[15px]">
+        <motion.div
+          className="p-[15px]"
+          initial={{ translateX: 200, scale: 0.8, opacity: 0 }}
+          whileInView={{ translateX: 0, scale: 1, opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
           <h1 className="text-[#202124] text-[40px] max-lg:text-[25px] font-medium mb-5">
             İş İlanı Vermek İstiyorum
           </h1>
@@ -39,7 +57,7 @@ const PostingJob = () => {
               <GoArrowUpRight size={20} />
             </button>
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

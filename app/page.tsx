@@ -1,4 +1,3 @@
-import { Jost } from "next/font/google";
 import HeroSection from "@/components/pages/home/HeroSection";
 import Brands from "@/components/pages/home/Brands";
 import FeaturedJobs from "@/components/pages/home/FeaturedJobs";
@@ -12,14 +11,9 @@ import TrendingKeywords from "@/components/pages/home/TrendingKeywords/TrendingK
 import BlogSection from "@/components/pages/home/Blogs/BlogSection";
 import SubscribeSection from "@/components/pages/home/Subscribe/SubscribeSection";
 
-const jost = Jost({
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
 export default function Home() {
   return (
-    <main className={jost.className}>
+    <main>
       <HeroSection />
       <Brands />
       <FeaturedJobs />
