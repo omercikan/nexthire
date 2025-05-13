@@ -1,7 +1,7 @@
 import { auth, db } from "@/app/api/firebase/firebaseConfig";
 import { LayoutComponentProps, User } from "@/types";
 import { onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { createContext, useEffect, useState } from "react";
 
 export interface ContextValue {
@@ -19,15 +19,26 @@ export const AuthContextProvider = ({ children }: LayoutComponentProps) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         const docRef = doc(db, "users", user?.uid);
-        getDoc(docRef).then((docSnap) => {
-          if (docSnap.exists()) {
-            setCurrentUser(docSnap.data() as User);
-          }
-          setLoading(false);
-        });
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setCurrentUser(docSnap.data() as User);
+        } else {
+          const newUser = {
+            id: user.uid,
+            email: user.email || "",
+            displayName: user.displayName || "",
+            role: "candidate",
+          };
+
+          await setDoc(docRef, newUser);
+          setCurrentUser(newUser as User);
+        }
+
+        setLoading(false);
       } else {
         setLoading(false);
       }
