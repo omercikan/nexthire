@@ -25,7 +25,7 @@
   <li><strong>ESLint</strong> – To maintain code quality</li>
 </ul>
 
-<h2>🛠️ Recent Updates (dev branch)</h2>
+<h2>🛠️ Updates from the Last 24 Hours (dev branch)</h2>
 <ul>
   <li>✅ Integrated <strong>Framer Motion</strong> for smooth UI animations.</li>
   <li>✅ Fixed Google Fonts loading and rendering issues via proper <code>subsets</code> configuration.</li>
@@ -39,6 +39,7 @@
       <li>🎞️ Entry animation using <strong>Framer Motion</strong></li>
     </ul>
   </li>
+  <li>✅ Created reusable <strong>SearchJob</strong> component and integrated it into <strong>HeroSection</strong> for centralized job search functionality.</li>
 </ul>
 
 <h2>📌 Notes</h2>
