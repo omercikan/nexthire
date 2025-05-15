@@ -25,7 +25,7 @@
   <li><strong>ESLint</strong> – To maintain code quality</li>
 </ul>
 
-<h2>🛠️ Updates from the Last 24 Hours (dev branch)</h2>
+<h2>🛠️ Recent Changes (dev branch)</h2>
 <ul>
   <li>✅ Integrated <strong>Framer Motion</strong> for smooth UI animations.</li>
   <li>✅ Fixed Google Fonts loading and rendering issues via proper <code>subsets</code> configuration.</li>
@@ -40,6 +40,13 @@
     </ul>
   </li>
   <li>✅ Created reusable <strong>SearchJob</strong> component and integrated it into <strong>HeroSection</strong> for centralized job search functionality.</li>
+  <li>✅ Refactored <strong>FeaturedJobs</strong> data flow by integrating RTK Query:
+    <ul>
+      <li>🔁 Replaced <code>useEffect</code>-based fetching with <strong>RTK Query</strong></li>
+      <li>🧱 Created a dedicated <strong>RTK Query API slice</strong> and connected it to the Redux store</li>
+      <li>⚙️ Updated the <strong>FeaturedJobs</strong> component to use the RTK Query hook</li>
+    </ul>
+  </li>
 </ul>
 
 <h2>📌 Notes</h2>

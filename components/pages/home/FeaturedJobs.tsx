@@ -1,38 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect } from "react";
-import { fetchData } from "@/lib/fetchData";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, A11y } from "swiper/modules";
 import "swiper/scss";
 import Image from "next/image";
-import { Employer } from "@/types";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { routeFormatter } from "@/lib/routeFormat";
 import Skeleton from "@mui/material/Skeleton";
 import { TfiCrown } from "react-icons/tfi";
 import Tooltip from "@mui/material/Tooltip";
 import SectionHeader from "@/components/SectionHeader";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/lib/store";
-import { setEmployers } from "@/lib/features/role/employerSlice";
 import { motion } from "framer-motion";
+import { useGetFeaturedJobsQuery } from "@/lib/redux/services/featuredJobs";
 
 const FeaturedJobs = () => {
-  const { employers } = useSelector((state: RootState) => state.employers);
-  const dispatch = useDispatch<AppDispatch>();
   const placeholderLoader = Array.from({ length: 3 }, (_, i) => i);
-
-  useEffect(() => {
-    const fetchFeaturedJobs = async () => {
-      const { data }: { data: { employers: Employer[]; status: number } } =
-        await fetchData("/api/firebase/employers/featured");
-      if (data.employers) dispatch(setEmployers(data.employers));
-    };
-
-    fetchFeaturedJobs();
-  }, [dispatch]);
+  const { data, isLoading } = useGetFeaturedJobsQuery("");
 
   return (
     <motion.div
@@ -65,10 +50,10 @@ const FeaturedJobs = () => {
               nextEl: ".nextFeaturedJob",
               prevEl: ".prevFeaturedJob",
             }}
+            loop={true}
             autoplay={{
               delay: 3000,
             }}
-            loop={true}
             breakpoints={{
               320: {
                 slidesPerView: 1,
@@ -81,8 +66,8 @@ const FeaturedJobs = () => {
               },
             }}
           >
-            {employers.length ? (
-              employers.concat(employers).map((job, index) => (
+            {!isLoading ? (
+              data?.employers.map((job, index) => (
                 <SwiperSlide key={index} className="featured-job-swiper-slide">
                   <div className="h-full flex flex-col">
                     <div className="flex items-center justify-between mb-1.5">
