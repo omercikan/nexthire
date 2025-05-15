@@ -1,7 +1,7 @@
 import React from "react";
 import UserModal from "./UserModal";
 import { useSelector } from "react-redux";
-import { RootState } from "@/lib/store";
+import { RootState } from "@/lib/redux/store";
 
 const MobileUserModal = () => {
   const { modal } = useSelector((state: RootState) => state.userModal);

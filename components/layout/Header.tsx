@@ -7,8 +7,8 @@ import UserItems from "./Header/UserItems";
 import Link from "next/link";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/lib/store";
-import { changeMenuState } from "@/lib/features/users/userMenuSlice";
+import { AppDispatch, RootState } from "@/lib/redux/store";
+import { changeMenuState } from "@/lib/redux/features/users/userMenuSlice";
 import { CSSTransition } from "react-transition-group";
 import { usePathname } from "next/navigation";
 

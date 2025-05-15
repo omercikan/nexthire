@@ -47,6 +47,20 @@
       <li>⚙️ Updated the <strong>FeaturedJobs</strong> component to use the RTK Query hook</li>
     </ul>
   </li>
+  <li>✅ Moved all Redux-related files into a dedicated <code>/lib/redux</code> folder for better project structure and clarity:
+    <ul>
+      <li>🗂️ Created dedicated folder structure inside <code>/lib/redux</code>:
+        <pre>
+          /lib
+          └── redux
+              ├── store.ts
+              ├── features/
+              └── services/
+        </pre>
+      </li>
+      <li>📦 Updated all imports to reflect new paths, including <code>store.ts</code></li>
+    </ul>
+  </li>
 </ul>
 
 <h2>📌 Notes</h2>

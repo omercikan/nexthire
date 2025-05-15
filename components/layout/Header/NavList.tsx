@@ -3,8 +3,8 @@ import Link from "next/link";
 import React, { useContext } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/lib/store";
-import { changeMenuState } from "@/lib/features/users/userMenuSlice";
+import { AppDispatch } from "@/lib/redux/store";
+import { changeMenuState } from "@/lib/redux/features/users/userMenuSlice";
 import { AuthContext } from "@/context/authContext";
 
 const NavList = () => {
