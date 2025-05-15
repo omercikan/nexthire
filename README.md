@@ -51,14 +51,20 @@
     <ul>
       <li>🗂️ Created dedicated folder structure inside <code>/lib/redux</code>:
         <pre>
-          /lib
-          └── redux
-              ├── store.ts
-              ├── features/
-              └── services/
+/lib
+└── redux
+    ├── store.ts
+    ├── features/
+    └── services/
         </pre>
       </li>
       <li>📦 Updated all imports to reflect new paths, including <code>store.ts</code></li>
+    </ul>
+  </li>
+  <li>✅ Refactor: moved <code>features</code> folder into <code>redux</code> directory and removed obsolete <code>employerSlice.ts</code>:
+    <ul>
+      <li>📁 Relocated <code>features</code> folder inside <code>redux</code> directory for better project structure</li>
+      <li>🗑️ Deleted <code>employerSlice.ts</code> as it's no longer needed</li>
     </ul>
   </li>
 </ul>
