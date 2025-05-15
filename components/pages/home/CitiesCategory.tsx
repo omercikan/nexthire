@@ -3,15 +3,14 @@
 import SectionHeader from "@/components/SectionHeader";
 import { citiesCategory } from "@/data/citiesCategory";
 import { routeFormatter } from "@/lib/routeFormat";
-import { RootState } from "@/lib/store";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import { useGetFeaturedJobsQuery } from "@/lib/redux/services/featuredJobs";
 
 const CitiesCategory = () => {
-  const { employers } = useSelector((state: RootState) => state.employers);
+  const { data } = useGetFeaturedJobsQuery("");
 
   return (
     <motion.section
@@ -51,7 +50,7 @@ const CitiesCategory = () => {
                 </h1>
                 <span className="category-subtext !text-[#202124]">
                   {
-                    employers.filter((employer) =>
+                    data?.employers.filter((employer) =>
                       employer.companyInformations.location.city.includes(
                         city.cityName
                       )

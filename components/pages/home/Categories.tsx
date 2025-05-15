@@ -3,14 +3,13 @@
 import SectionHeader from "@/components/SectionHeader";
 import { categories } from "@/data/categories";
 import { routeFormatter } from "@/lib/routeFormat";
-import { RootState } from "@/lib/store";
 import Link from "next/link";
 import React from "react";
-import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import { useGetFeaturedJobsQuery } from "@/lib/redux/services/featuredJobs";
 
 const Categories = () => {
-  const { employers } = useSelector((state: RootState) => state.employers);
+  const { data } = useGetFeaturedJobsQuery("");
 
   return (
     <motion.div
@@ -43,7 +42,7 @@ const Categories = () => {
               <span className="category-subtext">
                 ({" "}
                 {`${
-                  employers.filter(
+                  data?.employers.filter(
                     (employer) =>
                       employer.companyInformations.serviceArea == category.name
                   ).length
