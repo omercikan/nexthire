@@ -13,7 +13,7 @@ import { TfiCrown } from "react-icons/tfi";
 import Tooltip from "@mui/material/Tooltip";
 import SectionHeader from "@/components/SectionHeader";
 import { motion } from "framer-motion";
-import { useGetFeaturedJobsQuery } from "@/lib/redux/services/featuredJobs";
+import { useGetFeaturedJobsQuery } from "@/lib/redux/services/featuredJobsApi";
 
 const FeaturedJobs = () => {
   const placeholderLoader = Array.from({ length: 3 }, (_, i) => i);

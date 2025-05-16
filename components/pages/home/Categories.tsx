@@ -6,7 +6,7 @@ import { routeFormatter } from "@/lib/routeFormat";
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
-import { useGetFeaturedJobsQuery } from "@/lib/redux/services/featuredJobs";
+import { useGetFeaturedJobsQuery } from "@/lib/redux/services/featuredJobsApi";
 
 const Categories = () => {
   const { data } = useGetFeaturedJobsQuery("");

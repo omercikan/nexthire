@@ -1,8 +1,8 @@
 import { Employer } from "@/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const featuredJobs = createApi({
-  reducerPath: "featuredJobs2",
+export const featuredJobsApi = createApi({
+  reducerPath: "featuredJobsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "/api/firebase/employers/",
   }),
@@ -16,4 +16,4 @@ export const featuredJobs = createApi({
   }),
 });
 
-export const { useGetFeaturedJobsQuery } = featuredJobs;
+export const { useGetFeaturedJobsQuery } = featuredJobsApi;
