@@ -1,8 +1,7 @@
 "use client";
 
 import SectionHeader from "@/components/SectionHeader";
-import { fetchData } from "@/lib/fetchData";
-import { Candidate, Employer } from "@/types";
+import { Candidate } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useCallback, useContext, useEffect, useState } from "react";
@@ -21,19 +20,21 @@ import { db } from "@/app/api/firebase/firebaseConfig";
 import { arrayUnion, doc, DocumentData, onSnapshot } from "firebase/firestore";
 import CircularProgress from "@mui/material/CircularProgress";
 import Skeleton from "@mui/material/Skeleton";
-import axios from "axios";
 import { motion } from "framer-motion";
+import {
+  useAddFavoriteCompanyMutation,
+  useGetBestCompaniesQuery,
+} from "@/lib/redux/services/bestCompaniesApi";
 
 const BestCompanies = () => {
-  const [bestCompanies, setBestCompanies] = useState<Employer[]>([]);
   const { user } = useContext(AuthContext);
   const candidateUser = user as Candidate;
   const [updatedData, setUpdatedData] = useState<Candidate>();
   const placeholderLoader = Array.from({ length: 4 }, (_, i) => i);
-  const [isAdding, setIsAdding] = useState({
-    inital: false,
-    id: "",
+  const { data, isLoading, refetch } = useGetBestCompaniesQuery(undefined, {
+    refetchOnMountOrArgChange: true,
   });
+  const [addFavorite, result] = useAddFavoriteCompanyMutation();
 
   useEffect(() => {
     if (candidateUser) {
@@ -48,41 +49,16 @@ const BestCompanies = () => {
     }
   }, [candidateUser]);
 
-  useEffect(() => {
-    const fetchBestCompanies = async () => {
-      const { data }: { data: { employers: Employer[] } } = await fetchData(
-        "/api/firebase/employers/bestCompany"
-      );
-      if (data.employers) setBestCompanies(data.employers);
-    };
-
-    fetchBestCompanies();
-  }, []);
-
   const addFavoriteCompany = useCallback(
     async (data: DocumentData, eid: string) => {
       if (user?.role === "candidate") {
-        setIsAdding({
-          inital: true,
+        await addFavorite({
+          data: data,
           id: eid,
+          user: candidateUser,
+          updatedData: updatedData as Candidate,
         });
-        await axios.post(
-          "/api/firebase/favorites",
-          JSON.stringify({
-            data: data,
-            id: eid,
-            user: candidateUser,
-            updatedData: updatedData,
-            setFavoritePath: "candidates",
-          })
-        );
-
-        setTimeout(() => {
-          setIsAdding({
-            inital: false,
-            id: "",
-          });
-        }, 500);
+        refetch();
       } else {
         toast.error(
           <div>
@@ -102,7 +78,7 @@ const BestCompanies = () => {
       }
     },
 
-    [candidateUser, updatedData, user?.role]
+    [addFavorite, candidateUser, updatedData, user?.role, refetch]
   );
 
   return (
@@ -154,8 +130,8 @@ const BestCompanies = () => {
             },
           }}
         >
-          {bestCompanies.length ? (
-            bestCompanies.map((company, index) => (
+          {!isLoading ? (
+            data?.employers.map((company, index) => (
               <SwiperSlide
                 key={index}
                 className="featured-job-swiper-slide bg-white max-lg:!p-[15px] !p-[30px] !flex !flex-col text-center group"
@@ -178,11 +154,12 @@ const BestCompanies = () => {
                               company.companyInformations.numberOfEmployees,
                           }),
                         },
-                        company?.eid
+                        company.eid
                       )
                     }
                   >
-                    {isAdding.id === company.eid && isAdding.inital ? (
+                    {result.originalArgs?.id === company.eid &&
+                    result.isLoading ? (
                       <CircularProgress size={18} className="!text-[#696969]" />
                     ) : updatedData?.favoriteEmployers?.some((favorite) =>
                         favorite.companyEID.includes(company?.eid)
