@@ -5,11 +5,11 @@ import Categories from "@/components/pages/home/Categories";
 import PostingJob from "@/components/pages/home/PostingJob";
 import CitiesCategory from "@/components/pages/home/CitiesCategory";
 import BestCompanies from "@/components/pages/home/BestCompanies";
-import StepCards from "@/components/pages/home/stepCard/StepCardList";
 import Testimonials from "@/components/pages/home/testimonials/Testimonials";
 import TrendingKeywords from "@/components/pages/home/TrendingKeywords/TrendingKeywords";
 import BlogSection from "@/components/pages/home/Blogs/BlogSection";
 import SubscribeSection from "@/components/pages/home/Subscribe/SubscribeSection";
+import StepCards from "@/components/pages/home/StepCard/StepCardList";
 
 export default function Home() {
   return (
