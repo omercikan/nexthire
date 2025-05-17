@@ -67,6 +67,13 @@
       <li>🗑️ Deleted <code>employerSlice.ts</code> as it's no longer needed</li>
     </ul>
   </li>
+    <li>✅ Added <strong>Job Postings</strong> route with integrated search and filter functionality:
+    <ul>
+      <li>🧩 Developed <code>FilterMenu</code> and <code>JobType</code> components</li>
+      <li>🎨 Added custom class for job type styling in <code>globals.css</code></li>
+      <li>🧠 Implemented <code>filtersJobs</code> slice and connected to Redux store</li>
+    </ul>
+  </li>
 </ul>
 
 <h2>📌 Notes</h2>

@@ -4,11 +4,13 @@ import { userMenuSlice } from "./features/users/userMenuSlice";
 import { featuredJobsApi } from "./services/featuredJobsApi";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { bestCompaniesApi } from "./services/bestCompaniesApi";
+import { filtersJobs } from "./features/filterJobs/filters";
 
 export const store = configureStore({
   reducer: {
     userModal: userModalSlice.reducer,
     userMenu: userMenuSlice.reducer,
+    filtersJob: filtersJobs.reducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
   },
