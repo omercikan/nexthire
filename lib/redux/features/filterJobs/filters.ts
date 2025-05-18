@@ -1,17 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState: initialStateFields = {
   jobType: "",
+  experienceLevel: [],
+  careerLevel: [],
 };
+
+interface initialStateFields {
+  jobType: string;
+  experienceLevel: string[];
+  careerLevel: string[];
+}
 
 export const filtersJobs = createSlice({
   name: "filterJobs",
   initialState,
   reducers: {
-    selectJobType: (state, action: { payload: string }) => {
+    selectJobType: (state: initialStateFields, action: { payload: string }) => {
       state.jobType = action.payload;
+    },
+
+    selectExperienceLevel: (
+      state: initialStateFields,
+      action: { payload: string[] }
+    ) => {
+      state.experienceLevel = action.payload;
+    },
+
+    selectCareerLevel: (
+      state: initialStateFields,
+      action: { payload: string[] }
+    ) => {
+      state.careerLevel = action.payload;
     },
   },
 });
 
-export const { selectJobType } = filtersJobs.actions;
+export const { selectJobType, selectExperienceLevel, selectCareerLevel } =
+  filtersJobs.actions;

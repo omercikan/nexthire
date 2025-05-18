@@ -18,9 +18,7 @@ const JobType = ({ title, options }: { title: string; options: string[] }) => {
 
   return (
     <div>
-      <span className="block text-lg text-[#202124] font-medium mb-5">
-        {title}
-      </span>
+      <span className="filter-title">{title}</span>
 
       <div className="relative">
         <div

@@ -323,20 +323,39 @@ html {
 
 /*! Blog class end */
 
-/*! Job Type component class start  !*/
+/*! Filter menu components class start  !*/
+.filter-title {
+  @apply block text-lg text-[#202124] font-medium mb-5;
+}
+
+.filter-switch-text {
+  @apply text-[#696969] text-[15px] cursor-pointer
+}
+
+.filter-switch-wrapper {
+  @apply w-[40px] h-[20px] rounded-full border transition-colors duration-500 ease-in-out;
+}
+
+.filter-switch-circle {
+  @apply w-[10px] h-[10px] rounded-full inline-block absolute transition-all duration-500 ease-in-out
+}
+
+/*! Filter menu Job Type component class start  !*/
 .job-type-screen {
   @apply flex justify-between items-center py-4 px-5 select-none bg-white border transition-colors duration-500 rounded-lg text-[15px] text-[#696969] w-full cursor-pointer whitespace-nowrap;
 }
 
 .job-type-list {
-  @apply py-3 rounded-lg bg-white border-white text-[15px] text-[#696969] absolute top-full left-0 w-full select-none;
+  @apply py-3 rounded-lg bg-white border-white text-[15px] text-[#696969] absolute top-full left-0 w-full select-none z-[1];
 }
 
 .job-type-list__item {
   @apply py-1.5 px-5 cursor-pointer transition-colors hover:text-[#1967D2] whitespace-nowrap;
 }
 
-/*! Job Type component class end  !*/
+/*! Filter menu Job Type component class end  !*/
+
+/*! Filter menu components class end  !*/
 
 /*! - Custom components class group end - !*/
 

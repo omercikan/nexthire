@@ -74,6 +74,13 @@
       <li>🧠 Implemented <code>filtersJobs</code> slice and connected to Redux store</li>
     </ul>
   </li>
+  <li>✅ Added <strong>FilterSwitch</strong> component for experience and career level filtering:
+  <ul>
+    <li>🧠 Added <code>experienceLevel</code> and <code>careerLevel</code> to <code>filtersJobs</code> slice</li>
+    <li>🔗 Integrated <code>FilterSwitch</code> into <code>FilterMenu</code> component</li>
+    <li>🎨 Added related styling to <code>globals.css</code></li>
+  </ul>
+</li>
 </ul>
 
 <h2>📌 Notes</h2>
