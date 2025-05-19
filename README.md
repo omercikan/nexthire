@@ -81,6 +81,9 @@
     <li>🎨 Added related styling to <code>globals.css</code></li>
   </ul>
 </li>
+<li>
+✅ Added "show more" functionality to the FilterSwitch component
+</li>
 </ul>
 
 <h2>📌 Notes</h2>

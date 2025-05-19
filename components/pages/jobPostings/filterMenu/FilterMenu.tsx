@@ -29,6 +29,8 @@ const FilterMenu = () => {
         state={experienceLevel}
         setState={selectExperienceLevel}
         switchItems={EXPERIENCE_LEVELS}
+        extraSwitch={true}
+        extraSwitchText="5 Yıl"
       />
 
       <FilterSwitch
