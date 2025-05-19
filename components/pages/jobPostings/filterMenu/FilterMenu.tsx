@@ -2,7 +2,7 @@
 
 import React from "react";
 import JobType from "./JobType";
-import FilterSwitch from "./FilterSwitch";
+import FilterSwitch from "./filterSwitch/FilterSwitch";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import {
