@@ -9,6 +9,11 @@ import {
   selectCareerLevel,
   selectExperienceLevel,
 } from "@/lib/redux/features/filterJobs/filters";
+import {
+  CAREER_LEVELS,
+  EXPERIENCE_LEVELS,
+  JOB_TYPES,
+} from "@/constants/filtersJob";
 
 const FilterMenu = () => {
   const { experienceLevel, careerLevel } = useSelector(
@@ -17,49 +22,20 @@ const FilterMenu = () => {
 
   return (
     <aside className="bg-[#F5F7FC] p-[30px] rounded-lg flex-[calc(32.8%-1px)]">
-      <JobType
-        title="Çalışma Şekli"
-        options={[
-          "Hibrit",
-          "Stajyer",
-          "Freelance",
-          "İş Yerinde",
-          "Tam Zamanlı",
-          "Yarı Zamanlı",
-          "Uzaktan / Remote",
-        ]}
-      />
+      <JobType title="Çalışma Şekli" options={JOB_TYPES} />
 
       <FilterSwitch
         title="Deneyim Süresi"
         state={experienceLevel}
         setState={selectExperienceLevel}
-        switchItems={[
-          { itemText: "Deneyimli" },
-          { itemText: "Deneyimsiz" },
-          { itemText: "1 Yıl" },
-          { itemText: "2 Yıl" },
-          { itemText: "3 Yıl" },
-          { itemText: "4 Yıl" },
-        ]}
+        switchItems={EXPERIENCE_LEVELS}
       />
 
       <FilterSwitch
         title="Pozisyon Seviyesi"
         state={careerLevel}
         setState={selectCareerLevel}
-        switchItems={[
-          { itemText: "Uzman" },
-          { itemText: "Kıdemli Uzman" },
-          { itemText: "Uzman Yardımcısı" },
-          { itemText: "Stajyer" },
-          { itemText: "Yeni Mezun" },
-          { itemText: "Takım Lideri" },
-          { itemText: "Kıdemli Yönetici" },
-          { itemText: "Müdür" },
-          { itemText: "Genel Müdür" },
-          { itemText: "Genel Müdür Yardımcısı" },
-        ]}
+        switchItems={CAREER_LEVELS}
       />
     </aside>
   );
