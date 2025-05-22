@@ -5,6 +5,7 @@ import { featuredJobsApi } from "./services/featuredJobsApi";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { bestCompaniesApi } from "./services/bestCompaniesApi";
 import { filtersJobs } from "./features/filterJobs/filters";
+import { jobPostings } from "./services/jobPostings";
 
 export const store = configureStore({
   reducer: {
@@ -13,12 +14,14 @@ export const store = configureStore({
     filtersJob: filtersJobs.reducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
+    [jobPostings.reducerPath]: jobPostings.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
       featuredJobsApi.middleware,
       bestCompaniesApi.middleware,
+      jobPostings.middleware,
     ]),
 });
 

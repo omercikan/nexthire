@@ -25,66 +25,36 @@
   <li><strong>ESLint</strong> – To maintain code quality</li>
 </ul>
 
-<h2>🛠️ Recent Changes (dev branch)</h2>
+<h2>🧾 Changelog – <code>dev</code> Branch (Latest Update)</h2>
+
+<h3>🚀 Features</h3>
 <ul>
-  <li>✅ Integrated <strong>Framer Motion</strong> for smooth UI animations.</li>
-  <li>✅ Fixed Google Fonts loading and rendering issues via proper <code>subsets</code> configuration.</li>
-  <li>✅ Refactored component styles for improved consistency and maintainability.</li>
-  <li>✅ Implemented a fully working <strong>newsletter subscription</strong> system on the landing page.</li>
-  <li>✅ Fixed Google sign-up issue where user data wasn't being updated immediately.</li>
-  <li>✅ Extracted <code>setUserDatabase</code> function for cleaner and reusable Firestore logic (applied clean code principles, reduced duplication).</li>
-  <li>✅ Enhanced <strong>BestCompanies</strong> component with:
+  <li><strong>Job Postings System</strong>
     <ul>
-      <li>🔁 Fallback logic for Firestore user reference (<code>id</code> or <code>cid</code>)</li>
-      <li>🎞️ Entry animation using <strong>Framer Motion</strong></li>
+      <li>🧱 Added <code>JobList</code> and <code>JobItem</code> components to render job listings</li>
+      <li>🔌 Integrated new <code>/job-postings</code> API route</li>
+      <li>🔗 Connected job listings to <strong>RTK Query</strong> for efficient data fetching</li>
+      <li>🧩 Extended filter interface with company-related fields</li>
+      <li>🔍 Centralized search functionality via <code>SearchJob</code> in <code>HeroSection</code></li>
     </ul>
   </li>
-  <li>✅ Created reusable <strong>SearchJob</strong> component and integrated it into <strong>HeroSection</strong> for centralized job search functionality.</li>
-  <li>✅ Refactored <strong>FeaturedJobs</strong> data flow by integrating RTK Query:
-    <ul>
-      <li>🔁 Replaced <code>useEffect</code>-based fetching with <strong>RTK Query</strong></li>
-      <li>🧱 Created a dedicated <strong>RTK Query API slice</strong> and connected it to the Redux store</li>
-      <li>⚙️ Updated the <strong>FeaturedJobs</strong> component to use the RTK Query hook</li>
-    </ul>
-  </li>
-  <li>✅ Moved all Redux-related files into a dedicated <code>/lib/redux</code> folder for better project structure and clarity:
-    <ul>
-      <li>🗂️ Created dedicated folder structure inside <code>/lib/redux</code>:
-        <pre>
-/lib
-└── redux
-    ├── store.ts
-    ├── features/
-    └── services/
-        </pre>
-      </li>
-      <li>📦 Updated all imports to reflect new paths, including <code>store.ts</code></li>
-    </ul>
-  </li>
-  <li>✅ Refactor: moved <code>features</code> folder into <code>redux</code> directory and removed obsolete <code>employerSlice.ts</code>:
-    <ul>
-      <li>📁 Relocated <code>features</code> folder inside <code>redux</code> directory for better project structure</li>
-      <li>🗑️ Deleted <code>employerSlice.ts</code> as it's no longer needed</li>
-    </ul>
-  </li>
-    <li>✅ Added <strong>Job Postings</strong> route with integrated search and filter functionality:
-    <ul>
-      <li>🧩 Developed <code>FilterMenu</code> and <code>JobType</code> components</li>
-      <li>🎨 Added custom class for job type styling in <code>globals.css</code></li>
-      <li>🧠 Implemented <code>filtersJobs</code> slice and connected to Redux store</li>
-    </ul>
-  </li>
-  <li>✅ Added <strong>FilterSwitch</strong> component for experience and career level filtering:
-  <ul>
-    <li>🧠 Added <code>experienceLevel</code> and <code>careerLevel</code> to <code>filtersJobs</code> slice</li>
-    <li>🔗 Integrated <code>FilterSwitch</code> into <code>FilterMenu</code> component</li>
-    <li>🎨 Added related styling to <code>globals.css</code></li>
-  </ul>
-</li>
-<li>
-✅ Added "show more" functionality to the FilterSwitch component
-</li>
 </ul>
+
+<h3>🎨 UI/UX Enhancements</h3>
+<ul>
+  <li>🎞️ Added <strong>Framer Motion</strong> for entry animations across multiple components (<code>BestCompanies</code>, etc.)</li>
+  <li>🎨 Added job type styling in <code>globals.css</code></li>
+  <li>➕ Implemented "show more" toggle in <code>FilterSwitch</code> for experience/career level filtering</li>
+</ul>
+
+<h3>⚙️ Refactoring & Structure</h3>
+<ul>
+  <li>🔁 Replaced all <code>useEffect</code>-based fetching logic in <code>FeaturedJobs</code> with <strong>RTK Query</strong></li>
+  <li>🗂️ Moved all Redux logic under <code>/lib/redux</code> for better structure</li>
+  <li>🗑️ Removed unused <code>employerSlice.ts</code></li>
+  <li>🧼 Extracted <code>setUserDatabase</code> function for cleaner Firestore integration</li>
+</ul>
+
 
 <h2>📌 Notes</h2>
 <ul>
