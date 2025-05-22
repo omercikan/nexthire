@@ -143,6 +143,20 @@ export interface User {
   role: string;
 }
 
+export interface EmployerOpenJobs {
+  postId: string;
+  jobTitle: string;
+  jobAbout: string;
+  category: string;
+  modeOfWork: string;
+  workModel: string;
+  positionLevel: string;
+  educationLevel: string[];
+  experienceTime: string;
+  applicationDeadlineDate: string;
+  location: string;
+}
+
 export interface Employer extends User {
   eid: string;
   companyInformations: {
@@ -161,26 +175,7 @@ export interface Employer extends User {
   };
   featured: boolean;
   bestCompany: boolean;
-  openJobs: [
-    {
-      postId: string;
-      jobTitle: string;
-      jobDescription: {
-        jobIntro: string;
-        jobDetails: string;
-        responsibilities: string[];
-        requirements: string[];
-      };
-      category: string;
-      modeOfWork: string;
-      workModel: string;
-      positionLevel: string;
-      educationLevel: string[];
-      experienceTime: string;
-      applicationDeadlineDate: string;
-      location: string;
-    }
-  ];
+  openJobs: EmployerOpenJobs[];
 }
 
 export interface Candidate extends User {
