@@ -91,67 +91,65 @@ const FeaturedJobs = () => {
                       </Tooltip>
                     </div>
 
-                    {job.openJobs.map((detail, index) => (
-                      <div key={index} className="flex flex-col grow">
-                        <h2 className="featured-job-title-tag w-max">
-                          <Link
-                            href={`/is-ilani/${routeFormatter(
-                              `${detail.jobTitle}-${detail.postId}`
-                            )}`}
-                          >
-                            {detail.jobTitle}
-                          </Link>
-                        </h2>
+                    <div key={index} className="flex flex-col grow">
+                      <h2 className="featured-job-title-tag w-max">
+                        <Link
+                          href={`/is-ilani/${routeFormatter(
+                            `${job.openJobs[0].jobTitle}-${job.openJobs[0].postId}`
+                          )}`}
+                        >
+                          {job.openJobs[0].jobTitle}
+                        </Link>
+                      </h2>
 
-                        <p className="text-[15px] mt-2.5">
-                          <Link
-                            href={`firma-profil/${routeFormatter(
-                              `${job.companyInformations.companyName}-${job.eid}`
-                            )}`}
-                          >
-                            <strong className="featured-job-title-tag">
-                              {job.companyInformations.companyName}
-                            </strong>
-                          </Link>{" "}
-                          <span className="text-[#696969]">tarafından</span>{" "}
-                          <Link
-                            href={`/is-ilanlari/${new URLSearchParams({
-                              meslek: routeFormatter(detail.category),
-                            })}`}
-                          >
-                            <strong className="featured-job-title-tag">
-                              {detail.category}
-                            </strong>
-                          </Link>{" "}
-                          <span className="text-[#696969]">ilanı</span>
-                        </p>
+                      <p className="text-[15px] mt-2.5">
+                        <Link
+                          href={`firma-profil/${routeFormatter(
+                            `${job.companyInformations.companyName}-${job.eid}`
+                          )}`}
+                        >
+                          <strong className="featured-job-title-tag">
+                            {job.companyInformations.companyName}
+                          </strong>
+                        </Link>{" "}
+                        <span className="text-[#696969]">tarafından</span>{" "}
+                        <Link
+                          href={`/is-ilanlari/${new URLSearchParams({
+                            meslek: routeFormatter(job.openJobs[0].category),
+                          })}`}
+                        >
+                          <strong className="featured-job-title-tag">
+                            {job.openJobs[0].category}
+                          </strong>
+                        </Link>{" "}
+                        <span className="text-[#696969]">ilanı</span>
+                      </p>
 
-                        <div className="grow"></div>
+                      <div className="grow"></div>
 
-                        <ul className="flex flex-wrap gap-[3px] mt-2.5">
-                          <li className="featured-job-list-item bg-[#1967D2] !text-white">
-                            {detail.modeOfWork}
-                          </li>
-                          <li className="featured-job-list-item">
-                            {detail.positionLevel}
-                          </li>
-                          <li className="featured-job-list-item">
-                            {detail.workModel}
-                          </li>
-                        </ul>
+                      <ul className="flex flex-wrap gap-[3px] mt-2.5">
+                        <li className="featured-job-list-item bg-[#1967D2] !text-white">
+                          {job.openJobs[0].modeOfWork}
+                        </li>
+                        <li className="featured-job-list-item">
+                          {job.openJobs[0].positionLevel}
+                        </li>
+                        <li className="featured-job-list-item">
+                          {job.openJobs[0].workModel}
+                        </li>
+                      </ul>
 
-                        <div className="grow"></div>
+                      <div className="grow"></div>
 
-                        <p className="mt-[15px] w-max">
-                          Son başvuru tarihi:{" "}
-                          <time>
-                            {new Date(
-                              detail.applicationDeadlineDate
-                            ).toLocaleDateString("tr")}
-                          </time>
-                        </p>
-                      </div>
-                    ))}
+                      <p className="mt-[15px] w-max">
+                        Son başvuru tarihi:{" "}
+                        <time>
+                          {new Date(
+                            job.openJobs[0].applicationDeadlineDate
+                          ).toLocaleDateString("tr")}
+                        </time>
+                      </p>
+                    </div>
                   </div>
                 </SwiperSlide>
               ))
