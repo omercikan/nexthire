@@ -1,14 +1,21 @@
 "use client";
 
-import { selectJobType } from "@/lib/redux/features/filterJobs/filters";
-import { AppDispatch, RootState } from "@/lib/redux/store";
+import { AppDispatch } from "@/lib/redux/store";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { MdArrowDropDown } from "react-icons/md";
 import { IoIosClose } from "react-icons/io";
+import { CustomListProps } from "@/types/filtersJob";
 
-const JobType = ({ title, options }: { title: string; options: string[] }) => {
-  const { jobType } = useSelector((state: RootState) => state.filtersJob);
+const JobType = ({
+  title,
+  options,
+  state,
+  setState,
+  defaultValue,
+  screenClass,
+  listClass,
+}: CustomListProps) => {
   const [openJobMenu, setOpenJobMenu] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -22,7 +29,7 @@ const JobType = ({ title, options }: { title: string; options: string[] }) => {
 
       <div className="relative">
         <div
-          className={`job-type-screen ${
+          className={`job-type-screen ${screenClass} ${
             openJobMenu ? "border-[#4045ef]" : "border-white"
           }`}
           onClick={(e) => {
@@ -30,14 +37,14 @@ const JobType = ({ title, options }: { title: string; options: string[] }) => {
             setOpenJobMenu(!openJobMenu);
           }}
         >
-          {jobType ? jobType : "Çalışma tercihi"}
+          {state ? state : defaultValue}
 
           <div className="flex items-center gap-2">
-            {jobType && (
+            {state && state !== defaultValue && (
               <IoIosClose
                 size={20}
                 className="hover:text-[#e44343]"
-                onClick={() => dispatch(selectJobType(""))}
+                onClick={() => dispatch(setState(""))}
               />
             )}
 
@@ -49,13 +56,16 @@ const JobType = ({ title, options }: { title: string; options: string[] }) => {
         </div>
 
         {openJobMenu && (
-          <ul className="job-type-list" onClick={(e) => e.stopPropagation()}>
+          <ul
+            className={`job-type-list ${listClass}`}
+            onClick={(e) => e.stopPropagation()}
+          >
             {options.map((option, index) => (
               <li
                 key={index}
                 className="job-type-list__item"
                 onClick={(e) => {
-                  dispatch(selectJobType(e.currentTarget.innerText));
+                  dispatch(setState(e.currentTarget.innerText));
                   setOpenJobMenu(false);
                 }}
               >

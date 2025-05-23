@@ -1,3 +1,5 @@
+import { UnknownAction } from "@reduxjs/toolkit";
+
 export type JobTypes = string[];
 
 export type FilterSwitch = {
@@ -14,4 +16,14 @@ export interface JobCompanyInformations {
     numberOfEmployees: string;
     location: string;
   };
+}
+
+export interface CustomListProps {
+  title?: string;
+  options: string[];
+  state: string;
+  setState: (e: string) => UnknownAction;
+  defaultValue: string;
+  screenClass?: string;
+  listClass?: string;
 }

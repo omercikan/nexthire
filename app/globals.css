@@ -350,9 +350,9 @@ html {
 }
 
 .job-type-list {
-  @apply py-3 rounded-lg bg-white border-white text-[15px] text-[#696969] absolute top-full left-0 w-full select-none z-[1];
+  @apply py-3 rounded-lg bg-white border border-[#ECEDF2] text-[15px] text-[#696969] absolute top-full left-0 w-full select-none z-[1];
 }
-
+ 
 .job-type-list__item {
   @apply py-1.5 px-5 cursor-pointer transition-colors hover:text-[#1967D2] whitespace-nowrap;
 }

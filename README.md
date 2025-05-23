@@ -55,6 +55,7 @@
   <li>🗑️ Removed unused <code>employerSlice.ts</code></li>
   <li>🧼 Extracted <code>setUserDatabase</code> function for cleaner Firestore integration</li>
   <li>🛠️ Improved route format utility and added new helper function</li>
+  <li>🔧 Renamed <code>JobType</code> component to <code>CustomList</code> and refactored for reusability in <code>FilterMenu</code></li>
 </ul>
 
 <h2>📌 Notes</h2>

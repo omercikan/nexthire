@@ -1,13 +1,14 @@
 "use client";
 
 import React from "react";
-import JobType from "./JobType";
+import CustomList from "./CustomList";
 import FilterSwitch from "./filterSwitch/FilterSwitch";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import {
   selectCareerLevel,
   selectExperienceLevel,
+  selectJobType,
 } from "@/lib/redux/features/filterJobs/filters";
 import {
   CAREER_LEVELS,
@@ -16,13 +17,19 @@ import {
 } from "@/constants/filtersJob";
 
 const FilterMenu = () => {
-  const { experienceLevel, careerLevel } = useSelector(
+  const { experienceLevel, careerLevel, jobType } = useSelector(
     (state: RootState) => state.filtersJob
   );
 
   return (
     <aside className="bg-[#F5F7FC] p-[30px] rounded-lg flex-[calc(32.8%-1px)]">
-      <JobType title="Çalışma Şekli" options={JOB_TYPES} />
+      <CustomList
+        title="Çalışma Şekli"
+        options={JOB_TYPES}
+        defaultValue="Çalışma Şekli"
+        setState={selectJobType}
+        state={jobType}
+      />
 
       <FilterSwitch
         title="Deneyim Süresi"
