@@ -333,7 +333,7 @@ html {
 }
 
 .filter-switch-wrapper {
-  @apply w-[40px] h-[20px] rounded-full border transition-colors duration-500 ease-in-out;
+  @apply !w-[40px] !h-[20px] rounded-full border transition-colors duration-500 ease-in-out;
 }
 
 .filter-switch-circle {

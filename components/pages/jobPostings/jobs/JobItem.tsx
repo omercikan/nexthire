@@ -4,7 +4,7 @@ import {
   selectJobType,
 } from "@/lib/redux/features/filterJobs/filters";
 import { AppDispatch, RootState } from "@/lib/redux/store";
-import { routeFormatter } from "@/lib/routeFormat";
+import { normalize, routeFormatter } from "@/lib/routeFormat";
 import { EmployerOpenJobs } from "@/types";
 import { JobCompanyInformations } from "@/types/filtersJob";
 import Image from "next/image";
@@ -43,9 +43,7 @@ const JobItem = ({
         <div className="px-5">
           <div className="flex items-center">
             <Link
-              href={`/is-ilanlari?${new URLSearchParams({
-                meslek: `${routeFormatter(job.jobTitle)}`,
-              })}`}
+              href={`/is-ilani/${routeFormatter(job.jobTitle)}-${job.postId}`}
             >
               <h2 className="text-[#202124] hover:text-[#1967d2] transition-colors duration-300 text-lg font-medium">
                 {job.jobTitle}
@@ -60,7 +58,7 @@ const JobItem = ({
           <div className="flex gap-[25px] mt-[5px]">
             <Link
               href={`/is-ilanlari?${new URLSearchParams({
-                meslek: `${routeFormatter(job.category)}`,
+                meslek: `${normalize(job.category).toLowerCase()}`,
               })}`}
               className="flex items-center text-[#696969] hover:text-[#202124] text-sm transition-colors duration-300"
             >

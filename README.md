@@ -36,6 +36,7 @@
       <li>🔗 Connected job listings to <strong>RTK Query</strong> for efficient data fetching</li>
       <li>🧩 Extended filter interface with company-related fields</li>
       <li>🔍 Centralized search functionality via <code>SearchJob</code> in <code>HeroSection</code></li>
+      <li>🔎 Added search functionality to job listings via <code>JobList</code> component</li>
     </ul>
   </li>
 </ul>
@@ -53,8 +54,8 @@
   <li>🗂️ Moved all Redux logic under <code>/lib/redux</code> for better structure</li>
   <li>🗑️ Removed unused <code>employerSlice.ts</code></li>
   <li>🧼 Extracted <code>setUserDatabase</code> function for cleaner Firestore integration</li>
+  <li>🛠️ Improved route format utility and added new helper function</li>
 </ul>
-
 
 <h2>📌 Notes</h2>
 <ul>
