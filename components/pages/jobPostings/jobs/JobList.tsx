@@ -6,6 +6,9 @@ import { useSearchParams } from "next/navigation";
 import { JobCompanyInformations } from "@/types/filtersJob";
 import { routeParser } from "@/lib/routeFormat";
 import { normalize } from "path";
+import ResultNavigator from "./ResultNavigator";
+
+import FilterBar from "./FilterBar";
 
 const JobList = () => {
   const { data, isLoading } = useGetJobPostingsQuery(undefined);
@@ -53,19 +56,20 @@ const JobList = () => {
   }, [data?.jobPostings, jobParam, locationParam]);
 
   return (
-    <>
-      <div className="flex-[calc(67.2%+.0625rem)]">
-        {isLoading ? (
-          "Loading"
-        ) : searchedData?.length ? (
-          searchedData?.map((job) => <JobItem key={job.postId} job={job} />)
-        ) : (
-          <div className="bg-[#D4E1F5] text-[#1967D2] p-[15px] rounded-lg">
-            <p>Aramana uygun bir sonuç bulunamadı. 😔</p>
-          </div>
-        )}
-      </div>
-    </>
+    <div className="flex-[calc(67.2%+.0625rem)]">
+      <FilterBar />
+      <ResultNavigator searchedDataLength={searchedData?.length} />
+
+      {isLoading ? (
+        "Loading"
+      ) : searchedData?.length ? (
+        searchedData?.map((job) => <JobItem key={job.postId} job={job} />)
+      ) : (
+        <div className="bg-[#D4E1F5] text-[#1967D2] p-[15px] rounded-lg">
+          <p>Aramana uygun bir sonuç bulunamadı. 😔</p>
+        </div>
+      )}
+    </div>
   );
 };
 

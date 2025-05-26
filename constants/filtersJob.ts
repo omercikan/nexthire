@@ -1,8 +1,7 @@
-import { FilterSwitchInterface, JobTypesInterface } from "@/types/filtersJob";
+import { FilterSwitch, JobTypes } from "@/types/filtersJob";
 
-export const JOB_TYPES: JobTypesInterface = [
+export const JOB_TYPES: JobTypes = [
   "Hibrit",
-  "Stajyer",
   "Freelance",
   "İş Yerinde",
   "Tam Zamanlı",
@@ -10,7 +9,7 @@ export const JOB_TYPES: JobTypesInterface = [
   "Uzaktan / Remote",
 ];
 
-export const EXPERIENCE_LEVELS: FilterSwitchInterface[] = [
+export const EXPERIENCE_LEVELS: FilterSwitch[] = [
   { itemText: "Deneyimli" },
   { itemText: "Deneyimsiz" },
   { itemText: "1 Yıl" },
@@ -19,7 +18,7 @@ export const EXPERIENCE_LEVELS: FilterSwitchInterface[] = [
   { itemText: "4 Yıl" },
 ];
 
-export const CAREER_LEVELS: FilterSwitchInterface[] = [
+export const CAREER_LEVELS: FilterSwitch[] = [
   { itemText: "Uzman" },
   { itemText: "Kıdemli Uzman" },
   { itemText: "Uzman Yardımcısı" },

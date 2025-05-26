@@ -1,12 +1,15 @@
 import FavoriteCompany from "@/components/FavoriteCompany";
+import { JOB_TYPES } from "@/constants/filtersJob";
 import {
   selectCareerLevel,
+  selectFiltersItem,
   selectJobType,
 } from "@/lib/redux/features/filterJobs/filters";
 import { AppDispatch, RootState } from "@/lib/redux/store";
 import { normalize, routeFormatter } from "@/lib/routeFormat";
 import { EmployerOpenJobs } from "@/types";
 import { JobCompanyInformations } from "@/types/filtersJob";
+import { UnknownAction } from "@reduxjs/toolkit";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -19,8 +22,36 @@ const JobItem = ({
 }: {
   job: JobCompanyInformations & EmployerOpenJobs;
 }) => {
-  const { careerLevel } = useSelector((state: RootState) => state.filtersJob);
+  const { careerLevel, filtersItem } = useSelector(
+    (state: RootState) => state.jobFilters
+  );
   const dispatch = useDispatch<AppDispatch>();
+
+  const handleAction = (
+    text: string,
+    addState: UnknownAction,
+    removeState?: UnknownAction
+  ): void => {
+    if (!filtersItem.includes(text)) {
+      dispatch(addState);
+      dispatch(selectFiltersItem([...filtersItem, text]));
+    } else {
+      if (removeState) dispatch(removeState);
+      dispatch(selectFiltersItem(filtersItem.filter((item) => item !== text)));
+    }
+  };
+
+  const handleJobTypeBadge = () => {
+    const isIncludes = filtersItem.includes(job.modeOfWork);
+    const filtredJobs = filtersItem.filter((fi) => !JOB_TYPES.includes(fi));
+
+    const updatedFilters = isIncludes
+      ? filtredJobs
+      : [...filtredJobs, job.modeOfWork];
+
+    dispatch(selectFiltersItem(updatedFilters));
+    dispatch(selectJobType(isIncludes ? "" : job.modeOfWork));
+  };
 
   return (
     <article
@@ -79,21 +110,19 @@ const JobItem = ({
           <div className="mt-3">
             <span
               className="me-[15px] featured-job-list-item bg-[#1967d2] border-none !text-white cursor-pointer"
-              onClick={() => dispatch(selectJobType(job.modeOfWork))}
+              onClick={handleJobTypeBadge}
             >
               {job.modeOfWork}
             </span>
             <span
               className="featured-job-list-item bg-[#FEF2D9] border-none !text-[#F9AB00] cursor-pointer"
               onClick={() =>
-                dispatch(
-                  !careerLevel.includes(job.positionLevel)
-                    ? selectCareerLevel([...careerLevel, job.positionLevel])
-                    : selectCareerLevel(
-                        careerLevel.filter(
-                          (level) => level !== job.positionLevel
-                        )
-                      )
+                handleAction(
+                  job.positionLevel,
+                  selectCareerLevel([...careerLevel, job.positionLevel]),
+                  selectCareerLevel(
+                    careerLevel.filter((level) => level !== job.positionLevel)
+                  )
                 )
               }
             >

@@ -13,6 +13,8 @@ import { SlLocationPin } from "react-icons/sl";
 import citiesList from "@/data/cities";
 import { useRouter } from "next/navigation";
 import { routeFormatter } from "@/lib/routeFormat";
+import { useDispatch } from "react-redux";
+import { setTouch } from "@/lib/redux/features/touch";
 
 const SearchJob = ({
   formClass,
@@ -35,6 +37,7 @@ const SearchJob = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_selectedCity, setSelectedCity] = useState<string | null>(""); //! Selected city data when clicked
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const onSubmit = useCallback(
     (
@@ -141,8 +144,14 @@ const SearchJob = ({
                 onChangeCapture={(e: ChangeEvent<HTMLInputElement>) =>
                   handleSearchData(e, citiesList, setCities)
                 }
-                onFocus={() => setTouched({ location: true, job: false })}
-                onBlur={() => setTouched({ ...touched, location: false })}
+                onFocus={() => {
+                  setTouched({ location: true, job: false });
+                  dispatch(setTouch(true));
+                }}
+                onBlur={() => {
+                  setTouched({ ...touched, location: false });
+                  dispatch(setTouch(false));
+                }}
               >
                 <AutoCompleteList
                   listText="Lokasyon Ara"

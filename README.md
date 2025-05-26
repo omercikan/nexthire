@@ -37,6 +37,10 @@
       <li>🧩 Extended filter interface with company-related fields</li>
       <li>🔍 Centralized search functionality via <code>SearchJob</code> in <code>HeroSection</code></li>
       <li>🔎 Added search functionality to job listings via <code>JobList</code> component</li>
+      <li>🧰 Implemented global filter management with Redux slice (<code>jobFilters</code>)</li>
+      <li>📤 Added filter interaction logic in <code>JobItem</code> via <code>handleAction</code> and <code>handleJobTypeBadge</code></li>
+      <li>🧱 Created <code>FilterBar</code> to display and clear selected filters</li>
+      <li>🔽 Added <code>ResultNavigator</code> for sort & per-page filter selections</li>
     </ul>
   </li>
 </ul>
@@ -46,6 +50,7 @@
   <li>🎞️ Added <strong>Framer Motion</strong> for entry animations across multiple components (<code>BestCompanies</code>, etc.)</li>
   <li>🎨 Added job type styling in <code>globals.css</code></li>
   <li>➕ Implemented "show more" toggle in <code>FilterSwitch</code> for experience/career level filtering</li>
+  <li>🧹 Improved filter item styling in <code>FilterBar</code> with hover and close icons</li>
 </ul>
 
 <h3>⚙️ Refactoring & Structure</h3>
@@ -56,6 +61,9 @@
   <li>🧼 Extracted <code>setUserDatabase</code> function for cleaner Firestore integration</li>
   <li>🛠️ Improved route format utility and added new helper function</li>
   <li>🔧 Renamed <code>JobType</code> component to <code>CustomList</code> and refactored for reusability in <code>FilterMenu</code></li>
+  <li>🧠 Extended <code>jobFilters</code> slice with new fields (<code>sortValue</code>, <code>pageValue</code>, <code>filtersItem</code>) and reducers</li>
+  <li>🧩 Added <code>touch</code> slice for managing UI-layer states</li>
+  <li>🐛 Fixed type issues in <code>filtersJob</code> config file</li>
 </ul>
 
 <h2>📌 Notes</h2>

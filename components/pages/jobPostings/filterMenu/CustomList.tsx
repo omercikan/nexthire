@@ -1,11 +1,12 @@
 "use client";
 
-import { AppDispatch } from "@/lib/redux/store";
+import { AppDispatch, RootState } from "@/lib/redux/store";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MdArrowDropDown } from "react-icons/md";
 import { IoIosClose } from "react-icons/io";
 import { CustomListProps } from "@/types/filtersJob";
+import { selectFiltersItem } from "@/lib/redux/features/filterJobs/filters";
 
 const JobType = ({
   title,
@@ -18,18 +19,36 @@ const JobType = ({
 }: CustomListProps) => {
   const [openJobMenu, setOpenJobMenu] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
+  const { filtersItem } = useSelector((state: RootState) => state.jobFilters);
 
   useEffect(() => {
     window.addEventListener("click", () => setOpenJobMenu(false));
   }, []);
 
+  const handleItemAction = (option: string): void => {
+    dispatch(setState(option));
+    setOpenJobMenu(false);
+
+    if (option !== "Sıralama (Varsayılan)" && option !== "Sayfa Başına 10") {
+      const updatedFilters = filtersItem.filter(
+        (item) => !options.includes(item)
+      );
+
+      dispatch(selectFiltersItem([...updatedFilters, option]));
+    } else {
+      dispatch(
+        selectFiltersItem(filtersItem.filter((fi) => !options.includes(fi)))
+      );
+    }
+  };
+
   return (
     <div>
-      <span className="filter-title">{title}</span>
+      {title && <span className="filter-title">{title}</span>}
 
-      <div className="relative">
+      <div className="relative z-[1]">
         <div
-          className={`job-type-screen ${screenClass} ${
+          className={`job-type-screen z-10 ${screenClass} ${
             openJobMenu ? "border-[#4045ef]" : "border-white"
           }`}
           onClick={(e) => {
@@ -39,12 +58,19 @@ const JobType = ({
         >
           {state ? state : defaultValue}
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 z-10">
             {state && state !== defaultValue && (
               <IoIosClose
                 size={20}
                 className="hover:text-[#e44343]"
-                onClick={() => dispatch(setState(""))}
+                onClick={() => {
+                  dispatch(setState(""));
+                  dispatch(
+                    selectFiltersItem(
+                      filtersItem.filter((item) => !options.includes(item))
+                    )
+                  );
+                }}
               />
             )}
 
@@ -64,10 +90,7 @@ const JobType = ({
               <li
                 key={index}
                 className="job-type-list__item"
-                onClick={(e) => {
-                  dispatch(setState(e.currentTarget.innerText));
-                  setOpenJobMenu(false);
-                }}
+                onClick={() => handleItemAction(option)}
               >
                 {option}
               </li>

@@ -1,7 +1,8 @@
-import { AppDispatch } from "@/lib/redux/store";
+import { selectFiltersItem } from "@/lib/redux/features/filterJobs/filters";
+import { AppDispatch, RootState } from "@/lib/redux/store";
 import { UnknownAction } from "@reduxjs/toolkit";
 import React, { memo } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const SwitchItem = ({
   state,
@@ -13,11 +14,17 @@ const SwitchItem = ({
   val: { itemText: string };
 }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const { filtersItem } = useSelector((state: RootState) => state.jobFilters);
 
-  const handleSwitch = (text: string) =>
-    state.includes(text)
-      ? dispatch(setState(state.filter((item) => item !== text)))
-      : dispatch(setState([...state, text]));
+  const handleSwitch = (text: string) => {
+    if (state.includes(text)) {
+      dispatch(setState(state.filter((item) => item !== text)));
+      dispatch(selectFiltersItem(filtersItem.filter((item) => item !== text)));
+    } else {
+      dispatch(setState([...state, text]));
+      dispatch(selectFiltersItem([...filtersItem, text]));
+    }
+  };
 
   return (
     <div className="flex gap-[15px] not-last:mb-5">

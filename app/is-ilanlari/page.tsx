@@ -19,7 +19,7 @@ const JobAdverts = () => {
         />
       </section>
 
-      <section className="container flex gap-[1.875rem] my-[3.125rem]">
+      <section className="container max-xl:px-0 max-[1080px]:!px-8 flex gap-[1.875rem] my-[3.125rem]">
         <FilterMenu />
 
         <JobList />

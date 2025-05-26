@@ -18,7 +18,7 @@ import {
 
 const FilterMenu = () => {
   const { experienceLevel, careerLevel, jobType } = useSelector(
-    (state: RootState) => state.filtersJob
+    (state: RootState) => state.jobFilters
   );
 
   return (
