@@ -7,6 +7,7 @@ import { bestCompaniesApi } from "./services/bestCompaniesApi";
 import { jobFilters } from "./features/filterJobs/filters";
 import { jobPostings } from "./services/jobPostings";
 import { touch } from "./features/touch";
+import { loading } from "./features/loading";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     userMenu: userMenuSlice.reducer,
     jobFilters: jobFilters.reducer,
     touch: touch.reducer,
+    loading: loading.reducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [jobPostings.reducerPath]: jobPostings.reducer,

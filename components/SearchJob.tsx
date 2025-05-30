@@ -12,9 +12,10 @@ import { AuthCompoleteSearchFields, SearchJobFormFields } from "@/types";
 import { SlLocationPin } from "react-icons/sl";
 import citiesList from "@/data/cities";
 import { useRouter } from "next/navigation";
-import { routeFormatter } from "@/lib/routeFormat";
 import { useDispatch } from "react-redux";
 import { setTouch } from "@/lib/redux/features/touch";
+import useJobFilter from "@/hooks/useJobFilter";
+import useFilterJobSearch from "@/hooks/useFilterJobSearch";
 
 const SearchJob = ({
   formClass,
@@ -38,34 +39,22 @@ const SearchJob = ({
   const [_selectedCity, setSelectedCity] = useState<string | null>(""); //! Selected city data when clicked
   const router = useRouter();
   const dispatch = useDispatch();
+  const { filterJob } = useJobFilter();
+  const { filterSearchJob } = useFilterJobSearch();
 
   const onSubmit = useCallback(
     (
       values: SearchJobFormFields,
       actions: FormikHelpers<SearchJobFormFields>
     ) => {
-      const query = new URLSearchParams({
-        meslek: values.job.toLocaleLowerCase("tr"),
-        konum: values.location.toLocaleLowerCase("tr"),
-      });
+      filterSearchJob(values.location, values.job);
 
-      if (!values.job && !values.location) {
-        router.push("/is-ilanlari");
-      } else if (values.job && !values.location) {
-        router.push(
-          `/is-ilanlari/?meslek=${routeFormatter(String(query.get("meslek")))}`
-        );
-      } else if (!values.job && values.location) {
-        router.push(
-          `/is-ilanlari/?konum=${routeFormatter(String(query.get("konum")))}`
-        );
-      } else {
-        router.push(`/is-ilanlari/?${query}`);
-      }
+      router.push("/is-ilanlari");
+      filterJob();
 
       actions.resetForm();
     },
-    [router]
+    [router, filterJob, filterSearchJob]
   );
 
   return (

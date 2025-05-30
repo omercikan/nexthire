@@ -26,4 +26,5 @@ export interface CustomListProps {
   defaultValue: string;
   screenClass?: string;
   listClass?: string;
+  listWrapperClass?: string;
 }

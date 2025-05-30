@@ -1,73 +1,47 @@
 import { useGetJobPostingsQuery } from "@/lib/redux/services/jobPostings";
 import { EmployerOpenJobs } from "@/types";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import JobItem from "./JobItem";
-import { useSearchParams } from "next/navigation";
 import { JobCompanyInformations } from "@/types/filtersJob";
-import { routeParser } from "@/lib/routeFormat";
-import { normalize } from "path";
 import ResultNavigator from "./ResultNavigator";
-
 import FilterBar from "./FilterBar";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
 
 const JobList = () => {
-  const { data, isLoading } = useGetJobPostingsQuery(undefined);
-  const params = useSearchParams();
-  const jobParam = routeParser(String(params.get("meslek")));
-  const locationParam = routeParser(String(params.get("konum")));
-  const [searchedData, setSearchedData] = useState<
-    (JobCompanyInformations & EmployerOpenJobs)[]
-  >([]);
-
-  useEffect(() => {
-    const searchedData: (JobCompanyInformations & EmployerOpenJobs)[] =
-      data?.jobPostings.filter((job: EmployerOpenJobs) => {
-        if (jobParam !== "Null" && locationParam === "Null") {
-          return (
-            job.jobTitle.toLowerCase().includes(jobParam.toLowerCase()) ||
-            job.category.toLowerCase().includes(jobParam.toLowerCase())
-          );
-        }
-
-        if (locationParam !== "Null" && jobParam === "Null") {
-          return normalize(job.location)
-            .toLocaleLowerCase("tr")
-            .includes(normalize(locationParam.toLowerCase()));
-        }
-
-        if (jobParam !== "Null" && locationParam !== "Null") {
-          return (
-            (job.jobTitle.toLowerCase().includes(jobParam.toLowerCase()) ||
-              job.category.toLowerCase().includes(jobParam.toLowerCase())) &&
-            normalize(job.location)
-              .toLocaleLowerCase("tr")
-              .includes(normalize(locationParam.toLowerCase()))
-          );
-        }
-
-        return true;
-      });
-
-    if (searchedData?.length > 0) {
-      setSearchedData(searchedData);
-    } else {
-      setSearchedData([]);
-    }
-  }, [data?.jobPostings, jobParam, locationParam]);
+  const { filterData } = useSelector((state: RootState) => state.jobFilters);
+  const { loading } = useSelector((state: RootState) => state.loading);
+  const { data, isLoading } = useGetJobPostingsQuery<{
+    data: {
+      jobs: (JobCompanyInformations & EmployerOpenJobs)[];
+      countJobs: number;
+    };
+    isLoading: boolean;
+  }>(undefined);
 
   return (
     <div className="flex-[calc(67.2%+.0625rem)]">
       <FilterBar />
-      <ResultNavigator searchedDataLength={searchedData?.length} />
+      <ResultNavigator
+        searchedDataLength={
+          isLoading || loading
+            ? 0
+            : (filterData.isFilter
+                ? filterData?.countJobs
+                : data?.jobs.length) ?? 0
+        }
+      />
 
-      {isLoading ? (
-        "Loading"
-      ) : searchedData?.length ? (
-        searchedData?.map((job) => <JobItem key={job.postId} job={job} />)
-      ) : (
+      {isLoading || loading ? (
+        "Yükleniyor"
+      ) : filterData?.countJobs === 0 && filterData?.isFilter ? (
         <div className="bg-[#D4E1F5] text-[#1967D2] p-[15px] rounded-lg">
           <p>Aramana uygun bir sonuç bulunamadı. 😔</p>
         </div>
+      ) : filterData?.countJobs > 0 && filterData?.isFilter ? (
+        filterData?.jobs.map((job) => <JobItem key={job.postId} job={job} />)
+      ) : (
+        data?.jobs.map((job) => <JobItem key={job.postId} job={job} />)
       )}
     </div>
   );

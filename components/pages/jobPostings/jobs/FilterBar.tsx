@@ -1,3 +1,4 @@
+import useJobFilter from "@/hooks/useJobFilter";
 import {
   clearAllFilters,
   clearMatchFilter,
@@ -9,6 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 const FilterBar = () => {
   const { filtersItem } = useSelector((state: RootState) => state.jobFilters);
   const dispatch = useDispatch<AppDispatch>();
+  const { filterJob } = useJobFilter();
+
+  const handleClearFilterItem = (item: string) => {
+    filterJob();
+    dispatch(clearMatchFilter(item));
+  };
 
   return (
     <>
@@ -18,7 +25,10 @@ const FilterBar = () => {
             Seçili Filtreler ({filtersItem.length})
             <span
               className="text-[#4045ef] text-[13px] text-center ms-2 font-normal cursor-pointer"
-              onClick={() => dispatch(clearAllFilters())}
+              onClick={() => {
+                dispatch(clearAllFilters());
+                filterJob();
+              }}
             >
               Filtreleri Temizle
             </span>
@@ -30,7 +40,7 @@ const FilterBar = () => {
                 <li
                   key={index}
                   className="whitespace-nowrap py-1 px-[15px] bg-[#EAEFFA] text-[#696969] text-[13px] rounded-sm cursor-pointer hover:text-[#e44343] transition-colors duration-300 select-none"
-                  onClick={() => dispatch(clearMatchFilter(item))}
+                  onClick={() => handleClearFilterItem(item)}
                 >
                   <span className="me-1.5 text-[#e44343]">x</span>
                   {item}

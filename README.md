@@ -41,6 +41,10 @@
       <li>📤 Added filter interaction logic in <code>JobItem</code> via <code>handleAction</code> and <code>handleJobTypeBadge</code></li>
       <li>🧱 Created <code>FilterBar</code> to display and clear selected filters</li>
       <li>🔽 Added <code>ResultNavigator</code> for sort & per-page filter selections</li>
+      <li>🧠 Created <code>useJobFilter</code> and <code>useFilterJobSearch</code> hooks for dynamic filtering logic</li>
+      <li>🧩 Applied filter integration to components: <code>BestCompanies</code>, <code>Categories</code>, <code>CitiesCategory</code>, <code>FeaturedJobs</code>, and <code>KeywordItem</code></li>
+      <li>📥 Added filter logic to <code>FilterMenu</code>, <code>CustomList</code>, <code>SwitchItem</code>, and <code>CustomButton</code></li>
+      <li>📦 Added <code>loading</code> slice to manage filter loading state</li>
     </ul>
   </li>
 </ul>
@@ -51,6 +55,7 @@
   <li>🎨 Added job type styling in <code>globals.css</code></li>
   <li>➕ Implemented "show more" toggle in <code>FilterSwitch</code> for experience/career level filtering</li>
   <li>🧹 Improved filter item styling in <code>FilterBar</code> with hover and close icons</li>
+  <li>🖱️ Added click interaction in <code>CustomButton</code> to open filter menu and update state</li>
 </ul>
 
 <h3>⚙️ Refactoring & Structure</h3>
@@ -61,7 +66,7 @@
   <li>🧼 Extracted <code>setUserDatabase</code> function for cleaner Firestore integration</li>
   <li>🛠️ Improved route format utility and added new helper function</li>
   <li>🔧 Renamed <code>JobType</code> component to <code>CustomList</code> and refactored for reusability in <code>FilterMenu</code></li>
-  <li>🧠 Extended <code>jobFilters</code> slice with new fields (<code>sortValue</code>, <code>pageValue</code>, <code>filtersItem</code>) and reducers</li>
+  <li>🧠 Extended <code>jobFilters</code> slice with new fields (<code>sortValue</code>, <code>pageValue</code>, <code>filtersItem</code>, <code>jobKeywords</code>, <code>locationKeywords</code>, <code>filterData</code>) and reducers</li>
   <li>🧩 Added <code>touch</code> slice for managing UI-layer states</li>
   <li>🐛 Fixed type issues in <code>filtersJob</code> config file</li>
 </ul>

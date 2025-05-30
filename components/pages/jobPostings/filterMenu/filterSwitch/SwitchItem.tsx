@@ -1,3 +1,4 @@
+import useJobFilter from "@/hooks/useJobFilter";
 import { selectFiltersItem } from "@/lib/redux/features/filterJobs/filters";
 import { AppDispatch, RootState } from "@/lib/redux/store";
 import { UnknownAction } from "@reduxjs/toolkit";
@@ -15,11 +16,13 @@ const SwitchItem = ({
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { filtersItem } = useSelector((state: RootState) => state.jobFilters);
+  const { filterJob } = useJobFilter();
 
   const handleSwitch = (text: string) => {
     if (state.includes(text)) {
       dispatch(setState(state.filter((item) => item !== text)));
       dispatch(selectFiltersItem(filtersItem.filter((item) => item !== text)));
+      filterJob();
     } else {
       dispatch(setState([...state, text]));
       dispatch(selectFiltersItem([...filtersItem, text]));

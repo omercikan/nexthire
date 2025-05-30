@@ -2,15 +2,22 @@
 
 import SectionHeader from "@/components/SectionHeader";
 import { citiesCategory } from "@/data/citiesCategory";
-import { routeFormatter } from "@/lib/routeFormat";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import { useGetFeaturedJobsQuery } from "@/lib/redux/services/featuredJobsApi";
+import {
+  selectFiltersItem,
+  selectLocationKeyword,
+} from "@/lib/redux/features/filterJobs/filters";
+import { useDispatch } from "react-redux";
+import useJobFilter from "@/hooks/useJobFilter";
 
 const CitiesCategory = () => {
   const { data } = useGetFeaturedJobsQuery("");
+  const dispatch = useDispatch();
+  const { filterJob } = useJobFilter();
 
   return (
     <motion.section
@@ -32,9 +39,12 @@ const CitiesCategory = () => {
             <li key={city.id} className="group">
               <Link
                 className="inline-block w-full"
-                href={`/is-ilanlari/?${new URLSearchParams({
-                  konum: routeFormatter(city.cityName),
-                })}`}
+                href="/is-ilanlari"
+                onClick={() => {
+                  dispatch(selectFiltersItem([city?.cityName]));
+                  dispatch(selectLocationKeyword([city?.cityName]));
+                  filterJob();
+                }}
               >
                 <div className="pb-[15px] w-full">
                   <Image

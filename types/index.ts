@@ -93,6 +93,7 @@ export interface CustomButtonProps {
   className?: string;
   text: string;
   circularColor?: string;
+  handleClick?: () => void;
 }
 
 //! Success component properties interface for reset email page !//

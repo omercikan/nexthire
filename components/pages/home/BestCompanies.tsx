@@ -25,6 +25,12 @@ import {
   useAddFavoriteCompanyMutation,
   useGetBestCompaniesQuery,
 } from "@/lib/redux/services/bestCompaniesApi";
+import {
+  selectFiltersItem,
+  selectLocationKeyword,
+} from "@/lib/redux/features/filterJobs/filters";
+import { useDispatch } from "react-redux";
+import useJobFilter from "@/hooks/useJobFilter";
 
 const BestCompanies = () => {
   const { user } = useContext(AuthContext);
@@ -35,6 +41,8 @@ const BestCompanies = () => {
     refetchOnMountOrArgChange: true,
   });
   const [addFavorite, result] = useAddFavoriteCompanyMutation();
+  const dispatch = useDispatch();
+  const { filterJob } = useJobFilter();
 
   useEffect(() => {
     if (candidateUser) {
@@ -208,11 +216,20 @@ const BestCompanies = () => {
                     <li className="flex items-center gap-[5px]">
                       <SlLocationPin size={18} />
                       <Link
-                        href={`/is-ilanlari/?${new URLSearchParams({
-                          konum: routeFormatter(
-                            company.companyInformations.location.city
-                          ),
-                        })}`}
+                        href="/is-ilanlari"
+                        onClick={() => {
+                          dispatch(
+                            selectFiltersItem([
+                              company.companyInformations.location.city,
+                            ])
+                          );
+                          dispatch(
+                            selectLocationKeyword([
+                              company.companyInformations.location.city,
+                            ])
+                          );
+                          filterJob();
+                        }}
                       >
                         {company.companyInformations.location.city}
                       </Link>

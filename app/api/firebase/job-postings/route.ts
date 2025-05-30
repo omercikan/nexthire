@@ -1,22 +1,23 @@
-import {
-  collection,
-  getCountFromServer,
-  getDocs,
-  orderBy,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "../firebaseConfig";
 import { EmployerOpenJobs } from "@/types";
+import { normalize } from "@/lib/routeFormat";
 
 export async function POST(req: NextRequest) {
   const {
     modeOfWork,
     experienceTime,
     positionLevel,
-  }: { modeOfWork: string; experienceTime: string[]; positionLevel: string[] } =
-    await req.json();
+    jobKeywords,
+    locationKeywords,
+  }: {
+    modeOfWork: string;
+    experienceTime: string[];
+    positionLevel: string[];
+    jobKeywords: string[];
+    locationKeywords: string[];
+  } = await req.json();
 
   const { searchParams } = new URL(req.url);
   const sortValue = searchParams.get("sort");
@@ -27,7 +28,10 @@ export async function POST(req: NextRequest) {
     const q = query(
       collection(db, "employers"),
       where("openJobs", ">", []),
-      orderBy("createdAt", sortValue === "asc" || sortValue === "desc" ? sortValue : undefined )
+      orderBy(
+        "createdAt",
+        sortValue === "asc" || sortValue === "desc" ? sortValue : "asc"
+      )
     );
 
     const docData = (await getDocs(q)).docs.slice(startIndex, endIndex);
@@ -51,19 +55,77 @@ export async function POST(req: NextRequest) {
       });
     });
 
-    const countJobs = await getCountFromServer(q);
+    const filteredJobs = jobs.filter((job) => {
+      if (
+        jobKeywords.find(
+          (jk) =>
+            job.jobTitle.toLowerCase().includes(jk.toLowerCase()) ||
+            job.category.toLowerCase().includes(jk.toLowerCase())
+        ) &&
+        !locationKeywords.length
+      ) {
+        return true;
+      }
 
-    const filteredJob = jobs.filter(
-      (job) =>
-        modeOfWork.toLowerCase().trim() ===
-          job.modeOfWork.toLowerCase().trim() ||
-        experienceTime.includes(job.experienceTime.toLowerCase().trim()) ||
-        positionLevel.includes(job.positionLevel)
-    );
+      if (
+        locationKeywords.find((lk) =>
+          normalize(job.location)
+            .toLocaleLowerCase("tr")
+            .includes(normalize(lk.toLocaleLowerCase("tr")))
+        ) &&
+        !jobKeywords.length
+      ) {
+        return true;
+      }
+
+      if (
+        jobKeywords.find(
+          (jk) =>
+            job.jobTitle.toLowerCase().includes(jk.toLowerCase()) ||
+            job.jobTitle
+              .toLocaleLowerCase("tr")
+              .includes(jk.toLocaleLowerCase("tr")) ||
+            job.category.toLowerCase().includes(jk.toLowerCase()) ||
+            job.category
+              .toLocaleLowerCase("tr")
+              .includes(jk.toLocaleLowerCase("tr"))
+        ) &&
+        locationKeywords.find((lk) =>
+          normalize(job.location)
+            .toLocaleLowerCase("tr")
+            .includes(normalize(lk.toLocaleLowerCase("tr")))
+        )
+      ) {
+        return true;
+      }
+
+      if (
+        job.modeOfWork.toLowerCase().trim() === modeOfWork.toLowerCase().trim()
+      ) {
+        return true;
+      }
+
+      if (experienceTime.includes(job.experienceTime)) {
+        return true;
+      }
+
+      if (positionLevel.includes(job.positionLevel)) {
+        return true;
+      }
+
+      return false;
+    });
 
     return NextResponse.json({
-      jobPostings: filteredJob.length ? filteredJob : jobs,
-      countJobs: countJobs.data().count,
+      jobs: filteredJobs?.length ? filteredJobs : jobs,
+      countJobs:
+        modeOfWork.length ||
+        experienceTime.length ||
+        positionLevel.length ||
+        jobKeywords.length ||
+        locationKeywords.length
+          ? filteredJobs.length
+          : jobs.length,
     });
   } catch (error) {
     if (error instanceof Error) {

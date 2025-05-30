@@ -1,12 +1,15 @@
 import FavoriteCompany from "@/components/FavoriteCompany";
 import { JOB_TYPES } from "@/constants/filtersJob";
+import useJobFilter from "@/hooks/useJobFilter";
 import {
   selectCareerLevel,
   selectFiltersItem,
+  selectJobKeyword,
   selectJobType,
+  selectLocationKeyword,
 } from "@/lib/redux/features/filterJobs/filters";
 import { AppDispatch, RootState } from "@/lib/redux/store";
-import { normalize, routeFormatter } from "@/lib/routeFormat";
+import { routeFormatter } from "@/lib/routeFormat";
 import { EmployerOpenJobs } from "@/types";
 import { JobCompanyInformations } from "@/types/filtersJob";
 import { UnknownAction } from "@reduxjs/toolkit";
@@ -22,10 +25,10 @@ const JobItem = ({
 }: {
   job: JobCompanyInformations & EmployerOpenJobs;
 }) => {
-  const { careerLevel, filtersItem } = useSelector(
-    (state: RootState) => state.jobFilters
-  );
+  const { careerLevel, filtersItem, jobKeywords, locationKeywords } =
+    useSelector((state: RootState) => state.jobFilters);
   const dispatch = useDispatch<AppDispatch>();
+  const { filterJob } = useJobFilter();
 
   const handleAction = (
     text: string,
@@ -36,6 +39,7 @@ const JobItem = ({
       dispatch(addState);
       dispatch(selectFiltersItem([...filtersItem, text]));
     } else {
+      filterJob();
       if (removeState) dispatch(removeState);
       dispatch(selectFiltersItem(filtersItem.filter((item) => item !== text)));
     }
@@ -87,24 +91,38 @@ const JobItem = ({
           </div>
 
           <div className="flex gap-[25px] mt-[5px]">
-            <Link
-              href={`/is-ilanlari?${new URLSearchParams({
-                meslek: `${normalize(job.category).toLowerCase()}`,
-              })}`}
-              className="flex items-center text-[#696969] hover:text-[#202124] text-sm transition-colors duration-300"
+            <span
+              onClick={(e) => {
+                e.preventDefault();
+                handleAction(
+                  job.category,
+                  selectJobKeyword([...jobKeywords, job.category]),
+                  selectJobKeyword(
+                    jobKeywords.filter((jk) => jk !== job.category)
+                  )
+                );
+              }}
+              className="flex items-center text-[#696969] hover:text-[#202124] text-sm transition-colors duration-300 cursor-pointer"
             >
               <VscBriefcase className="me-[5px]" size={20} />
               {job.category}
-            </Link>
-            <Link
-              href={`/is-ilanlari?${new URLSearchParams({
-                konum: `${routeFormatter(job.location)}`,
-              })}`}
-              className="flex items-center text-[#696969] hover:text-[#202124] text-sm transition-colors duration-300"
+            </span>
+            <span
+              onClick={(e) => {
+                e.preventDefault();
+                handleAction(
+                  job.location,
+                  selectLocationKeyword([...locationKeywords, job.location]),
+                  selectLocationKeyword(
+                    locationKeywords.filter((lk) => lk !== job.location)
+                  )
+                );
+              }}
+              className="flex items-center text-[#696969] hover:text-[#202124] text-sm transition-colors duration-300 cursor-pointer"
             >
               <SlLocationPin className="me-[5px]" size={18} />
               {job.location}
-            </Link>
+            </span>
           </div>
 
           <div className="mt-3">

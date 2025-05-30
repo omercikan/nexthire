@@ -8,16 +8,42 @@ export const jobPostings = createApi({
   endpoints: (builder) => ({
     getJobPostings: builder.query({
       query: () => ({
-        url: "job-postings?sort=undefined&start=0&end=9",
+        url: "job-postings?sort=asc&start=0&end=9",
         method: "POST",
-        body: JSON.stringify({
+        body: {
           modeOfWork: "",
           experienceTime: [],
           positionLevel: [],
+          jobKeywords: [],
+          locationKeywords: [],
+        },
+      }),
+    }),
+
+    filterJobPostings: builder.mutation({
+      query: ({
+        sort = "",
+        start = "0",
+        end = "9",
+        modeOfWork = "",
+        experienceTime = [],
+        positionLevel = [],
+        jobKeywords = [],
+        locationKeywords = [],
+      }) => ({
+        url: `job-postings?sort=${sort}&start=${start}&end=${end}`,
+        method: "POST",
+        body: JSON.stringify({
+          modeOfWork,
+          experienceTime,
+          positionLevel,
+          jobKeywords,
+          locationKeywords,
         }),
       }),
     }),
   }),
 });
 
-export const { useGetJobPostingsQuery } = jobPostings;
+export const { useGetJobPostingsQuery, useFilterJobPostingsMutation } =
+  jobPostings;

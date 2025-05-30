@@ -7,6 +7,7 @@ import { MdArrowDropDown } from "react-icons/md";
 import { IoIosClose } from "react-icons/io";
 import { CustomListProps } from "@/types/filtersJob";
 import { selectFiltersItem } from "@/lib/redux/features/filterJobs/filters";
+import useJobFilter from "@/hooks/useJobFilter";
 
 const JobType = ({
   title,
@@ -16,10 +17,12 @@ const JobType = ({
   defaultValue,
   screenClass,
   listClass,
+  listWrapperClass,
 }: CustomListProps) => {
   const [openJobMenu, setOpenJobMenu] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const { filtersItem } = useSelector((state: RootState) => state.jobFilters);
+  const { filterJob } = useJobFilter();
 
   useEffect(() => {
     window.addEventListener("click", () => setOpenJobMenu(false));
@@ -42,8 +45,17 @@ const JobType = ({
     }
   };
 
+  const handleClearCurrent = () => {
+    filterJob();
+
+    dispatch(setState(""));
+    dispatch(
+      selectFiltersItem(filtersItem.filter((item) => !options.includes(item)))
+    );
+  };
+
   return (
-    <div>
+    <div className={`${listWrapperClass ?? ""}`}>
       {title && <span className="filter-title">{title}</span>}
 
       <div className="relative z-[1]">
@@ -63,14 +75,7 @@ const JobType = ({
               <IoIosClose
                 size={20}
                 className="hover:text-[#e44343]"
-                onClick={() => {
-                  dispatch(setState(""));
-                  dispatch(
-                    selectFiltersItem(
-                      filtersItem.filter((item) => !options.includes(item))
-                    )
-                  );
-                }}
+                onClick={handleClearCurrent}
               />
             )}
 

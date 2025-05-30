@@ -12,6 +12,7 @@ const FilterSwitch = ({
   setState,
   extraSwitch,
   extraSwitchText,
+  switchWrapperClass,
 }: {
   title: string;
   switchItems: { itemText: string }[];
@@ -19,11 +20,12 @@ const FilterSwitch = ({
   setState: (state: string[]) => UnknownAction;
   extraSwitch?: boolean;
   extraSwitchText?: string;
+  switchWrapperClass: string;
 }) => {
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <div className="mt-[30px]">
+    <div className={`mt-[30px] ${switchWrapperClass ?? ""}`}>
       <span className="filter-title">{title}</span>
 
       {switchItems.map((val, i) => (

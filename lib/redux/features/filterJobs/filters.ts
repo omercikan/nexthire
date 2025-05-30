@@ -1,3 +1,5 @@
+import { EmployerOpenJobs } from "@/types";
+import { JobCompanyInformations } from "@/types/filtersJob";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: initialStateFields = {
@@ -7,6 +9,14 @@ const initialState: initialStateFields = {
   sortValue: "",
   pageValue: "",
   filtersItem: [],
+  jobKeywords: [],
+  locationKeywords: [],
+  filterData: {
+    countJobs: 0,
+    jobs: [],
+    isFilter: false,
+    isLoading: false,
+  },
 };
 
 interface initialStateFields {
@@ -16,6 +26,14 @@ interface initialStateFields {
   sortValue: string;
   pageValue: string;
   filtersItem: string[];
+  jobKeywords: string[];
+  locationKeywords: string[];
+  filterData: {
+    countJobs: number;
+    jobs: (JobCompanyInformations & EmployerOpenJobs)[];
+    isFilter: boolean;
+    isLoading: boolean;
+  };
 }
 
 export const jobFilters = createSlice({
@@ -54,6 +72,20 @@ export const jobFilters = createSlice({
       state.pageValue = action.payload;
     },
 
+    selectJobKeyword: (
+      state: initialStateFields,
+      action: PayloadAction<string[]>
+    ) => {
+      state.jobKeywords = action.payload;
+    },
+
+    selectLocationKeyword: (
+      state: initialStateFields,
+      action: PayloadAction<string[]>
+    ) => {
+      state.locationKeywords = action.payload;
+    },
+
     selectFiltersItem: (
       state: initialStateFields,
       action: { payload: string[] }
@@ -71,10 +103,18 @@ export const jobFilters = createSlice({
     ) => {
       const payload: string = action.payload;
 
-      const arrayFields: ["careerLevel", "experienceLevel", "filtersItem"] = [
+      const arrayFields: [
         "careerLevel",
         "experienceLevel",
         "filtersItem",
+        "jobKeywords",
+        "locationKeywords"
+      ] = [
+        "careerLevel",
+        "experienceLevel",
+        "filtersItem",
+        "jobKeywords",
+        "locationKeywords",
       ];
 
       const stringFields: ["jobType", "pageValue", "sortValue"] = [
@@ -95,6 +135,18 @@ export const jobFilters = createSlice({
         }
       });
     },
+
+    setFilterData: (
+      state: initialStateFields,
+      action: PayloadAction<{
+        countJobs: number;
+        jobs: (JobCompanyInformations & EmployerOpenJobs)[];
+        isFilter: boolean;
+        isLoading: boolean;
+      }>
+    ) => {
+      state.filterData = action.payload;
+    },
   },
 });
 
@@ -107,4 +159,7 @@ export const {
   selectFiltersItem,
   clearAllFilters,
   clearMatchFilter,
+  setFilterData,
+  selectJobKeyword,
+  selectLocationKeyword,
 } = jobFilters.actions;

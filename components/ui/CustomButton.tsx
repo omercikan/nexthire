@@ -7,12 +7,14 @@ const CustomButton = ({
   className,
   text,
   circularColor,
+  handleClick
 }: CustomButtonProps) => {
   return (
     <button
       type="submit"
       disabled={isSubmitting}
       className={`custom__button ${className ? className : ""}`}
+      onClick={handleClick}
     >
       {isSubmitting ? (
         <Box sx={{ display: "flex", justifyContent: "center" }}>

@@ -2,14 +2,21 @@
 
 import SectionHeader from "@/components/SectionHeader";
 import { categories } from "@/data/categories";
-import { routeFormatter } from "@/lib/routeFormat";
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import { useGetFeaturedJobsQuery } from "@/lib/redux/services/featuredJobsApi";
+import {
+  selectFiltersItem,
+  selectJobKeyword,
+} from "@/lib/redux/features/filterJobs/filters";
+import { useDispatch } from "react-redux";
+import useJobFilter from "@/hooks/useJobFilter";
 
 const Categories = () => {
   const { data } = useGetFeaturedJobsQuery("");
+  const dispatch = useDispatch();
+  const { filterJob } = useJobFilter();
 
   return (
     <motion.div
@@ -31,9 +38,12 @@ const Categories = () => {
           <li key={category.id} className="group">
             <Link
               className="category-list-item w-full"
-              href={`/is-ilanlari/?${new URLSearchParams({
-                meslek: routeFormatter(category.name),
-              })}`}
+              href="/is-ilanlari"
+              onClick={() => {
+                dispatch(selectFiltersItem([category?.name]));
+                dispatch(selectJobKeyword([category?.name]));
+                filterJob();
+              }}
             >
               <div className="category-list-item-wrapper">
                 <category.icon size={40} color="202124" />
