@@ -1,11 +1,6 @@
-import useJobFilter from "@/hooks/useJobFilter";
-import {
-  selectFiltersItem,
-  selectJobKeyword,
-} from "@/lib/redux/features/filterJobs/filters";
-import Link from "next/link";
+import ItemFilterText from "@/components/ItemFilterText";
+import useItemFilterText from "@/hooks/useItemFilterText";
 import React from "react";
-import { useDispatch } from "react-redux";
 
 const KeywordItem = ({
   keyword,
@@ -15,22 +10,17 @@ const KeywordItem = ({
     keyword: string;
   };
 }) => {
-  const dispatch = useDispatch();
-  const { filterJob } = useJobFilter();
+  const { applyItemFilter } = useItemFilterText();
 
   return (
     <li key={keyword.id}>
-      <Link
-        className="keyword-link"
-        href="/is-ilanlari"
-        onClick={() => {
-          dispatch(selectFiltersItem([keyword?.keyword]));
-          dispatch(selectJobKeyword([keyword?.keyword]));
-          filterJob();
-        }}
+      <ItemFilterText
+        redirect="/is-ilanlari"
+        handleClick={() => applyItemFilter(keyword?.keyword, true, false)}
+        linkClassName="keyword-link"
       >
         {keyword.keyword}
-      </Link>
+      </ItemFilterText>
     </li>
   );
 };

@@ -14,18 +14,13 @@ import Tooltip from "@mui/material/Tooltip";
 import SectionHeader from "@/components/SectionHeader";
 import { motion } from "framer-motion";
 import { useGetFeaturedJobsQuery } from "@/lib/redux/services/featuredJobsApi";
-import { useDispatch } from "react-redux";
-import {
-  selectFiltersItem,
-  selectJobKeyword,
-} from "@/lib/redux/features/filterJobs/filters";
-import useJobFilter from "@/hooks/useJobFilter";
+import ItemFilterText from "@/components/ItemFilterText";
+import useItemFilterText from "@/hooks/useItemFilterText";
 
 const FeaturedJobs = () => {
   const placeholderLoader = Array.from({ length: 3 }, (_, i) => i);
   const { data, isLoading } = useGetFeaturedJobsQuery("");
-  const dispatch = useDispatch();
-  const { filterJob } = useJobFilter();
+  const { applyItemFilter } = useItemFilterText();
 
   return (
     <motion.div
@@ -121,22 +116,20 @@ const FeaturedJobs = () => {
                           </strong>
                         </Link>{" "}
                         <span className="text-[#696969]">tarafından</span>{" "}
-                        <Link
-                          href="/is-ilanlari"
-                          onClick={() => {
-                            dispatch(
-                              selectFiltersItem([job.openJobs[0].category])
-                            );
-                            dispatch(
-                              selectJobKeyword([job.openJobs[0].category])
-                            );
-                            filterJob();
-                          }}
+                        <ItemFilterText
+                          redirect="/is-ilanlari"
+                          handleClick={() =>
+                            applyItemFilter(
+                              job.openJobs[0].category,
+                              true,
+                              false
+                            )
+                          }
                         >
                           <strong className="featured-job-title-tag">
                             {job.openJobs[0].category}
                           </strong>
-                        </Link>{" "}
+                        </ItemFilterText>
                         <span className="text-[#696969]">ilanı</span>
                       </p>
 

@@ -2,21 +2,15 @@
 
 import SectionHeader from "@/components/SectionHeader";
 import { categories } from "@/data/categories";
-import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import { useGetFeaturedJobsQuery } from "@/lib/redux/services/featuredJobsApi";
-import {
-  selectFiltersItem,
-  selectJobKeyword,
-} from "@/lib/redux/features/filterJobs/filters";
-import { useDispatch } from "react-redux";
-import useJobFilter from "@/hooks/useJobFilter";
+import ItemFilterText from "@/components/ItemFilterText";
+import useItemFilterText from "@/hooks/useItemFilterText";
 
 const Categories = () => {
   const { data } = useGetFeaturedJobsQuery("");
-  const dispatch = useDispatch();
-  const { filterJob } = useJobFilter();
+  const { applyItemFilter } = useItemFilterText();
 
   return (
     <motion.div
@@ -36,14 +30,10 @@ const Categories = () => {
       <ul className="category-list x-scrollbar max-md:mask-x-from-70%">
         {categories.map((category) => (
           <li key={category.id} className="group">
-            <Link
-              className="category-list-item w-full"
-              href="/is-ilanlari"
-              onClick={() => {
-                dispatch(selectFiltersItem([category?.name]));
-                dispatch(selectJobKeyword([category?.name]));
-                filterJob();
-              }}
+            <ItemFilterText
+              handleClick={() => applyItemFilter(category?.name, true, false)}
+              redirect="/is-ilanlari"
+              linkClassName="category-list-item w-full"
             >
               <div className="category-list-item-wrapper">
                 <category.icon size={40} color="202124" />
@@ -59,7 +49,7 @@ const Categories = () => {
                 } açık pozisyon`}{" "}
                 )
               </span>
-            </Link>
+            </ItemFilterText>
           </li>
         ))}
       </ul>

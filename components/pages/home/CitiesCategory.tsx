@@ -3,21 +3,15 @@
 import SectionHeader from "@/components/SectionHeader";
 import { citiesCategory } from "@/data/citiesCategory";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import { useGetFeaturedJobsQuery } from "@/lib/redux/services/featuredJobsApi";
-import {
-  selectFiltersItem,
-  selectLocationKeyword,
-} from "@/lib/redux/features/filterJobs/filters";
-import { useDispatch } from "react-redux";
-import useJobFilter from "@/hooks/useJobFilter";
+import ItemFilterText from "@/components/ItemFilterText";
+import useItemFilterText from "@/hooks/useItemFilterText";
 
 const CitiesCategory = () => {
   const { data } = useGetFeaturedJobsQuery("");
-  const dispatch = useDispatch();
-  const { filterJob } = useJobFilter();
+  const { applyItemFilter } = useItemFilterText();
 
   return (
     <motion.section
@@ -37,14 +31,10 @@ const CitiesCategory = () => {
         <ul className="grid grid-cols-6 max-lg:grid-cols-3 max-md:grid-cols-2 gap-3 items-center justify-between">
           {citiesCategory.map((city) => (
             <li key={city.id} className="group">
-              <Link
-                className="inline-block w-full"
-                href="/is-ilanlari"
-                onClick={() => {
-                  dispatch(selectFiltersItem([city?.cityName]));
-                  dispatch(selectLocationKeyword([city?.cityName]));
-                  filterJob();
-                }}
+              <ItemFilterText
+                redirect="/is-ilanlari"
+                handleClick={() => applyItemFilter(city?.cityName, false, true)}
+                linkClassName="inline-block w-full"
               >
                 <div className="pb-[15px] w-full">
                   <Image
@@ -68,7 +58,7 @@ const CitiesCategory = () => {
                   }{" "}
                   aktif iş
                 </span>
-              </Link>
+              </ItemFilterText>
             </li>
           ))}
         </ul>

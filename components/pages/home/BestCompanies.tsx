@@ -25,12 +25,8 @@ import {
   useAddFavoriteCompanyMutation,
   useGetBestCompaniesQuery,
 } from "@/lib/redux/services/bestCompaniesApi";
-import {
-  selectFiltersItem,
-  selectLocationKeyword,
-} from "@/lib/redux/features/filterJobs/filters";
-import { useDispatch } from "react-redux";
-import useJobFilter from "@/hooks/useJobFilter";
+import ItemFilterText from "@/components/ItemFilterText";
+import useItemFilterText from "@/hooks/useItemFilterText";
 
 const BestCompanies = () => {
   const { user } = useContext(AuthContext);
@@ -41,8 +37,7 @@ const BestCompanies = () => {
     refetchOnMountOrArgChange: true,
   });
   const [addFavorite, result] = useAddFavoriteCompanyMutation();
-  const dispatch = useDispatch();
-  const { filterJob } = useJobFilter();
+  const { applyItemFilter } = useItemFilterText();
 
   useEffect(() => {
     if (candidateUser) {
@@ -215,24 +210,18 @@ const BestCompanies = () => {
                   <ul className="flex flex-wrap items-center justify-center gap-2.5 text-[#202124]">
                     <li className="flex items-center gap-[5px]">
                       <SlLocationPin size={18} />
-                      <Link
-                        href="/is-ilanlari"
-                        onClick={() => {
-                          dispatch(
-                            selectFiltersItem([
-                              company.companyInformations.location.city,
-                            ])
-                          );
-                          dispatch(
-                            selectLocationKeyword([
-                              company.companyInformations.location.city,
-                            ])
-                          );
-                          filterJob();
-                        }}
+                      <ItemFilterText
+                        redirect="/is-ilanlari"
+                        handleClick={() =>
+                          applyItemFilter(
+                            company?.companyInformations?.location?.city,
+                            false,
+                            true
+                          )
+                        }
                       >
-                        {company.companyInformations.location.city}
-                      </Link>
+                        {company?.companyInformations?.location?.city}
+                      </ItemFilterText>
                     </li>
 
                     <li className="flex items-center gap-[5px]">
