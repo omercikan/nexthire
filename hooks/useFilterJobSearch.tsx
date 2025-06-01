@@ -1,7 +1,5 @@
 import {
-  selectFiltersItem,
-  selectJobKeyword,
-  selectLocationKeyword,
+  clearAllFilters,
   setJobSearchFilterData,
 } from "@/lib/redux/features/filterJobs/filters";
 import { AppDispatch, RootState } from "@/lib/redux/store";
@@ -20,42 +18,34 @@ const useFilterJobSearch = () => {
     const trimmedJobKeyword = jobKeyword.trim();
     const trimmedLocationKeyword = locationKeyword.trim();
 
-    const jobSearchFilters: JobSearchFilters = {
+    //? Filters for homepage job search ("/") ?//
+    const homeSearchFilters: JobSearchFilters = {
       jobKeywords: trimmedJobKeyword ? [trimmedJobKeyword] : [],
       locationKeywords: trimmedLocationKeyword ? [trimmedLocationKeyword] : [],
       filterItems: [trimmedJobKeyword, trimmedLocationKeyword].filter(Boolean),
     };
 
-    if (pathname === "/") {
-      dispatch(setJobSearchFilterData(jobSearchFilters));
-    }
+    //? Job search filters for the ("/is-ilanlari") page ?//
+    const jobPostingsSearchFilters: JobSearchFilters = {
+      jobKeywords: trimmedJobKeyword ? [...jobKeywords, trimmedJobKeyword] : [],
+      locationKeywords: trimmedLocationKeyword
+        ? [...locationKeywords, trimmedLocationKeyword]
+        : [],
+      filterItems: Array.from(
+        new Set([...filtersItem, trimmedJobKeyword, trimmedLocationKeyword])
+      ).filter(Boolean),
+    };
 
-    const updatedFilters = new Set(filtersItem); //! Unique filter items !//
-
-    if (trimmedLocationKeyword) {
-      if (
-        !locationKeywords.includes(locationKeyword) &&
-        pathname === "/is-ilanlari"
-      ) {
-        dispatch(
-          selectLocationKeyword([...locationKeywords, trimmedLocationKeyword])
-        );
-        updatedFilters.add(trimmedLocationKeyword);
-      }
-    }
-
-    if (trimmedJobKeyword) {
-      if (
-        !jobKeywords.includes(trimmedJobKeyword) &&
-        pathname === "/is-ilanlari"
-      ) {
-        dispatch(selectJobKeyword([...jobKeywords, trimmedJobKeyword]));
-        updatedFilters.add(trimmedJobKeyword);
-      }
-    }
-
-    if (updatedFilters.size !== filtersItem.length) {
-      dispatch(selectFiltersItem([...updatedFilters]));
+    switch (pathname) {
+      case "/": //* match home ("/") route only
+        dispatch(clearAllFilters());
+        dispatch(setJobSearchFilterData(homeSearchFilters));
+        break;
+      case "/is-ilanlari": //* only match ("/is-ilanlari") route 
+        dispatch(setJobSearchFilterData(jobPostingsSearchFilters));
+        break;
+      default:
+        dispatch(clearAllFilters());
     }
   };
 
