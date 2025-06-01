@@ -69,6 +69,13 @@
   <li>🧠 Extended <code>jobFilters</code> slice with new fields (<code>sortValue</code>, <code>pageValue</code>, <code>filtersItem</code>, <code>jobKeywords</code>, <code>locationKeywords</code>, <code>filterData</code>) and reducers</li>
   <li>🧩 Added <code>touch</code> slice for managing UI-layer states</li>
   <li>🐛 Fixed type issues in <code>filtersJob</code> config file</li>
+  <li>🧠 Added new setJobSearchFilterData reducer to jobFilters slice for managing homepage search filters more accurately</li>
+</ul>
+
+<h3>🐛 Bug Fixes</h3>
+<ul>
+  <li>🐞 Fixed issue where homepage job search retained stale filter state after navigating or interacting with filters</li>
+  <li>🧼 Resolved outdated state persistence in job filter selection, ensuring UI reflects current filter criteria</li>
 </ul>
 
 <h2>📌 Notes</h2>

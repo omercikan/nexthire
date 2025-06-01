@@ -136,6 +136,19 @@ export const jobFilters = createSlice({
       });
     },
 
+    setJobSearchFilterData: (
+      state: initialStateFields,
+      action: PayloadAction<{
+        jobKeywords: string[];
+        locationKeywords: string[];
+        filterItems: string[];
+      }>
+    ) => {
+      state.jobKeywords = action.payload.jobKeywords;
+      state.locationKeywords = action.payload.locationKeywords;
+      state.filtersItem = action.payload.filterItems;
+    },
+
     setFilterData: (
       state: initialStateFields,
       action: PayloadAction<{
@@ -162,4 +175,5 @@ export const {
   setFilterData,
   selectJobKeyword,
   selectLocationKeyword,
+  setJobSearchFilterData,
 } = jobFilters.actions;
