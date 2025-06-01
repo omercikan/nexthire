@@ -27,10 +27,10 @@ const useFilterJobSearch = () => {
 
     //? Job search filters for the ("/is-ilanlari") page ?//
     const jobPostingsSearchFilters: JobSearchFilters = {
-      jobKeywords: trimmedJobKeyword ? [...jobKeywords, trimmedJobKeyword] : [],
-      locationKeywords: trimmedLocationKeyword
-        ? [...locationKeywords, trimmedLocationKeyword]
-        : [],
+      jobKeywords: [...jobKeywords, trimmedJobKeyword].filter(Boolean),
+      locationKeywords: [...locationKeywords, trimmedLocationKeyword].filter(
+        Boolean
+      ),
       filterItems: Array.from(
         new Set([...filtersItem, trimmedJobKeyword, trimmedLocationKeyword])
       ).filter(Boolean),
@@ -41,7 +41,7 @@ const useFilterJobSearch = () => {
         dispatch(clearAllFilters());
         dispatch(setJobSearchFilterData(homeSearchFilters));
         break;
-      case "/is-ilanlari": //* only match ("/is-ilanlari") route 
+      case "/is-ilanlari": //* only match ("/is-ilanlari") route
         dispatch(setJobSearchFilterData(jobPostingsSearchFilters));
         break;
       default:
