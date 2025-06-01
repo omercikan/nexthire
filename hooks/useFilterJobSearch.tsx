@@ -5,6 +5,7 @@ import {
   setJobSearchFilterData,
 } from "@/lib/redux/features/filterJobs/filters";
 import { AppDispatch, RootState } from "@/lib/redux/store";
+import { JobSearchFilters } from "@/types/filtersJob";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -19,40 +20,14 @@ const useFilterJobSearch = () => {
     const trimmedJobKeyword = jobKeyword.trim();
     const trimmedLocationKeyword = locationKeyword.trim();
 
+    const jobSearchFilters: JobSearchFilters = {
+      jobKeywords: trimmedJobKeyword ? [trimmedJobKeyword] : [],
+      locationKeywords: trimmedLocationKeyword ? [trimmedLocationKeyword] : [],
+      filterItems: [trimmedJobKeyword, trimmedLocationKeyword].filter(Boolean),
+    };
+
     if (pathname === "/") {
-      if (trimmedJobKeyword && !trimmedLocationKeyword) {
-        dispatch(
-          setJobSearchFilterData({
-            jobKeywords: [trimmedJobKeyword],
-            filterItems: [trimmedJobKeyword],
-            locationKeywords: [],
-          })
-        );
-      } else if (trimmedLocationKeyword && !trimmedJobKeyword) {
-        dispatch(
-          setJobSearchFilterData({
-            jobKeywords: [],
-            filterItems: [trimmedLocationKeyword],
-            locationKeywords: [trimmedLocationKeyword],
-          })
-        );
-      } else if (!trimmedJobKeyword && !trimmedLocationKeyword) {
-        dispatch(
-          setJobSearchFilterData({
-            jobKeywords: [],
-            filterItems: [],
-            locationKeywords: [],
-          })
-        );
-      } else {
-        dispatch(
-          setJobSearchFilterData({
-            jobKeywords: [trimmedJobKeyword],
-            filterItems: [trimmedJobKeyword, trimmedLocationKeyword],
-            locationKeywords: [trimmedLocationKeyword],
-          })
-        );
-      }
+      dispatch(setJobSearchFilterData(jobSearchFilters));
     }
 
     const updatedFilters = new Set(filtersItem); //! Unique filter items !//

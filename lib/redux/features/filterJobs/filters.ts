@@ -1,5 +1,5 @@
 import { EmployerOpenJobs } from "@/types";
-import { JobCompanyInformations } from "@/types/filtersJob";
+import { JobCompanyInformations, JobSearchFilters } from "@/types/filtersJob";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: initialStateFields = {
@@ -138,11 +138,7 @@ export const jobFilters = createSlice({
 
     setJobSearchFilterData: (
       state: initialStateFields,
-      action: PayloadAction<{
-        jobKeywords: string[];
-        locationKeywords: string[];
-        filterItems: string[];
-      }>
+      action: PayloadAction<JobSearchFilters>
     ) => {
       state.jobKeywords = action.payload.jobKeywords;
       state.locationKeywords = action.payload.locationKeywords;

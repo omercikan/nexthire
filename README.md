@@ -70,6 +70,9 @@
   <li>🧩 Added <code>touch</code> slice for managing UI-layer states</li>
   <li>🐛 Fixed type issues in <code>filtersJob</code> config file</li>
   <li>🧠 Added new setJobSearchFilterData reducer to jobFilters slice for managing homepage search filters more accurately</li>
+  <li>🔄 Simplified homepage job search filter update by consolidating dispatch logic into a single object</li>
+  <li>📐 Added <code>JobSearchFilters</code> interface to enforce consistent filter state structure</li>
+  <li>🧹 Improved code readability and maintainability in job search filter dispatch</li>
 </ul>
 
 <h3>🐛 Bug Fixes</h3>

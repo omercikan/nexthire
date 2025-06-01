@@ -28,3 +28,9 @@ export interface CustomListProps {
   listClass?: string;
   listWrapperClass?: string;
 }
+
+export interface JobSearchFilters {
+  jobKeywords: string[];
+  locationKeywords: string[];
+  filterItems: string[];
+}
