@@ -51,7 +51,7 @@ const FilterMenu = () => {
   };
 
   return (
-    <aside className="bg-[#F5F7FC] rounded-lg flex-[calc(32.8%-1px)]">
+    <aside className="bg-[#F5F7FC] rounded-lg flex-[calc(32.8%-1px)] h-max">
       <CustomList
         title="Çalışma Şekli"
         options={JOB_TYPES}

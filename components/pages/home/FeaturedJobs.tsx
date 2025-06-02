@@ -8,7 +8,6 @@ import "swiper/scss";
 import Image from "next/image";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { routeFormatter } from "@/lib/routeFormat";
-import Skeleton from "@mui/material/Skeleton";
 import { TfiCrown } from "react-icons/tfi";
 import Tooltip from "@mui/material/Tooltip";
 import SectionHeader from "@/components/SectionHeader";
@@ -16,9 +15,11 @@ import { motion } from "framer-motion";
 import { useGetFeaturedJobsQuery } from "@/lib/redux/services/featuredJobsApi";
 import ItemFilterText from "@/components/ItemFilterText";
 import useItemFilterText from "@/hooks/useItemFilterText";
+import useCreateArray from "@/hooks/useCreateArray";
+import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 
 const FeaturedJobs = () => {
-  const placeholderLoader = Array.from({ length: 3 }, (_, i) => i);
+  const placeholderLoader = useCreateArray(3);
   const { data, isLoading } = useGetFeaturedJobsQuery("");
   const { applyItemFilter } = useItemFilterText();
 
@@ -165,14 +166,15 @@ const FeaturedJobs = () => {
               <>
                 {placeholderLoader.map((_, i) => (
                   <SwiperSlide key={i}>
-                    <Skeleton
-                      animation="wave"
+                    <LoaderSkeleton
+                      animationType="wave"
                       variant="rectangular"
-                      sx={{
+                      sxClass={{
                         borderRadius: "18px",
                         width: "100%",
                         height: "284.200px",
                       }}
+                      length={1}
                     />
                   </SwiperSlide>
                 ))}
