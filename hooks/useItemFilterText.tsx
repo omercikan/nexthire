@@ -1,4 +1,7 @@
-import { setJobSearchFilterData } from "@/lib/redux/features/filterJobs/filters";
+import {
+  clearAllFilters,
+  setJobSearchFilterData,
+} from "@/lib/redux/features/filterJobs/filters";
 import { AppDispatch } from "@/lib/redux/store";
 import { useDispatch } from "react-redux";
 import useJobFilter from "./useJobFilter";
@@ -12,6 +15,7 @@ const useItemFilterText = () => {
     isApplyJob: boolean,
     isApplyLocation: boolean
   ) => {
+    dispatch(clearAllFilters());
     dispatch(
       setJobSearchFilterData({
         filterItems: [item],
