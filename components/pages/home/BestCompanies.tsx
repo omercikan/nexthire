@@ -19,7 +19,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { db } from "@/app/api/firebase/firebaseConfig";
 import { arrayUnion, doc, DocumentData, onSnapshot } from "firebase/firestore";
 import CircularProgress from "@mui/material/CircularProgress";
-import Skeleton from "@mui/material/Skeleton";
 import { motion } from "framer-motion";
 import {
   useAddFavoriteCompanyMutation,
@@ -27,12 +26,14 @@ import {
 } from "@/lib/redux/services/bestCompaniesApi";
 import ItemFilterText from "@/components/ItemFilterText";
 import useItemFilterText from "@/hooks/useItemFilterText";
+import useCreateArray from "@/hooks/useCreateArray";
+import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 
 const BestCompanies = () => {
   const { user } = useContext(AuthContext);
   const candidateUser = user as Candidate;
   const [updatedData, setUpdatedData] = useState<Candidate>();
-  const placeholderLoader = Array.from({ length: 4 }, (_, i) => i);
+  const placeholderLoader = useCreateArray(4);
   const { data, isLoading, refetch } = useGetBestCompaniesQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
@@ -265,14 +266,15 @@ const BestCompanies = () => {
             <>
               {placeholderLoader.map((_, i) => (
                 <SwiperSlide key={i}>
-                  <Skeleton
-                    animation="wave"
+                  <LoaderSkeleton
+                    animationType="wave"
                     variant="rectangular"
-                    sx={{
+                    sxClass={{
                       borderRadius: "18px",
                       width: "100%",
                       height: "351.6px",
                     }}
+                    length={1}
                   />
                 </SwiperSlide>
               ))}

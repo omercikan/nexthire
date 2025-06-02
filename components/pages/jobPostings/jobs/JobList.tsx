@@ -7,6 +7,7 @@ import ResultNavigator from "./ResultNavigator";
 import FilterBar from "./FilterBar";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
+import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 
 const JobList = () => {
   const { filterData } = useSelector((state: RootState) => state.jobFilters);
@@ -33,7 +34,20 @@ const JobList = () => {
       />
 
       {isLoading || loading ? (
-        "Yükleniyor"
+        <LoaderSkeleton
+          animationType="wave"
+          variant="rectangular"
+          sxClass={{
+            width: "100%",
+            height: "150.6px",
+            borderRadius: "8px",
+          }}
+          extraSxClass={{ marginBottom: "30px", backgroundColor: "#f3f4f6" }}
+          length={
+            (filterData.countJobs ? filterData?.countJobs : data?.countJobs) ??
+            4
+          }
+        />
       ) : filterData?.countJobs === 0 && filterData?.isFilter ? (
         <div className="bg-[#D4E1F5] text-[#1967D2] p-[15px] rounded-lg">
           <p>Aramana uygun bir sonuç bulunamadı. 😔</p>

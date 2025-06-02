@@ -4,8 +4,9 @@ import React, { useEffect } from "react";
 import { A11y, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import BlogSlide from "./BlogSlide";
-import Skeleton from "@mui/material/Skeleton";
 import { Typography } from "@mui/material";
+import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
+import useCreateArray from "@/hooks/useCreateArray";
 
 const BlogsSwiper = ({
   blogs,
@@ -14,7 +15,7 @@ const BlogsSwiper = ({
   blogs: BlogPost[];
   setBlogs: React.Dispatch<React.SetStateAction<BlogPost[]>>;
 }) => {
-  const placeholderLoader = Array.from({ length: 3 }, (_, i) => i);
+  const placeholderLoader = useCreateArray(3);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -62,22 +63,39 @@ const BlogsSwiper = ({
         <>
           {placeholderLoader.map((_, i) => (
             <SwiperSlide key={i}>
-              <Skeleton
-                animation="wave"
+              <LoaderSkeleton
+                animationType="wave"
                 variant="rectangular"
-                sx={{
+                sxClass={{
                   borderRadius: "18px",
                   width: "100%",
                   height: "284.200px",
                 }}
+                length={1}
+                className="max-lg:!h-[200px]"
               />
 
               <Typography marginTop={2.5}>
-                <Skeleton width={84.66} height={21.6} animation="wave" />
-                <Skeleton
-                  width={262.79}
-                  height={28.8}
-                  animation="wave"
+                <LoaderSkeleton
+                  sxClass={{
+                    width: "84.66px",
+                    height: "21.6px",
+                    borderRadius: "4px",
+                  }}
+                  variant="text"
+                  animationType="wave"
+                  length={1}
+                />
+
+                <LoaderSkeleton
+                  sxClass={{
+                    width: "262.79px",
+                    height: "28.8px",
+                    borderRadius: "4px",
+                  }}
+                  variant="text"
+                  animationType="wave"
+                  length={1}
                   className="max-[1280px]:!w-[200px] max-[480px]:!w-[262.79px]"
                 />
               </Typography>
