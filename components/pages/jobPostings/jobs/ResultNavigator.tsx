@@ -12,9 +12,14 @@ const ResultNavigator = ({
 }: {
   searchedDataLength: number;
 }) => {
-  const { sortValue, pageValue } = useSelector(
-    (state: RootState) => state.jobFilters
-  );
+  const {
+    sortValue,
+    pageValue,
+    prevPageValue,
+    nextPageValue,
+    filtersItem,
+    filterData: { countJobs, isFilter },
+  } = useSelector((state: RootState) => state.jobFilters);
   const { touch } = useSelector((state: RootState) => state.touch);
 
   return (
@@ -22,8 +27,18 @@ const ResultNavigator = ({
       <div>
         <p className="whitespace-nowrap">
           {pageValue === "Tümü"
-            ? `Toplam ${searchedDataLength} sonuç gösteriliyor`
-            : `${searchedDataLength} sonuçtan 1 - 10 gösteriliyor`}
+            ? countJobs !== 0
+              ? `Toplam ${
+                  countJobs > 0 ? countJobs : searchedDataLength
+                } sonuç gösteriliyor`
+              : `Seçili ${filtersItem?.length} filtreden ${countJobs} ilan gösteriliyor`
+            : filtersItem.length > 0 && isFilter
+            ? `Seçili ${filtersItem.length} filtreden ${countJobs} ilan gösteriliyor`
+            : ` ${searchedDataLength} sonuçtan ${
+                prevPageValue === 0 ? 1 : prevPageValue
+              } - ${
+                nextPageValue === 10 ? nextPageValue : countJobs
+              } gösteriliyor`}
         </p>
       </div>
 
