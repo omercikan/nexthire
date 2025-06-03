@@ -11,18 +11,30 @@ export async function POST(req: NextRequest) {
     positionLevel,
     jobKeywords,
     locationKeywords,
+    pageValue,
   }: {
     modeOfWork: string;
     experienceTime: string[];
     positionLevel: string[];
     jobKeywords: string[];
     locationKeywords: string[];
+    pageValue: string;
   } = await req.json();
 
   const { searchParams } = new URL(req.url);
   const sortValue = searchParams.get("sort");
   const startIndex = Number(searchParams.get("start"));
   const endIndex = Number(searchParams.get("end"));
+
+  const isAnyFilterItem =
+    modeOfWork.length > 0 ||
+    experienceTime.length > 0 ||
+    positionLevel.length > 0 ||
+    jobKeywords.length > 0 ||
+    locationKeywords.length > 0 ||
+    sortValue === "asc" ||
+    sortValue === "desc" ||
+    pageValue === "Tümü";
 
   try {
     const q = query(
@@ -34,7 +46,7 @@ export async function POST(req: NextRequest) {
       )
     );
 
-    const docData = (await getDocs(q)).docs.slice(startIndex, endIndex);
+    const docData = await getDocs(q);
 
     const jobs: (EmployerOpenJobs & { companyInformations: object })[] = [];
 
@@ -117,13 +129,18 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({
-      jobs: filteredJobs?.length ? filteredJobs : jobs,
+      jobs: filteredJobs?.length
+        ? filteredJobs
+        : jobs.slice(
+            isAnyFilterItem ? 0 : startIndex,
+            isAnyFilterItem ? jobs?.length : endIndex
+          ),
       countJobs:
-        modeOfWork.length ||
-        experienceTime.length ||
-        positionLevel.length ||
-        jobKeywords.length ||
-        locationKeywords.length
+        modeOfWork.length > 0 ||
+        experienceTime.length > 0 ||
+        positionLevel.length > 0 ||
+        jobKeywords.length > 0 ||
+        locationKeywords.length > 0
           ? filteredJobs.length
           : jobs.length,
     });

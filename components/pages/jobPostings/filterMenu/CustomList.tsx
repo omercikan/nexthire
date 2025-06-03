@@ -43,6 +43,8 @@ const JobType = ({
         selectFiltersItem(filtersItem.filter((fi) => !options.includes(fi)))
       );
     }
+
+    filterJob();
   };
 
   const handleClearCurrent = () => {

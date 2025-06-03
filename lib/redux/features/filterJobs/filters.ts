@@ -17,6 +17,8 @@ const initialState: initialStateFields = {
     isFilter: false,
     isLoading: false,
   },
+  nextPageValue: 10,
+  prevPageValue: 0,
 };
 
 interface initialStateFields {
@@ -34,6 +36,8 @@ interface initialStateFields {
     isFilter: boolean;
     isLoading: boolean;
   };
+  nextPageValue: number;
+  prevPageValue: number;
 }
 
 export const jobFilters = createSlice({
@@ -156,6 +160,14 @@ export const jobFilters = createSlice({
     ) => {
       state.filterData = action.payload;
     },
+
+    setPagination: (
+      state: initialStateFields,
+      action: PayloadAction<{ nextPageValue: number; prevPageValue: number }>
+    ) => {
+      state.nextPageValue = action.payload.nextPageValue;
+      state.prevPageValue = action.payload.prevPageValue;
+    },
   },
 });
 
@@ -172,4 +184,5 @@ export const {
   selectJobKeyword,
   selectLocationKeyword,
   setJobSearchFilterData,
+  setPagination,
 } = jobFilters.actions;

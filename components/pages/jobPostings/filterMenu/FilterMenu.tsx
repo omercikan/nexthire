@@ -3,13 +3,12 @@
 import React from "react";
 import CustomList from "./CustomList";
 import FilterSwitch from "./filterSwitch/FilterSwitch";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import {
   selectCareerLevel,
   selectExperienceLevel,
   selectJobType,
-  setFilterData,
 } from "@/lib/redux/features/filterJobs/filters";
 import {
   CAREER_LEVELS,
@@ -20,35 +19,10 @@ import CustomButton from "@/components/ui/CustomButton";
 import useJobFilter from "@/hooks/useJobFilter";
 
 const FilterMenu = () => {
-  const {
-    experienceLevel,
-    careerLevel,
-    jobType,
-    filterData,
-    sortValue,
-    jobKeywords,
-    locationKeywords,
-  } = useSelector((state: RootState) => state.jobFilters);
+  const { experienceLevel, careerLevel, jobType } = useSelector(
+    (state: RootState) => state.jobFilters
+  );
   const { filterJob, isLoading } = useJobFilter();
-  const dispatch = useDispatch();
-
-  const handleFilter = () => {
-    filterJob();
-    dispatch(
-      setFilterData({
-        ...filterData,
-        isFilter:
-          experienceLevel.length ||
-          careerLevel.length ||
-          jobType.length ||
-          sortValue.length ||
-          jobKeywords.length ||
-          locationKeywords.length
-            ? true
-            : false,
-      })
-    );
-  };
 
   return (
     <aside className="bg-[#F5F7FC] rounded-lg flex-[calc(32.8%-1px)] h-max">
@@ -67,7 +41,7 @@ const FilterMenu = () => {
         setState={selectExperienceLevel}
         switchItems={EXPERIENCE_LEVELS}
         extraSwitch={true}
-        extraSwitchText="5 Yıl"
+        extraSwitchText="5+ Yıl"
         switchWrapperClass="px-[30px]"
       />
 
@@ -84,7 +58,7 @@ const FilterMenu = () => {
           isSubmitting={isLoading}
           text="Uygula"
           className="w-full !rounded-lg"
-          handleClick={handleFilter}
+          handleClick={filterJob}
         />
       </div>
     </aside>

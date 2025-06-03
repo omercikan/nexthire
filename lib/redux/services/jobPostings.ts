@@ -8,7 +8,7 @@ export const jobPostings = createApi({
   endpoints: (builder) => ({
     getJobPostings: builder.query({
       query: () => ({
-        url: "job-postings?sort=asc&start=0&end=9",
+        url: "job-postings?sort=undefined&start=0&end=10",
         method: "POST",
         body: {
           modeOfWork: "",
@@ -22,14 +22,15 @@ export const jobPostings = createApi({
 
     filterJobPostings: builder.mutation({
       query: ({
-        sort = "",
-        start = "0",
-        end = "9",
+        sort = "asc",
+        start,
+        end,
         modeOfWork = "",
         experienceTime = [],
         positionLevel = [],
         jobKeywords = [],
         locationKeywords = [],
+        pageValue = "",
       }) => ({
         url: `job-postings?sort=${sort}&start=${start}&end=${end}`,
         method: "POST",
@@ -39,6 +40,7 @@ export const jobPostings = createApi({
           positionLevel,
           jobKeywords,
           locationKeywords,
+          pageValue,
         }),
       }),
     }),

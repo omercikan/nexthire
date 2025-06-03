@@ -13,8 +13,8 @@ const FilterBar = () => {
   const { filterJob } = useJobFilter();
 
   const handleClearFilterItem = (item: string) => {
-    filterJob();
     dispatch(clearMatchFilter(item));
+    filterJob();
   };
 
   return (

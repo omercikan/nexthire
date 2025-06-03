@@ -18,6 +18,9 @@ const useJobFilter = () => {
         sortValue,
         jobKeywords,
         locationKeywords,
+        prevPageValue,
+        nextPageValue,
+        pageValue,
       } = store.getState().jobFilters;
 
       const currentData = await applyFilter({
@@ -25,35 +28,32 @@ const useJobFilter = () => {
           (sortValue.includes("yeni") && "asc") ||
           (sortValue.includes("eski") && "desc") ||
           (sortValue.startsWith("Sıralama") && undefined),
+        start: prevPageValue,
+        end: nextPageValue,
         modeOfWork: jobType,
         experienceTime: experienceLevel,
         positionLevel: careerLevel,
         jobKeywords: jobKeywords,
         locationKeywords: locationKeywords,
+        pageValue: pageValue,
       });
+
+      const isAnyFilterItem =
+        experienceLevel.length ||
+        careerLevel.length ||
+        jobType.length ||
+        sortValue.length ||
+        jobKeywords.length ||
+        locationKeywords.length ||
+        prevPageValue ||
+        nextPageValue;
 
       if (currentData.data) {
         dispatch(
           setFilterData({
             isLoading: results?.isLoading,
-            isFilter:
-              experienceLevel.length ||
-              careerLevel.length ||
-              jobType.length ||
-              sortValue.length ||
-              jobKeywords.length ||
-              locationKeywords.length
-                ? true
-                : false,
-            countJobs:
-              experienceLevel.length ||
-              careerLevel.length ||
-              jobType.length ||
-              sortValue.length ||
-              jobKeywords.length ||
-              locationKeywords.length
-                ? currentData?.data?.countJobs
-                : 0,
+            isFilter: isAnyFilterItem ? true : false,
+            countJobs: isAnyFilterItem ? currentData?.data?.countJobs : 0,
             jobs: currentData?.data?.jobs,
           })
         );
