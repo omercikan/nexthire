@@ -1,13 +1,14 @@
 "use client";
 
 import { AppDispatch, RootState } from "@/lib/redux/store";
-import React, { useEffect, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MdArrowDropDown } from "react-icons/md";
 import { IoIosClose } from "react-icons/io";
 import { CustomListProps } from "@/types/filtersJob";
 import { selectFiltersItem } from "@/lib/redux/features/filterJobs/filters";
 import useJobFilter from "@/hooks/useJobFilter";
+import { setTouchSortList } from "@/lib/redux/features/touch";
 
 const JobType = ({
   title,
@@ -25,8 +26,11 @@ const JobType = ({
   const { filterJob } = useJobFilter();
 
   useEffect(() => {
-    window.addEventListener("click", () => setOpenJobMenu(false));
-  }, []);
+    window.addEventListener("click", () => {
+      setOpenJobMenu(false);
+      dispatch(setTouchSortList(false));
+    });
+  }, [dispatch]);
 
   const handleItemAction = (option: string): void => {
     dispatch(setState(option));
@@ -56,19 +60,27 @@ const JobType = ({
     );
   };
 
+  const handleOpenList = (e: MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setOpenJobMenu(!openJobMenu);
+
+    if (defaultValue.startsWith("Sıralama") && !openJobMenu) {
+      dispatch(setTouchSortList(true));
+    } else {
+      dispatch(setTouchSortList(false));
+    }
+  };
+
   return (
     <div className={`${listWrapperClass ?? ""}`}>
       {title && <span className="filter-title">{title}</span>}
 
       <div className="relative z-[1]">
         <div
-          className={`job-type-screen z-10 ${screenClass} ${
+          className={`job-type-screen ${screenClass} ${
             openJobMenu ? "border-[#4045ef]" : "border-white"
           }`}
-          onClick={(e) => {
-            e.stopPropagation();
-            setOpenJobMenu(!openJobMenu);
-          }}
+          onClick={handleOpenList}
         >
           {state ? state : defaultValue}
 

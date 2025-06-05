@@ -60,23 +60,23 @@ const JobItem = ({
   return (
     <article
       key={job.postId}
-      className="p-[30px] mb-[30px] border border-[#ECEDF2] rounded-lg hover:shadow-[0_6px_15px_0_rgba(64,79,104,0.05)] transition-shadow duration-300 relative group"
+      className="p-[30px] max-[1200px]:p-[15px] mb-[30px] border border-[#ECEDF2] rounded-lg hover:shadow-[0_6px_15px_0_rgba(64,79,104,0.05)] transition-shadow duration-300 relative group"
     >
       <FavoriteCompany job={job} />
 
-      <div className="flex">
-        <figure>
+      <div className="flex max-[450px]:flex-col max-[450px]:justify-center max-[450px]:text-center">
+        <figure className="h-max max-[450px]:mb-4">
           <Image
             src={job.companyInformations.companyLogo}
             alt={job.companyInformations.companyName}
             width={50}
             height={50}
-            className="rounded-lg"
+            className="rounded-lg max-[450px]:mx-auto"
           />
         </figure>
 
         <div className="px-5">
-          <div className="flex items-center">
+          <div className="flex items-center max-[450px]:justify-center max-[450px]:flex-col-reverse">
             <Link
               href={`/is-ilani/${routeFormatter(job.jobTitle)}-${job.postId}`}
             >
@@ -90,7 +90,7 @@ const JobItem = ({
             </span>
           </div>
 
-          <div className="flex gap-[25px] mt-[5px]">
+          <div className="flex flex-wrap gap-[25px] max-[450px]:gap-2 mt-[5px] max-[450px]:mt-2 max-[450px]:justify-center">
             <span
               onClick={(e) => {
                 e.preventDefault();
@@ -125,15 +125,15 @@ const JobItem = ({
             </span>
           </div>
 
-          <div className="mt-3">
+          <div className="mt-3 flex max-[430px]:flex-col gap-x-[15px] gap-y-2 max-[450px]:justify-center">
             <span
-              className="me-[15px] featured-job-list-item bg-[#1967d2] border-none !text-white cursor-pointer"
+              className="featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#1967d2] border-none !text-white cursor-pointer"
               onClick={handleJobTypeBadge}
             >
               {job.modeOfWork}
             </span>
             <span
-              className="featured-job-list-item bg-[#FEF2D9] border-none !text-[#F9AB00] cursor-pointer"
+              className="featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#FEF2D9] border-none !text-[#F9AB00] cursor-pointer"
               onClick={() =>
                 handleAction(
                   job.positionLevel,

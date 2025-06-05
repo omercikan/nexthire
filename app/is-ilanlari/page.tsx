@@ -5,13 +5,14 @@ import SearchJob from "@/components/SearchJob";
 import FilterMenu from "@/components/pages/jobPostings/filterMenu/FilterMenu";
 import { Toaster } from "react-hot-toast";
 import JobList from "@/components/pages/jobPostings/jobs/JobList";
+import FilterMenuMobile from "@/components/pages/jobPostings/filterMenu/FilterMenuMobile";
 
 const JobAdverts = () => {
   return (
-    <main className="mt-[4.9644rem]">
+    <main className="mt-[79.4304px] max-sm:mt-[40px]">
       <Toaster position="top-right" />
 
-      <section className="py-[5.3125rem] bg-[#F4F5FA]">
+      <section className="py-[85px] max-sm:py-[40px] bg-[#F4F5FA]">
         <SearchJob
           formClass="!rounded-lg !w-[80.625rem] max-[86.25rem]:!w-[95%] drop-shadow-xl"
           jobInputPlaceholder="Meslek ara"
@@ -21,6 +22,7 @@ const JobAdverts = () => {
 
       <section className="container max-xl:px-0 max-[1080px]:!px-8 flex gap-[1.875rem] my-[3.125rem]">
         <FilterMenu />
+        <FilterMenuMobile />
 
         <JobList />
       </section>

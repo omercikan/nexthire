@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CustomList from "./CustomList";
 import FilterSwitch from "./filterSwitch/FilterSwitch";
 import { useSelector } from "react-redux";
@@ -23,45 +23,60 @@ const FilterMenu = () => {
     (state: RootState) => state.jobFilters
   );
   const { filterJob, isLoading } = useJobFilter();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1025);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
-    <aside className="bg-[#F5F7FC] rounded-lg flex-[calc(32.8%-1px)] h-max">
-      <CustomList
-        title="Çalışma Şekli"
-        options={JOB_TYPES}
-        defaultValue="Çalışma Şekli"
-        setState={selectJobType}
-        state={jobType}
-        listWrapperClass="px-[30px] pt-[30px]"
-      />
+    <>
+      {!isMobile && (
+        <aside className="bg-[#F5F7FC] rounded-lg flex-[calc(32.8%-1px)] h-max max-[1025px]:hidden">
+          <CustomList
+            title="Çalışma Şekli"
+            options={JOB_TYPES}
+            defaultValue="Çalışma Şekli"
+            setState={selectJobType}
+            state={jobType}
+            listWrapperClass="px-[30px] pt-[30px]"
+          />
 
-      <FilterSwitch
-        title="Deneyim Süresi"
-        state={experienceLevel}
-        setState={selectExperienceLevel}
-        switchItems={EXPERIENCE_LEVELS}
-        extraSwitch={true}
-        extraSwitchText="5+ Yıl"
-        switchWrapperClass="px-[30px]"
-      />
+          <FilterSwitch
+            title="Deneyim Süresi"
+            state={experienceLevel}
+            setState={selectExperienceLevel}
+            switchItems={EXPERIENCE_LEVELS}
+            extraSwitch={true}
+            extraSwitchText="5+ Yıl"
+            switchWrapperClass="px-[30px]"
+          />
 
-      <FilterSwitch
-        title="Pozisyon Seviyesi"
-        state={careerLevel}
-        setState={selectCareerLevel}
-        switchItems={CAREER_LEVELS}
-        switchWrapperClass="px-[30px]"
-      />
+          <FilterSwitch
+            title="Pozisyon Seviyesi"
+            state={careerLevel}
+            setState={selectCareerLevel}
+            switchItems={CAREER_LEVELS}
+            switchWrapperClass="px-[30px]"
+          />
 
-      <div className="sticky bottom-0 bg-[#F5F7FC] p-[30px] rounded-bl-lg rounded-br-lg">
-        <CustomButton
-          isSubmitting={isLoading}
-          text="Uygula"
-          className="w-full !rounded-lg"
-          handleClick={filterJob}
-        />
-      </div>
-    </aside>
+          <div className="sticky bottom-0 bg-[#F5F7FC] p-[30px] rounded-bl-lg rounded-br-lg">
+            <CustomButton
+              isSubmitting={isLoading}
+              text="Uygula"
+              className="w-full !rounded-lg"
+              handleClick={filterJob}
+            />
+          </div>
+        </aside>
+      )}
+    </>
   );
 };
 

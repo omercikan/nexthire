@@ -12,7 +12,11 @@ import useCreateArray from "@/hooks/useCreateArray";
 import { GoChevronLeft } from "react-icons/go";
 import { GoChevronRight } from "react-icons/go";
 import useJobFilter from "@/hooks/useJobFilter";
-import { setPagination } from "@/lib/redux/features/filterJobs/filters";
+import {
+  openFilterMenu,
+  setPagination,
+} from "@/lib/redux/features/filterJobs/filters";
+import { TbAdjustmentsHorizontal } from "react-icons/tb";
 
 const JobList = () => {
   const { filterData, filtersItem } = useSelector(
@@ -49,7 +53,20 @@ const JobList = () => {
     }
   };
   return (
-    <div className="flex-[calc(67.2%+.0625rem)]">
+    <div className="flex-[calc(67.2%+.0625rem)] max-md:w-full">
+      <div
+        className="flex gap-2 items-center cursor-pointer group w-max min-[1025px]:hidden"
+        onClick={(e) => {
+          e.stopPropagation();
+          dispatch(openFilterMenu(true));
+        }}
+      >
+        <TbAdjustmentsHorizontal size={20} color="1967d2" />
+        <span className="text-[#1967d2] font-bold text-sm group-hover:underline">
+          Filtreleri Göster
+        </span>
+      </div>
+
       <FilterBar />
       <ResultNavigator
         searchedDataLength={isLoading || loading ? 0 : data?.countJobs}
@@ -83,7 +100,7 @@ const JobList = () => {
 
       {/*//* Pagination area */}
       {!(loading || isLoading) && !filtersItem?.length && (
-        <div className="flex justify-center items-center gap-5 sticky bottom-0 bg-white p-4">
+        <div className="flex justify-center items-center gap-5 lg:sticky lg:bottom-0 bg-white p-4">
           <li
             className={`${
               currentPage > 1
