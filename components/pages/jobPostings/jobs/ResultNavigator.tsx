@@ -20,11 +20,13 @@ const ResultNavigator = ({
     filtersItem,
     filterData: { countJobs, isFilter },
   } = useSelector((state: RootState) => state.jobFilters);
-  const { touch } = useSelector((state: RootState) => state.touch);
+  const { touch, touchSortList } = useSelector(
+    (state: RootState) => state.touch
+  );
 
   return (
-    <div className="mb-[30px] flex gap-5 justify-between items-center">
-      <div>
+    <div className="mb-[30px] flex max-md:flex-wrap gap-5 justify-between items-center max-md:w-full">
+      <div className="max-md:mt-5">
         <p className="whitespace-nowrap">
           {pageValue === "Tümü"
             ? countJobs !== 0
@@ -42,26 +44,30 @@ const ResultNavigator = ({
         </p>
       </div>
 
-      <div className="flex gap-5">
-        <div className={touch ? "-z-[1]" : "z-[1]"}>
+      <div className="flex flex-wrap gap-x-5 gap-y-3  max-md:w-full">
+        <div className={`${touch ? "-z-[1]" : "z-[1]"} max-md:flex-[1]`}>
           <CustomList
             options={["Sıralama (Varsayılan)", "En yeni", "En eski"]}
             setState={selectSortValue}
             state={sortValue}
             defaultValue="Sıralama (Varsayılan)"
-            screenClass="!bg-[#f0f5f7] !w-[222.45px]"
-            listClass="!w-[222.45px]"
+            screenClass="!bg-[#f0f5f7] !w-[222.45px] max-md:!w-full"
+            listClass="!w-[222.45px] max-md:!w-full"
           />
         </div>
 
-        <div className={touch ? "-z-[1]" : "z-[1]"}>
+        <div
+          className={`${touch ? "-z-[1]" : "z-[1]"} max-md:flex-[1] ${
+            touchSortList ? "max-[457px]:-z-[1]" : "max-[457px]:z-[1]"
+          }`}
+        >
           <CustomList
-            options={["Sayfa Başına 10", "Tümü"]}
+            options={touchSortList ? [] : ["Sayfa Başına 10", "Tümü"]}
             setState={selectPageValue}
             state={pageValue}
             defaultValue="Sayfa Başına 10"
-            screenClass="!bg-[#f0f5f7] !w-[190.44px]"
-            listClass="!w-[190.44px]"
+            screenClass="!bg-[#f0f5f7] !w-[190.44px] max-md:!w-full"
+            listClass="!w-[190.44px] max-md:!w-full"
           />
         </div>
       </div>

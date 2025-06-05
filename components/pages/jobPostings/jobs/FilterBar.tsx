@@ -20,7 +20,7 @@ const FilterBar = () => {
   return (
     <>
       {filtersItem.length ? (
-        <div className="mb-[30px]">
+        <div className="mb-[30px] max-[1025px]:mt-5">
           <h3 className="text-[#202124] font-medium text-xl mb-[15px]">
             Seçili Filtreler ({filtersItem.length})
             <span
