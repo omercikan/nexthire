@@ -81,6 +81,47 @@
   <li>🧼 Resolved outdated state persistence in job filter selection, ensuring UI reflects current filter criteria</li>
 </ul>
 
+<h3>❤️ Favorites Toggle Feature Branch</h3>
+<ul>
+  <li><strong>FavoriteCompany Component Refactor</strong>
+    <ul>
+      <li>🔄 Removed static <code>job</code> prop in favor of dynamic data handling</li>
+      <li>🔌 Now fully prop-driven for better reusability</li>
+    </ul>
+  </li>
+  <li><strong>BestCompanies Component Update</strong>
+    <ul>
+      <li>🧩 Integrated <code>FavoriteCompany</code> to manage favoriting logic</li>
+      <li>🧹 Removed old <code>addFavoriteCompany</code> function and <code>useEffect</code> side-effects</li>
+    </ul>
+  </li>
+  <li><strong>JobItem Enhancements</strong>
+    <ul>
+      <li>🔗 Integrated <code>FavoriteCompany</code> with new props structure</li>
+    </ul>
+  </li>
+  <li><strong>useFavoriteCompany Hook</strong>
+    <ul>
+      <li>🧠 Extended <code>addFavorite</code> logic with new <code>field</code> support for contextual behavior</li>
+    </ul>
+  </li>
+  <li><strong>API Update</strong>
+    <ul>
+      <li>📡 <code>addFavoriteCompany</code> endpoint now supports additional <code>field</code> parameter for flexible backend data creation</li>
+    </ul>
+  </li>
+  <li><strong>Types & Interfaces</strong>
+    <ul>
+      <li>📝 Updated <code>Candidate</code> interface to use <code>CandidateFavoritesInterface</code> for both <code>favoriteEmployers</code> and <code>favoriteJobs</code></li>
+    </ul>
+  </li>
+  <li><strong>Styling</strong>
+    <ul>
+      <li>🎨 Added new CSS class in <code>globals.css</code> for improved favorite icon styling</li>
+    </ul>
+  </li>
+</ul>
+
 <h2>📌 Notes</h2>
 <ul>
   <li>This is the <strong>dev</strong> branch of the repository.</li>
