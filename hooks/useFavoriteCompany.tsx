@@ -27,13 +27,14 @@ const useFavoriteCompany = () => {
   }, [candidateUser]);
 
   const addFavoriteCompany = useCallback(
-    async (data: DocumentData, eid: string) => {
+    async (data: DocumentData, eid: string, fieldName: string) => {
       if (user?.role === "candidate") {
         await addFavorite({
           data: data,
           id: eid,
           user: candidateUser,
           updatedData: updatedData as Candidate,
+          fieldName: fieldName,
         });
       } else {
         toast.error(
