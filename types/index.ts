@@ -179,19 +179,20 @@ export interface Employer extends User {
   openJobs: EmployerOpenJobs[];
 }
 
+export interface CandidateFavoriteInterface {
+  companyEID: string;
+  companyLocation: string;
+  companyLogo: string;
+  companyName: string;
+  numberOfEmployees: string;
+}
+
 export interface Candidate extends User {
   cid: string;
   acceptedTerms: string;
   createdWith: string;
-  favoriteEmployers: [
-    {
-      companyEID: string;
-      companyLocation: string;
-      companyLogo: string;
-      companyName: string;
-      numberOfEmployees: string;
-    }
-  ];
+  favoriteEmployers: CandidateFavoriteInterface[];
+  favoriteJobs: CandidateFavoriteInterface[];
 }
 //! User interface area Employer and Candidate Role interfaces END !//
 

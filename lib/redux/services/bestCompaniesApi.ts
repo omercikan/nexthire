@@ -24,9 +24,10 @@ export const bestCompaniesApi = createApi({
         id: string;
         user: Candidate;
         updatedData: Candidate;
+        fieldName: string;
       }
     >({
-      query: ({ data, id, user, updatedData }) => ({
+      query: ({ data, id, user, updatedData, fieldName }) => ({
         url: "favorites",
         method: "POST",
         body: JSON.stringify({
@@ -35,6 +36,7 @@ export const bestCompaniesApi = createApi({
           user: user,
           updatedData: updatedData,
           setFavoritePath: "candidates",
+          fieldName,
         }),
       }),
       invalidatesTags: ["BestCompanies"],

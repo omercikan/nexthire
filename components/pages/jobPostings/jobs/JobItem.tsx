@@ -56,13 +56,25 @@ const JobItem = ({
     dispatch(selectFiltersItem(updatedFilters));
     dispatch(selectJobType(isIncludes ? "" : job.modeOfWork));
   };
-
   return (
     <article
       key={job.postId}
       className="p-[30px] max-[1200px]:p-[15px] mb-[30px] border border-[#ECEDF2] rounded-lg hover:shadow-[0_6px_15px_0_rgba(64,79,104,0.05)] transition-shadow duration-300 relative group"
     >
-      <FavoriteCompany job={job} />
+      <FavoriteCompany
+        data={{
+          dataField: {
+            companyEID: job?.postId,
+            companyLocation: job?.companyInformations?.location,
+            numberOfEmployees: job?.companyInformations?.numberOfEmployees,
+            companyLogo: job?.companyInformations?.companyLogo,
+            companyName: job?.companyInformations?.companyName,
+          },
+          eid: job?.postId,
+        }}
+        fieldName="favoriteJobs"
+        extraField={job.jobTitle}
+      />
 
       <div className="flex max-[450px]:flex-col max-[450px]:justify-center max-[450px]:text-center">
         <figure className="h-max max-[450px]:mb-4">

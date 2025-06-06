@@ -17,36 +17,28 @@ export async function POST(req: NextRequest) {
     user,
     updatedData,
     setFavoritePath,
+    fieldName,
   }: {
     data: DocumentData;
     id: string;
     user: Candidate;
     updatedData: Candidate;
     setFavoritePath: string;
+    fieldName: string;
   } = await req.json();
-
-  const {
-    companyEID,
-    companyLocation,
-    companyLogo,
-    companyName,
-    numberOfEmployees,
-  } = data.favoriteEmployers.Hu[0];
 
   try {
     if (user?.role === "candidate") {
       if (
-        !updatedData?.favoriteEmployers?.some((favorite) =>
+        !updatedData?.favoriteJobs?.some((favorite) =>
           favorite.companyEID.includes(id)
-        )
+        ) &&
+        fieldName === "favoriteJobs"
       ) {
         const setFavoriteDatabase = (path: string) => {
           const ref = doc(db, path, user?.id ?? user?.cid);
-          setDoc(
-            ref,
-            { favoriteEmployers: arrayUnion(data.favoriteEmployers.Hu[0]) },
-            { merge: true }
-          );
+
+          setDoc(ref, { favoriteJobs: arrayUnion(data) }, { merge: true });
         };
 
         setFavoriteDatabase(setFavoritePath);
@@ -55,13 +47,34 @@ export async function POST(req: NextRequest) {
         const removeFavoriteDatabase = async (path: string): Promise<void> => {
           const ref = doc(db, path, user?.id ? user?.id : user?.cid);
           await updateDoc(ref, {
-            favoriteEmployers: arrayRemove({
-              companyEID,
-              companyLocation,
-              companyLogo,
-              companyName,
-              numberOfEmployees,
-            }),
+            favoriteJobs: arrayRemove(data),
+          });
+        };
+
+        removeFavoriteDatabase(setFavoritePath);
+        removeFavoriteDatabase("users");
+      }
+
+      if (
+        !updatedData?.favoriteEmployers?.some((favorite) =>
+          favorite.companyEID.includes(id)
+        ) &&
+        fieldName === "favoriteEmployers"
+      ) {
+        const setFavoriteDatabase = (path: string) => {
+          const ref = doc(db, path, user?.id ?? user?.cid);
+
+          setDoc(ref, { favoriteEmployers: arrayUnion(data) }, { merge: true });
+        };
+
+        setFavoriteDatabase(setFavoritePath);
+        setFavoriteDatabase("users");
+      } else {
+        const removeFavoriteDatabase = async (path: string): Promise<void> => {
+          const ref = doc(db, path, user?.id ? user?.id : user?.cid);
+
+          await updateDoc(ref, {
+            favoriteEmployers: arrayRemove(data),
           });
         };
 
