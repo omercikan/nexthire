@@ -1,5 +1,10 @@
 import { EmployerOpenJobs } from "@/types";
-import { JobCompanyInformations, JobSearchFilters } from "@/types/filtersJob";
+import {
+  FilterArrayFields,
+  FilterStringFields,
+  JobCompanyInformations,
+  JobSearchFilters,
+} from "@/types/filtersJob";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: initialStateFields = {
@@ -15,7 +20,6 @@ const initialState: initialStateFields = {
     countJobs: 0,
     jobs: [],
     isFilter: false,
-    isLoading: false,
   },
   nextPageValue: 10,
   prevPageValue: 0,
@@ -35,7 +39,6 @@ interface initialStateFields {
     countJobs: number;
     jobs: (JobCompanyInformations & EmployerOpenJobs)[];
     isFilter: boolean;
-    isLoading: boolean;
   };
   nextPageValue: number;
   prevPageValue: number;
@@ -99,8 +102,35 @@ export const jobFilters = createSlice({
       state.filtersItem = action.payload;
     },
 
-    clearAllFilters: () => {
-      return initialState;
+    clearAllFilters: (state) => {
+      const arrayFields: FilterArrayFields = [
+        "careerLevel",
+        "experienceLevel",
+        "filtersItem",
+        "jobKeywords",
+        "locationKeywords",
+      ];
+      const stringFields: FilterStringFields[] = [
+        "jobType",
+        "pageValue",
+        "sortValue",
+      ];
+      const otherFields: ["openfilterMenu", "filterData"] = [
+        "openfilterMenu",
+        "filterData",
+      ];
+
+      arrayFields.forEach((field) => {
+        state[field] = [];
+      });
+
+      stringFields.forEach((field) => {
+        state[field] = "";
+      });
+
+      otherFields.forEach((field) => {
+        return initialState[field];
+      });
     },
 
     clearMatchFilter: (
@@ -109,13 +139,7 @@ export const jobFilters = createSlice({
     ) => {
       const payload: string = action.payload;
 
-      const arrayFields: [
-        "careerLevel",
-        "experienceLevel",
-        "filtersItem",
-        "jobKeywords",
-        "locationKeywords"
-      ] = [
+      const arrayFields: FilterArrayFields = [
         "careerLevel",
         "experienceLevel",
         "filtersItem",
@@ -123,7 +147,7 @@ export const jobFilters = createSlice({
         "locationKeywords",
       ];
 
-      const stringFields: ["jobType", "pageValue", "sortValue"] = [
+      const stringFields: FilterStringFields[] = [
         "jobType",
         "pageValue",
         "sortValue",
@@ -157,7 +181,6 @@ export const jobFilters = createSlice({
         countJobs: number;
         jobs: (JobCompanyInformations & EmployerOpenJobs)[];
         isFilter: boolean;
-        isLoading: boolean;
       }>
     ) => {
       state.filterData = action.payload;
