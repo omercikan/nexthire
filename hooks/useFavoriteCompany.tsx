@@ -1,15 +1,16 @@
 import { db } from "@/app/api/firebase/firebaseConfig";
 import { AuthContext } from "@/context/authContext";
-import { useAddFavoriteCompanyMutation } from "@/lib/redux/services/bestCompaniesApi";
+import { useAddFavoriteMutation } from "@/lib/redux/services/favoritesApi";
 import { Candidate } from "@/types";
-import { doc, DocumentData, onSnapshot } from "firebase/firestore";
+import { FavoriteDataFields } from "@/types/favorite";
+import { doc, onSnapshot } from "firebase/firestore";
 import Link from "next/link";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const useFavoriteCompany = () => {
   const [updatedData, setUpdatedData] = useState<Candidate>();
-  const [addFavorite, result] = useAddFavoriteCompanyMutation();
+  const [addFavorite, result] = useAddFavoriteMutation();
   const { user } = useContext(AuthContext);
   const candidateUser = user as Candidate;
 
@@ -27,7 +28,11 @@ const useFavoriteCompany = () => {
   }, [candidateUser]);
 
   const addFavoriteCompany = useCallback(
-    async (data: DocumentData, eid: string, fieldName: string) => {
+    async (
+      data: FavoriteDataFields & { extraField: string | undefined },
+      eid: string,
+      fieldName: string
+    ) => {
       if (user?.role === "candidate") {
         await addFavorite({
           data: data,

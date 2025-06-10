@@ -34,3 +34,13 @@ export interface JobSearchFilters {
   locationKeywords: string[];
   filterItems: string[];
 }
+
+export type FilterStringFields = "jobType" | "pageValue" | "sortValue";
+
+export type FilterArrayFields = (
+  | "careerLevel"
+  | "experienceLevel"
+  | "filtersItem"
+  | "jobKeywords"
+  | "locationKeywords"
+)[];

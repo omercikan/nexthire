@@ -11,6 +11,7 @@ import {
 import { AppDispatch, RootState } from "@/lib/redux/store";
 import { routeFormatter } from "@/lib/routeFormat";
 import { EmployerOpenJobs } from "@/types";
+import { FavoriteField } from "@/types/favorite";
 import { JobCompanyInformations } from "@/types/filtersJob";
 import { UnknownAction } from "@reduxjs/toolkit";
 import Image from "next/image";
@@ -72,7 +73,7 @@ const JobItem = ({
           },
           eid: job?.postId,
         }}
-        fieldName="favoriteJobs"
+        fieldName={FavoriteField.Jobs}
         extraField={job.jobTitle}
       />
 
