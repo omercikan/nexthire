@@ -25,7 +25,8 @@ const FavoriteCompany = ({ data, fieldName, extraField }: Favorite) => {
 
   return (
     <>
-      {user?.role === "candidate" || typeof user?.role === "undefined" && !loading ? (
+      {user?.role === "candidate" ||
+      (typeof user?.role === "undefined" && !loading) ? (
         <button
           disabled={result.originalArgs?.id === data?.eid && result.isLoading}
           className={`favorite-icon-wrapper ${
