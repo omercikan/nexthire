@@ -1,0 +1,37 @@
+import { Candidate } from "@/types";
+import { FavoriteDataFields } from "@/types/favorite";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+export const favoritesApi = createApi({
+  reducerPath: "favoritesApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "/api/firebase/",
+  }),
+  endpoints: (builder) => ({
+    addFavorite: builder.mutation<
+      object,
+      {
+        data: FavoriteDataFields;
+        id: string;
+        user: Candidate;
+        updatedData: Candidate;
+        fieldName: string;
+      }
+    >({
+      query: ({ data, id, user, updatedData, fieldName }) => ({
+        url: "favorites",
+        method: "POST",
+        body: {
+          data: data,
+          id: id,
+          user: user,
+          updatedData: updatedData,
+          setFavoritePath: "candidates",
+          fieldName,
+        },
+      }),
+    }),
+  }),
+});
+
+export const { useAddFavoriteMutation } = favoritesApi;
