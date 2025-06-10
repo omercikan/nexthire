@@ -20,6 +20,7 @@ import useItemFilterText from "@/hooks/useItemFilterText";
 import useCreateArray from "@/hooks/useCreateArray";
 import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 import FavoriteCompany from "@/components/FavoriteCompany";
+import { FavoriteField } from "@/types/favorite";
 
 const BestCompanies = () => {
   const { user } = useContext(AuthContext);
@@ -98,7 +99,7 @@ const BestCompanies = () => {
                       },
                       eid: company?.eid,
                     }}
-                    fieldName="favoriteEmployers"
+                    fieldName={FavoriteField.Employers}
                   />
                 ) : null}
 
