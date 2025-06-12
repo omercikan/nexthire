@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import CustomList from "./CustomList";
 import FilterSwitch from "./filterSwitch/FilterSwitch";
 import { useSelector } from "react-redux";
@@ -18,6 +18,7 @@ import {
 import CustomButton from "@/components/ui/CustomButton";
 import useJobFilter from "@/hooks/useJobFilter";
 import { setOpenCustomList } from "@/lib/redux/features/touch";
+import useScroll from "@/hooks/useScroll";
 
 const FilterMenu = () => {
   const { experienceLevel, careerLevel, jobType } = useSelector(
@@ -26,6 +27,7 @@ const FilterMenu = () => {
   const { openCustomList } = useSelector((state: RootState) => state.touch);
   const { filterJob, isLoading } = useJobFilter();
   const [isMobile, setIsMobile] = useState(false);
+  const { applyScroll } = useScroll();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -36,6 +38,14 @@ const FilterMenu = () => {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  const handleFilter = useCallback(() => {
+    filterJob();
+
+    setTimeout(() => {
+      applyScroll(640, 474.57, 386.63);
+    }, 10);
+  }, [applyScroll, filterJob]);
 
   return (
     <>
@@ -75,7 +85,7 @@ const FilterMenu = () => {
               isSubmitting={isLoading}
               text="Uygula"
               className="w-full !rounded-lg"
-              handleClick={filterJob}
+              handleClick={handleFilter}
             />
           </div>
         </aside>

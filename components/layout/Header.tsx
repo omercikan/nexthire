@@ -44,7 +44,9 @@ const Header = () => {
     <header
       id="header"
       className={`main-header transition duration-300 ${
-        pathanme !== "/" ? "!fixed !top-0 w-full shadow-xs bg-white" : ""
+        pathanme !== "/"
+          ? "!fixed !top-0 w-full min-sm:shadow-xs max-sm:border-b border-gray-200 bg-white"
+          : ""
       } ${
         scroll
           ? "!fixed !top-0 w-full shadow-xs bg-white"

@@ -88,6 +88,10 @@ html {
   .placeholder-bg {
     background-color: rgba(127, 149, 214, 0.5);
   }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
 }
 /*! Custom layers end !*/
 
