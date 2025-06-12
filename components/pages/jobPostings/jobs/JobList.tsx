@@ -17,6 +17,7 @@ import {
   setPagination,
 } from "@/lib/redux/features/filterJobs/filters";
 import { TbAdjustmentsHorizontal } from "react-icons/tb";
+import useScroll from "@/hooks/useScroll";
 
 const JobList = () => {
   const { filterData, filtersItem } = useSelector(
@@ -38,6 +39,7 @@ const JobList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { filterJob } = useJobFilter();
   const dispatch = useDispatch();
+  const { applyScroll } = useScroll();
 
   const handleChangePage = (currentIndex: number) => {
     setCurrentPage(currentIndex);
@@ -49,23 +51,25 @@ const JobList = () => {
 
     if (currentPage !== currentIndex) {
       filterJob();
-      window.scrollTo({ top: 0 });
+      applyScroll(640, 474.57, 386.63);
     }
   };
   return (
     <div className="flex-[calc(67.2%+.0625rem)] max-md:w-full">
-      <div
-        className="flex gap-2 items-center cursor-pointer group w-max min-[1025px]:hidden"
-        onClick={(e) => {
-          e.stopPropagation();
-          dispatch(openFilterMenu(true));
-        }}
-      >
-        <TbAdjustmentsHorizontal size={20} color="1967d2" />
-        <span className="text-[#1967d2] font-bold text-sm group-hover:underline">
-          Filtreleri Göster
-        </span>
-      </div>
+      {!filtersItem?.length && (
+        <div
+          className="flex gap-2 items-center cursor-pointer group w-max min-[1025px]:hidden"
+          onClick={(e) => {
+            e.stopPropagation();
+            dispatch(openFilterMenu(true));
+          }}
+        >
+          <TbAdjustmentsHorizontal size={20} color="1967d2" />
+          <span className="text-[#1967d2] font-bold text-sm group-hover:underline">
+            Filtreleri Göster
+          </span>
+        </div>
+      )}
 
       <FilterBar />
       <ResultNavigator

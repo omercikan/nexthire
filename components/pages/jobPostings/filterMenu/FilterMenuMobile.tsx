@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import CustomList from "./CustomList";
 import FilterSwitch from "./filterSwitch/FilterSwitch";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +21,7 @@ import useJobFilter from "@/hooks/useJobFilter";
 import { IoCloseOutline } from "react-icons/io5";
 import { CSSTransition } from "react-transition-group";
 import { setOpenCustomList } from "@/lib/redux/features/touch";
+import useScroll from "@/hooks/useScroll";
 
 const FilterMenuMobile = () => {
   const { experienceLevel, careerLevel, jobType, openfilterMenu } = useSelector(
@@ -30,9 +31,12 @@ const FilterMenuMobile = () => {
   const dispatch = useDispatch<AppDispatch>();
   const asideRef = useRef(null);
   const { openCustomList } = useSelector((state: RootState) => state.touch);
+  const { applyScroll } = useScroll();
 
   useEffect(() => {
-    window.addEventListener("click", () => dispatch(openFilterMenu(false)));
+    window.addEventListener("click", () => {
+      dispatch(openFilterMenu(false));
+    });
   }, [dispatch]);
 
   useEffect(() => {
@@ -42,6 +46,15 @@ const FilterMenuMobile = () => {
       document.body.style.overflow = "auto";
     }
   }, [openfilterMenu]);
+
+  const handleFilter = useCallback(() => {
+    dispatch(openFilterMenu(false));
+    filterJob();
+
+    setTimeout(() => {
+      applyScroll(640, 474.57, 386.63);
+    }, 10);
+  }, [filterJob, dispatch, applyScroll]);
 
   return (
     <CSSTransition
@@ -55,7 +68,10 @@ const FilterMenuMobile = () => {
         <aside
           className="bg-white w-[40%] max-md:w-[100%] fixed left-0 top-0 z-50 overflow-auto h-full"
           ref={asideRef}
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+            dispatch(setOpenCustomList(""));
+          }}
         >
           <div
             className="flex justify-center items-center border-b border-[#ECEDF2] py-[15px] cursor-pointer"
@@ -100,7 +116,7 @@ const FilterMenuMobile = () => {
               isSubmitting={isLoading}
               text="Uygula"
               className="w-full !rounded-lg"
-              handleClick={filterJob}
+              handleClick={handleFilter}
             />
           </div>
         </aside>
