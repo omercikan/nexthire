@@ -1,4 +1,4 @@
-import { UnknownAction } from "@reduxjs/toolkit";
+import { ActionCreatorWithPayload, UnknownAction } from "@reduxjs/toolkit";
 
 export type JobTypes = string[];
 
@@ -27,6 +27,11 @@ export interface CustomListProps {
   screenClass?: string;
   listClass?: string;
   listWrapperClass?: string;
+  openCustomList: string;
+  setOpenCustomList: ActionCreatorWithPayload<
+    string,
+    "touch/setOpenCustomList"
+  >;
 }
 
 export interface JobSearchFilters {
