@@ -1,5 +1,4 @@
 import FavoriteCompany from "@/components/FavoriteCompany";
-import { JOB_TYPES } from "@/constants/filtersJob";
 import useJobFilter from "@/hooks/useJobFilter";
 import {
   selectCareerLevel,
@@ -36,27 +35,26 @@ const JobItem = ({
     addState: UnknownAction,
     removeState?: UnknownAction
   ): void => {
-    if (!filtersItem.includes(text)) {
-      dispatch(addState);
-      dispatch(selectFiltersItem([...filtersItem, text]));
+    const isIncludesText = filtersItem.includes(text);
+    const updatedFilters = isIncludesText
+      ? filtersItem.filter((item) => item !== text)
+      : [...filtersItem, text];
+
+    dispatch(selectFiltersItem(updatedFilters));
+    if (isIncludesText && removeState) {
+      dispatch(removeState);
     } else {
-      filterJob();
-      if (removeState) dispatch(removeState);
-      dispatch(selectFiltersItem(filtersItem.filter((item) => item !== text)));
+      dispatch(addState);
+    }
+
+    filterJob();
+    if (window.innerWidth <= 640) {
+      window.scrollTo({ top: 596.98 });
+    } else {
+      window.scrollTo({ top: 425.23 });
     }
   };
 
-  const handleJobTypeBadge = () => {
-    const isIncludes = filtersItem.includes(job.modeOfWork);
-    const filtredJobs = filtersItem.filter((fi) => !JOB_TYPES.includes(fi));
-
-    const updatedFilters = isIncludes
-      ? filtredJobs
-      : [...filtredJobs, job.modeOfWork];
-
-    dispatch(selectFiltersItem(updatedFilters));
-    dispatch(selectJobType(isIncludes ? "" : job.modeOfWork));
-  };
   return (
     <article
       key={job.postId}
@@ -141,7 +139,13 @@ const JobItem = ({
           <div className="mt-3 flex max-[430px]:flex-col gap-x-[15px] gap-y-2 max-[450px]:justify-center">
             <span
               className="featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#1967d2] border-none !text-white cursor-pointer"
-              onClick={handleJobTypeBadge}
+              onClick={() =>
+                handleAction(
+                  job.modeOfWork,
+                  selectJobType(job.modeOfWork),
+                  selectJobType("")
+                )
+              }
             >
               {job.modeOfWork}
             </span>

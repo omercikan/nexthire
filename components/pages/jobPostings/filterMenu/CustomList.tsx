@@ -1,7 +1,7 @@
 "use client";
 
 import { AppDispatch, RootState } from "@/lib/redux/store";
-import React, { MouseEvent, useEffect, useState } from "react";
+import React, { MouseEvent, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MdArrowDropDown } from "react-icons/md";
 import { IoIosClose } from "react-icons/io";
@@ -10,7 +10,7 @@ import { selectFiltersItem } from "@/lib/redux/features/filterJobs/filters";
 import useJobFilter from "@/hooks/useJobFilter";
 import { setTouchSortList } from "@/lib/redux/features/touch";
 
-const JobType = ({
+const CustomList = ({
   title,
   options,
   state,
@@ -19,30 +19,32 @@ const JobType = ({
   screenClass,
   listClass,
   listWrapperClass,
+  openCustomList,
+  setOpenCustomList,
 }: CustomListProps) => {
-  const [openJobMenu, setOpenJobMenu] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const { filtersItem } = useSelector((state: RootState) => state.jobFilters);
   const { filterJob } = useJobFilter();
 
   useEffect(() => {
     window.addEventListener("click", () => {
-      setOpenJobMenu(false);
+      dispatch(setOpenCustomList(""));
       dispatch(setTouchSortList(false));
     });
-  }, [dispatch]);
+  }, [dispatch, setOpenCustomList]);
 
   const handleItemAction = (option: string): void => {
-    dispatch(setState(option));
-    setOpenJobMenu(false);
+    dispatch(setOpenCustomList(""));
 
     if (option !== "Sıralama (Varsayılan)" && option !== "Sayfa Başına 10") {
+      dispatch(setState(option));
       const updatedFilters = filtersItem.filter(
         (item) => !options.includes(item)
       );
 
       dispatch(selectFiltersItem([...updatedFilters, option]));
     } else {
+      dispatch(setState(""));
       dispatch(
         selectFiltersItem(filtersItem.filter((fi) => !options.includes(fi)))
       );
@@ -51,20 +53,29 @@ const JobType = ({
     filterJob();
   };
 
-  const handleClearCurrent = () => {
-    filterJob();
+  const handleClearCurrent = (e: MouseEvent<HTMLOrSVGElement>) => {
+    e.stopPropagation();
+    dispatch(setOpenCustomList(""));
 
     dispatch(setState(""));
-    dispatch(
-      selectFiltersItem(filtersItem.filter((item) => !options.includes(item)))
-    );
+    dispatch(selectFiltersItem(filtersItem.filter((item) => item !== state)));
+
+    filterJob();
   };
 
   const handleOpenList = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    setOpenJobMenu(!openJobMenu);
 
-    if (defaultValue.startsWith("Sıralama") && !openJobMenu) {
+    if (openCustomList === defaultValue) {
+      dispatch(setOpenCustomList(""));
+    } else {
+      dispatch(setOpenCustomList(defaultValue));
+    }
+
+    if (
+      defaultValue.startsWith("Sıralama") &&
+      openCustomList !== defaultValue
+    ) {
       dispatch(setTouchSortList(true));
     } else {
       dispatch(setTouchSortList(false));
@@ -78,7 +89,9 @@ const JobType = ({
       <div className="relative z-[1]">
         <div
           className={`job-type-screen ${screenClass} ${
-            openJobMenu ? "border-[#4045ef]" : "border-white"
+            openCustomList === defaultValue
+              ? "border-[#4045ef]"
+              : "border-white"
           }`}
           onClick={handleOpenList}
         >
@@ -95,12 +108,14 @@ const JobType = ({
 
             <MdArrowDropDown
               size={22}
-              className={openJobMenu ? "rotate-x-180" : "rotate-x-0"}
+              className={
+                openCustomList === defaultValue ? "rotate-x-180" : "rotate-x-0"
+              }
             />
           </div>
         </div>
 
-        {openJobMenu && (
+        {openCustomList === defaultValue && (
           <ul
             className={`job-type-list ${listClass}`}
             onClick={(e) => e.stopPropagation()}
@@ -121,4 +136,4 @@ const JobType = ({
   );
 };
 
-export default JobType;
+export default CustomList;
