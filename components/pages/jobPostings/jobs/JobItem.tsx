@@ -1,5 +1,6 @@
 import FavoriteCompany from "@/components/FavoriteCompany";
 import useJobFilter from "@/hooks/useJobFilter";
+import useScroll from "@/hooks/useScroll";
 import {
   selectCareerLevel,
   selectFiltersItem,
@@ -15,7 +16,7 @@ import { JobCompanyInformations } from "@/types/filtersJob";
 import { UnknownAction } from "@reduxjs/toolkit";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useCallback } from "react";
 import { SlLocationPin } from "react-icons/sl";
 import { VscBriefcase } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,31 +30,27 @@ const JobItem = ({
     useSelector((state: RootState) => state.jobFilters);
   const dispatch = useDispatch<AppDispatch>();
   const { filterJob } = useJobFilter();
+  const { applyScroll } = useScroll();
 
-  const handleAction = (
-    text: string,
-    addState: UnknownAction,
-    removeState?: UnknownAction
-  ): void => {
-    const isIncludesText = filtersItem.includes(text);
-    const updatedFilters = isIncludesText
-      ? filtersItem.filter((item) => item !== text)
-      : [...filtersItem, text];
+  const handleAction = useCallback(
+    (text: string, addState: UnknownAction, removeState?: UnknownAction) => {
+      const isIncludesText = filtersItem.includes(text);
+      const updatedFilters = isIncludesText
+        ? filtersItem.filter((item) => item !== text)
+        : [...filtersItem, text];
 
-    dispatch(selectFiltersItem(updatedFilters));
-    if (isIncludesText && removeState) {
-      dispatch(removeState);
-    } else {
-      dispatch(addState);
-    }
+      dispatch(selectFiltersItem(updatedFilters));
+      if (isIncludesText && removeState) {
+        dispatch(removeState);
+      } else {
+        dispatch(addState);
+      }
 
-    filterJob();
-    if (window.innerWidth <= 640) {
-      window.scrollTo({ top: 596.98 });
-    } else {
-      window.scrollTo({ top: 425.23 });
-    }
-  };
+      filterJob();
+      applyScroll(640, 474.57, 386.63);
+    },
+    [applyScroll, dispatch, filterJob, filtersItem]
+  );
 
   return (
     <article
