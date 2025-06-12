@@ -20,6 +20,7 @@ import CustomButton from "@/components/ui/CustomButton";
 import useJobFilter from "@/hooks/useJobFilter";
 import { IoCloseOutline } from "react-icons/io5";
 import { CSSTransition } from "react-transition-group";
+import { setOpenCustomList } from "@/lib/redux/features/touch";
 
 const FilterMenuMobile = () => {
   const { experienceLevel, careerLevel, jobType, openfilterMenu } = useSelector(
@@ -28,6 +29,7 @@ const FilterMenuMobile = () => {
   const { filterJob, isLoading } = useJobFilter();
   const dispatch = useDispatch<AppDispatch>();
   const asideRef = useRef(null);
+  const { openCustomList } = useSelector((state: RootState) => state.touch);
 
   useEffect(() => {
     window.addEventListener("click", () => dispatch(openFilterMenu(false)));
@@ -71,6 +73,8 @@ const FilterMenuMobile = () => {
             state={jobType}
             listWrapperClass="px-[30px] pt-[30px]"
             screenClass="border !border-[#ECEDF2]"
+            openCustomList={openCustomList}
+            setOpenCustomList={setOpenCustomList}
           />
 
           <FilterSwitch

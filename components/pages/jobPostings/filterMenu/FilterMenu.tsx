@@ -17,11 +17,13 @@ import {
 } from "@/constants/filtersJob";
 import CustomButton from "@/components/ui/CustomButton";
 import useJobFilter from "@/hooks/useJobFilter";
+import { setOpenCustomList } from "@/lib/redux/features/touch";
 
 const FilterMenu = () => {
   const { experienceLevel, careerLevel, jobType } = useSelector(
     (state: RootState) => state.jobFilters
   );
+  const { openCustomList } = useSelector((state: RootState) => state.touch);
   const { filterJob, isLoading } = useJobFilter();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -46,6 +48,8 @@ const FilterMenu = () => {
             setState={selectJobType}
             state={jobType}
             listWrapperClass="px-[30px] pt-[30px]"
+            openCustomList={openCustomList}
+            setOpenCustomList={setOpenCustomList}
           />
 
           <FilterSwitch

@@ -6,6 +6,7 @@ import {
 } from "@/lib/redux/features/filterJobs/filters";
 import { RootState } from "@/lib/redux/store";
 import { useSelector } from "react-redux";
+import { setOpenCustomList } from "@/lib/redux/features/touch";
 
 const ResultNavigator = ({
   searchedDataLength,
@@ -20,7 +21,7 @@ const ResultNavigator = ({
     filtersItem,
     filterData: { countJobs, isFilter },
   } = useSelector((state: RootState) => state.jobFilters);
-  const { touch, touchSortList } = useSelector(
+  const { touch, touchSortList, openCustomList } = useSelector(
     (state: RootState) => state.touch
   );
 
@@ -44,7 +45,7 @@ const ResultNavigator = ({
         </p>
       </div>
 
-      <div className="flex flex-wrap gap-x-5 gap-y-3  max-md:w-full">
+      <div className="flex max-sm:flex-col gap-x-5 gap-y-3  max-md:w-full">
         <div className={`${touch ? "-z-[1]" : "z-[1]"} max-md:flex-[1]`}>
           <CustomList
             options={["Sıralama (Varsayılan)", "En yeni", "En eski"]}
@@ -53,6 +54,8 @@ const ResultNavigator = ({
             defaultValue="Sıralama (Varsayılan)"
             screenClass="!bg-[#f0f5f7] !w-[222.45px] max-md:!w-full"
             listClass="!w-[222.45px] max-md:!w-full"
+            openCustomList={openCustomList}
+            setOpenCustomList={setOpenCustomList}
           />
         </div>
 
@@ -68,6 +71,8 @@ const ResultNavigator = ({
             defaultValue="Sayfa Başına 10"
             screenClass="!bg-[#f0f5f7] !w-[190.44px] max-md:!w-full"
             listClass="!w-[190.44px] max-md:!w-full"
+            openCustomList={openCustomList}
+            setOpenCustomList={setOpenCustomList}
           />
         </div>
       </div>
