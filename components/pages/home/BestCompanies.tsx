@@ -19,7 +19,7 @@ import ItemFilterText from "@/components/ItemFilterText";
 import useItemFilterText from "@/hooks/useItemFilterText";
 import useCreateArray from "@/hooks/useCreateArray";
 import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
-import FavoriteCompany from "@/components/FavoriteCompany";
+import FavoriteItem from "@/components/FavoriteItem";
 import { FavoriteField } from "@/types/favorite";
 
 const BestCompanies = () => {
@@ -86,7 +86,7 @@ const BestCompanies = () => {
                 className="featured-job-swiper-slide bg-white max-lg:!p-[15px] !p-[30px] !flex !flex-col text-center group"
               >
                 {user?.role === "candidate" || typeof user === "undefined" ? (
-                  <FavoriteCompany
+                  <FavoriteItem
                     data={{
                       dataField: {
                         companyEID: company?.eid,
