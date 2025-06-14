@@ -1,4 +1,4 @@
-import FavoriteCompany from "@/components/FavoriteCompany";
+import FavoriteItem from "@/components/FavoriteItem";
 import useJobFilter from "@/hooks/useJobFilter";
 import useScroll from "@/hooks/useScroll";
 import {
@@ -57,7 +57,7 @@ const JobItem = ({
       key={job.postId}
       className="p-[30px] max-[1200px]:p-[15px] mb-[30px] border border-[#ECEDF2] rounded-lg hover:shadow-[0_6px_15px_0_rgba(64,79,104,0.05)] transition-shadow duration-300 relative group"
     >
-      <FavoriteCompany
+      <FavoriteItem
         data={{
           dataField: {
             companyEID: job?.postId,

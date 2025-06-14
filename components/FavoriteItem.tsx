@@ -5,7 +5,7 @@ import { CircularProgress } from "@mui/material";
 import React, { useCallback, useContext, useMemo } from "react";
 import { GoBookmark, GoBookmarkFill } from "react-icons/go";
 
-const FavoriteCompany = ({ data, fieldName, extraField }: Favorite) => {
+const FavoriteItem = ({ data, fieldName, extraField }: Favorite) => {
   const { user, loading } = useContext(AuthContext);
   const { addFavoriteCompany, result, updatedData } = useFavoriteCompany();
 
@@ -54,4 +54,4 @@ const FavoriteCompany = ({ data, fieldName, extraField }: Favorite) => {
   );
 };
 
-export default FavoriteCompany;
+export default FavoriteItem;
