@@ -49,3 +49,8 @@ export type FilterArrayFields = (
   | "jobKeywords"
   | "locationKeywords"
 )[];
+
+export type FilterPaginationFields =
+  | "nextPageValue"
+  | "prevPageValue"
+  | "activePage";

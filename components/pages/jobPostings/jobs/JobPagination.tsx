@@ -2,10 +2,11 @@ import useCreateArray from "@/hooks/useCreateArray";
 import useJobFilter from "@/hooks/useJobFilter";
 import useScroll from "@/hooks/useScroll";
 import { setPagination } from "@/lib/redux/features/filterJobs/filters";
+import { RootState } from "@/lib/redux/store";
 import { Stack } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 /**
  * Renders the pagination component for job listings.
@@ -22,6 +23,7 @@ const JobPagination = ({ countJobs }: { countJobs: number }) => {
     countJobs < 10 ? Math.floor(10 / countJobs - 1) : Math.ceil(countJobs / 10)
   );
   const pageCount = paginationButtons?.length;
+  const { activePage } = useSelector((state: RootState) => state.jobFilters);
 
   const handleChangePage = (
     _event: React.ChangeEvent<unknown>,
@@ -33,6 +35,7 @@ const JobPagination = ({ countJobs }: { countJobs: number }) => {
       setPagination({
         nextPageValue: nextPage,
         prevPageValue: prevPage,
+        activePage: value,
       })
     );
 
@@ -51,6 +54,7 @@ const JobPagination = ({ countJobs }: { countJobs: number }) => {
     >
       <Pagination
         count={pageCount}
+        page={activePage}
         size="large"
         onChange={handleChangePage}
         showFirstButton={pageCount >= 10 ? true : false}
