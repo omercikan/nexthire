@@ -9,6 +9,7 @@ import { jobPostings } from "./services/jobPostings";
 import { touch } from "./features/touch";
 import { loading } from "./features/loading";
 import { favoritesApi } from "./services/favoritesApi";
+import { jobDetailApi } from "./services/jobDetail";
 
 export const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ export const store = configureStore({
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [jobPostings.reducerPath]: jobPostings.reducer,
     [favoritesApi.reducerPath]: favoritesApi.reducer,
+    [jobDetailApi.reducerPath]: jobDetailApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -29,6 +31,7 @@ export const store = configureStore({
       bestCompaniesApi.middleware,
       jobPostings.middleware,
       favoritesApi.middleware,
+      jobDetailApi.middleware,
     ]),
 });
 
