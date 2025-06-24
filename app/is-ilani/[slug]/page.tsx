@@ -1,11 +1,11 @@
 "use client";
 
 import JobIntro from "@/components/pages/jobDetail/jobIntro/JobIntro";
-import { useGetJobDetailQuery } from "@/lib/redux/services/jobDetail";
 import { Timestamp } from "firebase/firestore";
+import { Toaster } from "react-hot-toast";
+import { useGetJobDetailQuery } from "@/lib/redux/services/jobDetail";
 import { useParams } from "next/navigation";
 import React from "react";
-import { Toaster } from "react-hot-toast";
 
 const JobDetail = () => {
   const { slug } = useParams();
