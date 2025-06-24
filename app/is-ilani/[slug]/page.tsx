@@ -9,6 +9,7 @@ import React from "react";
 
 const JobDetail = () => {
   const { slug } = useParams();
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const { data, isLoading } = useGetJobDetailQuery({
     postID: String(
       slug
