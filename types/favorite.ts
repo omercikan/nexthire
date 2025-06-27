@@ -1,7 +1,7 @@
 import { Candidate } from "@/types/index";
 
 export interface FavoriteDataFields {
-  companyEID: string;
+  postID: string;
   companyLogo: string;
   companyName: string;
   companyLocation: string;
@@ -16,10 +16,12 @@ export enum FavoriteField {
 export interface Favorite {
   data: {
     dataField: FavoriteDataFields;
-    eid: string;
+    postID: string;
   };
   extraField?: string;
   fieldName: FavoriteField;
+  favoriteButtonClass?: string;
+  favoriteIconClass?: string;
 }
 
 export interface FavoriteAPIRoute {

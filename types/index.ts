@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import { FormikErrors } from "formik";
 import { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
 
@@ -156,6 +157,7 @@ export interface EmployerOpenJobs {
   experienceTime: string;
   applicationDeadlineDate: string;
   location: string;
+  datePosted: Timestamp;
 }
 
 export interface Employer extends User {
@@ -180,7 +182,7 @@ export interface Employer extends User {
 }
 
 export interface CandidateFavoriteInterface {
-  companyEID: string;
+  postID: string;
   companyLocation: string;
   companyLogo: string;
   companyName: string;

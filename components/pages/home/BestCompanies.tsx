@@ -89,7 +89,7 @@ const BestCompanies = () => {
                   <FavoriteItem
                     data={{
                       dataField: {
-                        companyEID: company?.eid,
+                        postID: company?.eid,
                         companyLocation:
                           company?.companyInformations?.location?.city,
                         numberOfEmployees:
@@ -97,7 +97,7 @@ const BestCompanies = () => {
                         companyLogo: company?.companyInformations?.companyLogo,
                         companyName: company?.companyInformations?.companyName,
                       },
-                      eid: company?.eid,
+                      postID: company?.eid,
                     }}
                     fieldName={FavoriteField.Employers}
                   />

@@ -30,13 +30,13 @@ const useFavoriteCompany = () => {
   const addFavoriteCompany = useCallback(
     async (
       data: FavoriteDataFields & { extraField: string | undefined },
-      eid: string,
+      postID: string,
       fieldName: string
     ) => {
       if (user?.role === "candidate") {
         await addFavorite({
           data: data,
-          id: eid,
+          postID: postID,
           user: candidateUser,
           updatedData: updatedData as Candidate,
           fieldName: fieldName,

@@ -8,7 +8,16 @@ export const jobDetailApi = createApi({
   }),
   endpoints: (builder) => ({
     getJobDetail: builder.query<
-      { job: EmployerOpenJobs; status: number },
+      {
+        job: EmployerOpenJobs & {
+          companyLogo: string;
+          companyName: string;
+          serviceArea: string;
+          companyID: string;
+          numberOfEmployees: string;
+        };
+        status: number;
+      },
       { postID: string }
     >({
       query: ({ postID }) => ({

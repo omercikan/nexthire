@@ -5,36 +5,50 @@ import { CircularProgress } from "@mui/material";
 import React, { useCallback, useContext, useMemo } from "react";
 import { GoBookmark, GoBookmarkFill } from "react-icons/go";
 
-const FavoriteItem = ({ data, fieldName, extraField }: Favorite) => {
+const FavoriteItem = ({
+  data,
+  fieldName,
+  extraField,
+  favoriteButtonClass,
+  favoriteIconClass,
+}: Favorite) => {
   const { user, loading } = useContext(AuthContext);
   const { addFavoriteCompany, result, updatedData } = useFavoriteCompany();
 
   const isFavorited = useMemo(() => {
     return updatedData?.[fieldName]?.some(
-      (favorite) => favorite?.companyEID === data?.eid
+      (favorite) => favorite?.postID === data?.postID
     );
-  }, [data?.eid, updatedData, fieldName]);
+  }, [data?.postID, updatedData, fieldName]);
 
   const handleAddFavorite = useCallback(() => {
     addFavoriteCompany(
       { ...data?.dataField, extraField },
-      data?.eid,
+      data?.postID,
       fieldName
     );
-  }, [addFavoriteCompany, data?.dataField, data?.eid, extraField, fieldName]);
+  }, [
+    addFavoriteCompany,
+    data?.dataField,
+    data?.postID,
+    extraField,
+    fieldName,
+  ]);
 
   return (
     <>
       {user?.role === "candidate" ||
       (typeof user?.role === "undefined" && !loading) ? (
         <button
-          disabled={result.originalArgs?.id === data?.eid && result.isLoading}
-          className={`favorite-icon-wrapper ${
-            result.isLoading ? "pointer-events-none" : ""
-          }`}
+          disabled={
+            result.originalArgs?.postID === data?.postID && result.isLoading
+          }
+          className={`${
+            favoriteButtonClass ? favoriteButtonClass : "favorite-icon-wrapper"
+          } ${result.isLoading ? "pointer-events-none" : ""}`}
           onClick={handleAddFavorite}
         >
-          {result.originalArgs?.id === data?.eid && result.isLoading ? (
+          {result.originalArgs?.postID === data?.postID && result.isLoading ? (
             <CircularProgress
               size={18}
               className="!text-[#696969]"
@@ -42,11 +56,18 @@ const FavoriteItem = ({ data, fieldName, extraField }: Favorite) => {
             />
           ) : isFavorited ? (
             <GoBookmarkFill
-              className="favorite-icon"
+              className={
+                favoriteIconClass ? favoriteIconClass : "favorite-icon"
+              }
               data-testid="GoBookmarkFill"
             />
           ) : (
-            <GoBookmark className="favorite-icon" data-testid="GoBookmark" />
+            <GoBookmark
+              className={
+                favoriteIconClass ? favoriteIconClass : "favorite-icon"
+              }
+              data-testid="GoBookmark"
+            />
           )}
         </button>
       ) : null}
