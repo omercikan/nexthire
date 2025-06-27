@@ -12,18 +12,18 @@ export const favoritesApi = createApi({
       object,
       {
         data: FavoriteDataFields;
-        id: string;
+        postID: string;
         user: Candidate;
         updatedData: Candidate;
         fieldName: string;
       }
     >({
-      query: ({ data, id, user, updatedData, fieldName }) => ({
+      query: ({ data, postID, user, updatedData, fieldName }) => ({
         url: "favorites",
         method: "POST",
         body: {
           data: data,
-          id: id,
+          id: postID,
           user: user,
           updatedData: updatedData,
           setFavoritePath: "candidates",

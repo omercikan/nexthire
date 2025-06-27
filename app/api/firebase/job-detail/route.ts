@@ -1,7 +1,7 @@
 import { collection, getDocs, limit, query, where } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "../firebaseConfig";
-import { Employer, EmployerOpenJobs } from "@/types";
+import { EmployerOpenJobs } from "@/types";
 import { cookies } from "next/headers";
 
 /**
@@ -30,16 +30,26 @@ export async function POST(req: NextRequest) {
     );
     const docData = await getDocs(docRef);
 
-    const job: Employer[] = [];
+    const job: (EmployerOpenJobs & { companyLogo: string })[] = [];
 
     docData.forEach((snapshot) => {
       const data = snapshot.data();
 
-      const filteredJob = data.openJobs.filter(
+      const filteredJob = data.openJobs.find(
         (job: EmployerOpenJobs) => job.postId == postID
-      )[0];
+      );
 
-      job.push(filteredJob);
+      const companyInformations = {
+        companyLogo: data.companyInformations.companyLogo,
+        companyName: data.companyInformations.companyName,
+        serviceArea: data.companyInformations.serviceArea,
+        numberOfEmployees: data.companyInformations.numberOfEmployees,
+      };
+
+      job.push({
+        ...filteredJob,
+        ...companyInformations,
+      });
     });
 
     return NextResponse.json({ job: job[0], status: 200 });

@@ -62,13 +62,13 @@ const JobItem = ({
       <FavoriteItem
         data={{
           dataField: {
-            companyEID: job?.postId,
-            companyLocation: job?.companyInformations?.location,
+            postID: job?.postId,
+            companyLocation: job?.location,
             numberOfEmployees: job?.companyInformations?.numberOfEmployees,
             companyLogo: job?.companyInformations?.companyLogo,
             companyName: job?.companyInformations?.companyName,
           },
-          eid: job?.postId,
+          postID: job?.postId,
         }}
         fieldName={FavoriteField.Jobs}
         extraField={job.jobTitle}
