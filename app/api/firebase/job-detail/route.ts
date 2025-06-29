@@ -2,7 +2,6 @@ import { collection, getDocs, limit, query, where } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "../firebaseConfig";
 import { EmployerOpenJobs } from "@/types";
-import { cookies } from "next/headers";
 
 /**
  * API route handler to fetch job posting details.
@@ -17,10 +16,7 @@ import { cookies } from "next/headers";
  */
 
 export async function POST(req: NextRequest) {
-  const { postID } = await req.json();
-  const cookieStore = await cookies();
-  const token = cookieStore.get("CIDVSD");
-  const companyID = atob(token?.value as string);
+  const { postID, companyID } = await req.json();
 
   try {
     const docRef = query(

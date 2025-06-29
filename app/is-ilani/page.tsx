@@ -1,21 +1,17 @@
 "use client";
 
 import JobIntro from "@/components/pages/jobDetail/jobIntro/JobIntro";
-import { useGetJobDetailQuery } from "@/lib/redux/services/jobDetail";
 import { Timestamp } from "firebase/firestore";
-import { useParams } from "next/navigation";
-import React from "react";
 import { Toaster } from "react-hot-toast";
+import { useGetJobDetailQuery } from "@/lib/redux/services/jobDetail";
+import { useSearchParams } from "next/navigation";
+import React from "react";
 
 const JobDetail = () => {
-  const { slug } = useParams();
+  const params = useSearchParams();
   const { data, isLoading } = useGetJobDetailQuery({
-    postID: String(
-      slug
-        ?.toString()
-        .split("-")
-        .at(slug.toString().split("-").length - 1)
-    ),
+    postID: atob(params.get("jpi") ?? ""),
+    companyID: atob(params.get("jci") ?? ""),
   });
 
   return (
