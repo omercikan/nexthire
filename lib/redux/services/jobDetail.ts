@@ -18,13 +18,14 @@ export const jobDetailApi = createApi({
         };
         status: number;
       },
-      { postID: string }
+      { postID: string; companyID: string }
     >({
-      query: ({ postID }) => ({
+      query: ({ postID, companyID }) => ({
         url: "job-detail",
         method: "POST",
         body: {
           postID,
+          companyID,
         },
       }),
     }),
