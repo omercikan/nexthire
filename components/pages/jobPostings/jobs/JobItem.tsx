@@ -1,5 +1,4 @@
 import FavoriteItem from "@/components/FavoriteItem";
-import useCookieSetter from "@/hooks/useCookieSetter";
 import useJobFilter from "@/hooks/useJobFilter";
 import useScroll from "@/hooks/useScroll";
 import {
@@ -32,7 +31,6 @@ const JobItem = ({
   const dispatch = useDispatch<AppDispatch>();
   const { filterJob } = useJobFilter();
   const { applyScroll } = useScroll();
-  const { setCookie } = useCookieSetter();
 
   const handleAction = useCallback(
     (text: string, addState: UnknownAction, removeState?: UnknownAction) => {
@@ -88,10 +86,11 @@ const JobItem = ({
         <div className="px-5">
           <div className="flex items-center max-[450px]:justify-center max-[450px]:flex-col-reverse">
             <Link
-              href={`/is-ilani/${routeFormatter(job.jobTitle)}-${job.postId}`}
-              onClick={() =>
-                setCookie("CIDVSD", job?.companyInformations?.companyId)
-              }
+              href={`is-ilani?${new URLSearchParams({
+                meslek: routeFormatter(job.jobTitle),
+                jpi: btoa(job.postId),
+                jci: btoa(job.companyInformations.companyId),
+              })}`}
             >
               <h2 className="text-[#202124] hover:text-[#1967d2] transition-colors duration-300 text-lg font-medium">
                 {job.jobTitle}
