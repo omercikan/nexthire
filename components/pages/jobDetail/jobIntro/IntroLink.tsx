@@ -1,3 +1,5 @@
+"use client";
+
 import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 import { JOB_TYPES } from "@/constants/filtersJob";
 import useItemFilterText from "@/hooks/useItemFilterText";

@@ -10,8 +10,8 @@ import React from "react";
 const JobDetail = () => {
   const params = useSearchParams();
   const { data, isLoading } = useGetJobDetailQuery({
-    postID: atob(params.get("jpi") as string),
-    companyID: atob(params.get("jci") as string),
+    postID: atob(params.get("jpi") ?? ""),
+    companyID: atob(params.get("jci") ?? ""),
   });
 
   return (

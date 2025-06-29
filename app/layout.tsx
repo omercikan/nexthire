@@ -5,7 +5,7 @@ import { Jost } from "next/font/google";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./api/firebase/firebaseConfig";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useMemo } from "react";
+import { Suspense, useEffect, useMemo } from "react";
 import { defaultMetadata } from "@/lib/seo";
 import Header from "@/components/layout/Header";
 import { Provider } from "react-redux";
@@ -80,7 +80,7 @@ export default function RootLayout({
               <Header />
             )}
 
-            {children}
+            <Suspense>{children}</Suspense>
 
             {!authPages.includes(pathname) && pathname !== "/sifre-sifirla" && (
               <MobileUserModal />
