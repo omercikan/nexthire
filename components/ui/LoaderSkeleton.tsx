@@ -8,6 +8,7 @@ const LoaderSkeleton = ({
   length,
   extraSxClass,
   className,
+  testID,
 }: {
   animationType: false | "pulse" | "wave" | undefined;
   variant: "text" | "rectangular" | "rounded" | "circular";
@@ -19,11 +20,13 @@ const LoaderSkeleton = ({
   length: number;
   extraSxClass?: SxProps;
   className?: string;
+  testID?: string;
 }) => {
   const placeholderLoader = Array.from({ length }, (_, i) => i);
 
   return placeholderLoader.map((_, i) => (
     <Skeleton
+      data-testid={testID}
       key={i}
       className={className ?? ""}
       animation={animationType}
