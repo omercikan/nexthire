@@ -22,14 +22,14 @@ jest.mock("../../app/api/firebase/firebaseConfig", () => ({
 //? Mock favorite data ?//
 const mockFavoriteData = {
   dataField: {
-    companyEID: "2109830912",
+    postID: "2109830912",
     companyLocation: "İstanbul",
     numberOfEmployees: "100",
     companyLogo:
       "https://res.cloudinary.com/dvolwkh6r/image/upload/v1745622792/N_2_1_regutc.png",
     companyName: "NextHire",
   },
-  eid: "2109830912",
+  postID: "2109830912",
 };
 
 //? Mock sample user ?//
@@ -111,7 +111,7 @@ describe("FavoriteCompany Component test group", () => {
 
     test("isFavorited = true; and test id GoBookmarkFill visible", () => {
       renderComponent("candidate", {
-        [FavoriteField.Jobs]: [{ companyEID: "2109830912" }],
+        [FavoriteField.Jobs]: [{ postID: "2109830912" }],
       });
       expect(screen.getByTestId("GoBookmarkFill")).toBeInTheDocument();
     });
@@ -122,7 +122,7 @@ describe("FavoriteCompany Component test group", () => {
       (useFavoriteCompany as jest.Mock).mockReturnValue({
         addFavoriteCompany: mockAddFavoriteCompany,
         result: {
-          originalArgs: { id: "2109830912" },
+          originalArgs: { postID: "2109830912" },
           isLoading: true,
         },
         updatedData: {},

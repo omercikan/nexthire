@@ -111,6 +111,7 @@ const JobIntro = ({ data, isLoading }: JobIntroInterface) => {
               {isLoading ? (
                 <Typography variant="subtitle1">
                   <LoaderSkeleton
+                    testID="time-skeleton"
                     animationType="wave"
                     length={1}
                     variant="text"
