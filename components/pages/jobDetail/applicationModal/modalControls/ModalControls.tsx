@@ -67,6 +67,7 @@ const ModalControls = ({
           text="Geri"
           className="hover:!bg-[#EBF4FD] !bg-transparent !text-[#4045ef] font-semibold !py-1.5 !px-2 !rounded-sm"
           handleClick={prevStep}
+          isSubmitting={false}
         />
       )}
 
@@ -77,11 +78,13 @@ const ModalControls = ({
               ? "İncele"
               : "İleri"
           }
+          isSubmitting={false}
           className="!py-1.5 !px-4 font-semibold"
           handleClick={nextStep}
         />
       ) : (
         <CustomButton
+          isSubmitting={false}
           text="Başvuruyu gönder"
           className="!py-1.5 !px-4 font-semibold"
         />
