@@ -11,6 +11,7 @@ import { loading } from "./features/loading";
 import { favoritesApi } from "./services/favoritesApi";
 import { jobDetailApi } from "./services/jobDetail";
 import { ProgressBarSlice } from "./features/applicationModal/progressBar";
+import { applicationModalDataSlice } from "./features/applicationModal/modalData";
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
     touch: touch.reducer,
     loading: loading.reducer,
     applicationModalProgressBar: ProgressBarSlice.reducer,
+    applicationModalData: applicationModalDataSlice.reducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [jobPostings.reducerPath]: jobPostings.reducer,

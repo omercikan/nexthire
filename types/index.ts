@@ -47,6 +47,7 @@ export type AuthInputProps = {
   handleClickPasswordDisplay?: () => void;
   className?: string;
   iconSpanClass?: string;
+  labelClass?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 interface AuthSelectDataItem {
@@ -58,10 +59,15 @@ export interface AuthSelectProps {
   handleChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
   handleChangeCapture?: (e: ChangeEvent<HTMLSelectElement>) => void;
   data: AuthSelectDataItem[];
-  defaultValue: string;
+  defaultValue?: string;
   name: string;
   isSubmitting: boolean;
   value: string;
+  isFormatText?: boolean;
+  isDefaultValueOption?: boolean;
+  className?: string;
+  label?: string;
+  labelClass?: string;
 }
 
 export interface EmployerSignupFormFields {
@@ -158,6 +164,19 @@ export interface EmployerOpenJobs {
   applicationDeadlineDate: string;
   location: string;
   datePosted: Timestamp;
+  additionalQuestions: JobPostingAdditionalQuestions;
+}
+
+export interface JobPostingAdditionalQuestions {
+  isSelectAnswer: boolean;
+  isTextAnswer: boolean;
+  selectQuestions: {
+    questionAnswers: string[];
+    questionTitle: string;
+  }[];
+  textQuestions: {
+    questionTitle: string;
+  }[];
 }
 
 export interface Employer extends User {
