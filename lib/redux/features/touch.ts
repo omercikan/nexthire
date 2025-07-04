@@ -4,12 +4,14 @@ const initialState: initialState = {
   touch: false,
   touchSortList: false,
   openCustomList: "",
+  openApplicationModal: false,
 };
 
 interface initialState {
   touch: boolean;
   touchSortList: boolean;
   openCustomList: string;
+  openApplicationModal: boolean;
 }
 
 export const touch = createSlice({
@@ -27,7 +29,19 @@ export const touch = createSlice({
     setOpenCustomList: (state: initialState, action: PayloadAction<string>) => {
       state.openCustomList = action.payload;
     },
+
+    setApplicationModal: (
+      state: Pick<initialState, "openApplicationModal">,
+      action: PayloadAction<boolean>
+    ) => {
+      state.openApplicationModal = action.payload;
+    },
   },
 });
 
-export const { setTouch, setTouchSortList, setOpenCustomList } = touch.actions;
+export const {
+  setTouch,
+  setTouchSortList,
+  setOpenCustomList,
+  setApplicationModal,
+} = touch.actions;

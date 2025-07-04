@@ -1,6 +1,7 @@
 import FavoriteItem from "@/components/FavoriteItem";
 import useJobFilter from "@/hooks/useJobFilter";
 import useScroll from "@/hooks/useScroll";
+import { resetProgressBarValue } from "@/lib/redux/features/applicationModal/progressBar";
 import {
   selectCareerLevel,
   selectFiltersItem,
@@ -91,6 +92,7 @@ const JobItem = ({
                 jpi: btoa(job.postId),
                 jci: btoa(job.companyInformations.companyId),
               })}`}
+              onClick={() => dispatch(resetProgressBarValue())}
             >
               <h2 className="text-[#202124] hover:text-[#1967d2] transition-colors duration-300 text-lg font-medium">
                 {job.jobTitle}
