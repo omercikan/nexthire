@@ -10,13 +10,19 @@ const CustomInput = ({
   className,
   iconSpanClass,
   children,
+  labelClass,
   ...props
 }: AuthInputProps) => {
   const [field, meta] = useField(props);
 
   return (
     <div className="w-full">
-      <label className="block mb-1.5">{label}</label>
+      <label
+        htmlFor={props.name}
+        className={`block mb-1.5 ${labelClass ?? ""}`}
+      >
+        {label}
+      </label>
       <div className="relative">
         <span
           className={`auth-input__span left-3 ${
@@ -27,6 +33,7 @@ const CustomInput = ({
         </span>
 
         <input
+          id={props.name}
           autoComplete="on"
           {...field}
           {...props}
@@ -48,7 +55,7 @@ const CustomInput = ({
       </div>
 
       {meta.error && (
-        <div className="text-[#D91B1B] text-xs mt-1">{meta.error}</div>
+        <div className="text-[#D91B1B] text-sm mt-1">{meta.error}</div>
       )}
     </div>
   );
