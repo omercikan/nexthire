@@ -90,7 +90,7 @@ export interface AuthCheckboxProps {
 
 //! Custom button component properties interface !//
 export interface CustomButtonProps {
-  isSubmitting: boolean;
+  isSubmitting?: boolean;
   className?: string;
   text: string;
   circularColor?: string;

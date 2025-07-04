@@ -3,14 +3,13 @@ import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 import { setApplicationModal } from "@/lib/redux/features/touch";
 import { AppDispatch } from "@/lib/redux/store";
 import { Typography } from "@mui/material";
-import React, { MouseEvent } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 
 const JobApplication = ({ isLoading }: { isLoading: boolean }) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleClick = (e: MouseEvent<HTMLButtonElement> | undefined) => {
-    e?.stopPropagation();
+  const handleClick = () => {
     dispatch(setApplicationModal(true));
   };
 
