@@ -24,9 +24,10 @@ const JobDetail = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    window.addEventListener("click", () =>
-      dispatch(setApplicationModal(false))
-    );
+    window.addEventListener("click", () => {
+      dispatch(setApplicationModal(false));
+      document.body.style.overflow = "visible";
+    });
   }, [dispatch]);
 
   return (

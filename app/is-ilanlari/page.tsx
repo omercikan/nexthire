@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import SearchJob from "@/components/SearchJob";
 import FilterMenu from "@/components/pages/jobPostings/filterMenu/FilterMenu";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import JobList from "@/components/pages/jobPostings/jobs/JobList";
 import FilterMenuMobile from "@/components/pages/jobPostings/filterMenu/FilterMenuMobile";
 import { useSelector } from "react-redux";
@@ -11,6 +11,8 @@ import { RootState } from "@/lib/redux/store";
 
 const JobAdverts = () => {
   const { filtersItem } = useSelector((state: RootState) => state.jobFilters);
+
+  useEffect(() => toast.dismiss(), []);
 
   return (
     <main className="mt-[79.4304px] max-sm:mt-[40px]">

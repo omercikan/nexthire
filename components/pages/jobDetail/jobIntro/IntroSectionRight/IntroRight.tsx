@@ -25,7 +25,10 @@ const IntroRight = ({
       />
 
       <div className="flex gap-5">
-        <JobApplication isLoading={isLoading} />
+        <JobApplication
+          isLoading={isLoading}
+          applicationDeadlineDate={applicationDeadlineDate}
+        />
 
         {isLoading ? (
           <Typography variant="button">

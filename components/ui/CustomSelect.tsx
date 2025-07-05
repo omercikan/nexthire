@@ -47,11 +47,18 @@ const CustomSelect: FC<AuthSelectProps> = ({
               {defaultValue}
             </option>
           )}
-          {data.map((val) => (
-            <option key={val.id} className="text-gray-500" value={val.name}>
-              {isFormatText ? FormatText(val.name) : val.name}
-            </option>
-          ))}
+          {data
+            .filter((val) => val.name !== undefined)
+            .map((val) => (
+              <option
+                key={val.id}
+                className="text-gray-500"
+                value={val.name}
+                disabled={val.disabled}
+              >
+                {isFormatText ? FormatText(val.name) : val.name}
+              </option>
+            ))}
         </select>
 
         <HiOutlineChevronUpDown className="absolute right-3 top-[50%] -translate-y-[50%]" />

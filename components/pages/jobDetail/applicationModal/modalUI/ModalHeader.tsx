@@ -17,6 +17,7 @@ const ModalHeader = ({
   const handleCloseModal = () => {
     dispatch(setApplicationModal(false));
     dispatch(resetProgressBarValue());
+    document.body.style.overflow = "visible";
   };
 
   return (
