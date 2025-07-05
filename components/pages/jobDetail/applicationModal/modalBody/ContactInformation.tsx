@@ -14,6 +14,7 @@ import InformationMessage from "../modalUI/InformationMessage";
 import ModalControls from "../modalControls/ModalControls";
 
 const ModalContactInformation = () => {
+  const { user } = useContext(AuthContext);
   const dispatch = useDispatch<AppDispatch>();
   const { additionalQuestions, resume } = useSelector(
     (state: RootState) => state.applicationModalData
@@ -33,7 +34,6 @@ const ModalContactInformation = () => {
       })
     );
   };
-  const { user } = useContext(AuthContext);
 
   return (
     <div className="">
@@ -59,6 +59,7 @@ const ModalContactInformation = () => {
                   {
                     id: 1,
                     name: "Bir seçenek belirleyin",
+                    disabled: true,
                   },
                   {
                     id: 2,

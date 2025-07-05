@@ -53,6 +53,7 @@ export type AuthInputProps = {
 interface AuthSelectDataItem {
   id: number;
   name: string;
+  disabled?: boolean;
 }
 
 export interface AuthSelectProps {
