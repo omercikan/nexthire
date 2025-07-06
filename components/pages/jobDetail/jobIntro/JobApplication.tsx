@@ -3,6 +3,7 @@ import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 import { AuthContext } from "@/context/authContext";
 import { setApplicationModal } from "@/lib/redux/features/touch";
 import { AppDispatch } from "@/lib/redux/store";
+import { formateDate } from "@/lib/utils/formatDate";
 import { Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
