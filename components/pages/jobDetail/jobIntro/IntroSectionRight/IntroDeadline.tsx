@@ -1,5 +1,7 @@
 import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 import { Typography } from "@mui/material";
+import dayjs from "dayjs";
+import "dayjs/locale/tr";
 import React from "react";
 
 const IntroDeadline = ({
@@ -33,11 +35,9 @@ const IntroDeadline = ({
           <p className="max-lg:text-center">
             <span>Son başvuru tarihi:</span>{" "}
             <time className="text-[#e44343] text-[15px] font-medium">
-              {new Date(applicationDeadlineDate).toLocaleDateString("tr", {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
-              })}
+              {dayjs(applicationDeadlineDate)
+                .locale("tr")
+                .format("DD MMMM YYYY")}
             </time>
           </p>
         </div>

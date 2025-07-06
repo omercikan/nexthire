@@ -3,12 +3,12 @@ import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 import { AuthContext } from "@/context/authContext";
 import { setApplicationModal } from "@/lib/redux/features/touch";
 import { AppDispatch } from "@/lib/redux/store";
-import { formateDate } from "@/lib/utils/formatDate";
 import { Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
+import dayjs from "dayjs";
 
 const JobApplication = ({
   isLoading,
@@ -20,11 +20,8 @@ const JobApplication = ({
   const dispatch = useDispatch<AppDispatch>();
   const { user } = useContext(AuthContext);
   const router = useRouter();
-  const applicationDeadline = formateDate(applicationDeadlineDate);
-  const [day, month, year] = applicationDeadline.split(".");
-  const deadlineDate = new Date(`${year}-${month}-${day}`);
-  const today = new Date();
-  const isExpired = today > deadlineDate;
+  const deadlineDate = dayjs(applicationDeadlineDate);
+  const isExpired = dayjs().isAfter(deadlineDate, "day");
 
   const handleClick = () => {
     if (isExpired) {

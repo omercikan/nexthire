@@ -10,6 +10,7 @@ import { JobIntroInterface } from "@/types/jobDetail";
 import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 import { Typography } from "@mui/material";
 import IntroRight from "./IntroSectionRight/IntroRight";
+import dayjs from "dayjs";
 
 const JobIntro = ({ data, isLoading }: JobIntroInterface) => {
   const {
@@ -126,10 +127,10 @@ const JobIntro = ({ data, isLoading }: JobIntroInterface) => {
                 <div className="flex gap-[5px]">
                   <BsClock size={20} color="696969" />
                   <time className="text-sm text-[#696969]">
-                    {new Date(
+                    {dayjs(
                       datePosted?.seconds * 1000 +
                         datePosted?.nanoseconds / 1000000
-                    ).toLocaleDateString("TR-tr")}
+                    ).format("DD.MM.YYYY")}
                   </time>
                 </div>
               )}
