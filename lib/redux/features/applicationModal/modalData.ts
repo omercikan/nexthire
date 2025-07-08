@@ -8,10 +8,12 @@ interface modalDataState {
 }
 
 const initialState = {
-  email: "",
-  phone: "",
-  resume: "",
-  additionalQuestions: [],
+  applicationData: {
+    email: "",
+    phone: "",
+    resume: "",
+    additionalQuestions: [],
+  },
 };
 
 export const applicationModalDataSlice = createSlice({
@@ -33,7 +35,7 @@ export const applicationModalDataSlice = createSlice({
         const value = action.payload[field];
 
         if (value !== undefined) {
-          (state[field] as typeof value) = value;
+          (state.applicationData[field] as typeof value) = value;
         }
       });
     },
