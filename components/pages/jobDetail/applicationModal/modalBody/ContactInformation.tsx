@@ -4,9 +4,8 @@ import { ContactInformationSchema } from "@/app/(auth)/schema/ApplicationModal/C
 import CustomInput from "@/components/ui/CustomInput";
 import CustomSelect from "@/components/ui/CustomSelect";
 import { AuthContext } from "@/context/authContext";
-import { EmployerSignupFormFields } from "@/types";
 import { Form, Formik } from "formik";
-import React, { useContext } from "react";
+import React, { ChangeEvent, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/lib/redux/store";
 import { setApplicationData } from "@/lib/redux/features/applicationModal/modalData";
@@ -16,21 +15,20 @@ import ModalControls from "../modalControls/ModalControls";
 const ModalContactInformation = () => {
   const { user } = useContext(AuthContext);
   const dispatch = useDispatch<AppDispatch>();
-  const { additionalQuestions, resume } = useSelector(
+  const { applicationData } = useSelector(
     (state: RootState) => state.applicationModalData
   );
 
-  const onSubmit = (
-    values: Pick<EmployerSignupFormFields, "email" | "phone">
-  ) => {
-    const { email, phone } = values;
+  const handleChangeCapture = <T extends HTMLInputElement | HTMLSelectElement>(
+    e: ChangeEvent<T>
+  ): void => {
+    const { name, value } = e.currentTarget;
 
     dispatch(
       setApplicationData({
-        phone: phone,
-        email: email,
-        resume: resume,
-        additionalQuestions: additionalQuestions,
+        ...applicationData,
+        [name]: value,
+        email: user?.email,
       })
     );
   };
@@ -40,12 +38,12 @@ const ModalContactInformation = () => {
       <h3 className="text-[#000000E6] font-medium px-6">İletişim bilgileri</h3>
 
       <Formik
-        enableReinitialize={true}
+        enableReinitialize
         initialValues={{
           email: user?.email || "",
-          phone: user?.phoneNumber || "",
+          phone: user?.phoneNumber || applicationData.phone || "",
         }}
-        onSubmit={onSubmit}
+        onSubmit={() => {}}
         validationSchema={ContactInformationSchema}
       >
         {({ values, handleChange, errors }) => (
@@ -70,6 +68,7 @@ const ModalContactInformation = () => {
                 isSubmitting={false}
                 value={values?.email}
                 handleChange={handleChange}
+                handleChangeCapture={handleChangeCapture}
                 isFormatText={false}
                 className="!px-2 !text-[15px] !py-1.5 mb-1 !rounded-md"
               />
@@ -81,6 +80,7 @@ const ModalContactInformation = () => {
                 name="phone"
                 className="!px-2 !py-1.5 none-spin-button !text-[15px] mb-1 !rounded-md"
                 onChange={handleChange}
+                onChangeCapture={handleChangeCapture}
                 placeholder={
                   user?.phoneNumber ? "" : "Telefon numarası giriniz"
                 }
