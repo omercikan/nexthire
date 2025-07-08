@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import ModalContactInformation from "./ContactInformation";
-import ModalResume from "./Resume";
+import ModalResume from "./resume/Resume";
 import AdditionalQuestions from "./AdditionalQuestions";
 import ApplicationSummary from "./ApplicationSummary";
 
