@@ -1,6 +1,7 @@
 import { Timestamp } from "firebase/firestore";
 import { FormikErrors } from "formik";
 import { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
+import { CVDataFields } from "./resume";
 
 //! General properties interface of the layout component !//
 export interface LayoutComponentProps {
@@ -215,6 +216,7 @@ export interface Candidate extends User {
   createdWith: string;
   favoriteEmployers: CandidateFavoriteInterface[];
   favoriteJobs: CandidateFavoriteInterface[];
+  uploadedResumes: CVDataFields[];
 }
 //! User interface area Employer and Candidate Role interfaces END !//
 

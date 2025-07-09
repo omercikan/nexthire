@@ -22,3 +22,10 @@ export interface UploadedCV {
   version_id: string;
   width: number;
 }
+
+export interface CVDataFields {
+  resume: string;
+  cvID: string;
+  uploadTime: string;
+  size: string
+}
