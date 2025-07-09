@@ -1,13 +1,16 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 import InformationMessage from "../../modalUI/InformationMessage";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/lib/redux/store";
+import { AppDispatch, RootState, store } from "@/lib/redux/store";
 import { Form, Formik } from "formik";
 import ModalControls from "../../modalControls/ModalControls";
 import { setApplicationData } from "@/lib/redux/features/applicationModal/modalData";
 import { ResumeSchema } from "@/app/(auth)/schema/ApplicationModal/ResumeSchema";
 import validatePdfFile from "@/lib/utils/validatePdfFile";
-import { useUploadResumeMutation } from "@/lib/redux/services/uploadResume";
+import { useUploadResumeMutation } from "@/lib/redux/services/resumeApi";
+import { AuthContext } from "@/context/authContext";
+import { nanoid } from "@reduxjs/toolkit";
+import { setCvID } from "@/lib/redux/features/applicationModal/cvIdSlice";
 
 const UploadResume = () => {
   const { applicationData } = useSelector(
@@ -16,6 +19,7 @@ const UploadResume = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [pdfMessage, setPdfMessage] = useState<string>("");
   const [uploadResume] = useUploadResumeMutation();
+  const { user } = useContext(AuthContext);
 
   const handleUploadResume = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -32,8 +36,12 @@ const UploadResume = () => {
         );
       } else {
         setPdfMessage("");
+        dispatch(setCvID(nanoid()));
+        const { cvID } = store.getState().cvIdSlice;
         const formData = new FormData();
         formData.append("file", file);
+        formData.append("docID", user?.id ?? "");
+        formData.append("cvID", cvID);
         const { data } = await uploadResume(formData);
 
         dispatch(
