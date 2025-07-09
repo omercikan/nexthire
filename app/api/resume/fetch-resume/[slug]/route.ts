@@ -4,20 +4,19 @@ import { db } from "../../../firebase/firebaseConfig";
 import { CVDataFields } from "@/types/resume";
 
 /**
- * Fetches resume data from the Firestore "users" collection based on the provided document ID.
+ * Fetches resume data from Firestore "users" collection based on the document ID
+ * extracted from the dynamic route parameter "slug".
  *
- * This function expects a dynamic route parameter named "slug", which is used as the document ID.
- * It retrieves the "uploadedResumes" array from the Firestore document and returns it as JSON.
+ * The "slug" parameter is parsed from the request URL pathname.
+ * Retrieves the "uploadedResumes" array from the Firestore document and returns it as JSON.
  *
- * @param {NextRequest} _req - The incoming request object (not used here).
- * @param {{ params: { slug: string } }} param1 - Route parameters containing the document ID (slug).
- * @returns {Promise<NextResponse>} A JSON response with the resume data or an error message.
+ * @param {NextRequest} req - The incoming Next.js API request object.
+ * @returns {Promise<NextResponse>} JSON response containing either:
+ *    - `resumeData`: An array of CVDataFields objects (if found),
+ *    - or `message`: An error message in case of failure.
  */
 
-export async function GET(
-  _req: NextRequest,
-  { params }: { params: { slug: string } }
-): Promise<
+export async function GET(req: NextRequest): Promise<
   | NextResponse<{
       resumeData: CVDataFields[];
     }>
@@ -26,12 +25,13 @@ export async function GET(
     }>
   | undefined
 > {
-  const docID = params.slug;
+  const url = new URL(req.url);
+  const slug = url.pathname.split("/").pop();
 
   try {
     //? get resume from firestore ?//
     const resumeData: CVDataFields[] = [];
-    const docRef = doc(db, "users", docID);
+    const docRef = doc(db, "users", String(slug));
     const docSnap = await getDoc(docRef);
     resumeData.push(...(docSnap.data()?.uploadedResumes ?? []));
 
