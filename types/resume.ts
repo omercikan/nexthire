@@ -24,8 +24,10 @@ export interface UploadedCV {
 }
 
 export interface CVDataFields {
-  resume: string;
+  url: string;
   cvID: string;
   uploadTime: string;
-  size: string
+  size: string;
+  fileName: string;
+  createdAt: string;
 }

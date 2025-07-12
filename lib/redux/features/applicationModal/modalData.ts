@@ -1,3 +1,4 @@
+import { CVDataFields } from "@/types/resume";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface modalDataState {
@@ -7,13 +8,31 @@ interface modalDataState {
   additionalQuestions: object[];
 }
 
-const initialState = {
+interface initialStateFields {
+  applicationData: modalDataState;
+  placeholderUploadData: {
+    fileName: string;
+    size: number;
+    uploadTime: string;
+  };
+  uploadedFileNames: string[];
+}
+
+const initialState: initialStateFields = {
   applicationData: {
     email: "",
     phone: "",
     resume: "",
     additionalQuestions: [],
   },
+
+  placeholderUploadData: {
+    fileName: "",
+    size: 0,
+    uploadTime: "",
+  },
+
+  uploadedFileNames: [],
 };
 
 export const applicationModalDataSlice = createSlice({
@@ -39,7 +58,24 @@ export const applicationModalDataSlice = createSlice({
         }
       });
     },
+
+    setPlaceholderUploadData: (
+      state,
+      action: PayloadAction<
+        Pick<CVDataFields, "fileName" | "uploadTime"> & { size: number }
+      >
+    ) => {
+      state.placeholderUploadData = action.payload;
+    },
+
+    setUploadedFileNames: (state, action: PayloadAction<string[]>) => {
+      state.uploadedFileNames = action.payload;
+    },
   },
 });
 
-export const { setApplicationData } = applicationModalDataSlice.actions;
+export const {
+  setApplicationData,
+  setPlaceholderUploadData,
+  setUploadedFileNames,
+} = applicationModalDataSlice.actions;

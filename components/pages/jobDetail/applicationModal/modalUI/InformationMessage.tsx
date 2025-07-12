@@ -7,7 +7,7 @@ const InformationMessage = () => {
       <p className="text-[#00000099] text-xs">
         Bu başvurunun gönderilmesi,{" "}
         <strong className="font-semibold">NextHire</strong> profilinizde
-        herhangi bir değişiklik yapmaz. <br /> Başvurular,{" "}
+        herhangi bir değişiklik yapmaz. <br className="max-[500px]:hidden" /> Başvurular,{" "}
         <strong className="font-semibold">NextHire</strong> altyapısı ile
         desteklenmektedir. Daha fazla bilgi için{" "}
         <Link href="#" className="text-[#4045ef] hover:underline">
