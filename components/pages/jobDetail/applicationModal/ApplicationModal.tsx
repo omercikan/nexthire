@@ -9,6 +9,7 @@ import {
   setIsAdditionalQuestions,
   setProgressBarValue,
 } from "@/lib/redux/features/applicationModal/progressBar";
+import { setApplicationModal } from "@/lib/redux/features/touch";
 
 const ApplicationModal = ({
   companyName,
@@ -21,6 +22,11 @@ const ApplicationModal = ({
 }) => {
   const dispatch = useDispatch<AppDispatch>();
 
+  const handleCloseModal = () => {
+    dispatch(setApplicationModal(false));
+    document.body.style.overflow = "visible";
+  };
+
   useEffect(() => {
     dispatch(
       setProgressBarValue({
@@ -32,9 +38,12 @@ const ApplicationModal = ({
   }, [additionalQuestions, dispatch]);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full z-50 bg-black/25">
+    <div
+      className="fixed top-0 left-0 w-full h-full z-50 bg-black/25"
+      onClick={handleCloseModal}
+    >
       <div
-        className="bg-white fixed left-1/2 top-[32px] -translate-x-1/2 rounded-lg w-[744px] max-md:w-[95%]"
+        className="bg-white fixed left-1/2 top-[32px] -translate-x-1/2 rounded-lg w-[744px] max-md:w-[95%]  max-sm:h-[500px] max-sm:overflow-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <ModalHeader companyName={companyName} jobTitle={jobTitle} />

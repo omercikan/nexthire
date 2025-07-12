@@ -21,8 +21,8 @@ const ModalHeader = ({
   };
 
   return (
-    <div className="flex justify-between items-center max-md:items-start py-4 px-6 border-b border-gray-200">
-      <h2 className="text-xl font-medium max-[430px]:text-lg">
+    <div className="flex justify-between items-center max-md:items-start max-md:gap-x-3 py-4 px-6 border-b border-gray-200">
+      <h2 className="text-xl font-medium max-[430px]:text-lg max-md:self-end whitespace-nowrap text-ellipsis overflow-hidden">
         <strong className="font-medium">{companyName}</strong> şirketinin{" "}
         <strong className="font-medium">{jobTitle}</strong> ilanına
         başvuruyorsunuz{" "}

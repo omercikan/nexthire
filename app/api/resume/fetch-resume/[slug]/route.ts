@@ -35,7 +35,11 @@ export async function GET(req: NextRequest): Promise<
     const docSnap = await getDoc(docRef);
     resumeData.push(...(docSnap.data()?.uploadedResumes ?? []));
 
-    return NextResponse.json({ resumeData: resumeData }, { status: 200 });
+    const sortedData = resumeData.toSorted(
+      (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
+    );
+
+    return NextResponse.json({ resumeData: sortedData }, { status: 200 });
   } catch (error) {
     if (error instanceof Error)
       return NextResponse.json({ message: error.message }, { status: 400 });

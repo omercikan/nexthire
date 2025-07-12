@@ -36,9 +36,11 @@ export async function POST(req: NextRequest) {
         await updateDoc(docRef, {
           uploadedResumes: arrayUnion({
             uploadTime: dayjs().format("DD.MM.YYYY"),
-            resume: data.secure_url,
+            url: data.secure_url,
             cvID: cvID,
             size: calculateCVSize(file.size),
+            fileName: file.name,
+            createdAt: data.created_at,
           }),
         });
       };

@@ -1,25 +1,30 @@
-import React, { ChangeEvent, useContext, useState } from "react";
+import React, { ChangeEvent, useContext, useRef, useState } from "react";
 import InformationMessage from "../../modalUI/InformationMessage";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState, store } from "@/lib/redux/store";
 import { Form, Formik } from "formik";
 import ModalControls from "../../modalControls/ModalControls";
-import { setApplicationData } from "@/lib/redux/features/applicationModal/modalData";
+import {
+  setApplicationData,
+  setPlaceholderUploadData,
+} from "@/lib/redux/features/applicationModal/modalData";
 import { ResumeSchema } from "@/app/(auth)/schema/ApplicationModal/ResumeSchema";
 import validatePdfFile from "@/lib/utils/validatePdfFile";
 import { useUploadResumeMutation } from "@/lib/redux/services/resumeApi";
 import { AuthContext } from "@/context/authContext";
 import { nanoid } from "@reduxjs/toolkit";
 import { setCvID } from "@/lib/redux/features/applicationModal/cvIdSlice";
+import dayjs from "dayjs";
 
 const UploadResume = () => {
-  const { applicationData } = useSelector(
+  const { applicationData, uploadedFileNames } = useSelector(
     (state: RootState) => state.applicationModalData
   );
   const dispatch = useDispatch<AppDispatch>();
   const [pdfMessage, setPdfMessage] = useState<string>("");
   const [uploadResume] = useUploadResumeMutation();
   const { user } = useContext(AuthContext);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleUploadResume = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -34,7 +39,19 @@ const UploadResume = () => {
         setPdfMessage(
           "PDF dosyası geçersiz ya da bozuk lütfen başka bir dosya yükleyin"
         );
+      } else if (uploadedFileNames.includes(file.name)) {
+        setPdfMessage("Bu dosyayı zaten yüklediniz");
+      } else if (uploadedFileNames.length > 3) {
+        setPdfMessage("En fazla 4 tane yükleyebilirsiniz");
       } else {
+        dispatch(
+          setPlaceholderUploadData({
+            fileName: file.name,
+            size: file.size,
+            uploadTime: dayjs().format("DD.MM.YYYY"),
+          })
+        );
+
         setPdfMessage("");
         dispatch(setCvID(nanoid()));
         const { cvID } = store.getState().cvIdSlice;
@@ -50,6 +67,10 @@ const UploadResume = () => {
             resume: data?.resumeData?.secure_url,
           })
         );
+      }
+
+      if (fileInputRef.current) {
+        e.target.value = "";
       }
     }
   };
@@ -87,6 +108,7 @@ const UploadResume = () => {
                   setFieldValue("resume", e.target.files?.[0]);
                   handleUploadResume(e);
                 }}
+                ref={fileInputRef}
               />
               <div className="text-[#D91B1B] text-[15px] mt-1">
                 {errors.resume ? errors.resume : pdfMessage}
