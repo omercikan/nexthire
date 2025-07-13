@@ -1,4 +1,4 @@
-import { EmployerOpenJobs } from "@/types";
+import { EmployerOpenJobs } from "@/types/auth/employer/open-jobs.types";
 import {
   FilterArrayFields,
   FilterPaginationFields,

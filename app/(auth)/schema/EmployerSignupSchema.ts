@@ -29,19 +29,19 @@ export const EmployerSignupSchema = Yup.object().shape({
     .min(2, "Şirket adı en az 2 karakter olmalı.")
     .required("Şirket adı gereklidir."),
 
-  selectCity: Yup.string()
+  city: Yup.string()
     .notOneOf(["İl Seçiniz"], "Bir şehir seçmelisiniz.")
     .required("Şehir seçimi gereklidir."),
 
-  selectDistricts: Yup.string()
+  district: Yup.string()
     .notOneOf(["İlçe Seçiniz"], "Bir ilçe seçmelisiniz.")
     .required("İlçe seçimi gereklidir."),
 
-  selectTaxOfficiesCity: Yup.string()
+  taxCity: Yup.string()
     .notOneOf(["Vergi Dairesi İli Seçiniz"], "Vergi dairesi ili seçmelisiniz.")
     .required("Vergi dairesi ili gereklidir."),
 
-  selectTaxOffice: Yup.string()
+  taxOffice: Yup.string()
     .notOneOf(["Vergi Dairesi Seçiniz"], "Vergi dairesi seçmelisiniz.")
     .required("Vergi dairesi gereklidir."),
 

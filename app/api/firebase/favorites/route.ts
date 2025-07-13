@@ -15,14 +15,13 @@ export async function POST(req: NextRequest) {
 
   try {
     if (user?.role === "candidate") {
-      const userId = user?.id ?? user?.cid;
       const isAlreadyFavorited = updatedData?.[fieldName]?.some(
         (item) => item.postID === id
       );
       const action = isAlreadyFavorited ? "remove" : "add";
 
       const updateFavorite = async (path: string) => {
-        const ref = doc(db, path, userId);
+        const ref = doc(db, path, user?.id);
         const updateData =
           action === "add"
             ? { [fieldName]: arrayUnion(data) }

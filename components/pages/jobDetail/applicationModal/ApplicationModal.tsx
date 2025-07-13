@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import ModalHeader from "./modalUI/ModalHeader";
 import ModalProgressBar from "./modalControls/ModalProgressBar";
 import ModalBody from "./modalBody/ModalBody";
-import { JobPostingAdditionalQuestions } from "@/types";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/lib/redux/store";
 import {
@@ -10,6 +9,7 @@ import {
   setProgressBarValue,
 } from "@/lib/redux/features/applicationModal/progressBar";
 import { setApplicationModal } from "@/lib/redux/features/touch";
+import { JobPostingAdditionalQuestions } from "@/types/auth/employer/open-jobs.types";
 
 const ApplicationModal = ({
   companyName,

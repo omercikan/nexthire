@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     }
 
     const createdData = {
-      cid: userCredential.user.uid,
+      id: userCredential.user.uid,
       name: `${name} ${surname}`,
       acceptedTerms: acceptedTerms,
       email: email,

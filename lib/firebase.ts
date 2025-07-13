@@ -22,7 +22,7 @@ export const SignInWithGooglePopup = async () => {
       document.cookie = `VV9SVA=${btoa(credential.user.refreshToken)}`;
 
       const createdData = {
-        cid: credential.user.uid,
+        id: credential.user.uid,
         displayName: credential.user.displayName,
         acceptedTerms: `${credential.user.displayName} adlı Kullanıcı, kullanım şartlarını kabul ettiğini ve bu şartlara uygun hareket edeceğini beyan eder.`,
         email: credential.user.email,

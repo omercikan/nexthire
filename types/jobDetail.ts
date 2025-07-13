@@ -1,4 +1,4 @@
-import { EmployerOpenJobs } from ".";
+import { EmployerOpenJobs } from "./auth/employer/open-jobs.types";
 
 //? Job detail page top intro section interfaces ?//
 export interface JobIntroInterface {

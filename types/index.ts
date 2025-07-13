@@ -1,4 +1,3 @@
-import { Timestamp } from "firebase/firestore";
 import { FormikErrors } from "formik";
 import { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
 import { CVDataFields } from "./resume";
@@ -72,21 +71,6 @@ export interface AuthSelectProps {
   labelClass?: string;
 }
 
-export interface EmployerSignupFormFields {
-  nameAndSurname: string;
-  phone: string;
-  email: string;
-  password: string;
-  companyName: string;
-  taxNumber: string;
-  checkboxFirst: boolean;
-  checkboxSecond: boolean;
-  selectCity: string;
-  selectDistricts: string;
-  selectTaxOfficiesCity: string;
-  selectTaxOffice: string;
-}
-
 export interface AuthCheckboxProps {
   errors?: string | undefined;
   values: boolean;
@@ -153,55 +137,6 @@ export interface User {
   role: string;
 }
 
-export interface EmployerOpenJobs {
-  postId: string;
-  jobTitle: string;
-  jobAbout: string;
-  category: string;
-  modeOfWork: string;
-  workModel: string;
-  positionLevel: string;
-  educationLevel: string[];
-  experienceTime: string;
-  applicationDeadlineDate: string;
-  location: string;
-  datePosted: Timestamp;
-  additionalQuestions: JobPostingAdditionalQuestions;
-}
-
-export interface JobPostingAdditionalQuestions {
-  isSelectAnswer: boolean;
-  isTextAnswer: boolean;
-  selectQuestions: {
-    questionAnswers: string[];
-    questionTitle: string;
-  }[];
-  textQuestions: {
-    questionTitle: string;
-  }[];
-}
-
-export interface Employer extends User {
-  eid: string;
-  companyInformations: {
-    companyName: string;
-    companyLogo: string;
-    serviceArea: string;
-    phoneNumber: string;
-    numberOfEmployees: string;
-    location: {
-      city: string;
-      district: string;
-      taxNumber: string;
-      taxOffice: string;
-      taxOfficieCity: string;
-    };
-  };
-  featured: boolean;
-  bestCompany: boolean;
-  openJobs: EmployerOpenJobs[];
-}
-
 export interface CandidateFavoriteInterface {
   postID: string;
   companyLocation: string;
@@ -211,7 +146,7 @@ export interface CandidateFavoriteInterface {
 }
 
 export interface Candidate extends User {
-  cid: string;
+  id: string;
   acceptedTerms: string;
   createdWith: string;
   favoriteEmployers: CandidateFavoriteInterface[];
