@@ -11,7 +11,7 @@ import {
 } from "@/lib/redux/features/filterJobs/filters";
 import { AppDispatch, RootState } from "@/lib/redux/store";
 import { routeFormatter } from "@/lib/routeFormat";
-import { EmployerOpenJobs } from "@/types";
+import { EmployerOpenJobs } from "@/types/auth/employer/open-jobs.types";
 import { FavoriteField } from "@/types/favorite";
 import { JobCompanyInformations } from "@/types/filtersJob";
 import { UnknownAction } from "@reduxjs/toolkit";

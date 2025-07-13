@@ -1,4 +1,4 @@
-import { Employer } from "@/types";
+import { Employer } from "@/types/auth/models/employer";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const featuredJobsApi = createApi({

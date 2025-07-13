@@ -1,7 +1,7 @@
 import { collection, getDocs, limit, query, where } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "../firebaseConfig";
-import { EmployerOpenJobs } from "@/types";
+import { EmployerOpenJobs } from "@/types/auth/employer/open-jobs.types";
 
 /**
  * API route handler to fetch job posting details.
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
   try {
     const docRef = query(
       collection(db, "employers"),
-      where("eid", "==", companyID),
+      where("id", "==", companyID),
       limit(1)
     );
     const docData = await getDocs(docRef);

@@ -1,5 +1,4 @@
 import { useGetJobPostingsQuery } from "@/lib/redux/services/jobPostings";
-import { EmployerOpenJobs } from "@/types";
 import React from "react";
 import JobItem from "./JobItem";
 import { JobCompanyInformations } from "@/types/filtersJob";
@@ -11,6 +10,7 @@ import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 import { openFilterMenu } from "@/lib/redux/features/filterJobs/filters";
 import { TbAdjustmentsHorizontal } from "react-icons/tb";
 import JobPagination from "./JobPagination";
+import { EmployerOpenJobs } from "@/types/auth/employer/open-jobs.types";
 
 const JobList = () => {
   const { filterData, filtersItem } = useSelector(

@@ -9,7 +9,7 @@ import React from "react";
 import ApplicationModal from "@/components/pages/jobDetail/applicationModal/ApplicationModal";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import { JobPostingAdditionalQuestions } from "@/types";
+import { JobPostingAdditionalQuestions } from "@/types/auth/employer/open-jobs.types";
 
 const JobDetail = () => {
   const params = useSearchParams();

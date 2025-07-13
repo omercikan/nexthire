@@ -89,7 +89,7 @@ const BestCompanies = () => {
                   <FavoriteItem
                     data={{
                       dataField: {
-                        postID: company?.eid,
+                        postID: company?.id,
                         companyLocation:
                           company?.companyInformations?.location?.city,
                         numberOfEmployees:
@@ -97,7 +97,7 @@ const BestCompanies = () => {
                         companyLogo: company?.companyInformations?.companyLogo,
                         companyName: company?.companyInformations?.companyName,
                       },
-                      postID: company?.eid,
+                      postID: company?.id,
                     }}
                     fieldName={FavoriteField.Employers}
                   />
@@ -107,7 +107,7 @@ const BestCompanies = () => {
                   className="w-max mx-auto"
                   href={`/firma-profil/${routeFormatter(
                     company.companyInformations.companyName
-                  )}-${company.eid}`}
+                  )}-${company.id}`}
                 >
                   <Image
                     src={company.companyInformations.companyLogo}
@@ -121,7 +121,7 @@ const BestCompanies = () => {
                   <Link
                     href={`/firma-profil/${routeFormatter(
                       company.companyInformations.companyName
-                    )}-${company.eid}`}
+                    )}-${company.id}`}
                   >
                     {company.companyInformations.companyName}
                   </Link>
@@ -172,7 +172,7 @@ const BestCompanies = () => {
                     className="slide-button !w-full !h-full !py-[11px] !flex !items-center !justify-center !gap-[5px]"
                     href={`/firma-profil/${routeFormatter(
                       company.companyInformations.companyName
-                    )}-${company.eid}`}
+                    )}-${company.id}`}
                   >
                     {`Açık iş -
                   ${company.openJobs ? company.openJobs.length : 0}

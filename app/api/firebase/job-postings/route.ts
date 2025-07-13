@@ -1,8 +1,8 @@
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "../firebaseConfig";
-import { EmployerOpenJobs } from "@/types";
 import { normalize } from "@/lib/routeFormat";
+import { EmployerOpenJobs } from "@/types/auth/employer/open-jobs.types";
 
 export async function POST(req: NextRequest) {
   const {
@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
         numberOfEmployees: data.companyInformations.numberOfEmployees,
         location: data.companyInformations.location.city,
         featured: data.featured,
-        companyId: data.eid,
+        companyId: data.id,
       };
 
       data.openJobs.forEach((job: EmployerOpenJobs) => {

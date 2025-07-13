@@ -11,7 +11,6 @@ import { EmployerSignupSchema } from "../../schema/EmployerSignupSchema";
 import {
   CitiesJsonInterface,
   DistrictsJsonInterface,
-  EmployerSignupFormFields,
   TaxOfficiesJsonInterface,
 } from "@/types";
 import { fetchData } from "@/lib/fetchData";
@@ -31,6 +30,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/app/api/firebase/firebaseConfig";
 import { useRouter } from "next/navigation";
 import { Inter } from "next/font/google";
+import { EmployerSignupFormFields } from "@/types/auth/employer/signup-form.types";
 
 const inter = Inter({
   subsets: ["latin-ext"],
@@ -58,28 +58,25 @@ const EmployerForm = () => {
       password,
       phone,
       companyName,
-      selectCity,
-      selectDistricts,
-      selectTaxOfficiesCity,
-      selectTaxOffice,
+      city,
+      district,
+      taxCity,
+      taxOffice,
       taxNumber,
     } = values;
 
     if (pathname === "/isveren-kayit") {
-      const response = await axios.post(
-        "/api/firebase/employer-signup",
-        JSON.stringify({
-          nameAndSurname: nameAndSurname,
-          email: email,
-          phoneNumber: phone,
-          companyName: companyName,
-          city: selectCity,
-          district: selectDistricts,
-          TaxOfficieCity: selectTaxOfficiesCity,
-          TaxOffice: selectTaxOffice,
-          taxNumber: taxNumber,
-        })
-      );
+      const response = await axios.post("/api/firebase/employer-signup", {
+        nameAndSurname: nameAndSurname,
+        email: email,
+        phoneNumber: phone,
+        companyName: companyName,
+        city: city,
+        district: district,
+        taxCity: taxCity,
+        taxOffice: taxOffice,
+        taxNumber: taxNumber,
+      });
 
       const data = await response.data;
 
@@ -198,10 +195,10 @@ const EmployerForm = () => {
               taxNumber: "",
               checkboxFirst: false,
               checkboxSecond: false,
-              selectCity: "",
-              selectDistricts: "",
-              selectTaxOfficiesCity: "",
-              selectTaxOffice: "",
+              city: "",
+              district: "",
+              taxCity: "",
+              taxOffice: "",
             }}
             onSubmit={onSubmit}
             validationSchema={
@@ -302,7 +299,7 @@ const EmployerForm = () => {
 
                     <div className="flex gap-4">
                       <AuthSelect
-                        value={values.selectCity}
+                        value={values.city}
                         handleChange={handleChange}
                         handleChangeCapture={(e) =>
                           setSelectedData(
@@ -313,23 +310,23 @@ const EmployerForm = () => {
                         }
                         data={cities}
                         defaultValue="İl Seçiniz"
-                        name="selectCity"
+                        name="city"
                         isSubmitting={isSubmitting}
                       />
 
                       <AuthSelect
-                        value={values.selectDistricts}
+                        value={values.district}
                         handleChange={handleChange}
                         data={districts}
                         defaultValue="İlçe Seçiniz"
-                        name="selectDistricts"
+                        name="district"
                         isSubmitting={isSubmitting}
                       />
                     </div>
 
                     <div className="flex gap-4 my-4">
                       <AuthSelect
-                        value={values.selectTaxOfficiesCity}
+                        value={values.taxCity}
                         handleChange={handleChange}
                         handleChangeCapture={(e) =>
                           setSelectedData(
@@ -340,16 +337,16 @@ const EmployerForm = () => {
                         }
                         data={cities}
                         defaultValue="Vergi Dairesi İli Seçiniz"
-                        name="selectTaxOfficiesCity"
+                        name="taxCity"
                         isSubmitting={isSubmitting}
                       />
 
                       <AuthSelect
-                        value={values.selectTaxOffice}
+                        value={values.taxOffice}
                         handleChange={handleChange}
                         data={taxOfficies}
                         defaultValue="Vergi Dairesi Seçiniz"
-                        name="selectTaxOffice"
+                        name="taxOffice"
                         isSubmitting={isSubmitting}
                       />
                     </div>

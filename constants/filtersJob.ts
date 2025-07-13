@@ -2,6 +2,7 @@ import { FilterSwitch, JobTypes } from "@/types/filtersJob";
 
 export const JOB_TYPES: JobTypes = [
   "Hibrit",
+  "Stajyer",
   "Freelance",
   "İş Yerinde",
   "Tam Zamanlı",

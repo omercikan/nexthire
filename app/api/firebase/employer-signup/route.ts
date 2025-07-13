@@ -16,8 +16,8 @@ export async function POST(req: NextRequest) {
     companyName,
     city,
     district,
-    TaxOfficieCity,
-    TaxOffice,
+    taxCity,
+    taxOffice,
     taxNumber,
   } = await req.json();
 
@@ -32,19 +32,19 @@ export async function POST(req: NextRequest) {
 
     const createdData = {
       companyInformations: {
-        name: nameAndSurname,
         companyName: companyName,
         phoneNumber: formatTurkishPhoneNumber(phoneNumber),
         email: email,
         location: {
           city: city,
           district: FormatText(district),
-          taxOfficieCity: TaxOfficieCity,
-          taxOffice: FormatText(TaxOffice),
+          taxCity: taxCity,
+          taxOffice: FormatText(taxOffice),
           taxNumber: taxNumber,
         },
       },
-      eid: userCredential.user.uid,
+      name: nameAndSurname,
+      id: userCredential.user.uid,
       emailVerified: userCredential.user.emailVerified,
       role: "employer",
     };
