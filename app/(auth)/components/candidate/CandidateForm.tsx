@@ -9,7 +9,6 @@ import { Inter } from "next/font/google";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { usePathname, useRouter } from "next/navigation";
-import { FormFields, AuthFormProps } from "@/types";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/app/api/firebase/firebaseConfig";
 import CustomButton from "@/components/ui/CustomButton";
@@ -18,6 +17,10 @@ import { LoginSchema } from "../../schema/LoginSchema";
 import AuthCheckbox from "../../../../components/ui/CustomCheckbox";
 import GoogleAuth from "../GoogleAuth";
 import CustomInput from "../../../../components/ui/CustomInput";
+import {
+  AuthFormProps,
+  CandidateFormFields,
+} from "@/types/auth/candidate/signup-form.types";
 
 const inter = Inter({
   subsets: ["latin-ext"],
@@ -31,8 +34,8 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
   const pathname = usePathname();
 
   const onSubmit = async (
-    values: FormFields,
-    actions: FormikHelpers<FormFields>
+    values: CandidateFormFields,
+    actions: FormikHelpers<CandidateFormFields>
   ) => {
     const { name, surname, email, password } = values;
 

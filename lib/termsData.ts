@@ -1,4 +1,4 @@
-import { TermsData } from "@/types";
+import { TermsData } from "@/types/auth/candidate/signup-form.types";
 
 export const termsData: TermsData[] = [
   {

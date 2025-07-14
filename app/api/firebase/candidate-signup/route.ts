@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
       acceptedTerms: acceptedTerms,
       email: email,
       emailVerified: userCredential.user.emailVerified,
-      createdWith: "Email/Password Provider",
+      createdWith: "Form",
       role: "candidate",
     };
 

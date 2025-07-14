@@ -1,4 +1,4 @@
-import { Candidate } from "@/types";
+import { Candidate } from "@/types/auth/models/candidate";
 import { FavoriteDataFields } from "@/types/favorite";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
