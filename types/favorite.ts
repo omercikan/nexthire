@@ -1,4 +1,4 @@
-import { Candidate } from "@/types/index";
+import { Candidate } from "./auth/models/candidate";
 
 export interface FavoriteDataFields {
   postID: string;

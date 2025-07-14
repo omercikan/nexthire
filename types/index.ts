@@ -1,42 +1,14 @@
 import { FormikErrors } from "formik";
 import { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
-import { CVDataFields } from "./resume";
 
 //! General properties interface of the layout component !//
 export interface LayoutComponentProps {
   children: ReactNode;
 }
 
-//! Candidates auth form input fields interface !//
-export interface FormFields {
-  name: string;
-  surname: string;
-  email: string;
-  password: string;
-  confirmPassword: string; // validate confirmPassword === password
-  checkbox: boolean;
-}
-
 //! Reset password form input field !//
 export interface ResetPasswordField {
   email: string; // validate valid email format
-}
-
-//! Candidates auth pages form properties interface !//
-export interface AuthFormProps {
-  setTermsModal?: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-//! Candidate Sign up form terms modal properties interface !//
-export interface TermsModalProps {
-  termsModal: boolean;
-  setTermsModal: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-//! Candidate sign up page terms modal fields interface !//
-export interface TermsData {
-  title: string;
-  description: string;
 }
 
 //! Auth input properties type fields !//
@@ -135,23 +107,6 @@ export interface User {
   displayName: string;
   phoneNumber: string;
   role: string;
-}
-
-export interface CandidateFavoriteInterface {
-  postID: string;
-  companyLocation: string;
-  companyLogo: string;
-  companyName: string;
-  numberOfEmployees: string;
-}
-
-export interface Candidate extends User {
-  id: string;
-  acceptedTerms: string;
-  createdWith: string;
-  favoriteEmployers: CandidateFavoriteInterface[];
-  favoriteJobs: CandidateFavoriteInterface[];
-  uploadedResumes: CVDataFields[];
 }
 //! User interface area Employer and Candidate Role interfaces END !//
 

@@ -1,7 +1,7 @@
 import { db } from "@/app/api/firebase/firebaseConfig";
 import { AuthContext } from "@/context/authContext";
 import { useAddFavoriteMutation } from "@/lib/redux/services/favoritesApi";
-import { Candidate } from "@/types";
+import { Candidate } from "@/types/auth/models/candidate";
 import { FavoriteDataFields } from "@/types/favorite";
 import { doc, onSnapshot } from "firebase/firestore";
 import Link from "next/link";

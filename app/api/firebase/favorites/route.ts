@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
   try {
     if (user?.role === "candidate") {
       const isAlreadyFavorited = updatedData?.[fieldName]?.some(
-        (item) => item.postID === id
+        (item: { postID: string }) => item.postID === id
       );
       const action = isAlreadyFavorited ? "remove" : "add";
 

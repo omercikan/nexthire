@@ -1,5 +1,5 @@
 import { termsData } from "@/lib/termsData";
-import { TermsModalProps } from "@/types";
+import { TermsModalProps } from "@/types/auth/candidate/signup-form.types";
 import React, { useRef } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { CSSTransition } from "react-transition-group";
