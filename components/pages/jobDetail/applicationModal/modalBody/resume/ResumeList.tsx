@@ -9,6 +9,7 @@ import {
   setUploadedFileNames,
 } from "@/lib/redux/features/applicationModal/modalData";
 import ShowMoreResumes from "./ShowMoreResumes";
+import PdfLoadingOverlay from "./resumeItem/PdfLoadingOverlay";
 
 const ResumeList = () => {
   const { user } = useContext(AuthContext);
@@ -22,10 +23,13 @@ const ResumeList = () => {
     docID: user?.id ?? "",
     cvID: cvID,
   });
+
   const resumeData = useMemo(() => data?.resumeData ?? [], [data?.resumeData]);
-  const findMatchUpload = resumeData.find(
-    (resume) => resume.fileName == placeholderUploadData.fileName
-  );
+  const findMatchUpload = useMemo(() => {
+    return resumeData.find(
+      (resume) => resume.fileName == placeholderUploadData.fileName
+    );
+  }, [placeholderUploadData.fileName, resumeData]);
 
   useEffect(() => {
     if (findMatchUpload) {
@@ -44,11 +48,9 @@ const ResumeList = () => {
   return (
     <div className="px-6 mb-4 mt-2">
       <ul>
-        {/* ↓ this section will then use the placeholder resume element. (currently temporary) ↓ */}
-        {!findMatchUpload && placeholderUploadData.fileName.length
-          ? "Özgeçmiş yükleniyor.."
-          : ""}
-        {/* ↑ this section will then use the placeholder resume element. (currently temporary) ↑ */}
+        {!findMatchUpload && !!placeholderUploadData.fileName.length && (
+          <PdfLoadingOverlay />
+        )}
 
         {resumeData.slice(0, 2).map((resume) => (
           <ResumeItem key={resume.cvID} resume={resume} />
