@@ -17,6 +17,7 @@ export const resumeApi = createApi({
         return [{ type: "Resume", id: String(cvID) as string }];
       },
     }),
+
     fetchResume: builder.query<
       { resumeData: CVDataFields[] },
       { docID: string; cvID: string }
@@ -26,7 +27,26 @@ export const resumeApi = createApi({
         { type: "Resume", id: cvID },
       ],
     }),
+
+    deleteLastResume: builder.mutation<
+      { message: string },
+      { lastResumeName: string; userID: string }
+    >({
+      query: ({ lastResumeName, userID }) => ({
+        url: "delete-last-resume",
+        method: "POST",
+        body: {
+          lastResumeName,
+          userID,
+        },
+      }),
+      invalidatesTags: ["Resume"],
+    }),
   }),
 });
 
-export const { useUploadResumeMutation, useFetchResumeQuery } = resumeApi;
+export const {
+  useUploadResumeMutation,
+  useFetchResumeQuery,
+  useDeleteLastResumeMutation,
+} = resumeApi;

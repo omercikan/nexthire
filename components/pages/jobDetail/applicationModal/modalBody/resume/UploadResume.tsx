@@ -1,30 +1,28 @@
-import React, { ChangeEvent, useContext, useRef, useState } from "react";
+import React, { ChangeEvent, useContext, useRef } from "react";
 import InformationMessage from "../../modalUI/InformationMessage";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState, store } from "@/lib/redux/store";
+import { AppDispatch, RootState } from "@/lib/redux/store";
 import { Form, Formik } from "formik";
 import ModalControls from "../../modalControls/ModalControls";
-import {
-  setApplicationData,
-  setPlaceholderUploadData,
-} from "@/lib/redux/features/applicationModal/modalData";
 import { ResumeSchema } from "@/app/(auth)/schema/ApplicationModal/ResumeSchema";
 import validatePdfFile from "@/lib/utils/validatePdfFile";
-import { useUploadResumeMutation } from "@/lib/redux/services/resumeApi";
 import { AuthContext } from "@/context/authContext";
-import { nanoid } from "@reduxjs/toolkit";
-import { setCvID } from "@/lib/redux/features/applicationModal/cvIdSlice";
-import dayjs from "dayjs";
+import useUploadResume from "@/hooks/useUploadResume";
+import { useDeleteLastResumeMutation } from "@/lib/redux/services/resumeApi";
+import { setPdfErrorMessage } from "@/lib/redux/features/applicationModal/modalData";
 
 const UploadResume = () => {
-  const { applicationData, uploadedFileNames } = useSelector(
-    (state: RootState) => state.applicationModalData
-  );
-  const dispatch = useDispatch<AppDispatch>();
-  const [pdfMessage, setPdfMessage] = useState<string>("");
-  const [uploadResume] = useUploadResumeMutation();
+  const {
+    applicationData,
+    uploadedFileNames,
+    placeholderUploadData: { fileName },
+    PdfErrorMessage,
+  } = useSelector((state: RootState) => state.applicationModalData);
   const { user } = useContext(AuthContext);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const { uploadResumeToApi } = useUploadResume();
+  const [deleteLastResume] = useDeleteLastResumeMutation();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleUploadResume = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -36,37 +34,24 @@ const UploadResume = () => {
     ) {
       const isValidFile = await validatePdfFile(file);
       if (!isValidFile) {
-        setPdfMessage(
-          "PDF dosyası geçersiz ya da bozuk lütfen başka bir dosya yükleyin"
+        dispatch(
+          setPdfErrorMessage(
+            "PDF dosyası geçersiz ya da bozuk lütfen başka bir dosya yükleyin"
+          )
         );
       } else if (uploadedFileNames.includes(file.name)) {
-        setPdfMessage("Bu dosyayı zaten yüklediniz");
+        dispatch(setPdfErrorMessage("Bu dosyayı zaten yüklediniz"));
       } else if (uploadedFileNames.length > 3) {
-        setPdfMessage("En fazla 4 tane yükleyebilirsiniz");
+        await Promise.all([
+          deleteLastResume({
+            lastResumeName: uploadedFileNames[0],
+            userID: user?.id ?? "",
+          }),
+
+          uploadResumeToApi(file, user?.id ?? ""),
+        ]);
       } else {
-        dispatch(
-          setPlaceholderUploadData({
-            fileName: file.name,
-            size: file.size,
-            uploadTime: dayjs().format("DD.MM.YYYY"),
-          })
-        );
-
-        setPdfMessage("");
-        dispatch(setCvID(nanoid()));
-        const { cvID } = store.getState().cvIdSlice;
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("docID", user?.id ?? "");
-        formData.append("cvID", cvID);
-        const { data } = await uploadResume(formData);
-
-        dispatch(
-          setApplicationData({
-            ...applicationData,
-            resume: data?.resumeData?.secure_url,
-          })
-        );
+        await uploadResumeToApi(file, user?.id ?? "");
       }
 
       if (fileInputRef.current) {
@@ -109,16 +94,17 @@ const UploadResume = () => {
                   handleUploadResume(e);
                 }}
                 ref={fileInputRef}
+                disabled={!!fileName.length}
               />
               <div className="text-[#D91B1B] text-[15px] mt-1">
-                {errors.resume ? errors.resume : pdfMessage}
+                {errors.resume ? errors.resume : PdfErrorMessage}
               </div>
             </div>
 
             <InformationMessage />
             <ModalControls
               isErrors={Object.keys(
-                pdfMessage?.length ? { pdfMessage } : errors
+                PdfErrorMessage?.length ? { PdfErrorMessage } : errors
               )}
               formValues={values}
             />
