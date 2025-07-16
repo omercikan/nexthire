@@ -5,6 +5,7 @@ import { db } from "../../firebase/firebaseConfig";
 import { UploadedCV } from "@/types/resume";
 import dayjs from "dayjs";
 import { calculateCVSize } from "@/lib/utils/calculateCvSize";
+import appendFormData from "@/lib/utils/appendFormData";
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
@@ -18,12 +19,13 @@ export async function POST(req: NextRequest) {
       file.type === "application/pdf" &&
       file.size <= 3 * 1024 * 1024
     ) {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append(
-        "upload_preset",
-        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET as string
-      );
+      const formData = appendFormData([
+        { name: "file", value: file },
+        {
+          name: "upload_preset",
+          value: process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET as string,
+        },
+      ]);
 
       //? upload pdf to cloudinary ?//
       const apiURL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/auto/upload`;

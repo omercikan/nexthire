@@ -16,6 +16,7 @@ interface initialStateFields {
     uploadTime: string;
   };
   uploadedFileNames: string[];
+  PdfErrorMessage: string;
 }
 
 const initialState: initialStateFields = {
@@ -33,6 +34,7 @@ const initialState: initialStateFields = {
   },
 
   uploadedFileNames: [],
+  PdfErrorMessage: "",
 };
 
 export const applicationModalDataSlice = createSlice({
@@ -68,8 +70,16 @@ export const applicationModalDataSlice = createSlice({
       state.placeholderUploadData = action.payload;
     },
 
+    clearPlaceholderUploadData: (state) => {
+      state.placeholderUploadData = initialState.placeholderUploadData;
+    },
+
     setUploadedFileNames: (state, action: PayloadAction<string[]>) => {
       state.uploadedFileNames = action.payload;
+    },
+
+    setPdfErrorMessage: (state, action: PayloadAction<string>) => {
+      state.PdfErrorMessage = action.payload;
     },
   },
 });
@@ -78,4 +88,6 @@ export const {
   setApplicationData,
   setPlaceholderUploadData,
   setUploadedFileNames,
+  clearPlaceholderUploadData,
+  setPdfErrorMessage,
 } = applicationModalDataSlice.actions;
