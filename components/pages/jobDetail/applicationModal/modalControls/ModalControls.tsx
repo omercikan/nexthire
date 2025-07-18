@@ -1,4 +1,5 @@
 import CustomButton from "@/components/ui/CustomButton";
+import { setPdfErrorMessage } from "@/lib/redux/features/applicationModal/modalData";
 import {
   setModalStep,
   setProgressBarValue,
@@ -10,9 +11,14 @@ import { useDispatch, useSelector } from "react-redux";
 const ModalControls = ({
   isErrors,
   formValues,
+  extraControl = { message: "", state: true },
 }: {
   isErrors: string[];
   formValues: unknown;
+  extraControl?: {
+    state: boolean | undefined;
+    message: string;
+  };
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { progressBar, modalStep, isAdditionalQuestions } = useSelector(
@@ -21,6 +27,8 @@ const ModalControls = ({
   const { barWidth, barWidthValue } = progressBar;
 
   const prevStep = () => {
+    dispatch(setPdfErrorMessage(""));
+
     if (modalStep > 1) {
       dispatch(setModalStep(modalStep - 1));
     }
@@ -40,6 +48,12 @@ const ModalControls = ({
   };
 
   const nextStep = () => {
+    dispatch(setPdfErrorMessage(""));
+
+    if (!extraControl?.state) {
+      return dispatch(setPdfErrorMessage(extraControl?.message as string));
+    }
+
     if (!isErrors.length && !Object.values(formValues as object).includes("")) {
       if (modalStep < 4) {
         dispatch(setModalStep(modalStep + 1));

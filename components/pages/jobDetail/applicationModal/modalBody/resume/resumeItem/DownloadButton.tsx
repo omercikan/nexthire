@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import fileDownload from "js-file-download";
 import { HiMiniArrowDownTray } from "react-icons/hi2";
 import { fetchData } from "@/lib/fetchData";
@@ -10,14 +10,19 @@ const DownloadButton = ({
   url: string;
   fileName: string;
 }) => {
-  const handleDownloadPdf = async (url: string, fileName: string) => {
+  const handleDownloadPdf = async (
+    e: MouseEvent<HTMLButtonElement>,
+    url: string,
+    fileName: string
+  ) => {
+    e.stopPropagation();
     const { data } = await fetchData<string>(url, { responseType: "blob" });
     fileDownload(data, fileName);
   };
 
   return (
     <button
-      onClick={() => handleDownloadPdf(url, fileName)}
+      onClick={(e) => handleDownloadPdf(e, url, fileName)}
       rel="noopener noreferrer"
     >
       <HiMiniArrowDownTray
