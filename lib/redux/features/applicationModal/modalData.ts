@@ -17,6 +17,7 @@ interface initialStateFields {
   };
   uploadedFileNames: string[];
   PdfErrorMessage: string;
+  selectedResume: string;
 }
 
 const initialState: initialStateFields = {
@@ -35,6 +36,7 @@ const initialState: initialStateFields = {
 
   uploadedFileNames: [],
   PdfErrorMessage: "",
+  selectedResume: "",
 };
 
 export const applicationModalDataSlice = createSlice({
@@ -81,6 +83,10 @@ export const applicationModalDataSlice = createSlice({
     setPdfErrorMessage: (state, action: PayloadAction<string>) => {
       state.PdfErrorMessage = action.payload;
     },
+
+    setSelectResume: (state, action: PayloadAction<string>) => {
+      state.selectedResume = action.payload;
+    },
   },
 });
 
@@ -90,4 +96,5 @@ export const {
   setUploadedFileNames,
   clearPlaceholderUploadData,
   setPdfErrorMessage,
+  setSelectResume,
 } = applicationModalDataSlice.actions;

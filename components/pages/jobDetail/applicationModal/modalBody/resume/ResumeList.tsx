@@ -1,11 +1,13 @@
 import { AuthContext } from "@/context/authContext";
 import { useFetchResumeQuery } from "@/lib/redux/services/resumeApi";
-import { AppDispatch, RootState } from "@/lib/redux/store";
+import { AppDispatch, RootState, store } from "@/lib/redux/store";
 import React, { useContext, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ResumeItem from "./ResumeItem";
 import {
+  setApplicationData,
   setPlaceholderUploadData,
+  setSelectResume,
   setUploadedFileNames,
 } from "@/lib/redux/features/applicationModal/modalData";
 import ShowMoreResumes from "./ShowMoreResumes";
@@ -14,7 +16,7 @@ import PdfLoadingOverlay from "./resumeItem/PdfLoadingOverlay";
 const ResumeList = () => {
   const { user } = useContext(AuthContext);
   const { cvID } = useSelector((state: RootState) => state.cvIdSlice);
-  const { placeholderUploadData } = useSelector(
+  const { placeholderUploadData, applicationData } = useSelector(
     (state: RootState) => state.applicationModalData
   );
   const { showMoreResumes } = useSelector((state: RootState) => state.touch);
@@ -30,6 +32,20 @@ const ResumeList = () => {
       (resume) => resume.fileName == placeholderUploadData.fileName
     );
   }, [placeholderUploadData.fileName, resumeData]);
+
+  useEffect(() => {
+    const resume = store.getState().applicationModalData.selectedResume;
+
+    if (resume !== "0" && !resume.length && resumeData[0]?.cvID) {
+      dispatch(setSelectResume(resumeData[0]?.cvID));
+      dispatch(
+        setApplicationData({
+          ...applicationData,
+          resume: resumeData[0]?.url,
+        })
+      );
+    }
+  }, [resumeData, dispatch, applicationData]);
 
   useEffect(() => {
     if (findMatchUpload) {

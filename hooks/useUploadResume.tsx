@@ -3,6 +3,7 @@ import {
   clearPlaceholderUploadData,
   setPdfErrorMessage,
   setPlaceholderUploadData,
+  setSelectResume,
 } from "@/lib/redux/features/applicationModal/modalData";
 import { useUploadResumeMutation } from "@/lib/redux/services/resumeApi";
 import { AppDispatch, store } from "@/lib/redux/store";
@@ -40,6 +41,7 @@ const useUploadResume = () => {
         ]);
 
         await uploadResume(formData).unwrap();
+        dispatch(setSelectResume(""));
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
