@@ -5,18 +5,17 @@ import React, { useContext, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ResumeItem from "./ResumeItem";
 import {
-  setApplicationData,
   setPlaceholderUploadData,
-  setSelectResume,
   setUploadedFileNames,
 } from "@/lib/redux/features/applicationModal/modalData";
 import ShowMoreResumes from "./ShowMoreResumes";
 import PdfLoadingOverlay from "./resumeItem/PdfLoadingOverlay";
+import useSelectResume from "@/hooks/useSelectResume";
 
 const ResumeList = () => {
   const { user } = useContext(AuthContext);
   const { cvID } = useSelector((state: RootState) => state.cvIdSlice);
-  const { placeholderUploadData, applicationData } = useSelector(
+  const { placeholderUploadData } = useSelector(
     (state: RootState) => state.applicationModalData
   );
   const { showMoreResumes } = useSelector((state: RootState) => state.touch);
@@ -25,6 +24,7 @@ const ResumeList = () => {
     docID: user?.id ?? "",
     cvID: cvID,
   });
+  const [setSelectedResumeData] = useSelectResume();
 
   const resumeData = useMemo(() => data?.resumeData ?? [], [data?.resumeData]);
   const findMatchUpload = useMemo(() => {
@@ -35,29 +35,30 @@ const ResumeList = () => {
 
   useEffect(() => {
     const resume = store.getState().applicationModalData.selectedResume;
+    const [lastResume] = resumeData;
 
-    if (resume !== "0" && !resume.length && resumeData[0]?.cvID) {
-      dispatch(setSelectResume(resumeData[0]?.cvID));
-      dispatch(
-        setApplicationData({
-          ...applicationData,
-          resume: resumeData[0]?.url,
-        })
-      );
+    if (lastResume) {
+      const { cvID, url } = lastResume;
+
+      if (resume !== "0" && !resume?.length && cvID) {
+        setSelectedResumeData("", url, cvID);
+      }
     }
-  }, [resumeData, dispatch, applicationData]);
+  }, [resumeData, setSelectedResumeData]);
 
   useEffect(() => {
     if (findMatchUpload) {
+      const { url, cvID } = findMatchUpload;
+      setSelectedResumeData("", url, cvID);
+
       dispatch(
         setPlaceholderUploadData({ fileName: "", size: 0, uploadTime: "" })
       );
     }
-  }, [dispatch, findMatchUpload]);
+  }, [dispatch, findMatchUpload, setSelectedResumeData]);
 
   useEffect(() => {
     const fileName = resumeData.map((resume) => resume.fileName);
-
     dispatch(setUploadedFileNames(fileName));
   }, [resumeData, dispatch]);
 

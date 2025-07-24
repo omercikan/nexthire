@@ -1,5 +1,5 @@
 import CustomButton from "@/components/ui/CustomButton";
-import { setPdfErrorMessage } from "@/lib/redux/features/applicationModal/modalData";
+import { setResumeErrorMessage } from "@/lib/redux/features/applicationModal/modalData";
 import {
   setModalStep,
   setProgressBarValue,
@@ -27,7 +27,7 @@ const ModalControls = ({
   const { barWidth, barWidthValue } = progressBar;
 
   const prevStep = () => {
-    dispatch(setPdfErrorMessage(""));
+    dispatch(setResumeErrorMessage(""));
 
     if (modalStep > 1) {
       dispatch(setModalStep(modalStep - 1));
@@ -48,10 +48,10 @@ const ModalControls = ({
   };
 
   const nextStep = () => {
-    dispatch(setPdfErrorMessage(""));
+    dispatch(setResumeErrorMessage(""));
 
     if (!extraControl?.state) {
-      return dispatch(setPdfErrorMessage(extraControl?.message as string));
+      return dispatch(setResumeErrorMessage(extraControl?.message as string));
     }
 
     if (!isErrors.length && !Object.values(formValues as object).includes("")) {

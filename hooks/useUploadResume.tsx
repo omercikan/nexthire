@@ -1,9 +1,8 @@
 import { setCvID } from "@/lib/redux/features/applicationModal/cvIdSlice";
 import {
   clearPlaceholderUploadData,
-  setPdfErrorMessage,
+  setResumeErrorMessage,
   setPlaceholderUploadData,
-  setSelectResume,
 } from "@/lib/redux/features/applicationModal/modalData";
 import { useUploadResumeMutation } from "@/lib/redux/services/resumeApi";
 import { AppDispatch, store } from "@/lib/redux/store";
@@ -13,15 +12,17 @@ import dayjs from "dayjs";
 import { useCallback } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
+import useSelectResume from "./useSelectResume";
 
 const useUploadResume = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [uploadResume] = useUploadResumeMutation();
+  const [setSelectedResumeData] = useSelectResume();
 
   const uploadResumeToApi = useCallback(
     async (file: File, docID: string): Promise<void> => {
       try {
-        dispatch(setPdfErrorMessage(""));
+        dispatch(setResumeErrorMessage(""));
 
         dispatch(
           setPlaceholderUploadData({
@@ -41,18 +42,18 @@ const useUploadResume = () => {
         ]);
 
         await uploadResume(formData).unwrap();
-        dispatch(setSelectResume(""));
+        setSelectedResumeData("", "", "");
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         dispatch(clearPlaceholderUploadData());
-        dispatch(setPdfErrorMessage(""));
+        dispatch(setResumeErrorMessage(""));
         toast.error(
           "Özgeçmiş yüklenemedi. Lütfen bağlantınızı kontrol edip tekrar deneyin."
         );
       }
     },
-    [dispatch, uploadResume]
+    [dispatch, uploadResume, setSelectedResumeData]
   );
 
   return { uploadResumeToApi };
