@@ -3,44 +3,26 @@ import { CVDataFields } from "@/types/resume";
 import ResumeContent from "./resumeItem/ResumeContent";
 import DownloadButton from "./resumeItem/DownloadButton";
 import RadioButton from "./resumeItem/RadioButton";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/lib/redux/store";
-import {
-  setApplicationData,
-  setPdfErrorMessage,
-  setSelectResume,
-} from "@/lib/redux/features/applicationModal/modalData";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
+import useSelectResume from "@/hooks/useSelectResume";
 
 const ResumeItem = ({
   resume: { fileName, size, uploadTime, url, cvID },
 }: {
   resume: CVDataFields;
 }) => {
-  const { applicationData, selectedResume } = useSelector(
+  const { selectedResume, placeholderUploadData } = useSelector(
     (state: RootState) => state.applicationModalData
   );
-  const dispatch = useDispatch<AppDispatch>();
   const isMatchResumeID = selectedResume === cvID;
+  const [setSelectedResumeData] = useSelectResume();
 
   const handleSelectResume = () => {
-    if (!isMatchResumeID) {
-      dispatch(setPdfErrorMessage(""));
-      dispatch(setSelectResume(cvID));
-      dispatch(
-        setApplicationData({
-          ...applicationData,
-          resume: url,
-        })
-      );
+    if (!isMatchResumeID || placeholderUploadData.fileName.length) {
+      setSelectedResumeData("", url, cvID);
     } else {
-      dispatch(setPdfErrorMessage("Lütfen bir özgeçmiş seçin"));
-      dispatch(setSelectResume("0"));
-      dispatch(
-        setApplicationData({
-          ...applicationData,
-          resume: "",
-        })
-      );
+      setSelectedResumeData("Lütfen bir özgeçmiş seçin", "", "0");
     }
   };
 
