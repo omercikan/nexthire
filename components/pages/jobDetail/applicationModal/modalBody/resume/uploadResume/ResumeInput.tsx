@@ -57,8 +57,11 @@ const ResumeInput = ({
         hidden
         onChange={handleUploadResume}
         disabled={Boolean(fileName)}
+        data-testid="resume-upload-input"
       />
-      <div className="text-[#D91B1B] text-[15px] mt-1">{resumeErrorMessage}</div>
+      <div className="text-[#D91B1B] text-[15px] mt-1">
+        {resumeErrorMessage}
+      </div>
     </>
   );
 };
