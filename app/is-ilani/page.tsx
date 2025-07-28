@@ -5,11 +5,12 @@ import { Timestamp } from "firebase/firestore";
 import { Toaster } from "react-hot-toast";
 import { useGetJobDetailQuery } from "@/lib/redux/services/jobDetail";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import ApplicationModal from "@/components/pages/jobDetail/applicationModal/ApplicationModal";
-import { useSelector } from "react-redux";
-import { RootState } from "@/lib/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/lib/redux/store";
 import { JobPostingAdditionalQuestions } from "@/types/auth/employer/open-jobs.types";
+import { setAdditionalQuestionsFromJob } from "@/lib/redux/features/applicationModal/modalData";
 
 const JobDetail = () => {
   const params = useSearchParams();
@@ -20,6 +21,15 @@ const JobDetail = () => {
   const { openApplicationModal } = useSelector(
     (state: RootState) => state.touch
   );
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    const additionalQuestionsFromJob = data?.job.additionalQuestions;
+
+    if (additionalQuestionsFromJob) {
+      dispatch(setAdditionalQuestionsFromJob(additionalQuestionsFromJob));
+    }
+  }, [data?.job.additionalQuestions, dispatch]);
 
   return (
     <main>

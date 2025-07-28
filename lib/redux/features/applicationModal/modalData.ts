@@ -5,7 +5,7 @@ interface modalDataState {
   email: string;
   phone: string;
   resume: string;
-  additionalQuestions: object[];
+  additionalQuestions: { title: string; answer: string }[];
 }
 
 interface initialStateFields {
@@ -18,6 +18,12 @@ interface initialStateFields {
   uploadedFileNames: string[];
   resumeErrorMessage: string;
   selectedResume: string;
+  additionalQuestionsFromJob: {
+    isSelectAnswer: boolean;
+    isTextAnswer: boolean;
+    selectQuestions: { questionAnswers: string[]; questionTitle: string }[];
+    textQuestions: { questionTitle: string }[];
+  };
 }
 
 const initialState: initialStateFields = {
@@ -37,6 +43,13 @@ const initialState: initialStateFields = {
   uploadedFileNames: [],
   resumeErrorMessage: "",
   selectedResume: "",
+
+  additionalQuestionsFromJob: {
+    isSelectAnswer: false,
+    isTextAnswer: false,
+    selectQuestions: [],
+    textQuestions: [],
+  },
 };
 
 export const applicationModalDataSlice = createSlice({
@@ -96,6 +109,10 @@ export const applicationModalDataSlice = createSlice({
       state.resumeErrorMessage = action.payload.message;
       state.applicationData.resume = action.payload.resume;
     },
+
+    setAdditionalQuestionsFromJob: (state, action) => {
+      state.additionalQuestionsFromJob = action.payload;
+    },
   },
 });
 
@@ -106,4 +123,5 @@ export const {
   clearPlaceholderUploadData,
   setResumeErrorMessage,
   setSelectResume,
+  setAdditionalQuestionsFromJob,
 } = applicationModalDataSlice.actions;
