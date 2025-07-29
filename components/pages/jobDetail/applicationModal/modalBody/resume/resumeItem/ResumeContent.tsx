@@ -15,7 +15,7 @@ const ResumeContent = ({
         {fileName}
       </h3>
       <p className="text-[#00000099] text-xs pt-1 whitespace-nowrap text-ellipsis">
-        {size} · {uploadTime} tarihinde yüklendi
+        {size} {size ? "·" : ""} {uploadTime} tarihinde yüklendi
       </p>
     </div>
   );

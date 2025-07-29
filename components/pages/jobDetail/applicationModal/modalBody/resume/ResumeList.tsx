@@ -38,18 +38,18 @@ const ResumeList = () => {
     const [lastResume] = resumeData;
 
     if (lastResume) {
-      const { cvID, url } = lastResume;
+      const { cvID, url, fileName, uploadTime } = lastResume;
 
       if (resume !== "0" && !resume?.length && cvID) {
-        setSelectedResumeData("", url, cvID);
+        setSelectedResumeData("", url, cvID, fileName, uploadTime);
       }
     }
   }, [resumeData, setSelectedResumeData]);
 
   useEffect(() => {
     if (findMatchUpload) {
-      const { url, cvID } = findMatchUpload;
-      setSelectedResumeData("", url, cvID);
+      const { url, cvID, fileName, uploadTime } = findMatchUpload;
+      setSelectedResumeData("", url, cvID, fileName, uploadTime);
 
       dispatch(
         setPlaceholderUploadData({ fileName: "", size: 0, uploadTime: "" })
@@ -70,13 +70,23 @@ const ResumeList = () => {
         )}
 
         {resumeData.slice(0, 2).map((resume) => (
-          <ResumeItem key={resume.cvID} resume={resume} />
+          <ResumeItem
+            key={resume.cvID}
+            resume={resume}
+            isDisplaySelect={true}
+          />
         ))}
 
         {showMoreResumes &&
           resumeData
             .slice(2, resumeData.length)
-            .map((resume) => <ResumeItem key={resume.cvID} resume={resume} />)}
+            .map((resume) => (
+              <ResumeItem
+                key={resume.cvID}
+                resume={resume}
+                isDisplaySelect={true}
+              />
+            ))}
       </ul>
 
       {resumeData.length > 2 && (

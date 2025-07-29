@@ -6,9 +6,13 @@ import { fetchData } from "@/lib/fetchData";
 const DownloadButton = ({
   url,
   fileName,
+  isView,
+  className,
 }: {
   url: string;
   fileName: string;
+  isView: boolean;
+  className?: string;
 }) => {
   const handleDownloadPdf = async (
     e: MouseEvent<HTMLButtonElement>,
@@ -24,13 +28,20 @@ const DownloadButton = ({
     <button
       onClick={(e) => handleDownloadPdf(e, url, fileName)}
       rel="noopener noreferrer"
+      className={className ?? ""}
     >
-      <HiMiniArrowDownTray
-        size={40}
-        color="#000000BF"
-        cursor="pointer"
-        className="hover:bg-[#8c8c8c1a] rounded-full p-2 transition-colors duration-300"
-      />
+      {isView ? (
+        <span className="text-[#000000BF] text-sm font-semibold">
+          Görüntüle
+        </span>
+      ) : (
+        <HiMiniArrowDownTray
+          size={40}
+          color="#000000BF"
+          cursor="pointer"
+          className="hover:bg-[#8c8c8c1a] rounded-full p-2 transition-colors duration-300"
+        />
+      )}
     </button>
   );
 };

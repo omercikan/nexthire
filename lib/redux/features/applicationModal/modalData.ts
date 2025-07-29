@@ -18,6 +18,8 @@ interface initialStateFields {
   uploadedFileNames: string[];
   resumeErrorMessage: string;
   selectedResume: string;
+  selectedResumeFileName: string;
+  selectedResumeUploadTime: string;
   additionalQuestionsFromJob: {
     isSelectAnswer: boolean;
     isTextAnswer: boolean;
@@ -43,6 +45,8 @@ const initialState: initialStateFields = {
   uploadedFileNames: [],
   resumeErrorMessage: "",
   selectedResume: "",
+  selectedResumeFileName: "",
+  selectedResumeUploadTime: "",
 
   additionalQuestionsFromJob: {
     isSelectAnswer: false,
@@ -103,11 +107,15 @@ export const applicationModalDataSlice = createSlice({
         selectedResume: string;
         message: string;
         resume: string;
+        fileName: string;
+        uploadTime: string;
       }>
     ) => {
       state.selectedResume = action.payload.selectedResume;
       state.resumeErrorMessage = action.payload.message;
       state.applicationData.resume = action.payload.resume;
+      state.selectedResumeFileName = action.payload.fileName;
+      state.selectedResumeUploadTime = action.payload.uploadTime;
     },
 
     setAdditionalQuestionsFromJob: (state, action) => {
