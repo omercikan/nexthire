@@ -10,7 +10,11 @@ import ApplicationModal from "@/components/pages/jobDetail/applicationModal/Appl
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/lib/redux/store";
 import { JobPostingAdditionalQuestions } from "@/types/auth/employer/open-jobs.types";
-import { setAdditionalQuestionsFromJob } from "@/lib/redux/features/applicationModal/modalData";
+import {
+  setAdditionalQuestionsFromJob,
+  setApplicationData,
+} from "@/lib/redux/features/applicationModal/modalData";
+import { setApplicationModal } from "@/lib/redux/features/touch";
 
 const JobDetail = () => {
   const params = useSearchParams();
@@ -30,6 +34,21 @@ const JobDetail = () => {
       dispatch(setAdditionalQuestionsFromJob(additionalQuestionsFromJob));
     }
   }, [data?.job.additionalQuestions, dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(setApplicationModal(false));
+      dispatch(
+        setApplicationData({
+          additionalQuestions: [],
+          email: "",
+          phone: "",
+          resume: "",
+        })
+      );
+      dispatch(setAdditionalQuestionsFromJob({}));
+    };
+  }, [dispatch]);
 
   return (
     <main>
