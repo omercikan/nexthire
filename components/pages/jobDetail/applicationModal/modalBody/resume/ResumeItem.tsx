@@ -9,8 +9,10 @@ import useSelectResume from "@/hooks/useSelectResume";
 
 const ResumeItem = ({
   resume: { fileName, size, uploadTime, url, cvID },
+  isDisplaySelect = true,
 }: {
   resume: CVDataFields;
+  isDisplaySelect?: boolean;
 }) => {
   const { selectedResume, placeholderUploadData } = useSelector(
     (state: RootState) => state.applicationModalData
@@ -19,10 +21,12 @@ const ResumeItem = ({
   const [setSelectedResumeData] = useSelectResume();
 
   const handleSelectResume = () => {
-    if (!isMatchResumeID || placeholderUploadData.fileName.length) {
-      setSelectedResumeData("", url, cvID);
-    } else {
-      setSelectedResumeData("Lütfen bir özgeçmiş seçin", "", "0");
+    if (isDisplaySelect) {
+      if (!isMatchResumeID || placeholderUploadData.fileName.length) {
+        setSelectedResumeData("", url, cvID, fileName, uploadTime);
+      } else {
+        setSelectedResumeData("Lütfen bir özgeçmiş seçin", "", "0");
+      }
     }
   };
 
@@ -37,20 +41,35 @@ const ResumeItem = ({
         <span className="text-white text-sm font-medium">PDF</span>
       </div>
 
-      <div className="py-3 px-2 flex items-center justify-between w-[calc(100%-44px)] hover:bg-[#f8fafd] rounded-e-[12.8px] transition-colors">
+      <div
+        className={`${
+          isDisplaySelect ? "py-3 px-2" : "ps-2"
+        } flex items-center justify-between w-[calc(100%-44px)] ${
+          isDisplaySelect ? "hover:bg-[#f8fafd]" : ""
+        } rounded-e-[12.8px] transition-colors`}
+      >
         <ResumeContent
           fileName={fileName}
           size={size}
           uploadTime={uploadTime}
         />
 
-        <div className="flex items-center gap-3 pe-1.5">
-          <DownloadButton fileName={fileName} url={url} />
+        {isDisplaySelect ? (
+          <div className="flex items-center gap-3 pe-1.5">
+            <DownloadButton fileName={fileName} url={url} isView={false} />
 
-          <span className="w-[0.5px] bg-[#E8E8E8] h-[40px] inline-block mx-1"></span>
+            <span className="w-[0.5px] bg-[#E8E8E8] h-[40px] inline-block mx-1"></span>
 
-          <RadioButton isMatchResumeID={isMatchResumeID} />
-        </div>
+            <RadioButton isMatchResumeID={isMatchResumeID} />
+          </div>
+        ) : (
+          <DownloadButton
+            fileName={fileName}
+            url={url}
+            isView={true}
+            className="h-full py-5 px-5 ms-6 border-s border-s-[#E8E8E8] hover:bg-[#F3F3F3] rounded-e-[12.8px] transition-colors duration-300"
+          />
+        )}
       </div>
     </li>
   );
