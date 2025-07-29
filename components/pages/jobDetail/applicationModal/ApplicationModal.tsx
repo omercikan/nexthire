@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import ModalHeader from "./modalUI/ModalHeader";
 import ModalProgressBar from "./modalControls/ModalProgressBar";
 import ModalBody from "./modalBody/ModalBody";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/lib/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/lib/redux/store";
 import {
   setIsAdditionalQuestions,
   setProgressBarValue,
@@ -21,6 +21,9 @@ const ApplicationModal = ({
   additionalQuestions: JobPostingAdditionalQuestions;
 }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const modalStep = useSelector(
+    (state: RootState) => state.applicationModalProgressBar.modalStep
+  );
 
   const handleCloseModal = () => {
     dispatch(setApplicationModal(false));
@@ -43,12 +46,21 @@ const ApplicationModal = ({
       onClick={handleCloseModal}
     >
       <div
-        className="bg-white fixed left-1/2 top-[32px] -translate-x-1/2 rounded-lg w-[744px] max-md:w-[95%]  max-sm:h-[500px] max-sm:overflow-auto"
+        className="bg-white fixed left-1/2 top-[2rem] -translate-x-1/2 rounded-lg w-[46.5rem] max-md:w-[95%]"
         onClick={(e) => e.stopPropagation()}
       >
         <ModalHeader companyName={companyName} jobTitle={jobTitle} />
-        <ModalProgressBar />
-        <ModalBody />
+
+        <div
+          className={
+            modalStep === 4
+              ? "h-[500px] overflow-auto"
+              : "max-sm:h-[500px] max-sm:overflow-auto"
+          }
+        >
+          <ModalProgressBar />
+          <ModalBody />
+        </div>
       </div>
     </div>
   );
