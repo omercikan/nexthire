@@ -7,10 +7,13 @@ const SummaryQuestions = () => {
     (state: RootState) =>
       state.applicationModalData.applicationData.additionalQuestions
   );
+  const sortedAdditionalQuestions = additionalQuestions.toSorted(
+    (a, b) => a.index - b.index
+  );
 
   return (
     <>
-      {additionalQuestions.map(({ title, answer }, index) => (
+      {sortedAdditionalQuestions.map(({ title, answer, index }) => (
         <div key={index} className="mb-3">
           <label className="text-[#00000099] text-xs line-clamp-none">
             {title}

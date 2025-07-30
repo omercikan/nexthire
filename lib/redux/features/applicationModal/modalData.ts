@@ -5,7 +5,7 @@ interface modalDataState {
   email: string;
   phone: string;
   resume: string;
-  additionalQuestions: { title: string; answer: string }[];
+  additionalQuestions: { title: string; answer: string; index: number }[];
 }
 
 interface initialStateFields {

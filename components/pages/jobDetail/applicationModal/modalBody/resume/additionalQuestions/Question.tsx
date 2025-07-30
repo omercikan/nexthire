@@ -75,8 +75,11 @@ const Question = () => {
     title: string
   ) => {
     const value: string = e.target.value;
+    const index = [...textQuestions, ...selectQuestions].findIndex(
+      (val) => val.questionTitle === title
+    );
 
-    const answer = { title: title, answer: value };
+    const answer = { title: title, answer: value, index: index };
 
     const updatedAnswers = applicationData.additionalQuestions.filter(
       (item) => item.title !== title
