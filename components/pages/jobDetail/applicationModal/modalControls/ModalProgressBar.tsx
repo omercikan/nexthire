@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 const ModalProgressBar = () => {
   const {
     progressBar: { barWidthValue },
+    isEdit,
   } = useSelector((state: RootState) => state.applicationModalProgressBar);
 
   return (
@@ -14,14 +15,16 @@ const ModalProgressBar = () => {
           <div
             className={`h-full bg-[#4045ef] rounded-s-full transition-all duration-300`}
             style={{
-              width: `${barWidthValue.toFixed(2)}%`,
+              width: isEdit ? "100%" : `${barWidthValue.toFixed(2)}%`,
             }}
           ></div>
         </div>
 
         <span className="text-sm text-[#00000099] flex-[5%] text-end">
           %
-          {barWidthValue?.toFixed(0).includes("-")
+          {isEdit
+            ? "100"
+            : barWidthValue?.toFixed(0).includes("-")
             ? "0"
             : barWidthValue?.toFixed(0)}
         </span>

@@ -1,14 +1,32 @@
-import React, { ReactElement } from "react";
+import {
+  setIsEdit,
+  setModalStep,
+} from "@/lib/redux/features/applicationModal/progressBar";
+import { AppDispatch } from "@/lib/redux/store";
+import React, { ReactElement, useCallback } from "react";
+import { useDispatch } from "react-redux";
 
 const SummaryContent = ({
   contentTitle,
   subTitle,
   children,
+  step,
 }: {
   contentTitle: string;
   subTitle?: string;
   children: ReactElement;
+  step: number;
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleApplicationMenu = useCallback(
+    (step: number) => {
+      dispatch(setModalStep(step));
+      dispatch(setIsEdit(true));
+    },
+    [dispatch]
+  );
+
   return (
     <div className="px-6">
       <div className="flex items-start justify-between mb-3">
@@ -16,7 +34,10 @@ const SummaryContent = ({
           <h4 className="text-[#000000E6] font-semibold">{contentTitle}</h4>
           <p className="mt-3 text-[#00000099] text-xs">{subTitle}</p>
         </div>
-        <button className="text-[#4045ef] hover:underline text-sm font-semibold">
+        <button
+          className="text-[#4045ef] hover:underline text-sm font-semibold"
+          onClick={() => handleApplicationMenu(step)}
+        >
           Düzenle
         </button>
       </div>

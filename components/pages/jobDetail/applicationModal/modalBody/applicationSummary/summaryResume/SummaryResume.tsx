@@ -12,6 +12,7 @@ const SummaryResume = () => {
     <SummaryContent
       contentTitle="Özgeçmiş"
       subTitle="Başvurunuzun değerlendirilebilmesi için güncel bir CV ekleyin*"
+      step={2}
     >
       <div className="w-[342px] max-sm:w-auto mt-4">
         <ResumeItem

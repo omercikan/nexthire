@@ -29,7 +29,7 @@ const ApplicationSummary = () => {
 
       {additionalQuestionsFromJob.isSelectAnswer &&
         additionalQuestionsFromJob.isTextAnswer && (
-          <SummaryContent contentTitle="Ek Sorular">
+          <SummaryContent contentTitle="Ek Sorular" step={3}>
             <SummaryQuestions />
           </SummaryContent>
         )}
