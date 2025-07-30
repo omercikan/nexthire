@@ -1,6 +1,7 @@
 import CustomButton from "@/components/ui/CustomButton";
 import { setResumeErrorMessage } from "@/lib/redux/features/applicationModal/modalData";
 import {
+  setIsEdit,
   setModalStep,
   setProgressBarValue,
 } from "@/lib/redux/features/applicationModal/progressBar";
@@ -21,10 +22,12 @@ const ModalControls = ({
   };
 }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { progressBar, modalStep, isAdditionalQuestions } = useSelector(
+  const { progressBar, modalStep, isAdditionalQuestions, isEdit } = useSelector(
     (state: RootState) => state.applicationModalProgressBar
   );
   const { barWidth, barWidthValue } = progressBar;
+  const isFormValid =
+    !isErrors.length && !Object.values(formValues as object).includes("");
 
   const prevStep = () => {
     dispatch(setResumeErrorMessage(""));
@@ -50,11 +53,17 @@ const ModalControls = ({
   const nextStep = () => {
     dispatch(setResumeErrorMessage(""));
 
+    if (isEdit && isFormValid) {
+      dispatch(setIsEdit(false));
+      dispatch(setModalStep(4));
+      return;
+    }
+
     if (!extraControl?.state) {
       return dispatch(setResumeErrorMessage(extraControl?.message as string));
     }
 
-    if (!isErrors.length && !Object.values(formValues as object).includes("")) {
+    if (isFormValid) {
       if (modalStep < 4) {
         dispatch(setModalStep(modalStep + 1));
       }
@@ -76,7 +85,7 @@ const ModalControls = ({
 
   return (
     <div className="py-4 px-6 flex justify-end gap-2">
-      {modalStep > 1 && (
+      {modalStep > 1 && !isEdit && (
         <CustomButton
           text="Geri"
           className="hover:!bg-[#EBF4FD] !bg-transparent !text-[#4045ef] font-semibold !py-1.5 !px-2 !rounded-sm"
@@ -88,7 +97,9 @@ const ModalControls = ({
       {modalStep !== 4 ? (
         <CustomButton
           text={
-            (modalStep === 2 && !isAdditionalQuestions) || modalStep === 3
+            (modalStep === 2 && !isAdditionalQuestions) ||
+            modalStep === 3 ||
+            isEdit
               ? "İncele"
               : "İleri"
           }

@@ -10,7 +10,7 @@ const ContactInformation = () => {
   );
 
   return (
-    <SummaryContent contentTitle="İletişim bilgileri">
+    <SummaryContent contentTitle="İletişim bilgileri" step={1}>
       <ContactItem
         items={[
           {

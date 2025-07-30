@@ -7,6 +7,7 @@ interface ProgressBarState {
     barWidth: number;
     barWidthValue: number;
   };
+  isEdit: boolean;
 }
 
 const initialState: ProgressBarState = {
@@ -16,6 +17,7 @@ const initialState: ProgressBarState = {
     barWidth: 0,
     barWidthValue: 0,
   },
+  isEdit: false,
 };
 
 export const ProgressBarSlice = createSlice({
@@ -43,6 +45,10 @@ export const ProgressBarSlice = createSlice({
     resetProgressBarValue: () => {
       return initialState;
     },
+
+    setIsEdit: (state, action: PayloadAction<boolean>) => {
+      state.isEdit = action.payload;
+    },
   },
 });
 
@@ -51,4 +57,5 @@ export const {
   setModalStep,
   setIsAdditionalQuestions,
   resetProgressBarValue,
+  setIsEdit,
 } = ProgressBarSlice.actions;
