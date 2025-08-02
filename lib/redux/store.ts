@@ -14,6 +14,8 @@ import { ProgressBarSlice } from "./features/applicationModal/progressBar";
 import { applicationModalDataSlice } from "./features/applicationModal/modalData";
 import { resumeApi } from "./services/resumeApi";
 import { cvIdSlice } from "./features/applicationModal/cvIdSlice";
+import { jobDetailReducer } from "./features/jobDetail";
+import { jobApplicationApi } from "./services/jobApplicationApi";
 
 export const store = configureStore({
   reducer: {
@@ -25,12 +27,14 @@ export const store = configureStore({
     applicationModalProgressBar: ProgressBarSlice.reducer,
     applicationModalData: applicationModalDataSlice.reducer,
     cvIdSlice: cvIdSlice.reducer,
+    jobDetail: jobDetailReducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [jobPostings.reducerPath]: jobPostings.reducer,
     [favoritesApi.reducerPath]: favoritesApi.reducer,
     [jobDetailApi.reducerPath]: jobDetailApi.reducer,
     [resumeApi.reducerPath]: resumeApi.reducer,
+    [jobApplicationApi.reducerPath]: jobApplicationApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -41,6 +45,7 @@ export const store = configureStore({
       favoritesApi.middleware,
       jobDetailApi.middleware,
       resumeApi.middleware,
+      jobApplicationApi.middleware,
     ]),
 });
 
