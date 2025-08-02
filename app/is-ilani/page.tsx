@@ -15,6 +15,7 @@ import {
   setApplicationData,
 } from "@/lib/redux/features/applicationModal/modalData";
 import { setApplicationModal } from "@/lib/redux/features/touch";
+import { setJobDetail } from "@/lib/redux/features/jobDetail";
 
 const JobDetail = () => {
   const params = useSearchParams();
@@ -34,6 +35,32 @@ const JobDetail = () => {
       dispatch(setAdditionalQuestionsFromJob(additionalQuestionsFromJob));
     }
   }, [data?.job.additionalQuestions, dispatch]);
+
+  useEffect(() => {
+    if (data?.job) {
+      const {
+        location,
+        companyLogo,
+        jobTitle,
+        companyName,
+        postId,
+        companyID,
+      } = data?.job;
+
+      dispatch(
+        setJobDetail({
+          jobDetail: {
+            companyLocation: location,
+            companyId: companyID,
+            companyLogo,
+            jobTitle,
+            companyName,
+            postId,
+          },
+        })
+      );
+    }
+  }, [data?.job, dispatch]);
 
   useEffect(() => {
     return () => {

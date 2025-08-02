@@ -8,6 +8,13 @@ interface modalDataState {
   additionalQuestions: { title: string; answer: string; index: number }[];
 }
 
+interface ApplicationStatus {
+  postId: string;
+  userId: string;
+  companyName: string;
+  status: "applied" | "notApplied";
+}
+
 interface initialStateFields {
   applicationData: modalDataState;
   placeholderUploadData: {
@@ -26,6 +33,7 @@ interface initialStateFields {
     selectQuestions: { questionAnswers: string[]; questionTitle: string }[];
     textQuestions: { questionTitle: string }[];
   };
+  applicationStatus: ApplicationStatus;
 }
 
 const initialState: initialStateFields = {
@@ -53,6 +61,13 @@ const initialState: initialStateFields = {
     isTextAnswer: false,
     selectQuestions: [],
     textQuestions: [],
+  },
+
+  applicationStatus: {
+    companyName: "",
+    postId: "",
+    userId: "",
+    status: "notApplied",
   },
 };
 
@@ -121,6 +136,13 @@ export const applicationModalDataSlice = createSlice({
     setAdditionalQuestionsFromJob: (state, action) => {
       state.additionalQuestionsFromJob = action.payload;
     },
+
+    setApplicationStatus: (state, action: PayloadAction<ApplicationStatus>) => {
+      state.applicationStatus = action.payload;
+      state.applicationData = initialState.applicationData;
+      state.selectedResume = "";
+      state.selectedResumeFileName = "";
+    },
   },
 });
 
@@ -132,4 +154,5 @@ export const {
   setResumeErrorMessage,
   setSelectResume,
   setAdditionalQuestionsFromJob,
+  setApplicationStatus,
 } = applicationModalDataSlice.actions;

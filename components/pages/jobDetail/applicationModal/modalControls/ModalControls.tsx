@@ -1,12 +1,21 @@
 import CustomButton from "@/components/ui/CustomButton";
-import { setResumeErrorMessage } from "@/lib/redux/features/applicationModal/modalData";
+import { AuthContext } from "@/context/authContext";
 import {
+  setApplicationStatus,
+  setResumeErrorMessage,
+} from "@/lib/redux/features/applicationModal/modalData";
+import {
+  resetProgressBarValue,
   setIsEdit,
   setModalStep,
   setProgressBarValue,
 } from "@/lib/redux/features/applicationModal/progressBar";
+import { setApplicationModal } from "@/lib/redux/features/touch";
+import { useSendApplicationMutation } from "@/lib/redux/services/jobApplicationApi";
 import { AppDispatch, RootState } from "@/lib/redux/store";
-import React from "react";
+import dayjs from "dayjs";
+import React, { useCallback, useContext } from "react";
+import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
 const ModalControls = ({
@@ -25,9 +34,15 @@ const ModalControls = ({
   const { progressBar, modalStep, isAdditionalQuestions, isEdit } = useSelector(
     (state: RootState) => state.applicationModalProgressBar
   );
+  const applicationData = useSelector(
+    (state: RootState) => state.applicationModalData.applicationData
+  );
   const { barWidth, barWidthValue } = progressBar;
   const isFormValid =
     !isErrors.length && !Object.values(formValues as object).includes("");
+  const { user } = useContext(AuthContext);
+  const { jobDetail } = useSelector((state: RootState) => state.jobDetail);
+  const [sendApplication] = useSendApplicationMutation();
 
   const prevStep = () => {
     dispatch(setResumeErrorMessage(""));
@@ -83,6 +98,62 @@ const ModalControls = ({
     }
   };
 
+  const submitApplication = useCallback(async () => {
+    if (!applicationData || !user) return;
+
+    try {
+      const {
+        companyId,
+        companyLocation,
+        companyLogo,
+        companyName,
+        jobTitle,
+        postId,
+      } = jobDetail;
+
+      const res = await sendApplication({
+        applicationData: {
+          ...applicationData,
+          name: user?.name || user?.displayName,
+          cid: user?.id,
+          eid: companyId,
+          postId: postId,
+          companyLogo: companyLogo,
+          companyLocation: companyLocation,
+          companyName: companyName,
+          jobTitle: jobTitle,
+          status: [
+            {
+              text: "Başvuru yapıldı",
+              time: dayjs().format("YYYY-MM-DD HH:mm:ss"),
+            },
+          ],
+        },
+      });
+
+      if (res.data?.ok) {
+        dispatch(
+          setApplicationStatus({
+            companyName: companyName,
+            userId: user?.id,
+            postId: postId,
+            status: "applied",
+          })
+        );
+        dispatch(resetProgressBarValue());
+        dispatch(setApplicationModal(false));
+      } else {
+        toast.error(
+          "Başvurunuz gönderilirken bir hata oluştu. Lütfen tekrar deneyin."
+        );
+      }
+    } catch {
+      toast.error(
+        "Sunucuya bağlanırken bir sorun oluştu. Lütfen internet bağlantınızı kontrol edin."
+      );
+    }
+  }, [applicationData, dispatch, jobDetail, sendApplication, user]);
+
   return (
     <div className="py-4 px-6 flex justify-end gap-2">
       {modalStep > 1 && !isEdit && (
@@ -112,6 +183,7 @@ const ModalControls = ({
           isSubmitting={false}
           text="Başvuruyu gönder"
           className="!py-1.5 !px-4 font-semibold"
+          handleClick={submitApplication}
         />
       )}
     </div>
