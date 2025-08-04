@@ -12,7 +12,7 @@ interface ApplicationStatus {
   postId: string;
   userId: string;
   companyName: string;
-  status: "applied" | "notApplied";
+  status: "applied" | "notApplied" | "";
 }
 
 interface initialStateFields {
@@ -67,7 +67,7 @@ const initialState: initialStateFields = {
     companyName: "",
     postId: "",
     userId: "",
-    status: "notApplied",
+    status: "",
   },
 };
 
@@ -143,6 +143,8 @@ export const applicationModalDataSlice = createSlice({
       state.selectedResume = "";
       state.selectedResumeFileName = "";
     },
+
+    resetApplicationData: () => initialState,
   },
 });
 
@@ -155,4 +157,5 @@ export const {
   setSelectResume,
   setAdditionalQuestionsFromJob,
   setApplicationStatus,
+  resetApplicationData,
 } = applicationModalDataSlice.actions;

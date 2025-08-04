@@ -13,7 +13,7 @@ export const jobDetailApi = createApi({
           companyLogo: string;
           companyName: string;
           serviceArea: string;
-          companyID: string;
+          companyId: string;
           numberOfEmployees: string;
         };
         status: number;
