@@ -6,16 +6,32 @@ import { Toaster } from "react-hot-toast";
 import { useGetJobDetailQuery } from "@/lib/redux/services/jobDetail";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
-import ApplicationModal from "@/components/pages/jobDetail/applicationModal/ApplicationModal";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/lib/redux/store";
 import { JobPostingAdditionalQuestions } from "@/types/auth/employer/open-jobs.types";
 import {
+  resetApplicationData,
   setAdditionalQuestionsFromJob,
-  setApplicationData,
 } from "@/lib/redux/features/applicationModal/modalData";
 import { setApplicationModal } from "@/lib/redux/features/touch";
 import { setJobDetail } from "@/lib/redux/features/jobDetail";
+import dynamic from "next/dynamic";
+
+const ApplicationStatusModal = dynamic(
+  () =>
+    import(
+      "@/components/pages/jobDetail/applicationModal/ApplicationStatusModal"
+    ),
+  {
+    ssr: false,
+  }
+);
+
+const ApplicationModal = dynamic(
+  () =>
+    import("@/components/pages/jobDetail/applicationModal/ApplicationModal"),
+  { ssr: false }
+);
 
 const JobDetail = () => {
   const params = useSearchParams();
@@ -25,6 +41,9 @@ const JobDetail = () => {
   });
   const { openApplicationModal } = useSelector(
     (state: RootState) => state.touch
+  );
+  const { status, postId } = useSelector(
+    (state: RootState) => state.applicationModalData.applicationStatus
   );
   const dispatch = useDispatch<AppDispatch>();
 
@@ -44,14 +63,14 @@ const JobDetail = () => {
         jobTitle,
         companyName,
         postId,
-        companyID,
+        companyId,
       } = data?.job;
 
       dispatch(
         setJobDetail({
           jobDetail: {
             companyLocation: location,
-            companyId: companyID,
+            companyId: companyId,
             companyLogo,
             jobTitle,
             companyName,
@@ -65,15 +84,7 @@ const JobDetail = () => {
   useEffect(() => {
     return () => {
       dispatch(setApplicationModal(false));
-      dispatch(
-        setApplicationData({
-          additionalQuestions: [],
-          email: "",
-          phone: "",
-          resume: "",
-        })
-      );
-      dispatch(setAdditionalQuestionsFromJob({}));
+      dispatch(resetApplicationData());
     };
   }, [dispatch]);
 
@@ -106,6 +117,10 @@ const JobDetail = () => {
             data?.job?.additionalQuestions as JobPostingAdditionalQuestions
           }
         />
+      )}
+
+      {(status !== "" || data?.job.postId === postId) && (
+        <ApplicationStatusModal />
       )}
     </main>
   );

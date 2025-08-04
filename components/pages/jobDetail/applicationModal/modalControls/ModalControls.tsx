@@ -37,6 +37,9 @@ const ModalControls = ({
   const applicationData = useSelector(
     (state: RootState) => state.applicationModalData.applicationData
   );
+  const applicationStatus = useSelector(
+    (state: RootState) => state.applicationModalData.applicationStatus
+  );
   const { barWidth, barWidthValue } = progressBar;
   const isFormValid =
     !isErrors.length && !Object.values(formValues as object).includes("");
@@ -140,19 +143,27 @@ const ModalControls = ({
             status: "applied",
           })
         );
-        dispatch(resetProgressBarValue());
-        dispatch(setApplicationModal(false));
       } else {
-        toast.error(
-          "Başvurunuz gönderilirken bir hata oluştu. Lütfen tekrar deneyin."
+        dispatch(
+          setApplicationStatus({ ...applicationStatus, status: "notApplied" })
         );
       }
     } catch {
       toast.error(
         "Sunucuya bağlanırken bir sorun oluştu. Lütfen internet bağlantınızı kontrol edin."
       );
+    } finally {
+      dispatch(setApplicationModal(false));
+      dispatch(resetProgressBarValue());
     }
-  }, [applicationData, dispatch, jobDetail, sendApplication, user]);
+  }, [
+    applicationData,
+    dispatch,
+    jobDetail,
+    sendApplication,
+    user,
+    applicationStatus,
+  ]);
 
   return (
     <div className="py-4 px-6 flex justify-end gap-2">

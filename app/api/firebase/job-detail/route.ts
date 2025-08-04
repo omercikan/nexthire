@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
         companyName: data.companyInformations.companyName,
         serviceArea: data.companyInformations.serviceArea,
         numberOfEmployees: data.companyInformations.numberOfEmployees,
+        companyId: companyID,
       };
 
       job.push({
