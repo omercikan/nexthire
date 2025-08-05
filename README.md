@@ -1,130 +1,147 @@
-<h1>NextHire (dev)</h1>
+<p align="center">
+  <img src="https://res.cloudinary.com/dvolwkh6r/image/upload/v1746880573/NextHire-3_wj0va1.png" alt="NextHire Logo" width="300"/>
+</p>
 
-<p><strong>NextHire</strong> is a modern job platform that connects candidates and employers in a streamlined, user-friendly environment.</p>
+<h1 align="center">NextHire</h1>
 
-<p>The <strong>authentication system</strong> (sign up, login) and the <strong>landing page</strong> have been completed. A <strong>newsletter subscription</strong> feature is also functional on the homepage. Development has now moved on to building the <strong>job listings</strong> section.</p>
+<p align="center">
+  <a href="https://www.netlify.com/"><img src="https://img.shields.io/badge/Deployed%20on-Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white" alt="Netlify"/></a>
+  <a href="https://firebase.google.com/"><img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black" alt="Firebase"/></a>
+  <a href="https://jestjs.io/"><img src="https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest&logoColor=white" alt="Jest"/></a>
+  <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React"/></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"/></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwind-css&logoColor=white" alt="Tailwind CSS"/></a>
+  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white" alt="Next.js"/></a>
+</p>
 
-<h2>🚀 Tech Stack</h2>
-<ul>
-  <li><strong>Next.js</strong> – Using the App Router architecture</li>
-  <li><strong>React 19</strong> – With the latest stable version</li>
-  <li><strong>TypeScript</strong> – For a safer and scalable codebase</li>
-  <li><strong>Tailwind CSS</strong> – Fast and flexible styling system</li>
-  <li><strong>SCSS</strong> – For writing custom styles when needed</li>
-  <li><strong>Firebase</strong> – Authentication and Firestore database</li>
-  <li><strong>Redux Toolkit</strong> – Global state management</li>
-  <li><strong>Axios</strong> – For making API requests</li>
-  <li><strong>Formik & Yup</strong> – For form handling and validation</li>
-  <li><strong>React Firebase Hooks</strong> – Simplified Firebase integration</li>
-  <li><strong>React Icons</strong> – Icon set for UI components</li>
-  <li><strong>React Transition Group</strong> – Basic animation support</li>
-  <li><strong>Framer Motion</strong> – Advanced UI animations</li>
-  <li><strong>React Hot Toast</strong> – Notification system</li>
-  <li><strong>Material UI (MUI)</strong> – For select UI components</li>
-  <li><strong>Turbopack</strong> – For a faster development experience</li>
-  <li><strong>ESLint</strong> – To maintain code quality</li>
-</ul>
+<p align="center">
+  A modern, responsive job platform built with Next.js, Firebase, and TypeScript, connecting employers and candidates through an interactive interface.
+</p>
 
-<h2>🧾 Changelog – <code>dev</code> Branch (Latest Update)</h2>
+---
 
-<h3>🚀 Features</h3>
-<ul>
-  <li><strong>Job Postings System</strong>
-    <ul>
-      <li>🧱 Added <code>JobList</code> and <code>JobItem</code> components to render job listings</li>
-      <li>🔌 Integrated new <code>/job-postings</code> API route</li>
-      <li>🔗 Connected job listings to <strong>RTK Query</strong> for efficient data fetching</li>
-      <li>🧩 Extended filter interface with company-related fields</li>
-      <li>🔍 Centralized search functionality via <code>SearchJob</code> in <code>HeroSection</code></li>
-      <li>🔎 Added search functionality to job listings via <code>JobList</code> component</li>
-      <li>🧰 Implemented global filter management with Redux slice (<code>jobFilters</code>)</li>
-      <li>📤 Added filter interaction logic in <code>JobItem</code> via <code>handleAction</code> and <code>handleJobTypeBadge</code></li>
-      <li>🧱 Created <code>FilterBar</code> to display and clear selected filters</li>
-      <li>🔽 Added <code>ResultNavigator</code> for sort & per-page filter selections</li>
-      <li>🧠 Created <code>useJobFilter</code> and <code>useFilterJobSearch</code> hooks for dynamic filtering logic</li>
-      <li>🧩 Applied filter integration to components: <code>BestCompanies</code>, <code>Categories</code>, <code>CitiesCategory</code>, <code>FeaturedJobs</code>, and <code>KeywordItem</code></li>
-      <li>📥 Added filter logic to <code>FilterMenu</code>, <code>CustomList</code>, <code>SwitchItem</code>, and <code>CustomButton</code></li>
-      <li>📦 Added <code>loading</code> slice to manage filter loading state</li>
-    </ul>
-  </li>
-</ul>
+## 📌 About the Project
 
-<h3>🎨 UI/UX Enhancements</h3>
-<ul>
-  <li>🎞️ Added <strong>Framer Motion</strong> for entry animations across multiple components (<code>BestCompanies</code>, etc.)</li>
-  <li>🎨 Added job type styling in <code>globals.css</code></li>
-  <li>➕ Implemented "show more" toggle in <code>FilterSwitch</code> for experience/career level filtering</li>
-  <li>🧹 Improved filter item styling in <code>FilterBar</code> with hover and close icons</li>
-  <li>🖱️ Added click interaction in <code>CustomButton</code> to open filter menu and update state</li>
-</ul>
+**NextHire** is a comprehensive job platform that bridges the gap between job seekers and employers.
 
-<h3>⚙️ Refactoring & Structure</h3>
-<ul>
-  <li>🔁 Replaced all <code>useEffect</code>-based fetching logic in <code>FeaturedJobs</code> with <strong>RTK Query</strong></li>
-  <li>🗂️ Moved all Redux logic under <code>/lib/redux</code> for better structure</li>
-  <li>🗑️ Removed unused <code>employerSlice.ts</code></li>
-  <li>🧼 Extracted <code>setUserDatabase</code> function for cleaner Firestore integration</li>
-  <li>🛠️ Improved route format utility and added new helper function</li>
-  <li>🔧 Renamed <code>JobType</code> component to <code>CustomList</code> and refactored for reusability in <code>FilterMenu</code></li>
-  <li>🧠 Extended <code>jobFilters</code> slice with new fields (<code>sortValue</code>, <code>pageValue</code>, <code>filtersItem</code>, <code>jobKeywords</code>, <code>locationKeywords</code>, <code>filterData</code>) and reducers</li>
-  <li>🧩 Added <code>touch</code> slice for managing UI-layer states</li>
-  <li>🐛 Fixed type issues in <code>filtersJob</code> config file</li>
-  <li>🧠 Added new setJobSearchFilterData reducer to jobFilters slice for managing homepage search filters more accurately</li>
-  <li>🔄 Simplified homepage job search filter update by consolidating dispatch logic into a single object</li>
-  <li>📐 Added <code>JobSearchFilters</code> interface to enforce consistent filter state structure</li>
-  <li>🧹 Improved code readability and maintainability in job search filter dispatch</li>
-</ul>
+- 🧑‍💼 Candidates can browse, filter, and apply to job listings.
+- 🏢 Employers can create and manage job postings, track applications, and contact applicants.
+- Acts as a **professional bridge** between both roles.
 
-<h3>🐛 Bug Fixes</h3>
-<ul>
-  <li>🐞 Fixed issue where homepage job search retained stale filter state after navigating or interacting with filters</li>
-  <li>🧼 Resolved outdated state persistence in job filter selection, ensuring UI reflects current filter criteria</li>
-</ul>
+**Why NextHire?**  
+Finding the right job or candidate can be time-consuming and inefficient. NextHire simplifies this process by providing an intuitive, centralized platform that connects qualified candidates with employers efficiently and transparently.
 
-<h3>❤️ Favorites Toggle Feature Branch</h3>
-<ul>
-  <li><strong>FavoriteCompany Component Refactor</strong>
-    <ul>
-      <li>🔄 Removed static <code>job</code> prop in favor of dynamic data handling</li>
-      <li>🔌 Now fully prop-driven for better reusability</li>
-    </ul>
-  </li>
-  <li><strong>BestCompanies Component Update</strong>
-    <ul>
-      <li>🧩 Integrated <code>FavoriteCompany</code> to manage favoriting logic</li>
-      <li>🧹 Removed old <code>addFavoriteCompany</code> function and <code>useEffect</code> side-effects</li>
-    </ul>
-  </li>
-  <li><strong>JobItem Enhancements</strong>
-    <ul>
-      <li>🔗 Integrated <code>FavoriteCompany</code> with new props structure</li>
-    </ul>
-  </li>
-  <li><strong>useFavoriteCompany Hook</strong>
-    <ul>
-      <li>🧠 Extended <code>addFavorite</code> logic with new <code>field</code> support for contextual behavior</li>
-    </ul>
-  </li>
-  <li><strong>API Update</strong>
-    <ul>
-      <li>📡 <code>addFavoriteCompany</code> endpoint now supports additional <code>field</code> parameter for flexible backend data creation</li>
-    </ul>
-  </li>
-  <li><strong>Types & Interfaces</strong>
-    <ul>
-      <li>📝 Updated <code>Candidate</code> interface to use <code>CandidateFavoritesInterface</code> for both <code>favoriteEmployers</code> and <code>favoriteJobs</code></li>
-    </ul>
-  </li>
-  <li><strong>Styling</strong>
-    <ul>
-      <li>🎨 Added new CSS class in <code>globals.css</code> for improved favorite icon styling</li>
-    </ul>
-  </li>
-</ul>
+**Problem Solved**  
+Traditional job searching and hiring often involve scattered information, lack of communication, and delays. NextHire addresses these issues by offering real-time application tracking, effective communication channels, and streamlined job posting and application workflows.
 
-<h2>📌 Notes</h2>
-<ul>
-  <li>This is the <strong>dev</strong> branch of the repository.</li>
-  <li>The project is actively being developed.</li>
-  <li>New features and updates will be added to this README as development progresses.</li>
-</ul>
+> This project is actively being developed. Every push automatically triggers a build on Netlify.
+
+---
+
+## ⚙️ Technologies Used
+
+NextHire is built using a modern tech stack:
+
+- **Next.js 15.2.4** (using **App Router** and **Turbopack** for development)
+- **TypeScript 5.8.2**
+- **Tailwind CSS 4.x** & **SCSS 1.86.2**
+- **Redux Toolkit 2.6.1**
+- **Firebase 11.6.0** (Auth & Firestore)
+- **MUI (Material UI) 7.0.1**
+- **Formik 2.4.6** + **Yup 1.6.1**
+- **Axios 1.8.4**
+- **Framer Motion 12.11.0**
+- **React Hot Toast 2.5.2**
+- **Lottie Animations (@lottiefiles/dotlottie-react 0.14.4)**
+- **Swiper 11.2.6**
+- **React Icons 5.5.0**
+- **DayJS 1.11.13**
+- **Jest 29.7.0** & **React Testing Library 16.3.0** – for unit and component testing
+
+> For full details, see `package.json`.
+
+---
+
+## 🚀 Getting Started
+
+To run the project locally:
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/omercikan/nexthire-job-platform.git
+cd nexthire-job-platform
+```
+
+### 2. Install Dependencies
+```bash
+npm install
+```
+
+### 3. Setup Firebase Environment
+
+This project requires Firebase configuration to be set up in your environment variables.
+Create a .env.local file at the root of your project with the following keys:
+
+```ts
+NEXT_PUBLIC_FIREBASE_API_KEY=your_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+```
+
+> ⚠️ Make sure you set up your own Firebase project.
+You can refer to the official <a href="https://firebase.google.com/docs/web/setup">Firebase Web Setup Documentation</a> to configure your project properly.
+
+### 4. Start the Development Server
+```bash
+npm run dev
+```
+
+> Uses Turbopack for fast refresh and build performance.
+
+## 📦 Available Scripts
+
+```bash
+npm run dev          # Start development server
+npm run build        # Generate a production build
+npm start            # Start production server
+npm run lint         # Lint codebase
+npm run test         # Run tests using Jest
+npm run test:watch   # Run tests in watch mode
+npm run type-check   # Run TypeScript type checking
+```
+
+## 🌟 Features
+
+- 🧑‍💼 **Candidate Registration / Login**
+- 🏢 **Employer Registration / Login**
+- 📱 **Fully Responsive Design**
+- 🔍 **Job Search with Filter System**
+- 📄 **Resume Upload & Application Flow**
+- 📬 **Application Tracking for Employers**
+- 👤 **Profile Management for Users**
+- 🛠️ Admin Panel for Platform Management
+- 📢 **Job Posting Creation & Editing**
+- ✉️ **Communication Channel Between Parties**
+- 🧪 **Unit & Component Testing**
+
+---
+
+## API Documentation
+
+You can find detailed documentation for all API endpoints under the [`docs/api`](docs/api) directory.
+
+## Issues
+
+If you encounter any bugs or have feature requests, please open an issue on the [GitHub Issues page](https://github.com/omercikan/nexthire-job-platform/issues).
+
+## Security
+
+Please see the [Security Policy](SECURITY.md) for details on reporting vulnerabilities.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
