@@ -34,12 +34,9 @@ const ModalControls = ({
   const { progressBar, modalStep, isAdditionalQuestions, isEdit } = useSelector(
     (state: RootState) => state.applicationModalProgressBar
   );
-  const applicationData = useSelector(
-    (state: RootState) => state.applicationModalData.applicationData
-  );
-  const applicationStatus = useSelector(
-    (state: RootState) => state.applicationModalData.applicationStatus
-  );
+  const { applicationData, applicationStatus, selectedResumeFileName } =
+    useSelector((state: RootState) => state.applicationModalData);
+
   const { barWidth, barWidthValue } = progressBar;
   const isFormValid =
     !isErrors.length && !Object.values(formValues as object).includes("");
@@ -117,6 +114,7 @@ const ModalControls = ({
       const res = await sendApplication({
         applicationData: {
           ...applicationData,
+          fileName: selectedResumeFileName,
           name: user?.name || user?.displayName,
           cid: user?.id,
           eid: companyId,
@@ -163,6 +161,7 @@ const ModalControls = ({
     sendApplication,
     user,
     applicationStatus,
+    selectedResumeFileName,
   ]);
 
   return (
