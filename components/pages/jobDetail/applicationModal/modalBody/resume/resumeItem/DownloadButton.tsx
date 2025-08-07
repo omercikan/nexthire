@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, ReactNode } from "react";
 import fileDownload from "js-file-download";
 import { HiMiniArrowDownTray } from "react-icons/hi2";
 import { fetchData } from "@/lib/fetchData";
@@ -8,11 +8,15 @@ const DownloadButton = ({
   fileName,
   isView,
   className,
+  isViewContent,
+  isViewClassName,
 }: {
   url: string;
   fileName: string;
   isView: boolean;
   className?: string;
+  isViewContent?: ReactNode;
+  isViewClassName?: string;
 }) => {
   const handleDownloadPdf = async (
     e: MouseEvent<HTMLButtonElement>,
@@ -31,8 +35,12 @@ const DownloadButton = ({
       className={className ?? ""}
     >
       {isView ? (
-        <span className="text-[#000000BF] text-sm font-semibold">
-          Görüntüle
+        <span
+          className={
+            isViewClassName ?? "text-[#000000BF] text-sm font-semibold"
+          }
+        >
+          {isViewContent ?? "Görüntüle"}
         </span>
       ) : (
         <HiMiniArrowDownTray

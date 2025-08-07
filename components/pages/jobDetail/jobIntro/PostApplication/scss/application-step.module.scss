@@ -1,0 +1,64 @@
+@use "colors";
+@use "sizes";
+@use "sass:map";
+
+@mixin pseudoStyle($width, $height, $left, $top, $bgColor, $options: ()) {
+  content: "";
+  display: block;
+  width: $width;
+  height: $height;
+  position: absolute;
+  left: $left;
+  top: $top;
+  background-color: $bgColor;
+
+  @if map.has-key($options, transform) {
+    transform: map.get($options, transform);
+  }
+
+  @if map.has-key($options, border-radius) {
+    border-radius: map.get($options, border-radius);
+  }
+}
+
+.applicationStep {
+  margin-top: map.get(sizes.$sizes, spacing-md);
+  padding-left: map.get(sizes.$sizes, spacing-md);
+  position: relative;
+  color: map.get(colors.$colors, dark-black);
+  font-size: map.get(sizes.$sizes, font-sm);
+  display: flex;
+  justify-content: space-between;
+
+  time {
+    color: map.get(colors.$colors, dark-gray);
+  }
+
+  &::before {
+    @include pseudoStyle(
+      map.get(sizes.$sizes, dot-size),
+      map.get(sizes.$sizes, dot-size),
+      0,
+      50%,
+      map.get(colors.$colors, before-bg),
+      (
+        transform: translateY(-50%),
+        border-radius: 50%,
+      )
+    );
+  }
+
+  &::after {
+    @include pseudoStyle(
+      map.get(sizes.$sizes, line-width),
+      100%,
+      map.get(sizes.$sizes, line-left),
+      18px,
+      map.get(colors.$colors, after-bg)
+    );
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+}

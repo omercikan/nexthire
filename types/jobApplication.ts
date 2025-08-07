@@ -1,5 +1,6 @@
 export interface ApplicationData {
   additionalQuestions: { title: string; answer: string; index: number }[];
+  fileName: string;
   email: string;
   name: string;
   phone: string;

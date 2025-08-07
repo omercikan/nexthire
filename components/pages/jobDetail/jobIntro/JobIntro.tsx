@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import { VscBriefcase } from "react-icons/vsc";
 import { SlLocationPin } from "react-icons/sl";
 import { BsClock } from "react-icons/bs";
@@ -9,10 +9,34 @@ import IntroLink from "./IntroLink";
 import { JobIntroInterface } from "@/types/jobDetail";
 import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 import { Typography } from "@mui/material";
-import IntroRight from "./IntroSectionRight/IntroRight";
 import dayjs from "dayjs";
+import { useGetApplicationQuery } from "@/lib/redux/services/jobApplicationApi";
+import { AuthContext } from "@/context/authContext";
+import dynamic from "next/dynamic";
 
-const JobIntro = ({ data, isLoading }: JobIntroInterface) => {
+//* IntroRight component lazy load *//
+const IntroRight = dynamic(() => import("./IntroSectionRight/IntroRight"), {
+  ssr: false,
+});
+
+//* SubmittedResume component lazy load *//
+const SubmittedResume = dynamic(
+  () => import("./PostApplication/SubmittedResume"),
+  { ssr: false }
+);
+
+//* ApplicationTimeline component lazy load *//
+const ApplicationTimeline = dynamic(
+  () => import("./PostApplication/ApplicationStatus/ApplicationTimeline"),
+  { ssr: false }
+);
+
+const JobIntro = (props: JobIntroInterface) => {
+  //* Current user *//
+  const { user } = useContext(AuthContext);
+
+  //* Props data and isLoading *//
+  const isLoading = props.isLoading;
   const {
     applicationDeadlineDate,
     category,
@@ -26,11 +50,25 @@ const JobIntro = ({ data, isLoading }: JobIntroInterface) => {
     datePosted,
     numberOfEmployees,
     postId,
-  } = data;
+  } = props.data;
+
+  //* Application status data *//
+  const {
+    data,
+    isLoading: isApplyLoading,
+    isFetching,
+  } = useGetApplicationQuery({
+    candidateId: user?.id ?? "",
+    postId: postId,
+  });
 
   return (
     <section className="bg-[#F2F5FC] py-[70px] mt-[79.43px]">
-      <div className="container flex gap-x-[60px] max-lg:flex-col justify-between items-center">
+      <div
+        className={`container flex gap-x-[60px] max-lg:flex-col justify-between ${
+          data?.appliedData ? "" : "items-center"
+        }`}
+      >
         <div className="flex max-lg:flex-col items-center gap-5">
           {companyLogo ? (
             <Image
@@ -161,17 +199,30 @@ const JobIntro = ({ data, isLoading }: JobIntroInterface) => {
           </div>
         </div>
 
-        <IntroRight
-          postId={postId}
-          jobTitle={jobTitle}
-          location={location}
-          isLoading={isLoading}
-          companyLogo={companyLogo}
-          companyName={companyName}
-          numberOfEmployees={numberOfEmployees}
-          applicationDeadlineDate={applicationDeadlineDate}
-        />
+        {isApplyLoading || isFetching || isLoading ? (
+          ""
+        ) : !data?.appliedData ? (
+          <IntroRight
+            postId={postId}
+            jobTitle={jobTitle}
+            location={location}
+            isLoading={isLoading}
+            companyLogo={companyLogo}
+            companyName={companyName}
+            numberOfEmployees={numberOfEmployees}
+            applicationDeadlineDate={applicationDeadlineDate}
+          />
+        ) : (
+          <SubmittedResume
+            resumeFileName={data.appliedData.fileName}
+            resumeUrl={data.appliedData.resume}
+          />
+        )}
       </div>
+
+      {data?.appliedData && (
+        <ApplicationTimeline statusList={data?.appliedData?.status} />
+      )}
     </section>
   );
 };
