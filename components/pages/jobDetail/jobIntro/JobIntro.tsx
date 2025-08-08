@@ -9,10 +9,11 @@ import IntroLink from "./IntroLink";
 import { JobIntroInterface } from "@/types/jobDetail";
 import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 import { Typography } from "@mui/material";
-import dayjs from "dayjs";
 import { useGetApplicationQuery } from "@/lib/redux/services/jobApplicationApi";
 import { AuthContext } from "@/context/authContext";
 import dynamic from "next/dynamic";
+import { formatApplyTime } from "@/lib/utils/formatApplyTime";
+import styles from "./info-dot.module.scss";
 
 //* IntroRight component lazy load *//
 const IntroRight = dynamic(() => import("./IntroSectionRight/IntroRight"), {
@@ -112,7 +113,9 @@ const JobIntro = (props: JobIntroInterface) => {
               </Typography>
             )}
 
-            <div className="flex flex-wrap max-lg:justify-center gap-x-[25px] gap-y-[8px] mt-[5px]">
+            <div
+              className={`flex items-center flex-wrap max-lg:justify-center gap-x-4 gap-y-[8px] mt-[5px] ${styles.infoDot}`}
+            >
               <IntroLink
                 JobLocationFilterStatus={{
                   isApplyJob: true,
@@ -165,11 +168,33 @@ const JobIntro = (props: JobIntroInterface) => {
                 <div className="flex gap-[5px]">
                   <BsClock size={20} color="696969" />
                   <time className="text-sm text-[#696969]">
-                    {dayjs(
+                    {formatApplyTime(
                       datePosted?.seconds * 1000 +
                         datePosted?.nanoseconds / 1000000
-                    ).format("DD.MM.YYYY")}
+                    )}
                   </time>
+                </div>
+              )}
+
+              {isLoading ? (
+                <Typography variant="subtitle1">
+                  <LoaderSkeleton
+                    testID="time-skeleton"
+                    animationType="wave"
+                    length={1}
+                    variant="text"
+                    sxClass={{
+                      borderRadius: "4px",
+                      width: "100px",
+                      height: "25px",
+                    }}
+                  />
+                </Typography>
+              ) : (
+                <div>
+                  <span className="text-sm text-[#696969]">
+                    {data?.totalAppliedText}
+                  </span>
                 </div>
               )}
             </div>

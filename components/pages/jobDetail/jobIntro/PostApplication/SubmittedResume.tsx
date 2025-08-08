@@ -19,7 +19,7 @@ const SubmittedResume = ({
       isViewContent={
         <>
           <FaRegFileAlt size={16} strokeWidth={5} />
-          <span>Gönderilen özgeçmiş</span>
+          <span className="whitespace-nowrap">Gönderilen özgeçmiş</span>
         </>
       }
     />
