@@ -1,0 +1,15 @@
+.infoDot {
+  div {
+    position: relative;
+
+    &:not(:last-child)::before {
+      content: "·";
+      position: absolute;
+      top: 50%;
+      left: calc(100% + 6px);
+      transform: translateY(-50%);
+      color: #00000099;
+      font-size: 14px;
+    }
+  }
+}

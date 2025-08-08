@@ -19,7 +19,7 @@ export const jobApplicationApi = createApi({
       ],
     }),
     getApplication: builder.query<
-      { appliedData: ApplicationData },
+      { appliedData: ApplicationData; totalAppliedText: string },
       { candidateId: string; postId: string }
     >({
       query: ({ candidateId, postId }) => ({
