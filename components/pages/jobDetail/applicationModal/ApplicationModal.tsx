@@ -46,19 +46,17 @@ const ApplicationModal = ({
       onClick={handleCloseModal}
     >
       <div
-        className="bg-white fixed left-1/2 top-[2rem] -translate-x-1/2 rounded-lg w-[46.5rem] max-md:w-[95%]"
+        className="bg-white fixed left-1/2 sm:top-[2rem] -translate-x-1/2 sm:rounded-lg w-[46.5rem] max-md:w-[95%] max-sm:w-full max-sm:h-full"
         onClick={(e) => e.stopPropagation()}
       >
         <ModalHeader companyName={companyName} jobTitle={jobTitle} />
+        <ModalProgressBar />
 
         <div
-          className={
-            modalStep === 4
-              ? "h-[500px] overflow-auto"
-              : "max-sm:h-[500px] max-sm:overflow-auto"
-          }
+          className={`${modalStep === 1 ? "h-max" : ""}${
+            modalStep === 4 ? "h-[500px] overflow-auto" : ""
+          } h-full`}
         >
-          <ModalProgressBar />
           <ModalBody />
         </div>
       </div>

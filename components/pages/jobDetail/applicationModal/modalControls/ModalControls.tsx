@@ -165,7 +165,7 @@ const ModalControls = ({
   ]);
 
   return (
-    <div className="py-4 px-6 flex justify-end gap-2">
+    <div className="py-4 flex sm:justify-end gap-2">
       {modalStep > 1 && !isEdit && (
         <CustomButton
           text="Geri"
@@ -185,14 +185,14 @@ const ModalControls = ({
               : "İleri"
           }
           isSubmitting={false}
-          className="!py-1.5 !px-4 font-semibold"
+          className="!py-1.5 !px-4 font-semibold max-sm:ms-auto"
           handleClick={nextStep}
         />
       ) : (
         <CustomButton
           isSubmitting={false}
           text="Başvuruyu gönder"
-          className="!py-1.5 !px-4 font-semibold"
+          className="!py-1.5 !px-4 font-semibold max-sm:ms-auto"
           handleClick={submitApplication}
         />
       )}

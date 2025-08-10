@@ -16,6 +16,7 @@ import { resumeApi } from "./services/resumeApi";
 import { cvIdSlice } from "./features/applicationModal/cvIdSlice";
 import { jobDetailReducer } from "./features/jobDetail";
 import { jobApplicationApi } from "./services/jobApplicationApi";
+import { applyModalScreenReducer } from "./features/applicationModal/screenSize";
 
 export const store = configureStore({
   reducer: {
@@ -28,6 +29,7 @@ export const store = configureStore({
     applicationModalData: applicationModalDataSlice.reducer,
     cvIdSlice: cvIdSlice.reducer,
     jobDetail: jobDetailReducer,
+    applyModalScreen: applyModalScreenReducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [jobPostings.reducerPath]: jobPostings.reducer,

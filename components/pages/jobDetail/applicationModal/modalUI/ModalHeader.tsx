@@ -1,9 +1,9 @@
 import { resetProgressBarValue } from "@/lib/redux/features/applicationModal/progressBar";
 import { setApplicationModal } from "@/lib/redux/features/touch";
-import { AppDispatch } from "@/lib/redux/store";
+import { AppDispatch, RootState } from "@/lib/redux/store";
 import React from "react";
 import { IoCloseOutline } from "react-icons/io5";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ModalHeader = ({
   companyName,
@@ -13,6 +13,9 @@ const ModalHeader = ({
   jobTitle: string;
 }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const { isSmallScreen } = useSelector(
+    (state: RootState) => state.applyModalScreen
+  );
 
   const handleCloseModal = () => {
     dispatch(setApplicationModal(false));
@@ -21,11 +24,20 @@ const ModalHeader = ({
   };
 
   return (
-    <div className="flex justify-between items-center max-md:items-start max-md:gap-x-3 py-4 px-6 border-b border-gray-200">
+    <div className="flex justify-between items-center max-md:items-start max-md:gap-x-3 py-4 px-6 max-sm:px-3 border-b border-gray-200">
       <h2 className="text-xl font-medium max-[430px]:text-lg max-md:self-end whitespace-nowrap text-ellipsis overflow-hidden">
-        <strong className="font-medium">{companyName}</strong> şirketinin{" "}
-        <strong className="font-medium">{jobTitle}</strong> ilanına
-        başvuruyorsunuz{" "}
+        {isSmallScreen ? (
+          <>
+            <strong className="font-medium">{companyName}</strong> şirketine
+            başvuruyorsunuz
+          </>
+        ) : (
+          <>
+            <strong className="font-medium">{companyName}</strong> şirketinin{" "}
+            <strong className="font-medium">{jobTitle}</strong> ilanına
+            başvuruyorsunuz
+          </>
+        )}
       </h2>
 
       <button onClick={handleCloseModal}>

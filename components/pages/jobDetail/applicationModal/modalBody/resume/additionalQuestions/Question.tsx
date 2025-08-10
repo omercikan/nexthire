@@ -2,12 +2,11 @@ import CustomInput from "@/components/ui/CustomInput";
 import { AppDispatch, RootState } from "@/lib/redux/store";
 import React, { ChangeEvent, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ModalControls from "../../../modalControls/ModalControls";
-import InformationMessage from "../../../modalUI/InformationMessage";
 import { Form, Formik } from "formik";
 import SelectQuestion from "./SelectQuestion";
 import { setApplicationData } from "@/lib/redux/features/applicationModal/modalData";
 import useValidationSchema from "@/hooks/useValidationSchema";
+import ModalFooter from "../../ModalFooter";
 
 const Question = () => {
   const {
@@ -103,7 +102,7 @@ const Question = () => {
     >
       {({ values, errors, handleChange }) => (
         <Form>
-          <div className="px-6 flex flex-col gap-4">
+          <div className="px-6 max-sm:px-3 flex flex-col gap-4">
             {isTextAnswer &&
               textQuestions.map((q, i) => (
                 <CustomInput
@@ -140,8 +139,7 @@ const Question = () => {
               ))}
           </div>
 
-          <InformationMessage />
-          <ModalControls formValues={values} isErrors={Object.keys(errors)} />
+          <ModalFooter values={values} errors={errors} />
         </Form>
       )}
     </Formik>

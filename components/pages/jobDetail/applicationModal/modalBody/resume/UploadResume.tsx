@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import InformationMessage from "../../modalUI/InformationMessage";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import ModalControls from "../../modalControls/ModalControls";
 import ResumeInput from "./uploadResume/ResumeInput";
 import ResumeLabel from "./uploadResume/ResumeLabel";
+import ModalFooter from "../ModalFooter";
 
 const UploadResume = () => {
   const { uploadedFileNames, resumeErrorMessage, selectedResume } = useSelector(
@@ -15,7 +14,7 @@ const UploadResume = () => {
 
   return (
     <div className="mt-2">
-      <div className="px-6">
+      <div className="px-6 max-sm:px-0">
         <ResumeLabel />
 
         <span className="text-[#00000099] text-sm block mt-1.5">
@@ -25,10 +24,9 @@ const UploadResume = () => {
         <ResumeInput setFileValue={setFileValue} />
       </div>
 
-      <InformationMessage />
-      <ModalControls
-        isErrors={Object.keys(isResumeValid ? {} : { resumeErrorMessage })}
-        formValues={fileValue}
+      <ModalFooter
+        errors={isResumeValid ? {} : { resumeErrorMessage }}
+        values={fileValue}
         extraControl={{
           state: isResumeValid ? true : false,
           message:

@@ -43,10 +43,8 @@ const ResumeItem = ({
 
       <div
         className={`${
-          isDisplaySelect ? "py-3 px-2" : "ps-2"
-        } flex items-center justify-between w-[calc(100%-44px)] ${
-          isDisplaySelect ? "hover:bg-[#f8fafd]" : ""
-        } rounded-e-[12.8px] transition-colors`}
+          isDisplaySelect ? "sm:hover:bg-[#f8fafd] py-3 px-2" : "ps-2"
+        } flex items-center justify-between w-[calc(100%-44px)] rounded-e-[12.8px] transition-colors`}
       >
         <ResumeContent
           fileName={fileName}
@@ -55,10 +53,10 @@ const ResumeItem = ({
         />
 
         {isDisplaySelect ? (
-          <div className="flex items-center gap-3 pe-1.5">
+          <div className="flex items-center gap-x-3 max-[425px]:gap-x-0 pe-1.5">
             <DownloadButton fileName={fileName} url={url} isView={false} />
 
-            <span className="w-[0.5px] bg-[#E8E8E8] h-[40px] inline-block mx-1"></span>
+            <span className="w-[0.5px] bg-[#E8E8E8] h-[40px] inline-block me-1 max-[430px]:me-3 max-[430px]:ms-1"></span>
 
             <RadioButton isMatchResumeID={isMatchResumeID} />
           </div>

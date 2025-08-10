@@ -9,8 +9,7 @@ import React, { ChangeEvent, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/lib/redux/store";
 import { setApplicationData } from "@/lib/redux/features/applicationModal/modalData";
-import InformationMessage from "../modalUI/InformationMessage";
-import ModalControls from "../modalControls/ModalControls";
+import ModalFooter from "./ModalFooter";
 
 const ModalContactInformation = () => {
   const { user } = useContext(AuthContext);
@@ -34,8 +33,10 @@ const ModalContactInformation = () => {
   };
 
   return (
-    <div className="">
-      <h3 className="text-[#000000E6] font-medium px-6">İletişim bilgileri</h3>
+    <div>
+      <h3 className="text-[#000000E6] font-medium px-6 max-sm:px-3 max-sm:mt-4">
+        İletişim bilgileri
+      </h3>
 
       <Formik
         enableReinitialize
@@ -48,7 +49,7 @@ const ModalContactInformation = () => {
       >
         {({ values, handleChange, errors }) => (
           <Form>
-            <div className="px-6 py-2 flex flex-col gap-4">
+            <div className="px-6 max-sm:px-3 py-2 flex flex-col gap-4">
               <CustomSelect
                 name="email"
                 label="E-posta adresi*"
@@ -88,8 +89,7 @@ const ModalContactInformation = () => {
               />
             </div>
 
-            <InformationMessage />
-            <ModalControls isErrors={Object.keys(errors)} formValues={values} />
+            <ModalFooter errors={errors} values={values} />
           </Form>
         )}
       </Formik>

@@ -28,7 +28,7 @@ const SummaryContent = ({
   );
 
   return (
-    <div className="px-6">
+    <div className="px-6 max-sm:px-3">
       <div className="flex items-start justify-between mb-3">
         <div>
           <h4 className="text-[#000000E6] font-semibold">{contentTitle}</h4>

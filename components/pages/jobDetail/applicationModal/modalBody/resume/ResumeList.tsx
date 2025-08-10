@@ -13,19 +13,28 @@ import PdfLoadingOverlay from "./resumeItem/PdfLoadingOverlay";
 import useSelectResume from "@/hooks/useSelectResume";
 
 const ResumeList = () => {
+  //* Get the current authenticated user from AuthContext *//
   const { user } = useContext(AuthContext);
-  const { cvID } = useSelector((state: RootState) => state.cvIdSlice);
-  const { placeholderUploadData } = useSelector(
-    (state: RootState) => state.applicationModalData
-  );
-  const { showMoreResumes } = useSelector((state: RootState) => state.touch);
+
+  //* Access Redux state slices and dispatch function *//
+  const {
+    touch: { showMoreResumes },
+    applyModalScreen: { isSmallScreen },
+    applicationModalData: { placeholderUploadData },
+    cvIdSlice: { cvID },
+  } = useSelector((state: RootState) => state);
   const dispatch = useDispatch<AppDispatch>();
+
+  //* Custom hook to dispatch and set the selected resume data *//
+  const [setSelectedResumeData] = useSelectResume();
+
+  //* Fetch uploaded resumes for the user *//
   const { data } = useFetchResumeQuery({
     docID: user?.id ?? "",
     cvID: cvID,
   });
-  const [setSelectedResumeData] = useSelectResume();
 
+  //* Memoized data for uploaded resumes and the most recently uploaded resume *//
   const resumeData = useMemo(() => data?.resumeData ?? [], [data?.resumeData]);
   const findMatchUpload = useMemo(() => {
     return resumeData.find(
@@ -33,6 +42,7 @@ const ResumeList = () => {
     );
   }, [placeholderUploadData.fileName, resumeData]);
 
+  // On first load, automatically select the most recently uploaded resume
   useEffect(() => {
     const resume = store.getState().applicationModalData.selectedResume;
     const [lastResume] = resumeData;
@@ -46,6 +56,7 @@ const ResumeList = () => {
     }
   }, [resumeData, setSelectedResumeData]);
 
+  // If a user-uploaded resume is found, set the selected resume data from it
   useEffect(() => {
     if (findMatchUpload) {
       const { url, cvID, fileName, uploadTime } = findMatchUpload;
@@ -57,27 +68,31 @@ const ResumeList = () => {
     }
   }, [dispatch, findMatchUpload, setSelectedResumeData]);
 
+  // Extract all file names from resumeData and store them in the uploadedFileNames Redux state
   useEffect(() => {
     const fileName = resumeData.map((resume) => resume.fileName);
     dispatch(setUploadedFileNames(fileName));
   }, [resumeData, dispatch]);
 
   return (
-    <div className="px-6 mb-4 mt-2">
+    <div className="mb-4 mt-2 px-6 max-sm:px-0">
       <ul>
         {!findMatchUpload && !!placeholderUploadData.fileName.length && (
           <PdfLoadingOverlay />
         )}
 
-        {resumeData.slice(0, 2).map((resume) => (
-          <ResumeItem
-            key={resume.cvID}
-            resume={resume}
-            isDisplaySelect={true}
-          />
-        ))}
+        {resumeData
+          .slice(0, isSmallScreen ? resumeData?.length : 2)
+          .map((resume) => (
+            <ResumeItem
+              key={resume.cvID}
+              resume={resume}
+              isDisplaySelect={true}
+            />
+          ))}
 
         {showMoreResumes &&
+          !isSmallScreen &&
           resumeData
             .slice(2, resumeData.length)
             .map((resume) => (
@@ -89,7 +104,7 @@ const ResumeList = () => {
             ))}
       </ul>
 
-      {resumeData.length > 2 && (
+      {resumeData.length > 2 && !isSmallScreen && (
         <ShowMoreResumes resumeDataLength={resumeData.length} />
       )}
     </div>
