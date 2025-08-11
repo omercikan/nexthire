@@ -6,6 +6,7 @@ const initialState: initialState = {
   openCustomList: "",
   openApplicationModal: false,
   showMoreResumes: false,
+  isExitModal: false,
 };
 
 interface initialState {
@@ -14,6 +15,7 @@ interface initialState {
   openCustomList: string;
   openApplicationModal: boolean;
   showMoreResumes: boolean;
+  isExitModal: boolean;
 }
 
 export const touch = createSlice({
@@ -42,6 +44,10 @@ export const touch = createSlice({
     changeShowMoreResumes: (state) => {
       state.showMoreResumes = !state.showMoreResumes;
     },
+
+    setExitModalState: (state, action: PayloadAction<boolean>) => {
+      state.isExitModal = action.payload;
+    },
   },
 });
 
@@ -51,4 +57,5 @@ export const {
   setOpenCustomList,
   setApplicationModal,
   changeShowMoreResumes,
+  setExitModalState,
 } = touch.actions;

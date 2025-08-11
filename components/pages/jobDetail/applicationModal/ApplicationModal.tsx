@@ -8,7 +8,7 @@ import {
   setIsAdditionalQuestions,
   setProgressBarValue,
 } from "@/lib/redux/features/applicationModal/progressBar";
-import { setApplicationModal } from "@/lib/redux/features/touch";
+import { setExitModalState } from "@/lib/redux/features/touch";
 import { JobPostingAdditionalQuestions } from "@/types/auth/employer/open-jobs.types";
 
 const ApplicationModal = ({
@@ -25,10 +25,7 @@ const ApplicationModal = ({
     (state: RootState) => state.applicationModalProgressBar.modalStep
   );
 
-  const handleCloseModal = () => {
-    dispatch(setApplicationModal(false));
-    document.body.style.overflow = "visible";
-  };
+  const handleCloseModal = () => dispatch(setExitModalState(true));
 
   useEffect(() => {
     dispatch(
@@ -53,7 +50,7 @@ const ApplicationModal = ({
         <ModalProgressBar />
 
         <div
-          className={`${modalStep === 1 ? "h-max" : ""}${
+          className={`${modalStep === 1 ? "h-max" : ""} ${
             modalStep === 4 ? "h-[500px] overflow-auto" : ""
           } h-full`}
         >
