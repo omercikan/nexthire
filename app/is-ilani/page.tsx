@@ -22,14 +22,17 @@ const ApplicationStatusModal = dynamic(
     import(
       "@/components/pages/jobDetail/applicationModal/ApplicationStatusModal"
     ),
-  {
-    ssr: false,
-  }
+  { ssr: false }
 );
 
 const ApplicationModal = dynamic(
   () =>
     import("@/components/pages/jobDetail/applicationModal/ApplicationModal"),
+  { ssr: false }
+);
+
+const ExitModal = dynamic(
+  () => import("@/components/pages/jobDetail/applicationModal/ExitModal"),
   { ssr: false }
 );
 
@@ -39,7 +42,7 @@ const JobDetail = () => {
     postID: atob(params.get("jpi") ?? ""),
     companyID: atob(params.get("jci") ?? ""),
   });
-  const { openApplicationModal } = useSelector(
+  const { openApplicationModal, isExitModal } = useSelector(
     (state: RootState) => state.touch
   );
   const { status, postId } = useSelector(
@@ -118,6 +121,8 @@ const JobDetail = () => {
           }
         />
       )}
+
+      {isExitModal && <ExitModal />}
 
       {(status !== "" || data?.job.postId === postId) && (
         <ApplicationStatusModal />

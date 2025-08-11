@@ -1,5 +1,4 @@
-import { resetProgressBarValue } from "@/lib/redux/features/applicationModal/progressBar";
-import { setApplicationModal } from "@/lib/redux/features/touch";
+import { setExitModalState } from "@/lib/redux/features/touch";
 import { AppDispatch, RootState } from "@/lib/redux/store";
 import React from "react";
 import { IoCloseOutline } from "react-icons/io5";
@@ -17,11 +16,7 @@ const ModalHeader = ({
     (state: RootState) => state.applyModalScreen
   );
 
-  const handleCloseModal = () => {
-    dispatch(setApplicationModal(false));
-    dispatch(resetProgressBarValue());
-    document.body.style.overflow = "visible";
-  };
+  const handleCloseModal = () => dispatch(setExitModalState(true));
 
   return (
     <div className="flex justify-between items-center max-md:items-start max-md:gap-x-3 py-4 px-6 max-sm:px-3 border-b border-gray-200">
