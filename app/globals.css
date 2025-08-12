@@ -509,3 +509,9 @@ html {
 }
 
 /*! Favorite Item class end !*/
+
+/*! Application exit modal button class start !*/
+.exit-modal-button {
+  @apply sm:!py-1.5 px-4 max-sm:!py-4 flex-1/2 whitespace-nowrap max-sm:!bg-transparent max-sm:!text-[#000000E6] max-sm:font-medium max-sm:text-lg max-sm:!rounded-none;
+}
+/*! Application exit modal button class end !*/
