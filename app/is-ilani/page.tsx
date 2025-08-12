@@ -32,7 +32,7 @@ const ApplicationModal = dynamic(
 );
 
 const ExitModal = dynamic(
-  () => import("@/components/pages/jobDetail/applicationModal/ExitModal"),
+  () => import("@/components/pages/jobDetail/ExitModal/ExitModal"),
   { ssr: false }
 );
 

@@ -41,8 +41,17 @@ export const touch = createSlice({
       state.openApplicationModal = action.payload;
     },
 
-    changeShowMoreResumes: (state) => {
-      state.showMoreResumes = !state.showMoreResumes;
+    changeShowMoreResumes: (
+      state,
+      action: PayloadAction<boolean | undefined>
+    ) => {
+      const payload = action?.payload;
+
+      if (payload !== undefined) {
+        state.showMoreResumes = payload;
+      } else {
+        state.showMoreResumes = !state.showMoreResumes;
+      }
     },
 
     setExitModalState: (state, action: PayloadAction<boolean>) => {
