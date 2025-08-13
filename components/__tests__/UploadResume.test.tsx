@@ -31,7 +31,9 @@ describe("UploadResume Component", () => {
       expect(screen.getByText(/Özgeçmiş yükle/i)).toBeInTheDocument();
       expect(screen.getByText("PDF (3 MB)")).toBeInTheDocument();
       expect(
-        screen.getByText(/bu başvurunun gönderilmesi/i)
+        screen.getByText("altyapısıyla yürütülür. Detaylar için", {
+          exact: false,
+        })
       ).toBeInTheDocument();
       expect(screen.getByText("İleri")).toBeInTheDocument();
     });
