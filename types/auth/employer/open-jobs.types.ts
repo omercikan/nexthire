@@ -28,6 +28,8 @@ export interface EmployerOpenJobs {
   location: string;
   datePosted: Timestamp;
   additionalQuestions: JobPostingAdditionalQuestions;
+  requirements: string[];
+  responsibilities: string[];
 }
 
 export interface JobPostingAdditionalQuestions {

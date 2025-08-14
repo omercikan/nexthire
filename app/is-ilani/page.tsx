@@ -16,6 +16,7 @@ import {
 import { setApplicationModal } from "@/lib/redux/features/touch";
 import { setJobDetail } from "@/lib/redux/features/jobDetail";
 import dynamic from "next/dynamic";
+import JobAbout from "@/components/pages/jobDetail/JobAbout/JobAbout";
 
 const ApplicationStatusModal = dynamic(
   () =>
@@ -127,6 +128,14 @@ const JobDetail = () => {
       {(status !== "" || data?.job.postId === postId) && (
         <ApplicationStatusModal />
       )}
+
+      <JobAbout
+        about={{
+          description: data?.job.jobAbout as string,
+          requirements: data?.job.requirements as string[],
+          responsibilities: data?.job.responsibilities as string[],
+        }}
+      />
     </main>
   );
 };
