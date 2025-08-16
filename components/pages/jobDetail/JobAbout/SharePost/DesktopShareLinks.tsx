@@ -38,7 +38,7 @@ const DesktopShareLinks = ({
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center px-7 py-2 rounded-lg text-sm text-white gap-x-2 ${
+            className={`flex items-center px-7 py-2 rounded-lg text-sm text-white gap-x-2 whitespace-nowrap w-[134.65px] ${
               className ?? ""
             }`}
           >

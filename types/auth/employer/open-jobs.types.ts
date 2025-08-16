@@ -30,6 +30,8 @@ export interface EmployerOpenJobs {
   additionalQuestions: JobPostingAdditionalQuestions;
   requirements: string[];
   responsibilities: string[];
+  salary: string;
+  gender: string;
 }
 
 export interface JobPostingAdditionalQuestions {

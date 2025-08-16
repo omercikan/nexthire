@@ -54,8 +54,8 @@ const JobAbout = ({ about }: JobAbout) => {
   }, []);
 
   return (
-    <div className="py-[50px] max-[992px]:py-[25px]">
-      <article className="container">
+    <div className="flex-[66.7%] max-lg:flex-none">
+      <article>
         {description ? (
           <JobDescription description={description} />
         ) : (
@@ -68,7 +68,7 @@ const JobAbout = ({ about }: JobAbout) => {
 
             <TailwindSkeleton
               length={4}
-              dynamicWidths={["100%", "75%", "83.3333", "50%"]}
+              dynamicWidths={["85%", "80%", "75%", "70%"]}
               className="flex flex-col gap-3"
               animationClass="bg-[#E3E3E3] h-[10px] rounded-full"
             />
@@ -114,7 +114,7 @@ const JobAbout = ({ about }: JobAbout) => {
         )}
       </article>
 
-      <div className="container">
+      <div>
         {!isMobile ? (
           jobTitle && <ShareDesktop jobTitle={jobTitle} />
         ) : (

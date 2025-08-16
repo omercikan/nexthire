@@ -12,7 +12,7 @@ const LoaderSkeleton = ({
 }: {
   animationType: false | "pulse" | "wave" | undefined;
   variant: "text" | "rectangular" | "rounded" | "circular";
-  sxClass: {
+  sxClass?: {
     borderRadius: string;
     width: string;
     height: string;
@@ -32,9 +32,9 @@ const LoaderSkeleton = ({
       animation={animationType}
       variant={variant}
       sx={{
-        borderRadius: sxClass.borderRadius,
-        width: sxClass.width,
-        height: sxClass.height,
+        borderRadius: sxClass?.borderRadius,
+        width: sxClass?.width,
+        height: sxClass?.height,
         ...extraSxClass,
       }}
     />
