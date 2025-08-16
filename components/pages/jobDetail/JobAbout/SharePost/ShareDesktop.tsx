@@ -16,7 +16,9 @@ const ShareDesktop = ({ jobTitle }: { jobTitle: string }) => {
 
   return (
     <div className="flex items-center">
-      <h2 className="text-[#202124] font-medium me-2.5">Bu ilanı paylaş</h2>
+      <h2 className="text-[#202124] font-medium me-2.5 whitespace-nowrap">
+        Bu ilanı paylaş
+      </h2>
 
       <DesktopShareLinks
         links={[
@@ -38,7 +40,7 @@ const ShareDesktop = ({ jobTitle }: { jobTitle: string }) => {
 
           {
             icon: <FaXTwitter />,
-            platform: "X (Twitter)",
+            platform: "(Twitter)",
             url: `https://twitter.com/intent/tweet?text=${jobText}&url=${jobUrl}`,
             className: "bg-black",
             tooltipTitle: "X'te paylaş",

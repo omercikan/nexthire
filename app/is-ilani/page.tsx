@@ -17,6 +17,7 @@ import { setApplicationModal } from "@/lib/redux/features/touch";
 import { setJobDetail } from "@/lib/redux/features/jobDetail";
 import dynamic from "next/dynamic";
 import JobAbout from "@/components/pages/jobDetail/JobAbout/JobAbout";
+import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 
 const ApplicationStatusModal = dynamic(
   () =>
@@ -34,6 +35,11 @@ const ApplicationModal = dynamic(
 
 const ExitModal = dynamic(
   () => import("@/components/pages/jobDetail/ExitModal/ExitModal"),
+  { ssr: false }
+);
+
+const JobOverview = dynamic(
+  () => import("@/components/pages/jobDetail/JobAbout/JobSidebar/JobOverview"),
   { ssr: false }
 );
 
@@ -129,13 +135,37 @@ const JobDetail = () => {
         <ApplicationStatusModal />
       )}
 
-      <JobAbout
-        about={{
-          description: data?.job.jobAbout as string,
-          requirements: data?.job.requirements as string[],
-          responsibilities: data?.job.responsibilities as string[],
-        }}
-      />
+      <div className="container flex max-lg:flex-col gap-[25px] justify-between py-[50px]">
+        <JobAbout
+          about={{
+            description: data?.job.jobAbout as string,
+            requirements: data?.job.requirements as string[],
+            responsibilities: data?.job.responsibilities as string[],
+          }}
+        />
+
+        {data?.job ? (
+          <JobOverview
+            overviewData={{
+              postedDate: data?.job.datePosted as Timestamp,
+              applicationDeadline: data?.job.applicationDeadlineDate as string,
+              careerLevel: data?.job.positionLevel as string,
+              educationLevel: data?.job.educationLevel as string[],
+              experience: data?.job.experienceTime as string,
+              location: data?.job.location as string,
+              gender: data.job.gender as string,
+              salary: data.job.salary as string,
+            }}
+          />
+        ) : (
+          <LoaderSkeleton
+            length={1}
+            variant="rounded"
+            animationType="pulse"
+            className="lg:!h-[613px] flex-[32.3%] max-lg:flex-none max-lg:!h-[728px] !rounded-lg"
+          />
+        )}
+      </div>
     </main>
   );
 };
