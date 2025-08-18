@@ -5,7 +5,7 @@ import { Timestamp } from "firebase/firestore";
 import { Toaster } from "react-hot-toast";
 import { useGetJobDetailQuery } from "@/lib/redux/services/jobDetail";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/lib/redux/store";
 import { JobPostingAdditionalQuestions } from "@/types/auth/employer/open-jobs.types";
@@ -98,6 +98,15 @@ const JobDetail = () => {
     };
   }, [dispatch]);
 
+  const JobMap = useMemo(
+    () =>
+      dynamic(
+        () => import("@/components/pages/jobDetail/JobAbout/JobMap/JobMap"),
+        { ssr: false }
+      ),
+    []
+  );
+
   return (
     <main>
       <Toaster position="top-right" />
@@ -144,27 +153,44 @@ const JobDetail = () => {
           }}
         />
 
-        {data?.job ? (
-          <JobOverview
-            overviewData={{
-              postedDate: data?.job.datePosted as Timestamp,
-              applicationDeadline: data?.job.applicationDeadlineDate as string,
-              careerLevel: data?.job.positionLevel as string,
-              educationLevel: data?.job.educationLevel as string[],
-              experience: data?.job.experienceTime as string,
-              location: data?.job.location as string,
-              gender: data.job.gender as string,
-              salary: data.job.salary as string,
-            }}
-          />
-        ) : (
-          <LoaderSkeleton
-            length={1}
-            variant="rounded"
-            animationType="pulse"
-            className="lg:!h-[613px] flex-[32.3%] max-lg:flex-none max-lg:!h-[728px] !rounded-lg"
-          />
-        )}
+        <div className="flex-[32.3%] max-lg:flex-none">
+          {data?.job ? (
+            <JobOverview
+              overviewData={{
+                postedDate: data?.job.datePosted as Timestamp,
+                applicationDeadline: data?.job
+                  .applicationDeadlineDate as string,
+                careerLevel: data?.job.positionLevel as string,
+                educationLevel: data?.job.educationLevel as string[],
+                experience: data?.job.experienceTime as string,
+                location: data?.job.location as string,
+                gender: data.job.gender as string,
+                salary: data.job.salary as string,
+              }}
+            />
+          ) : (
+            <LoaderSkeleton
+              length={1}
+              variant="rounded"
+              animationType="pulse"
+              className="lg:!h-[613px] max-lg:!h-[728px] !rounded-lg mb-[30px]"
+            />
+          )}
+
+          {data?.job ? (
+            <JobMap
+              city={data?.job.location as string}
+              companyLogo={data?.job.companyLogo as string}
+            />
+          ) : (
+            <LoaderSkeleton
+              length={1}
+              variant="rounded"
+              animationType="pulse"
+              className="w-full !h-[250px] !rounded-lg"
+            />
+          )}
+        </div>
       </div>
     </main>
   );
