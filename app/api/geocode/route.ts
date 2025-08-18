@@ -7,7 +7,13 @@ export async function GET(req: NextRequest) {
 
   try {
     const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_GEOCODE_URL}&q=${query}`
+      `${process.env.NEXT_PUBLIC_GEOCODE_URL}&q=${query}`,
+      {
+        headers: {
+          "User-Agent": "myapp/1.0 (nexthire@gmail.com)",
+          Referer: "https://jolly-semifreddo-32890e.netlify.app/",
+        },
+      }
     );
     const data = await res.data[0];
 
