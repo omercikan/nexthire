@@ -22,7 +22,7 @@ const JobOverview = ({ overviewData }: { overviewData: OverviewData }) => {
     postedDate?.seconds * 1000 + Math.floor(postedDate?.nanoseconds / 1000000);
 
   return (
-    <aside className="bg-[#f5f7fc] p-[30px] rounded-lg flex-[32.3%] h-max max-lg:flex-none">
+    <aside className="bg-[#f5f7fc] p-[30px] max-[992px]:p-5 rounded-lg h-max mb-[30px]">
       <h2 className="text-lg text-[#202124] font-medium mb-[18px]">İş Özeti</h2>
 
       <List

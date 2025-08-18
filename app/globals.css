@@ -164,7 +164,7 @@ html {
 
 /*! Main header class start  */
 .main-header {
-  @apply flex items-center justify-between px-[45px] max-[430px]:px-2 max-[375px]:px-1 py-4 relative transition duration-300 z-50;
+  @apply flex items-center justify-between px-[45px] max-[430px]:px-2 max-[375px]:px-1 py-4 relative transition duration-300 z-[1001];
 }
 
 .main-header__wrapper {
@@ -515,3 +515,8 @@ html {
   @apply sm:!py-1.5 px-4 max-sm:!py-4 flex-1/2 whitespace-nowrap max-sm:!bg-transparent max-sm:!text-[#000000E6] max-sm:font-medium max-sm:text-lg max-sm:!rounded-none;
 }
 /*! Application exit modal button class end !*/
+
+/* Hide leaflet bottom footer */
+.leaflet-bottom {
+  display: none !important;
+}
