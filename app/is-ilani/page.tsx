@@ -43,6 +43,11 @@ const JobOverview = dynamic(
   { ssr: false }
 );
 
+const JobSkills = dynamic(
+  () => import("@/components/pages/jobDetail/JobAbout/JobSkills/JobSkills"),
+  { ssr: false }
+);
+
 const JobDetail = () => {
   const params = useSearchParams();
   const { data, isLoading } = useGetJobDetailQuery({
@@ -188,6 +193,17 @@ const JobDetail = () => {
               variant="rounded"
               animationType="pulse"
               className="w-full !h-[250px] !rounded-lg"
+            />
+          )}
+
+          {data?.job && (
+            <JobSkills
+              skills={[
+                data?.job.category,
+                data?.job.positionLevel,
+                data?.job.modeOfWork,
+                data?.job.experienceTime,
+              ]}
             />
           )}
         </div>
