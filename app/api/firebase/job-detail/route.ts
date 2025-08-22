@@ -41,6 +41,12 @@ export async function POST(req: NextRequest) {
         serviceArea: data.companyInformations.serviceArea,
         numberOfEmployees: data.companyInformations.numberOfEmployees,
         companyId: companyID,
+        foundedData: data.companyInformations.foundedDate,
+        phoneNumber: data.companyInformations.phoneNumber,
+        email: data.companyInformations.email,
+        websiteUrl: data.companyInformations.websiteUrl,
+        socials: data.companyInformations.socials,
+        companyLocation: data.companyInformations.location.city,
       };
 
       job.push({

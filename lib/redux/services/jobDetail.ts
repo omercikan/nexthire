@@ -15,6 +15,12 @@ export const jobDetailApi = createApi({
           serviceArea: string;
           companyId: string;
           numberOfEmployees: string;
+          foundedData: string;
+          phoneNumber: string;
+          email: string;
+          websiteUrl: string;
+          socials: { url: string }[];
+          companyLocation: string;
         };
         status: number;
       },

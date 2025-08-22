@@ -18,6 +18,7 @@ import { setJobDetail } from "@/lib/redux/features/jobDetail";
 import dynamic from "next/dynamic";
 import JobAbout from "@/components/pages/jobDetail/JobAbout/JobAbout";
 import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
+import CompanyCard from "@/components/pages/jobDetail/JobAbout/CompanyInfoCard/CompanyCard";
 
 const ApplicationStatusModal = dynamic(
   () =>
@@ -204,6 +205,23 @@ const JobDetail = () => {
                 data?.job.modeOfWork,
                 data?.job.experienceTime,
               ]}
+            />
+          )}
+
+          {data?.job && (
+            <CompanyCard
+              companyInformations={{
+                companyId: data?.job.companyId,
+                category: data?.job.category ?? "Belirtilmemiş",
+                companyLogo: data?.job.companyLogo ?? "",
+                companyName: data.job.companyName ?? "Belirtilmemiş",
+                email: data.job.email ?? "Belirtilmemiş",
+                foundedDate: data.job.foundedData ?? "Belirtilmemiş",
+                location: data.job.companyLocation ?? "Belirtilmemiş",
+                phoneNumber: data.job.phoneNumber ?? "Belirtilmemiş",
+                websiteUrl: data.job.websiteUrl,
+                socials: data.job.socials,
+              }}
             />
           )}
         </div>
