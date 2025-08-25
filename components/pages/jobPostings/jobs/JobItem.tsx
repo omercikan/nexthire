@@ -87,11 +87,9 @@ const JobItem = ({
         <div className="px-5">
           <div className="flex items-center max-[450px]:justify-center max-[450px]:flex-col-reverse">
             <Link
-              href={`is-ilani?${new URLSearchParams({
-                meslek: routeFormatter(job.jobTitle),
-                jpi: btoa(job.postId),
-                jci: btoa(job.companyInformations.companyId),
-              })}`}
+              href={`is-ilani/${routeFormatter(job.jobTitle)}/${job.postId}/${
+                job.companyInformations.companyId
+              }`}
               onClick={() => dispatch(resetProgressBarValue())}
             >
               <h2 className="text-[#202124] hover:text-[#1967d2] transition-colors duration-300 text-lg font-medium">

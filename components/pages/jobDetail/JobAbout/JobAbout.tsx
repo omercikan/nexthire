@@ -1,9 +1,10 @@
-import React, { memo, useEffect, useState } from "react";
-import dynamic from "next/dynamic";
+import React, { useEffect, useState } from "react";
 import JobRequirements from "./JobRequirements";
-import { useSelector } from "react-redux";
-import { RootState } from "@/lib/redux/store";
 import TailwindSkeleton from "@/components/ui/TailwindSkeleton";
+import JobDescription from "./JobDescription";
+import JobResponsibilities from "./JobResponsibilities";
+import ShareDesktop from "./SharePost/ShareDesktop";
+import ShareMobile from "./SharePost/ShareMobile";
 
 export interface JobAbout {
   about: {
@@ -11,28 +12,10 @@ export interface JobAbout {
     responsibilities: string[];
     requirements: string[];
   };
+  jobTitle: string;
 }
 
-const JobDescription = dynamic(() => import("./JobDescription"), {
-  ssr: false,
-});
-
-const JobResponsibilities = dynamic(() => import("./JobResponsibilities"), {
-  ssr: false,
-});
-
-const ShareDesktop = dynamic(() => import("./SharePost/ShareDesktop"), {
-  ssr: false,
-});
-
-const ShareMobile = dynamic(() => import("./SharePost/ShareMobile"), {
-  ssr: false,
-});
-
-const JobAbout = ({ about }: JobAbout) => {
-  const jobTitle = useSelector(
-    (state: RootState) => state.jobDetail.jobDetail.jobTitle
-  );
+const JobAbout = ({ about, jobTitle }: JobAbout) => {
   const { description, responsibilities, requirements } = about;
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
@@ -115,14 +98,14 @@ const JobAbout = ({ about }: JobAbout) => {
       </article>
 
       <div>
-        {!isMobile ? (
-          jobTitle && <ShareDesktop jobTitle={jobTitle} />
+        {isMobile ? (
+          <ShareMobile jobTitle={jobTitle} />
         ) : (
-          <ShareMobile />
+          <ShareDesktop jobTitle={jobTitle} />
         )}
       </div>
     </div>
   );
 };
 
-export default memo(JobAbout);
+export default JobAbout;
