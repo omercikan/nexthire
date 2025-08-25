@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import React, { useContext } from "react";
 import { VscBriefcase } from "react-icons/vsc";
@@ -11,26 +9,11 @@ import LoaderSkeleton from "@/components/ui/LoaderSkeleton";
 import { Typography } from "@mui/material";
 import { useGetApplicationQuery } from "@/lib/redux/services/jobApplicationApi";
 import { AuthContext } from "@/context/authContext";
-import dynamic from "next/dynamic";
 import { formatApplyTime } from "@/lib/utils/formatApplyTime";
 import styles from "./info-dot.module.scss";
-
-//* IntroRight component lazy load *//
-const IntroRight = dynamic(() => import("./IntroSectionRight/IntroRight"), {
-  ssr: false,
-});
-
-//* SubmittedResume component lazy load *//
-const SubmittedResume = dynamic(
-  () => import("./PostApplication/SubmittedResume"),
-  { ssr: false }
-);
-
-//* ApplicationTimeline component lazy load *//
-const ApplicationTimeline = dynamic(
-  () => import("./PostApplication/ApplicationStatus/ApplicationTimeline"),
-  { ssr: false }
-);
+import IntroRight from "./IntroSectionRight/IntroRight";
+import SubmittedResume from "./PostApplication/SubmittedResume";
+import ApplicationTimeline from "./PostApplication/ApplicationStatus/ApplicationTimeline";
 
 const JobIntro = (props: JobIntroInterface) => {
   //* Current user *//
@@ -211,13 +194,13 @@ const JobIntro = (props: JobIntroInterface) => {
                   href: "/is-ilanlari",
                   text: modeOfWork,
                   linkClass:
-                    "featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#1967d226] border-none !text-[#1967d2] cursor-pointer",
+                    "featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#1967d2] border-none !text-white cursor-pointer",
                 },
                 {
                   href: "/is-ilanlari",
                   text: positionLevel,
                   linkClass:
-                    "featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#f9ab0026] border-none !text-[#f9ab00] cursor-pointer",
+                    "featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#f49c00] border-none !text-[#1a1a1a] cursor-pointer",
                 },
               ]}
             />

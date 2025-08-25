@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const jobDetailApi = createApi({
   reducerPath: "jobDetailApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "/api/firebase/",
+    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/api/firebase/`,
   }),
   endpoints: (builder) => ({
     getJobDetail: builder.query<

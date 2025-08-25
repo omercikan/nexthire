@@ -12,7 +12,7 @@ const ListItem = ({ list }: { list: OverviewList }) => {
 
       <div>
         <span className="text-[#202124] font-medium">{text}</span>
-        <span className="text-[#77838f] text-[15px] block leading-[26.25px]">
+        <span className="text-[#696969] text-[15px] block leading-[26.25px]">
           {value}
         </span>
       </div>

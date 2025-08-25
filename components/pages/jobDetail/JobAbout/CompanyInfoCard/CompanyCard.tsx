@@ -22,6 +22,7 @@ const renderSocialIcon = (url: string, index: number): ReactElement => {
       target="_blank"
       rel="noopener noreferrer"
       className="text-[#696969] hover:text-[#bc91e8] transition-colors duration-500 text-[15px]"
+      aria-label={`${platformName} adresine git`}
     >
       {(Icon && <Icon />) || (MailIcon && <MailIcon />)}
     </Link>
@@ -129,12 +130,14 @@ const CompanyCard = ({ companyInformations }: CompanyInformations) => {
       />
 
       {socials && (
-        <ul className="flex items-center justify-between gap-[15px] mt-5">
-          <h3 className="text-[#202124] font-medium">Sosyal Platformlar:</h3>
+        <ul className="mt-5">
+          <li className="flex justify-between items-center w-full">
+            <h3 className="text-[#202124] font-medium">Sosyal Platformlar:</h3>
 
-          <div className="flex gap-[15px]">
-            {socials?.map((val, i) => renderSocialIcon(val?.url, i))}
-          </div>
+            <div className="flex gap-[15px]">
+              {socials?.map((val, i) => renderSocialIcon(val?.url, i))}
+            </div>
+          </li>
         </ul>
       )}
 

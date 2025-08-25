@@ -1,7 +1,7 @@
 import { setExitModalState } from "@/lib/redux/features/touch";
-import { AppDispatch } from "@/lib/redux/store";
+import { AppDispatch, RootState } from "@/lib/redux/store";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ModalHeader from "./ModalHeader";
 import ModalContent from "./ModalContent";
 import ModalFooterActions from "./ModalFooterActions";
@@ -9,6 +9,9 @@ import ModalFooterActions from "./ModalFooterActions";
 const ExitModal = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [isSmallBreakpoint, setIsSmallBreakpoint] = useState<boolean>(false);
+  const isExitModal = useSelector(
+    (state: RootState) => state.touch.isExitModal
+  );
 
   const handleCloseExitModal = () => dispatch(setExitModalState(false));
 
@@ -40,32 +43,36 @@ const ExitModal = () => {
   }, [dispatch]);
 
   return (
-    <div
-      className="fixed top-0 left-0 w-full h-full bg-black/55 z-50"
-      onClick={handleCloseExitModal}
-      data-testid="exitModalContainer"
-    >
-      <div
-        className="bg-white fixed left-1/2 sm:top-[178.32px] max-sm:top-1/2 max-sm:-translate-y-1/2 -translate-x-1/2 rounded-lg max-sm:w-[90%] max-[800px]:w-[70%]"
-        role="dialog"
-        aria-modal={true}
-        aria-labelledby="application-exit-modal-title"
-        aria-describedby="application-exit-modal-description"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <ModalHeader
-          isSmallBreakpoint={isSmallBreakpoint}
-          closeModalFunc={handleCloseExitModal}
-        />
+    <>
+      {isExitModal && (
+        <div
+          className="fixed top-0 left-0 w-full h-full bg-black/55 z-[1003]"
+          onClick={handleCloseExitModal}
+          data-testid="exitModalContainer"
+        >
+          <div
+            className="bg-white fixed left-1/2 sm:top-[178.32px] max-sm:top-1/2 max-sm:-translate-y-1/2 -translate-x-1/2 rounded-lg max-sm:w-[90%] max-[800px]:w-[70%]"
+            role="dialog"
+            aria-modal={true}
+            aria-labelledby="application-exit-modal-title"
+            aria-describedby="application-exit-modal-description"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <ModalHeader
+              isSmallBreakpoint={isSmallBreakpoint}
+              closeModalFunc={handleCloseExitModal}
+            />
 
-        <ModalContent />
+            <ModalContent />
 
-        <ModalFooterActions
-          isSmallBreakpoint={isSmallBreakpoint}
-          closeModalFunc={handleCloseExitModal}
-        />
-      </div>
-    </div>
+            <ModalFooterActions
+              isSmallBreakpoint={isSmallBreakpoint}
+              closeModalFunc={handleCloseExitModal}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

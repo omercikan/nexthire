@@ -1,13 +1,7 @@
-import { RootState } from "@/lib/redux/store";
 import React from "react";
 import { GoShare } from "react-icons/go";
-import { useSelector } from "react-redux";
 
-const ShareMobile = () => {
-  const jobTitle = useSelector(
-    (state: RootState) => state.jobDetail.jobDetail.jobTitle
-  );
-
+const ShareMobile = ({ jobTitle }: { jobTitle: string }) => {
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
@@ -22,7 +16,7 @@ const ShareMobile = () => {
     <div className="flex items-center">
       <h2 className="text-[#202124] font-medium me-2.5">Bu ilanı paylaş</h2>
 
-      <button onClick={handleShare}>
+      <button onClick={handleShare} aria-label="İlanı paylaş">
         <GoShare strokeWidth={1} size={20} />
       </button>
     </div>

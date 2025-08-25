@@ -31,3 +31,18 @@ export type JobIntroRightSection = Pick<
   numberOfEmployees: string;
   isLoading: boolean;
 };
+
+//? Job detail page job data interface ?//
+export interface JobData extends EmployerOpenJobs {
+  companyLogo: string;
+  companyName: string;
+  serviceArea: string;
+  companyId: string;
+  numberOfEmployees: string;
+  foundedData: string;
+  phoneNumber: string;
+  email: string;
+  websiteUrl: string;
+  socials: { url: string }[];
+  companyLocation: string;
+}

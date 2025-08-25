@@ -71,6 +71,9 @@ const Header = () => {
               alt="NextHire"
               width={153}
               height={53}
+              fetchPriority="high"
+              decoding="async"
+              loading="eager"
             />
           </Link>
         </div>

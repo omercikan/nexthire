@@ -59,7 +59,7 @@ const JobApplication = ({
           text={isExpired ? "Başvuru Süresi Doldu" : "Şimdi Başvur"}
           isSubmitting={false}
           className={`w-full !rounded-lg px-16 whitespace-nowrap disabled:!text-[#4045ef] ${
-            isExpired ? "!bg-gray-400 !px-8" : ""
+            isExpired ? "!bg-gray-500 !px-8" : ""
           }`}
           handleClick={handleClick}
         />

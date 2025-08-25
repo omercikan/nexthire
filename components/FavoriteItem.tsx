@@ -46,6 +46,7 @@ const FavoriteItem = ({
           className={`${
             favoriteButtonClass ? favoriteButtonClass : "favorite-icon-wrapper"
           } ${result.isLoading ? "pointer-events-none" : ""}`}
+          aria-label={isFavorited ? "Favorilerden kaldır" : "Favorilere ekle"}
           onClick={handleAddFavorite}
         >
           {result.originalArgs?.postID === data?.postID && result.isLoading ? (
