@@ -34,7 +34,7 @@ const IntroDeadline = ({
         <div className="mb-[15px] max-lg:mt-[15px]">
           <p className="max-lg:text-center">
             <span>Son başvuru tarihi:</span>{" "}
-            <time className="text-[#e44343] text-[15px] font-medium">
+            <time className="text-[#d32f2f] text-[15px] font-medium">
               {dayjs(applicationDeadlineDate)
                 .locale("tr")
                 .format("DD MMMM YYYY")}

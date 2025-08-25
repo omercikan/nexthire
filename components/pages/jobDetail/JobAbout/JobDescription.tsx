@@ -5,7 +5,7 @@ const JobDescription = ({ description }: { description: string }) => {
     <div className="mb-[50px]">
       <h2 className="text-[#202124] text-lg font-medium mb-5">İş Hakkında</h2>
 
-      <p className="text-[#77838f] text-[15px]">{description}</p>
+      <p className="text-[#696969] text-[15px]">{description}</p>
     </div>
   );
 };
