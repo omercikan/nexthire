@@ -18,6 +18,7 @@ const inter = Jost({
   subsets: ["latin-ext"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
+  fallback: ["sans-serif"],
 });
 
 export default function RootLayout({
@@ -77,17 +78,21 @@ export default function RootLayout({
         <Provider store={store}>
           <AuthContextProvider>
             {!authPages.includes(pathname) && pathname !== "/sifre-sifirla" && (
-              <Header />
+              <Suspense>
+                <Header />
+              </Suspense>
             )}
 
-            <Suspense>{children}</Suspense>
+            {children}
 
             {!authPages.includes(pathname) && pathname !== "/sifre-sifirla" && (
               <MobileUserModal />
             )}
 
             {!authPages.includes(pathname) && pathname !== "/sifre-sifirla" && (
-              <Footer />
+              <Suspense>
+                <Footer />
+              </Suspense>
             )}
           </AuthContextProvider>
         </Provider>
