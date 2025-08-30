@@ -77,11 +77,13 @@ export default function RootLayout({
       <body className={inter.className}>
         <Provider store={store}>
           <AuthContextProvider>
-            {!authPages.includes(pathname) && pathname !== "/sifre-sifirla" && (
-              <Suspense>
-                <Header />
-              </Suspense>
-            )}
+            {!authPages.includes(pathname) &&
+              pathname !== "/sifre-sifirla" &&
+              !pathname.includes("/hesabim") && (
+                <Suspense>
+                  <Header />
+                </Suspense>
+              )}
 
             {children}
 
