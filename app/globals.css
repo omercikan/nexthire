@@ -92,6 +92,10 @@ html {
   .scrollbar-thin {
     scrollbar-width: thin;
   }
+
+  .dashboard-navigation-item {
+    @apply bg-[#F5F7FA] w-[50px] h-[50px] rounded-full grid place-content-center;
+  }
 }
 /*! Custom layers end !*/
 

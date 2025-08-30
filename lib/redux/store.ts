@@ -18,6 +18,7 @@ import { jobDetailReducer } from "./features/jobDetail";
 import { jobApplicationApi } from "./services/jobApplicationApi";
 import { applyModalScreenReducer } from "./features/applicationModal/screenSize";
 import { GeocodeApi } from "./services/geocodeApi";
+import { userDashboardSlice } from "./features/dashboard/userDashboardSlice";
 
 export const store = configureStore({
   reducer: {
@@ -31,6 +32,7 @@ export const store = configureStore({
     cvIdSlice: cvIdSlice.reducer,
     jobDetail: jobDetailReducer,
     applyModalScreen: applyModalScreenReducer,
+    userDashboard: userDashboardSlice.reducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [jobPostings.reducerPath]: jobPostings.reducer,
