@@ -19,6 +19,7 @@ import { jobApplicationApi } from "./services/jobApplicationApi";
 import { applyModalScreenReducer } from "./features/applicationModal/screenSize";
 import { GeocodeApi } from "./services/geocodeApi";
 import { userDashboardSlice } from "./features/dashboard/userDashboardSlice";
+import { candidateStaticsApi } from "./services/dashboard/candidateStaticsApi";
 
 export const store = configureStore({
   reducer: {
@@ -41,6 +42,7 @@ export const store = configureStore({
     [resumeApi.reducerPath]: resumeApi.reducer,
     [jobApplicationApi.reducerPath]: jobApplicationApi.reducer,
     [GeocodeApi.reducerPath]: GeocodeApi.reducer,
+    [candidateStaticsApi.reducerPath]: candidateStaticsApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -53,6 +55,7 @@ export const store = configureStore({
       resumeApi.middleware,
       jobApplicationApi.middleware,
       GeocodeApi.middleware,
+      candidateStaticsApi.middleware,
     ]),
 });
 

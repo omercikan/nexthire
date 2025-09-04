@@ -1,11 +1,8 @@
 import React from "react";
+import DashboardClientWrapper from "../../components/DashboardClientWrapper";
 
 const DashboardContent = () => {
-  return (
-    <main className="p-8 max-sm:p-4 max-sm:mt-[77.78px] bg-[#F5F7FA] h-[calc(100%-82.8px)]">
-      Dashboard Content
-    </main>
-  );
+  return <DashboardClientWrapper />;
 };
 
 export default DashboardContent;
