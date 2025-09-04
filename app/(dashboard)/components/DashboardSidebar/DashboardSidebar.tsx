@@ -100,9 +100,9 @@ const DashboardSidebar = () => {
         links={[
           {
             linkId: 1,
-            href: "/hesabim/panelim",
+            href: "/hesabim/genel-bakis",
             icon: DASHBOARD_ICONS.home,
-            linkText: "Panel",
+            linkText: "Genel Bakış",
           },
 
           {
