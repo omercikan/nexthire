@@ -20,6 +20,7 @@ import { applyModalScreenReducer } from "./features/applicationModal/screenSize"
 import { GeocodeApi } from "./services/geocodeApi";
 import { userDashboardSlice } from "./features/dashboard/userDashboardSlice";
 import { candidateStaticsApi } from "./services/dashboard/candidateStaticsApi";
+import { userViewsApi } from "./services/dashboard/userViewsApi";
 
 export const store = configureStore({
   reducer: {
@@ -43,6 +44,7 @@ export const store = configureStore({
     [jobApplicationApi.reducerPath]: jobApplicationApi.reducer,
     [GeocodeApi.reducerPath]: GeocodeApi.reducer,
     [candidateStaticsApi.reducerPath]: candidateStaticsApi.reducer,
+    [userViewsApi.reducerPath]: userViewsApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -56,6 +58,7 @@ export const store = configureStore({
       jobApplicationApi.middleware,
       GeocodeApi.middleware,
       candidateStaticsApi.middleware,
+      userViewsApi.middleware,
     ]),
 });
 
