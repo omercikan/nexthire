@@ -4,6 +4,7 @@ import { CARD_ICONS } from "./OverviewCard/card-icons";
 import { AuthContext } from "@/context/authContext";
 import { useGetUserStaticsQuery } from "@/lib/redux/services/dashboard/candidateStaticsApi";
 import { Candidate } from "@/types/auth/models/candidate";
+import BarChart from "./OverviewChart/BarChart";
 
 const OverviewPage = () => {
   const { user } = useContext(AuthContext);
@@ -53,6 +54,10 @@ const OverviewPage = () => {
           },
         ]}
       />
+
+      <div className="flex flex-wrap gap-[30px] mt-[24px]">
+        <BarChart />
+      </div>
     </div>
   );
 };
