@@ -20,7 +20,7 @@ const DashboardHeader = () => {
   };
 
   return (
-    <header className="flex items-center justify-between border-b border-[#E6EFF5] p-4 h-max max-sm:fixed max-sm:left-0 bg-white w-full">
+    <header className="flex items-center justify-between border-b border-[#E6EFF5] p-4 h-max max-sm:fixed max-sm:left-0 bg-white w-full z-10">
       {breakpoint < 640 && (
         <button
           onClick={handleSmallScreenMenu}

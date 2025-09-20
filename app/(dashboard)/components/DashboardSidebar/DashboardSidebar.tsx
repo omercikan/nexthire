@@ -44,7 +44,7 @@ const DashboardSidebar = () => {
       initial={{ width: collapseMenu ? 76 : 250 }}
       animate={{ width: collapseMenu ? 76 : 250 }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}
-      className={`border-e border-e-[#E6EFF5] relative flex-none sidebar-full max-sm:fixed left-0 max-sm:h-full max-sm:!w-full max-sm:transition-all max-sm:duration-300 max-[992px]:!w-[76px] bg-white ${
+      className={`border-e border-e-[#E6EFF5] relative flex-none sidebar-full max-sm:fixed left-0 max-sm:h-full max-sm:!w-full max-sm:transition-all max-sm:duration-300 max-[992px]:!w-[76px] z-20 bg-white ${
         smallScreenMenu ? "max-sm:left-0" : "max-sm:-left-full"
       } `}
     >
