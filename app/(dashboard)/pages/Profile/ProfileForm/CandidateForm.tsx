@@ -32,6 +32,7 @@ const CandidateForm = () => {
     currentUser?.dateOfBirth
   );
   const dispatch = useDispatch();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [imageFile, setImageFile] = useState<File>();
 
   const onSubmit = (
