@@ -12,6 +12,11 @@ export interface Candidate extends User {
   acceptedTerms: string;
   photo: string;
   createdWith: string;
+  dateOfBirth: Date;
+  gender: string;
+  age: string;
+  city: string;
+  title: string;
   favoriteEmployers: FavoriteDataFields[];
   favoriteJobs: FavoriteDataFields[];
   uploadedResumes: CVDataFields[];
