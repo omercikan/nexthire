@@ -5,6 +5,7 @@ const initialState = {
   collapseMenu: false,
   smallScreenMenu: false,
   breakpoint: 0,
+  profileImage: "",
 };
 
 export const userDashboardSlice = createSlice({
@@ -26,6 +27,10 @@ export const userDashboardSlice = createSlice({
     setSmallBreakpoint: (state, action: PayloadAction<number>) => {
       state.breakpoint = action.payload;
     },
+
+    setProfileImage: (state, action: PayloadAction<string>) => {
+      state.profileImage = action.payload;
+    },
   },
 });
 
@@ -34,4 +39,5 @@ export const {
   setCollapseMenu,
   setSmallScreenMenu,
   setSmallBreakpoint,
+  setProfileImage,
 } = userDashboardSlice.actions;
