@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
 export const candidateFormSchema = Yup.object().shape({
-  fullname: Yup.string().required("isim girin"),
+  name: Yup.string().required("isim girin"),
   email: Yup.string().required("e-posta girin").email("geçerli e-posta girin"),
 });

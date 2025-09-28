@@ -9,7 +9,7 @@ import { formatTurkishPhoneNumber } from "@/lib/formatPhoneNumber";
 import cities from "@/data/cities";
 
 // formik and schema
-import { Form, Formik, FormikHelpers } from "formik";
+import { Form, Formik } from "formik";
 import { candidateFormSchema } from "./schema/CandidateFormSchema";
 
 // dayjs
@@ -20,10 +20,16 @@ import "dayjs/locale/tr";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { tr } from "date-fns/locale/tr";
-import { CandidateForm as CandidateFormInterface } from "./types";
-import { useDispatch } from "react-redux";
-import { setProfileImage } from "@/lib/redux/features/dashboard/userDashboardSlice";
 registerLocale("tr", tr);
+
+import { CandidateForm as CandidateFormInterface } from "./types";
+
+// lib
+import { setProfileImage } from "@/lib/redux/features/dashboard/userDashboardSlice";
+import { useUpdateProfileMutation } from "@/lib/redux/services/dashboard/candidateProfileApi";
+import { CircularProgress } from "@mui/material";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 const CandidateForm = () => {
   const { user } = useContext(AuthContext);
@@ -34,12 +40,43 @@ const CandidateForm = () => {
   const dispatch = useDispatch();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [imageFile, setImageFile] = useState<File>();
+  const [updateProfile] = useUpdateProfileMutation();
 
-  const onSubmit = (
-    values: CandidateFormInterface,
-    actions: FormikHelpers<CandidateFormInterface>
-  ) => {
-    actions.resetForm();
+  const onSubmit = async (values: CandidateFormInterface) => {
+    try {
+      const filledFields = Object.fromEntries(
+        Object.entries(values).filter(([, v]) => v)
+      ) as CandidateFormInterface;
+
+      if (user) {
+        const { dateOfBirth } = currentUser;
+
+        const isChange = [
+          "name",
+          "email",
+          "gender",
+          "age",
+          "phoneNumber",
+          "title",
+          "city",
+        ].some((val) => {
+          const value = val as keyof typeof isChange;
+
+          return currentUser[value] !== filledFields[value];
+        });
+
+        if (isChange || dateOfBirth !== startDate) {
+          await updateProfile({
+            userId: String(user?.id),
+            data: { ...filledFields, dateOfBirth: startDate as Date },
+          }).unwrap();
+        }
+      }
+    } catch {
+      toast.error("Profiliniz güncellenemedi tekrar deneyin", {
+        position: "bottom-right",
+      });
+    }
   };
 
   const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +92,7 @@ const CandidateForm = () => {
   return (
     <Formik
       initialValues={{
-        fullname: user?.name ?? "",
+        name: user?.name ?? "",
         email: user?.email ?? "",
         gender: currentUser?.gender ?? "",
         age: currentUser?.age ?? "",
@@ -80,19 +117,19 @@ const CandidateForm = () => {
           <div className="grid sm:grid-cols-2 gap-x-[29px] gap-y-[22px]">
             <CustomInput
               label="Ad Soyad"
-              name="fullname"
+              name="name"
               type="text"
               className="!rounded-[15px] !ps-4"
               placeholder={user?.name ?? user?.displayName}
             />
 
-            <CustomInput
+            {/* <CustomInput
               label="E-posta"
               name="email"
               type="email"
               className="!rounded-[15px] !ps-4"
               placeholder={user?.email}
-            />
+            /> */}
 
             <div className="w-full flex flex-col">
               <label className="block mb-1.5" htmlFor="date">
@@ -151,7 +188,7 @@ const CandidateForm = () => {
               name="phoneNumber"
               type="text"
               className="!rounded-[15px] !px-4"
-              value={formatTurkishPhoneNumber(values.phoneNumber)}
+              value={formatTurkishPhoneNumber(values.phoneNumber ?? "")}
               placeholder={user?.phoneNumber ?? "0555 555 5555"}
             />
 
@@ -172,7 +209,11 @@ const CandidateForm = () => {
           </div>
 
           <button className="custom__button float-right max-sm:w-full mt-[30px] !bg-[#1814F3] w-[190px] h-[50px] !rounded-[15px]">
-            Kaydet
+            {isSubmitting ? (
+              <CircularProgress size={22} color="inherit" />
+            ) : (
+              "Kaydet"
+            )}
           </button>
         </Form>
       )}
