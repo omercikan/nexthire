@@ -21,6 +21,7 @@ import { GeocodeApi } from "./services/geocodeApi";
 import { userDashboardSlice } from "./features/dashboard/userDashboardSlice";
 import { candidateStaticsApi } from "./services/dashboard/candidateStaticsApi";
 import { userViewsApi } from "./services/dashboard/userViewsApi";
+import { candidateProfileApi } from "./services/dashboard/candidateProfileApi";
 
 export const store = configureStore({
   reducer: {
@@ -45,6 +46,7 @@ export const store = configureStore({
     [GeocodeApi.reducerPath]: GeocodeApi.reducer,
     [candidateStaticsApi.reducerPath]: candidateStaticsApi.reducer,
     [userViewsApi.reducerPath]: userViewsApi.reducer,
+    [candidateProfileApi.reducerPath]: candidateProfileApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -59,6 +61,7 @@ export const store = configureStore({
       GeocodeApi.middleware,
       candidateStaticsApi.middleware,
       userViewsApi.middleware,
+      candidateProfileApi.middleware,
     ]),
 });
 
