@@ -1,54 +1,41 @@
 import { auth, db } from "@/app/api/firebase/firebaseConfig";
 import { LayoutComponentProps, User } from "@/types";
-import { onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { createContext, useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export interface ContextValue {
   user: User | undefined;
-  loading: boolean;
 }
 
 export const AuthContext = createContext<ContextValue>({
   user: undefined,
-  loading: false,
 });
 
 export const AuthContextProvider = ({ children }: LayoutComponentProps) => {
   const [currentUser, setCurrentUser] = useState<User>();
-  const [loading, setLoading] = useState<boolean>(true);
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const docRef = doc(db, "users", user?.uid);
-        const docSnap = await getDoc(docRef);
+    if (user) {
+      const q = query(collection(db, "users"), where("id", "==", user?.uid));
 
-        if (docSnap.exists()) {
-          setCurrentUser(docSnap.data() as User);
-        } else {
-          const newUser = {
-            id: user.uid,
-            email: user.email || "",
-            displayName: user.displayName || "",
-            role: "candidate",
-          };
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          setCurrentUser(doc.data() as User);
+        });
+      });
 
-          await setDoc(docRef, newUser);
-          setCurrentUser(newUser as User);
-        }
-
-        setLoading(false);
-      } else {
-        setLoading(false);
-      }
-    });
-
-    return () => unsubscribe();
-  }, []);
+      return () => unsubscribe();
+    }
+  }, [user]);
 
   return (
-    <AuthContext.Provider value={{ user: currentUser, loading: loading }}>
+    <AuthContext.Provider
+      value={{
+        user: currentUser,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

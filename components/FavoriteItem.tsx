@@ -12,7 +12,7 @@ const FavoriteItem = ({
   favoriteButtonClass,
   favoriteIconClass,
 }: Favorite) => {
-  const { user, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const { addFavoriteCompany, result, updatedData } = useFavoriteCompany();
 
   const isFavorited = useMemo(() => {
@@ -37,8 +37,7 @@ const FavoriteItem = ({
 
   return (
     <>
-      {user?.role === "candidate" ||
-      (typeof user?.role === "undefined" && !loading) ? (
+      {user?.role === "candidate" || typeof user?.role === "undefined" ? (
         <button
           disabled={
             result.originalArgs?.postID === data?.postID && result.isLoading

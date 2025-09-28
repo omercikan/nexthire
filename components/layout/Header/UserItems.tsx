@@ -22,7 +22,7 @@ const roboto = Roboto({
 const UserItems = () => {
   const [breakpoint, setBreakPoint] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
-  const { user, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     if (window.innerWidth >= 992) {
@@ -104,7 +104,7 @@ const UserItems = () => {
 
         <ol>
           <li className="group flex items-center gap-4">
-            {!user && !loading && (
+            {!user && (
               <button
                 className="header-login-btn group"
                 onClick={() => {

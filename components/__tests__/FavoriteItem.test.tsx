@@ -65,7 +65,7 @@ const renderComponent = (
 
   return render(
     <Provider store={store}>
-      <AuthContext value={{ user: userData, loading: false }}>
+      <AuthContext value={{ user: userData }}>
         <FavoriteItem
           data={mockFavoriteData}
           fieldName={FavoriteField.Jobs}
@@ -131,7 +131,7 @@ describe("FavoriteCompany Component test group", () => {
       const userData = mockUser("candidate");
 
       render(
-        <AuthContext.Provider value={{ user: userData, loading: false }}>
+        <AuthContext.Provider value={{ user: userData }}>
           <FavoriteItem
             data={mockFavoriteData}
             fieldName={FavoriteField.Jobs}
