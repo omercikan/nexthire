@@ -20,6 +20,7 @@ export type AuthInputProps = {
   className?: string;
   iconSpanClass?: string;
   labelClass?: string;
+  error?: string | undefined;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 interface AuthSelectDataItem {
@@ -45,8 +46,8 @@ export interface AuthSelectProps {
 
 export interface AuthCheckboxProps {
   errors?: string | undefined;
-  values: boolean;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  values?: boolean;
+  handleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   isSubmitting: boolean;
   text?: string;
   name: string;

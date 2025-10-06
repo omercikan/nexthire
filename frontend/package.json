@@ -15,6 +15,7 @@
     "@emailjs/browser": "^4.4.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@hookform/resolvers": "^5.2.2",
     "@lottiefiles/dotlottie-react": "^0.14.4",
     "@mui/material": "^7.0.1",
     "@mui/x-charts": "^8.11.1",
@@ -33,6 +34,7 @@
     "react-datepicker": "^8.7.0",
     "react-dom": "^19.0.0",
     "react-firebase-hooks": "^5.1.1",
+    "react-hook-form": "^7.64.0",
     "react-hot-toast": "^2.5.2",
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
@@ -40,7 +42,8 @@
     "react-redux": "^9.2.0",
     "react-transition-group": "^4.4.5",
     "swiper": "^11.2.6",
-    "yup": "^1.6.1"
+    "yup": "^1.6.1",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

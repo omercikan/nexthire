@@ -22,6 +22,7 @@ import { GeocodeApi } from "@/features/job-detail/components/JobAbout/JobMap/geo
 import { candidateStaticsApi } from "@/features/dashboard/services/candidateStaticsApi";
 import { userViewsApi } from "@/features/dashboard/services/userViewsApi";
 import { candidateProfileApi } from "@/features/dashboard/services/candidateProfileApi";
+import { authServiceApi } from "@/features/auth/services/auth-service";
 
 export const store = configureStore({
   reducer: {
@@ -47,6 +48,7 @@ export const store = configureStore({
     [candidateStaticsApi.reducerPath]: candidateStaticsApi.reducer,
     [userViewsApi.reducerPath]: userViewsApi.reducer,
     [candidateProfileApi.reducerPath]: candidateProfileApi.reducer,
+    [authServiceApi.reducerPath]: authServiceApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -62,6 +64,7 @@ export const store = configureStore({
       candidateStaticsApi.middleware,
       userViewsApi.middleware,
       candidateProfileApi.middleware,
+      authServiceApi.middleware,
     ]),
 });
 

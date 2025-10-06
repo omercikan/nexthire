@@ -1,5 +1,4 @@
 import { AuthCheckboxProps } from "@/shared/types";
-import { useField } from "formik";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { BsCheck } from "react-icons/bs";
@@ -12,9 +11,6 @@ const CustomCheckbox = ({
   text,
   name,
 }: AuthCheckboxProps) => {
-  const { ...props } = { text, name, isSubmitting, values, errors };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_fields, meta] = useField(props);
   const pathname = usePathname();
 
   return (
@@ -26,11 +22,9 @@ const CustomCheckbox = ({
           )}
           <input
             type="checkbox"
-            name={name}
             id={name}
-            className={`custom-checkbox ${errors ? "!border-red-400" : ""}`}
-            checked={values}
             onChange={handleChange}
+            className={`custom-checkbox ${errors ? "!border-red-400" : ""}`}
             disabled={isSubmitting}
           />
         </div>
@@ -45,8 +39,10 @@ const CustomCheckbox = ({
         )}
       </div>
 
-      {meta.error && pathname !== "/aday-uye-ol" ? (
-        <div className="text-[#D91B1B] text-sm max-[430px]:text-xs">{meta.error}</div>
+      {errors && pathname !== "/aday-uye-ol" ? (
+        <div className="text-[#D91B1B] text-sm max-[430px]:text-xs">
+          {errors}
+        </div>
       ) : null}
     </>
   );

@@ -1,5 +1,4 @@
 import { AuthInputProps } from "@/shared/types";
-import { useField } from "formik";
 import React from "react";
 
 const CustomInput = ({
@@ -11,10 +10,9 @@ const CustomInput = ({
   iconSpanClass,
   children,
   labelClass,
+  error,
   ...props
 }: AuthInputProps) => {
-  const [field, meta] = useField(props);
-
   return (
     <div className="w-full">
       <label
@@ -35,10 +33,9 @@ const CustomInput = ({
         <input
           id={props.name}
           autoComplete="on"
-          {...field}
           {...props}
           className={`custom__input ${
-            meta.error ? "!border-[#D91B1B]" : "border-[#D3E0FE]"
+            error ? "!border-[#D91B1B]" : "border-[#D3E0FE]"
           } ${className ? className : ""}`}
         />
 
@@ -54,9 +51,7 @@ const CustomInput = ({
         )}
       </div>
 
-      {meta.error && (
-        <div className="text-[#D91B1B] text-sm mt-1">{meta.error}</div>
-      )}
+      {error && <div className="text-[#D91B1B] text-sm mt-1">{error}</div>}
     </div>
   );
 };

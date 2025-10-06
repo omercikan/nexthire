@@ -11,7 +11,7 @@ const GoogleAuth = () => {
   };
 
   return (
-    <div className="mt-5 min-[1026]:me-40 max-[1026px]:hidden">
+    <div className="mt-5 min-[1026]:mr-40 max-[1026px]:hidden">
       <button
         className="relative py-2.5 border border-[#4045EF] text-[#4045EF] hover:bg-[#E3E3FF] transition duration-300 w-full rounded-full"
         onClick={handleSigninGoogle}
