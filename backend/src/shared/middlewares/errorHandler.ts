@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import logger from "../utils/logger.ts";
 
 export const errorHandler = (
   err: Error,
@@ -9,5 +10,6 @@ export const errorHandler = (
   res
     .status(Number(err.cause))
     .json({ message: err.message || "Internal Server Error" });
+  logger.error({ message: err.message });
   next();
 };

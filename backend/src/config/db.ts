@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import config from "./index.ts";
+import logger from "../shared/utils/logger.ts";
 
 export async function connectDatabase() {
   try {
@@ -9,26 +10,24 @@ export async function connectDatabase() {
     });
 
     mongoose.connection.on("connected", () => {
-      console.log("connected the mongoose db");
+      logger.info("✅ Connected to MongoDB successfully");
     });
 
     mongoose.connection.on("error", (err) => {
-      console.error("mongoose connection error:", err);
+      logger.error("❌ Mongoose connection error:", err);
     });
 
     mongoose.connection.on("disconnected", () => {
-      console.warn("mongoose connection lost");
+      logger.warn("⚠️ Mongoose connection lost");
     });
 
     process.on("SIGINT", async () => {
       await mongoose.connection.close();
-      console.log(
-        "The application has closed, the MongoDB connection has been terminated."
-      );
+      logger.info("🛑 App terminated — MongoDB connection closed.");
       process.exit(0);
     });
   } catch (error) {
-    console.error("database connection error:", error);
+    logger.error("❌ Database connection error:", error);
     process.exit(1);
   }
 }
