@@ -69,7 +69,42 @@ class CandidateController {
       next(error);
     }
   }
+
+  async loginCandidate(req: Request, res: Response, next: NextFunction) {
+    const { email, password } = req.body;
+
+    try {
+      const user = await Candidate.findOne({ email });
+
+      if (!user || !(await bcrypt.compare(password, user.password))) {
+        return res.status(401).json({ message: "Invalid email or password" });
+      }
+
+      const { refreshToken } = authService(res, user._id, "candidate");
+      const hashedRefreshToken = await bcrypt.hash(
+        refreshToken,
+        config.saltRounds
+      );
+
+      await RefreshToken.findOneAndUpdate(
+        { userId: user._id },
+        { token: hashedRefreshToken },
+        { new: true, upsert: true }
+      );
+
+      const { password: _, ...safeUser } = user.toObject();
+
+      req.user = { id: user._id, role: user.role };
+
+      res.json({
+        message: "Login successful",
+        user: safeUser,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
-export const createCandidateController = new CandidateController()
-  .createCandidate;
+const { loginCandidate, createCandidate } = new CandidateController();
+export { loginCandidate, createCandidate };
