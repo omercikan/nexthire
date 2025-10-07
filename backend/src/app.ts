@@ -4,6 +4,18 @@ import authCandidateRoutes from "./features/auth/candidate/routes/authCandidateR
 import { errorHandler } from "./shared/middlewares/errorHandler.ts";
 import cookieParser from "cookie-parser";
 import config from "./config/index.ts";
+import { Role } from "./shared/types/user/role.ts";
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: {
+        id: string;
+        role: Role;
+      };
+    }
+  }
+}
 
 // express app
 const app = express();
