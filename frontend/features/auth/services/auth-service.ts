@@ -4,6 +4,7 @@ export const authServiceApi = createApi({
   reducerPath: "authServiceApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/api/auth`,
+    credentials: "include",
   }),
   endpoints: (builder) => ({
     createCandidate: builder.mutation<
@@ -14,10 +15,21 @@ export const authServiceApi = createApi({
         method: "POST",
         url: "/register-candidate",
         body: { fullname, email, password },
-        credentials: "include",
+      }),
+    }),
+
+    loginCandidate: builder.mutation<
+      { message: string },
+      { email: string; password: string }
+    >({
+      query: ({ email, password }) => ({
+        method: "POST",
+        url: "/login-candidate",
+        body: { email, password },
       }),
     }),
   }),
 });
 
-export const { useCreateCandidateMutation } = authServiceApi;
+export const { useCreateCandidateMutation, useLoginCandidateMutation } =
+  authServiceApi;

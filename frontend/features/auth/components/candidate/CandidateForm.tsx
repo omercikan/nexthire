@@ -14,7 +14,10 @@ import { AuthFormProps } from "../../../../shared/types/signup-form.types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignupSchema, SignupSchemaValue } from "../../schema/SignupSchema";
-import { useCreateCandidateMutation } from "../../services/auth-service";
+import {
+  useCreateCandidateMutation,
+  useLoginCandidateMutation,
+} from "../../services/auth-service";
 import useAuth from "../../hooks/useAuth";
 import { CANDIDATE_FORM_FIELDS } from "./formValues";
 
@@ -27,6 +30,7 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
   const [hidePassword, setHidePassword] = useState<boolean>(true);
   const [confirmHidePassword, setConfirmHidePassword] = useState<boolean>(true);
   const pathname = usePathname();
+  const matchPathname = pathname === "/aday-uye-ol";
   const {
     register,
     handleSubmit,
@@ -34,18 +38,23 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
     watch,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm({
+  } = useForm<SignupSchemaValue>({
     defaultValues: CANDIDATE_FORM_FIELDS,
-    resolver: zodResolver(SignupSchema),
+    resolver: zodResolver(
+      matchPathname
+        ? SignupSchema
+        : SignupSchema.pick({ email: true, password: true })
+    ),
     mode: "onChange",
   });
   const [createUser] = useCreateCandidateMutation();
+  const [loginUser] = useLoginCandidateMutation();
   const { manageAuthApi } = useAuth();
 
   const onSubmit = async (data: SignupSchemaValue) => {
     const { name, surname, email, password } = data;
 
-    if (pathname === "/aday-uye-ol") {
+    if (matchPathname) {
       await manageAuthApi(
         () =>
           createUser({
@@ -59,40 +68,16 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
           message: "Girdiğiniz e-posta adresi kullanılmakta.",
         }
       );
+    } else {
+      await manageAuthApi(
+        () => loginUser({ email, password }).unwrap(),
+        reset,
+        {
+          case: "Invalid email or password",
+          message: "E-posta veya Şifre hatalı",
+        }
+      );
     }
-
-    //  else {
-    //   const response = await axios.post(
-    //     "api/firebase/candidate-login",
-    //     JSON.stringify({
-    //       email: email,
-    //       password: password,
-    //     })
-    //   );
-
-    //   const data = await response.data;
-
-    //   if (data.user) {
-    //     toast.success("Giriş başarılı!");
-    //     setTimeout(() => {
-    //       router.replace("/");
-    //     }, 2000);
-    //   }
-
-    //   switch (data.message) {
-    //     case "Firebase: Error (auth/invalid-credential).":
-    //       return toast.error(
-    //         "Giriş bilgileriniz geçersiz. Lütfen e-posta adresinizi ve şifrenizi kontrol edip tekrar deneyin."
-    //       );
-    //     case "Firebase: Error (auth/too-many-requests).":
-    //       return toast.error(
-    //         "Çok fazla yanlış giriş yaptınız. Lütfen bilgilerinizi kontrol edip tekrar deneyin.",
-    //         { duration: 5000 }
-    //       );
-    //   }
-
-    //   await signInWithEmailAndPassword(auth, email, password);
-    // }
   };
 
   return (
@@ -100,17 +85,17 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
       className={`form__wrapper relative overflow-auto self-center ${
         inter.className
       } ${
-        pathname === "/aday-uye-ol"
+        matchPathname
           ? "max-[376px]:max-h-full max-[376px]:h-[550px] max-[321px]:h-[465px] min-[1026px]:py-[35.4px] min-[1026px]:h-screen"
           : ""
       }`}
     >
       <div>
         <h1 className="text-[32px] max-[400px]:text-[24px] text-[#2E3139] font-bold">
-          {pathname === "/aday-uye-ol" ? "Şimdi Başlayın" : "Tekrar Hoş Geldin"}
+          {matchPathname ? "Şimdi Başlayın" : "Tekrar Hoş Geldin"}
         </h1>
         <p className="text-[#425583] mt-1.5 text-sm max-[400px]:text-xs">
-          {pathname === "/aday-uye-ol"
+          {matchPathname
             ? "NextHire ile yeni iş fırsatlarını yakalayın!"
             : "NextHire ile kariyer yolculuğuna devam etmek için giriş yap."}
         </p>
@@ -120,7 +105,7 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
         className="min-lg:pr-40 max-[1026px]:p-0 ps-0 flex flex-col gap-3 mt-10"
         onSubmit={handleSubmit(onSubmit)}
       >
-        {pathname === "/aday-uye-ol" && (
+        {matchPathname && (
           <div className="flex gap-4">
             <CustomInput
               placeholder="Adınızı girin"
@@ -154,9 +139,7 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
         <div className="flex flex-col">
           <CustomInput
             placeholder={
-              pathname === "/aday-uye-ol"
-                ? "Şifrenizi oluşturun"
-                : "Şifrenizi girin"
+              matchPathname ? "Şifrenizi oluşturun" : "Şifrenizi girin"
             }
             type={hidePassword ? "password" : "text"}
             label="Şifre"
@@ -167,7 +150,7 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
             error={errors.password?.message}
             {...register("password")}
           />
-          {pathname === "/aday-giris" && (
+          {!matchPathname && (
             <Link
               href="/sifre-sifirla"
               className="text-[#4045EF] text-sm mt-4 w-max self-end"
@@ -177,7 +160,7 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
           )}
         </div>
 
-        {pathname === "/aday-uye-ol" && (
+        {matchPathname && (
           <>
             <CustomInput
               placeholder="Şifrenizi onaylayın"
@@ -227,7 +210,7 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
 
         <CustomButton
           isSubmitting={isSubmitting}
-          text={pathname === "/aday-uye-ol" ? "Kayıt ol" : "Giriş yap"}
+          text={matchPathname ? "Kayıt ol" : "Giriş yap"}
         />
       </form>
 
@@ -240,14 +223,12 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
 
       <div className="min-[1026px]:mr-40">
         <p className="text-[#425583] font-medium text-sm mt-6 text-center">
-          {pathname === "/aday-uye-ol"
-            ? "Zaten hesabınız var mı? "
-            : "Hesabın yok mu? "}
+          {matchPathname ? "Zaten hesabınız var mı? " : "Hesabın yok mu? "}
           <Link
-            href={pathname === "/aday-uye-ol" ? "/aday-giris" : "/aday-uye-ol"}
+            href={matchPathname ? "/aday-giris" : "/aday-uye-ol"}
             className="text-[#4045EF]"
           >
-            {pathname === "/aday-uye-ol" ? "Giriş Yap" : "Kaydol"}
+            {matchPathname ? "Giriş Yap" : "Kaydol"}
           </Link>
         </p>
       </div>

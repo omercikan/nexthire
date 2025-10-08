@@ -55,4 +55,11 @@ export const SignupSchema = z
     path: ["confirmPassword"],
   });
 
-export type SignupSchemaValue = z.infer<typeof SignupSchema>;
+export interface SignupSchemaValue {
+  name?: string;
+  surname?: string;
+  email: string;
+  password: string;
+  confirmPassword?: string;
+  checkbox?: boolean;
+}
