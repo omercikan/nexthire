@@ -104,7 +104,30 @@ class CandidateController {
       next(error);
     }
   }
+
+  async googleAuth(req: Request, res: Response, next: NextFunction) {
+    const body = req.body;
+
+    try {
+      const user = await Candidate.findOne({ email: body.email });
+
+      if (!user) {
+        const newUser = await createUser("candidate", body);
+
+        return res
+          .status(200)
+          .json({ message: "Google registration successful", user: newUser });
+      } else {
+        return res.status(200).json({
+          message: "The user already exists",
+        });
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
-const { loginCandidate, createCandidate } = new CandidateController();
-export { loginCandidate, createCandidate };
+const { loginCandidate, createCandidate, googleAuth } =
+  new CandidateController();
+export { loginCandidate, createCandidate, googleAuth };

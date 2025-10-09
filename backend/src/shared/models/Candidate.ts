@@ -21,8 +21,13 @@ const CandidateSchema = new Schema<CandidateTypes>(
 
     password: {
       type: String,
-      required: true,
+      required: false,
       minLength: 8,
+    },
+
+    profilePhoto: {
+      type: String,
+      required: false,
     },
 
     role: {

@@ -5,5 +5,6 @@ export interface CandidateTypes extends Document {
   fullname: string;
   email: string;
   password: string;
+  profilePhoto: string;
   role: "candidate";
 }
