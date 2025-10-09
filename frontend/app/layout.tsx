@@ -13,6 +13,7 @@ import { AuthContextProvider } from "@/features/auth/authContext";
 import MobileUserModal from "@/shared/components/layout/Header/MobileUserModal";
 import Header from "@/shared/components/layout/Header";
 import Footer from "@/shared/components/layout/Footer";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Jost({
   subsets: ["latin-ext"],
@@ -85,7 +86,7 @@ export default function RootLayout({
                 </Suspense>
               )}
 
-            {children}
+            <SessionProvider>{children}</SessionProvider>
 
             {!authPages.includes(pathname) && pathname !== "/sifre-sifirla" && (
               <MobileUserModal />
