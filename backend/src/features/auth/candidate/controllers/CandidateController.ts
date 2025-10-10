@@ -76,7 +76,7 @@ class CandidateController {
     try {
       const user = await Candidate.findOne({ email });
 
-      if (!user || !(await bcrypt.compare(password, user.password))) {
+      if (!user || !(await bcrypt.compare(password, user.password ?? ""))) {
         return res.status(401).json({ message: "Invalid email or password" });
       }
 
@@ -114,12 +114,17 @@ class CandidateController {
       if (!user) {
         const newUser = await createUser("candidate", body);
 
+        if (newUser) req.user = { id: newUser?._id, role: newUser?.role };
+
         return res
           .status(200)
           .json({ message: "Google registration successful", user: newUser });
       } else {
+        req.user = { id: user._id, role: user.role };
+
         return res.status(200).json({
           message: "The user already exists",
+          user: user,
         });
       }
     } catch (error) {
