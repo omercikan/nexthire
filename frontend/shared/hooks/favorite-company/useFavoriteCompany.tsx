@@ -16,7 +16,7 @@ const useFavoriteCompany = () => {
 
   useEffect(() => {
     if (candidateUser) {
-      const unsub = onSnapshot(doc(db, "users", candidateUser?.id), (doc) => {
+      const unsub = onSnapshot(doc(db, "users", candidateUser?._id), (doc) => {
         setUpdatedData(doc.data() as Candidate);
       });
 

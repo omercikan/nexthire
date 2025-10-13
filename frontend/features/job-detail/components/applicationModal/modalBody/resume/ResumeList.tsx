@@ -27,7 +27,7 @@ const ResumeList = () => {
 
   //* Fetch uploaded resumes for the user *//
   const { data } = useFetchResumeQuery({
-    docID: user?.id ?? "",
+    docID: user?._id ?? "",
     cvID: cvID,
   });
 

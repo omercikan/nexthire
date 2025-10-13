@@ -10,7 +10,6 @@ import { MdArrowDropDown } from "react-icons/md";
 import Link from "next/link";
 import { AuthContext } from "@/features/auth/authContext";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { FormatText } from "@/shared/utils/formatText";
 import { handleLogout } from "@/shared/utils/logout";
 
 const roboto = Roboto({
@@ -55,9 +54,7 @@ const UserItems = () => {
                 }
               />
               <span className="max-[992px]:hidden">
-                {typeof user?.name !== "undefined"
-                  ? FormatText(user?.name).split(" ")[0]
-                  : FormatText(user?.displayName).split(" ")[0]}
+                {(user?.fullname).split(" ")[0]}
               </span>
               <MdArrowDropDown
                 size={22}
@@ -66,15 +63,7 @@ const UserItems = () => {
 
               <ul className="session-user-modal">
                 <li className="pb-6 px-6 border-b border-[#e4e4e4]">
-                  <h1 className="text-[#212529]">
-                    {typeof user?.name !== "undefined"
-                      ? `${FormatText(user?.name.split(" ")[0])} ${FormatText(
-                          user?.name.split(" ")[1]
-                        )}`
-                      : `${FormatText(
-                          user.displayName.split(" ")[0]
-                        )} ${FormatText(user.displayName.split(" ")[1])}`}
-                  </h1>
+                  <h1 className="text-[#212529]">{user?.fullname}</h1>
                   <Link
                     href="/hesabim"
                     className="text-[#4045ef] hover:underline text-sm"

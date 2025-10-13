@@ -52,7 +52,7 @@ const CandidateForm = () => {
         const { dateOfBirth } = currentUser;
 
         const isChange = [
-          "name",
+          "fullname",
           "email",
           "gender",
           "age",
@@ -67,7 +67,7 @@ const CandidateForm = () => {
 
         if (isChange || dateOfBirth !== startDate) {
           await updateProfile({
-            userId: String(user?.id),
+            userId: String(user?._id),
             data: { ...filledFields, dateOfBirth: startDate as Date },
           }).unwrap();
         }
@@ -92,7 +92,7 @@ const CandidateForm = () => {
   return (
     <Formik
       initialValues={{
-        name: user?.name ?? "",
+        name: user?.fullname ?? "",
         email: user?.email ?? "",
         gender: currentUser?.gender ?? "",
         age: currentUser?.age ?? "",
@@ -117,10 +117,10 @@ const CandidateForm = () => {
           <div className="grid sm:grid-cols-2 gap-x-[29px] gap-y-[22px]">
             <CustomInput
               label="Ad Soyad"
-              name="name"
+              name="fullname"
               type="text"
               className="!rounded-[15px] !ps-4"
-              placeholder={user?.name ?? user?.displayName}
+              placeholder={user?.fullname}
             />
 
             {/* <CustomInput

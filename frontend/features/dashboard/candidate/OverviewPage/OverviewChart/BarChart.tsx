@@ -13,8 +13,8 @@ export default function ViewerBars() {
   const { user } = useContext(AuthContext);
 
   //* Fetch profile view data for the current user *\\
-  const { data } = useGetCandidateProfileViewsQuery(user?.id as string, {
-    skip: !user?.id,
+  const { data } = useGetCandidateProfileViewsQuery(user?._id as string, {
+    skip: !user?._id,
   });
 
   //* Extract monthly view counts and calculate total views *\\

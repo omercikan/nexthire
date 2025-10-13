@@ -103,9 +103,9 @@ export interface User {
   createdAt: string;
   email: string;
   emailVerified: boolean;
-  id: string;
-  name: string;
-  displayName: string;
+  _id: string;
+  fullname: string;
+  // displayName: string;
   phoneNumber: string;
   role: string;
 }

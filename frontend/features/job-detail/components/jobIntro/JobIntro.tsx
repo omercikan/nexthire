@@ -42,7 +42,7 @@ const JobIntro = (props: JobIntroInterface) => {
     isLoading: isApplyLoading,
     isFetching,
   } = useGetApplicationQuery({
-    candidateId: user?.id ?? "",
+    candidateId: user?._id ?? "",
     postId: postId,
   });
 

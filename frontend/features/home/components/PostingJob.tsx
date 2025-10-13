@@ -46,9 +46,7 @@ const PostingJob = () => {
             okuyarak kariyerinizi şekillendirin.
           </p>
 
-          <Link
-            href={user && user.id ? "/dashboard/ilan-ver" : "/isveren-giris"}
-          >
+          <Link href={user?._id ? "/dashboard/ilan-ver" : "/isveren-giris"}>
             <button
               className="hero-section-form__button flex items-center justify-center gap-x-2 !w-max max-lg:!rounded-lg max-md:!px-5"
               aria-label="İş ilanı verin"

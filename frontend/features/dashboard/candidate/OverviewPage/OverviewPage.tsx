@@ -8,7 +8,7 @@ import { useGetUserStaticsQuery } from "../../services/candidateStaticsApi";
 
 const OverviewPage = () => {
   const { user } = useContext(AuthContext);
-  const { data } = useGetUserStaticsQuery({ candidateId: user?.id as string });
+  const { data } = useGetUserStaticsQuery({ candidateId: user?._id as string });
   const candidateUser = user as Candidate;
 
   return (

@@ -7,7 +7,6 @@ import { AppDispatch } from "@/shared/redux/store";
 import { changeModalState } from "@/shared/redux/slices/user-modal/userModalSlice";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { AuthContext } from "@/features/auth/authContext";
-import { FormatText } from "@/shared/utils/formatText";
 import { handleLogout } from "@/shared/utils/logout";
 
 const UserModal = () => {
@@ -48,13 +47,7 @@ const UserModal = () => {
               <HiOutlineUserCircle size={32} />
               <div className="ms-2.5">
                 <strong className="block text-[16px] text-[#212529] font-medium">
-                  {typeof user?.name !== "undefined"
-                    ? `${FormatText(user?.name.split(" ")[0])} ${FormatText(
-                        user?.name.split(" ")[1]
-                      )}`
-                    : `${FormatText(
-                        user.displayName.split(" ")[0]
-                      )} ${FormatText(user.displayName.split(" ")[1])}`}
+                  {user.fullname}
                 </strong>
                 <Link
                   href="/hesabim"

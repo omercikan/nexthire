@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       const action = isAlreadyFavorited ? "remove" : "add";
 
       const updateFavorite = async (path: string) => {
-        const ref = doc(db, path, user?.id);
+        const ref = doc(db, path, user?._id);
         const updateData =
           action === "add"
             ? { [fieldName]: arrayUnion(data) }

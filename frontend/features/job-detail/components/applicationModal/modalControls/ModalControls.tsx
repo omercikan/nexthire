@@ -6,8 +6,16 @@ import React, { useCallback, useContext } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useSendApplicationMutation } from "./jobApplicationApi";
-import { setApplicationStatus, setResumeErrorMessage } from "@/shared/redux/slices/applicationModal/modalData";
-import { resetProgressBarValue, setIsEdit, setModalStep, setProgressBarValue } from "@/shared/redux/slices/applicationModal/progressBar";
+import {
+  setApplicationStatus,
+  setResumeErrorMessage,
+} from "@/shared/redux/slices/applicationModal/modalData";
+import {
+  resetProgressBarValue,
+  setIsEdit,
+  setModalStep,
+  setProgressBarValue,
+} from "@/shared/redux/slices/applicationModal/progressBar";
 import { setApplicationModal } from "@/shared/redux/slices/touch";
 
 const ModalControls = ({
@@ -107,8 +115,8 @@ const ModalControls = ({
         applicationData: {
           ...applicationData,
           fileName: selectedResumeFileName,
-          name: user?.name || user?.displayName,
-          cid: user?.id,
+          name: user?.fullname,
+          cid: user?._id,
           eid: companyId,
           postId: postId,
           companyLogo: companyLogo,
@@ -128,7 +136,7 @@ const ModalControls = ({
         dispatch(
           setApplicationStatus({
             companyName: companyName,
-            userId: user?.id,
+            userId: user?._id,
             postId: postId,
             status: "applied",
           })

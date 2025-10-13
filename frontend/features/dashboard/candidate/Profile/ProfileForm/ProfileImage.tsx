@@ -44,7 +44,7 @@ const ProfileImage = () => {
             height={130}
             alt={
               isCandidate
-                ? user?.name || user?.displayName
+                ? user?.fullname
                 : currentUser?.companyInformations?.companyName
             }
             className="rounded-full w-full h-full object-cover border border-[#d4d4d4] p-0.5"

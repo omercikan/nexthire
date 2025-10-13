@@ -24,7 +24,7 @@ const ResumeInput = ({
 
   const handleUploadResume = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    const userID = user?.id ?? "";
+    const userID = user?._id ?? "";
 
     if (!file) return;
 
