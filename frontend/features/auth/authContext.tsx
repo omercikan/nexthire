@@ -2,6 +2,8 @@ import { LayoutComponentProps, User } from "@/shared/types";
 import { createContext } from "react";
 import { useGetUserQuery } from "./services/auth-service";
 import Loading from "@/shared/components/ui/Loading";
+import { useSession } from "next-auth/react";
+import { skipToken } from "@reduxjs/toolkit/query";
 
 export interface ContextValue {
   user: User | undefined;
@@ -12,16 +14,17 @@ export const AuthContext = createContext<ContextValue>({
 });
 
 export const AuthContextProvider = ({ children }: LayoutComponentProps) => {
-  const { data, isLoading } = useGetUserQuery();
+  const { data: session, status } = useSession();
+  const { data, isLoading } = useGetUserQuery(
+    status === "loading" || status === "authenticated" ? skipToken : ""
+  );
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  if (isLoading || status === "loading") return <Loading />;
 
   return (
     <AuthContext.Provider
       value={{
-        user: data,
+        user: (session?.user as User) || data,
       }}
     >
       {children}

@@ -1,9 +1,11 @@
-import { auth } from "@/app/api/firebase/firebaseConfig";
-import { signOut } from "firebase/auth";
-import { DeleteCookie } from "./deleteCookie";
+import axios from "axios";
+import { signOut } from "next-auth/react";
 
 export const handleLogout = async () => {
-  await signOut(auth);
-  DeleteCookie("VV9SVA", "VVLOPQS");
-  window.location.href = "/";
+  try {
+    await axios.post("/api/auth/logout");
+    await signOut({ callbackUrl: "/" });
+  } catch (err) {
+    console.error("Logout error:", err);
+  }
 };

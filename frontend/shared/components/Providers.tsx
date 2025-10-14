@@ -10,11 +10,11 @@ import AppLayout from "./layout/MainLayout";
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <Provider store={store}>
-      <AuthContextProvider>
-        <SessionProvider>
+      <SessionProvider>
+        <AuthContextProvider>
           <AppLayout>{children}</AppLayout>
-        </SessionProvider>
-      </AuthContextProvider>
+        </AuthContextProvider>
+      </SessionProvider>
     </Provider>
   );
 };

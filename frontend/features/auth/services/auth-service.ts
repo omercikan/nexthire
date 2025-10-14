@@ -33,7 +33,7 @@ export const authServiceApi = createApi({
       invalidatesTags: ["User"],
     }),
 
-    getUser: builder.query<User, void>({
+    getUser: builder.query<User, string>({
       query: () => ({
         method: "GET",
         url: `users/me`,
