@@ -48,7 +48,7 @@ class CandidateController {
       if (createdUser) {
         const { _id, role } = createdUser;
 
-        const { refreshToken } = authService(res, _id, role);
+        const { refreshToken } = authService(res, String(_id), role);
 
         const hashedRefreshToken = await bcrypt.hash(
           refreshToken,
@@ -114,7 +114,8 @@ class CandidateController {
       if (!user) {
         const newUser = await createUser("candidate", body);
 
-        if (newUser) req.user = { id: newUser?._id, role: newUser?.role };
+        if (newUser)
+          req.user = { id: String(newUser?._id), role: newUser?.role };
 
         return res
           .status(200)

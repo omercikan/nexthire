@@ -32,10 +32,11 @@ const CandidateSchema = new Schema<CandidateTypes>(
 
     role: {
       type: String,
+      enum: ["candidate"],
       default: "candidate",
     },
   },
   { timestamps: true, versionKey: false }
 );
 
-export const Candidate = model("users", CandidateSchema);
+export const Candidate = model("Candidate", CandidateSchema);
