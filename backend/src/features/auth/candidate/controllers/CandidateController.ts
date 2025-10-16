@@ -29,6 +29,7 @@ class CandidateController {
       const user = await Candidate.findOne({ email });
 
       if (user) {
+        session.abortTransaction();
         throw new Error("This email address is already in use.", {
           cause: 400,
         });
@@ -42,7 +43,8 @@ class CandidateController {
           fullname,
           email,
           password: hashedPassword,
-        }
+        },
+        session
       );
 
       if (createdUser) {
@@ -50,23 +52,23 @@ class CandidateController {
 
         const { refreshToken } = authService(res, String(_id), role);
 
-        const hashedRefreshToken = await bcrypt.hash(
-          refreshToken,
-          config.saltRounds
-        );
-        await RefreshToken.create({ token: hashedRefreshToken, userId: _id });
+        const createdRefreshToken = new RefreshToken({
+          token: refreshToken,
+          userId: _id,
+        });
+        await createdRefreshToken.save({ session });
 
         await session.commitTransaction();
-        session.endSession();
-
+        
         return res
           .status(201)
           .json({ message: "Account is successfully created." });
       }
     } catch (error) {
       await session.abortTransaction();
-      session.endSession();
       next(error);
+    } finally {
+      session.endSession();
     }
   }
 
