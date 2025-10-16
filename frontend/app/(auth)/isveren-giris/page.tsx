@@ -6,9 +6,12 @@ import GoBack from "@/shared/components/ui/GoBack";
 const EmployerLogin = () => {
   return (
     <main className="flex max-[1025px]:flex-col">
-      <GoBack position="top-[60px] right-[60px]" url="/" />
       <EmployeProcessSection />
-      <EmployerForm />
+
+      <div className="flex-[1] relative">
+        <GoBack position="top-[60px] left-[25px] max-sm:top-[25px] max-sm:left-[10px]" url="/" />
+        <EmployerForm />
+      </div>
     </main>
   );
 };

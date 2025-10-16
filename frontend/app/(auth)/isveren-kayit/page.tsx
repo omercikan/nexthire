@@ -6,9 +6,12 @@ import GoBack from "@/shared/components/ui/GoBack";
 const EmpolyerSignup = () => {
   return (
     <main className="flex max-[1025px]:flex-col">
-      <GoBack position="top-[20px] right-[30px]" url="/" />
       <EmployeProcessSection />
-      <EmployerForm />
+
+      <div className="flex-[1] relative">
+        <GoBack position="top-[20px] max-sm:top-[15px] max-sm:bg-white w-max max-sm:left-[10px] left-[25px]" url="/" />
+        <EmployerForm />
+      </div>
     </main>
   );
 };
