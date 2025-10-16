@@ -35,17 +35,18 @@ export interface AuthSelectProps {
   data: AuthSelectDataItem[];
   defaultValue?: string;
   name: string;
+  value?: string;
   isSubmitting: boolean;
-  value: string;
   isFormatText?: boolean;
   isDefaultValueOption?: boolean;
   className?: string;
   label?: string;
   labelClass?: string;
+  error?: string | undefined;
 }
 
 export interface AuthCheckboxProps {
-  errors?: string | undefined;
+  error?: string | undefined;
   values?: boolean;
   handleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   isSubmitting: boolean;

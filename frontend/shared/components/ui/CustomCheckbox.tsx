@@ -4,12 +4,13 @@ import React from "react";
 import { BsCheck } from "react-icons/bs";
 
 const CustomCheckbox = ({
-  errors,
+  error,
   values,
   handleChange,
   isSubmitting,
   text,
   name,
+  ...rest
 }: AuthCheckboxProps) => {
   const pathname = usePathname();
 
@@ -21,10 +22,11 @@ const CustomCheckbox = ({
             <BsCheck className="absolute pointer-events-none" color="fff" />
           )}
           <input
+            {...rest}
             type="checkbox"
             id={name}
             onChange={handleChange}
-            className={`custom-checkbox ${errors ? "!border-red-400" : ""}`}
+            className={`custom-checkbox ${error ? "!border-red-400" : ""}`}
             disabled={isSubmitting}
           />
         </div>
@@ -39,9 +41,9 @@ const CustomCheckbox = ({
         )}
       </div>
 
-      {errors && pathname !== "/aday-uye-ol" ? (
+      {error && pathname !== "/aday-uye-ol" ? (
         <div className="text-[#D91B1B] text-sm max-[430px]:text-xs">
-          {errors}
+          {error}
         </div>
       ) : null}
     </>
