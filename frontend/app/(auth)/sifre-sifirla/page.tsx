@@ -1,52 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React, { useState } from "react";
-import { Form, Formik, FormikHelpers } from "formik";
 import Image from "next/image";
-import AuthInput from "@/shared/components/ui/CustomInput";
-import { HiOutlineMail } from "react-icons/hi";
-import { GrSecure } from "react-icons/gr";
-import { ResetPasswordSchema } from "../../../features/auth/schema/ResetPasswordSchema";
-import { ResetPasswordField } from "@/shared/types";
-import CustomButton from "@/shared/components/ui/CustomButton";
-import axios from "axios";
 import { HiMiniCheckCircle } from "react-icons/hi2";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import GoBack from "@/shared/components/ui/GoBack";
 import Success from "@/shared/components/ui/Success";
+import OtpVerification from "@/features/auth/components/resetPassword/OtpVerification";
+import EmailVerification from "@/features/auth/components/resetPassword/EmailVerification";
+import ResetPassword from "@/features/auth/components/resetPassword/ResetPassword";
 
-const ResetPassword = () => {
-  const [sendingEmail, setSendingEmail] = useState<boolean>(false);
+const ResetPasswordAuth = () => {
+  const [sendingEmail, _setSendingEmail] = useState<boolean>(false);
+  const [isSuccessOtp, _setIsSuccessOtp] = useState(false);
+  const token = useSearchParams().get("vt");
   const router = useRouter();
-
-  const onSubmit = async (
-    values: ResetPasswordField,
-    actions: FormikHelpers<ResetPasswordField>
-  ): Promise<void> => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    const response = await axios.post(
-      "/api/firebase/reset-password",
-      JSON.stringify({ email: values.email })
-    );
-
-    const data = await response.data;
-
-    if (data.status === 200) {
-      setSendingEmail(true);
-    }
-
-    switch (data.message) {
-      case "Firebase: Error (auth/too-many-requests).":
-        toast.error(
-          "Çok sık talep gönderildi. Lütfen biraz bekleyip tekrar deneyin."
-        );
-        break;
-    }
-
-    actions.resetForm();
-  };
 
   return (
     <div className="flex max-[1026px]:flex-col gap-x-20 max-[1026px]:bg-[#F1F6FF] max-[1026px]:h-screen">
@@ -89,41 +58,9 @@ const ResetPassword = () => {
           </>
         ) : (
           <>
-            <Success
-              icon={
-                <GrSecure
-                  className="bg-[#F1F6FF] p-4 rounded-full"
-                  color="899CC9"
-                  size={56}
-                />
-              }
-              title="Şifrenizi mi unuttunuz?"
-              subtitle="Şifrenizi sıfırlamak için e-posta adresinizi girin."
-            />
-
-            <Formik
-              initialValues={{
-                email: "",
-              }}
-              onSubmit={onSubmit}
-              validationSchema={ResetPasswordSchema}
-            >
-              {({ isSubmitting, values, handleChange }) => (
-                <Form className="px-20 max-[1026px]:p-0 ps-0 flex flex-col gap-3 mt-10">
-                  <AuthInput
-                    label="E-posta"
-                    name="email"
-                    value={values.email}
-                    onChange={handleChange}
-                    placeholder="E-posta adresinizi girin"
-                    icon={<HiOutlineMail />}
-                    readOnly={isSubmitting}
-                  />
-
-                  <CustomButton isSubmitting={isSubmitting} text="Gönder" />
-                </Form>
-              )}
-            </Formik>
+            {!token && !isSuccessOtp && <EmailVerification />}
+            {token && !isSuccessOtp && <OtpVerification />}
+            {isSuccessOtp && <ResetPassword />}
           </>
         )}
       </div>
@@ -131,4 +68,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default ResetPasswordAuth;

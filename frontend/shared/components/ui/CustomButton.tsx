@@ -6,12 +6,13 @@ const CustomButton = ({
   isSubmitting,
   className,
   text,
+  type = "submit",
   circularColor,
   handleClick,
 }: CustomButtonProps) => {
   return (
     <button
-      type="submit"
+      type={type}
       disabled={isSubmitting}
       className={`custom__button ${className ? className : ""}`}
       onClick={(e) => {

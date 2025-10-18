@@ -56,6 +56,7 @@ export interface AuthCheckboxProps {
 
 //! Custom button component properties interface !//
 export interface CustomButtonProps {
+  type?: "submit" | "button" | "reset";
   isSubmitting?: boolean;
   className?: string;
   text: string;
