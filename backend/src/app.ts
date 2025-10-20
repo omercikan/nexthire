@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import authCandidateRoutes from "./features/auth/candidate/routes/authCandidateRoutes.ts";
+import authEmployerRoutes from "./features/auth/employer/routes/authEmployerRoutes.ts";
 import userRoutes from "./features/users/routes/userRoutes.ts";
 import { errorHandler } from "./shared/middlewares/errorHandler.ts";
 import cookieParser from "cookie-parser";
@@ -27,6 +28,7 @@ app.use(cors({ credentials: true, origin: config.client_url }));
 app.use(cookieParser());
 
 app.use("/api/auth", authCandidateRoutes);
+app.use("/api/auth", authEmployerRoutes);
 
 app.use("/api/users", userRoutes);
 

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>NextHire | OTP Doğrulama</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6fb;
+      font-family: Arial, sans-serif;
+      color: #0f1724;
+    "
+  >
+    <table
+      role="presentation"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      style="background-color: #f4f6fb; padding: 40px 0"
+    >
+      <tr>
+        <td align="center">
+          <table
+            role="presentation"
+            width="600"
+            cellpadding="0"
+            cellspacing="0"
+            style="
+              background-color: #ffffff;
+              border-radius: 8px;
+              border: 1px solid #e5e7eb;
+            "
+          >
+            <tr>
+              <td
+                align="center"
+                style="
+                  padding: 30px 20px;
+                  background-color: #f8f9ff;
+                  border-bottom: 1px solid #e5e7eb;
+                "
+              >
+                <img
+                  src="https://res.cloudinary.com/dvolwkh6r/image/upload/v1744909581/nexthire_d27rhv.png"
+                  alt="NextHire Logo"
+                  width="160"
+                  style="display: block; margin-bottom: 12px"
+                />
+                <div style="color: #6b7280; font-size: 14px">
+                  Güvenli hesap doğrulama
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding: 40px 40px 20px">
+                <h1 style="color: #4045ef; font-size: 22px; margin: 0 0 16px">
+                  Merhaba {{fullname}},
+                </h1>
+                <p
+                  style="
+                    font-size: 15px;
+                    line-height: 1.7;
+                    color: #374151;
+                    margin: 0 0 24px;
+                  "
+                >
+                  NextHire hesabınızı etkinleştirmek için aşağıdaki doğrulama
+                  kodunu kullanın. Bu kod yalnızca kısa süreli geçerlidir.
+                </p>
+
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  style="
+                    margin: 24px 0;
+                    background-color: #f9fafb;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 6px;
+                  "
+                >
+                  <tr>
+                    <td align="center" style="padding: 24px">
+                      <div style="font-size: 13px; color: #6b7280">
+                        Doğrulama Kodu
+                      </div>
+                      <div
+                        style="
+                          font-size: 32px;
+                          font-weight: bold;
+                          color: #4045ef;
+                          letter-spacing: 6px;
+                          margin: 12px 0;
+                        "
+                      >
+                        {{code}}
+                      </div>
+
+                      <a
+                        href="{{verificationLink}}"
+                        target="_blank"
+                        style="
+                          background-color: #4045ef;
+                          color: #ffffff;
+                          text-decoration: none;
+                          padding: 14px 26px;
+                          border-radius: 6px;
+                          display: inline-block;
+                          font-weight: bold;
+                          font-size: 15px;
+                        "
+                      >
+                        Hesabımı Doğrula
+                      </a>
+
+                      <div
+                        style="
+                          font-size: 13px;
+                          color: #6b7280;
+                          margin-top: 12px;
+                        "
+                      >
+                        Kod <strong>5 dakika</strong> boyunca geçerlidir.
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+
+                <p
+                  style="
+                    font-size: 14px;
+                    color: #6b7280;
+                    line-height: 1.6;
+                    margin: 16px 0 0;
+                  "
+                >
+                  Bu e-posta otomatik olarak gönderilmiştir ve
+                  yanıtlanmamalıdır. Eğer bu isteği siz başlatmadıysanız, bu
+                  mesajı dikkate almayabilirsiniz.
+                </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td
+                align="center"
+                style="
+                  padding: 24px;
+                  background-color: #f9fafc;
+                  font-size: 14px;
+                  color: #6b7280;
+                "
+              >
+                Yardım için
+                <a
+                  href="mailto:support@nexthire.com"
+                  style="color: #4045ef; text-decoration: none"
+                  >support@nexthire.com</a
+                ><br />
+                <div style="color: #9ca3af; font-size: 13px; margin-top: 10px">
+                  &copy; {{year}} NextHire. Tüm hakları saklıdır.
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

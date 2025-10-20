@@ -13,5 +13,10 @@ export const createUser = async <T>(
       const candidateUser = new Candidate(data);
       await candidateUser.save({ session });
       return candidateUser;
+
+    case "employer":
+      const employerUser = new Employer(data);
+      await employerUser.save({ session });
+      return employerUser;
   }
 };
