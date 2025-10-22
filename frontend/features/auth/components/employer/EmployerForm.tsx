@@ -27,6 +27,9 @@ import {
 } from "../../schema/EmployerAuthSchema";
 import RegisteredMessage from "./RegisteredMessage";
 import FormHeader from "./FormHeader";
+import useAuth from "../../hooks/useAuth";
+import { useCreateEmployerMutation } from "../../services/auth-service";
+import { Employer } from "@/shared/types/models/employer";
 
 const inter = Inter({
   subsets: ["latin-ext"],
@@ -38,18 +41,19 @@ const EmployerForm = () => {
   const [taxOfficies, setTaxOfficies] = useState<TaxOfficiesJsonInterface[]>(
     []
   );
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [registered, setRegistered] = useState<boolean>(false);
   const [hidePassword, setHidePassword] = useState<boolean>(true);
   const pathname = usePathname();
   const isRegisteredRoute = pathname === "/isveren-kayit";
-  // const router = useRouter();
+  const { manageAuthApi } = useAuth();
+  const [createEmployer] = useCreateEmployerMutation();
 
   const {
     handleSubmit,
     register,
     setValue,
     watch,
+    reset,
     formState: { isSubmitting, errors },
   } = useForm<EmployerFormType>({
     mode: "onChange",
@@ -65,72 +69,49 @@ const EmployerForm = () => {
   });
 
   const onSubmit: SubmitHandler<EmployerFormType> = async (values) => {
-    console.log(values);
+    const {
+      fullname,
+      phone,
+      email,
+      companyName,
+      city,
+      district,
+      taxCity,
+      taxOffice,
+      taxNumber,
+      checkboxFirst,
+      checkboxSecond,
+    } = values;
 
-    // const {
-    //   nameAndSurname,
-    //   email,
-    //   password,
-    //   phone,
-    //   companyName,
-    //   city,
-    //   district,
-    //   taxCity,
-    //   taxOffice,
-    //   taxNumber,
-    // } = values;
-    // if (pathname === "/isveren-kayit") {
-    //   const response = await axios.post("/api/firebase/employer-signup", {
-    //     nameAndSurname: nameAndSurname,
-    //     email: email,
-    //     phoneNumber: phone,
-    //     companyName: companyName,
-    //     city: city,
-    //     district: district,
-    //     taxCity: taxCity,
-    //     taxOffice: taxOffice,
-    //     taxNumber: taxNumber,
-    //   });
-    //   const data = await response.data;
-    //   switch (data.message) {
-    //     case "Firebase: Error (auth/email-already-in-use).":
-    //       return toast.error("Girdiğiniz e-posta adresi zaten kullanımda.");
-    //   }
-    //   if (data.user) {
-    //     setDistricts([]);
-    //     setTaxOfficies([]);
-    //     setRegistered(true);
-    //     reset();
-    //   }
-    // } else {
-    //   const response = await axios.post(
-    //     "/api/firebase/employer-login",
-    //     JSON.stringify({
-    //       email: email,
-    //       password: password,
-    //     })
-    //   );
-    //   const data = response.data;
-    //   if (data.user) {
-    //     await signInWithEmailAndPassword(auth, email, String(password));
-    //     setTimeout(() => {
-    //       router.replace("/");
-    //     }, 2000);
-    //   }
-    //   switch (data.message) {
-    //     case "Firebase: Error (auth/invalid-credential).":
-    //       return toast.error(
-    //         "Giriş bilgileriniz geçersiz. Lütfen e-posta adresinizi ve şifrenizi kontrol edip tekrar deneyin."
-    //       );
-    //     case "Firebase: Error (auth/too-many-requests).":
-    //       return toast.error(
-    //         "Çok fazla yanlış giriş yaptınız. Lütfen bilgilerinizi kontrol edip tekrar deneyin.",
-    //         { duration: 5000 }
-    //       );
-    //     case "Giriş Başarılı":
-    //       return toast.success(data.message);
-    //   }
-    // }
+    if (isRegisteredRoute) {
+      const registeredData = {
+        fullname,
+        phoneNumber: phone,
+        email,
+        companyName,
+        city,
+        district,
+        taxCity,
+        taxOffice,
+        taxNumber,
+        emailConsent: checkboxFirst,
+        personalDataConsent: checkboxSecond,
+      };
+
+      const res = await manageAuthApi(
+        () => createEmployer(registeredData as Employer).unwrap(),
+        reset,
+        {
+          case: "This email address is already in use.",
+          message: "Girdiğiniz e-posta adresi kullanılmakta.",
+        },
+        false
+      );
+
+      if (res) {
+        setRegistered(true);
+      }
+    }
   };
 
   const handleChangeCheckbox = (
@@ -161,12 +142,12 @@ const EmployerForm = () => {
             {isRegisteredRoute && (
               <>
                 <AuthInput
-                  error={errors.nameAndSurname?.message}
+                  error={errors.fullname?.message}
                   placeholder="Ömer Çıkan"
                   label="Ad Soyad"
                   icon={<MdOutlineEmail />}
                   readOnly={isSubmitting}
-                  {...register("nameAndSurname")}
+                  {...register("fullname")}
                 />
 
                 <div className="my-4">

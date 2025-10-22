@@ -1,5 +1,5 @@
 export const EMPLOYER_FORM_FIELDS = {
-  nameAndSurname: "",
+  fullname: "",
   phone: "",
   email: "",
   password: "",

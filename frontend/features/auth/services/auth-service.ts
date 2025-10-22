@@ -1,4 +1,5 @@
 import { User } from "@/shared/types";
+import { Employer } from "@/shared/types/models/employer";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const authServiceApi = createApi({
@@ -40,11 +41,32 @@ export const authServiceApi = createApi({
       }),
       providesTags: ["User"],
     }),
+
+    createEmployer: builder.mutation<
+      Employer,
+      Omit<
+        Employer,
+        | "createdAt"
+        | "updatedAt"
+        | "_id"
+        | "companyLogo"
+        | "emailVerified"
+        | "role"
+      >
+    >({
+      query: (data) => ({
+        url: "auth/register-employer",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
 export const {
   useCreateCandidateMutation,
   useLoginCandidateMutation,
+  useCreateEmployerMutation,
   useGetUserQuery,
 } = authServiceApi;

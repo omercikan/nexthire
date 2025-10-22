@@ -102,12 +102,12 @@ export interface TaxOfficiesJsonInterface {
 
 //! User interface area Employer and Candidate Role interfaces START !//
 export interface User {
-  createdAt: string;
+  createdAt: Date;
+  updatedAt: Date;
   email: string;
   emailVerified: boolean;
   _id: string;
   fullname: string;
-  // displayName: string;
   phoneNumber: string;
   role: string;
 }

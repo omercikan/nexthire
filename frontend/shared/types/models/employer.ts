@@ -1,5 +1,5 @@
 import { User } from "..";
-import { EmployerOpenJobs } from "../employer/open-jobs.types";
+// import { EmployerOpenJobs } from "../employer/open-jobs.types";
 
 /**
  * @interface Employer
@@ -7,19 +7,25 @@ import { EmployerOpenJobs } from "../employer/open-jobs.types";
  * @description The user data stored in DB for users with employer role
  */
 export interface Employer extends User {
-  companyInformations: CompanyInformations;
-  featured: boolean;
-  bestCompany: boolean;
-  openJobs: EmployerOpenJobs[];
-}
-
-export interface Location {
+  companyName: string;
+  companyLogo: string;
   city: string;
   district: string;
-  taxNumber: string;
+  taxCity: string;
   taxOffice: string;
-  taxOfficeCity: string;
+  taxNumber: string;
+  emailConsent: boolean;
+  personalDataConsent: boolean;
+
+  // companyInformations: CompanyInformations;
+  // featured: boolean;
+  // bestCompany: boolean;
+  // openJobs: EmployerOpenJobs[];
 }
+
+// export interface Location {
+//   taxOfficeCity: string;
+// }
 
 export interface CompanyInformations {
   companyName: string;

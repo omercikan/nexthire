@@ -10,15 +10,18 @@ const useAuth = () => {
       apiFn: () => Promise<T>,
       reset: () => void,
       cases: { case: string; message: string },
-      redirect: string = "/"
+      isRedirect: boolean = true,
+      redirectRoute: string = "/"
     ) => {
       try {
         const res = await apiFn();
 
-        if (res) {
-          router.replace(redirect);
+        if (res && isRedirect) {
+          router.replace(redirectRoute);
           reset();
         }
+
+        return res;
       } catch (err) {
         const error = err as { data: { message: string } } & { data: string };
 
