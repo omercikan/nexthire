@@ -9,8 +9,10 @@ export const employerUserSchema = z.object({
   phoneNumber: z
     .string()
     .nonempty("phone number is required")
-    .max(11, "phone number must be max 11 characters long."),
-
+    .regex(
+      /^(?:\+90|0)(5\d{2})\s?\d{3}\s?\d{2}\s?\d{2}$/,
+      "phone number is must be exp: 0555 555 55 55"
+    ),
   companyName: z
     .string()
     .nonempty("company name is required")
