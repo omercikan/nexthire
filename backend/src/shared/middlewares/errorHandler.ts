@@ -8,7 +8,7 @@ export const errorHandler = (
   next: NextFunction
 ) => {
   res
-    .status(Number(err.cause))
+    .status(Number(err.cause) || 500)
     .json({ message: err.message || "Internal Server Error" });
   logger.error({ message: err.message });
   next();

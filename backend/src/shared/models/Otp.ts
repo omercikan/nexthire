@@ -3,9 +3,15 @@ import { OtpTypes } from "../types/otp.types";
 
 const OtpSchema = new Schema<OtpTypes>({
   userId: {
+    type: Schema.Types.ObjectId,
+    refPath: "userModel",
+    required: true,
+  },
+
+  userModel: {
     type: String,
     required: true,
-    unique: true,
+    enum: ["Candidate", "Employer"],
   },
 
   token: {
