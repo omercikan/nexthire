@@ -61,6 +61,17 @@ export const authServiceApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+
+    verifyOtp: builder.mutation<
+      { message: string; status: boolean },
+      { token: string; code: string }
+    >({
+      query: ({ token, code }) => ({
+        url: "/auth/otp",
+        method: "POST",
+        body: { token, code },
+      }),
+    }),
   }),
 });
 
@@ -69,4 +80,5 @@ export const {
   useLoginCandidateMutation,
   useCreateEmployerMutation,
   useGetUserQuery,
+  useVerifyOtpMutation,
 } = authServiceApi;

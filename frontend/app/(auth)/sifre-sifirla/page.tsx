@@ -13,7 +13,7 @@ import ResetPassword from "@/features/auth/components/resetPassword/ResetPasswor
 
 const ResetPasswordAuth = () => {
   const [sendingEmail, _setSendingEmail] = useState<boolean>(false);
-  const [isSuccessOtp, _setIsSuccessOtp] = useState(false);
+  const [isSuccessOtp, setIsSuccessOtp] = useState(false);
   const token = useSearchParams().get("vt");
   const router = useRouter();
 
@@ -59,7 +59,9 @@ const ResetPasswordAuth = () => {
         ) : (
           <>
             {!token && !isSuccessOtp && <EmailVerification />}
-            {token && !isSuccessOtp && <OtpVerification />}
+            {token && !isSuccessOtp && (
+              <OtpVerification setIsSuccessOtp={setIsSuccessOtp} />
+            )}
             {isSuccessOtp && <ResetPassword />}
           </>
         )}
