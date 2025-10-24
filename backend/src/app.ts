@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import authCandidateRoutes from "./features/auth/candidate/routes/authCandidateRoutes.ts";
 import authEmployerRoutes from "./features/auth/employer/routes/authEmployerRoutes.ts";
+import otpRoutes from "./features/auth/otp/otpRoutes.ts";
 import userRoutes from "./features/users/routes/userRoutes.ts";
 import { errorHandler } from "./shared/middlewares/errorHandler.ts";
 import cookieParser from "cookie-parser";
@@ -29,6 +30,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authCandidateRoutes);
 app.use("/api/auth", authEmployerRoutes);
+app.use("/api/auth", otpRoutes);
 
 app.use("/api/users", userRoutes);
 
