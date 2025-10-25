@@ -72,6 +72,17 @@ export const authServiceApi = createApi({
         body: { token, code },
       }),
     }),
+
+    refreshOtp: builder.mutation<
+      { message: string; status: boolean; email: string },
+      { token: string }
+    >({
+      query: ({ token }) => ({
+        method: "PATCH",
+        url: "/auth/otp/refresh",
+        body: { token },
+      }),
+    }),
   }),
 });
 
@@ -81,4 +92,5 @@ export const {
   useCreateEmployerMutation,
   useGetUserQuery,
   useVerifyOtpMutation,
+  useRefreshOtpMutation,
 } = authServiceApi;

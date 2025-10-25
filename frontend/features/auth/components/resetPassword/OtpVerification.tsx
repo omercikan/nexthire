@@ -3,9 +3,13 @@ import Success from "@/shared/components/ui/Success";
 import useCreateArray from "@/shared/hooks/useCreateArray";
 import React, { useRef, useState } from "react";
 import { GrSecure } from "react-icons/gr";
-import { useVerifyOtpMutation } from "../../services/auth-service";
+import {
+  useRefreshOtpMutation,
+  useVerifyOtpMutation,
+} from "../../services/auth-service";
 import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
 
 const OtpVerification = ({
   setIsSuccessOtp,
@@ -19,6 +23,8 @@ const OtpVerification = ({
   const verifyToken = useSearchParams().get("vt");
   const [isExpiredOtp, setIsExpiredOtp] = useState(false);
   const [emptyIndex, setEmptyIndex] = useState(Array(6).fill("0"));
+  const [refreshOtp] = useRefreshOtpMutation();
+  const { manageAuthApi } = useAuth();
 
   const handleOtpInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -93,6 +99,31 @@ const OtpVerification = ({
     }
   };
 
+  const handleRefreshOtp = async () => {
+    const refreshOtpRes = await manageAuthApi(
+      () => refreshOtp({ token: String(verifyToken) }).unwrap(),
+      () => false,
+      { case: "OTP not found", message: "Geçersiz doğrulama bağlantısı." },
+      false
+    );
+
+    if (refreshOtpRes) {
+      const email = refreshOtpRes.email.split("@");
+      const [name, domain] = email;
+
+      const maskedEmail = `${name.slice(0, 2)}${"*".repeat(
+        name.length - 2
+      )}${name.slice(length - 2)}@${domain}`;
+
+      toast.success(
+        `Yeni Doğrulama bağlantısı ${maskedEmail} adresine başarıyla gönderildi.`,
+        { duration: 3000 }
+      );
+      toast.dismiss("otpError");
+      setIsExpiredOtp(false);
+    }
+  };
+
   return (
     <>
       <Success
@@ -135,6 +166,7 @@ const OtpVerification = ({
           <button
             className="my-5 float-end text-[var(--primary-color)] text-sm"
             type="button"
+            onClick={handleRefreshOtp}
           >
             ↻ Tekrar kod gönder
           </button>

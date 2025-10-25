@@ -76,6 +76,7 @@ export class OtpController {
       res.json({
         message: "A new verification code has been sent to your email.",
         status: true,
+        email: otp.userId.email,
       });
     } catch (error) {
       next(error);
