@@ -3,9 +3,8 @@ import { Employer } from "../../../../shared/models/Employer.ts";
 import { createUser } from "../../../../shared/services/createUserService.ts";
 import { publisher } from "../../../../queues/publisher.ts";
 import { Otp } from "../../../../shared/models/Otp.ts";
-import crypto from "crypto";
-import bcrypt from "bcrypt";
 import mongoose from "mongoose";
+import { generateOtpCode } from "../../../../shared/utils/generateOtpCode.ts";
 
 class EmployerController {
   async createEmployer(req: Request, res: Response, next: NextFunction) {
@@ -28,10 +27,7 @@ class EmployerController {
       const createdEmployer = await createUser("employer", body, session);
 
       if (createdEmployer) {
-        const token = crypto.randomBytes(10).toString("hex");
-        const expiration = Date.now() + 5 * 60 * 1000;
-        const code = Math.floor(10000 + Math.random() * 900000);
-        const hashedCode = await bcrypt.hash(String(code), 8);
+        const { token, code, expiration, hashedCode } = await generateOtpCode();
 
         const createdOtp = new Otp({
           userId: createdEmployer._id,

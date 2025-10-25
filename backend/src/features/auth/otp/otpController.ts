@@ -2,9 +2,9 @@ import { NextFunction, Request, Response } from "express";
 import { Otp } from "../../../shared/models/Otp.ts";
 import bcrypt from "bcrypt";
 import { publisher } from "../../../queues/publisher.ts";
-import crypto from "crypto";
 import { EmployerTypes } from "../../../shared/types/user/employerUser.types.ts";
 import { CandidateTypes } from "../../../shared/types/user/candidateUser.types.ts";
+import { generateOtpCode } from "../../../shared/utils/generateOtpCode.ts";
 
 export class OtpController {
   verifyOtp = async (req: Request, res: Response, next: NextFunction) => {
@@ -47,14 +47,16 @@ export class OtpController {
     const { token } = req.body;
 
     try {
-      const newToken = crypto.randomBytes(10).toString("hex");
-      const newCode = crypto.randomInt(1_000_000).toString().padStart(6, "0");
-      const hashedNewCode = await bcrypt.hash(String(newCode), 8);
-      const newExpiration = Date.now() + 15 * 60 * 1000;
+      const {
+        token: newToken,
+        code,
+        expiration,
+        hashedCode,
+      } = await generateOtpCode();
 
       const otp = await Otp.findOneAndUpdate(
         { token },
-        { expiration: newExpiration, code: hashedNewCode, token: newToken },
+        { expiration, code: hashedCode, token: newToken },
         { new: true }
       ).populate<{ userId: CandidateTypes | EmployerTypes }>("userId");
 
@@ -65,7 +67,7 @@ export class OtpController {
       }
 
       await publisher("emailQueue", {
-        code: newCode,
+        code,
         token: newToken,
         email: otp.userId.email,
         fullname: otp.userId.fullname,
