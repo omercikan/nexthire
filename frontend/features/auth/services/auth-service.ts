@@ -83,6 +83,23 @@ export const authServiceApi = createApi({
         body: { token },
       }),
     }),
+
+    resetPassword: builder.mutation<
+      { message: string; status: number; role: "employer" | "candidate" },
+      {
+        token?: string;
+        userId?: string;
+        role?: string;
+        oldPassword?: string;
+        newPassword: string;
+      }
+    >({
+      query: ({ token, userId, role, oldPassword, newPassword }) => ({
+        method: "PATCH",
+        url: "auth/password",
+        body: { token, userId, role, oldPassword, newPassword },
+      }),
+    }),
   }),
 });
 
@@ -93,4 +110,5 @@ export const {
   useGetUserQuery,
   useVerifyOtpMutation,
   useRefreshOtpMutation,
+  useResetPasswordMutation,
 } = authServiceApi;

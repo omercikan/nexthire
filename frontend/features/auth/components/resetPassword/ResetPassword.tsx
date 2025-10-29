@@ -4,10 +4,16 @@ import Success from "@/shared/components/ui/Success";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Inter } from "next/font/google";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { GrSecure } from "react-icons/gr";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
-import { resetPasswordSchema } from "./schema/ResetPasswordSchema";
+import {
+  resetPasswordSchema,
+  ResetPasswordType,
+} from "./schema/ResetPasswordSchema";
+import { useResetPasswordMutation } from "../../services/auth-service";
+import { useRouter, useSearchParams } from "next/navigation";
+import useAuth from "../../hooks/useAuth";
 
 const inter = Inter({
   subsets: ["latin-ext"],
@@ -22,13 +28,37 @@ const ResetPassword = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: { password: "", confirmPassword: "" },
     resolver: zodResolver(resetPasswordSchema),
   });
+  const [resetPassword] = useResetPasswordMutation();
+  const { manageAuthApi } = useAuth();
+  const verificationToken = useSearchParams().get("vt");
+  const router = useRouter();
 
-  const onSubmit = () => {};
+  const onSubmit: SubmitHandler<ResetPasswordType> = async (values) => {
+    const { confirmPassword } = values;
+
+    const resetPasswordResponse = await manageAuthApi(
+      () =>
+        resetPassword({
+          token: verificationToken ?? "",
+          newPassword: confirmPassword,
+        }).unwrap(),
+      reset,
+      { case: "OTP not found", message: "Doğrulama bağlantısı geçersiz." },
+      false
+    );
+
+    if (resetPasswordResponse?.role === "candidate") {
+      router.push("/aday-giris");
+    } else {
+      router.push("/isveren-giris");
+    }
+  };
 
   const handleClickPasswordDisplay = (state: keyof typeof hidePassword) => {
     setHidePassword((prev) => ({
@@ -83,7 +113,11 @@ const ResetPassword = () => {
           }
         />
 
-        <CustomButton text="Şifreyi Güncelle" className="w-full mt-6" />
+        <CustomButton
+          text="Şifreyi Güncelle"
+          isSubmitting={isSubmitting}
+          className="w-full mt-6"
+        />
       </form>
     </div>
   );
