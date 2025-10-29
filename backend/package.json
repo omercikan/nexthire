@@ -8,6 +8,7 @@
     "start": "node dist/server.js",
     "dev": "nodemon",
     "lint": "eslint 'src/**/*.ts'",
+    "type-check": "tsc --noEmit --watch",
     "start-worker": "node --loader ts-node/esm src/queues/emailWorker.ts"
   },
   "keywords": [],

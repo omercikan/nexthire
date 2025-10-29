@@ -1,10 +1,7 @@
-import { Document } from "mongoose";
+import { User } from "./user.types";
 
-export interface EmployerTypes extends Document {
-  fullname: string;
+export interface EmployerTypes extends User {
   phoneNumber: string;
-  email: string;
-  password: string;
   companyName: string;
   city: string;
   district: string;

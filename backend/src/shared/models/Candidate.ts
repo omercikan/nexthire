@@ -35,6 +35,9 @@ const CandidateSchema = new Schema<CandidateTypes>(
       enum: ["candidate"],
       default: "candidate",
     },
+
+    failedAttempts: { type: Number, default: 0 },
+    failedTime: Number,
   },
   { timestamps: true, versionKey: false }
 );

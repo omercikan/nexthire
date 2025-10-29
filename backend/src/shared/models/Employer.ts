@@ -67,6 +67,9 @@ const EmployerSchema = new Schema<EmployerTypes>(
       default: true,
       required: true,
     },
+
+    failedAttempts: { type: Number, default: 0 },
+    failedTime: Number,
   },
   { timestamps: true, versionKey: false }
 );

@@ -1,10 +1,6 @@
-import { Document } from "mongoose";
+import { User } from "./user.types";
 
-export interface CandidateTypes extends Document {
-  _id: string;
-  fullname: string;
-  email: string;
-  password: string;
+export interface CandidateTypes extends User {
   profilePhoto: string;
   role: "candidate";
 }
