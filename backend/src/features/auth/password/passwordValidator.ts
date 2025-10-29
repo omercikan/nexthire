@@ -3,12 +3,7 @@ import z from "zod";
 export const passwordRequestSchema = z.object({
   token: z.string().min(20, "Token must be 20 characters long.").optional(),
 
-  userId: z.string("userId is required"),
-
-  role: z.enum(
-    ["employer", "candidate"],
-    "role must be an employer or a candidate."
-  ),
+  userId: z.string().nonempty("userId is required").optional(),
 
   oldPassword: z.string().optional(),
 

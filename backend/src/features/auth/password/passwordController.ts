@@ -5,6 +5,8 @@ import config from "../../../config/index.ts";
 import { Employer } from "../../../shared/models/Employer.ts";
 import { Candidate } from "../../../shared/models/Candidate.ts";
 import { updateUserPassword } from "./passwordServices.ts";
+import { Document } from "mongoose";
+import { Role } from "../../../shared/types/user/role.ts";
 
 export const passwordController = async (
   req: Request,
@@ -17,7 +19,7 @@ export const passwordController = async (
   try {
     if (token) {
       const otp = await Otp.findOne({ token }).populate<{
-        userId: { password: string; save: () => Promise<void> };
+        userId: Document & { password: string; role: Role };
       }>("userId");
 
       if (!otp) {
@@ -30,6 +32,7 @@ export const passwordController = async (
 
       return res.json({
         message: "Password is updated successfully.",
+        role: otp.userId.role,
       });
     } else {
       switch (role) {
