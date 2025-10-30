@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import { Employer } from "../../../../shared/models/Employer.ts";
 import { createUser } from "../../../../shared/services/createUserService.ts";
 import { publisher } from "../../../../queues/publisher.ts";
 import { Otp } from "../../../../shared/models/Otp.ts";
 import mongoose from "mongoose";
 import { generateOtpCode } from "../../../../shared/utils/generateOtpCode.ts";
+import { User } from "../../../../shared/models/User.ts";
 
 class EmployerController {
   async createEmployer(req: Request, res: Response, next: NextFunction) {
@@ -13,7 +13,7 @@ class EmployerController {
     session.startTransaction();
 
     try {
-      const existingUser = await Employer.findOne({
+      const existingUser = await User.findOne({
         email: body.email,
       }).session(session);
 
@@ -24,14 +24,16 @@ class EmployerController {
           .json({ message: "This email address is already in use." });
       }
 
-      const createdEmployer = await createUser("employer", body, session);
+      const createdEmployer = await createUser(
+        { ...body, role: "employer" },
+        session
+      );
 
       if (createdEmployer) {
         const { token, code, expiration, hashedCode } = await generateOtpCode();
 
         const createdOtp = new Otp({
           userId: createdEmployer._id,
-          userModel: "Employer",
           token,
           expiration,
           code: hashedCode,
