@@ -7,8 +7,7 @@ import bcrypt from "bcrypt";
 // config import
 import config from "../../../../config/index.ts";
 
-// RefreshToken and Candidate models
-import { Candidate } from "../../../../shared/models/Candidate.ts";
+// RefreshToken model
 import { RefreshToken } from "../../../../shared/models/RefreshToken.ts";
 
 // create user, auth services
@@ -17,16 +16,18 @@ import { authService } from "../../../../shared/services/authService.ts";
 
 // candidate user interface
 import { CandidateTypes } from "../../../../shared/types/user/candidateUser.types.ts";
+import { User } from "../../../../shared/models/User.ts";
+import mongoose from "mongoose";
 
 class CandidateController {
   async createCandidate(req: Request, res: Response, next: NextFunction) {
     const { fullname, email, password } = req.body;
 
-    const session = await Candidate.startSession();
+    const session = await mongoose.startSession();
     session.startTransaction();
 
     try {
-      const user = await Candidate.findOne({ email });
+      const user = await User.findOne({ email }).session(session);
 
       if (user) {
         session.abortTransaction();
@@ -38,11 +39,11 @@ class CandidateController {
       const hashedPassword = await bcrypt.hash(password, config.saltRounds);
 
       const createdUser = await createUser<Partial<CandidateTypes>>(
-        "candidate",
         {
           fullname,
           email,
           password: hashedPassword,
+          role: "candidate",
         },
         session
       );
@@ -59,7 +60,7 @@ class CandidateController {
         await createdRefreshToken.save({ session });
 
         await session.commitTransaction();
-        
+
         return res
           .status(201)
           .json({ message: "Account is successfully created." });
@@ -76,13 +77,13 @@ class CandidateController {
     const { email, password } = req.body;
 
     try {
-      const user = await Candidate.findOne({ email });
+      const user = await User.findOne({ email });
 
       if (!user || !(await bcrypt.compare(password, user.password ?? ""))) {
         return res.status(401).json({ message: "Invalid email or password" });
       }
 
-      const { refreshToken } = authService(res, user._id, "candidate");
+      const { refreshToken } = authService(res, String(user._id), "candidate");
       const hashedRefreshToken = await bcrypt.hash(
         refreshToken,
         config.saltRounds
@@ -96,7 +97,7 @@ class CandidateController {
 
       const { password: _, ...safeUser } = user.toObject();
 
-      req.user = { id: user._id, role: user.role };
+      req.user = { id: String(user._id), role: user.role };
 
       res.json({
         message: "Login successful",
@@ -111,10 +112,10 @@ class CandidateController {
     const body = req.body;
 
     try {
-      const user = await Candidate.findOne({ email: body.email });
+      const user = await User.findOne({ email: body.email });
 
       if (!user) {
-        const newUser = await createUser("candidate", body);
+        const newUser = await createUser(body);
 
         if (newUser)
           req.user = { id: String(newUser?._id), role: newUser?.role };
@@ -123,7 +124,7 @@ class CandidateController {
           .status(200)
           .json({ message: "Google registration successful", user: newUser });
       } else {
-        req.user = { id: user._id, role: user.role };
+        req.user = { id: String(user._id), role: user.role };
 
         return res.status(200).json({
           message: "The user already exists",
