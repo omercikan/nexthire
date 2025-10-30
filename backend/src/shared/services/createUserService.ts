@@ -1,22 +1,8 @@
-import { ClientSession, Document } from "mongoose";
-import { Candidate } from "../models/Candidate.ts";
-import { Employer } from "../models/Employer.ts";
-import { Role } from "../types/user/role.ts";
+import { ClientSession } from "mongoose";
+import { User } from "../models/User.ts";
 
-export const createUser = async <T>(
-  role: Role,
-  data: T,
-  session?: ClientSession
-) => {
-  switch (role) {
-    case "candidate":
-      const candidateUser = new Candidate(data);
-      await candidateUser.save({ session });
-      return candidateUser;
-
-    case "employer":
-      const employerUser = new Employer(data);
-      await employerUser.save({ session });
-      return employerUser;
-  }
+export const createUser = async <T>(data: T, session?: ClientSession) => {
+  const user = new User(data);
+  await user.save({ session });
+  return user;
 };
