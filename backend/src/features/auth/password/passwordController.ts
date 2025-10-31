@@ -2,8 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import { Otp } from "../../../shared/models/Otp.ts";
 import bcrpyt from "bcrypt";
 import config from "../../../config/index.ts";
-import { Employer } from "../../../shared/models/Employer.ts";
-import { Candidate } from "../../../shared/models/Candidate.ts";
 import { updateUserPassword } from "./passwordServices.ts";
 import { Document } from "mongoose";
 import { Role } from "../../../shared/types/user/role.ts";
@@ -13,7 +11,7 @@ export const passwordController = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { token, userId, role, oldPassword, newPassword } = req.body;
+  const { token, userId, oldPassword, newPassword } = req.body;
   const hashedNewPassword = await bcrpyt.hash(newPassword, config.saltRounds);
 
   try {
@@ -35,32 +33,15 @@ export const passwordController = async (
         role: otp.userId.role,
       });
     } else {
-      switch (role) {
-        case "employer":
-          const employerResponse = await updateUserPassword(
-            Employer,
-            userId,
-            oldPassword,
-            newPassword,
-            hashedNewPassword
-          );
+      const updatePasswordResponse = await updateUserPassword(
+        userId,
+        oldPassword,
+        newPassword,
+        hashedNewPassword
+      );
 
-          res.status(employerResponse.status).json(employerResponse);
-          break;
-        case "candidate":
-          const candidateResponse = await updateUserPassword(
-            Candidate,
-            userId,
-            oldPassword,
-            newPassword,
-            hashedNewPassword
-          );
-
-          res.status(candidateResponse.status).json(candidateResponse);
-          break;
-        default:
-          return res.status(400).json({ message: "Role is not valid." });
-      }
+      const { status } = updatePasswordResponse;
+      return res.status(status).json(updatePasswordResponse);
     }
   } catch (error) {
     next(error);

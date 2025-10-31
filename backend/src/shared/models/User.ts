@@ -42,8 +42,8 @@ const UserSchema = new Schema(
       type: Boolean,
       default: true,
     },
-    failedAttempts: Number,
-    failedTime: Number,
+    failedAttempts: { type: Number, default: 0 },
+    failedTime: { type: Number, default: 0 },
   },
   { timestamps: true, versionKey: false }
 );

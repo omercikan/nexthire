@@ -1,26 +1,25 @@
-import { Model, ObjectId } from "mongoose";
 import bcrypt from "bcrypt";
+import { User } from "../../../shared/models/User.ts";
 
-export const updateUserPassword = async <
-  T extends { password: string; failedAttempts: number; failedTime: number },
->(
-  Model: Model<T>,
-  userId: ObjectId,
+export const updateUserPassword = async (
+  userId: string,
   oldPassword: string,
   newPassword: string,
   hashedNewPassword: string
 ) => {
   try {
-    const user = await Model.findById(userId);
+    const user = await User.findById(userId);
 
     if (!user) {
       return { message: "User not found.", status: 404 };
     }
 
     const now = Date.now();
+    const failedTime = user.failedTime;
+    const failedAttempts = user.failedAttempts;
 
-    if (user.failedAttempts === 5 && now < user.failedTime) {
-      const remainingMs = user.failedTime - Date.now();
+    if (failedAttempts === 5 && now < failedTime) {
+      const remainingMs = failedTime - Date.now();
       const remainingMinutes = Math.round(remainingMs / 1000 / 60);
       const remainingSeconds = Math.round(remainingMs / 1000);
 
@@ -30,13 +29,16 @@ export const updateUserPassword = async <
       };
     }
 
-    if (user.failedAttempts === 5 && now > user.failedTime) {
+    if (failedAttempts === 5 && now > failedTime) {
       user.failedAttempts = 0;
       user.failedTime = 0;
       await user?.save();
     }
 
-    const comparePassword = await bcrypt.compare(oldPassword, user.password);
+    const comparePassword = await bcrypt.compare(
+      oldPassword,
+      String(user.password)
+    );
 
     if (!comparePassword && user.failedAttempts !== 5) {
       user.failedAttempts += 1;
