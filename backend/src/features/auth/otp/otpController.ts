@@ -68,6 +68,8 @@ export class OtpController {
 
       await publisher("emailQueue", {
         code,
+        description:
+          "NextHire hesabınızı etkinleştirmek için aşağıdaki doğrulama kodunu kullanın. Bu kod yalnızca kısa süreli geçerlidir.",
         token: newToken,
         email: otp.userId.email,
         fullname: otp.userId.fullname,

@@ -13,10 +13,11 @@ import config from "../config/index.ts";
 
     try {
       const data = JSON.parse(msg!.content.toString());
-      const { code, token, email, fullname } = data;
+      const { code, token, email, fullname, description } = data;
 
       await sendMail(email, "NextHire - Hesap Doğrulama Kodu", "otp", {
         fullname,
+        description,
         code,
         verificationLink: `${config.client_url}/sifre-sifirla?vt=${token}`,
         year: "2025",
