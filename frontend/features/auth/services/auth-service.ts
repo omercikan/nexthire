@@ -100,6 +100,14 @@ export const authServiceApi = createApi({
         body: { token, userId, role, oldPassword, newPassword },
       }),
     }),
+
+    sendResetEmail: builder.mutation<{ message: string }, { email: string }>({
+      query: ({ email }) => ({
+        url: "auth/email/send-otp",
+        method: "POST",
+        body: { email },
+      }),
+    }),
   }),
 });
 
@@ -111,4 +119,5 @@ export const {
   useVerifyOtpMutation,
   useRefreshOtpMutation,
   useResetPasswordMutation,
+  useSendResetEmailMutation,
 } = authServiceApi;
