@@ -5,6 +5,7 @@ import authEmployerRoutes from "./features/auth/employer/routes/authEmployerRout
 import otpRoutes from "./features/auth/otp/otpRoutes.ts";
 import passwordRoutes from "./features/auth/password/passwordRoutes.ts";
 import userRoutes from "./features/users/routes/userRoutes.ts";
+import emailAuthRoutes from "./features/auth/emails/emails.routes.ts";
 import { errorHandler } from "./shared/middlewares/errorHandler.ts";
 import cookieParser from "cookie-parser";
 import config from "./config/index.ts";
@@ -33,6 +34,7 @@ app.use("/api/auth", authCandidateRoutes);
 app.use("/api/auth", authEmployerRoutes);
 app.use("/api/auth", otpRoutes);
 app.use("/api/auth", passwordRoutes);
+app.use("/api/auth/email", emailAuthRoutes);
 
 app.use("/api/users", userRoutes);
 
