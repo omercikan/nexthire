@@ -21,6 +21,7 @@ module.exports = {
 const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: false,
+  experimental: { globalNotFound: true },
 };
 
 export default nextConfig;
