@@ -1,7 +1,7 @@
-import app from "./app.ts";
-import { connectDatabase } from "./config/db.ts";
-import config from "./config/index.ts";
-import logger from "./shared/utils/logger.ts";
+import app from "./app";
+import { connectDatabase } from "./config/db";
+import config from "./config/index";
+import logger from "./shared/utils/logger";
 
 app.listen(config.port, (err) => {
   if (err) {

@@ -1,10 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { JsonWebTokenError } from "jsonwebtoken";
-import { authService } from "../services/authService.ts";
-import { RefreshToken } from "../models/RefreshToken.ts";
-import verifyToken from "../utils/verifyToken.ts";
-import controlRefreshToken from "../utils/controlRefreshToken.ts";
-import { Role } from "../types/user/role.ts";
+import { authService } from "../services/authService";
+import { RefreshToken } from "../models/RefreshToken";
+import verifyToken from "../utils/verifyToken";
+import controlRefreshToken from "../utils/controlRefreshToken";
 
 export const authMiddleware = async (
   req: Request,

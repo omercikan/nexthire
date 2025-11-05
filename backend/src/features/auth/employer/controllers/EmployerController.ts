@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import { createUser } from "../../../../shared/services/createUserService.ts";
-import { publisher } from "../../../../queues/publisher.ts";
-import { Otp } from "../../../../shared/models/Otp.ts";
+import { createUser } from "../../../../shared/services/createUserService";
+import { publisher } from "../../../../queues/publisher";
+import { Otp } from "../../../../shared/models/Otp";
 import mongoose from "mongoose";
-import { generateOtpCode } from "../../../../shared/utils/generateOtpCode.ts";
-import { User } from "../../../../shared/models/User.ts";
+import { generateOtpCode } from "../../../../shared/utils/generateOtpCode";
+import { User } from "../../../../shared/models/User";
 
 class EmployerController {
   async createEmployer(req: Request, res: Response, next: NextFunction) {

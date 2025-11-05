@@ -1,5 +1,5 @@
 import { CookieOptions, Response } from "express";
-import config from "../../config/index.ts";
+import config from "../../config/index";
 
 export const cookieSetter = (
   res: Response,

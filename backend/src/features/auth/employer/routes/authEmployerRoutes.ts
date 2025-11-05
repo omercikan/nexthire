@@ -1,8 +1,8 @@
 import express from "express";
-import { createEmployer } from "../controllers/EmployerController.ts";
-import { limitter } from "../../../../shared/middlewares/limitter.ts";
-import { validateRequest } from "../../../../shared/middlewares/validateRequest.ts";
-import { employerUserSchema } from "../schema/employerRequestSchema.ts";
+import { createEmployer } from "../controllers/EmployerController";
+import { limitter } from "../../../../shared/middlewares/limitter";
+import { validateRequest } from "../../../../shared/middlewares/validateRequest";
+import { employerUserSchema } from "../schema/employerRequestSchema";
 const router = express.Router();
 
 router.post(

@@ -1,7 +1,7 @@
 import { Response } from "express";
-import { cookieSetter } from "../utils/cookieSetter.ts";
-import { generateToken } from "../utils/generateToken.ts";
-import { Role } from "../types/user/role.ts";
+import { cookieSetter } from "../utils/cookieSetter";
+import { generateToken } from "../utils/generateToken";
+import { Role } from "../types/user/role";
 
 export const authService = (res: Response, id: string, role: Role) => {
   const refreshToken = generateToken(

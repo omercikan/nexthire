@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { passwordController } from "./passwordController.ts";
-import { validateRequest } from "../../../shared/middlewares/validateRequest.ts";
-import { passwordRequestSchema } from "./passwordValidator.ts";
+import { passwordController } from "./passwordController";
+import { validateRequest } from "../../../shared/middlewares/validateRequest";
+import { passwordRequestSchema } from "./passwordValidator";
 const router = Router();
 
 router.patch(

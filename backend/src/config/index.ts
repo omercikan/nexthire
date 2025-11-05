@@ -1,5 +1,5 @@
-import dotnev from "dotenv";
-dotnev.config();
+import * as dotenv from "dotenv";
+dotenv.config();
 
 interface Config {
   port: number;

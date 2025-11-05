@@ -1,5 +1,5 @@
 import { ClientSession } from "mongoose";
-import { User } from "../models/User.ts";
+import { User } from "../models/User";
 
 export const createUser = async <T>(data: T, session?: ClientSession) => {
   const user = new User(data);

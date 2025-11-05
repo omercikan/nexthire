@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { validateRequest } from "../../../../shared/middlewares/validateRequest.ts";
-import { candidateUserSchema } from "../validators/candidateRequestValidator.ts";
-import { limitter } from "../../../../shared/middlewares/limitter.ts";
+import { validateRequest } from "../../../../shared/middlewares/validateRequest";
+import { candidateUserSchema } from "../validators/candidateRequestValidator";
+import { limitter } from "../../../../shared/middlewares/limitter";
 import {
   createCandidate,
   googleAuth,
   loginCandidate,
-} from "../controllers/CandidateController.ts";
+} from "../controllers/CandidateController";
 
 const router = Router();
 const limitTime = 15 * 60 * 1000;

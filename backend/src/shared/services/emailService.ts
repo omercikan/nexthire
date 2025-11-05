@@ -3,11 +3,7 @@ import path from "path";
 import hbs, {
   NodemailerExpressHandlebarsOptions,
 } from "nodemailer-express-handlebars";
-import config from "../../config/index.ts";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import config from "../../config/index";
 
 const {
   email_service: { host, port, secure, auth },

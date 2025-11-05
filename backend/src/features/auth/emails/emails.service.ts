@@ -1,11 +1,11 @@
 import { ClientSession } from "mongoose";
-import { Otp } from "../../../shared/models/Otp.ts";
-import { User } from "../../../shared/models/User.ts";
-import { Role } from "../../../shared/types/user/role.ts";
-import { publisher } from "../../../queues/publisher.ts";
-import { generateOtpCode } from "../../../shared/utils/generateOtpCode.ts";
+import { Otp } from "../../../shared/models/Otp";
+import { User } from "../../../shared/models/User";
+import { Role } from "../../../shared/types/user/role";
+import { publisher } from "../../../queues/publisher";
+import { generateOtpCode } from "../../../shared/utils/generateOtpCode";
 import { ObjectId } from "mongodb";
-import { OtpTypes } from "../../../shared/types/otp.types.ts";
+import { OtpTypes } from "../../../shared/types/otp.types";
 
 interface OtpData {
   token: string;

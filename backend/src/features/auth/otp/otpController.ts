@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import { Otp } from "../../../shared/models/Otp.ts";
+import { Otp } from "../../../shared/models/Otp";
 import bcrypt from "bcrypt";
-import { publisher } from "../../../queues/publisher.ts";
-import { EmployerTypes } from "../../../shared/types/user/employerUser.types.ts";
-import { CandidateTypes } from "../../../shared/types/user/candidateUser.types.ts";
-import { generateOtpCode } from "../../../shared/utils/generateOtpCode.ts";
+import { publisher } from "../../../queues/publisher";
+import { EmployerTypes } from "../../../shared/types/user/employerUser.types";
+import { CandidateTypes } from "../../../shared/types/user/candidateUser.types";
+import { generateOtpCode } from "../../../shared/utils/generateOtpCode";
 
 export class OtpController {
   verifyOtp = async (req: Request, res: Response, next: NextFunction) => {
