@@ -11,7 +11,7 @@ export const validateRequest =
       if (error instanceof z.ZodError) {
         return res.status(400).json(
           error.issues.map(({ message, path }) => {
-            return { message, path: path.at(0) };
+            return { message, path: path[0] };
           })
         );
       }

@@ -1,7 +1,7 @@
 import express from "express";
-import { validateRequest } from "../../../shared/middlewares/validateRequest.ts";
-import { otpRequestSchema } from "./otpValidator.ts";
-import { refreshOtp, verifyOtp } from "./otpController.ts";
+import { validateRequest } from "../../../shared/middlewares/validateRequest";
+import { otpRequestSchema } from "./otpValidator";
+import { refreshOtp, verifyOtp } from "./otpController";
 const router = express.Router();
 
 router.post("/otp", validateRequest(otpRequestSchema), verifyOtp);

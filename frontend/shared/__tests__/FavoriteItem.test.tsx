@@ -35,7 +35,8 @@ const mockFavoriteData = {
 //? Mock sample user ?//
 const mockUser = (role: string) => {
   const data = {
-    createdAt: "24.03.2025",
+    createdAt: new Date(),
+    updatedAt: new Date(),
     fullname: "Ömer Çıkan",
     email: "example@gmail.com",
     emailVerified: true,

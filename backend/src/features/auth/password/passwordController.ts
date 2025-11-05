@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import { Otp } from "../../../shared/models/Otp.ts";
+import { Otp } from "../../../shared/models/Otp";
 import bcrpyt from "bcrypt";
-import config from "../../../config/index.ts";
-import { updateUserPassword } from "./passwordServices.ts";
+import config from "../../../config/index";
+import { updateUserPassword } from "./passwordServices";
 import { Document } from "mongoose";
-import { Role } from "../../../shared/types/user/role.ts";
+import { Role } from "../../../shared/types/user/role";
 
 export const passwordController = async (
   req: Request,

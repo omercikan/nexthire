@@ -1,7 +1,7 @@
-import { connectRabbitMQ } from "../config/rabbit.ts";
-import { sendMail } from "../shared/services/emailService.ts";
-import { connectDatabase } from "../config/db.ts";
-import config from "../config/index.ts";
+import { connectRabbitMQ } from "../config/rabbit";
+import { sendMail } from "../shared/services/emailService";
+import { connectDatabase } from "../config/db";
+import config from "../config/index";
 
 (async () => {
   await connectDatabase();

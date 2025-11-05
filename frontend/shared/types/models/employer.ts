@@ -1,5 +1,5 @@
 import { User } from "..";
-// import { EmployerOpenJobs } from "../employer/open-jobs.types";
+import { EmployerOpenJobs } from "../employer/open-jobs.types";
 
 /**
  * @interface Employer
@@ -17,15 +17,16 @@ export interface Employer extends User {
   emailConsent: boolean;
   personalDataConsent: boolean;
 
-  // companyInformations: CompanyInformations;
-  // featured: boolean;
-  // bestCompany: boolean;
-  // openJobs: EmployerOpenJobs[];
+  companyInformations: CompanyInformations;
+  featured: boolean;
+  bestCompany: boolean;
+  openJobs: EmployerOpenJobs[];
 }
 
-// export interface Location {
-//   taxOfficeCity: string;
-// }
+export interface Location {
+  taxOfficeCity: string;
+  city: string;
+}
 
 export interface CompanyInformations {
   companyName: string;

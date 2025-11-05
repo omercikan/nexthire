@@ -1,5 +1,5 @@
 import { JsonWebTokenError } from "jsonwebtoken";
-import verifyToken from "./verifyToken.ts";
+import verifyToken from "./verifyToken";
 
 /**
  * If the access token expired, grab the payload from the refresh token (from cookies).

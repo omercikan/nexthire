@@ -5,18 +5,18 @@ import { NextFunction, Request, Response } from "express";
 import bcrypt from "bcrypt";
 
 // config import
-import config from "../../../../config/index.ts";
+import config from "../../../../config/index";
 
 // RefreshToken model
-import { RefreshToken } from "../../../../shared/models/RefreshToken.ts";
+import { RefreshToken } from "../../../../shared/models/RefreshToken";
 
 // create user, auth services
-import { createUser } from "../../../../shared/services/createUserService.ts";
-import { authService } from "../../../../shared/services/authService.ts";
+import { createUser } from "../../../../shared/services/createUserService";
+import { authService } from "../../../../shared/services/authService";
 
 // candidate user interface
-import { CandidateTypes } from "../../../../shared/types/user/candidateUser.types.ts";
-import { User } from "../../../../shared/models/User.ts";
+import { CandidateTypes } from "../../../../shared/types/user/candidateUser.types";
+import { User } from "../../../../shared/models/User";
 import mongoose from "mongoose";
 
 class CandidateController {

@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
-import config from "../../config/index.ts";
-import { Role } from "../types/user/role.ts";
+import config from "../../config/index";
+import { Role } from "../types/user/role";
 
 type Payload = {
   userId: string;

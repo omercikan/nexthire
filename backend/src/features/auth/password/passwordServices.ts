@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { User } from "../../../shared/models/User.ts";
+import { User } from "../../../shared/models/User";
 
 export const updateUserPassword = async (
   userId: string,

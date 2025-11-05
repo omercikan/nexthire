@@ -1,5 +1,5 @@
 import jwt, { SignOptions } from "jsonwebtoken";
-import config from "../../config/index.ts";
+import config from "../../config/index";
 
 export const generateToken = (
   payload: {

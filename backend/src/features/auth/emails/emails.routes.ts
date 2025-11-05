@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { emailsController } from "./emails.controller.ts";
-import { validateRequest } from "../../../shared/middlewares/validateRequest.ts";
-import { emailValidator } from "./emails.validator.ts";
-import { limitter } from "../../../shared/middlewares/limitter.ts";
+import { emailsController } from "./emails.controller";
+import { validateRequest } from "../../../shared/middlewares/validateRequest";
+import { emailValidator } from "./emails.validator";
+import { limitter } from "../../../shared/middlewares/limitter";
 
 const router = Router();
 

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
-import { EmailServices } from "./emails.service.ts";
+import { EmailServices } from "./emails.service";
 
 class EmailsController {
   sendOtp = async (req: Request, res: Response, next: NextFunction) => {

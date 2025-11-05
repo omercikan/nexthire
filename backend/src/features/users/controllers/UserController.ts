@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { User } from "../../../shared/models/User.ts";
+import { User } from "../../../shared/models/User";
 
 class UserController {
   async getUser(req: Request, res: Response, next: NextFunction) {
