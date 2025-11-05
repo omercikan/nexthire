@@ -1,5 +1,8 @@
 import * as dotenv from "dotenv";
-dotenv.config();
+
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
 
 interface Config {
   port: number;
