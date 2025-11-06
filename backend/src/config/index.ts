@@ -26,7 +26,7 @@ interface Config {
 
 const config: Config = {
   port: Number(process.env.PORT) || 7000,
-  nodeEnv: process.env.NODE_ENV || "development",
+  nodeEnv: String(process.env.NODE_ENV),
   database_uri: String(process.env.DB_URI),
   database_name: String(process.env.DB_NAME),
   jwt_secret: String(process.env.JWT_SECRET),
