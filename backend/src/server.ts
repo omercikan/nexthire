@@ -7,7 +7,7 @@ app.use("/health", (_req, res) => {
   res.status(200).send("Ok");
 });
 
-app.listen(config.port, (err) => {
+app.listen(config.port, "0.0.0.0", (err) => {
   if (err) {
     logger.error("❌ Server error:", err);
   }
