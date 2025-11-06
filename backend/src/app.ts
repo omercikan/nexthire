@@ -24,6 +24,7 @@ declare global {
 
 // express app
 const app = express();
+app.set("trust proxy", 1);
 
 // global middleware
 app.use(express.json());
