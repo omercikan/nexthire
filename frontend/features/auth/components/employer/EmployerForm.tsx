@@ -28,7 +28,10 @@ import {
 import RegisteredMessage from "./RegisteredMessage";
 import FormHeader from "./FormHeader";
 import useAuth from "../../hooks/useAuth";
-import { useCreateEmployerMutation } from "../../services/auth-service";
+import {
+  useCreateEmployerMutation,
+  useLoginEmployerMutation,
+} from "../../services/auth-service";
 import { Employer } from "@/shared/types/models/employer";
 
 const inter = Inter({
@@ -47,6 +50,7 @@ const EmployerForm = () => {
   const isRegisteredRoute = pathname === "/isveren-kayit";
   const { manageAuthApi } = useAuth();
   const [createEmployer] = useCreateEmployerMutation();
+  const [loginEmployer] = useLoginEmployerMutation();
 
   const {
     handleSubmit,
@@ -73,6 +77,7 @@ const EmployerForm = () => {
       fullname,
       phone,
       email,
+      password,
       companyName,
       city,
       district,
@@ -111,6 +116,17 @@ const EmployerForm = () => {
       if (res) {
         setRegistered(true);
       }
+    } else {
+      await manageAuthApi(
+        () => loginEmployer({ email, password: String(password) }).unwrap(),
+        reset,
+        {
+          case: "Email or Password invalid",
+          message: "E-posta veya Şifre hatalı.",
+        },
+        true,
+        "/"
+      );
     }
   };
 

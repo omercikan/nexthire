@@ -62,6 +62,18 @@ export const authServiceApi = createApi({
       invalidatesTags: ["User"],
     }),
 
+    loginEmployer: builder.mutation<
+      { message: string },
+      { email: string; password: string }
+    >({
+      query: ({ email, password }) => ({
+        method: "POST",
+        url: "auth/login-employer",
+        body: { email, password },
+      }),
+      invalidatesTags: ["User"],
+    }),
+
     verifyOtp: builder.mutation<
       { message: string; status: boolean },
       { token: string; code: string }
@@ -120,4 +132,5 @@ export const {
   useRefreshOtpMutation,
   useResetPasswordMutation,
   useSendResetEmailMutation,
+  useLoginEmployerMutation,
 } = authServiceApi;
