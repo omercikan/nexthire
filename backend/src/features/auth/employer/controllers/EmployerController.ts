@@ -5,6 +5,8 @@ import { Otp } from "../../../../shared/models/Otp";
 import mongoose from "mongoose";
 import { generateOtpCode } from "../../../../shared/utils/generateOtpCode";
 import { User } from "../../../../shared/models/User";
+import bcrypt from "bcrypt";
+import { authService } from "../../../../shared/services/authService";
 
 class EmployerController {
   async createEmployer(req: Request, res: Response, next: NextFunction) {
@@ -57,8 +59,37 @@ class EmployerController {
       session.endSession();
     }
   }
+
+  async loginEmployer(req: Request, res: Response, next: NextFunction) {
+    const { email, password } = req.body;
+
+    try {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        return res.status(404).json({ message: "Email or Password invalid" });
+      }
+
+      const comparePassword = await bcrypt.compare(
+        password,
+        String(user.password)
+      );
+
+      if (!comparePassword) {
+        return res.status(400).json({ message: "Email or Password invalid" });
+      }
+
+      const token = authService(res, user.id, "employer");
+
+      if (token) {
+        return res.json({ message: "Login successful" });
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
-const { createEmployer } = new EmployerController();
+const { createEmployer, loginEmployer } = new EmployerController();
 
-export { createEmployer };
+export { createEmployer, loginEmployer };

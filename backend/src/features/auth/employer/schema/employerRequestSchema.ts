@@ -26,6 +26,8 @@ export const employerUserSchema = z.object({
       "email address is not in a valid format."
     ),
 
+  password: z.string("password is required"),
+
   city: z.string().nonempty("city is required"),
 
   district: z.string().nonempty("district is required"),
