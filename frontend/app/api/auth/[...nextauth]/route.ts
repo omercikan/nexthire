@@ -9,6 +9,7 @@ const registerGoogle = async (user: User) => {
     profilePhoto: user.image,
     fullname: user.name,
     email: user.email,
+    role: "candidate",
   };
 
   try {

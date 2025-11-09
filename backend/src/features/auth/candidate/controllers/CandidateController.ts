@@ -30,7 +30,6 @@ class CandidateController {
       const user = await User.findOne({ email }).session(session);
 
       if (user) {
-        session.abortTransaction();
         throw new Error("This email address is already in use.", {
           cause: 400,
         });
@@ -69,7 +68,7 @@ class CandidateController {
       await session.abortTransaction();
       next(error);
     } finally {
-      session.endSession();
+      await session.endSession();
     }
   }
 
