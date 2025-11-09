@@ -43,6 +43,7 @@ class CandidateController {
           email,
           password: hashedPassword,
           role: "candidate",
+          provider: "Form",
         },
         session
       );
