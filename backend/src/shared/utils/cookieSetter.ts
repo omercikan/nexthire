@@ -8,7 +8,7 @@ export const cookieSetter = (
   options: CookieOptions
 ) => {
   res.cookie(name, value, {
-    sameSite: "strict",
+    sameSite: config.nodeEnv === "production" ? "none" : "strict",
     secure: config.nodeEnv === "production",
     ...options,
   });
