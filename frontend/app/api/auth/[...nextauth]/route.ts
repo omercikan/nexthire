@@ -10,6 +10,7 @@ const registerGoogle = async (user: User) => {
     fullname: user.name,
     email: user.email,
     role: "candidate",
+    provider: "Google",
   };
 
   try {

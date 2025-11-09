@@ -110,6 +110,7 @@ export interface User {
   fullname: string;
   phoneNumber: string;
   role: string;
+  provider: "Google" | "Form";
 }
 //! User interface area Employer and Candidate Role interfaces END !//
 
