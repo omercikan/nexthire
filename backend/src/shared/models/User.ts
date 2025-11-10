@@ -44,7 +44,6 @@ const UserSchema = new Schema(
     },
     failedAttempts: { type: Number, default: 0 },
     failedTime: { type: Number, default: 0 },
-    provider: { type: String, required: true, enum: ["Google", "Form"] },
   },
   { timestamps: true, versionKey: false }
 );

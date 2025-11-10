@@ -27,7 +27,7 @@ class EmployerController {
       }
 
       const createdEmployer = await createUser(
-        { ...body, role: "employer", provider: "Form" },
+        { ...body, role: "employer" },
         session
       );
 

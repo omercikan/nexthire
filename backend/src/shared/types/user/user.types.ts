@@ -5,5 +5,4 @@ export interface User {
   password: string;
   failedAttempts: number;
   failedTime: number;
-  provider: "Google" | "Form";
 }
