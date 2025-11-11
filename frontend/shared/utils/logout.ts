@@ -2,32 +2,24 @@ import axios from "axios";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
-export const handleLogout = async (provider: "Google" | "Form") => {
+export const handleLogout = async () => {
   try {
-    switch (provider) {
-      case "Google":
-        await signOut({ callbackUrl: "/" });
-        break;
-      case "Form":
-        const response = await axios.delete(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`,
-          {
-            withCredentials: true,
-          }
-        );
+    const response = await axios.delete(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`,
+      { withCredentials: true }
+    );
 
-        if (response.status === 200) {
-          window.location.href = "/";
-        } else {
-          toast.error("Oturum kapatılamadı, lütfen tekrar deneyin.");
-        }
-        break;
-      default:
-        toast.error("Uygunsuz çıkış tespit edildi.");
-        break;
+    if (response.status === 200) {
+      if (response.data.provider === "Google") {
+        await signOut({ callbackUrl: "/" });
+      } else {
+        window.location.replace("/");
+      }
+    } else {
+      toast.error("Oturum kapatılamadı, lütfen tekrar deneyin.");
     }
-  } catch (err) {
-    console.error("Logout error:", err);
+  } catch (error) {
+    console.error(error);
     toast.error("Oturum kapatılamadı, lütfen tekrar deneyin.");
   }
 };

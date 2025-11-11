@@ -81,7 +81,7 @@ const UserItems = () => {
                   </Link>
                   <span
                     className="header-user-modal-links"
-                    onClick={() => handleLogout(user.provider)}
+                    onClick={handleLogout}
                   >
                     Çıkış Yap
                   </span>
