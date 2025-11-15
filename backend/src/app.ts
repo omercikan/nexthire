@@ -7,6 +7,7 @@ import passwordRoutes from "./features/auth/password/passwordRoutes";
 import userRoutes from "./features/users/routes/userRoutes";
 import emailAuthRoutes from "./features/auth/emails/emails.routes";
 import logoutRoutes from "./features/auth/logout/logout.routes";
+import candidateDashboardRoutes from "./features/dashboard/candidate/routes";
 import { errorHandler } from "./shared/middlewares/errorHandler";
 import cookieParser from "cookie-parser";
 import config from "./config/index";
@@ -38,6 +39,7 @@ app.use("/api/auth", otpRoutes);
 app.use("/api/auth", passwordRoutes);
 app.use("/api/auth/email", emailAuthRoutes);
 app.use("/api/auth", logoutRoutes);
+app.use("/api/dashboard/candidate", candidateDashboardRoutes);
 
 app.use("/api/users", userRoutes);
 

@@ -22,6 +22,11 @@ interface Config {
       pass: string;
     };
   };
+  cloudinary: {
+    api_key: string;
+    api_secret: string;
+    cloud_name: string;
+  };
 }
 
 const config: Config = {
@@ -41,6 +46,11 @@ const config: Config = {
       user: String(process.env.EMAIL_USER),
       pass: String(process.env.EMAIL_PASS),
     },
+  },
+  cloudinary: {
+    api_key: String(process.env.CLOUDINARY_API_KEY),
+    api_secret: String(process.env.CLOUDINARY_API_SECRET),
+    cloud_name: String(process.env.CLOUDINARY_CLOUD_NAME),
   },
 };
 
