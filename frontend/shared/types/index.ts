@@ -59,14 +59,15 @@ export interface CustomButtonProps {
   type?: "submit" | "button" | "reset";
   isSubmitting?: boolean;
   className?: string;
-  text: string;
+  text?: string;
   circularColor?: string;
-  handleClick?: () => void;
+  handleClick?: React.MouseEventHandler<HTMLButtonElement>;
+  children?: ReactNode;
 }
 
 //! Success component properties interface for reset email page !//
 export interface SuccessProps {
-  icon: ReactNode;
+  icon?: ReactNode;
   title: string;
   subtitle: string;
   message?: string;

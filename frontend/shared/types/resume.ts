@@ -24,10 +24,11 @@ export interface UploadedCV {
 }
 
 export interface CVDataFields {
-  url: string;
-  cvID: string;
-  uploadTime: string;
+  _id: string;
+  fileUrl: string;
+  originalName: string;
+  createdAt: Date;
+  updatedAt: Date;
   size: string;
   fileName: string;
-  createdAt: string;
 }

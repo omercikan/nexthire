@@ -23,6 +23,8 @@ import { candidateStaticsApi } from "@/features/dashboard/services/candidateStat
 import { userViewsApi } from "@/features/dashboard/services/userViewsApi";
 import { candidateProfileApi } from "@/features/dashboard/services/candidateProfileApi";
 import { authServiceApi } from "@/features/auth/services/auth-service";
+import { candidateResumeApi } from "@/features/dashboard/services/candidateResumeApi";
+import { resumeSlice } from "@/features/dashboard/candidate/Resumes/resumeSlice";
 
 export const store = configureStore({
   reducer: {
@@ -37,6 +39,7 @@ export const store = configureStore({
     jobDetail: jobDetailReducer,
     applyModalScreen: applyModalScreenReducer,
     userDashboard: userDashboardSlice.reducer,
+    resumeSlice: resumeSlice.reducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [jobPostings.reducerPath]: jobPostings.reducer,
@@ -49,6 +52,7 @@ export const store = configureStore({
     [userViewsApi.reducerPath]: userViewsApi.reducer,
     [candidateProfileApi.reducerPath]: candidateProfileApi.reducer,
     [authServiceApi.reducerPath]: authServiceApi.reducer,
+    [candidateResumeApi.reducerPath]: candidateResumeApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -65,6 +69,7 @@ export const store = configureStore({
       userViewsApi.middleware,
       candidateProfileApi.middleware,
       authServiceApi.middleware,
+      candidateResumeApi.middleware,
     ]),
 });
 

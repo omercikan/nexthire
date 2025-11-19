@@ -9,6 +9,7 @@ const CustomButton = ({
   type = "submit",
   circularColor,
   handleClick,
+  children,
 }: CustomButtonProps) => {
   return (
     <button
@@ -17,7 +18,7 @@ const CustomButton = ({
       className={`custom__button ${className ? className : ""}`}
       onClick={(e) => {
         e.stopPropagation();
-        handleClick?.();
+        handleClick?.(e);
       }}
     >
       {isSubmitting ? (
@@ -27,8 +28,10 @@ const CustomButton = ({
             sx={{ color: circularColor ? circularColor : "4045EF" }}
           />
         </Box>
-      ) : (
+      ) : text ? (
         text
+      ) : (
+        children
       )}
     </button>
   );
