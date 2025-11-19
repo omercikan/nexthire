@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Inter } from "next/font/google";
 import DashboardHeader from "@/features/dashboard/components/DashboardHeader/DashboardHeader";
 import DashboardSidebar from "@/features/dashboard/components/DashboardSidebar/DashboardSidebar";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
   subsets: ["latin-ext"],
@@ -18,6 +19,7 @@ function Layout({ children }: { children: ReactNode }) {
         {children}
       </div>
       <DashboardSidebar />
+      <Toaster position="top-right" />
     </div>
   );
 }

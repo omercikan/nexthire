@@ -18,7 +18,7 @@ button {
 
 html,
 body {
-  height: 100vh;
+  height: 100dvb;
   width: 100%;
 }
 
@@ -523,4 +523,9 @@ html {
 /* Hide leaflet bottom footer */
 .leaflet-bottom {
   display: none !important;
+}
+
+/* Resume item menu list item class */
+.resume-menu-item {
+  @apply !bg-transparent text-sm !text-black flex items-center gap-1.5 px-2 !py-1 border-b border-b-[#d1d5db] hover:!bg-[#ededed] !rounded-none w-full;
 }

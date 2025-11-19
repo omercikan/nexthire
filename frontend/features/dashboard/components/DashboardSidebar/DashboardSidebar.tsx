@@ -9,7 +9,10 @@ import { motion } from "framer-motion";
 import SidebarImage from "./SidebarImage";
 import { IoClose } from "react-icons/io5";
 import { DASHBOARD_ICONS } from "../../icons/dashboard-icons";
-import { setSmallBreakpoint, setSmallScreenMenu } from "../../slices/userDashboardSlice";
+import {
+  setSmallBreakpoint,
+  setSmallScreenMenu,
+} from "../../slices/userDashboardSlice";
 
 const DashboardSidebar = () => {
   const { collapseMenu, breakpoint, smallScreenMenu } = useSelector(
@@ -41,7 +44,7 @@ const DashboardSidebar = () => {
       initial={{ width: collapseMenu ? 76 : 250 }}
       animate={{ width: collapseMenu ? 76 : 250 }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}
-      className={`border-e border-e-[#E6EFF5] relative flex-none sidebar-full max-sm:fixed left-0 max-sm:h-full max-sm:!w-full max-sm:transition-all max-sm:duration-300 max-[992px]:!w-[76px] z-20 bg-white ${
+      className={`border-e border-e-[#E6EFF5] relative max-sm:fixed left-0 max-sm:h-full max-sm:!w-full max-sm:transition-all max-sm:duration-300 max-[992px]:!w-[76px] z-20 bg-white ${
         smallScreenMenu ? "max-sm:left-0" : "max-sm:-left-full"
       } `}
     >
