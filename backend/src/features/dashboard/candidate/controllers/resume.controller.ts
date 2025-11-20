@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { Resume } from "../../../shared/models/Resume";
-import { fixFileName } from "../../../shared/utils/fixFileName";
+import { Resume } from "../../../../shared/models/Resume";
+import { fixFileName } from "../../../../shared/utils/fixFileName";
+import { publisher } from "../../../../queues/publisher";
 
 class CandidateDashboardEvents {
   async uploadResume(req: Request, res: Response, next: NextFunction) {
@@ -35,6 +36,22 @@ class CandidateDashboardEvents {
       const resumes = await Resume.find({ userId }).sort({ createdAt: "desc" });
 
       res.json(resumes);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async deleteResumes(req: Request, res: Response, next: NextFunction) {
+    const { resumeIDs, publicId } = req.body;
+
+    try {
+      const result = await Resume.deleteMany({ _id: resumeIDs });
+
+      await publisher("deleteResumesQueue", publicId);
+
+      res.json({
+        message: `Deleted ${result.deletedCount} resume${result.deletedCount > 1 ? "s" : ""}`,
+      });
     } catch (error) {
       next(error);
     }

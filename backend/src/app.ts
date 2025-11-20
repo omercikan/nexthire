@@ -7,7 +7,7 @@ import passwordRoutes from "./features/auth/password/passwordRoutes";
 import userRoutes from "./features/users/routes/userRoutes";
 import emailAuthRoutes from "./features/auth/emails/emails.routes";
 import logoutRoutes from "./features/auth/logout/logout.routes";
-import candidateDashboardRoutes from "./features/dashboard/candidate/routes";
+import candidateDashboardRoutes from "./features/dashboard/candidate/routes/general.route";
 import { errorHandler } from "./shared/middlewares/errorHandler";
 import cookieParser from "cookie-parser";
 import config from "./config/index";
