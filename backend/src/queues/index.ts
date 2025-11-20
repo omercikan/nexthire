@@ -1,0 +1,2 @@
+import "./emailWorker";
+import "./deleteResumeWorker";

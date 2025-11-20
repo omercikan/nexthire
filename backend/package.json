@@ -9,7 +9,7 @@
     "dev": "nodemon src/server.ts",
     "lint": "eslint 'src/**/*.ts'",
     "type-check": "tsc --noEmit --watch",
-    "start-worker": "node dist/queues/emailWorker.js"
+    "start-worker": "node dist/queues/index.js"
   },
   "keywords": [],
   "author": "",
