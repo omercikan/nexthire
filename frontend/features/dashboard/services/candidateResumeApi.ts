@@ -1,3 +1,4 @@
+import { CVDataFields } from "@/shared/types/resume";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const candidateResumeApi = createApi({
@@ -16,7 +17,7 @@ export const candidateResumeApi = createApi({
       invalidatesTags: ["Resume"],
     }),
 
-    getResumes: builder.query({
+    getResumes: builder.query<CVDataFields[], string>({
       query: (userId) => ({
         method: "GET",
         url: `/get-resumes/${userId}`,
@@ -32,6 +33,20 @@ export const candidateResumeApi = createApi({
       }),
       invalidatesTags: ["Resume"],
     }),
+
+    renameResume: builder.mutation<
+      { message: string },
+      { fileID: string; newName: string }
+    >({
+      query: ({ fileID, newName }) => ({
+        method: "PATCH",
+        url: "/rename-resume",
+        body: { fileID, newName },
+      }),
+      invalidatesTags: (result, _error, { fileID }) => {
+        return result ? [{ type: "Resume", id: fileID }] : ["Resume"];
+      },
+    }),
   }),
 });
 
@@ -39,4 +54,5 @@ export const {
   useUploadResumeMutation,
   useGetResumesQuery,
   useDeleteResumesMutation,
+  useRenameResumeMutation,
 } = candidateResumeApi;

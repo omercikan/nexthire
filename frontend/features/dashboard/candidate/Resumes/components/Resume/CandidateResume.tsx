@@ -11,11 +11,13 @@ import Loading from "@/shared/components/ui/Loading";
 import OptionsMenu from "../OptionsMenu";
 import ResumeList from "./ResumeList";
 import { useMediaQuery } from "@mui/material";
+import RenameResume from "../RenameResume/RenameResume";
+import { CVDataFields } from "@/shared/types/resume";
 
 const CandidateResume = () => {
   const { user } = useContext(AuthContext);
   const { data } = useGetResumesQuery(String(user?._id));
-  const { selectedResumes } = useSelector(
+  const { selectedResumes, renameResumeID } = useSelector(
     (state: RootState) => state.resumeSlice
   );
   const isMobile = useMediaQuery("(max-width:640px)");
@@ -81,6 +83,14 @@ const CandidateResume = () => {
 
           <UploadResumeButton userId={String(user?._id)} className="mb-4" />
         </div>
+      )}
+
+      {renameResumeID && (
+        <RenameResume
+          file={
+            data.find((resume) => resume._id === renameResumeID) as CVDataFields
+          }
+        />
       )}
     </div>
   );

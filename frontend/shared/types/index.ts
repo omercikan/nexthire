@@ -21,6 +21,7 @@ export type AuthInputProps = {
   iconSpanClass?: string;
   labelClass?: string;
   error?: string | undefined;
+  wrapperClass?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 interface AuthSelectDataItem {

@@ -10,11 +10,12 @@ const CustomInput = ({
   iconSpanClass,
   children,
   labelClass,
+  wrapperClass = "",
   error,
   ...props
 }: AuthInputProps) => {
   return (
-    <div className="w-full">
+    <div className={`w-full ${wrapperClass}`}>
       <label
         htmlFor={props.name}
         className={`block mb-1.5 ${labelClass ?? ""}`}

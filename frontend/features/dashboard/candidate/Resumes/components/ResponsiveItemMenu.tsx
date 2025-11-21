@@ -5,7 +5,7 @@ import { useDeleteResumesMutation } from "@/features/dashboard/services/candidat
 import { CVDataFields } from "@/shared/types/resume";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/shared/redux/store";
-import { setResumeOptionMenuID } from "../resumeSlice";
+import { setRenameResumeID, setResumeOptionMenuID } from "../resumeSlice";
 import { useMediaQuery } from "@mui/material";
 import { handleDownloadPdf } from "./Resume/utils/download-pdf";
 import toast from "react-hot-toast";
@@ -33,6 +33,11 @@ const ResponsiveItemMenu = ({
     dispatch(setResumeOptionMenuID(""));
   }, [deleteResumes, resume, dispatch]);
 
+  const handleRenameResume = useCallback(() => {
+    dispatch(setRenameResumeID(resume._id));
+    dispatch(setResumeOptionMenuID(""));
+  }, [dispatch, resume._id]);
+
   if (resume._id === resumeOptionMenuID)
     return (
       <MenuList
@@ -58,6 +63,7 @@ const ResponsiveItemMenu = ({
                 Yeniden Adlandır
               </>
             ),
+            handleClick: handleRenameResume,
           },
 
           {

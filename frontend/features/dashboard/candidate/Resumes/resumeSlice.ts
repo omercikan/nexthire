@@ -4,11 +4,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface InitialState {
   selectedResumes: CVDataFields[];
   resumeOptionMenuID: string;
+  renameResumeID: string;
 }
 
 const initialState: InitialState = {
   selectedResumes: [],
   resumeOptionMenuID: "",
+  renameResumeID: "",
 };
 
 export const resumeSlice = createSlice({
@@ -42,6 +44,10 @@ export const resumeSlice = createSlice({
     setResumeOptionMenuID: (state, action: PayloadAction<string>) => {
       state.resumeOptionMenuID = action.payload;
     },
+
+    setRenameResumeID: (state, action: PayloadAction<string>) => {
+      state.renameResumeID = action.payload;
+    },
   },
 });
 
@@ -50,4 +56,5 @@ export const {
   clearSelectedResumes,
   selectAllResumes,
   setResumeOptionMenuID,
+  setRenameResumeID,
 } = resumeSlice.actions;
