@@ -28,12 +28,14 @@ const useRenameForm = ({ filename, fileID }: RenameFormProps) => {
     try {
       const response = await renameResume({
         fileID,
-        newName: watch("filename"),
+        newName: watch("filename").trim(),
       }).unwrap();
       if (response.message) {
         toast.success(
-          `'${defaultValues?.filename}' dosya adı '${filename}' olarak yeniden adlandırıldı.`,
-          { position: "bottom-center" }
+          `'${defaultValues?.filename?.trim()}' dosya adı '${watch(
+            "filename"
+          ).trim()}' olarak yeniden adlandırıldı.`,
+          { position: "bottom-center", duration: 3000 }
         );
         dispatch(setRenameResumeID(""));
       }
@@ -42,14 +44,7 @@ const useRenameForm = ({ filename, fileID }: RenameFormProps) => {
         id: "renameResumeError",
       });
     }
-  }, [
-    fileID,
-    watch,
-    defaultValues?.filename,
-    dispatch,
-    filename,
-    renameResume,
-  ]);
+  }, [fileID, watch, defaultValues?.filename, dispatch, renameResume]);
 
   return {
     register,

@@ -53,7 +53,7 @@ const RenameResumeForm = ({
           isSubmitting={isLoading}
           circularColor="white"
           className={`!rounded-sm px-4 !py-2.5 text-sm !bg-[#4045ef] hover:!bg-[#3036f0] ${
-            error || filename === watch("filename")
+            error || filename.trim() === watch("filename").trim()
               ? "opacity-75 pointer-events-none"
               : ""
           }`}

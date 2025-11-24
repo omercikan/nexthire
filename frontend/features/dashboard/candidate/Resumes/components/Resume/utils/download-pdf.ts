@@ -9,5 +9,5 @@ export const handleDownloadPdf = async (
 ) => {
   e.stopPropagation();
   const { data } = await fetchData<string>(url, { responseType: "blob" });
-  fileDownload(data, fileName);
+  fileDownload(data, `${fileName}${!fileName.includes(".pdf") ? ".pdf" : ""}`);
 };

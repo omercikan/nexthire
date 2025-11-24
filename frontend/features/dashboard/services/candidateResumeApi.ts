@@ -43,9 +43,7 @@ export const candidateResumeApi = createApi({
         url: "/rename-resume",
         body: { fileID, newName },
       }),
-      invalidatesTags: (result, _error, { fileID }) => {
-        return result ? [{ type: "Resume", id: fileID }] : ["Resume"];
-      },
+      invalidatesTags: ["Resume"],
     }),
   }),
 });
