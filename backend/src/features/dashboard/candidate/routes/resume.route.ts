@@ -7,14 +7,17 @@ import z from "zod";
 
 const router = express.Router();
 
+const { uploadResume, getResumes, deleteResumes, renameResume } =
+  CandidateDashboard;
+
 router.post(
   "/upload-resume",
   uploads.single("resume"),
   fileValidation(),
-  CandidateDashboard.uploadResume
+  uploadResume
 );
 
-router.get("/get-resumes/:userId", CandidateDashboard.getResumes);
+router.get("/get-resumes/:userId", getResumes);
 
 router.delete(
   "/delete-resumes",
@@ -29,7 +32,23 @@ router.delete(
         .min(1, "At least one public ID is required"),
     })
   ),
-  CandidateDashboard.deleteResumes
+  deleteResumes
+);
+
+router.patch(
+  "/rename-resume",
+  validateRequest(
+    z.object({
+      fileID: z
+        .string("file ID is required")
+        .nonempty("fileID cannot be empty"),
+      newName: z
+        .string("new name is required")
+        .trim()
+        .nonempty("new name cannot be empty"),
+    })
+  ),
+  renameResume
 );
 
 export default router;

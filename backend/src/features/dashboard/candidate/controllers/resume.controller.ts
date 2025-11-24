@@ -56,6 +56,26 @@ class CandidateDashboardEvents {
       next(error);
     }
   }
+
+  async renameResume(req: Request, res: Response, next: NextFunction) {
+    const { fileID, newName } = req.body;
+
+    try {
+      const updatedResume = await Resume.findByIdAndUpdate(
+        fileID,
+        { originalName: newName.trim() },
+        { new: true }
+      );
+
+      if (!updatedResume) {
+        return res.status(404).json({ message: "Resume not found." });
+      }
+
+      res.json({ message: "Resume successfully renamed." });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export const CandidateDashboard = new CandidateDashboardEvents();
