@@ -7,7 +7,7 @@ import z from "zod";
 
 const router = express.Router();
 
-const { uploadResume, getResumes, deleteResumes, renameResume } =
+const { uploadResume, getResumes, deleteResumes, renameResume, replaceResume } =
   CandidateDashboard;
 
 router.post(
@@ -49,6 +49,23 @@ router.patch(
     })
   ),
   renameResume
+);
+
+router.post(
+  "/replace-resume",
+  validateRequest(
+    z.object({
+      publicId: z
+        .string("Public ID is required")
+        .nonempty("Public ID cannot be empty."),
+      fileId: z
+        .string("File ID is required")
+        .nonempty("File ID cannot be empty."),
+    })
+  ),
+  uploads.single("resume"),
+  fileValidation(),
+  replaceResume
 );
 
 export default router;

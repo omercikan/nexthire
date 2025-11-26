@@ -76,6 +76,21 @@ class CandidateDashboardEvents {
       next(error);
     }
   }
+
+  async replaceResume(req: Request, res: Response, next: NextFunction) {
+    const { fileId, publicId } = req.body;
+    const file = req.file;
+
+    try {
+      if (file) {
+        await publisher("replaceResumeQueue", { fileId, publicId, file });
+
+        res.status(200).json({ message: "Resume successfully modified" });
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export const CandidateDashboard = new CandidateDashboardEvents();
