@@ -1,7 +1,10 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import { RESUME_ITEM } from "../constants/resume-item";
 import MenuList from "./MenuList";
-import { useDeleteResumesMutation } from "@/features/dashboard/services/candidateResumeApi";
+import {
+  useDeleteResumesMutation,
+  useReplaceResumeMutation,
+} from "@/features/dashboard/services/candidateResumeApi";
 import { CVDataFields } from "@/shared/types/resume";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/shared/redux/store";
@@ -9,6 +12,7 @@ import { setRenameResumeID, setResumeOptionMenuID } from "../resumeSlice";
 import { useMediaQuery } from "@mui/material";
 import { handleDownloadPdf } from "./Resume/utils/download-pdf";
 import toast from "react-hot-toast";
+import appendFormData from "@/shared/utils/appendFormData";
 
 const ResponsiveItemMenu = ({
   resume,
@@ -24,6 +28,9 @@ const ResponsiveItemMenu = ({
   );
   const dispatch = useDispatch();
   const isMobile = useMediaQuery("(max-width:840px)");
+  const replaceInputRef = useRef<HTMLInputElement | null>(null);
+  const [replaceResume, { isLoading: isReplaceLoading }] =
+    useReplaceResumeMutation();
 
   const handleDeleteResumes = useCallback(async () => {
     await deleteResumes({
@@ -37,6 +44,21 @@ const ResponsiveItemMenu = ({
     dispatch(setRenameResumeID(resume._id));
     dispatch(setResumeOptionMenuID(""));
   }, [dispatch, resume._id]);
+
+  const handleReplaceResume = useCallback(async () => {
+    const file = replaceInputRef.current?.files?.[0];
+
+    if (file) {
+      const formData = appendFormData([
+        { name: "resume", value: file },
+        { name: "fileId", value: resume._id },
+        { name: "publicId", value: resume.fileName },
+      ]);
+
+      await replaceResume(formData);
+      dispatch(setResumeOptionMenuID(""));
+    }
+  }, [resume._id, resume.fileName, replaceResume, dispatch]);
 
   if (resume._id === resumeOptionMenuID)
     return (
@@ -67,11 +89,27 @@ const ResponsiveItemMenu = ({
           },
 
           {
-            buttonClass: "resume-menu-item",
+            buttonClass: `resume-menu-item !bg-transparent ${
+              isReplaceLoading ? "px-2" : "!px-0 !py-0"
+            }`,
+            isLoading: isReplaceLoading,
             buttonContent: (
               <>
-                <RESUME_ITEM.replace />
-                Değiştir
+                <label
+                  htmlFor="replaceResume"
+                  className="resume-menu-item !border-none cursor-pointer"
+                >
+                  <RESUME_ITEM.replace />
+                  Değiştir
+                </label>
+
+                <input
+                  type="file"
+                  id="replaceResume"
+                  ref={replaceInputRef}
+                  onChange={handleReplaceResume}
+                  hidden
+                />
               </>
             ),
           },

@@ -45,6 +45,15 @@ export const candidateResumeApi = createApi({
       }),
       invalidatesTags: ["Resume"],
     }),
+
+    replaceResume: builder.mutation({
+      query: (data) => ({
+        method: "POST",
+        url: "/replace-resume",
+        body: data,
+      }),
+      invalidatesTags: ["Resume"],
+    }),
   }),
 });
 
@@ -53,4 +62,5 @@ export const {
   useGetResumesQuery,
   useDeleteResumesMutation,
   useRenameResumeMutation,
+  useReplaceResumeMutation,
 } = candidateResumeApi;

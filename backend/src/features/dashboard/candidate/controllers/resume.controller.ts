@@ -85,7 +85,7 @@ class CandidateDashboardEvents {
       if (file) {
         await publisher("replaceResumeQueue", { fileId, publicId, file });
 
-        res.status(200).json({ message: "Resume successfully modified" });
+        res.status(200).json({ message: "Resume successfully modified", file });
       }
     } catch (error) {
       next(error);

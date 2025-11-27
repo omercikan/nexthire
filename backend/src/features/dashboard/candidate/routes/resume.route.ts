@@ -53,6 +53,7 @@ router.patch(
 
 router.post(
   "/replace-resume",
+  uploads.single("resume"),
   validateRequest(
     z.object({
       publicId: z
@@ -63,7 +64,6 @@ router.post(
         .nonempty("File ID cannot be empty."),
     })
   ),
-  uploads.single("resume"),
   fileValidation(),
   replaceResume
 );

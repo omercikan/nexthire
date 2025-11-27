@@ -5,7 +5,7 @@ interface MenuListProps {
   handleClick?: MouseEventHandler;
   isLoading?: boolean;
   buttonContent: ReactNode;
-  buttonClass: string;
+  buttonClass?: string;
 }
 
 const MenuList = ({
