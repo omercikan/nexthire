@@ -10,15 +10,11 @@ import validatePdfFile from "./validatePdfFile";
  * - File size must be under 3MB
  *
  * @param {File} file - The file to be validated.
- * @param {string[]} uploadedFileNames - List of previously uploaded file names.
  * @returns {Promise<string | null>} - Returns an error message if invalid, otherwise null.
  */
 
-export const validateResume = async (
-  file: File,
-  uploadedFileNames: string[]
-): Promise<string | null> => {
-  const { size, type, name } = file;
+export const validateResume = async (file: File): Promise<string | null> => {
+  const { size, type } = file;
 
   if (type !== "application/pdf") {
     return "Yalnızca PDF formatı yükleyebilirsiniz";
@@ -27,10 +23,6 @@ export const validateResume = async (
   const isValidFile = await validatePdfFile(file);
   if (!isValidFile) {
     return "PDF dosyası geçersiz ya da bozuk lütfen başka bir dosya yükleyin";
-  }
-
-  if (uploadedFileNames.includes(name)) {
-    return "Bu dosyayı zaten yüklediniz";
   }
 
   if (size >= 3 * 1024 * 1024) {

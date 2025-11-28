@@ -20,7 +20,7 @@ import CustomButton from "@/shared/components/ui/CustomButton";
 // Constants
 import { colors } from "../../constants/color";
 import { RESUME_ITEM } from "../../constants/resume-item";
-import ResponsiveItemMenu from "../ResponsiveItemMenu";
+import ResponsiveItemMenu from "../ResponsiveItemMenu/ResponsiveItemMenu";
 import { useMediaQuery } from "@mui/material";
 import { createPortal } from "react-dom";
 import { handleDownloadPdf } from "./utils/download-pdf";

@@ -1,5 +1,7 @@
 import { useUploadResumeMutation } from "@/features/dashboard/services/candidateResumeApi";
 import CustomButton from "@/shared/components/ui/CustomButton";
+import FileInput from "@/shared/components/ui/FileInput";
+import { validateResume } from "@/shared/utils/validateResume";
 import { Tooltip } from "@mui/material";
 import React, { useRef } from "react";
 import toast from "react-hot-toast";
@@ -21,15 +23,10 @@ const UploadResumeButton = ({
   const handleUploadResume = async () => {
     const file = fileRef.current?.files?.[0];
 
-    if (file?.type !== "application/pdf") {
-      return toast.error("Dosya formatı PDF olmalıdır.");
-    }
-
-    if (file.size > 3 * 1024 * 1024) {
-      return toast.error("Dosya boyutu en az 3 MB olabilir.");
-    }
-
     if (file) {
+      const message = await validateResume(file);
+      if (message) return toast.error(message);
+
       const formData = new FormData();
       formData.append("resume", file);
       formData.append("userId", userId);
@@ -49,9 +46,7 @@ const UploadResumeButton = ({
   return (
     <>
       {!isResumeLimitReached && (
-        <input
-          type="file"
-          hidden
+        <FileInput
           id="resumeUpload"
           accept=".pdf"
           onChange={handleUploadResume}

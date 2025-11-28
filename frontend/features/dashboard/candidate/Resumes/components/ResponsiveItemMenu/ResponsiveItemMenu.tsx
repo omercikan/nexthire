@@ -1,18 +1,14 @@
-import React, { useCallback, useRef } from "react";
-import { RESUME_ITEM } from "../constants/resume-item";
-import MenuList from "./MenuList";
-import {
-  useDeleteResumesMutation,
-  useReplaceResumeMutation,
-} from "@/features/dashboard/services/candidateResumeApi";
+import React from "react";
+import { RESUME_ITEM } from "../../constants/resume-item";
+import MenuList from "../MenuList";
 import { CVDataFields } from "@/shared/types/resume";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/shared/redux/store";
-import { setRenameResumeID, setResumeOptionMenuID } from "../resumeSlice";
 import { useMediaQuery } from "@mui/material";
-import { handleDownloadPdf } from "./Resume/utils/download-pdf";
+import { handleDownloadPdf } from "../Resume/utils/download-pdf";
 import toast from "react-hot-toast";
-import appendFormData from "@/shared/utils/appendFormData";
+import useItemMenuActions from "./useItemMenuActions";
+import FileInput from "@/shared/components/ui/FileInput";
 
 const ResponsiveItemMenu = ({
   resume,
@@ -21,44 +17,22 @@ const ResponsiveItemMenu = ({
   resume: CVDataFields;
   wrapperClass?: string;
 }) => {
-  const [deleteResumes, { isLoading: isDeleteLoading }] =
-    useDeleteResumesMutation();
   const { resumeOptionMenuID } = useSelector(
     (state: RootState) => state.resumeSlice
   );
-  const dispatch = useDispatch();
   const isMobile = useMediaQuery("(max-width:840px)");
-  const replaceInputRef = useRef<HTMLInputElement | null>(null);
-  const [replaceResume, { isLoading: isReplaceLoading }] =
-    useReplaceResumeMutation();
-
-  const handleDeleteResumes = useCallback(async () => {
-    await deleteResumes({
-      resumeIDs: [resume._id],
-      publicId: [resume.fileName],
-    });
-    dispatch(setResumeOptionMenuID(""));
-  }, [deleteResumes, resume, dispatch]);
-
-  const handleRenameResume = useCallback(() => {
-    dispatch(setRenameResumeID(resume._id));
-    dispatch(setResumeOptionMenuID(""));
-  }, [dispatch, resume._id]);
-
-  const handleReplaceResume = useCallback(async () => {
-    const file = replaceInputRef.current?.files?.[0];
-
-    if (file) {
-      const formData = appendFormData([
-        { name: "resume", value: file },
-        { name: "fileId", value: resume._id },
-        { name: "publicId", value: resume.fileName },
-      ]);
-
-      await replaceResume(formData);
-      dispatch(setResumeOptionMenuID(""));
-    }
-  }, [resume._id, resume.fileName, replaceResume, dispatch]);
+  const {
+    isDeleteLoading,
+    isReplaceLoading,
+    replaceInputRef,
+    handleDeleteResumes,
+    handleRenameResume,
+    handleReplaceResume,
+    clearResumeOptionMenuID,
+  } = useItemMenuActions({
+    resumeId: resume._id,
+    resumeFilename: resume.fileName,
+  });
 
   if (resume._id === resumeOptionMenuID)
     return (
@@ -103,12 +77,11 @@ const ResponsiveItemMenu = ({
                   Değiştir
                 </label>
 
-                <input
-                  type="file"
+                <FileInput
                   id="replaceResume"
-                  ref={replaceInputRef}
+                  accept=".pdf"
                   onChange={handleReplaceResume}
-                  hidden
+                  ref={replaceInputRef}
                 />
               </>
             ),
@@ -143,7 +116,7 @@ const ResponsiveItemMenu = ({
               toast.success("Özgeçmiş bağlantısı kopyalandı.", {
                 id: "resumeLink",
               });
-              dispatch(setResumeOptionMenuID(""));
+              clearResumeOptionMenuID();
             },
           },
         ]}

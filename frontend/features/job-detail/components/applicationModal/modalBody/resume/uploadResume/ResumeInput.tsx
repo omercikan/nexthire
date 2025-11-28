@@ -29,7 +29,7 @@ const ResumeInput = ({
     if (!file) return;
 
     try {
-      const errorMessage = await validateResume(file, uploadedFileNames);
+      const errorMessage = await validateResume(file);
       if (errorMessage) return dispatch(setResumeErrorMessage(errorMessage));
 
       if (uploadedFileNames.length >= 4) {
