@@ -1,4 +1,6 @@
-import { model, Schema } from "mongoose";
+import { CallbackError, model, Schema } from "mongoose";
+import config from "../../config";
+import bcrypt from "bcrypt";
 
 const UserSchema = new Schema(
   {
@@ -14,6 +16,8 @@ const UserSchema = new Schema(
       unique: true,
     },
     password: String,
+    phoneNumber: String,
+    city: String,
 
     role: {
       type: String,
@@ -26,11 +30,13 @@ const UserSchema = new Schema(
       type: String,
       required: false,
     },
+    dateOfBirth: { type: String, required: false },
+    gender: { type: String, required: false },
+    age: { type: String, required: false },
+    title: { type: String, required: false },
 
     // Employer fields
-    phoneNumber: String,
     companyName: String,
-    city: String,
     district: String,
     taxCity: String,
     taxOffice: String,
@@ -47,5 +53,15 @@ const UserSchema = new Schema(
   },
   { timestamps: true, versionKey: false }
 );
+
+UserSchema.pre("save", async function (next) {
+  if (this.password && this.role === "candidate") {
+    try {
+      this.password = await bcrypt.hash(this.password, config.saltRounds);
+    } catch (err) {
+      return next(err as CallbackError);
+    }
+  }
+});
 
 export const User = model("User", UserSchema);

@@ -35,13 +35,11 @@ class CandidateController {
         });
       }
 
-      const hashedPassword = await bcrypt.hash(password, config.saltRounds);
-
       const createdUser = await createUser<Partial<CandidateTypes>>(
         {
           fullname,
           email,
-          password: hashedPassword,
+          password,
           role: "candidate",
         },
         session
