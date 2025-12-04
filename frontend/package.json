@@ -27,7 +27,7 @@
     "framer-motion": "^12.11.0",
     "js-file-download": "^0.4.12",
     "leaflet": "^1.9.4",
-    "next": "^16.0.5",
+    "next": "^16.0.7",
     "next-auth": "^4.24.12",
     "next-sitemap": "^4.2.3",
     "pdfjs-dist": "^5.3.93",
