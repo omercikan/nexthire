@@ -1,9 +1,10 @@
 import express from "express";
-import { uploads } from "../services/cloudinaryService";
 import { fileValidation } from "../middlewares/fileValidation";
 import { CandidateDashboard } from "../controllers/resume.controller";
 import { validateRequest } from "../../../../shared/middlewares/validateRequest";
 import z from "zod";
+import { uploads } from "../utils/uploadCloudinary";
+import { CandidateCloudinary } from "../services/cloudinaryService";
 
 const router = express.Router();
 
@@ -12,7 +13,7 @@ const { uploadResume, getResumes, deleteResumes, renameResume, replaceResume } =
 
 router.post(
   "/upload-resume",
-  uploads.single("resume"),
+  uploads(CandidateCloudinary.uploadPDF(), "resume"),
   fileValidation(),
   uploadResume
 );
@@ -53,7 +54,7 @@ router.patch(
 
 router.post(
   "/replace-resume",
-  uploads.single("resume"),
+  uploads(CandidateCloudinary.uploadPDF(), "resume"),
   validateRequest(
     z.object({
       publicId: z

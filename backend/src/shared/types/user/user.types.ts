@@ -3,6 +3,8 @@ export interface User {
   fullname: string;
   email: String;
   password: string;
+  phoneNumber: string;
   failedAttempts: number;
+  city: string;
   failedTime: number;
 }

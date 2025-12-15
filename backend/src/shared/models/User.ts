@@ -30,6 +30,7 @@ const UserSchema = new Schema(
       type: String,
       required: false,
     },
+    profilePhotoId: { type: String, required: false },
     dateOfBirth: { type: String, required: false },
     gender: { type: String, required: false },
     age: { type: String, required: false },
