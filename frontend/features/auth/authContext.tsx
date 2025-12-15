@@ -7,15 +7,17 @@ import { skipToken } from "@reduxjs/toolkit/query";
 
 export interface ContextValue {
   user: User | undefined;
+  refetch: () => unknown;
 }
 
 export const AuthContext = createContext<ContextValue>({
   user: undefined,
+  refetch: () => {},
 });
 
 export const AuthContextProvider = ({ children }: LayoutComponentProps) => {
   const { data: session, status } = useSession();
-  const { data, isLoading } = useGetUserQuery(
+  const { data, isLoading, refetch } = useGetUserQuery(
     status === "loading" || status === "authenticated" ? skipToken : ""
   );
 
@@ -25,6 +27,7 @@ export const AuthContextProvider = ({ children }: LayoutComponentProps) => {
     <AuthContext.Provider
       value={{
         user: (session?.user as User) || data,
+        refetch,
       }}
     >
       {children}

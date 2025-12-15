@@ -104,14 +104,16 @@ export interface TaxOfficiesJsonInterface {
 
 //! User interface area Employer and Candidate Role interfaces START !//
 export interface User {
-  createdAt: Date;
-  updatedAt: Date;
-  email: string;
-  emailVerified: boolean;
   _id: string;
+  role: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
   fullname: string;
   phoneNumber: string;
-  role: string;
+  emailVerified: boolean;
+  failedAttempts: number;
+  failedTime: number;
 }
 //! User interface area Employer and Candidate Role interfaces END !//
 

@@ -1,19 +1,16 @@
-import { CandidateForm } from "@/features/dashboard/candidate/Profile/ProfileForm/types";
+import { Candidate } from "@/shared/types/models/candidate";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const candidateProfileApi = createApi({
   reducerPath: "candidateProfileApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "/api/dashboard/update-candidate-profile/",
+    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/candidate`,
   }),
   endpoints: (builder) => ({
-    updateProfile: builder.mutation<
-      { message: string },
-      { userId: string; data: CandidateForm & { dateOfBirth: Date } }
-    >({
-      query: ({ userId, data }) => ({
-        method: "POST",
-        url: `${userId}`,
+    updateProfile: builder.mutation<Candidate, FormData>({
+      query: (data) => ({
+        method: "PUT",
+        url: `/update-profile`,
         body: data,
       }),
     }),

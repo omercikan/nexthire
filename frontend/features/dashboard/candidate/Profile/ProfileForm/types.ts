@@ -1,5 +1,5 @@
 export interface CandidateForm {
-  name: string;
+  fullname: string;
   email: string;
   gender: string;
   age: string;

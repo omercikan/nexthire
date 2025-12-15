@@ -29,7 +29,7 @@ const ProfileImage = () => {
         htmlFor="image"
         className="cursor-pointer relative block w-[132px] h-[130px]"
       >
-        {currentUser?.photo ||
+        {currentUser?.profilePhoto ||
         currentUser?.companyInformations?.companyLogo ||
         profileImage ? (
           <Image
@@ -37,7 +37,7 @@ const ProfileImage = () => {
               profileImage
                 ? profileImage
                 : isCandidate
-                ? currentUser?.photo
+                ? currentUser?.profilePhoto
                 : currentUser?.companyInformations?.companyLogo
             }
             width={132}

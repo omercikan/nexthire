@@ -7,7 +7,7 @@ const FileInput = ({
   accept,
 }: {
   onChange: ChangeEventHandler<HTMLInputElement>;
-  ref: Ref<HTMLInputElement>;
+  ref?: Ref<HTMLInputElement>;
   id: string;
   accept: string;
 }) => {
