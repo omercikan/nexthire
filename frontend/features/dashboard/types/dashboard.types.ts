@@ -16,6 +16,7 @@ export interface DashboardLinkItem {
   href: string;
   linkText: string;
   icon: IconType;
+  isRender?: boolean;
 }
 
 export interface DashboardLinkItemProps extends DashboardLinkItem {

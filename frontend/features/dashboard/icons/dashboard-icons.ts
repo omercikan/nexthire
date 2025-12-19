@@ -7,6 +7,7 @@ import { HiMiniBellAlert } from "react-icons/hi2";
 import { SiGooglemessages } from "react-icons/si";
 import { SiGooglemeet } from "react-icons/si";
 import { IoSettingsOutline } from "react-icons/io5";
+import { HiPencil } from "react-icons/hi2";
 
 export const DASHBOARD_ICONS = {
   home: HiHome,
@@ -18,4 +19,5 @@ export const DASHBOARD_ICONS = {
   messages: SiGooglemessages,
   meet: SiGooglemeet,
   settings: IoSettingsOutline,
+  shareJob: HiPencil,
 };

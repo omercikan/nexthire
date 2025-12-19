@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import DashboardLinks from "./DashboardLinks";
 import DashboardCollapse from "./DashboardCollapse";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,12 +13,15 @@ import {
   setSmallBreakpoint,
   setSmallScreenMenu,
 } from "../../slices/userDashboardSlice";
+import { AuthContext } from "@/features/auth/authContext";
 
 const DashboardSidebar = () => {
   const { collapseMenu, breakpoint, smallScreenMenu } = useSelector(
     (state: RootState) => state.userDashboard
   );
   const dispatch = useDispatch<AppDispatch>();
+  const { user } = useContext(AuthContext);
+  const isCandidateUser = user?.role === "candidate";
 
   const handleSmallScreenMenu = () => {
     document.body.style.overflow = "visible";
@@ -103,6 +106,7 @@ const DashboardSidebar = () => {
             href: "/hesabim/genel-bakis",
             icon: DASHBOARD_ICONS.home,
             linkText: "Genel Bakış",
+            isRender: true,
           },
 
           {
@@ -110,20 +114,35 @@ const DashboardSidebar = () => {
             href: "/hesabim/profilim",
             icon: DASHBOARD_ICONS.profile,
             linkText: "Profilim",
+            isRender: true,
           },
 
           {
             linkId: 3,
-            href: "/hesabim/ozgecmislerim",
+            href: isCandidateUser
+              ? "/hesabim/ozgecmislerim"
+              : "/hesabim/islerim",
             icon: DASHBOARD_ICONS.resume,
-            linkText: "Özgeçmişlerim",
+            linkText: isCandidateUser ? "Özgeçmişlerim" : "İşlerim",
+            isRender: true,
+          },
+
+          {
+            linkId: 10,
+            href: "/hesabim/is-paylas",
+            icon: DASHBOARD_ICONS.shareJob,
+            linkText: "İş Paylaş",
+            isRender: !isCandidateUser,
           },
 
           {
             linkId: 4,
-            href: "/hesabim/basvurularim",
+            href: isCandidateUser
+              ? "/hesabim/basvurularim"
+              : "/hesabim/aday-basvurulari",
             icon: DASHBOARD_ICONS.megaphone,
-            linkText: "Başvurularım",
+            linkText: isCandidateUser ? "Başvurularım" : "Aday Başvuruları",
+            isRender: true,
           },
 
           {
@@ -131,13 +150,17 @@ const DashboardSidebar = () => {
             href: "/hesabim/favorilerim",
             icon: DASHBOARD_ICONS.favorite,
             linkText: "Favorilerim",
+            isRender: true,
           },
 
           {
             linkId: 6,
-            href: "/hesabim/is-uyarilari",
+            href: isCandidateUser
+              ? "/hesabim/is-uyarilari"
+              : "/hesabim/aday-uyarilari",
             icon: DASHBOARD_ICONS.alert,
-            linkText: "Uyarılar",
+            linkText: isCandidateUser ? "Uyarılar" : "Aday Uyarıları",
+            isRender: true,
           },
 
           {
@@ -145,6 +168,7 @@ const DashboardSidebar = () => {
             href: "/hesabim/mesajlar",
             icon: DASHBOARD_ICONS.messages,
             linkText: "Mesajlar",
+            isRender: true,
           },
 
           {
@@ -152,6 +176,7 @@ const DashboardSidebar = () => {
             href: "/hesabim/toplantilar",
             icon: DASHBOARD_ICONS.meet,
             linkText: "Toplantılar",
+            isRender: true,
           },
 
           {
@@ -159,6 +184,7 @@ const DashboardSidebar = () => {
             href: "/hesabim/ayarlar",
             icon: DASHBOARD_ICONS.settings,
             linkText: "Ayarlar",
+            isRender: true,
           },
         ]}
       />

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 import DashboardLinkItem from "./DashboardLinkItem";
 import { useSelector } from "react-redux";
 import { RootState } from "@/shared/redux/store";
@@ -42,17 +42,22 @@ const DashboardLinks = ({ links }: { links: DashboardLinkItemTypes[] }) => {
       />
 
       <ul className={`p-4 pe-0 pt-0 text-center ${collapseMenu ? "ps-3" : ""}`}>
-        {links.map(({ linkId, href, icon: Icon, linkText }, index) => (
-          <DashboardLinkItem
-            key={linkId}
-            href={href}
-            icon={Icon}
-            linkId={linkId}
-            linkText={linkText}
-            activeLinkFunc={() => handleActiveLink(href, index)}
-            pathname={activeLink.pathname}
-          />
-        ))}
+        {links
+          .filter(({ isRender }) => Boolean(isRender))
+          .map(
+            ({ linkId, href, icon: Icon, linkText, isRender = true }, index) =>
+              isRender && (
+                <DashboardLinkItem
+                  key={linkId}
+                  href={href}
+                  icon={Icon}
+                  linkId={linkId}
+                  linkText={linkText}
+                  activeLinkFunc={() => handleActiveLink(href, index)}
+                  pathname={activeLink.pathname}
+                />
+              )
+          )}
       </ul>
     </div>
   );
