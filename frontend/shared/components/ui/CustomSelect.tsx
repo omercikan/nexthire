@@ -38,7 +38,7 @@ const CustomSelect: FC<AuthSelectProps> = ({
           disabled={!data.length || isSubmitting ? true : false}
         >
           {isDefaultValueOption && (
-            <option disabled className="bg-gray-100" value={defaultValue}>
+            <option disabled className="bg-gray-100" value="">
               {defaultValue}
             </option>
           )}

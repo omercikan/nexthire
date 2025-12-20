@@ -25,6 +25,7 @@ import { candidateProfileApi } from "@/features/dashboard/services/candidateProf
 import { authServiceApi } from "@/features/auth/services/auth-service";
 import { candidateResumeApi } from "@/features/dashboard/services/candidateResumeApi";
 import { resumeSlice } from "@/features/dashboard/candidate/Resumes/resumeSlice";
+import { jobApi } from "@/features/dashboard/employer/services/jobApi";
 
 export const store = configureStore({
   reducer: {
@@ -53,6 +54,7 @@ export const store = configureStore({
     [candidateProfileApi.reducerPath]: candidateProfileApi.reducer,
     [authServiceApi.reducerPath]: authServiceApi.reducer,
     [candidateResumeApi.reducerPath]: candidateResumeApi.reducer,
+    [jobApi.reducerPath]: jobApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -70,6 +72,7 @@ export const store = configureStore({
       candidateProfileApi.middleware,
       authServiceApi.middleware,
       candidateResumeApi.middleware,
+      jobApi.middleware,
     ]),
 });
 

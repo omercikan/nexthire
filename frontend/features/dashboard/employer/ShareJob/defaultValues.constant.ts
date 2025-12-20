@@ -1,0 +1,16 @@
+export const SHARE_JOB_DEFAULT_VALUES = {
+  jobTitle: "",
+  jobDescription: "",
+  category: "",
+  workType: "",
+  gender: "",
+  applicationMethod: "",
+  applicationAddress: "",
+  salaryPeriod: "",
+  minSalary: "",
+  maxSalary: "",
+  experience: "",
+  careerLevel: "",
+  educationLevel: "",
+  introductionUrl: "",
+};

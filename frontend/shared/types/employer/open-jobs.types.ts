@@ -2,36 +2,25 @@
  * @description the interface of the job opened by the employer
  */
 
-import { Timestamp } from "firebase/firestore";
-
-type ExperienceTime =
-  | "Deneyimli"
-  | "Deneyimsiz"
-  | "1 Yıl"
-  | "2 Yıl"
-  | "3 Yıl"
-  | "4 Yıl"
-  | "5 Yıl"
-  | "5+ Yıl";
-
-export interface EmployerOpenJobs {
-  postId: string;
+export interface Job {
+  _id: string;
+  employerId: string;
+  jobDescription: string;
   jobTitle: string;
-  jobAbout: string;
+  minSalary: string;
+  maxSalary: string;
+  experience: string;
+  careerLevel: string;
+  introductionUrl: string;
   category: string;
-  modeOfWork: string;
-  workModel: string;
-  positionLevel: string;
-  educationLevel: string[];
-  experienceTime: ExperienceTime;
-  applicationDeadlineDate: string;
-  location: string;
-  datePosted: Timestamp;
-  additionalQuestions: JobPostingAdditionalQuestions;
-  requirements: string[];
-  responsibilities: string[];
-  salary: string;
+  workType: string;
   gender: string;
+  salaryPeriod: string;
+  educationLevel: string;
+  applicationMethod: string;
+  applicationAddress: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface JobPostingAdditionalQuestions {
