@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { Job as JobModel } from "../models/job";
+import { Job as JobModel } from "../../../../shared/models/Job";
 
 export class Job {
   async createJob(req: Request, res: Response, next: NextFunction) {
