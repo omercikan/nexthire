@@ -9,6 +9,7 @@ import emailAuthRoutes from "./features/auth/emails/emails.routes";
 import logoutRoutes from "./features/auth/logout/logout.routes";
 import candidateDashboardRoutes from "./features/dashboard/candidate/routes/general.route";
 import employerDashboardRoutes from "./features/dashboard/employer/routes/general.route";
+import jobRoutes from "./features/jobs/job.routes";
 import { errorHandler } from "./shared/middlewares/errorHandler";
 import cookieParser from "cookie-parser";
 import config from "./config/index";
@@ -43,6 +44,7 @@ app.use("/api/auth", logoutRoutes);
 app.use("/api/dashboard/candidate", candidateDashboardRoutes);
 app.use("/api/dashboard/employer", employerDashboardRoutes);
 
+app.use("/api/jobs", jobRoutes);
 app.use("/api/users", userRoutes);
 
 // global error handler after requests

@@ -12,6 +12,7 @@ export const jobApi = createApi({
         url: "/create-job",
         method: "POST",
         body: data,
+        credentials: "include",
       }),
     }),
   }),
