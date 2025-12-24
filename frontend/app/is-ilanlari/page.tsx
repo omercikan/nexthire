@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { RootState } from "@/shared/redux/store";
 import SearchJob from "@/shared/components/SearchJob/SearchJob";
-import FilterMenu from "@/features/job-postings/components/FilterMenu";
-import FilterMenuMobile from "@/features/job-postings/components/FilterMenuMobile";
-import JobList from "@/features/job-postings/components/jobs/JobList";
+import FilterMenu from "@/features/jobs/postings/components/FilterMenu";
+import FilterMenuMobile from "@/features/jobs/postings/components/FilterMenuMobile";
+import JobPostings from "@/features/jobs/postings/JobPostings";
 
 const JobAdverts = () => {
   const { filtersItem } = useSelector((state: RootState) => state.jobFilters);
@@ -34,7 +34,7 @@ const JobAdverts = () => {
         <FilterMenu />
         <FilterMenuMobile />
 
-        <JobList />
+        <JobPostings />
       </section>
     </main>
   );

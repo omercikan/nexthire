@@ -1,12 +1,11 @@
-import useJobFilter from "@/shared/hooks/job-filter/useJobFilter";
 import useCreateArray from "@/shared/hooks/useCreateArray";
 import useScroll from "@/shared/hooks/useScroll";
-import { setPagination } from "@/shared/redux/slices/filters";
 import { RootState } from "@/shared/redux/store";
 import { Stack } from "@mui/material";
-import Pagination from "@mui/material/Pagination";
+import MUIPagination from "@mui/material/Pagination";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { setPage } from "./paginationSlice";
 
 /**
  * Renders the pagination component for job listings.
@@ -15,31 +14,23 @@ import { useDispatch, useSelector } from "react-redux";
  * @returns A MUI Pagination component wrapped in a Stack, used for navigating job pages.
  */
 
-const JobPagination = ({ countJobs }: { countJobs: number }) => {
+const Pagination = ({ countJobs }: { countJobs: number }) => {
   const dispatch = useDispatch();
-  const { filterJob } = useJobFilter();
   const { applyScroll } = useScroll();
   const paginationButtons = useCreateArray(
     countJobs < 10 ? Math.floor(10 / countJobs - 1) : Math.ceil(countJobs / 10)
   );
   const pageCount = paginationButtons?.length;
-  const { activePage } = useSelector((state: RootState) => state.jobFilters);
+  const { currentPage } = useSelector(
+    (state: RootState) => state.paginationSlice
+  );
 
-  const handleChangePage = (
+  const handleChangePage = async (
     _event: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    const nextPage = 10 * value;
-    const prevPage = nextPage - 10;
-    dispatch(
-      setPagination({
-        nextPageValue: nextPage,
-        prevPageValue: prevPage,
-        activePage: value,
-      })
-    );
+    dispatch(setPage(value));
 
-    filterJob();
     setTimeout(() => {
       applyScroll(640, 474.57, 386.63);
     }, 0);
@@ -52,9 +43,9 @@ const JobPagination = ({ countJobs }: { countJobs: number }) => {
       className="lg:sticky lg:bottom-0 bg-white p-4"
       data-testid="MuiStack-root"
     >
-      <Pagination
+      <MUIPagination
         count={pageCount}
-        page={activePage}
+        page={currentPage}
         size="large"
         onChange={handleChangePage}
         showFirstButton={pageCount >= 10 ? true : false}
@@ -72,4 +63,4 @@ const JobPagination = ({ countJobs }: { countJobs: number }) => {
   );
 };
 
-export default JobPagination;
+export default Pagination;

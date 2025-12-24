@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { jobPostings } from "./services/jobPostings";
 import { resumeApi } from "./services/resumeApi";
 import { userModalSlice } from "./slices/user-modal/userModalSlice";
 import { userMenuSlice } from "./slices/user-modal/userMenuSlice";
@@ -26,6 +25,8 @@ import { authServiceApi } from "@/features/auth/services/auth-service";
 import { candidateResumeApi } from "@/features/dashboard/services/candidateResumeApi";
 import { resumeSlice } from "@/features/dashboard/candidate/Resumes/resumeSlice";
 import { jobApi } from "@/features/dashboard/employer/services/jobApi";
+import { jobsApi } from "@/features/jobs/postings/services/jobsApi";
+import { paginationSlice } from "@/features/jobs/postings/components/pagination/paginationSlice";
 
 export const store = configureStore({
   reducer: {
@@ -41,9 +42,9 @@ export const store = configureStore({
     applyModalScreen: applyModalScreenReducer,
     userDashboard: userDashboardSlice.reducer,
     resumeSlice: resumeSlice.reducer,
+    paginationSlice: paginationSlice.reducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
-    [jobPostings.reducerPath]: jobPostings.reducer,
     [favoritesApi.reducerPath]: favoritesApi.reducer,
     [jobDetailApi.reducerPath]: jobDetailApi.reducer,
     [resumeApi.reducerPath]: resumeApi.reducer,
@@ -55,13 +56,13 @@ export const store = configureStore({
     [authServiceApi.reducerPath]: authServiceApi.reducer,
     [candidateResumeApi.reducerPath]: candidateResumeApi.reducer,
     [jobApi.reducerPath]: jobApi.reducer,
+    [jobsApi.reducerPath]: jobsApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
       featuredJobsApi.middleware,
       bestCompaniesApi.middleware,
-      jobPostings.middleware,
       favoritesApi.middleware,
       jobDetailApi.middleware,
       resumeApi.middleware,
@@ -73,6 +74,7 @@ export const store = configureStore({
       authServiceApi.middleware,
       candidateResumeApi.middleware,
       jobApi.middleware,
+      jobsApi.middleware,
     ]),
 });
 

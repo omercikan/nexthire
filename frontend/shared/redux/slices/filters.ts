@@ -1,7 +1,6 @@
-import { EmployerOpenJobs } from "@/shared/types/employer/open-jobs.types";
+import { Job } from "@/shared/types/employer/open-jobs.types";
 import {
   FilterArrayFields,
-  FilterPaginationFields,
   FilterStringFields,
   JobCompanyInformations,
   JobSearchFilters,
@@ -39,7 +38,7 @@ interface initialStateFields {
   locationKeywords: string[];
   filterData: {
     countJobs: number;
-    jobs: (JobCompanyInformations & EmployerOpenJobs)[];
+    jobs: (JobCompanyInformations & Job)[];
     isFilter: boolean;
   };
   nextPageValue: number;
@@ -182,34 +181,11 @@ export const jobFilters = createSlice({
       state: initialStateFields,
       action: PayloadAction<{
         countJobs: number;
-        jobs: (JobCompanyInformations & EmployerOpenJobs)[];
+        jobs: (JobCompanyInformations & Job)[];
         isFilter: boolean;
       }>
     ) => {
       state.filterData = action.payload;
-    },
-
-    setPagination: (
-      state: initialStateFields,
-      action: PayloadAction<{
-        nextPageValue: number;
-        prevPageValue: number;
-        activePage: number;
-      }>
-    ) => {
-      const paginationFields: FilterPaginationFields[] = [
-        "nextPageValue",
-        "prevPageValue",
-        "activePage",
-      ];
-
-      paginationFields.forEach((field) => {
-        const value = action.payload[field];
-
-        if (typeof value === "number") {
-          state[field] = value;
-        }
-      });
     },
 
     openFilterMenu: (
@@ -234,6 +210,5 @@ export const {
   selectJobKeyword,
   selectLocationKeyword,
   setJobSearchFilterData,
-  setPagination,
   openFilterMenu,
 } = jobFilters.actions;
