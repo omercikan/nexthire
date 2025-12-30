@@ -2,7 +2,7 @@ import { model, Schema } from "mongoose";
 
 const jobSchema = new Schema(
   {
-    employerId: { type: Schema.Types.ObjectId, ref: "User", requried: true },
+    employerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     jobDescription: { type: String, required: true },
     jobTitle: { type: String, required: true },
     minSalary: { type: String, required: true },
@@ -31,12 +31,7 @@ const jobSchema = new Schema(
   { timestamps: true, versionKey: false }
 );
 
-jobSchema.index({
-  jobTitle: "text",
-  location: "text",
-  category: "text",
-});
-
-jobSchema.index({ workType: 1, careerLevel: 1, experience: 1, createdAt: -1 });
+jobSchema.index({ createdAt: -1 });
+jobSchema.index({ employerId: 1 });
 
 export const Job = model("jobs", jobSchema);
