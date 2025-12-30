@@ -1,4 +1,5 @@
-import { BodyFields, PerPage, RegexFilter } from "../types";
+import { FILTER_JOB_PIPELINE } from "../constants";
+import { BodyFields, PerPage } from "../types";
 
 export class FilterJobHelpers {
   getPagination(perPage: PerPage, page: number) {
@@ -8,32 +9,63 @@ export class FilterJobHelpers {
     return { limit, skip };
   }
 
-  createFilters(fields: BodyFields) {
-    const filters: RegexFilter = { $text: { $search: "" } };
-    const textTerms: string[] = [];
+  createFilters(fields: BodyFields, limit: number, skip: number) {
+    const should = [];
+    const pipeline = [];
 
     for (const [k, v] of Object.entries(fields)) {
-      if (typeof v === "string" && v.trim()) {
-        if (["jobTitle", "location", "category"].includes(k)) {
-          textTerms.push(v.trim());
-        } else if (["workType", "careerLevel", "experience"].includes(k)) {
-          filters[k] = { $regex: `^${v.trim()}$`, $options: "i" };
-        }
+      if (!v) continue;
+
+      if (Array.isArray(v)) {
+        v.filter((item) => item).forEach((item) => {
+          should.push({
+            text: {
+              query: item,
+              path: k,
+            },
+          });
+        });
+      } else {
+        should.push({
+          text: {
+            query: v,
+            path: k,
+          },
+        });
       }
     }
 
-    if (textTerms.length) {
-      filters.$text = { $search: textTerms.join(" ") };
-    } else {
-      delete filters.$text;
+    if (should.length) {
+      pipeline.push({
+        $search: {
+          index: "jobs_search",
+          compound: {
+            should,
+            minimumShouldMatch: 1,
+          },
+        },
+      });
     }
 
-    return filters;
-  }
+    const { $lookup, $project } = FILTER_JOB_PIPELINE;
 
-  getShort(sort: number, filters: RegexFilter) {
-    return filters.$text
-      ? { score: { $meta: "textScore" } }
-      : { createdAt: sort };
+    pipeline.push({ $lookup });
+    pipeline.push({ $project });
+
+    const dataPipeline = [{ $skip: skip }] as {
+      $limit: number;
+      $skip?: number;
+    }[];
+
+    if (limit !== 0) dataPipeline.push({ $limit: limit });
+
+    pipeline.push({
+      $facet: {
+        data: dataPipeline,
+        totalCount: [{ $count: "count" }],
+      },
+    });
+
+    return pipeline;
   }
 }

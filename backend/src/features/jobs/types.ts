@@ -1,14 +1,3 @@
-import { SortOrder } from "mongoose";
-
-// Regex filter type for job search queries
-export type RegexFilter = {
-  [key: string]: unknown;
-  $or?: {
-    [key: string]: { $regex: string; $options: string };
-  }[];
-  $text?: { $search: string };
-};
-
 // All available fields used for filtering and pagination in job listing requests
 export type PerPage = 10 | "all";
 

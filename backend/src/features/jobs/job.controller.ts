@@ -34,12 +34,9 @@ export class JobEvents {
 
   filterJobs = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { jobs, counts } = await this.jobService.filteredJobs(
-        req.query,
-        req.body
-      );
+      const jobs = await this.jobService.filteredJobs(req.query, req.body);
 
-      return res.json({ counts, jobs });
+      return res.json(jobs);
     } catch (error) {
       next(error);
     }

@@ -29,25 +29,17 @@ export class JobService {
     queryFields: Partial<QueryFields>,
     bodyFields: BodyFields
   ) {
-    const { page = 1, sort = 1, perPage = 10 } = queryFields;
+    const { page = 1, perPage = 10, sort = 1 } = queryFields;
 
-    const { getPagination, getShort, createFilters } = new FilterJobHelpers();
+    const { getPagination, createFilters } = new FilterJobHelpers();
 
     const { limit, skip } = getPagination(perPage, page);
-    const filters = createFilters(bodyFields);
-    const sortValue = getShort(sort, filters);
+    const pipeline = createFilters(bodyFields, limit, skip);
 
-    const [jobs, counts] = await Promise.all([
-      Job.find(filters)
-        .sort(sortValue as any)
-        .skip(skip)
-        .limit(limit)
-        .select(selectFields)
-        .populate(populatePath, populateFields)
-        .lean(),
-      Job.countDocuments(filters),
-    ]);
+    const jobs = await Job.aggregate(pipeline).sort({
+      createdAt: Number(sort) === 1 ? "desc" : "asc",
+    });
 
-    return { jobs, counts };
+    return jobs;
   }
 }
