@@ -2,7 +2,7 @@ import { Job } from "../../shared/models/Job";
 import { BodyFields, QueryFields } from "./types";
 import { JOB_QUERY_OPTIONS } from "./constants";
 import { FilterJobHelpers } from "./helpers/filter-job.helper";
-
+import { SortOrder } from "mongoose";
 const { selectFields, populatePath, populateFields } = JOB_QUERY_OPTIONS;
 
 export class JobService {
@@ -36,9 +36,7 @@ export class JobService {
     const { limit, skip } = getPagination(perPage, page);
     const pipeline = createFilters(bodyFields, limit, skip);
 
-    const jobs = await Job.aggregate(pipeline).sort({
-      createdAt: Number(sort) === 1 ? "desc" : "asc",
-    });
+    const jobs = await Job.aggregate(pipeline);
 
     return jobs;
   }

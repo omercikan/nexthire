@@ -23,9 +23,8 @@ export class JobEvents {
       }
 
       return res.json({
-        currentCounts,
-        totalCounts,
-        jobs,
+        totalCount: [{ count: totalCounts }],
+        data: jobs,
       });
     } catch (error) {
       next(error);
@@ -36,7 +35,7 @@ export class JobEvents {
     try {
       const jobs = await this.jobService.filteredJobs(req.query, req.body);
 
-      return res.json(jobs);
+      return res.json(jobs[0]);
     } catch (error) {
       next(error);
     }

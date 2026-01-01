@@ -21,7 +21,7 @@ router.get(
   getJobs
 );
 
-router.get(
+router.post(
   "/filter",
   validateRequest(
     z.object({
@@ -33,12 +33,6 @@ router.get(
       perPage: z
         .enum(["10", "all"], {
           message: "perPage must be either '10' or 'all'",
-        })
-        .optional(),
-
-      sort: z
-        .enum(["1", "-1"], {
-          message: "sort must be '1' or '-1'",
         })
         .optional(),
     }),
