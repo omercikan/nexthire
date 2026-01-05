@@ -1,21 +1,6 @@
+import { FilterData } from "@/shared/types/filtersJob";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-interface JobResults {
-  currentCounts: number;
-  totalCounts: number;
-  jobs: {
-    _id: string;
-    jobTitle: string;
-    careerLevel: string;
-    category: string;
-    workType: string;
-    employerId: {
-      _id: string;
-      companyLogo: string;
-      companyName: string;
-    };
-  }[];
-}
+import { FilterJobQueryArgs } from "./jobsApi.types";
 
 export const jobsApi = createApi({
   reducerPath: "jobsApi",
@@ -23,13 +8,36 @@ export const jobsApi = createApi({
     baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/api/jobs`,
   }),
   endpoints: (builder) => ({
-    getJobs: builder.query<JobResults, { page: number }>({
+    getJobs: builder.query<FilterData, { page: number }>({
       query: ({ page }) => ({
         method: "GET",
         url: `/?page=${page}`,
       }),
     }),
+
+    filterJob: builder.query<FilterData, FilterJobQueryArgs>({
+      query: ({
+        page,
+        perPage,
+        sort,
+        jobTitle,
+        location,
+        workType,
+        experience,
+        careerLevel,
+      }) => ({
+        method: "POST",
+        url: `/filter?page=${page}&perPage=${perPage}&sort=${sort}`,
+        body: {
+          jobTitle,
+          location,
+          workType,
+          experience,
+          careerLevel,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetJobsQuery, useLazyGetJobsQuery } = jobsApi;
+export const { useGetJobsQuery, useLazyFilterJobQuery } = jobsApi;
