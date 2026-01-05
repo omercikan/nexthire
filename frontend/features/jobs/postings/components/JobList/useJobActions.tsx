@@ -8,8 +8,14 @@ const useJobActions = () => {
     paginationSlice: { currentPage },
   } = useSelector((state: RootState) => state);
   const { data, isFetching } = useGetJobsQuery({ page: currentPage });
+  const jobData = filtersItem?.length ? filterData : data;
 
-  return { data, isFetching, filterData, filtersItem };
+  return {
+    data: jobData,
+    isFetching,
+    filterData,
+    filtersItem,
+  };
 };
 
 export default useJobActions;
