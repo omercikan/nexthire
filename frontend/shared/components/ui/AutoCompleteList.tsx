@@ -6,7 +6,6 @@ const AutoCompleteList = ({
   searchData,
   recommendedKeywords,
   setFieldValue,
-  setSelectedKeyword,
   listText,
   field,
 }: AuthCompoleteComponentProps) => {
@@ -28,10 +27,7 @@ const AutoCompleteList = ({
                 <li key={i}>
                   <span
                     className="auto-complete-list-span"
-                    onMouseDown={() => {
-                      setSelectedKeyword(keyword);
-                      setFieldValue(field, keyword);
-                    }}
+                    onMouseDown={() => setFieldValue(keyword)}
                   >
                     {keyword}
                   </span>
@@ -46,10 +42,7 @@ const AutoCompleteList = ({
                 <li key={i}>
                   <span
                     className="auto-complete-list-span"
-                    onMouseDown={() => {
-                      setSelectedKeyword(sd.title);
-                      setFieldValue(field, sd.title);
-                    }}
+                    onMouseDown={() => setFieldValue(sd.title)}
                   >
                     {sd.title}
                   </span>
