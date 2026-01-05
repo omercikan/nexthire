@@ -1,23 +1,20 @@
-import React from "react";
 import { RootState } from "@/shared/redux/store";
 import { useSelector } from "react-redux";
-import CustomList from "../CustomList";
-import { selectPageValue, selectSortValue } from "@/shared/redux/slices/filters";
 import { setOpenCustomList } from "@/shared/redux/slices/touch";
+import CustomList from "./CustomList";
+import { setFilters } from "@/shared/redux/slices/filtersData";
 
-const ResultNavigator = ({
-  searchedDataLength,
-}: {
-  searchedDataLength: number;
-}) => {
+const ResultNavigator = ({ dataLength }: { dataLength: number }) => {
   const {
-    sortValue,
-    pageValue,
-    prevPageValue,
-    nextPageValue,
     filtersItem,
-    filterData: { countJobs, isFilter },
+    filterData: { data },
   } = useSelector((state: RootState) => state.jobFilters);
+  const { currentPage } = useSelector(
+    (state: RootState) => state.paginationSlice
+  );
+  const { sort, perPage } = useSelector(
+    (state: RootState) => state.filtersSlice
+  );
   const { touch, touchSortList, openCustomList } = useSelector(
     (state: RootState) => state.touch
   );
@@ -26,18 +23,12 @@ const ResultNavigator = ({
     <div className="mb-[30px] flex max-md:flex-wrap gap-5 justify-between items-center max-md:w-full">
       <div className="max-md:mt-5">
         <p className="whitespace-nowrap">
-          {pageValue === "Tümü"
-            ? countJobs !== 0
-              ? `Toplam ${
-                  countJobs > 0 ? countJobs : searchedDataLength
-                } sonuç gösteriliyor`
-              : `Seçili ${filtersItem?.length} filtreden ${countJobs} ilan gösteriliyor`
-            : filtersItem.length > 0 && isFilter
-            ? `Seçili ${filtersItem.length} filtreden ${countJobs} ilan gösteriliyor`
-            : ` ${searchedDataLength} sonuçtan ${
-                prevPageValue === 0 ? 1 : prevPageValue
-              } - ${
-                nextPageValue === 10 ? nextPageValue : countJobs
+          {filtersItem.length
+            ? `Seçili ${filtersItem.length} filtreden ${data.length} ilan gösteriliyor`
+            : `${dataLength} ilandan ${
+                currentPage === 1
+                  ? "1 - 10"
+                  : `${currentPage * 10 - 10} - ${currentPage * 10}`
               } gösteriliyor`}
         </p>
       </div>
@@ -45,9 +36,9 @@ const ResultNavigator = ({
       <div className="flex max-sm:flex-col gap-x-5 gap-y-3  max-md:w-full">
         <div className={`${touch ? "-z-[1]" : "z-[1]"} max-md:flex-[1]`}>
           <CustomList
-            options={["Sıralama (Varsayılan)", "En yeni", "En eski"]}
-            setState={selectSortValue}
-            state={sortValue}
+            options={["Sıralama (Varsayılan)", "En Yeni", "En Eski"]}
+            setState={(e) => setFilters({ sort: e })}
+            state={sort}
             defaultValue="Sıralama (Varsayılan)"
             screenClass="!bg-[#f0f5f7] !w-[222.45px] max-md:!w-full"
             listClass="!w-[222.45px] max-md:!w-full"
@@ -63,8 +54,8 @@ const ResultNavigator = ({
         >
           <CustomList
             options={touchSortList ? [] : ["Sayfa Başına 10", "Tümü"]}
-            setState={selectPageValue}
-            state={pageValue}
+            setState={(value) => setFilters({ perPage: value })}
+            state={perPage}
             defaultValue="Sayfa Başına 10"
             screenClass="!bg-[#f0f5f7] !w-[190.44px] max-md:!w-full"
             listClass="!w-[190.44px] max-md:!w-full"
