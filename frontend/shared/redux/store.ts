@@ -3,7 +3,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { resumeApi } from "./services/resumeApi";
 import { userModalSlice } from "./slices/user-modal/userModalSlice";
 import { userMenuSlice } from "./slices/user-modal/userMenuSlice";
-import { jobFilters } from "./slices/filters";
+import { jobFilters } from "./slices/filtersValues";
 import { touch } from "./slices/touch";
 import { loading } from "../hooks/job-filter/loadingSlice";
 import { ProgressBarSlice } from "./slices/applicationModal/progressBar";
@@ -27,6 +27,7 @@ import { resumeSlice } from "@/features/dashboard/candidate/Resumes/resumeSlice"
 import { jobApi } from "@/features/dashboard/employer/services/jobApi";
 import { jobsApi } from "@/features/jobs/postings/services/jobsApi";
 import { paginationSlice } from "@/features/jobs/postings/components/pagination/paginationSlice";
+import { filtersSlice } from "./slices/filtersData";
 
 export const store = configureStore({
   reducer: {
@@ -43,6 +44,7 @@ export const store = configureStore({
     userDashboard: userDashboardSlice.reducer,
     resumeSlice: resumeSlice.reducer,
     paginationSlice: paginationSlice.reducer,
+    filtersSlice: filtersSlice.reducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [favoritesApi.reducerPath]: favoritesApi.reducer,

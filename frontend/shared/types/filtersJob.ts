@@ -6,6 +6,24 @@ export type FilterSwitch = {
   itemText: string;
 };
 
+export interface FilterData {
+  totalCount: { count: 0 }[];
+  data: {
+    _id: string;
+    jobTitle: string;
+    location: string;
+    careerLevel: string;
+    category: string;
+    workType: string;
+    createdAt: string;
+    employerId: {
+      _id: string;
+      companyLogo: string;
+      companyName: string;
+    };
+  }[];
+}
+
 export interface JobCompanyInformations {
   companyInformations: {
     companyLogo: string;
@@ -40,7 +58,7 @@ export interface JobSearchFilters {
   filterItems: string[];
 }
 
-export type FilterStringFields = "jobType" | "pageValue" | "sortValue";
+export type FilterStringFields = "jobType" | "pageValue";
 
 export type FilterArrayFields = (
   | "careerLevel"

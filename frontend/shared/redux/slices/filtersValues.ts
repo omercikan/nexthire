@@ -1,8 +1,7 @@
-import { Job } from "@/shared/types/employer/open-jobs.types";
 import {
   FilterArrayFields,
+  FilterData,
   FilterStringFields,
-  JobCompanyInformations,
   JobSearchFilters,
 } from "@/shared/types/filtersJob";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -11,19 +10,15 @@ const initialState: initialStateFields = {
   jobType: "",
   experienceLevel: [],
   careerLevel: [],
-  sortValue: "",
   pageValue: "",
   filtersItem: [],
   jobKeywords: [],
   locationKeywords: [],
+  isFetching: false,
   filterData: {
-    countJobs: 0,
-    jobs: [],
-    isFilter: false,
+    totalCount: [{ count: 0 }],
+    data: [],
   },
-  nextPageValue: 10,
-  prevPageValue: 0,
-  activePage: 1,
   openfilterMenu: false,
 };
 
@@ -31,19 +26,12 @@ interface initialStateFields {
   jobType: string;
   experienceLevel: string[];
   careerLevel: string[];
-  sortValue: string;
   pageValue: string;
   filtersItem: string[];
   jobKeywords: string[];
   locationKeywords: string[];
-  filterData: {
-    countJobs: number;
-    jobs: (JobCompanyInformations & Job)[];
-    isFilter: boolean;
-  };
-  nextPageValue: number;
-  prevPageValue: number;
-  activePage: number;
+  filterData: FilterData;
+  isFetching: boolean;
   openfilterMenu: boolean;
 }
 
@@ -69,32 +57,11 @@ export const jobFilters = createSlice({
       state.careerLevel = action.payload;
     },
 
-    selectSortValue: (
-      state: initialStateFields,
-      action: { payload: string }
-    ) => {
-      state.sortValue = action.payload;
-    },
-
-    selectPageValue: (
-      state: initialStateFields,
-      action: { payload: string }
-    ) => {
-      state.pageValue = action.payload;
-    },
-
     selectJobKeyword: (
       state: initialStateFields,
       action: PayloadAction<string[]>
     ) => {
       state.jobKeywords = action.payload;
-    },
-
-    selectLocationKeyword: (
-      state: initialStateFields,
-      action: PayloadAction<string[]>
-    ) => {
-      state.locationKeywords = action.payload;
     },
 
     selectFiltersItem: (
@@ -112,11 +79,7 @@ export const jobFilters = createSlice({
         "jobKeywords",
         "locationKeywords",
       ];
-      const stringFields: FilterStringFields[] = [
-        "jobType",
-        "pageValue",
-        "sortValue",
-      ];
+      const stringFields: FilterStringFields[] = ["jobType", "pageValue"];
       const otherFields: ["openfilterMenu", "filterData"] = [
         "openfilterMenu",
         "filterData",
@@ -135,39 +98,6 @@ export const jobFilters = createSlice({
       });
     },
 
-    clearMatchFilter: (
-      state: initialStateFields,
-      action: PayloadAction<string>
-    ) => {
-      const payload: string = action.payload;
-
-      const arrayFields: FilterArrayFields = [
-        "careerLevel",
-        "experienceLevel",
-        "filtersItem",
-        "jobKeywords",
-        "locationKeywords",
-      ];
-
-      const stringFields: FilterStringFields[] = [
-        "jobType",
-        "pageValue",
-        "sortValue",
-      ];
-
-      arrayFields.forEach((field) => {
-        if (Array.isArray(state[field]) && state[field].includes(payload)) {
-          state[field] = state[field].filter((item) => item !== payload);
-        }
-      });
-
-      stringFields.forEach((field) => {
-        if (state[field] === payload) {
-          state[field] = "";
-        }
-      });
-    },
-
     setJobSearchFilterData: (
       state: initialStateFields,
       action: PayloadAction<JobSearchFilters>
@@ -179,13 +109,15 @@ export const jobFilters = createSlice({
 
     setFilterData: (
       state: initialStateFields,
-      action: PayloadAction<{
-        countJobs: number;
-        jobs: (JobCompanyInformations & Job)[];
-        isFilter: boolean;
-      }>
+      action: PayloadAction<{ filterData?: FilterData; isFetching: boolean }>
     ) => {
-      state.filterData = action.payload;
+      const { filterData, isFetching } = action.payload;
+
+      if (filterData) {
+        state.filterData = filterData;
+      }
+
+      state.isFetching = isFetching;
     },
 
     openFilterMenu: (
@@ -201,14 +133,10 @@ export const {
   selectJobType,
   selectExperienceLevel,
   selectCareerLevel,
-  selectSortValue,
-  selectPageValue,
   selectFiltersItem,
   clearAllFilters,
-  clearMatchFilter,
   setFilterData,
   selectJobKeyword,
-  selectLocationKeyword,
   setJobSearchFilterData,
   openFilterMenu,
 } = jobFilters.actions;
