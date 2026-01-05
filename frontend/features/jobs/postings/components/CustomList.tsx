@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { MdArrowDropDown } from "react-icons/md";
 import { IoIosClose } from "react-icons/io";
 import { CustomListProps } from "@/shared/types/filtersJob";
-import useJobFilter from "@/shared/hooks/job-filter/useJobFilter";
 import { setTouchSortList } from "@/shared/redux/slices/touch";
-import { selectFiltersItem } from "@/shared/redux/slices/filters";
+import { selectFiltersItem } from "@/shared/redux/slices/filtersValues";
+import useJobFilter from "@/shared/hooks/job-filter/useJobFilter";
 
 const CustomList = ({
   title,
@@ -24,7 +24,7 @@ const CustomList = ({
 }: CustomListProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const { filtersItem } = useSelector((state: RootState) => state.jobFilters);
-  const { filterJob } = useJobFilter();
+  const { handleFilter } = useJobFilter();
 
   useEffect(() => {
     window.addEventListener("click", () => {
@@ -50,7 +50,7 @@ const CustomList = ({
       );
     }
 
-    filterJob();
+    handleFilter();
   };
 
   const handleClearCurrent = (e: MouseEvent<HTMLOrSVGElement>) => {
@@ -60,7 +60,7 @@ const CustomList = ({
     dispatch(setState(""));
     dispatch(selectFiltersItem(filtersItem.filter((item) => item !== state)));
 
-    filterJob();
+    handleFilter();
   };
 
   const handleOpenList = (e: MouseEvent<HTMLDivElement>) => {

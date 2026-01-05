@@ -1,30 +1,39 @@
-import FavoriteItem from "@/shared/components/FavoriteItem";
-import useJobFilter from "@/shared/hooks/job-filter/useJobFilter";
 import useScroll from "@/shared/hooks/useScroll";
 import { resetProgressBarValue } from "@/shared/redux/slices/applicationModal/progressBar";
-import { selectCareerLevel, selectFiltersItem, selectJobKeyword, selectJobType, selectLocationKeyword } from "@/shared/redux/slices/filters";
+import { selectFiltersItem } from "@/shared/redux/slices/filtersValues";
 import { AppDispatch, RootState } from "@/shared/redux/store";
 import { routeFormatter } from "@/shared/utils/routeFormat";
-import { EmployerOpenJobs } from "@/shared/types/employer/open-jobs.types";
-import { FavoriteField } from "@/shared/types/favorite";
-import { JobCompanyInformations } from "@/shared/types/filtersJob";
 import { UnknownAction } from "@reduxjs/toolkit";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { SlLocationPin } from "react-icons/sl";
 import { VscBriefcase } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
+import CompanyLogo from "@/public/assets/company.png";
+import useJobFilter from "@/shared/hooks/job-filter/useJobFilter";
+import { setFilters } from "@/shared/redux/slices/filtersData";
 
-const JobItem = ({
-  job,
-}: {
-  job: JobCompanyInformations & EmployerOpenJobs;
-}) => {
-  const { careerLevel, filtersItem, jobKeywords, locationKeywords } =
-    useSelector((state: RootState) => state.jobFilters);
+interface JobItemProps {
+  _id: string;
+  jobTitle: string;
+  location: string;
+  careerLevel: string;
+  category: string;
+  workType: string;
+  employerId: {
+    _id: string;
+    companyLogo: string;
+  };
+}
+
+const JobItem = ({ job }: { job: JobItemProps }) => {
+  const {
+    jobFilters: { filtersItem },
+    filtersSlice: { careerLevel },
+  } = useSelector((state: RootState) => state);
   const dispatch = useDispatch<AppDispatch>();
-  const { filterJob } = useJobFilter();
+  const { handleFilter } = useJobFilter();
   const { applyScroll } = useScroll();
 
   const handleAction = useCallback(
@@ -41,37 +50,37 @@ const JobItem = ({
         dispatch(addState);
       }
 
-      filterJob();
+      handleFilter();
       applyScroll(640, 474.57, 386.63);
     },
-    [applyScroll, dispatch, filterJob, filtersItem]
+    [applyScroll, dispatch, handleFilter, filtersItem]
   );
 
   return (
     <article
-      key={job.postId}
+      key={job._id}
       className="p-[30px] max-[1200px]:p-[15px] mb-[30px] border border-[#ECEDF2] rounded-lg hover:shadow-[0_6px_15px_0_rgba(64,79,104,0.05)] transition-shadow duration-300 relative group"
     >
-      <FavoriteItem
+      {/* <FavoriteItem
         data={{
           dataField: {
-            postID: job?.postId,
-            companyLocation: job?.location,
+            postID: job?._id,
+            companyLocation: "job?.location",
             numberOfEmployees: job?.companyInformations?.numberOfEmployees,
             companyLogo: job?.companyInformations?.companyLogo,
             companyName: job?.companyInformations?.companyName,
           },
-          postID: job?.postId,
+          postID: job?._id,
         }}
         fieldName={FavoriteField.Jobs}
         extraField={job.jobTitle}
-      />
+      /> */}
 
       <div className="flex max-[450px]:flex-col max-[450px]:justify-center max-[450px]:text-center">
         <figure className="h-max max-[450px]:mb-4">
           <Image
-            src={job.companyInformations.companyLogo}
-            alt={job.companyInformations.companyName}
+            src={job?.employerId?.companyLogo ?? CompanyLogo}
+            alt={"asd"}
             width={50}
             height={50}
             className="rounded-lg max-[450px]:mx-auto"
@@ -81,9 +90,9 @@ const JobItem = ({
         <div className="px-5">
           <div className="flex items-center max-[450px]:justify-center max-[450px]:flex-col-reverse">
             <Link
-              href={`is-ilani/${routeFormatter(job.jobTitle)}/${job.postId}/${
-                job.companyInformations.companyId
-              }`}
+              href={`is-ilani/${routeFormatter(job.jobTitle)}/${
+                job._id
+              }/${"job.companyInformations.companyId"}`}
               onClick={() => dispatch(resetProgressBarValue())}
             >
               <h2 className="text-[#202124] hover:text-[#1967d2] transition-colors duration-300 text-lg font-medium">
@@ -91,9 +100,9 @@ const JobItem = ({
               </h2>
             </Link>
 
-            <span className="ms-[5px] text-[#34a853] text-[13px]">
+            {/* <span className="ms-[5px] text-[#34a853] text-[13px]">
               {job.companyInformations.featured ? "Öne çıkan" : ""}
-            </span>
+            </span> */}
           </div>
 
           <div className="flex flex-wrap gap-[25px] max-[450px]:gap-2 mt-[5px] max-[450px]:mt-2 max-[450px]:justify-center">
@@ -102,10 +111,8 @@ const JobItem = ({
                 e.preventDefault();
                 handleAction(
                   job.category,
-                  selectJobKeyword([...jobKeywords, job.category]),
-                  selectJobKeyword(
-                    jobKeywords.filter((jk) => jk !== job.category)
-                  )
+                  setFilters({ jobTitle: job.category }),
+                  setFilters({ jobTitle: "" })
                 );
               }}
               className="flex items-center text-[#696969] hover:text-[#202124] text-sm transition-colors duration-300 cursor-pointer"
@@ -113,15 +120,14 @@ const JobItem = ({
               <VscBriefcase className="me-[5px]" size={20} />
               {job.category}
             </span>
+
             <span
               onClick={(e) => {
                 e.preventDefault();
                 handleAction(
                   job.location,
-                  selectLocationKeyword([...locationKeywords, job.location]),
-                  selectLocationKeyword(
-                    locationKeywords.filter((lk) => lk !== job.location)
-                  )
+                  setFilters({ location: "" }),
+                  setFilters({ location: "" })
                 );
               }}
               className="flex items-center text-[#696969] hover:text-[#202124] text-sm transition-colors duration-300 cursor-pointer"
@@ -136,27 +142,29 @@ const JobItem = ({
               className="featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#1967d2] border-none !text-white cursor-pointer"
               onClick={() =>
                 handleAction(
-                  job.modeOfWork,
-                  selectJobType(job.modeOfWork),
-                  selectJobType("")
+                  job.workType,
+                  setFilters({ workType: job.workType }),
+                  setFilters({ workType: "" })
                 )
               }
             >
-              {job.modeOfWork}
+              {job.workType}
             </span>
             <span
               className="featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#FEF2D9] border-none !text-[#F9AB00] cursor-pointer"
               onClick={() =>
                 handleAction(
-                  job.positionLevel,
-                  selectCareerLevel([...careerLevel, job.positionLevel]),
-                  selectCareerLevel(
-                    careerLevel.filter((level) => level !== job.positionLevel)
-                  )
+                  job.careerLevel,
+                  setFilters({ careerLevel: [job.careerLevel] }),
+                  setFilters({
+                    careerLevel: careerLevel.filter(
+                      (c) => c !== job.careerLevel
+                    ),
+                  })
                 )
               }
             >
-              {job.positionLevel}
+              {job.careerLevel}
             </span>
           </div>
         </div>
