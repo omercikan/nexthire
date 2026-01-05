@@ -1,24 +1,47 @@
 import useJobFilter from "@/shared/hooks/job-filter/useJobFilter";
 import useScroll from "@/shared/hooks/useScroll";
-import { clearAllFilters, clearMatchFilter, openFilterMenu } from "@/shared/redux/slices/filters";
+import {
+  clearAllFilters,
+  openFilterMenu,
+  selectFiltersItem,
+} from "@/shared/redux/slices/filtersValues";
+import { clearFilters, setFilters } from "@/shared/redux/slices/filtersData";
 import { AppDispatch, RootState } from "@/shared/redux/store";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { TbAdjustmentsHorizontal } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
 
 const FilterBar = () => {
   const { filtersItem } = useSelector((state: RootState) => state.jobFilters);
+  const filters = useSelector((state: RootState) => state.filtersSlice);
   const dispatch = useDispatch<AppDispatch>();
-  const { filterJob } = useJobFilter();
+  const { handleFilter } = useJobFilter();
   const { applyScroll } = useScroll();
 
-  const handleClearFilter = useCallback(
-    <T extends { payload?: string; type: string }>(action: T) => {
-      dispatch(action);
-      filterJob();
-      applyScroll(640, 474.57, 386.63);
+  const handleClearFilter = useCallback(() => {
+    dispatch(clearAllFilters());
+    dispatch(clearFilters());
+    handleFilter();
+    applyScroll(640, 474.57, 386.63);
+  }, [applyScroll, dispatch, handleFilter]);
+
+  const handleRemoveItem = useCallback(
+    (item: string) => {
+      dispatch(selectFiltersItem(filtersItem.filter((fi) => fi !== item)));
+
+      for (const [k, v] of Object.entries(filters)) {
+        if (Array.isArray(v)) {
+          if (v.includes(item)) {
+            dispatch(setFilters({ [k]: v.filter((val) => val !== item) }));
+          }
+        } else {
+          if (v === item) dispatch(setFilters({ [k]: "" }));
+        }
+      }
+
+      handleFilter();
     },
-    [applyScroll, dispatch, filterJob]
+    [dispatch, filters, filtersItem, handleFilter]
   );
 
   return (
@@ -30,12 +53,7 @@ const FilterBar = () => {
               Seçili Filtreler ({filtersItem.length})
               <span
                 className="text-[#4045ef] text-[13px] text-center ms-2 font-normal cursor-pointer"
-                onClick={() =>
-                  handleClearFilter<{
-                    payload: undefined;
-                    type: "filterJobs/clearAllFilters";
-                  }>(clearAllFilters())
-                }
+                onClick={handleClearFilter}
               >
                 Filtreleri Temizle
               </span>
@@ -61,12 +79,7 @@ const FilterBar = () => {
                 <li
                   key={index}
                   className="whitespace-nowrap py-1 px-[15px] bg-[#EAEFFA] text-[#696969] text-[13px] rounded-sm cursor-pointer hover:text-[#e44343] transition-colors duration-300 select-none"
-                  onClick={() =>
-                    handleClearFilter<{
-                      payload: string;
-                      type: "filterJobs/clearMatchFilter";
-                    }>(clearMatchFilter(item))
-                  }
+                  onClick={() => handleRemoveItem(item)}
                 >
                   <span className="me-1.5 text-[#e44343]">x</span>
                   {item}

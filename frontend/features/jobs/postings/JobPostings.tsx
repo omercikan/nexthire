@@ -4,11 +4,13 @@ import Pagination from "./components/pagination/JobPagination";
 import { TbAdjustmentsHorizontal } from "react-icons/tb";
 import FilterBar from "./components/FilterBar";
 import ResultNavigator from "./components/ResultNavigator";
-import { openFilterMenu } from "@/shared/redux/slices/filters";
-import { useDispatch } from "react-redux";
+import { openFilterMenu } from "@/shared/redux/slices/filtersValues";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/shared/redux/store";
 
 const JobPostings = () => {
   const { data, filtersItem, isFetching } = useJobActions();
+  const { perPage } = useSelector((state: RootState) => state.filtersSlice);
   const dispatch = useDispatch();
 
   return (
@@ -30,16 +32,17 @@ const JobPostings = () => {
         )}
 
         <FilterBar />
+
         <ResultNavigator
-          searchedDataLength={isFetching ? 0 : (data?.totalCounts as number)}
+          dataLength={isFetching ? 0 : (data?.totalCount[0]?.count as number)}
         />
       </>
 
       <JobList />
 
-      {!filtersItem.length && !isFetching && (
-        <Pagination countJobs={data?.totalCounts as number} />
-      )}
+      {data?.data.length && perPage !== "Tümü" ? (
+        <Pagination countJobs={data?.totalCount[0]?.count} />
+      ) : null}
     </div>
   );
 };

@@ -1,23 +1,27 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CustomList from "./CustomList";
 import FilterSwitch from "./filterSwitch/FilterSwitch";
 import { useSelector } from "react-redux";
 import { RootState } from "@/shared/redux/store";
 import CustomButton from "@/shared/components/ui/CustomButton";
-import useJobFilter from "@/shared/hooks/job-filter/useJobFilter";
 import useScroll from "@/shared/hooks/useScroll";
-import { selectCareerLevel, selectExperienceLevel, selectJobType } from "@/shared/redux/slices/filters";
 import { setOpenCustomList } from "@/shared/redux/slices/touch";
-import { CAREER_LEVELS, EXPERIENCE_LEVELS, JOB_TYPES } from "@/shared/constants/filtersJob";
+import {
+  CAREER_LEVELS,
+  EXPERIENCE_LEVELS,
+  JOB_TYPES,
+} from "@/shared/constants/filtersJob";
+import { setFilters } from "@/shared/redux/slices/filtersData";
+import useJobFilter from "@/shared/hooks/job-filter/useJobFilter";
 
 const FilterMenu = () => {
-  const { experienceLevel, careerLevel, jobType } = useSelector(
-    (state: RootState) => state.jobFilters
+  const { experience, careerLevel, workType } = useSelector(
+    (state: RootState) => state.filtersSlice
   );
   const { openCustomList } = useSelector((state: RootState) => state.touch);
-  const { filterJob, isLoading } = useJobFilter();
+  const { handleFilter: filterJob } = useJobFilter();
   const [isMobile, setIsMobile] = useState(false);
   const { applyScroll } = useScroll();
 
@@ -47,8 +51,8 @@ const FilterMenu = () => {
             title="Çalışma Şekli"
             options={JOB_TYPES}
             defaultValue="Çalışma Şekli"
-            setState={selectJobType}
-            state={jobType}
+            setState={(value) => setFilters({ workType: value })}
+            state={workType}
             listWrapperClass="px-[30px] pt-[30px]"
             openCustomList={openCustomList}
             setOpenCustomList={setOpenCustomList}
@@ -56,8 +60,8 @@ const FilterMenu = () => {
 
           <FilterSwitch
             title="Deneyim Süresi"
-            state={experienceLevel}
-            setState={selectExperienceLevel}
+            state={experience}
+            setState={(value) => setFilters({ experience: value })}
             switchItems={EXPERIENCE_LEVELS}
             extraSwitch={true}
             extraSwitchText="5+ Yıl"
@@ -67,14 +71,14 @@ const FilterMenu = () => {
           <FilterSwitch
             title="Pozisyon Seviyesi"
             state={careerLevel}
-            setState={selectCareerLevel}
+            setState={(value) => setFilters({ careerLevel: value })}
             switchItems={CAREER_LEVELS}
             switchWrapperClass="px-[30px]"
           />
 
           <div className="sticky bottom-0 bg-[#F5F7FC] p-[30px] rounded-bl-lg rounded-br-lg">
             <CustomButton
-              isSubmitting={isLoading}
+              isSubmitting={false}
               text="Uygula"
               className="w-full !rounded-lg"
               handleClick={handleFilter}
