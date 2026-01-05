@@ -1,67 +1,43 @@
-import { useFilterJobPostingsMutation } from "@/shared/redux/services/jobPostings";
+import { useLazyFilterJobQuery } from "@/features/jobs/postings/services/jobsApi";
+import { setFilterData } from "@/shared/redux/slices/filtersValues";
 import { AppDispatch, store } from "@/shared/redux/store";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { setLoading } from "./loadingSlice";
-import { setFilterData } from "@/shared/redux/slices/filters";
 
 const useJobFilter = () => {
+  const [applyFilter] = useLazyFilterJobQuery();
   const dispatch = useDispatch<AppDispatch>();
-  const [applyFilter, results] = useFilterJobPostingsMutation();
 
-  const filterJob = useCallback(async () => {
-    dispatch(setLoading(true));
-
+  const handleFilter = useCallback(async () => {
     const {
-      experienceLevel,
-      careerLevel,
-      jobType,
-      sortValue,
-      jobKeywords,
-      locationKeywords,
-      prevPageValue,
-      nextPageValue,
-      pageValue,
-    } = store.getState().jobFilters;
+      filtersSlice,
+      paginationSlice: { currentPage },
+      jobFilters: { filtersItem },
+    } = store.getState();
 
-    const currentData = await applyFilter({
-      sort:
-        (sortValue.includes("yeni") && "asc") ||
-        (sortValue.includes("eski") && "desc") ||
-        (sortValue.startsWith("Sıralama") && undefined),
-      start: prevPageValue,
-      end: nextPageValue,
-      modeOfWork: jobType,
-      experienceTime: experienceLevel,
-      positionLevel: careerLevel,
-      jobKeywords: jobKeywords,
-      locationKeywords: locationKeywords,
-      pageValue: pageValue,
-    });
+    try {
+      const sortValue = filtersSlice.sort;
 
-    const isAnyFilterItem =
-      experienceLevel.length ||
-      careerLevel.length ||
-      jobType.length ||
-      sortValue.length ||
-      jobKeywords.length ||
-      locationKeywords.length ||
-      prevPageValue ||
-      nextPageValue;
+      if (filtersItem.length) {
+        dispatch(setFilterData({ isFetching: true }));
 
-    if (currentData.data) {
-      dispatch(
-        setFilterData({
-          isFilter: isAnyFilterItem ? true : false,
-          countJobs: isAnyFilterItem ? currentData?.data?.countJobs : 0,
-          jobs: currentData?.data?.jobs,
-        })
-      );
-      dispatch(setLoading(false));
+        const data = await applyFilter({
+          ...filtersSlice,
+          page: currentPage,
+          perPage: filtersSlice.perPage === "Tümü" ? "all" : 10,
+          sort: sortValue === "" ? 1 : sortValue === "En Yeni" ? 1 : -1,
+        }).unwrap();
+
+        if (data) {
+          dispatch(setFilterData({ filterData: data, isFetching: false }));
+        }
+      }
+    } catch (error) {
+      console.error(error);
     }
   }, [applyFilter, dispatch]);
 
-  return { filterJob, isLoading: results?.isLoading };
+  return { handleFilter };
 };
 
 export default useJobFilter;

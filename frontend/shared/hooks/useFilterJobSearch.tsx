@@ -1,48 +1,49 @@
 import { AppDispatch, RootState } from "@/shared/redux/store";
-import { JobSearchFilters } from "@/shared/types/filtersJob";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { clearAllFilters, setJobSearchFilterData } from "../redux/slices/filters";
+import {
+  clearAllFilters,
+  selectFiltersItem,
+} from "../redux/slices/filtersValues";
+import useMultipleDispatch from "./useMultipleDispatch";
+import { clearFilters, setFilters } from "../redux/slices/filtersData";
+import { setPage } from "@/features/jobs/postings/components/pagination/paginationSlice";
 
 const useFilterJobSearch = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { jobKeywords, locationKeywords, filtersItem } = useSelector(
-    (state: RootState) => state.jobFilters
-  );
+  const { filtersItem } = useSelector((state: RootState) => state.jobFilters);
+  const multipleDispatch = useMultipleDispatch();
   const pathname = usePathname();
 
-  const filterSearchJob = (locationKeyword: string, jobKeyword: string) => {
-    const trimmedJobKeyword = jobKeyword.trim();
-    const trimmedLocationKeyword = locationKeyword.trim();
-
-    //? Filters for homepage job search ("/") ?//
-    const homeSearchFilters: JobSearchFilters = {
-      jobKeywords: trimmedJobKeyword ? [trimmedJobKeyword] : [],
-      locationKeywords: trimmedLocationKeyword ? [trimmedLocationKeyword] : [],
-      filterItems: [trimmedJobKeyword, trimmedLocationKeyword].filter(Boolean),
-    };
-
-    //? Job search filters for the ("/is-ilanlari") page ?//
-    const jobPostingsSearchFilters: JobSearchFilters = {
-      jobKeywords: [...jobKeywords, trimmedJobKeyword].filter(Boolean),
-      locationKeywords: [...locationKeywords, trimmedLocationKeyword].filter(
-        Boolean
-      ),
-      filterItems: Array.from(
-        new Set([...filtersItem, trimmedJobKeyword, trimmedLocationKeyword])
-      ).filter(Boolean),
-    };
+  const filterSearchJob = (jobTitle: string, location: string) => {
+    const arrayValues = Array.from([jobTitle, location]);
+    dispatch(setPage(1));
 
     switch (pathname) {
-      case "/": //* match home ("/") route only
-        dispatch(clearAllFilters());
-        dispatch(setJobSearchFilterData(homeSearchFilters));
+      case "/":
+        multipleDispatch([
+          clearAllFilters(),
+          selectFiltersItem(arrayValues.filter(Boolean)),
+          setFilters({ jobTitle, location }),
+        ]);
         break;
-      case "/is-ilanlari": //* only match ("/is-ilanlari") route
-        dispatch(setJobSearchFilterData(jobPostingsSearchFilters));
+      case "/is-ilanlari":
+        if (arrayValues.some((v) => Boolean(v))) {
+          dispatch(
+            selectFiltersItem(
+              Array.from(
+                new Set([...filtersItem, jobTitle, location].filter(Boolean))
+              )
+            )
+          );
+        }
+
+        for (const [key, value] of Object.entries({ jobTitle, location })) {
+          if (Boolean(value)) dispatch(setFilters({ [key]: value }));
+        }
         break;
       default:
-        dispatch(clearAllFilters());
+        multipleDispatch([clearAllFilters(), clearFilters()]);
     }
   };
 
