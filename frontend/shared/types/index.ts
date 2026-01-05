@@ -1,4 +1,3 @@
-import { FormikErrors } from "formik";
 import { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
 
 //! General properties interface of the layout component !//
@@ -119,7 +118,7 @@ export interface User {
 
 //! Hero section search job form input fields !//
 export interface SearchJobFormFields {
-  job: string;
+  jobTitle: string;
   location: string;
 }
 
@@ -134,11 +133,7 @@ export interface AuthCompoleteComponentProps {
   touched: boolean | undefined;
   searchData: AuthCompoleteSearchFields[];
   recommendedKeywords: string[];
-  setFieldValue: (
-    field: string,
-    value: string | undefined
-  ) => Promise<void | FormikErrors<SearchJobFormFields>>;
-  setSelectedKeyword: (keyword: string) => void;
+  setFieldValue: (value: string) => void;
   listText: string;
   field: string;
 }
