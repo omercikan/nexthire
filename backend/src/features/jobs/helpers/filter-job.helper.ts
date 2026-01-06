@@ -1,5 +1,5 @@
 import { FILTER_JOB_PIPELINE } from "../constants";
-import { BodyFields, PerPage } from "../types";
+import { BodyFields, PerPage, SortOrder } from "../types";
 
 export class FilterJobHelpers {
   getPagination(perPage: PerPage, page: number) {
@@ -9,7 +9,12 @@ export class FilterJobHelpers {
     return { limit, skip };
   }
 
-  createFilters(fields: BodyFields, limit: number, skip: number) {
+  createFilters(
+    fields: BodyFields,
+    limit: number,
+    skip: number,
+    sort: SortOrder
+  ) {
     const should = [];
     const pipeline = [];
 
@@ -56,6 +61,8 @@ export class FilterJobHelpers {
       $limit: number;
       $skip?: number;
     }[];
+
+    pipeline.push({ $sort: { createdAt: sort } });
 
     if (limit !== 0) dataPipeline.push({ $limit: limit });
 

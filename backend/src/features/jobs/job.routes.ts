@@ -26,15 +26,20 @@ router.post(
   validateRequest(
     z.object({
       page: z.coerce
-        .number({ message: "Page must be a number" })
-        .min(1, { message: "Page must be greater than or equal to 1" })
+        .number({ error: "page must be a number" })
+        .min(1, { error: "page must be greater than or equal to 1" })
         .optional(),
 
       perPage: z
         .enum(["10", "all"], {
-          message: "perPage must be either '10' or 'all'",
+          error: "perPage must be either '10' or 'all'",
         })
         .optional(),
+
+      sort: z
+        .enum(["1", "-1"], { error: "sort must be either '1' or '-1'" })
+        .optional()
+        .default("-1"),
     }),
     "query"
   ),

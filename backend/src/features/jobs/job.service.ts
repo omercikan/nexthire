@@ -1,8 +1,7 @@
 import { Job } from "../../shared/models/Job";
-import { BodyFields, QueryFields } from "./types";
+import { BodyFields, QueryFields, SortOrder } from "./types";
 import { JOB_QUERY_OPTIONS } from "./constants";
 import { FilterJobHelpers } from "./helpers/filter-job.helper";
-import { SortOrder } from "mongoose";
 const { selectFields, populatePath, populateFields } = JOB_QUERY_OPTIONS;
 
 export class JobService {
@@ -14,6 +13,7 @@ export class JobService {
         .select(selectFields)
         .limit(limit)
         .skip(skip)
+        .sort({ createdAt: -1 })
         .populate(populatePath, populateFields),
       Job.countDocuments(),
     ]);
@@ -29,12 +29,17 @@ export class JobService {
     queryFields: Partial<QueryFields>,
     bodyFields: BodyFields
   ) {
-    const { page = 1, perPage = 10, sort = 1 } = queryFields;
+    const { page = 1, perPage = 10, sort = -1 } = queryFields;
 
     const { getPagination, createFilters } = new FilterJobHelpers();
 
     const { limit, skip } = getPagination(perPage, page);
-    const pipeline = createFilters(bodyFields, limit, skip);
+    const pipeline = createFilters(
+      bodyFields,
+      limit,
+      skip,
+      Number(sort) as SortOrder
+    );
 
     const jobs = await Job.aggregate(pipeline);
 

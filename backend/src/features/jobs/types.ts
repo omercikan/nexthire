@@ -1,10 +1,12 @@
 // All available fields used for filtering and pagination in job listing requests
 export type PerPage = 10 | "all";
 
+export type SortOrder = 1 | -1;
+
 export interface FilteredJobFields {
   page: number;
   perPage: PerPage;
-  sort: -1 | 1;
+  sort: SortOrder;
   jobTitle: string;
   location: string;
   workType: string;
