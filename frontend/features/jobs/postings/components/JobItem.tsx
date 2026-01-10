@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CompanyLogo from "@/public/assets/company.png";
 import useJobFilter from "@/shared/hooks/job-filter/useJobFilter";
 import { setFilters } from "@/shared/redux/slices/filtersData";
+import FavoriteItem from "@/features/jobs/postings/components/Favorite/FavoriteItem";
 
 interface JobItemProps {
   _id: string;
@@ -27,7 +28,13 @@ interface JobItemProps {
   };
 }
 
-const JobItem = ({ job }: { job: JobItemProps }) => {
+const JobItem = ({
+  job,
+  favoriteData,
+}: {
+  job: JobItemProps;
+  favoriteData: string[];
+}) => {
   const {
     jobFilters: { filtersItem },
     filtersSlice: { careerLevel },
@@ -61,20 +68,14 @@ const JobItem = ({ job }: { job: JobItemProps }) => {
       key={job._id}
       className="p-[30px] max-[1200px]:p-[15px] mb-[30px] border border-[#ECEDF2] rounded-lg hover:shadow-[0_6px_15px_0_rgba(64,79,104,0.05)] transition-shadow duration-300 relative group"
     >
-      {/* <FavoriteItem
-        data={{
-          dataField: {
-            postID: job?._id,
-            companyLocation: "job?.location",
-            numberOfEmployees: job?.companyInformations?.numberOfEmployees,
-            companyLogo: job?.companyInformations?.companyLogo,
-            companyName: job?.companyInformations?.companyName,
-          },
-          postID: job?._id,
-        }}
-        fieldName={FavoriteField.Jobs}
-        extraField={job.jobTitle}
-      /> */}
+      <FavoriteItem
+        jobId={job?._id}
+        companyLocation={job?.location}
+        companyLogo={job?.employerId.companyLogo}
+        jobTitle={job?.jobTitle}
+        jobCategory={job?.category}
+        isFavorite={favoriteData.includes(job._id)}
+      />
 
       <div className="flex max-[450px]:flex-col max-[450px]:justify-center max-[450px]:text-center">
         <figure className="h-max max-[450px]:mb-4">

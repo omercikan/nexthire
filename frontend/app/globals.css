@@ -505,7 +505,7 @@ html {
 
 /*! Favorite Item class start !*/
 .favorite-icon-wrapper {
-  @apply absolute right-2 top-2 min-sm:invisible min-sm:group-hover:visible group-hover:bg-[#ECEDF2] hover:bg-[#ECEDF2] rounded-full w-[30px] h-[30px] transition-colors duration-300 grid place-content-center cursor-pointer;
+  @apply absolute right-2 top-2 min-sm:invisible min-sm:group-hover:visible group-hover:!bg-[#ECEDF2] hover:!bg-[#ECEDF2] rounded-full w-[30px] h-[30px] !transition-none grid place-content-center cursor-pointer;
 }
 
 .favorite-icon {

@@ -5,7 +5,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/shared/redux/store";
 
 const JobList = () => {
-  const { data, isFetching: isDefaultDataFetching } = useJobActions();
+  const {
+    data,
+    favoriteData,
+    isFetching: isDefaultDataFetching,
+  } = useJobActions();
   const { isFetching: isFilterDataFetching } = useSelector(
     (state: RootState) => state.jobFilters
   );
@@ -33,7 +37,9 @@ const JobList = () => {
         </div>
       );
     default:
-      return jobData?.map((job) => <JobItem key={job._id} job={job} />);
+      return jobData?.map((job) => (
+        <JobItem key={job._id} job={job} favoriteData={favoriteData || []} />
+      ));
   }
 };
 
