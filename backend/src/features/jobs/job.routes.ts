@@ -2,10 +2,12 @@ import express from "express";
 import { JobEvents } from "./job.controller";
 import { validateRequest } from "../../shared/middlewares/validateRequest";
 import z from "zod";
+import { authMiddleware } from "../../shared/middlewares/auth";
+import { roleMiddleware } from "../../shared/middlewares/role";
 
 const router = express.Router();
 
-const { getJobs, filterJobs } = new JobEvents();
+const { getJobs, filterJobs, handleFavorite, getFavorite } = new JobEvents();
 
 router.get(
   "/",
@@ -45,5 +47,29 @@ router.post(
   ),
 
   filterJobs
+);
+
+router.post(
+  "/favorite",
+  authMiddleware,
+  roleMiddleware("candidate"),
+  validateRequest(
+    z.object({
+      jobId: z.string("jobId is required"),
+      userId: z.string("jobId is required"),
+      companyLocation: z.string("companyLocation is required"),
+      jobTitle: z.string("jobTitle is required"),
+      jobCategory: z.string("jobTitle is required"),
+      isFavorite: z.boolean("isFavorite must be true or false"),
+    })
+  ),
+  handleFavorite
+);
+
+router.get(
+  "/favorite",
+  authMiddleware,
+  roleMiddleware("candidate"),
+  getFavorite
 );
 export default router;

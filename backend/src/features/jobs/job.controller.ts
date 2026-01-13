@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { JobService } from "./job.service";
+import { FavoriteJob } from "../../shared/models/FavoriteJob";
 
 export class JobEvents {
   private jobService: JobService;
@@ -36,6 +37,31 @@ export class JobEvents {
       const jobs = await this.jobService.filteredJobs(req.query, req.body);
 
       return res.json(jobs[0]);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  handleFavorite = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { response, status } = await this.jobService.handleJobFavorite(
+        req.body
+      );
+
+      return res.status(status).json(response);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  getFavorite = async (req: Request, res: Response, next: NextFunction) => {
+    const userId = req.user?.id;
+
+    if (!userId) return;
+
+    try {
+      const favoriteResponse = await this.jobService.fetchFavorites(userId);
+      return res.json(favoriteResponse);
     } catch (error) {
       next(error);
     }

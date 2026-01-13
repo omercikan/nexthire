@@ -19,3 +19,14 @@ export type QueryFields = Pick<FilteredJobFields, "page" | "perPage" | "sort">;
 
 // Body parameters used for job filtering
 export type BodyFields = Omit<FilteredJobFields, "page" | "perPage" | "sort">;
+
+// Body parameters on the favorite controller
+export interface FavoriteRequests {
+  jobId: string;
+  userId: string;
+  companyLocation: string;
+  companyLogo: string;
+  jobTitle: string;
+  jobCategory: string;
+  isFavorite: boolean;
+}
