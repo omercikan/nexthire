@@ -4,6 +4,7 @@ import { AppDispatch, store } from "@/shared/redux/store";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { PERPAGE_MAP, SORT_MAP } from "./constants";
+import toast from "react-hot-toast";
 
 const useJobFilter = () => {
   const [applyFilter] = useLazyFilterJobQuery();
@@ -25,7 +26,7 @@ const useJobFilter = () => {
         const data = await applyFilter({
           ...filtersSlice,
           page: currentPage,
-          perPage: PERPAGE_MAP[filtersSlice.perPage],
+          perPage: PERPAGE_MAP[filtersSlice.perPage] ?? 10,
           sort: SORT_MAP[sortValue] ?? -1,
         }).unwrap();
 
@@ -33,8 +34,11 @@ const useJobFilter = () => {
           dispatch(setFilterData({ filterData: data, isFetching: false }));
         }
       }
-    } catch (error) {
-      console.error(error);
+    } catch {
+      toast.error(
+        "Şu anda iş ilanlarını getiremiyoruz. Lütfen biraz sonra tekrar deneyin.",
+        { icon: "🚫" },
+      );
     }
   }, [applyFilter, dispatch]);
 
