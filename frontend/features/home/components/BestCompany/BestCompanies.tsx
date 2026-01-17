@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useContext } from "react";
+// import React, { useContext } from "react";
 import { A11y, Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
@@ -12,18 +12,18 @@ import { GoArrowUpRight } from "react-icons/go";
 import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
 import { useGetBestCompaniesQuery } from "@/features/home/components/BestCompany/bestCompaniesApi";
-import { FavoriteField } from "@/shared/types/favorite";
-import { AuthContext } from "@/features/auth/authContext";
+// import { FavoriteField } from "@/shared/types/favorite";
+// import { AuthContext } from "@/features/auth/authContext";
 import useCreateArray from "@/shared/hooks/useCreateArray";
 import useItemFilterText from "@/shared/hooks/useItemFilterText";
 import SectionHeader from "@/shared/components/SectionHeader/SectionHeader";
-import FavoriteItem from "@/shared/components/FavoriteItem";
+// import FavoriteItem from "@/features/jobs/postings/components/Favorite/FavoriteItem";
 import { routeFormatter } from "@/shared/utils/routeFormat";
 import ItemFilterText from "@/shared/components/ItemFilterText";
 import LoaderSkeleton from "@/shared/components/ui/LoaderSkeleton";
 
 const BestCompanies = () => {
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
   const placeholderLoader = useCreateArray(4);
   const { data, isLoading } = useGetBestCompaniesQuery(undefined, {
     refetchOnMountOrArgChange: true,
@@ -85,7 +85,7 @@ const BestCompanies = () => {
                 key={index}
                 className="featured-job-swiper-slide bg-white max-lg:!p-[15px] !p-[30px] !flex !flex-col text-center group"
               >
-                {user?.role === "candidate" || typeof user === "undefined" ? (
+                {/* {user?.role === "candidate" || typeof user === "undefined" ? (
                   <FavoriteItem
                     data={{
                       dataField: {
@@ -101,12 +101,12 @@ const BestCompanies = () => {
                     }}
                     fieldName={FavoriteField.Employers}
                   />
-                ) : null}
+                ) : null} */}
 
                 <Link
                   className="w-max mx-auto"
                   href={`/firma-profil/${routeFormatter(
-                    company.companyInformations.companyName
+                    company.companyInformations.companyName,
                   )}-${company._id}`}
                 >
                   <Image
@@ -120,7 +120,7 @@ const BestCompanies = () => {
                 <h2 className="mb-2.5 text-lg font-medium">
                   <Link
                     href={`/firma-profil/${routeFormatter(
-                      company.companyInformations.companyName
+                      company.companyInformations.companyName,
                     )}-${company._id}`}
                   >
                     {company.companyInformations.companyName}
@@ -137,7 +137,6 @@ const BestCompanies = () => {
                           applyItemFilter(
                             company?.companyInformations?.location?.city,
                             false,
-                            true
                           )
                         }
                       >
@@ -171,7 +170,7 @@ const BestCompanies = () => {
                   <Link
                     className="slide-button !w-full !h-full !py-[11px] !flex !items-center !justify-center !gap-[5px]"
                     href={`/firma-profil/${routeFormatter(
-                      company.companyInformations.companyName
+                      company.companyInformations.companyName,
                     )}-${company._id}`}
                   >
                     {`Açık iş -

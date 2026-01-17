@@ -78,7 +78,7 @@ const FeaturedJobs = () => {
                       <Link
                         className="inline-block w-max"
                         href={`/is-ilani/${routeFormatter(
-                          `${job.openJobs[0].jobTitle}-${job.openJobs[0].postId}`
+                          `${job.openJobs[0].jobTitle}-${job.openJobs[0].postId}`,
                         )}`}
                       >
                         <Image
@@ -99,7 +99,7 @@ const FeaturedJobs = () => {
                       <h2 className="featured-job-title-tag w-max">
                         <Link
                           href={`/is-ilani/${routeFormatter(
-                            `${job.openJobs[0].jobTitle}-${job.openJobs[0].postId}`
+                            `${job.openJobs[0].jobTitle}-${job.openJobs[0].postId}`,
                           )}`}
                         >
                           {job.openJobs[0].jobTitle}
@@ -109,7 +109,7 @@ const FeaturedJobs = () => {
                       <p className="text-[15px] mt-2.5">
                         <Link
                           href={`firma-profil/${routeFormatter(
-                            `${job.companyInformations.companyName}-`
+                            `${job.companyInformations.companyName}-`,
                           )}`}
                         >
                           <strong className="featured-job-title-tag">
@@ -120,11 +120,7 @@ const FeaturedJobs = () => {
                         <ItemFilterText
                           redirect="/is-ilanlari"
                           handleClick={() =>
-                            applyItemFilter(
-                              job.openJobs[0].category,
-                              true,
-                              false
-                            )
+                            applyItemFilter(job.openJobs[0].category, true)
                           }
                         >
                           <strong className="featured-job-title-tag">
@@ -154,7 +150,7 @@ const FeaturedJobs = () => {
                         Son başvuru tarihi:{" "}
                         <time>
                           {new Date(
-                            job.openJobs[0].applicationDeadlineDate
+                            job.openJobs[0].applicationDeadlineDate,
                           ).toLocaleDateString("tr")}
                         </time>
                       </p>

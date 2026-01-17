@@ -33,7 +33,7 @@ const CitiesCategory = () => {
             <li key={city.id} className="group">
               <ItemFilterText
                 redirect="/is-ilanlari"
-                handleClick={() => applyItemFilter(city?.cityName, false, true)}
+                handleClick={() => applyItemFilter(city?.cityName, false)}
                 linkClassName="inline-block w-full"
               >
                 <div className="pb-[15px] w-full">
@@ -52,8 +52,8 @@ const CitiesCategory = () => {
                   {
                     data?.employers.filter((employer) =>
                       employer.companyInformations.location.city.includes(
-                        city.cityName
-                      )
+                        city.cityName,
+                      ),
                     ).length
                   }{" "}
                   aktif iş

@@ -1,6 +1,5 @@
 import ItemFilterText from "@/shared/components/ItemFilterText";
 import useItemFilterText from "@/shared/hooks/useItemFilterText";
-import React from "react";
 
 const KeywordItem = ({
   keyword,
@@ -16,7 +15,7 @@ const KeywordItem = ({
     <li key={keyword.id}>
       <ItemFilterText
         redirect="/is-ilanlari"
-        handleClick={() => applyItemFilter(keyword?.keyword, true, false)}
+        handleClick={() => applyItemFilter(keyword?.keyword, true)}
         linkClassName="keyword-link"
       >
         {keyword.keyword}

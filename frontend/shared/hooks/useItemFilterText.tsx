@@ -1,27 +1,29 @@
-import { AppDispatch } from "@/shared/redux/store";
-import { useDispatch } from "react-redux";
+import {
+  clearAllFilters,
+  selectFiltersItem,
+} from "../redux/slices/filtersValues";
 import useJobFilter from "./job-filter/useJobFilter";
-import { clearAllFilters, setJobSearchFilterData } from "../redux/slices/filters";
+import useMultipleDispatch from "./useMultipleDispatch";
+import { clearFilters, setFilters } from "../redux/slices/filtersData";
+import { useCallback } from "react";
 
 const useItemFilterText = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { filterJob } = useJobFilter();
+  const { handleFilter } = useJobFilter();
+  const dispatchs = useMultipleDispatch();
 
-  const applyItemFilter = (
-    item: string,
-    isApplyJob: boolean,
-    isApplyLocation: boolean
-  ) => {
-    dispatch(clearAllFilters());
-    dispatch(
-      setJobSearchFilterData({
-        filterItems: [item],
-        jobKeywords: isApplyJob ? [item] : [],
-        locationKeywords: isApplyLocation ? [item] : [],
-      })
-    );
-    filterJob();
-  };
+  const applyItemFilter = useCallback(
+    (item: string, isApplyJob: boolean) => {
+      dispatchs([
+        clearAllFilters(),
+        clearFilters(),
+        selectFiltersItem([item]),
+        setFilters(isApplyJob ? { jobTitle: item } : { location: item }),
+      ]);
+
+      handleFilter();
+    },
+    [dispatchs, handleFilter],
+  );
 
   return { applyItemFilter };
 };

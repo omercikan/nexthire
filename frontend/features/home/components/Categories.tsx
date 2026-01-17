@@ -31,7 +31,7 @@ const Categories = () => {
         {categories.map((category) => (
           <li key={category.id} className="group">
             <ItemFilterText
-              handleClick={() => applyItemFilter(category?.name, true, false)}
+              handleClick={() => applyItemFilter(category?.name, true)}
               redirect="/is-ilanlari"
               linkClassName="category-list-item w-full"
             >
@@ -44,7 +44,7 @@ const Categories = () => {
                 {`${
                   data?.employers.filter(
                     (employer) =>
-                      employer.companyInformations.serviceArea == category.name
+                      employer.companyInformations.serviceArea == category.name,
                   ).length
                 } açık pozisyon`}{" "}
                 )
