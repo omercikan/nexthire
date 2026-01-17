@@ -3,7 +3,6 @@ import { resetProgressBarValue } from "@/shared/redux/slices/applicationModal/pr
 import { selectFiltersItem } from "@/shared/redux/slices/filtersValues";
 import { AppDispatch, RootState } from "@/shared/redux/store";
 import { routeFormatter } from "@/shared/utils/routeFormat";
-import { UnknownAction } from "@reduxjs/toolkit";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback } from "react";
@@ -14,6 +13,7 @@ import CompanyLogo from "@/public/assets/company.png";
 import useJobFilter from "@/shared/hooks/job-filter/useJobFilter";
 import { setFilters } from "@/shared/redux/slices/filtersData";
 import FavoriteItem from "@/features/jobs/postings/components/Favorite/FavoriteItem";
+import useMultipleDispatch from "@/shared/hooks/useMultipleDispatch";
 
 interface JobItemProps {
   _id: string;
@@ -35,32 +35,33 @@ const JobItem = ({
   job: JobItemProps;
   favoriteData: string[];
 }) => {
-  const {
-    jobFilters: { filtersItem },
-    filtersSlice: { careerLevel },
-  } = useSelector((state: RootState) => state);
+  const { filtersItem } = useSelector((state: RootState) => state.jobFilters);
   const dispatch = useDispatch<AppDispatch>();
+  const dispatchs = useMultipleDispatch();
   const { handleFilter } = useJobFilter();
   const { applyScroll } = useScroll();
 
-  const handleAction = useCallback(
-    (text: string, addState: UnknownAction, removeState?: UnknownAction) => {
-      const isIncludesText = filtersItem.includes(text);
-      const updatedFilters = isIncludesText
-        ? filtersItem.filter((item) => item !== text)
-        : [...filtersItem, text];
+  const handleFilterAction = useCallback(
+    ({ key, value }: { key: string; value: string | string[] }) => {
+      const isArrayValue = Array.isArray(value);
+      const realValue = isArrayValue ? value[0] : value;
 
-      dispatch(selectFiltersItem(updatedFilters));
-      if (isIncludesText && removeState) {
-        dispatch(removeState);
+      if (!filtersItem.includes(realValue)) {
+        dispatchs([
+          selectFiltersItem([...filtersItem, realValue]),
+          setFilters({ [key]: isArrayValue ? value : realValue }),
+        ]);
       } else {
-        dispatch(addState);
+        dispatchs([
+          selectFiltersItem(filtersItem.filter((fv) => realValue !== fv)),
+          setFilters({ [key]: isArrayValue ? [] : "" }),
+        ]);
       }
 
       handleFilter();
       applyScroll(640, 474.57, 386.63);
     },
-    [applyScroll, dispatch, handleFilter, filtersItem]
+    [dispatchs, applyScroll, handleFilter, filtersItem],
   );
 
   return (
@@ -71,7 +72,7 @@ const JobItem = ({
       <FavoriteItem
         jobId={job?._id}
         companyLocation={job?.location}
-        companyLogo={job?.employerId.companyLogo}
+        companyLogo={job?.employerId?.companyLogo}
         jobTitle={job?.jobTitle}
         jobCategory={job?.category}
         isFavorite={favoriteData.includes(job._id)}
@@ -110,11 +111,7 @@ const JobItem = ({
             <span
               onClick={(e) => {
                 e.preventDefault();
-                handleAction(
-                  job.category,
-                  setFilters({ jobTitle: job.category }),
-                  setFilters({ jobTitle: "" })
-                );
+                handleFilterAction({ key: "jobTitle", value: job.category });
               }}
               className="flex items-center text-[#696969] hover:text-[#202124] text-sm transition-colors duration-300 cursor-pointer"
             >
@@ -125,11 +122,7 @@ const JobItem = ({
             <span
               onClick={(e) => {
                 e.preventDefault();
-                handleAction(
-                  job.location,
-                  setFilters({ location: "" }),
-                  setFilters({ location: "" })
-                );
+                handleFilterAction({ key: "location", value: job.location });
               }}
               className="flex items-center text-[#696969] hover:text-[#202124] text-sm transition-colors duration-300 cursor-pointer"
             >
@@ -142,11 +135,7 @@ const JobItem = ({
             <span
               className="featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#1967d2] border-none !text-white cursor-pointer"
               onClick={() =>
-                handleAction(
-                  job.workType,
-                  setFilters({ workType: job.workType }),
-                  setFilters({ workType: "" })
-                )
+                handleFilterAction({ key: "workType", value: job.workType })
               }
             >
               {job.workType}
@@ -154,15 +143,10 @@ const JobItem = ({
             <span
               className="featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#FEF2D9] border-none !text-[#F9AB00] cursor-pointer"
               onClick={() =>
-                handleAction(
-                  job.careerLevel,
-                  setFilters({ careerLevel: [job.careerLevel] }),
-                  setFilters({
-                    careerLevel: careerLevel.filter(
-                      (c) => c !== job.careerLevel
-                    ),
-                  })
-                )
+                handleFilterAction({
+                  key: "careerLevel",
+                  value: [job.careerLevel],
+                })
               }
             >
               {job.careerLevel}
