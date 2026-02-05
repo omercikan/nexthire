@@ -17,36 +17,28 @@ import { useSelector } from "react-redux";
 
 const ProfileImage = () => {
   const { user } = useContext(AuthContext);
-  const isCandidate = user?.role === "candidate";
   const currentUser = user as Candidate & Employer;
   const profileImage = useSelector(
-    (state: RootState) => state.userDashboard.profileImage
+    (state: RootState) => state.userDashboard.profileImage,
   );
 
   return (
-    <div className="w-max h-max rounded-full flex-[15%] max-[992px]:self-center">
+    <aside className="w-max h-max rounded-full flex-[15%] max-[992px]:self-center">
       <label
         htmlFor="image"
         className="cursor-pointer relative block w-[132px] h-[130px]"
       >
         {currentUser?.profilePhoto ||
-        currentUser?.companyInformations?.companyLogo ||
+        currentUser?.companyLogo ||
         profileImage ? (
           <Image
             src={
-              profileImage
-                ? profileImage
-                : isCandidate
-                ? currentUser?.profilePhoto
-                : currentUser?.companyInformations?.companyLogo
+              profileImage ||
+              (currentUser?.profilePhoto ?? currentUser.companyLogo)
             }
             width={132}
             height={130}
-            alt={
-              isCandidate
-                ? user?.fullname
-                : currentUser?.companyInformations?.companyName
-            }
+            alt={user?.fullname ?? currentUser.companyName}
             className="rounded-full w-full h-full object-cover border border-[#d4d4d4] p-0.5"
           />
         ) : (
@@ -59,7 +51,7 @@ const ProfileImage = () => {
           <FaPencilAlt size={15} color="fff" />
         </div>
       </label>
-    </div>
+    </aside>
   );
 };
 
