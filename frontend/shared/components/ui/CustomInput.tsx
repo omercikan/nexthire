@@ -1,5 +1,4 @@
-import { AuthInputProps } from "@/shared/types";
-import React from "react";
+import { CustomInputProps } from "@/shared/types";
 
 const CustomInput = ({
   label,
@@ -13,7 +12,7 @@ const CustomInput = ({
   wrapperClass = "",
   error,
   ...props
-}: AuthInputProps) => {
+}: CustomInputProps) => {
   return (
     <div className={`w-full ${wrapperClass}`}>
       <label
