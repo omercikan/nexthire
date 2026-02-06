@@ -7,8 +7,14 @@ import { EmployerOpenJobs } from "../employer/open-jobs.types";
  * @description The user data stored in DB for users with employer role
  */
 export interface Employer extends User {
+  website: string;
+  foundedDate: string;
+  companySize: string;
   companyName: string;
   companyLogo: string;
+  companyAbout: string;
+  categories: string[];
+
   city: string;
   district: string;
   taxCity: string;
@@ -16,6 +22,7 @@ export interface Employer extends User {
   taxNumber: string;
   emailConsent: boolean;
   personalDataConsent: boolean;
+  IntroductionVideoURL: string;
 
   companyInformations: CompanyInformations;
   featured: boolean;

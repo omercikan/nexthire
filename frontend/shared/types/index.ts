@@ -11,7 +11,7 @@ export interface ResetPasswordField {
 }
 
 //! Auth input properties type fields !//
-export type AuthInputProps = {
+export type CustomInputProps = {
   label?: string;
   icon?: ReactNode;
   extraIcon?: ReactNode;
@@ -21,6 +21,7 @@ export type AuthInputProps = {
   labelClass?: string;
   error?: string | undefined;
   wrapperClass?: string;
+  inputWrapperClass?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 interface AuthSelectDataItem {
