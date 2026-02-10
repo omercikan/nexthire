@@ -1,0 +1,15 @@
+export const SOCIAL_PLATFORMS = [
+  "LinkedIn",
+  "GitHub",
+  "GitLab",
+  "X (Twitter)",
+  "Facebook",
+  "Instagram",
+  "YouTube",
+  "TikTok",
+  "Medium",
+  "Discord",
+  "Telegram",
+  "Reddit",
+  "Pinterest",
+];
