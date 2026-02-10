@@ -28,6 +28,7 @@ import { jobApi } from "@/features/dashboard/employer/services/jobApi";
 import { jobsApi } from "@/features/jobs/postings/services/jobsApi";
 import { paginationSlice } from "@/features/jobs/postings/components/pagination/paginationSlice";
 import { filtersSlice } from "./slices/filtersData";
+import { socialSlice } from "@/features/dashboard/employer/Profile/Socials/social-slice";
 
 export const store = configureStore({
   reducer: {
@@ -45,6 +46,7 @@ export const store = configureStore({
     resumeSlice: resumeSlice.reducer,
     paginationSlice: paginationSlice.reducer,
     filtersSlice: filtersSlice.reducer,
+    socialSlice: socialSlice.reducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [favoritesApi.reducerPath]: favoritesApi.reducer,
