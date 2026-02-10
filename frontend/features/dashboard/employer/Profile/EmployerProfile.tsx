@@ -10,6 +10,7 @@ import CategoryInput from "./Category/CategoryInput";
 import MarkdownEditor from "@/shared/components/MarkdownEditor";
 import useProfileForm from "./useProfileForm";
 import CustomButton from "@/shared/components/ui/CustomButton";
+import Social from "./Socials/Social";
 
 const EmployerProfile = () => {
   const { user } = useContext(AuthContext);
@@ -120,6 +121,8 @@ const EmployerProfile = () => {
           </form>
         </FormProvider>
       </Profile>
+
+      <Social />
 
       <CustomButton
         type="submit"
