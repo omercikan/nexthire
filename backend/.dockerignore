@@ -1,0 +1,20 @@
+# Node modules
+node_modules
+
+# Build output
+dist
+build
+
+# Logs
+*.log
+
+# Environment files
+.env
+
+# Git files
+.git
+.gitignore
+
+# Dockerfile and other Docker-related files
+Dockerfile*
+.dockerignore

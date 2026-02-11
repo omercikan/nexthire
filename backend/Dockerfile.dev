@@ -1,0 +1,28 @@
+# Dev image using Node 20 Alpine
+FROM node:20-alpine
+
+LABEL maintainer="Omer Cikan, project=NextHire"
+
+# Set working directory
+WORKDIR /usr/src/app
+
+# Add curl 
+RUN apk add --no-cache curl
+
+# Copy dependencies files for npm install
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install --legacy-peer-deps
+
+# Copy project files
+COPY . .
+
+# Set environment to development
+ENV NODE_ENV=development
+
+# Expose dev server port
+EXPOSE 5000
+
+# Start dev server
+CMD [ "npm", "run", "dev" ]
