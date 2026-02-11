@@ -1,0 +1,48 @@
+services:
+  # --- BACKEND (Node.js/Express) ---
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    ports:
+      - "5000:5000"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5000/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - rabbitmq
+    networks:
+      - app_network
+
+  # --- MESSAGE BROKER (RabbitMQ) ---
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: nexthire
+      RABBITMQ_DEFAULT_PASS: nexthire
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq/
+    networks:
+      - app_network
+
+volumes:
+  rabbitmq_data:
+
+networks:
+  app_network:
+    driver: bridge
