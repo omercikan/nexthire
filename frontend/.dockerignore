@@ -1,0 +1,20 @@
+# Node modules
+node_modules
+
+# Build output
+.next
+npm-debug.log
+
+# README file
+README.md
+
+# Git files
+.git
+.gitignore
+
+# Environment files
+.env
+
+# Dockerfile and other Docker-related files
+Dockerfile*
+.dockerignore
