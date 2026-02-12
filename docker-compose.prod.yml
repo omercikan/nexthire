@@ -1,0 +1,45 @@
+services:
+  frontend:
+    build: ./frontend
+    networks:
+      - app_network
+    env_file:
+      - ./frontend/.env.prod
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        order: start-first
+      restart_policy:
+        condition: on-failure
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env.prod
+    networks:
+      - app_network
+    deploy:
+      replicas: 1
+      update_config:
+        order: start-first
+      restart_policy:
+        condition: on-failure
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    networks:
+      - app_network
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    deploy:
+      replicas: 1
+
+networks:
+  app_network:
+    driver: overlay
+
+volumes:
+  rabbitmq_data:
