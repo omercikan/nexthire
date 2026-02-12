@@ -37,6 +37,11 @@ RUN addgroup -S nexthire && adduser -S -G nexthire nexthire
 COPY --from=builder /usr/src/app/ ./
 COPY --from=builder /usr/src/app/dist ./dist
 
+
 USER nexthire
 EXPOSE 5000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 CMD wget --spider -q http://localhost:5000/health || exit 1
+
+
 CMD ["node", "dist/server.js"]
