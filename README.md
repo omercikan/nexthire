@@ -2,12 +2,9 @@
  <img width="355" height="112" alt="NextHire (3)-Photoroom" src="https://github.com/user-attachments/assets/81cc2882-ff3a-445e-8084-d82e34f55f9f" />
 </p>
 
-<h1 align="center">NextHire</h1>
-
 <p align="center">
-  <a href="[https://opensource.org/licenses/MIT](https://camo.githubusercontent.com/6581c31c16c1b13ddc2efb92e2ad69a93ddc4a92fd871ff15d401c4c6c9155a4/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4d49542d626c75652e737667)"><img src="https://camo.githubusercontent.com/6581c31c16c1b13ddc2efb92e2ad69a93ddc4a92fd871ff15d401c4c6c9155a4/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4d49542d626c75652e737667" alt="MIT License"/></a>
-  <a href="https://www.netlify.com/"><img src="https://img.shields.io/badge/Deployed%20on-Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white" alt="Netlify"/></a>
-  <a href="https://firebase.google.com/"><img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black" alt="Firebase"/></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License"/></a>
+  <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker"/></a>
   <a href="https://jestjs.io/"><img src="https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest&logoColor=white" alt="Jest"/></a>
   <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React"/></a>
   <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"/></a>
@@ -15,7 +12,7 @@
   <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white" alt="Next.js"/></a>
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js"/></a>
   <a href="https://expressjs.com/"><img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white" alt="Express"/></a>
-  <a href="https://www.mongodb.com/"><img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white" alt="MongoDB"/></a>
+  <a href="https://www.mongodb.com/"><img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?style=flat-square&logo=mongodb&logoColor=white" /></a>
 </p>
 
 <p align="center">
@@ -60,9 +57,8 @@ The platform supports **role-based access** (Candidate, Employer, Admin), **smar
 - **TypeScript 5.8.2**  
 - **Tailwind CSS 4** + **SCSS**  
 - **Redux Toolkit + RTK Query**  
-- **Firebase (Auth & Firestore)**  
 - **Material UI (MUI)**  
-- **Formik + Yup**  
+- **React Hook Form + Zod**  
 - **Axios**  
 - **Framer Motion**  
 - **React Hot Toast**  
@@ -70,7 +66,7 @@ The platform supports **role-based access** (Candidate, Employer, Admin), **smar
 - **Swiper**  
 - **React Icons**  
 - **DayJS**  
-- **Jest + React Testing Library**  
+- **Jest + React Testing Library**
 
 ### ⚙️ Backend
 - **Node.js**  
@@ -79,56 +75,108 @@ The platform supports **role-based access** (Candidate, Employer, Admin), **smar
 - **MongoDB**  
 - **Nodemon**  
 - **CORS**  
-- **Dotenv**  
-- **ESLint + Prettier**  
+- **Dotenv**
+- **Helmet – Security headers for HTTP**
+- **ESLint + Prettier**
+
+### 🐳 DevOps
+- **Docker**
+- **Docker Compose (Development Environment)**
 
 ---
 
-## 🚀 Getting Started
+# 🚀 Getting Started (Docker Development)
 
-### 1. Clone the Repository
+## 🐳 Development Environment (Recommended)
+
+NextHire uses **Docker Compose** for backend development.
+
+> ⚠️ The frontend (Next.js) is intentionally **NOT containerized** for development.
+>
+> The Next.js team recommends running it locally for better performance and faster HMR (Hot Module Replacement).
+>
+> 🔗 Reference:  
+> <a href="https://nextjs.org/docs/app/guides/local-development#1-check-your-computers-antivirus" target="_blank">
+> Next.js Local Development Recommendation
+> </a>
+
+---
+
+> 🗄️ **MongoDB is also NOT containerized.**
+>
+> The project uses **MongoDB Atlas (Cloud Database)** instead of a local Docker MongoDB instance.
+>
+> This ensures:
+> - Better alignment with production infrastructure  
+> - No need for local database setup  
+> - Cloud scalability and monitoring support  
+
+---
+
+> ℹ️ Make sure Docker Desktop is running before executing the commands.
+
+## 1️⃣ Clone Repository
 
 ```bash
 git clone https://github.com/omercikan/nexthire-job-platform.git
 cd nexthire-job-platform
 ```
-### 2. Install Dependencies
 
-#### Frontend
+## 2️⃣ Start Backend Services with Docker
+
+### This will start:
+
+- Backend API (Node.js + Express)
+- RabbitMQ (Message Broker with Management UI)
+
+### Run in attached mode
+
+```bash
+docker compose -f docker-compose.dev.yml up --build
+```
+
+### Run in detached mode (recommended)
+
+```bash
+docker compose -f docker-compose.dev.yml up --build -d
+```
+
+### 📜 View Logs
+
+```bash
+docker compose -f docker-compose.dev.yml logs -f
+```
+
+### 🛑 Stop Services
+
+```bash
+docker compose -f docker-compose.dev.yml down
+```
+
+### ♻️ Full Reset (Remove volumes)
+
+```bash
+docker compose -f docker-compose.dev.yml down -v
+```
+
+## 3️⃣ Run Frontend Locally
 
 ```bash
 cd frontend
 npm install
-```
-
-#### Backend
-
-```bash
-cd backend
-npm install
-```
-
-### 3. Setup Firebase Environment (Frontend)
-- Create a .env.local file at the root of frontend/:
-
-```env
-NEXT_PUBLIC_FIREBASE_API_KEY=your_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
-```
-
-> ⚠️ Make sure you set up your own Firebase project.
-You can refer to the official <a href="https://firebase.google.com/docs/web/setup">Firebase Web Setup Documentation</a> to configure your project properly.
-
-### 4. Start Development
-
-#### Frontend or Backend
-```bash
 npm run dev
 ```
+
+> Frontend runs locally for optimal development performance
+
+## 🧠 Architecture Note
+
+### The development environment is intentionally hybrid:
+
+- Backend → Dockerized
+- Frontend (Next.js) → Local Development
+
+> This setup ensures optimal developer experience, faster hot reload, and better performance.
 
 ### 📦 Available Scripts
 
