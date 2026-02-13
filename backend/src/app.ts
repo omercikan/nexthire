@@ -13,18 +13,6 @@ import jobRoutes from "./features/jobs/job.routes";
 import { errorHandler } from "./shared/middlewares/errorHandler";
 import cookieParser from "cookie-parser";
 import config from "./config/index";
-import { Role } from "./shared/types/user/role";
-
-declare global {
-  namespace Express {
-    interface Request {
-      user?: {
-        id: string;
-        role: Role;
-      };
-    }
-  }
-}
 
 // express app
 const app = express();
