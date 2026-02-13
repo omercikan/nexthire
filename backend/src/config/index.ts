@@ -1,8 +1,10 @@
 import * as dotenv from "dotenv";
+import path from "path";
 
-if (process.env.NODE_ENV !== "production") {
-  dotenv.config();
-}
+const envFile =
+  process.env.NODE_ENV === "production" ? ".env.prod" : ".env.dev";
+
+dotenv.config({ path: path.join(__dirname, "../../", envFile) });
 
 interface Config {
   port: number;
