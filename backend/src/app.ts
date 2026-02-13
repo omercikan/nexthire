@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 import authCandidateRoutes from "./features/auth/candidate/routes/authCandidateRoutes";
 import authEmployerRoutes from "./features/auth/employer/routes/authEmployerRoutes";
 import otpRoutes from "./features/auth/otp/otpRoutes";
@@ -11,17 +10,14 @@ import candidateDashboardRoutes from "./features/dashboard/candidate/routes/gene
 import employerDashboardRoutes from "./features/dashboard/employer/routes/general.route";
 import jobRoutes from "./features/jobs/job.routes";
 import { errorHandler } from "./shared/middlewares/errorHandler";
-import cookieParser from "cookie-parser";
-import config from "./config/index";
+import { applyGlobalMiddlewares } from "./shared/middlewares/index";
 
 // express app
 const app = express();
 app.set("trust proxy", 1);
 
-// global middleware
-app.use(express.json());
-app.use(cors({ credentials: true, origin: config.client_url }));
-app.use(cookieParser());
+// Global Middleware
+applyGlobalMiddlewares(app);
 
 app.use("/api/auth", authCandidateRoutes);
 app.use("/api/auth", authEmployerRoutes);
