@@ -7,7 +7,7 @@ services:
     container_name: backend
     restart: unless-stopped
     env_file:
-      - ./backend/.env
+      - ./backend/.env.dev
     ports:
       - "5000:5000"
     healthcheck:
