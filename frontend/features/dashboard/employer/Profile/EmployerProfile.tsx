@@ -13,14 +13,22 @@ import CustomButton from "@/shared/components/ui/CustomButton";
 import Social from "./Socials/Social";
 
 const EmployerProfile = () => {
-  const { user } = useContext(AuthContext);
+  const { user, refetch } = useContext(AuthContext);
   const employerUser = user as Employer;
 
-  const { handleChangeImage } = useProfileImage();
-  const { register, methods, errors, isSubmitted, isSubmitting } =
-    useProfileForm({
-      user: employerUser,
-    });
+  const { handleChangeImage, imageFile, setImageFile } = useProfileImage();
+  const {
+    onSubmit,
+    formState: { errors, isSubmitting, isSubmitted },
+    register,
+    handleSubmit,
+    methods,
+  } = useProfileForm({
+    user: employerUser,
+    refetch,
+    imageFile,
+    setImageFile,
+  });
 
   return (
     <>
@@ -122,13 +130,15 @@ const EmployerProfile = () => {
         </FormProvider>
       </Profile>
 
-      <Social />
+      <Social user={employerUser} />
 
       <CustomButton
         type="submit"
         text="Kaydet"
-        className="px-[30px] my-5 float-right !bg-[#1814F3] !rounded-md"
+        className={`${isSubmitting ? "px-[45px]" : "px-[30px]"} my-5 float-right !bg-[#1814F3] !rounded-md`}
         isSubmitting={isSubmitting}
+        circularColor="#fff"
+        handleClick={handleSubmit(onSubmit)}
       />
     </>
   );
