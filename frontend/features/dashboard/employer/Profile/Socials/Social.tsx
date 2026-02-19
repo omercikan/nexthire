@@ -2,13 +2,19 @@ import CustomButton from "@/shared/components/ui/CustomButton";
 import SocialList from "./SocialList";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/shared/redux/store";
-import { setPlatform } from "./social-slice";
+import { setPlatform, updatePlatform } from "./social-slice";
+import { useEffect } from "react";
+import { Employer } from "@/shared/types/models/employer";
 
-const Social = () => {
+const Social = ({ user }: { user: Employer }) => {
   const { selectedPlatform } = useSelector(
     (state: RootState) => state.socialSlice,
   );
   const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(updatePlatform(user?.socialPlatforms ?? []));
+  }, [dispatch, user?.socialPlatforms]);
 
   return (
     <div className="mt-5 bg-white py-[37px] px-[30px] rounded-[25px]">
