@@ -41,3 +41,5 @@ export const employerProfileSchema = z.object({
 
   IntroductionVideoURL: z.string().optional(),
 });
+
+export type EmployerProfileType = z.infer<typeof employerProfileSchema>;
