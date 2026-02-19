@@ -73,7 +73,7 @@ const SocialList = ({ index }: { index: number }) => {
                     dispatch(setActiveSocialPlatformId(index));
                   }}
                 >
-                  {findPlatform?.platform ?? "Facebook"}
+                  {findPlatform?.platform}
                   <FiChevronDown
                     className={`transform ${activeSocialPlatformId === index ? "rotate-180" : "rotate-0"}`}
                   />
@@ -91,7 +91,7 @@ const SocialList = ({ index }: { index: number }) => {
                     />
 
                     <ul className="max-h-[200px] visible-scrollbar flex flex-col gap-y-1.5">
-                      {!searchPlatform.length &&
+                      {!searchPlatform.length && !filtersPlatform.length &&
                         SOCIAL_PLATFORMS.map((platform) => (
                           <SocialPlatformItem
                             key={platform}
@@ -144,6 +144,10 @@ const SocialList = ({ index }: { index: number }) => {
                       }),
                     );
                   }}
+                  value={findPlatform?.url}
+                  error={
+                    findPlatform?.url === "" ? "Geçerli bir URL giriniz" : ""
+                  }
                 />
               </div>
             </li>
