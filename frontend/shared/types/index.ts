@@ -184,3 +184,9 @@ export interface BlogPost {
   tags: string[];
   requirements: string[];
 }
+
+export interface SocialPlatforms {
+  _id: string;
+  url: string;
+  platform: string;
+}
