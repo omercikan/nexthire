@@ -1,15 +1,21 @@
-import { KeyboardEvent, useContext, useState } from "react";
+import { KeyboardEvent, useContext, useEffect, useState } from "react";
 import showCategoryToast from "./categoryNotifications";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/shared/redux/store";
+import { setCategories } from "./category-slice";
 import { AuthContext } from "@/features/auth/authContext";
 import { Employer } from "@/shared/types/models/employer";
 
 const useCategoryHandler = () => {
+  const { categories } = useSelector((state: RootState) => state.categorySlice);
+  const dispatch = useDispatch<AppDispatch>();
+  const [categoryValue, setCategoryValue] = useState("");
+
   const { user } = useContext(AuthContext);
 
-  const [categories, setCategories] = useState<string[]>(
-    (user as Employer).categories ?? [],
-  );
-  const [categoryValue, setCategoryValue] = useState("");
+  useEffect(() => {
+    if (user) dispatch(setCategories((user as Employer)?.categories ?? []));
+  }, [dispatch, user]);
 
   const onInput = (e: KeyboardEvent<HTMLDivElement>) => {
     const raw = e.currentTarget.innerText;
@@ -37,7 +43,7 @@ const useCategoryHandler = () => {
           return;
         }
 
-        setCategories((prev) => [...prev, value]);
+        dispatch(setCategories([...categories, value]));
 
         setCategoryValue("");
         e.currentTarget.innerHTML = "";
@@ -45,13 +51,15 @@ const useCategoryHandler = () => {
       case "Backspace":
         if (categories.length && !categoryValue.length) {
           const findLastIndex = categories.findLastIndex((cat) => cat);
-          return setCategories(categories.slice(length, findLastIndex));
+          return dispatch(
+            setCategories(categories.slice(length, findLastIndex)),
+          );
         }
     }
   };
 
   const removeCategory = (deleteValue: string) => {
-    setCategories(categories.filter((cat) => cat !== deleteValue));
+    dispatch(setCategories(categories.filter((cat) => cat !== deleteValue)));
   };
 
   return {
