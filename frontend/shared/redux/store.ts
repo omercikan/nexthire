@@ -29,6 +29,8 @@ import { jobsApi } from "@/features/jobs/postings/services/jobsApi";
 import { paginationSlice } from "@/features/jobs/postings/components/pagination/paginationSlice";
 import { filtersSlice } from "./slices/filtersData";
 import { socialSlice } from "@/features/dashboard/employer/Profile/Socials/social-slice";
+import { EmployerProfileAPI } from "@/features/dashboard/employer/Profile/api";
+import { categorySlice } from "@/features/dashboard/employer/Profile/Category/category-slice";
 
 export const store = configureStore({
   reducer: {
@@ -47,6 +49,7 @@ export const store = configureStore({
     paginationSlice: paginationSlice.reducer,
     filtersSlice: filtersSlice.reducer,
     socialSlice: socialSlice.reducer,
+    categorySlice: categorySlice.reducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [favoritesApi.reducerPath]: favoritesApi.reducer,
@@ -61,6 +64,7 @@ export const store = configureStore({
     [candidateResumeApi.reducerPath]: candidateResumeApi.reducer,
     [jobApi.reducerPath]: jobApi.reducer,
     [jobsApi.reducerPath]: jobsApi.reducer,
+    [EmployerProfileAPI.reducerPath]: EmployerProfileAPI.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -79,6 +83,7 @@ export const store = configureStore({
       candidateResumeApi.middleware,
       jobApi.middleware,
       jobsApi.middleware,
+      EmployerProfileAPI.middleware,
     ]),
 });
 
