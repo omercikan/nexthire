@@ -1,3 +1,4 @@
+import { SocialPlatforms } from "@/shared/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface initialState {
@@ -28,6 +29,13 @@ export const socialSlice = createSlice({
       } else {
         state.selectedPlatform.push(payload);
       }
+    },
+
+    updatePlatform: (state, action: PayloadAction<SocialPlatforms[]>) => {
+      state.selectedPlatform = action.payload.map((item, i) => ({
+        ...item,
+        id: i + 1,
+      }));
     },
 
     removePlatform: (state, action: PayloadAction<number>) => {
@@ -69,4 +77,5 @@ export const {
   removePlatform,
   updatePlatformUrl,
   setActiveSocialPlatformId,
+  updatePlatform,
 } = socialSlice.actions;
