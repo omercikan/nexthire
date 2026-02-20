@@ -19,10 +19,13 @@ const transporter = nodemailer.createTransport({
 const templatesPath = path.resolve(__dirname, "../../templates");
 const handlebarOptions: NodemailerExpressHandlebarsOptions = {
   viewEngine: {
+    extname: ".handlebars",
     partialsDir: templatesPath,
-    defaultLayout: false,
+    layoutsDir: templatesPath,
+    defaultLayout: "",
   },
   viewPath: templatesPath,
+  extName: ".handlebars",
 };
 
 transporter.use("compile", hbs(handlebarOptions));
@@ -31,7 +34,7 @@ export const sendMail = async (
   to: string,
   subject: string,
   template: string,
-  context: unknown
+  context: unknown,
 ) => {
   await transporter.sendMail({
     from: auth.user,
