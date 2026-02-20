@@ -1,4 +1,4 @@
-import { User } from "..";
+import { SocialPlatforms, User } from "../index";
 import { EmployerOpenJobs } from "../employer/open-jobs.types";
 
 /**
@@ -14,6 +14,9 @@ export interface Employer extends User {
   companyLogo: string;
   companyAbout: string;
   categories: string[];
+  socialPlatforms: SocialPlatforms[];
+  profilePhoto: string;
+  profilePhotoId: string;
 
   city: string;
   district: string;
