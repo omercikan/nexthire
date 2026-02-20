@@ -40,6 +40,25 @@ services:
     networks:
       - app_network
 
+  # --- WORKER (RabbitMQ Consumer) ---
+  worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: worker
+    command: npx ts-node src/queues/index.ts
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env.dev
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - rabbitmq
+      - backend
+    networks:
+      - app_network
+
 volumes:
   rabbitmq_data:
 
