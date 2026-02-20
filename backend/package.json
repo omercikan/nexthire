@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc && copyfiles -u 2 src/templates/**/* dist/templates",
     "start": "node dist/server.js",
-    "dev": "nodemon",
+    "dev": "nodemon --legacy-watch",
     "lint": "eslint 'src/**/*.ts'",
     "type-check": "tsc --noEmit --watch",
     "start-worker": "node dist/queues/index.js"
