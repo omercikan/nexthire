@@ -1,6 +1,10 @@
-import type { NextConfig } from "next";
+import { NextConfig } from "next";
 
-module.exports = {
+const nextConfig: NextConfig = {
+  reactStrictMode: false,
+  experimental: { globalNotFound: true },
+  output: "standalone",
+
   images: {
     remotePatterns: [
       {
@@ -8,7 +12,6 @@ module.exports = {
         hostname: "res.cloudinary.com",
         pathname: "**",
       },
-
       {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
@@ -16,12 +19,6 @@ module.exports = {
       },
     ],
   },
-};
-
-const nextConfig: NextConfig = {
-  /* config options here */
-  reactStrictMode: false,
-  experimental: { globalNotFound: true },
 };
 
 export default nextConfig;
