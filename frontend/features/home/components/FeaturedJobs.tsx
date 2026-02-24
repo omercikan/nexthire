@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, A11y } from "swiper/modules";
-import "swiper/scss";
+import "swiper/css";
 import Image from "next/image";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { routeFormatter } from "@/shared/utils/routeFormat";

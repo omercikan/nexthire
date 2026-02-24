@@ -5,7 +5,7 @@ import Link from "next/link";
 // import React, { useContext } from "react";
 import { A11y, Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/scss";
+import "swiper/css";
 import { SlLocationPin } from "react-icons/sl";
 import { LiaUserSolid } from "react-icons/lia";
 import { GoArrowUpRight } from "react-icons/go";

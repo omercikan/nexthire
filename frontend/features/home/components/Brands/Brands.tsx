@@ -5,7 +5,7 @@ import React from "react";
 import { BsChevronLeft } from "react-icons/bs";
 import { BsChevronRight } from "react-icons/bs";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/scss";
+import "swiper/css";
 import { Navigation, Autoplay, A11y } from "swiper/modules";
 import { motion } from "framer-motion";
 import { brands } from "./brand-images";
