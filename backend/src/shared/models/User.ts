@@ -43,16 +43,28 @@ const UserSchema = new Schema(
     taxOffice: String,
     taxNumber: String,
     emailConsent: Boolean,
+    website: String,
+    foundedDate: String,
+    companySize: String,
+    IntroductionVideoURL: String,
+    companyAbout: String,
+    categories: [{ type: String }],
 
     // Common areas
     personalDataConsent: {
       type: Boolean,
       default: true,
     },
+    socialPlatforms: [
+      {
+        platform: { type: String, required: false },
+        url: { type: String, required: false },
+      },
+    ],
     failedAttempts: { type: Number, default: 0 },
     failedTime: { type: Number, default: 0 },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false },
 );
 
 UserSchema.pre("save", async function (next) {
