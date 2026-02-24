@@ -32,7 +32,7 @@ interface Config {
 }
 
 const config: Config = {
-  port: Number(process.env.PORT) || 7000,
+  port: Number(process.env.PORT) || 5000,
   nodeEnv: String(process.env.NODE_ENV),
   database_uri: String(process.env.DB_URI),
   database_name: String(process.env.DB_NAME),
