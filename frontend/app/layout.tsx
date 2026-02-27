@@ -3,6 +3,7 @@ import { Jost } from "next/font/google";
 import { defaultMetadata } from "@/shared/data/seo";
 import Providers from "@/shared/components/Providers";
 import { Metadata } from "next";
+import Chat from "@/features/chat/components/Chat";
 
 const jost = Jost({
   subsets: ["latin-ext"],
@@ -41,7 +42,11 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={jost.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+
+          <Chat />
+        </Providers>
       </body>
     </html>
   );
