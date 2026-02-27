@@ -31,6 +31,7 @@ import { filtersSlice } from "./slices/filtersData";
 import { socialSlice } from "@/features/dashboard/employer/Profile/Socials/social-slice";
 import { EmployerProfileAPI } from "@/features/dashboard/employer/Profile/api";
 import { categorySlice } from "@/features/dashboard/employer/Profile/Category/category-slice";
+import { chatAction } from "@/features/chat/slice/chat-action.slices";
 
 export const store = configureStore({
   reducer: {
@@ -50,6 +51,7 @@ export const store = configureStore({
     filtersSlice: filtersSlice.reducer,
     socialSlice: socialSlice.reducer,
     categorySlice: categorySlice.reducer,
+    chatSlice: chatAction.reducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [favoritesApi.reducerPath]: favoritesApi.reducer,
