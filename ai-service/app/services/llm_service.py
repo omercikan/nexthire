@@ -6,6 +6,7 @@ Handles sending user messages to the configured LLM provider
 the model's textual response.
 """
 
+import openai
 from openai import OpenAI
 from app.core.config import getenv
 from app.services.guard_service import is_work_related
@@ -15,6 +16,22 @@ from app.services.intent_service import classify_intent
 REFUSAL_MESSAGE = (
     "Bu AI asistanı yalnızca iş, kariyer, CV ve mülakat konularında yardımcı olmaktadır."
 )
+
+SYSTEM_PROMPT = """
+You are an AI assistant integrated into a job platform.
+
+Rules:
+- Only answer questions related to jobs, careers, CV, interviews, hiring, tech skills, and work life.
+- If the question is unrelated to work or careers, politely refuse.
+- Keep answers concise and professional.
+- Do not answer personal, entertainment, or unrelated questions.
+"""
+
+client = OpenAI(
+    base_url=getenv("BASE_URL"),
+    api_key=getenv("HF_TOKEN"),
+)
+
 
 def ask_ai(message: str) -> str:
     """
@@ -37,17 +54,28 @@ def ask_ai(message: str) -> str:
     if not classify_intent(message):
         return REFUSAL_MESSAGE
 
-    client = OpenAI(
-        base_url=getenv("BASE_URL"),
-        api_key=getenv("HF_TOKEN"),
-    )
+    try:
+        completion = client.chat.completions.create(
+            model="moonshotai/Kimi-K2-Instruct-0905",
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": message},
+            ],
+        )
 
-    completion = client.chat.completions.create(
-        model="moonshotai/Kimi-K2-Instruct-0905",
-        messages=[
-            {"role": "system", "content": getenv("SYSTEM_PROMPT")},
-            {"role": "user", "content": message},
-        ],
-    )
-
-    return completion.choices[0].message.content
+        return {"message": completion.choices[0].message.content, "error": None}
+    except openai.RateLimitError:
+        return {
+            "message": "OpenAI API request exceeded rate limit",
+            "error": "rate_limit",
+        }
+    except openai.APIConnectionError:
+        return {
+            "message": "Unable to connect to the OpenAI API.",
+            "error": "connection_error",
+        }
+    except openai.APIError:
+        return {
+            "message": "OpenAI API returned an error. Please try again later.",
+            "error": "api_error",
+        }
