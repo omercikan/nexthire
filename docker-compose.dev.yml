@@ -59,6 +59,22 @@ services:
     networks:
       - app_network
 
+  # --- AI SERVICE (PYTHON) ---
+  ai-service:
+    build:
+      context: ./ai-service
+      dockerfile: Dockerfile.dev
+    container_name: ai-service
+    restart: unless-stopped
+    env_file:
+      - ./ai-service/.env
+    volumes:
+      - ./ai-service:/usr/src/app
+    ports:
+      - "8000:8000"
+    networks:
+      - app_network
+
 volumes:
   rabbitmq_data:
 
