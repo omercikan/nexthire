@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { KeyboardEvent, useRef } from "react";
 
 const useChatInput = () => {
   const chatInputRef = useRef<HTMLInputElement | null>(null);
@@ -22,7 +22,22 @@ const useChatInput = () => {
     }
   };
 
-  return { chatInputRef, insertAtEmoji };
+  const onKeyDown = (
+    event: KeyboardEvent<HTMLInputElement>,
+    sendMessage: (message: string) => void,
+  ) => {
+    const key = event.key;
+    const value = event.currentTarget.value;
+
+    if (!value) return;
+
+    if (key === "Enter") {
+      sendMessage(value);
+      event.currentTarget.value = "";
+    }
+  };
+
+  return { chatInputRef, insertAtEmoji, onKeyDown };
 };
 
 export default useChatInput;
