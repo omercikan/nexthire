@@ -1,12 +1,10 @@
-import { ChatIcons } from "../../icons/ChatIcon";
-import CustomButton from "@/shared/components/ui/CustomButton";
-import useChatInput from "./useChatInput";
+import useChatInput from "./hooks/useChatInput";
 import ChatInput from "./ChatInput";
 import EmojiButton from "./EmojiButton";
 import FileButton from "./FileButton";
+import SendButton from "./SendButton";
 
 const ChatFooter = () => {
-  const { send: Send } = ChatIcons;
   const { chatInputRef, insertAtEmoji } = useChatInput();
 
   return (
@@ -19,9 +17,7 @@ const ChatFooter = () => {
 
           <FileButton />
 
-          <CustomButton className="p-0! bg-transparent!">
-            <Send color="003DF5" size={25} />
-          </CustomButton>
+          <SendButton inputRef={chatInputRef} />
         </div>
       </div>
     </div>
