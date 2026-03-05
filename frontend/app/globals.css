@@ -96,6 +96,22 @@ html {
   .dashboard-navigation-item {
     @apply bg-[#F5F7FA] w-[50px] h-[50px] rounded-full grid place-content-center;
   }
+
+  @keyframes animate-fade {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
+
+  .fade-slide-in {
+    animation: animate-fade 0.5s forwards 0ms ease-out;
+  }
 }
 /*! Custom layers end !*/
 
