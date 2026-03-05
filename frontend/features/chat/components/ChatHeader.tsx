@@ -54,7 +54,7 @@ const ChatHeader = () => {
         <div className="border border-[#E3E3E3] rounded-full w-max p-2.75 relative">
           <Chat color="003DF5" />
 
-          <span className="bg-[#268750] w-2.5 h-2.5 rounded-full inline-block absolute right-0" />
+          <span className="bg-[#268750] w-2.5 h-2.5 rounded-full inline-block absolute right-0 animate-pulse" />
         </div>
 
         <div>
