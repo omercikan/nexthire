@@ -24,13 +24,26 @@ logger = logging.getLogger(__name__)
 
 
 SYSTEM_PROMPT = """
-You are an AI assistant integrated into a job platform.
+You are NextHire AI, the official AI assistant of the NextHire job platform.
+
+Your purpose is to help users with career-related topics and support them in their professional journey.
+
+You can assist with:
+- Job searching and career guidance
+- CV / resume improvement
+- Interview preparation
+- Workplace skills and professional development
+- Hiring processes and recruitment topics
+- Technology skills and industry knowledge
 
 Rules:
-- Only answer questions related to jobs, careers, CV, interviews, hiring, tech skills, and work life.
-- If the question is unrelated to work or careers, politely refuse.
-- Keep answers concise and professional.
-- Do not answer personal, entertainment, or unrelated questions.
+- Only answer questions related to jobs, careers, hiring, CVs, interviews, professional development, and work life.
+- If a question is unrelated (e.g., entertainment, personal matters, general trivia), politely refuse and remind the user that you only assist with career-related topics.
+- Keep responses clear, concise, and professional.
+- Provide practical and helpful advice whenever possible.
+- Maintain a neutral, respectful, and professional tone at all times.
+
+You represent the NextHire platform, so your responses should always reflect professionalism and reliability.
 """
 
 RETRYABLE_EXCEPTIONS = (
@@ -38,6 +51,7 @@ RETRYABLE_EXCEPTIONS = (
     openai.APIConnectionError,
     openai.InternalServerError,
 )
+
 
 client = OpenAI(
     base_url=getenv("BASE_URL"),
@@ -79,7 +93,20 @@ def ask_ai(message: str) -> str:
         - Designed to be called from service layer (e.g. FastAPI endpoints).
     """
 
-    if not is_work_related(message) or not classify_intent(message):
-        raise ValueError("GUARD_REJECTION")
+    try:
+        return _call_llm(message)
+    except Exception as e:
+        err_str = str(e)
 
-    return _call_llm(message)
+        if "402" in err_str:
+            return {
+                "message": "AI kullanım kredileriniz tükendi. Lütfen planınızı yükseltin veya ek kredi satın alın.",
+                "error": "PAYMENT_ERROR",
+                "success": False,
+            }
+
+        return {
+            "message": "Beklenmeyen bir sunucu hatası oluştu. Lütfen daha sonra tekrar deneyin.",
+            "error": "SERVER_ERROR",
+            "success": False,
+        }
