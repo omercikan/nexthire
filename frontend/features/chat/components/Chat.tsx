@@ -14,7 +14,7 @@ const Chat = () => {
 
   return (
     <div
-      className={`fixed bottom-4 right-4 z-1001 ${isOpenChat ? "w-[444.6px] rounded-[30px] border border-[#6670854f]" : ""}`}
+      className={`fixed bottom-4 right-4 max-md:right-2 z-1001 ${isOpenChat ? "w-[444.6px] max-md:w-full max-md:right-0! max-md:bottom-0! max-md:h-full rounded-[30px] border border-[#6670854f]" : ""}`}
     >
       {isOpenChat ? (
         <>

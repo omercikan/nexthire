@@ -26,8 +26,9 @@ const EmojiButton = ({
       {isOpenEmojiMenu && (
         <EmojiPicker
           reactionsDefaultOpen={true}
+          searchPlaceHolder="Emoji Ara"
           onEmojiClick={({ emoji }) => insertAtEmoji(emoji)}
-          className="absolute! bottom-12.25 right-0"
+          className="absolute! max-sm:fixed! bottom-12.25 max-sm:bottom-30 max-[350px]:bottom-[108.9px] right-0 max-sm:right-2 max-[350px]:right-0! max-[350px]:w-full!"
         />
       )}
     </div>

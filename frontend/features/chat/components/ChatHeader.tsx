@@ -17,8 +17,15 @@ const ChatHeader = () => {
     status: { isOpenOptionsMenu },
   } = useChatActions();
 
+  const handleChatMode = (status: "minimize" | "close") => {
+    handleChatStatus(status);
+
+    if (document.body.style["overflow"] === "hidden")
+      document.body.style.overflow = "visible";
+  };
+
   return (
-    <header className="border-b border-[#E3E3E3] bg-white p-8 pb-6.25 rounded-t-[30px]">
+    <header className="border-b border-[#E3E3E3] bg-white p-8 pb-6.25 md:rounded-t-[30px]">
       <div className="flex items-center justify-between relative">
         <CustomButton
           className="p-0! bg-transparent!"
@@ -29,19 +36,21 @@ const ChatHeader = () => {
 
         {isOpenOptionsMenu && <OptionsMenu />}
 
-        <h2 className="mx-8 text-xl text-[#667085]">NextHire AI Chat</h2>
+        <h2 className="mx-8 text-xl text-[#667085] max-[375px]:text-lg">
+          NextHire AI Chat
+        </h2>
 
         <div className="flex items-center gap-3">
           <CustomButton
             className="p-0! bg-transparent!"
-            handleClick={() => handleChatStatus("minimize")}
+            handleClick={() => handleChatMode("minimize")}
           >
             <Minimize color="667085" strokeWidth={2.5} />
           </CustomButton>
 
           <CustomButton
             className="p-0! bg-transparent!"
-            handleClick={() => handleChatStatus("close")}
+            handleClick={() => handleChatMode("close")}
           >
             <Close color="667085" strokeWidth={2.5} />
           </CustomButton>

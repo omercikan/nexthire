@@ -5,10 +5,21 @@ import {
   changeEmojiMenuStatus,
   changeOptionsMenuStatus,
 } from "../slice/chat-action.slices";
+import { useEffect } from "react";
+import { useMediaQuery } from "@mui/material";
 
 const useChatActions = () => {
   const dispatch = useDispatch<AppDispatch>();
   const status = useSelector((state: RootState) => state.chatSlice);
+  const isMediumBreakpoint = useMediaQuery("(max-width:768px)");
+
+  useEffect(() => {
+    if (status.isOpenChat && isMediumBreakpoint) {
+      document.body.style.overflow = "hidden";
+    }
+
+    if (!isMediumBreakpoint) document.body.style.overflow = "visible";
+  }, [isMediumBreakpoint, status.isOpenChat]);
 
   const handleChatStatus = (payload: "close" | "minimize") => {
     dispatch(changeChatStatus(payload));
@@ -22,6 +33,7 @@ const useChatActions = () => {
     handleChatStatus,
     handleOptionsMenuStatus,
     handleEmojiMenuStatus,
+    isMediumBreakpoint,
     status,
   };
 };
