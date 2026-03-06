@@ -1,21 +1,7 @@
-import pika
 import json
 import time
 from app.services.llm_service import ask_ai
-from app.core.config import getenv
-
-
-def connect() -> pika.BlockingConnection:
-    """
-    Establishes a blocking connection to RabbitMQ.
-    Retries every 3 seconds until the connection is successful.
-    """
-    while True:
-        try:
-            return pika.BlockingConnection(pika.URLParameters(getenv("RABBITMQ_URL")))
-        except pika.exceptions.AMQPConnectionError:
-            print("Waiting for RabbitMQ...")
-            time.sleep(3)
+from app.services.rabbitmq_client import RabbitMQClient
 
 
 def callback(ch, method, _properties, body: bytes) -> None:
@@ -24,55 +10,35 @@ def callback(ch, method, _properties, body: bytes) -> None:
     Sends the message to the AI service and publishes the response to the 'ai:response' queue.
     On failure, publishes an error payload to 'ai:response' and nacks the message.
     """
+    client = RabbitMQClient()
+    client.connect()
+
     try:
         if not body or not body.strip():
             ch.basic_ack(delivery_tag=method.delivery_tag)
             return
 
         data = json.loads(body.decode("utf-8"))
+        ai_response = ask_ai(data.get("message", ""))
 
-        ai_response = ask_ai(data["message"])
+        if isinstance(ai_response, dict) and not ai_response.get("success"):
+            result = json.dumps({"ai_response": ai_response})
+        else:
+            result = json.dumps({"ai_response": {"message": ai_response}})
 
-        result = json.dumps(
-            {"user_message": data.get("message", ""), "ai_response": ai_response}
-        )
-
-        connection = connect()
-        channel = connection.channel()
-        channel.queue_declare(queue="ai:response", durable=True)
-
-        channel.basic_publish(
-            exchange="",
-            routing_key="ai:response",
-            body=result,
-            properties=pika.BasicProperties(
-                content_type="application/json",
-                delivery_mode=pika.DeliveryMode.Transient,
-            ),
-        )
-
-        connection.close()
+        client.publish("ai:response", result)
         print("AI response sent successfully")
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
-    except (json.JSONDecodeError, KeyError) as e:
+    except Exception as e:
         print(f"Failed to process message: {e}")
-
         error_result = json.dumps(
             {"user_message": "", "ai_response": None, "error": str(e)}
         )
-        connection = connect()
-        channel = connection.channel()
-        channel.queue_declare(queue="ai:response", durable=True)
-        channel.basic_publish(
-            exchange="",
-            routing_key="ai:response",
-            body=error_result,
-            properties=pika.BasicProperties(content_type="application/json"),
-        )
-        connection.close()
-
+        client.publish("ai:response", error_result)
         ch.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
+    finally:
+        client.close()
 
 
 def main() -> None:
@@ -81,22 +47,18 @@ def main() -> None:
     Connects to RabbitMQ, declares the 'ai:message' queue and starts consuming messages.
     Reconnects automatically on connection failure.
     """
+
     while True:
+        client = RabbitMQClient()
         try:
-            connection = connect()
-            channel = connection.channel()
-            channel.queue_declare(queue="ai:message", durable=True)
-            channel.basic_qos(prefetch_count=1)
-            channel.basic_consume(
-                queue="ai:message", on_message_callback=callback, auto_ack=False
-            )
+            client.connect()
+            client.ensure_queue("ai:message")
+            client.consume("ai:message", callback)
             print("Waiting for messages...")
-            channel.start_consuming()
-        except (
-            pika.exceptions.AMQPConnectionError,
-            pika.exceptions.AMQPChannelError,
-        ) as e:
+            client.channel.start_consuming()
+        except Exception as e:
             print(f"Connection error: {e}, reconnecting...")
+            client.close()
             time.sleep(3)
 
 
