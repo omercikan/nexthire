@@ -16,12 +16,9 @@ const io = getIO();
         const response = JSON.parse(msg.content.toString());
 
         if (response.error) {
-          io.emit("chat:error", { message: response.error });
+          io.emit("chat:error", response.error);
         } else {
-          io.emit("chat:message", {
-            user_message: response.user_message ?? "",
-            ai_response: response.ai_response ?? response,
-          });
+          io.emit("chat:message", response.ai_response);
         }
 
         channel.ack(msg);
