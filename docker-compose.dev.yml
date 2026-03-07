@@ -20,7 +20,10 @@ services:
       - ./backend:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
-      - rabbitmq
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - app_network
 
@@ -101,8 +104,39 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
 
+  # --- CACHE (Redis) ---
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+    networks:
+      - app_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # --- REDIS UI (RedisInsight) ---
+  redisinsight:
+    image: redis/redisinsight:latest
+    container_name: redisinsight
+    restart: unless-stopped
+    ports:
+      - "5540:5540"
+    networks:
+      - app_network
+    depends_on:
+      - redis
+
 volumes:
   rabbitmq_data:
+  redis-data:
+    driver: local
 
 networks:
   app_network:

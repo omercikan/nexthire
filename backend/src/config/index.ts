@@ -29,6 +29,7 @@ interface Config {
     api_secret: string;
     cloud_name: string;
   };
+  redis_url: string;
 }
 
 const config: Config = {
@@ -54,6 +55,7 @@ const config: Config = {
     api_secret: String(process.env.CLOUDINARY_API_SECRET),
     cloud_name: String(process.env.CLOUDINARY_CLOUD_NAME),
   },
+  redis_url: String(process.env.REDIS_URL),
 };
 
 export default config;

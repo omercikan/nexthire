@@ -1,6 +1,7 @@
 import app from "./app";
 import { connectDatabase } from "./config/db";
 import config from "./config/index";
+import { connectRedis } from "./config/redis";
 import { initSocket } from "./config/socketManager";
 import logger from "./shared/utils/logger";
 import http from "http";
@@ -8,6 +9,7 @@ import http from "http";
 const startServer = async () => {
   try {
     await connectDatabase();
+    connectRedis.connect();
 
     // Create http server with express app
     const server = http.createServer(app);
