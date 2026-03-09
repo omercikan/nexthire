@@ -20,6 +20,7 @@ import {
 } from "../../services/auth-service";
 import useAuth from "../../hooks/useAuth";
 import { CANDIDATE_FORM_FIELDS } from "./formValues";
+import { LoginSchema } from "../../schema/LoginSchema";
 
 const inter = Inter({
   subsets: ["latin-ext"],
@@ -40,11 +41,7 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
     formState: { errors, isSubmitting },
   } = useForm<SignupSchemaValue>({
     defaultValues: CANDIDATE_FORM_FIELDS,
-    resolver: zodResolver(
-      matchPathname
-        ? SignupSchema
-        : SignupSchema.pick({ email: true, password: true })
-    ),
+    resolver: zodResolver(matchPathname ? SignupSchema : LoginSchema),
     mode: "onChange",
   });
   const [createUser] = useCreateCandidateMutation();

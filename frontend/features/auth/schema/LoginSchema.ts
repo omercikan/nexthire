@@ -1,15 +1,13 @@
-import * as Yup from "yup";
+import * as z from "zod";
 
-export const LoginSchema = Yup.object().shape({
-  email: Yup.string()
-    .required("Lütfen e-posta adresi giriniz.")
+export const LoginSchema = z.object({
+  email: z
     .email("Geçerli bir e-posta adresi giriniz.")
-    .matches(
+    .regex(
       /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      "Geçerli bir e-posta adresi giriniz."
+      "Geçerli bir e-posta adresi giriniz.",
     )
-    .max(50, "E-posta en fazla 50 karakter olmalıdır.")
     .trim(),
 
-  password: Yup.string().required("Lütfen şifre giriniz.").trim(),
+  password: z.string().nonempty("Lütfen şifre giriniz.").trim(),
 });
