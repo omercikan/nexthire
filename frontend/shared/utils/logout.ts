@@ -2,11 +2,11 @@ import axios from "axios";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
-export const handleLogout = async () => {
+export const handleLogout = async (userId: string) => {
   try {
     const response = await axios.delete(
       `${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`,
-      { withCredentials: true }
+      { withCredentials: true, headers: { "x-user-id": userId } },
     );
 
     if (response.status === 200) {
