@@ -7,6 +7,7 @@ import { generateOtpCode } from "../../../../shared/utils/generateOtpCode";
 import { User } from "../../../../shared/models/User";
 import bcrypt from "bcrypt";
 import { authService } from "../../../../shared/services/authService";
+import { setUserCache } from "../../../../shared/services/cacheUser";
 
 class EmployerController {
   async createEmployer(req: Request, res: Response, next: NextFunction) {
@@ -82,6 +83,7 @@ class EmployerController {
       const token = authService(res, user.id, "employer");
 
       if (token) {
+        await setUserCache(user.id, user);
         return res.json({ message: "Login successful" });
       }
     } catch (error) {

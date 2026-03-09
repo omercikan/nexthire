@@ -20,8 +20,6 @@ export class Profile {
     const userId = req.user?.id;
     const body = req.body;
 
-    console.log(body);
-
     try {
       employerProfileSchema.parse(body);
 

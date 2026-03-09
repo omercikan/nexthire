@@ -5,6 +5,7 @@ import { publisher } from "../../../queues/publisher";
 import { EmployerTypes } from "../../../shared/types/user/employerUser.types";
 import { CandidateTypes } from "../../../shared/types/user/candidateUser.types";
 import { generateOtpCode } from "../../../shared/utils/generateOtpCode";
+import { setUserCache } from "../../../shared/services/cacheUser";
 
 export class OtpController {
   verifyOtp = async (req: Request, res: Response, next: NextFunction) => {
@@ -17,7 +18,9 @@ export class OtpController {
     }
 
     try {
-      const findOtp = await Otp.findOne({ token }).select("-__v");
+      const findOtp = await Otp.findOne({ token })
+        .select("-__v")
+        .populate<{ userId: CandidateTypes | EmployerTypes }>("userId");
 
       if (!findOtp) {
         return res
@@ -37,6 +40,7 @@ export class OtpController {
         });
       }
 
+      await setUserCache(String(findOtp.userId._id), findOtp.userId);
       res.json({ message: "OTP verified successfully", status: true });
     } catch (error) {
       next(error);

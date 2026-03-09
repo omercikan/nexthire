@@ -1,4 +1,5 @@
 import { User } from "../../../../shared/models/User";
+import { setUserCache } from "../../../../shared/services/cacheUser";
 import { EmployerProfileType } from "../validations/update-profile.validation";
 
 export class EmployerProfileService {
@@ -30,7 +31,11 @@ export class EmployerProfileService {
           : data.categories;
     }
 
-    const user = await User.updateOne({ _id: userId }, updatedPayloads);
+    const user = await User.findOneAndUpdate({ _id: userId }, updatedPayloads, {
+      new: true,
+    }).select("-password");
+
+    if (user) await setUserCache(userId, user);
 
     return user;
   }
