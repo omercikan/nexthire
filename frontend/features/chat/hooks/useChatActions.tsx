@@ -10,19 +10,25 @@ import { useMediaQuery } from "@mui/material";
 
 const useChatActions = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const status = useSelector((state: RootState) => state.chatSlice);
+  const { chatSlice, optionMenuSlice } = useSelector(
+    (state: RootState) => state,
+  );
   const isMediumBreakpoint = useMediaQuery("(max-width:768px)");
+  const status = { ...chatSlice, ...optionMenuSlice };
 
   useEffect(() => {
     if (status.isOpenChat && isMediumBreakpoint) {
       document.body.style.overflow = "hidden";
     }
 
-    if (!isMediumBreakpoint) document.body.style.overflow = "visible";
-  }, [isMediumBreakpoint, status.isOpenChat]);
+    if (!isMediumBreakpoint && !status.isFullScreen) {
+      document.body.style.overflow = "visible";
+    }
+  }, [isMediumBreakpoint, status.isOpenChat, status.isFullScreen]);
 
   const handleChatStatus = (payload: "close" | "minimize") => {
     dispatch(changeChatStatus(payload));
+    if (status.isFullScreen) document.body.style.overflow = "hidden";
   };
 
   const handleOptionsMenuStatus = () => dispatch(changeOptionsMenuStatus());
