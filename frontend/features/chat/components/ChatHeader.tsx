@@ -1,7 +1,7 @@
 import CustomButton from "@/shared/components/ui/CustomButton";
 import { ChatIcons } from "../icons/ChatIcon";
 import useChatActions from "../hooks/useChatActions";
-import OptionsMenu from "./OptionsMenu";
+import OptionsMenu from "./OptionsMenu/OptionsMenu";
 
 const ChatHeader = () => {
   const {
@@ -14,7 +14,7 @@ const ChatHeader = () => {
   const {
     handleChatStatus,
     handleOptionsMenuStatus,
-    status: { isOpenOptionsMenu },
+    status: { isOpenOptionsMenu, isFullScreen },
   } = useChatActions();
 
   const handleChatMode = (status: "minimize" | "close") => {
@@ -25,7 +25,9 @@ const ChatHeader = () => {
   };
 
   return (
-    <header className="border-b border-[#E3E3E3] bg-white p-8 pb-6.25 md:rounded-t-[30px]">
+    <header
+      className={`border-b border-[#E3E3E3] bg-white p-8 pb-6.25 ${isFullScreen ? "rounded-t-none" : "md:rounded-t-[30px]"}`}
+    >
       <div className="flex items-center justify-between relative">
         <CustomButton
           className="p-0! bg-transparent!"

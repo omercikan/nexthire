@@ -6,7 +6,10 @@ import Markdown from "react-markdown";
 
 const ChatBody = () => {
   const { chat: Chat } = ChatIcons;
-  const { messages } = useSelector((state: RootState) => state.chatData);
+  const {
+    chatData: { messages },
+    optionMenuSlice: { isFullScreen },
+  } = useSelector((state: RootState) => state);
   const chatBodyRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -17,7 +20,7 @@ const ChatBody = () => {
 
   return (
     <div
-      className="px-6 py-7.5 h-100 max-md:h-[calc(100%-287.55px)] modal-scrollbar scroll-smooth"
+      className={`px-6 py-7.5 ${isFullScreen ? "h-[calc(100vh-287.55px)]" : "h-100"} max-md:h-[calc(100%-287.55px)] modal-scrollbar scroll-smooth`}
       style={{
         backgroundColor: "#ffffff",
         backgroundImage: `
