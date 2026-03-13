@@ -4,6 +4,8 @@ import { defaultMetadata } from "@/shared/data/seo";
 import Providers from "@/shared/components/Providers";
 import { Metadata } from "next";
 import Chat from "@/features/chat/components/Chat";
+import { use } from "react";
+import { fetchUser } from "@/shared/libs/fetchUser";
 
 const jost = Jost({
   subsets: ["latin-ext"],
@@ -39,10 +41,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = use(fetchUser());
+
   return (
     <html lang="tr">
       <body className={jost.className}>
-        <Providers>
+        <Providers user={user}>
           {children}
 
           <Chat />
