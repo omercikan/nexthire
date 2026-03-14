@@ -12,6 +12,7 @@ import { useUpdateProfileMutation } from "./api";
 import { platformValidator } from "./validations/platform-validation";
 import { hasUpdates } from "./validations/updateChecker";
 import appendFormData from "@/shared/utils/appendFormData";
+import { useRouter } from "next/navigation";
 
 interface ProfileFormHookProps {
   user: Employer;
@@ -24,13 +25,13 @@ const useProfileForm = ({
   user,
   imageFile,
   setImageFile,
-  refetch,
 }: ProfileFormHookProps) => {
   const {
     socialSlice: { selectedPlatform },
     categorySlice: { categories },
   } = useSelector((state: RootState) => state);
   const [updateProfile] = useUpdateProfileMutation();
+  const router = useRouter();
 
   const methods = useForm({
     defaultValues: {
@@ -78,19 +79,19 @@ const useProfileForm = ({
     try {
       if (isUpdate) {
         await updateProfile(formData).unwrap();
+
         toast.success("Profil bilgileriniz başarıyla güncellendi.", {
           id: "EmployerProfileSuccessMessage",
         });
 
         setImageFile(undefined);
+        router.refresh();
       }
     } catch {
       toast.error(
         "Profil güncellenirken bir hata oluştu. Lütfen tekrar deneyiniz",
         { id: "EmployerProfileErrorMessage" },
       );
-    } finally {
-      await refetch();
     }
   };
 
