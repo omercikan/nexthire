@@ -1,22 +1,24 @@
 "use client";
 
-import LoaderSkeleton from "@/shared/components/ui/LoaderSkeleton";
 import { JOB_TYPES } from "@/shared/constants/filtersJob";
 import useJobFilter from "@/shared/hooks/job-filter/useJobFilter";
 import useItemFilterText from "@/shared/hooks/useItemFilterText";
 import useScroll from "@/shared/hooks/useScroll";
-import { clearAllFilters, selectCareerLevel, selectFiltersItem, selectJobType } from "@/shared/redux/slices/filters";
+import {
+  clearAllFilters,
+  selectCareerLevel,
+  selectFiltersItem,
+  selectJobType,
+} from "@/shared/redux/slices/filtersValues";
 import { AppDispatch } from "@/shared/redux/store";
-import { Typography } from "@mui/material";
 import Link from "next/link";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { useDispatch } from "react-redux";
 
 const IntroLink = ({
   icon,
   link,
   wrapperClass,
-  isLoading,
   JobLocationFilterStatus,
 }: {
   icon?: ReactNode;
@@ -33,7 +35,7 @@ const IntroLink = ({
   };
 }) => {
   const { applyItemFilter } = useItemFilterText();
-  const { filterJob } = useJobFilter();
+  const { handleFilter: filterJob } = useJobFilter();
   const { applyScroll } = useScroll();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -44,14 +46,13 @@ const IntroLink = ({
       applyItemFilter(
         text.split(",")[0],
         JobLocationFilterStatus?.isApplyJob ?? false,
-        JobLocationFilterStatus?.isApplyLocation ?? false
       );
     } else {
       const isIncludesJobTypes = JOB_TYPES.includes(text);
 
       dispatch(clearAllFilters());
       dispatch(
-        isIncludesJobTypes ? selectJobType(text) : selectCareerLevel([text])
+        isIncludesJobTypes ? selectJobType(text) : selectCareerLevel([text]),
       );
       dispatch(selectFiltersItem([text]));
       filterJob();
@@ -62,40 +63,24 @@ const IntroLink = ({
 
   return (
     <>
-      {isLoading ? (
-        <Typography variant="body1">
-          <LoaderSkeleton
-            animationType="wave"
-            length={1}
-            variant="text"
-            sxClass={{
-              borderRadius: "4px",
-              height: "25px",
-              width: "100px",
-            }}
-            className="max-lg:mx-auto"
-          />
-        </Typography>
-      ) : (
-        <div className={!wrapperClass ? "flex gap-[5px]" : wrapperClass}>
-          {icon}
+      <div className={!wrapperClass ? "flex gap-1.25" : wrapperClass}>
+        {icon}
 
-          {link.map((item, index) => (
-            <Link
-              href={item.href}
-              key={index}
-              className={
-                !item.linkClass
-                  ? "text-sm text-[#696969] hover:text-[#202124] transition-colors duration-300"
-                  : item.linkClass
-              }
-              onClick={() => handleFilter(item.text)}
-            >
-              {item.text}
-            </Link>
-          ))}
-        </div>
-      )}
+        {link.map((item, index) => (
+          <Link
+            href={item.href}
+            key={index}
+            className={
+              !item.linkClass
+                ? "text-sm text-[#696969] hover:text-[#202124] transition-colors duration-300"
+                : item.linkClass
+            }
+            onClick={() => handleFilter(item.text)}
+          >
+            {item.text}
+          </Link>
+        ))}
+      </div>
     </>
   );
 };

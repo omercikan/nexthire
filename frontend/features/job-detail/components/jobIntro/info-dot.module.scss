@@ -1,5 +1,5 @@
 .infoDot {
-  div {
+  > div {
     position: relative;
 
     &:not(:last-child)::before {

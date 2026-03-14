@@ -32,13 +32,13 @@ const JobList = () => {
       );
     case !jobData?.length && !isFilterDataFetching:
       return (
-        <div className="bg-[#D4E1F5] text-[#1967D2] p-[15px] mb-[30px] rounded-lg">
+        <div className="bg-[#D4E1F5] text-[#1967D2] p-3.75 mb-7.5 rounded-lg">
           <p>Aramana uygun bir sonuç bulunamadı. 😔</p>
         </div>
       );
     default:
       return jobData?.map((job) => (
-        <JobItem key={job._id} job={job} favoriteData={favoriteData || []} />
+        <JobItem key={job.id} job={job} favoriteData={favoriteData || []} />
       ));
   }
 };

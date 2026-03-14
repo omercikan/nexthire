@@ -2,7 +2,6 @@ import useScroll from "@/shared/hooks/useScroll";
 import { resetProgressBarValue } from "@/shared/redux/slices/applicationModal/progressBar";
 import { selectFiltersItem } from "@/shared/redux/slices/filtersValues";
 import { AppDispatch, RootState } from "@/shared/redux/store";
-import { routeFormatter } from "@/shared/utils/routeFormat";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback } from "react";
@@ -16,7 +15,7 @@ import FavoriteItem from "@/features/jobs/postings/components/Favorite/FavoriteI
 import useMultipleDispatch from "@/shared/hooks/useMultipleDispatch";
 
 interface JobItemProps {
-  _id: string;
+  id: string;
   jobTitle: string;
   location: string;
   careerLevel: string;
@@ -66,16 +65,16 @@ const JobItem = ({
 
   return (
     <article
-      key={job._id}
-      className="p-[30px] max-[1200px]:p-[15px] mb-[30px] border border-[#ECEDF2] rounded-lg hover:shadow-[0_6px_15px_0_rgba(64,79,104,0.05)] transition-shadow duration-300 relative group"
+      key={job.id}
+      className="p-7.5 max-[1200px]:p-3.75 mb-7.5 border border-[#ECEDF2] rounded-lg hover:shadow-[0_6px_15px_0_rgba(64,79,104,0.05)] transition-shadow duration-300 relative group"
     >
       <FavoriteItem
-        jobId={job?._id}
+        jobId={job?.id}
         companyLocation={job?.location}
         companyLogo={job?.employerId?.companyLogo}
         jobTitle={job?.jobTitle}
         jobCategory={job?.category}
-        isFavorite={favoriteData.includes(job._id)}
+        isFavorite={favoriteData.includes(job.id)}
       />
 
       <div className="flex max-[450px]:flex-col max-[450px]:justify-center max-[450px]:text-center">
@@ -92,9 +91,7 @@ const JobItem = ({
         <div className="px-5">
           <div className="flex items-center max-[450px]:justify-center max-[450px]:flex-col-reverse">
             <Link
-              href={`is-ilani/${routeFormatter(job.jobTitle)}/${
-                job._id
-              }/${"job.companyInformations.companyId"}`}
+              href={`is-ilani/${job.id}`}
               onClick={() => dispatch(resetProgressBarValue())}
             >
               <h2 className="text-[#202124] hover:text-[#1967d2] transition-colors duration-300 text-lg font-medium">
@@ -107,7 +104,7 @@ const JobItem = ({
             </span> */}
           </div>
 
-          <div className="flex flex-wrap gap-[25px] max-[450px]:gap-2 mt-[5px] max-[450px]:mt-2 max-[450px]:justify-center">
+          <div className="flex flex-wrap gap-6.25 max-[450px]:gap-2 mt-1.25 max-[450px]:mt-2 max-[450px]:justify-center">
             <span
               onClick={(e) => {
                 e.preventDefault();
@@ -115,7 +112,7 @@ const JobItem = ({
               }}
               className="flex items-center text-[#696969] hover:text-[#202124] text-sm transition-colors duration-300 cursor-pointer"
             >
-              <VscBriefcase className="me-[5px]" size={20} />
+              <VscBriefcase className="me-1.25" size={20} />
               {job.category}
             </span>
 
@@ -126,14 +123,14 @@ const JobItem = ({
               }}
               className="flex items-center text-[#696969] hover:text-[#202124] text-sm transition-colors duration-300 cursor-pointer"
             >
-              <SlLocationPin className="me-[5px]" size={18} />
+              <SlLocationPin className="me-1.25" size={18} />
               {job.location}
             </span>
           </div>
 
-          <div className="mt-3 flex max-[430px]:flex-col gap-x-[15px] gap-y-2 max-[450px]:justify-center">
+          <div className="mt-3 flex max-[430px]:flex-col gap-x-3.75 gap-y-2 max-[450px]:justify-center">
             <span
-              className="featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#1967d2] border-none !text-white cursor-pointer"
+              className="featured-job-list-item max-[450px]:flex-1 whitespace-nowrap bg-[#1967d2] border-none text-white! cursor-pointer"
               onClick={() =>
                 handleFilterAction({ key: "workType", value: job.workType })
               }
@@ -141,7 +138,7 @@ const JobItem = ({
               {job.workType}
             </span>
             <span
-              className="featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#FEF2D9] border-none !text-[#F9AB00] cursor-pointer"
+              className="featured-job-list-item max-[450px]:flex-1 whitespace-nowrap bg-[#FEF2D9] border-none text-[#F9AB00]! cursor-pointer"
               onClick={() =>
                 handleFilterAction({
                   key: "careerLevel",
