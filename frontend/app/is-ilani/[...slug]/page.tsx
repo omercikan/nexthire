@@ -1,18 +1,27 @@
 import JobDetailWrapper from "@/features/job-detail/components/JobDetailClientWrapper";
-import { jobDetailApi } from "@/shared/redux/services/jobDetail";
-import { store } from "@/shared/redux/store";
+import { Usable, use } from "react";
 
-const JobDetail = async (props: { params: Promise<{ slug: string[] }> }) => {
-  const params = await props.params;
-  const [, postID, companyID] = params.slug;
+interface JobDetailProps {
+  params: Usable<{
+    slug: string[];
+  }>;
+}
 
-  const result = await store
-    .dispatch(
-      jobDetailApi.endpoints.getJobDetail.initiate({ companyID, postID })
-    )
-    .unwrap();
+const JobDetail = ({ params }: JobDetailProps) => {
+  const { slug } = use(params);
+  const [jobId] = slug;
 
-  return <JobDetailWrapper job={result.job} />;
+  const res = use(
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs/${jobId}`, {
+      cache: "no-store",
+    }),
+  );
+
+  if (!res.ok) return <h1>İş ilanı bulunamadı</h1>;
+
+  const data = use(res.json());
+
+  return <JobDetailWrapper job={data} />;
 };
 
 export default JobDetail;
