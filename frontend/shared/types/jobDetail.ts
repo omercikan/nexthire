@@ -1,48 +1,60 @@
-import { EmployerOpenJobs } from "./employer/open-jobs.types";
-
-//? Job detail page top intro section interfaces ?//
-export interface JobIntroInterface {
-  data: Pick<
-    EmployerOpenJobs,
-    | "jobTitle"
-    | "modeOfWork"
-    | "location"
-    | "applicationDeadlineDate"
-    | "category"
-    | "positionLevel"
-    | "datePosted"
-    | "postId"
-  > & {
-    companyLogo: string;
-    companyName: string;
-    serviceArea: string;
-    numberOfEmployees: string;
-  };
-  isLoading: boolean;
-}
+import { Dayjs } from "dayjs";
 
 //? Job detail page top intro right section types ?//
-export type JobIntroRightSection = Pick<
-  EmployerOpenJobs,
-  "jobTitle" | "postId" | "location" | "applicationDeadlineDate"
-> & {
+export interface JobIntroRightSection {
+  jobTitle: string;
+  postId: string;
+  location: string;
+  companyLogo: string;
+  jobCategory: string;
+  applicationDeadlineDate: Dayjs;
+}
+
+export interface JobIntroProps {
+  applicationDeadlineDate: Dayjs;
+  category: string;
   companyLogo: string;
   companyName: string;
+  jobTitle: string;
+  location: string;
+  modeOfWork: string;
+  positionLevel: string;
+  serviceArea: string[];
+  datePosted: string;
   numberOfEmployees: string;
-  isLoading: boolean;
-};
+  postId: string;
+}
 
 //? Job detail page job data interface ?//
-export interface JobData extends EmployerOpenJobs {
-  companyLogo: string;
-  companyName: string;
-  serviceArea: string;
-  companyId: string;
-  numberOfEmployees: string;
-  foundedData: string;
-  phoneNumber: string;
-  email: string;
-  websiteUrl: string;
-  socials: { url: string }[];
-  companyLocation: string;
+export interface JobData {
+  _id: string;
+  careerLevel: string;
+  category: string;
+  createdAt: string;
+  educationLevel: string;
+  experience: string;
+  gender: string;
+  introductionUrl: string;
+  jobDescription: string;
+  jobTitle: string;
+  location: string;
+  maxSalary: string;
+  minSalary: string;
+  salaryPeriod: string;
+  updatedAt: string;
+  workType: string;
+
+  employer: {
+    profilePhoto: string;
+    companyName: string;
+    categories: string[];
+    companySize: string;
+    _id: string;
+    city: string;
+    email: string;
+    phoneNumber: string;
+    website: string;
+    socialPlatforms: { _id: string; platform: string; url: string }[];
+    foundedDate: string;
+  };
 }

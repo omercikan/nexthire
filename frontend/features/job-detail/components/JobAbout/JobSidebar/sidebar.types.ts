@@ -1,4 +1,4 @@
-import { Timestamp } from "firebase/firestore";
+import { Dayjs } from "dayjs";
 import { IconType } from "react-icons/lib";
 
 export type OverviewList = {
@@ -9,10 +9,10 @@ export type OverviewList = {
 };
 
 export interface OverviewData {
-  postedDate: Timestamp;
+  postedDate: string;
   location: string;
   salary?: string;
-  applicationDeadline: string;
+  applicationDeadline: Dayjs;
   experience: string;
   gender?: string;
   educationLevel: string[];
