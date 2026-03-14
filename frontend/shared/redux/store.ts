@@ -15,7 +15,6 @@ import { userDashboardSlice } from "@/features/dashboard/slices/userDashboardSli
 import { featuredJobsApi } from "./services/featuredJobsApi";
 import { bestCompaniesApi } from "@/features/home/components/BestCompany/bestCompaniesApi";
 import { favoritesApi } from "../../features/jobs/postings/components/Favorite/favoritesApi";
-import { jobDetailApi } from "./services/jobDetail";
 import { jobApplicationApi } from "@/features/job-detail/components/applicationModal/modalControls/jobApplicationApi";
 import { GeocodeApi } from "@/features/job-detail/components/JobAbout/JobMap/geocodeApi";
 import { candidateStaticsApi } from "@/features/dashboard/services/candidateStaticsApi";
@@ -59,7 +58,6 @@ export const store = configureStore({
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [favoritesApi.reducerPath]: favoritesApi.reducer,
-    [jobDetailApi.reducerPath]: jobDetailApi.reducer,
     [resumeApi.reducerPath]: resumeApi.reducer,
     [jobApplicationApi.reducerPath]: jobApplicationApi.reducer,
     [GeocodeApi.reducerPath]: GeocodeApi.reducer,
@@ -78,7 +76,6 @@ export const store = configureStore({
       featuredJobsApi.middleware,
       bestCompaniesApi.middleware,
       favoritesApi.middleware,
-      jobDetailApi.middleware,
       resumeApi.middleware,
       jobApplicationApi.middleware,
       GeocodeApi.middleware,
