@@ -5,7 +5,7 @@ import { GrSecure } from "react-icons/gr";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import { RiUserLine } from "react-icons/ri";
 import { Inter } from "next/font/google";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import CustomButton from "@/shared/components/ui/CustomButton";
 import AuthCheckbox from "@/shared/components/ui/CustomCheckbox";
 import GoogleAuth from "../GoogleAuth";
@@ -47,6 +47,7 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
   const [createUser] = useCreateCandidateMutation();
   const [loginUser] = useLoginCandidateMutation();
   const { manageAuthApi } = useAuth();
+  const router = useRouter();
 
   const onSubmit = async (data: SignupSchemaValue) => {
     const { name, surname, email, password } = data;
@@ -63,7 +64,7 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
         {
           case: "This email address is already in use.",
           message: "Girdiğiniz e-posta adresi kullanılmakta.",
-        }
+        },
       );
     } else {
       await manageAuthApi(
@@ -72,9 +73,11 @@ const CandidateForm = ({ setTermsModal }: AuthFormProps) => {
         {
           case: "Invalid email or password",
           message: "E-posta veya Şifre hatalı",
-        }
+        },
       );
     }
+
+    router.refresh();
   };
 
   return (
