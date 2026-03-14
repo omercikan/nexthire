@@ -1,6 +1,6 @@
 // custom components
 
-import { ChangeEvent, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "@/features/auth/authContext";
 import { Candidate } from "@/shared/types/models/candidate";
 
@@ -16,8 +16,6 @@ registerLocale("tr", tr);
 
 // lib
 import { CircularProgress } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { setProfileImage } from "@/features/dashboard/slices/userDashboardSlice";
 import CustomInput from "@/shared/components/ui/CustomInput";
 import CustomSelect from "@/shared/components/ui/CustomSelect";
 import { formatTurkishPhoneNumber } from "@/shared/utils/formatPhoneNumber";
@@ -26,15 +24,15 @@ import { useForm } from "react-hook-form";
 import FileInput from "@/shared/components/ui/FileInput";
 import FormHandler from "./FormHandler";
 import CustomButton from "@/shared/components/ui/CustomButton";
+import useProfileImage from "@/features/dashboard/hooks/useProfileImage";
 
 const CandidateForm = () => {
   const { user } = useContext(AuthContext);
   const currentUser = user as Candidate;
   const [startDate, setStartDate] = useState<Date | null>(
-    currentUser?.dateOfBirth ?? null
+    currentUser?.dateOfBirth ?? null,
   );
-  const dispatch = useDispatch();
-  const [imageFile, setImageFile] = useState<File>();
+  const { handleChangeImage, imageFile, setImageFile } = useProfileImage();
 
   const {
     register,
@@ -53,21 +51,11 @@ const CandidateForm = () => {
     },
   });
 
-  const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] as File;
-
-    if (file) {
-      setImageFile(file);
-      const image = URL.createObjectURL(file);
-      if (image) dispatch(setProfileImage(image));
-    }
-  };
-
   return (
     <form
       className="w-full flex-[85%]"
       onSubmit={handleSubmit(
-        FormHandler({ startDate, imageFile, setImageFile })
+        FormHandler({ startDate, imageFile, setImageFile }),
       )}
     >
       <FileInput
@@ -76,11 +64,11 @@ const CandidateForm = () => {
         onChange={(e) => handleChangeImage(e)}
       />
 
-      <div className="grid sm:grid-cols-2 gap-x-[29px] gap-y-[22px]">
+      <div className="grid sm:grid-cols-2 gap-x-7.25 gap-y-5.5">
         <CustomInput
           label="Ad Soyad"
           type="text"
-          className="!rounded-[15px] !ps-4"
+          className="rounded-[15px]! ps-4!"
           placeholder={user?.fullname}
           {...register("fullname")}
         />
@@ -96,7 +84,7 @@ const CandidateForm = () => {
             locale="tr"
             name="date"
             id="date"
-            className="custom__input !px-4 !rounded-[15px] border-[#D3E0FE] w-full"
+            className="custom__input px-4! rounded-[15px]! border-[#D3E0FE] w-full"
             onChange={(date) => setStartDate(date)}
           />
         </div>
@@ -105,7 +93,7 @@ const CandidateForm = () => {
           label="Cinsiyet"
           defaultValue="Cinsiyet Seçin"
           isSubmitting={isSubmitting}
-          className="!px-4 !rounded-[15px]"
+          className="px-4! rounded-[15px]!"
           labelClass="!text-black !mb-1.5"
           data={[
             { id: 1, name: "Erkek" },
@@ -117,7 +105,7 @@ const CandidateForm = () => {
         <CustomInput
           label="Yaş"
           type="number"
-          className="!rounded-[15px] !px-4"
+          className="rounded-[15px]! px-4!"
           min={18}
           max={65}
           placeholder={currentUser?.age ? currentUser.age : "Örn: 25"}
@@ -127,7 +115,7 @@ const CandidateForm = () => {
         <CustomInput
           label="Uzmanlık Alanı"
           type="text"
-          className="!rounded-[15px] !px-4"
+          className="rounded-[15px]! px-4!"
           placeholder={
             currentUser?.title?.length
               ? currentUser.title
@@ -139,7 +127,7 @@ const CandidateForm = () => {
         <CustomInput
           label="Telefon Numarası"
           type="text"
-          className="!rounded-[15px] !px-4"
+          className="rounded-[15px]! px-4!"
           value={formatTurkishPhoneNumber(watch("phoneNumber") ?? "")}
           placeholder={
             user?.phoneNumber?.length ? user.phoneNumber : "Örn: 0555 555 5555"
@@ -157,7 +145,7 @@ const CandidateForm = () => {
           label="Şehir"
           defaultValue="Şehir Seçin"
           isSubmitting={isSubmitting}
-          className="!px-4 !rounded-[15px]"
+          className="px-4! rounded-[15px]!"
           labelClass="!text-black !mb-1.5"
           data={cities.map(({ id, title }) => ({
             id,
@@ -167,7 +155,7 @@ const CandidateForm = () => {
         />
       </div>
 
-      <CustomButton className="float-right max-sm:w-full mt-[30px] !bg-[#1814F3] w-[190px] h-[50px] !rounded-[15px]">
+      <CustomButton className="float-right max-sm:w-full mt-7.5 bg-[#1814F3]! w-47.5 h-12.5 rounded-[15px]!">
         {isSubmitting ? (
           <CircularProgress size={22} color="inherit" />
         ) : (
