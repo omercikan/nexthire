@@ -1,4 +1,3 @@
-import React from "react";
 import List from "./List";
 import { ICONS } from "./icons";
 import dayjs from "dayjs";
@@ -18,12 +17,9 @@ const JobOverview = ({ overviewData }: { overviewData: OverviewData }) => {
     salary,
   } = overviewData;
 
-  const timestamp =
-    postedDate?.seconds * 1000 + Math.floor(postedDate?.nanoseconds / 1000000);
-
   return (
-    <aside className="bg-[#f5f7fc] p-[30px] max-[992px]:p-5 rounded-lg h-max mb-[30px]">
-      <h2 className="text-lg text-[#202124] font-medium mb-[18px]">İş Özeti</h2>
+    <aside className="bg-[#f5f7fc] p-7.5 max-[992px]:p-5 rounded-lg h-max mb-7.5">
+      <h2 className="text-lg text-[#202124] font-medium mb-4.5">İş Özeti</h2>
 
       <List
         listItems={[
@@ -31,14 +27,14 @@ const JobOverview = ({ overviewData }: { overviewData: OverviewData }) => {
             icon: ICONS.calendar,
             id: 1,
             text: "Yayınlanma tarihi",
-            value: postedDate && dayjs(timestamp).format("DD MMMM YYYY"),
+            value: postedDate && dayjs(postedDate).format("DD MMMM YYYY"),
           },
 
           {
             icon: ICONS.location,
             id: 2,
             text: "Konum",
-            value: location,
+            value: location ?? "Belirtilmemiş",
           },
 
           {
