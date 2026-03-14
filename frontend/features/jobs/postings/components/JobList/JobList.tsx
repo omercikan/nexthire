@@ -11,7 +11,7 @@ const JobList = () => {
     isFetching: isDefaultDataFetching,
   } = useJobActions();
   const { isFetching: isFilterDataFetching } = useSelector(
-    (state: RootState) => state.jobFilters
+    (state: RootState) => state.jobFilters,
   );
   const jobData = data?.data;
 
@@ -38,7 +38,7 @@ const JobList = () => {
       );
     default:
       return jobData?.map((job) => (
-        <JobItem key={job.id} job={job} favoriteData={favoriteData || []} />
+        <JobItem key={job._id} job={job} favoriteData={favoriteData || []} />
       ));
   }
 };

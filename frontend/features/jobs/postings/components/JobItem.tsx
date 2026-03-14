@@ -15,15 +15,15 @@ import FavoriteItem from "@/features/jobs/postings/components/Favorite/FavoriteI
 import useMultipleDispatch from "@/shared/hooks/useMultipleDispatch";
 
 interface JobItemProps {
-  id: string;
+  _id: string;
   jobTitle: string;
   location: string;
   careerLevel: string;
   category: string;
   workType: string;
-  employerId: {
+  employer: {
     _id: string;
-    companyLogo: string;
+    profilePhoto: string;
   };
 }
 
@@ -65,22 +65,22 @@ const JobItem = ({
 
   return (
     <article
-      key={job.id}
+      key={job._id}
       className="p-7.5 max-[1200px]:p-3.75 mb-7.5 border border-[#ECEDF2] rounded-lg hover:shadow-[0_6px_15px_0_rgba(64,79,104,0.05)] transition-shadow duration-300 relative group"
     >
       <FavoriteItem
-        jobId={job?.id}
+        jobId={job._id}
         companyLocation={job?.location}
-        companyLogo={job?.employerId?.companyLogo}
+        companyLogo={job?.employer?.profilePhoto}
         jobTitle={job?.jobTitle}
         jobCategory={job?.category}
-        isFavorite={favoriteData.includes(job.id)}
+        isFavorite={favoriteData.includes(job._id)}
       />
 
       <div className="flex max-[450px]:flex-col max-[450px]:justify-center max-[450px]:text-center">
         <figure className="h-max max-[450px]:mb-4">
           <Image
-            src={job?.employerId?.companyLogo ?? CompanyLogo}
+            src={job?.employer?.profilePhoto ?? CompanyLogo}
             alt={"asd"}
             width={50}
             height={50}
@@ -91,7 +91,7 @@ const JobItem = ({
         <div className="px-5">
           <div className="flex items-center max-[450px]:justify-center max-[450px]:flex-col-reverse">
             <Link
-              href={`is-ilani/${job.id}`}
+              href={`is-ilani/${job._id}`}
               onClick={() => dispatch(resetProgressBarValue())}
             >
               <h2 className="text-[#202124] hover:text-[#1967d2] transition-colors duration-300 text-lg font-medium">

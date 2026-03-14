@@ -16,9 +16,9 @@ export interface FilterData {
     category: string;
     workType: string;
     createdAt: string;
-    employerId: {
+    employer: {
       _id: string;
-      companyLogo: string;
+      profilePhoto: string;
       companyName: string;
     };
   }[];
