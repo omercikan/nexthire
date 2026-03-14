@@ -28,8 +28,29 @@ const jobSchema = new Schema(
       },
     },
   },
-  { timestamps: true, versionKey: false }
+  {
+    timestamps: true,
+    versionKey: false,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  },
 );
+
+jobSchema.set("toJSON", {
+  virtuals: true,
+  transform(_doc, ret) {
+    const { employerId, id, ...rest } = ret as typeof ret & { id: string };
+
+    return rest;
+  },
+});
+
+jobSchema.virtual("employer", {
+  ref: "User",
+  localField: "employerId",
+  foreignField: "_id",
+  justOne: true,
+});
 
 jobSchema.index({ createdAt: -1 });
 jobSchema.index({ employerId: 1 });
