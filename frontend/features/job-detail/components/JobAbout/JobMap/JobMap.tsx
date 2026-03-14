@@ -1,8 +1,8 @@
-import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { useGetGeocodeQuery } from "@/features/job-detail/components/JobAbout/JobMap/geocodeApi";
+import { useLazyGetGeocodeQuery } from "@/features/job-detail/components/JobAbout/JobMap/geocodeApi";
+import { useEffect, useMemo } from "react";
 
 const JobMap = ({
   city,
@@ -11,35 +11,40 @@ const JobMap = ({
   city: string;
   companyLogo: string;
 }) => {
-  const { data } = useGetGeocodeQuery({ query: city });
+  const [trigger, { data }] = useLazyGetGeocodeQuery();
 
-  const customIcon = new L.Icon({
-    iconUrl: companyLogo,
-    iconSize: [40, 40],
-    iconAnchor: [20, 41],
-    popupAnchor: [1, -34],
-    className: "rounded-full",
-  });
+  useEffect(() => {
+    if (city) {
+      trigger({ query: city });
+    }
+  }, [city, trigger]);
 
-  if (!data?.geo) return;
+  const customIcon = useMemo(() => {
+    return new L.Icon({
+      iconUrl:
+        companyLogo ??
+        "https://res.cloudinary.com/dvolwkh6r/image/upload/v1769207955/company_utxzmj.webp",
+      iconSize: [40, 40],
+      iconAnchor: [20, 41],
+      popupAnchor: [1, -34],
+      className: "rounded-full",
+    });
+  }, [companyLogo]);
 
-  const { lat, lon } = data?.geo;
+  if (!data?.geo) return null;
+
+  const { lat, lon } = data.geo;
 
   return (
-    <div className="bg-[#f5f7fc] p-[30px] max-[992px]:p-5 rounded-lg">
-      <h2 className="text-lg text-[#202124] font-medium mb-[18px]">
+    <div className="mt-12.5 max-[1200px]:mt-6.25">
+      <h2 className="text-lg text-[#202124] font-medium mb-4.5">
         Şirket Konumu
       </h2>
 
       <MapContainer
         center={[lat, lon]}
         zoom={13}
-        style={{
-          width: "100%",
-          height: "250px",
-          borderRadius: "8px",
-          position: "relative",
-        }}
+        className="h-100 max-[1200px]:h-62.5 w-full relative"
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -60,7 +65,7 @@ const JobMap = ({
           </Popup>
         </Marker>
 
-        <div className="bg-black/30 inset-0 absolute pointer-events-none z-[400]" />
+        <div className="bg-black/30 inset-0 absolute pointer-events-none z-400" />
       </MapContainer>
     </div>
   );

@@ -3,10 +3,10 @@
 import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 
-const LazyJobMap = dynamic(() => import("./JobMap"), {
+const JobMap = dynamic(() => import("./JobMap"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-[356px] bg-gray-200 rounded-lg animate-pulse" />
+    <div className="w-full h-100 max-[1200px]:h-62.5 max-[1200px]:mt-6.25 bg-gray-200 mt-12.5 animate-pulse" />
   ),
 });
 
@@ -17,11 +17,11 @@ const JobMapWrapper = ({
   city: string;
   companyLogo: string;
 }) => {
-  const { ref, inView } = useInView({ triggerOnce: true,});
+  const { ref, inView } = useInView({ triggerOnce: true });
 
   return (
     <div ref={ref}>
-      {inView && <LazyJobMap city={city} companyLogo={companyLogo} />}
+      {inView && <JobMap city={city} companyLogo={companyLogo} />}
     </div>
   );
 };

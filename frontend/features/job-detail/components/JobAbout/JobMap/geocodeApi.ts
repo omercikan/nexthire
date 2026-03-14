@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const GeocodeApi = createApi({
-  reducerPath: "gecodeApi",
+  reducerPath: "geocodeApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api/geocode/" }),
   endpoints: (builder) => ({
     getGeocode: builder.query<
@@ -13,4 +13,4 @@ export const GeocodeApi = createApi({
   }),
 });
 
-export const { useGetGeocodeQuery } = GeocodeApi;
+export const { useLazyGetGeocodeQuery } = GeocodeApi;
