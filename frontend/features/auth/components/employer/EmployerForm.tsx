@@ -6,7 +6,7 @@ import {
   DistrictsJsonInterface,
   TaxOfficiesJsonInterface,
 } from "@/shared/types";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { GrSecure } from "react-icons/gr";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import Link from "next/link";
@@ -42,7 +42,7 @@ const inter = Inter({
 const EmployerForm = () => {
   const [districts, setDistricts] = useState<DistrictsJsonInterface[]>([]);
   const [taxOfficies, setTaxOfficies] = useState<TaxOfficiesJsonInterface[]>(
-    []
+    [],
   );
   const [registered, setRegistered] = useState<boolean>(false);
   const [hidePassword, setHidePassword] = useState<boolean>(true);
@@ -68,9 +68,10 @@ const EmployerForm = () => {
         : EmployerAuthSchema.pick({
             password: true,
             email: true,
-          })
+          }),
     ),
   });
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<EmployerFormType> = async (values) => {
     const {
@@ -110,7 +111,7 @@ const EmployerForm = () => {
           case: "This email address is already in use.",
           message: "Girdiğiniz e-posta adresi kullanılmakta.",
         },
-        false
+        false,
       );
 
       if (res) {
@@ -125,14 +126,16 @@ const EmployerForm = () => {
           message: "E-posta veya Şifre hatalı.",
         },
         true,
-        "/"
+        "/",
       );
     }
+
+    router.refresh();
   };
 
   const handleChangeCheckbox = (
     name: keyof typeof EMPLOYER_FORM_FIELDS,
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setValue(name, e.target.checked);
   };
@@ -260,7 +263,7 @@ const EmployerForm = () => {
                       setSelectedData(
                         e,
                         "/data/tax_officies.json",
-                        setTaxOfficies
+                        setTaxOfficies,
                       )
                     }
                     data={cities}
