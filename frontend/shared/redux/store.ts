@@ -33,6 +33,7 @@ import { categorySlice } from "@/features/dashboard/employer/Profile/Category/ca
 import { chatAction } from "@/features/chat/slice/chat-action.slices";
 import { chatData } from "@/features/chat/slice/chatData-slice";
 import optionMenuReducer from "@/features/chat/components/OptionsMenu/slice/optionMenuSlice";
+import candidateQuestionReducer from "@/features/dashboard/employer/ShareJob/CandidateQuestion/slice/candidateQuestionSlice";
 
 export const store = configureStore({
   reducer: {
@@ -54,7 +55,8 @@ export const store = configureStore({
     categorySlice: categorySlice.reducer,
     chatSlice: chatAction.reducer,
     chatData: chatData.reducer,
-    optionMenuSlice: optionMenuReducer, 
+    optionMenuSlice: optionMenuReducer,
+    candidateQuestionSlice: candidateQuestionReducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [favoritesApi.reducerPath]: favoritesApi.reducer,
