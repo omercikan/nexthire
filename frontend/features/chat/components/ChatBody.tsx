@@ -20,7 +20,7 @@ const ChatBody = () => {
 
   return (
     <div
-      className={`px-6 py-7.5 ${isFullScreen ? "h-[calc(100vh-287.55px)]" : "h-100"} max-md:h-[calc(100%-287.55px)] modal-scrollbar scroll-smooth`}
+      className={`px-6 py-7.5 relative ${isFullScreen ? "h-[calc(100vh-287.55px)]" : "h-100"} max-md:h-[calc(100%-287.55px)] modal-scrollbar scroll-smooth`}
       style={{
         backgroundColor: "#ffffff",
         backgroundImage: `
