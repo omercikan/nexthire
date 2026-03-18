@@ -16,7 +16,7 @@ class SocketService {
     const { socket } = this;
 
     socket.on("chat:message", ({ message }) => {
-      dispatch(addMessage({ from: "ai", message }));
+      dispatch(addMessage({ from: "ai", message, file: null }));
     });
 
     socket.on("chat:error", () => {
@@ -30,6 +30,10 @@ class SocketService {
 
   sendMessage(message: string) {
     this.socket?.emit("chat:message", { message });
+  }
+
+  sendCvAnalyze(message: string, file: File) {
+    this.socket?.emit("chat:cv-analyze", { message, file });
   }
 
   disconnect() {
