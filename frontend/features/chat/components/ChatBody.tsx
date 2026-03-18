@@ -3,6 +3,7 @@ import { ChatIcons } from "../icons/ChatIcon";
 import { RootState } from "@/shared/redux/store";
 import { useEffect, useRef } from "react";
 import Markdown from "react-markdown";
+import FileMessage from "./FileMessage";
 
 const ChatBody = () => {
   const { chat: Chat } = ChatIcons;
@@ -29,7 +30,7 @@ const ChatBody = () => {
       }}
       ref={chatBodyRef}
     >
-      {messages.map(({ from, message }, i) => (
+      {messages.map(({ from, message, file }, i) => (
         <div key={i}>
           {from === "ai" && (
             <div className="flex items-center gap-1.75 mt-4">
@@ -42,6 +43,8 @@ const ChatBody = () => {
               </div>
             </div>
           )}
+
+          {file && <FileMessage file={file} />}
 
           <div
             className={`${from === "user" ? "bg-[#003DF5] text-white ms-auto" : "bg-white"} max-w-[75%] w-fit border border-[#E3E3E3] rounded-[10px] py-3.75 px-8.5 mt-2 ms-8`}
