@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Message {
   message: string;
+  file: { name: string; size: number; type: string } | null;
   from: "ai" | "user";
 }
 
