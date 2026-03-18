@@ -100,13 +100,28 @@ html {
   @keyframes animate-fade {
     from {
       opacity: 0;
-      transform: translateX(100%);
+      height: 0px;
     }
 
     to {
       opacity: 1;
-      transform: translateX(0%);
+      height: 100%;
     }
+  }
+
+  @keyframes bottom-up {
+    from {
+      max-height: 0px;
+    }
+
+    to {
+      max-height: 600px;
+    }
+  }
+
+  .bottom-swiper {
+    animation: bottom-up 1s forwards 0ms ease-out;
+    overflow: hidden;
   }
 
   .fade-slide-in {
@@ -548,4 +563,12 @@ html {
 
 .w-md-editor-toolbar {
   background-color: #f6f7f7 !important;
+}
+
+.candidate-question-input {
+  @apply py-1.5 px-3 text-sm outline-none border border-[#dee2e4] bg-[#f7f9fa] rounded-md transition-all focus:border-blue-500 focus:ring-3 focus:ring-blue-500/25;
+}
+
+.candidate-question-input-error {
+  @apply border-[#D91B1B]! focus:ring-[#D91B1B]/25!;
 }
