@@ -8,10 +8,11 @@ const FavoriteItem = ({ isFavorite }: { isFavorite: boolean }) => {
     _id,
     jobTitle,
     category,
+    location,
     employer: { city, profilePhoto },
   } = useJob();
   const handleFavoriteJob = useFavoriteJob({
-    companyLocation: city,
+    companyLocation: city ?? location,
     companyLogo: profilePhoto,
     isFavorite,
     jobCategory: category,
