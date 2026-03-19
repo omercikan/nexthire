@@ -11,13 +11,19 @@ const IntroRight = ({
   companyLogo,
   jobCategory,
   applicationDeadlineDate,
+  applicationMethod,
+  applicationAddress,
 }: JobIntroRightSection) => {
   return (
     <div>
       <IntroDeadline applicationDeadlineDate={applicationDeadlineDate} />
 
       <div className="flex gap-5">
-        <JobApplication applicationDeadlineDate={applicationDeadlineDate} />
+        <JobApplication
+          applicationAddress={applicationAddress}
+          applicationDeadlineDate={applicationDeadlineDate}
+          applicationMethod={applicationMethod}
+        />
 
         <FavoriteItem
           jobId={postId}

@@ -22,15 +22,3 @@ export interface Job {
   createdAt: string;
   updatedAt: string;
 }
-
-export interface JobPostingAdditionalQuestions {
-  isSelectAnswer: boolean;
-  isTextAnswer: boolean;
-  selectQuestions: {
-    questionAnswers: string[];
-    questionTitle: string;
-  }[];
-  textQuestions: {
-    questionTitle: string;
-  }[];
-}

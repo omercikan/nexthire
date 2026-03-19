@@ -1,5 +1,7 @@
 import { Dayjs } from "dayjs";
 
+export type ApplicationMethod = "NextHire" | "email" | "external_link";
+
 //? Job detail page top intro right section types ?//
 export interface JobIntroRightSection {
   jobTitle: string;
@@ -8,6 +10,8 @@ export interface JobIntroRightSection {
   companyLogo: string;
   jobCategory: string;
   applicationDeadlineDate: Dayjs;
+  applicationMethod: ApplicationMethod;
+  applicationAddress: string;
 }
 
 export interface JobIntroProps {
@@ -23,9 +27,23 @@ export interface JobIntroProps {
   datePosted: string;
   numberOfEmployees: string;
   postId: string;
+  applicationMethod: ApplicationMethod;
+  applicationAddress: string;
 }
 
 //? Job detail page job data interface ?//
+export interface JobScreeningQuestions {
+  id: string;
+  question: string;
+  type: string;
+  characterLimit?: string;
+  options?: string[];
+  required: boolean;
+  knockout: boolean;
+  correctAnswer?: string;
+  knockoutAnswer?: string;
+}
+
 export interface JobData {
   _id: string;
   careerLevel: string;
@@ -43,6 +61,9 @@ export interface JobData {
   salaryPeriod: string;
   updatedAt: string;
   workType: string;
+  applicationMethod: ApplicationMethod;
+  applicationAddress: string;
+  screeningQuestions: JobScreeningQuestions;
 
   employer: {
     profilePhoto: string;

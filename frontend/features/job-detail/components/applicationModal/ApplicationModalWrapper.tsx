@@ -3,9 +3,9 @@
 import React, { useEffect } from "react";
 import { AppDispatch, RootState } from "@/shared/redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { JobPostingAdditionalQuestions } from "@/shared/types/employer/open-jobs.types";
 import dynamic from "next/dynamic";
 import { setAdditionalQuestionsFromJob } from "@/shared/redux/slices/applicationModal/modalData";
+import { JobScreeningQuestions } from "@/shared/types/jobDetail";
 
 const ApplicationModal = dynamic(() => import("./ApplicationModal"), {
   ssr: false,
@@ -14,24 +14,24 @@ const ApplicationModal = dynamic(() => import("./ApplicationModal"), {
 const ApplicationModalWrapper = ({
   companyName,
   jobTitle,
-  additionalQuestions,
+  screeningQuestions,
 }: {
   companyName: string;
   jobTitle: string;
-  additionalQuestions: JobPostingAdditionalQuestions;
+  screeningQuestions: JobScreeningQuestions;
 }) => {
   const isOpenModal = useSelector(
-    (state: RootState) => state.touch.openApplicationModal
+    (state: RootState) => state.touch.openApplicationModal,
   );
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    const additionalQuestionsFromJob = additionalQuestions;
+    const additionalQuestionsFromJob = screeningQuestions;
 
     if (isOpenModal && additionalQuestionsFromJob) {
       dispatch(setAdditionalQuestionsFromJob(additionalQuestionsFromJob));
     }
-  }, [additionalQuestions, isOpenModal, dispatch]);
+  }, [screeningQuestions, isOpenModal, dispatch]);
 
   return (
     <>
@@ -40,7 +40,7 @@ const ApplicationModalWrapper = ({
           companyName={companyName ?? ""}
           jobTitle={jobTitle ?? ""}
           additionalQuestions={
-            additionalQuestions as JobPostingAdditionalQuestions
+            screeningQuestions as JobScreeningQuestions
           }
         />
       )}

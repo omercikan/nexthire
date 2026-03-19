@@ -11,6 +11,7 @@ import JobSkills from "./JobAbout/JobSkills/JobSkills";
 import JobMapWrapper from "./JobAbout/JobMap/JobMapWrapper";
 import CompanyCard from "./JobAbout/CompanyInfoCard/CompanyCard";
 import dayjs from "dayjs";
+import ApplicationModalWrapper from "./applicationModal/ApplicationModalWrapper";
 
 const ApplicationStatusModal = dynamic(
   () =>
@@ -27,6 +28,8 @@ const JobDetailWrapper = ({ job }: { job: JobData }) => {
       <Toaster position="top-right" />
 
       <JobIntro
+        applicationMethod={job.applicationMethod}
+        applicationAddress={job.applicationAddress}
         applicationDeadlineDate={dayjs(job.createdAt).add(1, "month")}
         category={job.category}
         companyLogo={job.employer.profilePhoto}
@@ -41,11 +44,11 @@ const JobDetailWrapper = ({ job }: { job: JobData }) => {
         postId={job._id}
       />
 
-      {/* <ApplicationModalWrapper
+      <ApplicationModalWrapper
         companyName={job.employer.companyName}
         jobTitle={job.jobTitle}
-        additionalQuestions={{isSelectAnswer: false, isTextAnswer: false}}
-      /> */}
+        screeningQuestions={job.screeningQuestions}
+      />
 
       <ExitModal />
 

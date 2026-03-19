@@ -122,6 +122,8 @@ const JobIntro = (props: JobIntroProps) => {
           jobCategory={props.category}
           companyLogo={props.companyLogo}
           applicationDeadlineDate={props.applicationDeadlineDate}
+          applicationMethod={props.applicationMethod}
+          applicationAddress={props.applicationAddress}
         />
         {/* {!props?.appliedData ? (
         ) : (
