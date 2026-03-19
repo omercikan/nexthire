@@ -1,20 +1,19 @@
+import { useJob } from "@/features/jobs/context/JobContext";
 import { setExitModalState } from "@/shared/redux/slices/touch";
 import { AppDispatch, RootState } from "@/shared/redux/store";
 import React from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 
-const ModalHeader = ({
-  companyName,
-  jobTitle,
-}: {
-  companyName: string;
-  jobTitle: string;
-}) => {
+const ModalHeader = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { isSmallScreen } = useSelector(
-    (state: RootState) => state.applyModalScreen
+    (state: RootState) => state.applyModalScreen,
   );
+  const {
+    jobTitle,
+    employer: { companyName },
+  } = useJob();
 
   const handleCloseModal = () => dispatch(setExitModalState(true));
 

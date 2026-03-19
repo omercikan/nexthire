@@ -1,5 +1,6 @@
 "use client";
 
+import { useJob } from "@/features/jobs/context/JobContext";
 import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 
@@ -10,18 +11,15 @@ const JobMap = dynamic(() => import("./JobMap"), {
   ),
 });
 
-const JobMapWrapper = ({
-  city,
-  companyLogo,
-}: {
-  city: string;
-  companyLogo: string;
-}) => {
+const JobMapWrapper = () => {
+  const {
+    employer: { city, profilePhoto },
+  } = useJob();
   const { ref, inView } = useInView({ triggerOnce: true });
 
   return (
     <div ref={ref}>
-      {inView && <JobMap city={city} companyLogo={companyLogo} />}
+      {inView && <JobMap city={city} companyLogo={profilePhoto} />}
     </div>
   );
 };

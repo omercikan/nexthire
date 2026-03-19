@@ -1,3 +1,4 @@
+import { useJob } from "@/features/jobs/context/JobContext";
 import { CAREER_LEVELS, JOB_TYPES } from "@/shared/constants/filtersJob";
 import useJobFilter from "@/shared/hooks/job-filter/useJobFilter";
 import useScroll from "@/shared/hooks/useScroll";
@@ -12,11 +13,13 @@ import {
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 
-const JobSkills = ({ skills }: { skills: string[] }) => {
+const JobSkills = () => {
   const { handleFilter } = useJobFilter();
   const dispatch = useDispatch();
   const router = useRouter();
   const { applyScroll } = useScroll();
+  const job = useJob();
+  const skills = [job.category, job.careerLevel, job.workType, job.experience];
 
   const handleItemFilter = (text: string) => {
     const isIncludesExperience = text.includes("Yıl");
@@ -24,8 +27,6 @@ const JobSkills = ({ skills }: { skills: string[] }) => {
     const isFindCareerLevel = CAREER_LEVELS.find((val) =>
       text.includes(val.itemText),
     )?.itemText;
-
-    console.log(text)
 
     const isFindJobType = JOB_TYPES.find((val) => text.includes(val));
 

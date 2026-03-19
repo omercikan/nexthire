@@ -27,12 +27,6 @@ interface initialStateFields {
   selectedResume: string;
   selectedResumeFileName: string;
   selectedResumeUploadTime: string;
-  additionalQuestionsFromJob: {
-    isSelectAnswer: boolean;
-    isTextAnswer: boolean;
-    selectQuestions: { questionAnswers: string[]; questionTitle: string }[];
-    textQuestions: { questionTitle: string }[];
-  };
   applicationStatus: ApplicationStatus;
 }
 
@@ -56,13 +50,6 @@ const initialState: initialStateFields = {
   selectedResumeFileName: "",
   selectedResumeUploadTime: "",
 
-  additionalQuestionsFromJob: {
-    isSelectAnswer: false,
-    isTextAnswer: false,
-    selectQuestions: [],
-    textQuestions: [],
-  },
-
   applicationStatus: {
     companyName: "",
     postId: "",
@@ -77,7 +64,7 @@ export const applicationModalDataSlice = createSlice({
   reducers: {
     setApplicationData: (
       state,
-      action: PayloadAction<Partial<modalDataState>>
+      action: PayloadAction<Partial<modalDataState>>,
     ) => {
       const fields: (keyof modalDataState)[] = [
         "email",
@@ -99,7 +86,7 @@ export const applicationModalDataSlice = createSlice({
       state,
       action: PayloadAction<
         Pick<CVDataFields, "fileName" | "uploadTime"> & { size: number }
-      >
+      >,
     ) => {
       state.placeholderUploadData = action.payload;
     },
@@ -124,17 +111,13 @@ export const applicationModalDataSlice = createSlice({
         resume: string;
         fileName: string;
         uploadTime: string;
-      }>
+      }>,
     ) => {
       state.selectedResume = action.payload.selectedResume;
       state.resumeErrorMessage = action.payload.message;
       state.applicationData.resume = action.payload.resume;
       state.selectedResumeFileName = action.payload.fileName;
       state.selectedResumeUploadTime = action.payload.uploadTime;
-    },
-
-    setAdditionalQuestionsFromJob: (state, action) => {
-      state.additionalQuestionsFromJob = action.payload;
     },
 
     setApplicationStatus: (state, action: PayloadAction<ApplicationStatus>) => {
@@ -155,7 +138,6 @@ export const {
   clearPlaceholderUploadData,
   setResumeErrorMessage,
   setSelectResume,
-  setAdditionalQuestionsFromJob,
   setApplicationStatus,
   resetApplicationData,
 } = applicationModalDataSlice.actions;

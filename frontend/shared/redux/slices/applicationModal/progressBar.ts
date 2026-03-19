@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ProgressBarState {
   modalStep: number;
-  isAdditionalQuestions: boolean;
   progressBar: {
     barWidth: number;
     barWidthValue: number;
@@ -12,7 +11,6 @@ interface ProgressBarState {
 
 const initialState: ProgressBarState = {
   modalStep: 1,
-  isAdditionalQuestions: false,
   progressBar: {
     barWidth: 0,
     barWidthValue: 0,
@@ -29,17 +27,13 @@ export const ProgressBarSlice = createSlice({
       action: PayloadAction<{
         barWidth: number;
         barWidthValue: number;
-      }>
+      }>,
     ) => {
       state.progressBar = action.payload;
     },
 
     setModalStep: (state, action: PayloadAction<number>) => {
       state.modalStep = action.payload;
-    },
-
-    setIsAdditionalQuestions: (state, action: PayloadAction<boolean>) => {
-      state.isAdditionalQuestions = action.payload;
     },
 
     resetProgressBarValue: () => {
@@ -55,7 +49,6 @@ export const ProgressBarSlice = createSlice({
 export const {
   setProgressBarValue,
   setModalStep,
-  setIsAdditionalQuestions,
   resetProgressBarValue,
   setIsEdit,
 } = ProgressBarSlice.actions;

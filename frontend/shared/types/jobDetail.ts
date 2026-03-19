@@ -1,35 +1,4 @@
-import { Dayjs } from "dayjs";
-
 export type ApplicationMethod = "NextHire" | "email" | "external_link";
-
-//? Job detail page top intro right section types ?//
-export interface JobIntroRightSection {
-  jobTitle: string;
-  postId: string;
-  location: string;
-  companyLogo: string;
-  jobCategory: string;
-  applicationDeadlineDate: Dayjs;
-  applicationMethod: ApplicationMethod;
-  applicationAddress: string;
-}
-
-export interface JobIntroProps {
-  applicationDeadlineDate: Dayjs;
-  category: string;
-  companyLogo: string;
-  companyName: string;
-  jobTitle: string;
-  location: string;
-  modeOfWork: string;
-  positionLevel: string;
-  serviceArea: string[];
-  datePosted: string;
-  numberOfEmployees: string;
-  postId: string;
-  applicationMethod: ApplicationMethod;
-  applicationAddress: string;
-}
 
 //? Job detail page job data interface ?//
 export interface JobScreeningQuestions {

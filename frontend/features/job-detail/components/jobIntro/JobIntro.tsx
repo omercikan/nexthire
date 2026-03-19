@@ -6,14 +6,16 @@ import IntroLink from "./IntroLink";
 import styles from "./info-dot.module.scss";
 import PlaceholderCompanyLogo from "@/public/assets/company.png";
 import { formatApplyTime } from "@/shared/utils/formatApplyTime";
-import { JobIntroProps } from "@/shared/types/jobDetail";
 import IntroRight from "./IntroSectionRight/IntroRight";
+import { useJob } from "@/features/jobs/context/JobContext";
 
-const JobIntro = (props: JobIntroProps) => {
+const JobIntro = () => {
+  const job = useJob();
+
   //* Current user *//
   // const { user } = useContext(AuthContext);
 
-  //* Props data and isLoading *//
+  //* job data and isLoading *//
 
   //* Application status data *//
   // const {
@@ -30,8 +32,8 @@ const JobIntro = (props: JobIntroProps) => {
       <div className="container flex gap-x-15 max-lg:flex-col justify-between">
         <div className="flex max-lg:flex-col items-center gap-5">
           <Image
-            src={props.companyLogo || PlaceholderCompanyLogo}
-            alt={props.companyName}
+            src={job.employer.profilePhoto || PlaceholderCompanyLogo}
+            alt={job.employer.companyName}
             width={100}
             height={100}
             className="rounded-lg max-xl:w-25! max-xl:h-25!"
@@ -39,7 +41,7 @@ const JobIntro = (props: JobIntroProps) => {
 
           <div className="max-lg:text-center">
             <h1 className="text-[26px] text-[#202124] font-medium">
-              {props.jobTitle}
+              {job.jobTitle}
             </h1>
 
             <div
@@ -53,11 +55,11 @@ const JobIntro = (props: JobIntroProps) => {
                 icon={<VscBriefcase size={20} color="696969" />}
                 link={[
                   {
-                    text: props.category + ",",
+                    text: job.category + ",",
                     href: "/is-ilanlari",
                   },
                   {
-                    text: props.serviceArea[0],
+                    text: job.employer.categories[0],
                     href: "/is-ilanlari",
                   },
                 ]}
@@ -72,7 +74,7 @@ const JobIntro = (props: JobIntroProps) => {
                 link={[
                   {
                     href: "/is-ilanlari",
-                    text: props.location,
+                    text: job.location,
                   },
                 ]}
               />
@@ -80,13 +82,13 @@ const JobIntro = (props: JobIntroProps) => {
               <div className="flex gap-1.25">
                 <BsClock size={20} color="696969" />
                 <time className="text-sm text-[#696969]">
-                  {formatApplyTime(props.datePosted)}
+                  {formatApplyTime(job.createdAt)}
                 </time>
               </div>
 
               {/* <div>
                 <span className="text-sm text-[#696969]">
-                  {props?.totalAppliedText}
+                  {job?.totalAppliedText}
                 </span>
               </div> */}
             </div>
@@ -100,13 +102,13 @@ const JobIntro = (props: JobIntroProps) => {
               link={[
                 {
                   href: "/is-ilanlari",
-                  text: props.modeOfWork,
+                  text: job.workType,
                   linkClass:
                     "featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#1967d2] border-none !text-white cursor-pointer",
                 },
                 {
                   href: "/is-ilanlari",
-                  text: props.positionLevel,
+                  text: job.careerLevel,
                   linkClass:
                     "featured-job-list-item max-[450px]:flex-[1] whitespace-nowrap bg-[#f49c00] border-none !text-[#1a1a1a] cursor-pointer",
                 },
@@ -115,27 +117,18 @@ const JobIntro = (props: JobIntroProps) => {
           </div>
         </div>
 
-        <IntroRight
-          postId={props.postId}
-          jobTitle={props.jobTitle}
-          location={props.location}
-          jobCategory={props.category}
-          companyLogo={props.companyLogo}
-          applicationDeadlineDate={props.applicationDeadlineDate}
-          applicationMethod={props.applicationMethod}
-          applicationAddress={props.applicationAddress}
-        />
-        {/* {!props?.appliedData ? (
+        <IntroRight />
+        {/* {!job?.appliedData ? (
         ) : (
           <SubmittedResume
-            resumeFileName={props.appliedData.fileName}
-            resumeUrl={props.appliedData.resume}
+            resumeFileName={job.appliedData.fileName}
+            resumeUrl={job.appliedData.resume}
           />
         )} */}
       </div>
 
-      {/* {props?.appliedData && (
-        <ApplicationTimeline statusList={props?.appliedData?.status} />
+      {/* {job?.appliedData && (
+        <ApplicationTimeline statusList={job?.appliedData?.status} />
       )} */}
     </section>
   );

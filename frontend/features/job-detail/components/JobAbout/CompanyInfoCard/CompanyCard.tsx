@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { ReactElement, useState } from "react";
 import CardList from "./CardList";
-import { CompanyInformations, Socials } from "./card.types";
+import { Socials } from "./card.types";
 import { SOCIALS } from "./socialIcons";
 import { exractUrl, mailUrl } from "@/shared/utils/extractUrl";
+import { useJob } from "@/features/jobs/context/JobContext";
 
 const renderSocialIcon = (url: string, index: number): ReactElement => {
   const { platformName, customUrl } = exractUrl(url);
@@ -29,19 +30,23 @@ const renderSocialIcon = (url: string, index: number): ReactElement => {
   );
 };
 
-const CompanyCard = ({ companyInformations }: CompanyInformations) => {
+const CompanyCard = () => {
+  const job = useJob();
+
   const {
     category,
-    companyId,
-    companyLogo,
-    companyName,
-    email,
-    foundedDate,
-    location,
-    phoneNumber,
-    socials,
-    websiteUrl,
-  } = companyInformations;
+    employer: {
+      _id: companyId,
+      city,
+      profilePhoto,
+      companyName,
+      email,
+      foundedDate,
+      phoneNumber,
+      socialPlatforms,
+      website,
+    },
+  } = job;
   const [showPhoneNumber, setShowPhoneNumber] = useState(false);
 
   const handleShowPhone = () => setShowPhoneNumber(true);
@@ -49,9 +54,9 @@ const CompanyCard = ({ companyInformations }: CompanyInformations) => {
   return (
     <div className="mt-[30px] bg-[#f5f7fc] p-[30px] max-[992px]:p-5 rounded-lg w-full">
       <div className="flex gap-5">
-        {companyLogo && (
+        {profilePhoto && (
           <Image
-            src={companyLogo}
+            src={profilePhoto}
             alt={companyName}
             width={80}
             height={80}
@@ -81,7 +86,7 @@ const CompanyCard = ({ companyInformations }: CompanyInformations) => {
         items={[
           { id: 1, title: "Kategori", text: `${category}` },
           { id: 2, title: "Kuruluş Tarihi", text: `${foundedDate}` },
-          { id: 3, title: "Konum", text: `${location}` },
+          { id: 3, title: "Konum", text: `${city}` },
           {
             id: 4,
             title: "Telefon Numarası",
@@ -129,26 +134,26 @@ const CompanyCard = ({ companyInformations }: CompanyInformations) => {
         ]}
       />
 
-      {socials && (
+      {socialPlatforms && (
         <ul className="mt-5">
           <li className="flex justify-between items-center w-full">
             <h3 className="text-[#202124] font-medium">Sosyal Platformlar:</h3>
 
             <div className="flex gap-[15px]">
-              {socials?.map((val, i) => renderSocialIcon(val?.url, i))}
+              {socialPlatforms?.map((val, i) => renderSocialIcon(val?.url, i))}
             </div>
           </li>
         </ul>
       )}
 
-      {websiteUrl && (
+      {website && (
         <Link
-          href={`https://www.${exractUrl(websiteUrl).platformName}.com`}
+          href={`https://www.${exractUrl(website).platformName}.com`}
           target="_blank"
           rel="noopener noreferrer"
           className="py-[13.5px] px-[30px] mt-5 text-center text-[15px] text-[#1967d2] hover:text-white bg-[#E6EDF9] hover:bg-[#1967d2] transition-colors duration-300 rounded-lg block"
         >
-          {exractUrl(websiteUrl).platformName + ".com"}
+          {exractUrl(website).platformName + ".com"}
         </Link>
       )}
     </div>

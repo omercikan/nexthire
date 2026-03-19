@@ -2,14 +2,11 @@ import { useEffect, useState } from "react";
 import JobDescription from "./JobDescription";
 import ShareDesktop from "./SharePost/ShareDesktop";
 import ShareMobile from "./SharePost/ShareMobile";
+import { useJob } from "@/features/jobs/context/JobContext";
 
-export interface JobAbout {
-  about: string;
-  jobTitle: string;
-}
-
-const JobAbout = ({ about, jobTitle }: JobAbout) => {
+const JobAbout = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const { jobDescription, jobTitle } = useJob();
 
   useEffect(() => {
     const handleResize = () => {
@@ -31,7 +28,7 @@ const JobAbout = ({ about, jobTitle }: JobAbout) => {
   return (
     <div className="flex-[66.7%] max-lg:flex-none">
       <article>
-        <JobDescription description={about} />
+        <JobDescription description={jobDescription} />
       </article>
 
       <div>

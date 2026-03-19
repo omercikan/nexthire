@@ -1,11 +1,23 @@
 import { GoBookmark, GoBookmarkFill } from "react-icons/go";
-import { FavoriteItemProps } from "./favorite.types";
 import useFavoriteJob from "./useFavoriteJob";
 import CustomButton from "@/shared/components/ui/CustomButton";
+import { useJob } from "@/features/jobs/context/JobContext";
 
-const FavoriteItem = (props: FavoriteItemProps) => {
-  const handleFavoriteJob = useFavoriteJob(props);
-  const isFavorite = props.isFavorite;
+const FavoriteItem = ({ isFavorite }: { isFavorite: boolean }) => {
+  const {
+    _id,
+    jobTitle,
+    category,
+    employer: { city, profilePhoto },
+  } = useJob();
+  const handleFavoriteJob = useFavoriteJob({
+    companyLocation: city,
+    companyLogo: profilePhoto,
+    isFavorite,
+    jobCategory: category,
+    jobId: _id,
+    jobTitle,
+  });
 
   return (
     <CustomButton
