@@ -40,7 +40,10 @@ const JobApplication = () => {
         window.location.href = `mailto:${job.applicationAddress}`;
         break;
       case "external_link":
-        window.open(job.applicationAddress, "_blank");
+        const url = job.applicationAddress.startsWith("http")
+          ? job.applicationAddress
+          : `https://${job.applicationAddress}`;
+        window.open(url, "_blank");
         break;
       case "NextHire":
         if (user?.role === "candidate") {
