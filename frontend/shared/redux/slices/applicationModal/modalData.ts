@@ -66,20 +66,7 @@ export const applicationModalDataSlice = createSlice({
       state,
       action: PayloadAction<Partial<modalDataState>>,
     ) => {
-      const fields: (keyof modalDataState)[] = [
-        "email",
-        "phone",
-        "resume",
-        "additionalQuestions",
-      ];
-
-      fields.forEach((field) => {
-        const value = action.payload[field];
-
-        if (value !== undefined) {
-          (state.applicationData[field] as typeof value) = value;
-        }
-      });
+      Object.assign(state.applicationData, action.payload);
     },
 
     setPlaceholderUploadData: (
