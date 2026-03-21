@@ -27,6 +27,22 @@ const jobSchema = new Schema(
         return this.applicationMethod !== "NextHire";
       },
     },
+    screeningQuestions: [
+      new Schema(
+        {
+          id: String,
+          question: String,
+          type: String,
+          characterLimit: { type: String, required: false },
+          options: { type: [Schema.Types.String], required: false },
+          required: Boolean,
+          knockout: Boolean,
+          correctAnswer: { type: String, required: false },
+          knockoutAnswer: { type: String, required: false },
+        },
+        { _id: false },
+      ),
+    ],
   },
   {
     timestamps: true,
