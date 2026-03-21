@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { JobService } from "./job.service";
-import { FavoriteJob } from "../../shared/models/FavoriteJob";
+import { Job } from "../../shared/models/Job";
+import { connectRedis } from "../../config/redis";
 
 export class JobEvents {
   private jobService: JobService;
@@ -32,6 +33,52 @@ export class JobEvents {
     }
   };
 
+  getJob = async (req: Request, res: Response, next: NextFunction) => {
+    const { jobId } = req.params;
+
+    try {
+      const cacheKey = `job:${jobId}`;
+      const redis = connectRedis.getClient();
+
+      const cachedJob = await redis.get(cacheKey);
+      let job;
+
+      if (cachedJob) {
+        job = JSON.parse(cachedJob);
+      } else {
+        const employerFields =
+          "profilePhoto companyName categories companySize _id city email phoneNumber website socialPlatforms foundedDate";
+
+        job = await Job.findById(jobId)
+          .populate("employer", employerFields)
+          .lean();
+
+        if (!job) {
+          return res.status(404).json({ message: "Job listing not found." });
+        }
+
+        const { employerId, ...rest } = job;
+        job = rest;
+
+        await redis.setex(cacheKey, 3600, JSON.stringify(job));
+      }
+
+      const relatedJobs = await Job.find({
+        _id: { $ne: jobId },
+        category: job.category,
+        location: job.location,
+      })
+        .limit(3)
+        .populate("employer", "profilePhoto companyName _id")
+        .select("jobTitle category location workType experience _id employerId")
+        .lean({ virtuals: true });
+
+      return res.json({ job, relatedJobs });
+    } catch (error) {
+      next(error);
+    }
+  };
+
   filterJobs = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const jobs = await this.jobService.filteredJobs(req.query, req.body);
@@ -45,7 +92,7 @@ export class JobEvents {
   handleFavorite = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { response, status } = await this.jobService.handleJobFavorite(
-        req.body
+        req.body,
       );
 
       return res.status(status).json(response);

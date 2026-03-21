@@ -7,7 +7,8 @@ import { roleMiddleware } from "../../shared/middlewares/role";
 
 const router = express.Router();
 
-const { getJobs, filterJobs, handleFavorite, getFavorite } = new JobEvents();
+const { getJobs, getJob, filterJobs, handleFavorite, getFavorite } =
+  new JobEvents();
 
 router.get(
   "/",
@@ -72,4 +73,11 @@ router.get(
   roleMiddleware("candidate"),
   getFavorite
 );
+
+router.get(
+  "/:jobId",
+  validateRequest(z.object({ jobId: z.string("jobId is required") }), "params"),
+  getJob,
+);
+
 export default router;
