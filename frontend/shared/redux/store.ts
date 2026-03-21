@@ -6,7 +6,6 @@ import { userMenuSlice } from "./slices/user-modal/userMenuSlice";
 import { jobFilters } from "./slices/filtersValues";
 import { touch } from "./slices/touch";
 import { loading } from "../hooks/job-filter/loadingSlice";
-import { ProgressBarSlice } from "./slices/applicationModal/progressBar";
 import { applicationModalDataSlice } from "./slices/applicationModal/modalData";
 import { cvIdSlice } from "./slices/applicationModal/cvIdSlice";
 import { jobDetailReducer } from "@/features/job-detail/slices/jobDetailSlice";
@@ -15,7 +14,7 @@ import { userDashboardSlice } from "@/features/dashboard/slices/userDashboardSli
 import { featuredJobsApi } from "./services/featuredJobsApi";
 import { bestCompaniesApi } from "@/features/home/components/BestCompany/bestCompaniesApi";
 import { favoritesApi } from "../../features/jobs/postings/components/Favorite/favoritesApi";
-import { jobApplicationApi } from "@/features/job-detail/components/applicationModal/modalControls/jobApplicationApi";
+import { jobApplicationApi } from "@/features/job-detail/components/applicationModal/modalControls/services/jobApplicationApi";
 import { GeocodeApi } from "@/features/job-detail/components/JobAbout/JobMap/geocodeApi";
 import { candidateStaticsApi } from "@/features/dashboard/services/candidateStaticsApi";
 import { userViewsApi } from "@/features/dashboard/services/userViewsApi";
@@ -34,6 +33,7 @@ import { chatAction } from "@/features/chat/slice/chat-action.slices";
 import { chatData } from "@/features/chat/slice/chatData-slice";
 import optionMenuReducer from "@/features/chat/components/OptionsMenu/slice/optionMenuSlice";
 import candidateQuestionReducer from "@/features/dashboard/employer/ShareJob/CandidateQuestion/slice/candidateQuestionSlice";
+import { modalControlSlice } from "@/features/job-detail/components/applicationModal/slices/modalControlSlice";
 
 export const store = configureStore({
   reducer: {
@@ -42,7 +42,6 @@ export const store = configureStore({
     jobFilters: jobFilters.reducer,
     touch: touch.reducer,
     loading: loading.reducer,
-    applicationModalProgressBar: ProgressBarSlice.reducer,
     applicationModalData: applicationModalDataSlice.reducer,
     cvIdSlice: cvIdSlice.reducer,
     jobDetail: jobDetailReducer,
@@ -57,6 +56,7 @@ export const store = configureStore({
     chatData: chatData.reducer,
     optionMenuSlice: optionMenuReducer,
     candidateQuestionSlice: candidateQuestionReducer,
+    modalControlSlice: modalControlSlice.reducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [favoritesApi.reducerPath]: favoritesApi.reducer,
