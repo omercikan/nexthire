@@ -21,7 +21,7 @@ const JobDetail = ({ params }: JobDetailProps) => {
 
   const data = use(res.json());
 
-  return <JobDetailWrapper job={data} />;
+  return <JobDetailWrapper job={data.job} />;
 };
 
 export default JobDetail;
