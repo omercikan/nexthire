@@ -7,9 +7,7 @@ import { setExitModalState } from "@/shared/redux/slices/touch";
 
 const ApplicationModal = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const modalStep = useSelector(
-    (state: RootState) => state.applicationModalProgressBar.modalStep,
-  );
+  const { step } = useSelector((state: RootState) => state.modalControlSlice);
 
   const handleCloseModal = () => dispatch(setExitModalState(true));
 
@@ -26,8 +24,8 @@ const ApplicationModal = () => {
         <ModalProgressBar />
 
         <div
-          className={`${modalStep === 1 ? "h-max" : ""} ${
-            modalStep === 4 ? "h-125 overflow-auto" : ""
+          className={`${step === 1 ? "h-max" : ""} ${
+            step === 4 ? "h-125 overflow-auto" : ""
           } h-full`}
         >
           <ModalBody />

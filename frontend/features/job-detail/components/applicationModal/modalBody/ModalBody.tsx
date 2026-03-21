@@ -9,9 +9,7 @@ import { setScreenState } from "@/shared/redux/slices/applicationModal/screenSiz
 
 const ModalBody = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { modalStep } = useSelector(
-    (state: RootState) => state.applicationModalProgressBar
-  );
+  const { step } = useSelector((state: RootState) => state.modalControlSlice);
 
   // Updates isSmallScreen Redux state: true if window width is <= 639px, otherwise false
   useEffect(() => {
@@ -29,10 +27,10 @@ const ModalBody = () => {
 
   return (
     <main className="h-full">
-      {modalStep === 1 && <ModalContactInformation />}
-      {modalStep === 2 && <ModalResume />}
-      {modalStep === 3 && <AdditionalQuestions />}
-      {modalStep === 4 && <ApplicationSummary />}
+      {step === 1 && <ModalContactInformation />}
+      {step === 2 && <ModalResume />}
+      {step === 3 && <AdditionalQuestions />}
+      {step === 4 && <ApplicationSummary />}
     </main>
   );
 };
