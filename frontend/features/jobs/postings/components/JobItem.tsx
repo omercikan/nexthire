@@ -1,5 +1,4 @@
 import useScroll from "@/shared/hooks/useScroll";
-import { resetProgressBarValue } from "@/shared/redux/slices/applicationModal/progressBar";
 import { selectFiltersItem } from "@/shared/redux/slices/filtersValues";
 import { AppDispatch, RootState } from "@/shared/redux/store";
 import Image from "next/image";
@@ -15,6 +14,7 @@ import FavoriteItem from "@/features/jobs/postings/components/Favorite/FavoriteI
 import useMultipleDispatch from "@/shared/hooks/useMultipleDispatch";
 import { JobContextProvider } from "../../context/JobContext";
 import { JobData } from "@/shared/types/jobDetail";
+import { updateStep } from "@/features/job-detail/components/applicationModal/slices/modalControlSlice";
 
 interface JobItemProps {
   _id: string;
@@ -89,7 +89,7 @@ const JobItem = ({
           <div className="flex items-center max-[450px]:justify-center max-[450px]:flex-col-reverse">
             <Link
               href={`is-ilani/${job._id}`}
-              onClick={() => dispatch(resetProgressBarValue())}
+              onClick={() => dispatch(updateStep(1))}
             >
               <h2 className="text-[#202124] hover:text-[#1967d2] transition-colors duration-300 text-lg font-medium">
                 {job.jobTitle}
