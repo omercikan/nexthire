@@ -7,15 +7,13 @@ const useSelectResume = () => {
 
   const setSelectedResumeData = (
     message: string,
-    resume: string,
     cvID: string,
     fileName: string = "",
-    uploadTime: string = ""
+    uploadTime: Date | null,
   ) => {
     dispatch(
       setSelectResume({
         message: message,
-        resume: resume,
         selectedResume: cvID,
         fileName: fileName,
         uploadTime: uploadTime,

@@ -26,7 +26,7 @@ interface initialStateFields {
   resumeErrorMessage: string;
   selectedResume: string;
   selectedResumeFileName: string;
-  selectedResumeUploadTime: string;
+  selectedResumeUploadTime: Date | null;
   applicationStatus: ApplicationStatus;
 }
 
@@ -48,7 +48,7 @@ const initialState: initialStateFields = {
   resumeErrorMessage: "",
   selectedResume: "",
   selectedResumeFileName: "",
-  selectedResumeUploadTime: "",
+  selectedResumeUploadTime: null,
 
   applicationStatus: {
     companyName: "",
@@ -95,16 +95,11 @@ export const applicationModalDataSlice = createSlice({
       action: PayloadAction<{
         selectedResume: string;
         message: string;
-        resume: string;
         fileName: string;
-        uploadTime: string;
+        uploadTime: Date | null;
       }>,
     ) => {
-      state.selectedResume = action.payload.selectedResume;
-      state.resumeErrorMessage = action.payload.message;
-      state.applicationData.resume = action.payload.resume;
-      state.selectedResumeFileName = action.payload.fileName;
-      state.selectedResumeUploadTime = action.payload.uploadTime;
+      Object.assign(state, action.payload);
     },
 
     setApplicationStatus: (state, action: PayloadAction<ApplicationStatus>) => {
