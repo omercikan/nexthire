@@ -11,6 +11,7 @@ import JobMapWrapper from "./JobAbout/JobMap/JobMapWrapper";
 import CompanyCard from "./JobAbout/CompanyInfoCard/CompanyCard";
 import ApplicationModalWrapper from "./applicationModal/ApplicationModalWrapper";
 import { JobContextProvider } from "@/features/jobs/context/JobContext";
+import { ResumeProvider } from "./applicationModal/modalBody/resume/uploadResume/resumeContext";
 
 const ApplicationStatusModal = dynamic(
   () =>
@@ -27,9 +28,12 @@ const JobDetailWrapper = ({ job }: { job: JobData }) => {
       <main>
         <Toaster position="top-right" />
         <JobIntro />
-        <ApplicationModalWrapper />
-        <ExitModal />
-        <ApplicationStatusModal />
+
+        <ResumeProvider>
+          <ApplicationModalWrapper />
+          <ExitModal />
+          <ApplicationStatusModal />
+        </ResumeProvider>
 
         <div className="container flex max-lg:flex-col gap-6.25 justify-between py-12.5">
           <div className="flex-[67.7%]">
