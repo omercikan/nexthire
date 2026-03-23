@@ -1,16 +1,10 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import ResumeInput from "./uploadResume/ResumeInput";
 import ResumeLabel from "./uploadResume/ResumeLabel";
 import ModalFooter from "../ModalFooter";
-import { RootState } from "@/shared/redux/store";
+import { useResume } from "./uploadResume/resumeContext";
 
 const UploadResume = () => {
-  const { uploadedFileNames, resumeErrorMessage, selectedResume } = useSelector(
-    (state: RootState) => state.applicationModalData
-  );
-  const [fileValue, setFileValue] = useState<string>("");
-  const isResumeValid = !!uploadedFileNames.length && selectedResume !== "0";
+  const { isValid } = useResume();
 
   return (
     <div className="mt-2">
@@ -21,20 +15,10 @@ const UploadResume = () => {
           PDF (3 MB)
         </span>
 
-        <ResumeInput setFileValue={setFileValue} />
+        <ResumeInput />
       </div>
 
-      <ModalFooter
-        errors={isResumeValid ? {} : { resumeErrorMessage }}
-        values={fileValue}
-        extraControl={{
-          state: isResumeValid ? true : false,
-          message:
-            uploadedFileNames.length && selectedResume === "0"
-              ? "Lütfen bir özgeçmiş seçin"
-              : "Lütfen bir özgeçmiş (CV) dosyası yükleyin",
-        }}
-      />
+      <ModalFooter isValid={isValid} />
     </div>
   );
 };
