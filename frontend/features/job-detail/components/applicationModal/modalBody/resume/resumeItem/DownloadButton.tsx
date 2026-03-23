@@ -2,35 +2,45 @@ import React, { MouseEvent, ReactNode } from "react";
 import fileDownload from "js-file-download";
 import { HiMiniArrowDownTray } from "react-icons/hi2";
 import { fetchData } from "@/shared/utils/fetchData";
+import { useResume } from "../uploadResume/resumeContext";
 
-const DownloadButton = ({
-  url,
-  fileName,
-  isView,
-  className,
-  isViewContent,
-  isViewClassName,
-}: {
-  url: string;
-  fileName: string;
+interface DownloadButtonProps {
+  fileID: string;
   isView: boolean;
   className?: string;
   isViewContent?: ReactNode;
   isViewClassName?: string;
+}
+
+const DownloadButton: React.FC<DownloadButtonProps> = ({
+  fileID,
+  isView,
+  className,
+  isViewContent,
+  isViewClassName,
 }) => {
-  const handleDownloadPdf = async (
-    e: MouseEvent<HTMLButtonElement>,
-    url: string,
-    fileName: string
-  ) => {
+  const { resumes } = useResume();
+
+  const handleDownloadPdf = async (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    const { data } = await fetchData<string>(url, { responseType: "blob" });
-    fileDownload(data, fileName);
+
+    const findDownloadResume = resumes.find((resume) => resume._id === fileID);
+
+    if (!findDownloadResume) return;
+
+    const fileUrl =
+      findDownloadResume?.fileUrl ??
+      URL.createObjectURL(findDownloadResume as File);
+
+    const { data } = await fetchData<string>(fileUrl, {
+      responseType: "blob",
+    });
+    fileDownload(data, String(findDownloadResume.name));
   };
 
   return (
     <button
-      onClick={(e) => handleDownloadPdf(e, url, fileName)}
+      onClick={(e) => handleDownloadPdf(e)}
       rel="noopener noreferrer"
       className={className ?? ""}
     >
