@@ -12,8 +12,8 @@ const ModalResume = () => {
 
   return (
     <div
-      className={`max-sm:!px-3 h-[calc(100%-241.56px)] overflow-auto ${
-        isShowMore ? "sm:!h-[450px]" : ""
+      className={`max-sm:px-3! h-[calc(100%-241.56px)] visible-scrollbar ${
+        isShowMore ? "sm:h-112.5!" : ""
       }`}
     >
       <ResumeHeader />
