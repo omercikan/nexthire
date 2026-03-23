@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import React from "react";
 
 const ResumeContent = ({
@@ -7,7 +8,7 @@ const ResumeContent = ({
 }: {
   fileName: string;
   size: string;
-  uploadTime: string;
+  uploadTime: Date;
 }) => {
   return (
     <div className="overflow-hidden">
@@ -15,7 +16,7 @@ const ResumeContent = ({
         {fileName}
       </h3>
       <p className="text-[#00000099] text-xs pt-1 whitespace-nowrap text-ellipsis">
-        {size} {size ? "·" : ""} {uploadTime} tarihinde yüklendi
+        {size} {size ? "·" : ""} {dayjs(uploadTime).format("DD MMMM YYYY")} tarihinde yüklendi
       </p>
     </div>
   );
