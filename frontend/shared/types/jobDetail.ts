@@ -32,7 +32,7 @@ export interface JobData {
   workType: string;
   applicationMethod: ApplicationMethod;
   applicationAddress: string;
-  screeningQuestions: JobScreeningQuestions;
+  screeningQuestions: JobScreeningQuestions[];
 
   employer: {
     profilePhoto: string;
