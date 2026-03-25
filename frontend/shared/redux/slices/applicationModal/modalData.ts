@@ -5,7 +5,7 @@ interface modalDataState {
   email: string;
   phone: string;
   resume: string;
-  additionalQuestions: { title: string; answer: string; index: number }[];
+  screeningQuestions: { question: string; answer: string }[];
 }
 
 interface ApplicationStatus {
@@ -35,7 +35,7 @@ const initialState: initialStateFields = {
     email: "",
     phone: "",
     resume: "",
-    additionalQuestions: [],
+    screeningQuestions: [],
   },
 
   placeholderUploadData: {
