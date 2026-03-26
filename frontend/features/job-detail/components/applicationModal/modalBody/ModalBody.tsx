@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ModalContactInformation from "./ContactInformation";
 import ModalResume from "./resume/Resume";
-import AdditionalQuestions from "./AdditionalQuestions";
+import AdditionalQuestions from "./ScreeningQuestions/ScreeningQuestions";
 import ApplicationSummary from "./ApplicationSummary";
 import { AppDispatch, RootState } from "@/shared/redux/store";
 import { setScreenState } from "@/shared/redux/slices/applicationModal/screenSize";
