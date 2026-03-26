@@ -6,7 +6,7 @@ interface ModalControlsProps {
 }
 
 const ModalControls: React.FC<ModalControlsProps> = ({ isValid }) => {
-  const { step, hasScreeningQuestions, nextStep, prevStep } =
+  const { step, hasScreeningQuestions, nextStep, prevStep, sendApplication } =
     useModalControl(isValid);
 
   return (
@@ -25,6 +25,7 @@ const ModalControls: React.FC<ModalControlsProps> = ({ isValid }) => {
         <CustomButton
           text="Başvuruyu gönder"
           isSubmitting={false}
+          handleClick={sendApplication}
           className="py-1.5! px-4! font-semibold max-sm:ms-auto"
         />
       ) : (

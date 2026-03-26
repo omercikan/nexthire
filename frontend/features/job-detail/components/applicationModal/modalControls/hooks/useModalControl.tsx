@@ -17,7 +17,7 @@ const useModalControl = (isValid: boolean) => {
 
     if (step === 4) return;
 
-    if (hasScreeningQuestions && step === 2) return dispatch(updateStep(4));
+    if (!hasScreeningQuestions && step === 2) return dispatch(updateStep(4));
 
     dispatch(updateStep(step + 1));
   };
@@ -25,12 +25,21 @@ const useModalControl = (isValid: boolean) => {
   const prevStep = () => {
     if (step === 1) return;
 
-    if (hasScreeningQuestions && step === 4) return dispatch(updateStep(2));
+    if (!hasScreeningQuestions && step === 4) return dispatch(updateStep(2));
 
     dispatch(updateStep(step - 1));
   };
 
-  return { step, applicationData, hasScreeningQuestions, nextStep, prevStep };
+  const sendApplication = () => {};
+
+  return {
+    step,
+    applicationData,
+    hasScreeningQuestions,
+    nextStep,
+    prevStep,
+    sendApplication,
+  };
 };
 
 export default useModalControl;
