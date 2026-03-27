@@ -4,7 +4,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface modalDataState {
   email: string;
   phone: string;
-  resume: string;
   screeningQuestions: { question: string; answer: string }[];
 }
 
@@ -25,8 +24,6 @@ interface initialStateFields {
   uploadedFileNames: string[];
   resumeErrorMessage: string;
   selectedResume: string;
-  selectedResumeFileName: string;
-  selectedResumeUploadTime: Date | null;
   applicationStatus: ApplicationStatus;
 }
 
@@ -34,7 +31,6 @@ const initialState: initialStateFields = {
   applicationData: {
     email: "",
     phone: "",
-    resume: "",
     screeningQuestions: [],
   },
 
@@ -47,8 +43,6 @@ const initialState: initialStateFields = {
   uploadedFileNames: [],
   resumeErrorMessage: "",
   selectedResume: "",
-  selectedResumeFileName: "",
-  selectedResumeUploadTime: null,
 
   applicationStatus: {
     companyName: "",
@@ -102,13 +96,6 @@ export const applicationModalDataSlice = createSlice({
       Object.assign(state, action.payload);
     },
 
-    setApplicationStatus: (state, action: PayloadAction<ApplicationStatus>) => {
-      state.applicationStatus = action.payload;
-      state.applicationData = initialState.applicationData;
-      state.selectedResume = "";
-      state.selectedResumeFileName = "";
-    },
-
     resetApplicationData: () => initialState,
   },
 });
@@ -120,6 +107,5 @@ export const {
   clearPlaceholderUploadData,
   setResumeErrorMessage,
   setSelectResume,
-  setApplicationStatus,
   resetApplicationData,
 } = applicationModalDataSlice.actions;

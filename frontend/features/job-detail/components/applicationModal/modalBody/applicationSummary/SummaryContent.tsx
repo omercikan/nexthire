@@ -1,7 +1,7 @@
-import { setIsEdit, setModalStep } from "@/shared/redux/slices/applicationModal/progressBar";
 import { AppDispatch } from "@/shared/redux/store";
 import React, { ReactElement, useCallback } from "react";
 import { useDispatch } from "react-redux";
+import { updateStep } from "../../slices/modalControlSlice";
 
 const SummaryContent = ({
   contentTitle,
@@ -18,10 +18,9 @@ const SummaryContent = ({
 
   const handleApplicationMenu = useCallback(
     (step: number) => {
-      dispatch(setModalStep(step));
-      dispatch(setIsEdit(true));
+      dispatch(updateStep(step));
     },
-    [dispatch]
+    [dispatch],
   );
 
   return (
