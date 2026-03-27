@@ -32,7 +32,9 @@ const ModalContactInformation = () => {
   });
 
   useEffect(() => {
-    dispatch(setApplicationData({ phone: watch("phone") }));
+    dispatch(
+      setApplicationData({ email: watch("email"), phone: watch("phone") }),
+    );
   }, [dispatch, watch]);
 
   const handleChangeCapture = <T extends HTMLInputElement | HTMLSelectElement>(
