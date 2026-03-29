@@ -19,9 +19,19 @@ const ApplicationSchema = new Schema(
       },
     ],
     status: {
-      type: String,
-      enum: ["pending", "reviewed", "accepted", "rejected"],
-      default: "pending",
+      type: [
+        {
+          value: {
+            type: String,
+            enum: ["pending", "reviewed", "accepted", "rejected"],
+          },
+          changedAt: {
+            type: Date,
+            default: Date.now,
+          },
+        },
+      ],
+      default: () => [{ value: "pending", changedAt: new Date() }],
     },
   },
   { timestamps: true },
