@@ -1,16 +1,17 @@
-export interface ApplicationData {
-  additionalQuestions: { title: string; answer: string; index: number }[];
-  fileName: string;
-  email: string;
-  name: string;
-  phone: string;
-  postId: string;
-  resume: string;
-  cid: string;
-  eid: string;
-  companyLogo: string;
-  companyLocation: string;
-  companyName: string;
+import { JobData } from "./jobDetail";
+
+interface RelatedJobs {
+  category: string;
+  employer: { companyName: string; profilePhoto: string; _id: string };
+  employerId: string;
+  experience: string;
   jobTitle: string;
-  status: { text: string; time: string }[];
+  workType: string;
+  _id: string;
+}
+
+export interface ApplicationData {
+  hasApplied: boolean;
+  job: Omit<JobData, "location">;
+  relatedJobs: RelatedJobs[];
 }
