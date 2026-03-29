@@ -6,8 +6,14 @@ interface ModalControlsProps {
 }
 
 const ModalControls: React.FC<ModalControlsProps> = ({ isValid }) => {
-  const { step, hasScreeningQuestions, nextStep, prevStep, sendApplication } =
-    useModalControl(isValid);
+  const {
+    step,
+    hasScreeningQuestions,
+    isLoading,
+    nextStep,
+    prevStep,
+    sendApplication,
+  } = useModalControl(isValid);
 
   return (
     <div className="py-4 flex sm:justify-end gap-2">
@@ -24,9 +30,9 @@ const ModalControls: React.FC<ModalControlsProps> = ({ isValid }) => {
       {step === 4 ? (
         <CustomButton
           text="Başvuruyu gönder"
-          isSubmitting={false}
+          isSubmitting={isLoading}
           handleClick={sendApplication}
-          className="py-1.5! px-4! font-semibold max-sm:ms-auto"
+          className={`py-1.5! ${isLoading ? "px-[70.4px]!" : "px-4!"} font-semibold max-sm:ms-auto`}
         />
       ) : (
         <CustomButton
