@@ -1,12 +1,12 @@
 import React from "react";
 import StatusItem from "./StatusItem";
-import { ApplicationStep } from "./types";
+import { StatusList as StatusListType } from "./types";
 
-const StatusList = ({ statusList }: { statusList: ApplicationStep[] }) => {
+const StatusList = ({ statusList }: { statusList: StatusListType[] }) => {
   return (
     <ul>
-      {statusList?.toReversed().map(({ text, time }, index) => (
-        <StatusItem key={index} text={text} time={time} />
+      {statusList.map(({ _id, value, changedAt }) => (
+        <StatusItem key={_id} value={value} changedAt={changedAt} />
       ))}
     </ul>
   );

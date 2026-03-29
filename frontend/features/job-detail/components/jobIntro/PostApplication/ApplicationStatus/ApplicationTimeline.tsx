@@ -1,11 +1,13 @@
 import React from "react";
 import StatusList from "./StatusList";
-import { ApplicationStep } from "./types";
+import { StatusList as StatusListType } from "./types";
 
-const ApplicationTimeline = ({
+interface ApplicationTimelineProps {
+  statusList: StatusListType[];
+}
+
+const ApplicationTimeline: React.FC<ApplicationTimelineProps> = ({
   statusList,
-}: {
-  statusList: ApplicationStep[];
 }) => {
   return (
     <div className="container">
