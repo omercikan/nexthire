@@ -47,7 +47,8 @@ export class JobEvents {
       let job;
       let relatedJobs;
       let resumes;
-      let hasApplied = false;
+      let appliedData;
+      let totalApplicationCount;
 
       if (cachedData) {
         const parsed = JSON.parse(cachedData);
@@ -55,12 +56,17 @@ export class JobEvents {
         relatedJobs = parsed.relatedJobs;
 
         if (userId) {
-          const [resumeData, applicationData] = await Promise.all([
-            Resume.find({ userId }),
-            Application.exists({ candidateId: userId, jobId }),
-          ]);
+          const [resumeData, applicationData, totalApplicationCountData] =
+            await Promise.all([
+              Resume.find({ userId }),
+              Application.findOne({ candidateId: userId, jobId }).select(
+                "status resume",
+              ),
+              Application.countDocuments({ jobId }),
+            ]);
           resumes = resumeData;
-          hasApplied = !!applicationData;
+          appliedData = applicationData;
+          totalApplicationCount = totalApplicationCountData;
         }
       } else {
         const employerFields =
@@ -74,34 +80,48 @@ export class JobEvents {
           return res.status(404).json({ message: "Job listing not found." });
         }
 
-        const [resumeData, relatedJobsData, applicationData] =
-          await Promise.all([
-            userId ? Resume.find({ userId }) : Promise.resolve([]),
-            Job.find({
-              _id: { $ne: jobId },
-              category: jobData.category,
-            })
-              .limit(3)
-              .populate("employer", "profilePhoto companyName _id")
-              .select(
-                "jobTitle category location workType experience _id employerId",
+        const [
+          resumeData,
+          relatedJobsData,
+          applicationData,
+          totalApplicationCountData,
+        ] = await Promise.all([
+          userId ? Resume.find({ userId }) : Promise.resolve([]),
+          Job.find({
+            _id: { $ne: jobId },
+            category: jobData.category,
+          })
+            .limit(3)
+            .populate("employer", "profilePhoto companyName _id")
+            .select(
+              "jobTitle category location workType experience _id employerId",
+            )
+            .lean({ virtuals: true }),
+          userId
+            ? Application.findOne({ candidateId: userId, jobId }).select(
+                "status resume",
               )
-              .lean({ virtuals: true }),
-            userId
-              ? Application.exists({ candidateId: userId, jobId })
-              : Promise.resolve(null),
-          ]);
+            : Promise.resolve(null),
+          Application.countDocuments({ jobId }),
+        ]);
 
         const { employerId, ...rest } = jobData;
         job = rest;
         resumes = resumeData;
         relatedJobs = relatedJobsData;
-        hasApplied = !!applicationData;
+        appliedData = applicationData;
+        totalApplicationCount = totalApplicationCountData;
 
         await redis.setex(cacheKey, 3600, JSON.stringify({ job, relatedJobs }));
       }
 
-      return res.json({ job, relatedJobs, resumes, hasApplied });
+      return res.json({
+        job,
+        relatedJobs,
+        resumes,
+        appliedData,
+        totalApplicationCount,
+      });
     } catch (error) {
       next(error);
     }
