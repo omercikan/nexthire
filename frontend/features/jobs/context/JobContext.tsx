@@ -1,9 +1,18 @@
 import { JobData } from "@/shared/types/jobDetail";
 import { createContext, useContext } from "react";
 
-interface JobContextProviderProps {
+type StatusValue = "pending" | "reviewed" | "accepted" | "rejected";
+
+export interface AppliedData {
+  _id: string;
+  resume: { originalName: string; size: number; url: string };
+  status: { _id: string; changedAt: Date; value: StatusValue }[];
+}
+
+export interface JobContextProviderProps {
   job: JobData;
-  hasApplied: boolean;
+  appliedData: AppliedData;
+  totalApplicationCount: number;
   children?: React.ReactNode;
 }
 
@@ -18,10 +27,11 @@ export const useJob = () => {
 export const JobContextProvider = ({
   job,
   children,
-  hasApplied,
+  appliedData,
+  totalApplicationCount,
 }: JobContextProviderProps) => {
   return (
-    <JobContext.Provider value={{ job, hasApplied }}>
+    <JobContext.Provider value={{ job, appliedData, totalApplicationCount }}>
       {children}
     </JobContext.Provider>
   );

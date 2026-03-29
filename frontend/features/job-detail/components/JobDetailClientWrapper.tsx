@@ -10,7 +10,10 @@ import JobSkills from "./JobAbout/JobSkills/JobSkills";
 import JobMapWrapper from "./JobAbout/JobMap/JobMapWrapper";
 import CompanyCard from "./JobAbout/CompanyInfoCard/CompanyCard";
 import ApplicationModalWrapper from "./applicationModal/ApplicationModalWrapper";
-import { JobContextProvider } from "@/features/jobs/context/JobContext";
+import {
+  AppliedData,
+  JobContextProvider,
+} from "@/features/jobs/context/JobContext";
 import { ResumeProvider } from "./applicationModal/modalBody/resume/uploadResume/resumeContext";
 
 const ApplicationStatusModal = dynamic(
@@ -22,14 +25,28 @@ const ExitModal = dynamic(
   () => import("@/features/job-detail/components/ExitModal/ExitModal"),
 );
 
-const JobDetailWrapper = ({ job }: { job: JobData }) => {
+interface JobDetailWrapperProps {
+  job: JobData;
+  appliedData: AppliedData;
+  totalApplicationCount: number;
+}
+
+const JobDetailWrapper: React.FC<JobDetailWrapperProps> = ({
+  job,
+  appliedData,
+  totalApplicationCount,
+}) => {
   return (
-    <JobContextProvider job={job}>
+    <JobContextProvider
+      job={job}
+      appliedData={appliedData}
+      totalApplicationCount={totalApplicationCount}
+    >
       <main>
         <Toaster position="top-right" />
-        <JobIntro />
-
         <ResumeProvider>
+          <JobIntro />
+
           <ApplicationModalWrapper />
           <ExitModal />
           <ApplicationStatusModal />
