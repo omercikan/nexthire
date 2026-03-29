@@ -5,7 +5,9 @@ import { fetchData } from "@/shared/utils/fetchData";
 import { useResume } from "../uploadResume/resumeContext";
 
 interface DownloadButtonProps {
-  fileID: string;
+  fileID?: string;
+  fileName: string;
+  url?: string;
   isView: boolean;
   className?: string;
   isViewContent?: ReactNode;
@@ -13,7 +15,9 @@ interface DownloadButtonProps {
 }
 
 const DownloadButton: React.FC<DownloadButtonProps> = ({
-  fileID,
+  fileID = "",
+  fileName = "",
+  url = null,
   isView,
   className,
   isViewContent,
@@ -26,16 +30,18 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
 
     const findDownloadResume = resumes.find((resume) => resume._id === fileID);
 
-    if (!findDownloadResume) return;
+    if (!findDownloadResume && !fileName) return;
 
-    const fileUrl =
-      findDownloadResume?.fileUrl ??
-      URL.createObjectURL(findDownloadResume as File);
+    const fileUrl = url
+      ? url
+      : (findDownloadResume?.fileUrl ??
+        URL.createObjectURL(findDownloadResume as File));
 
     const { data } = await fetchData<string>(fileUrl, {
       responseType: "blob",
     });
-    fileDownload(data, String(findDownloadResume.name));
+
+    fileDownload(data, fileName || String(findDownloadResume?.name));
   };
 
   return (
