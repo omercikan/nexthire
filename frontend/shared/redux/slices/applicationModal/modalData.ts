@@ -8,8 +8,6 @@ interface modalDataState {
 }
 
 interface ApplicationStatus {
-  postId: string;
-  userId: string;
   companyName: string;
   status: "applied" | "notApplied" | "";
 }
@@ -46,8 +44,6 @@ const initialState: initialStateFields = {
 
   applicationStatus: {
     companyName: "",
-    postId: "",
-    userId: "",
     status: "",
   },
 };
@@ -96,6 +92,10 @@ export const applicationModalDataSlice = createSlice({
       Object.assign(state, action.payload);
     },
 
+    setApplicationStatus: (state, action: PayloadAction<ApplicationStatus>) => {
+      Object.assign(state.applicationStatus, action.payload);
+    },
+
     resetApplicationData: () => initialState,
   },
 });
@@ -107,5 +107,6 @@ export const {
   clearPlaceholderUploadData,
   setResumeErrorMessage,
   setSelectResume,
+  setApplicationStatus,
   resetApplicationData,
 } = applicationModalDataSlice.actions;
