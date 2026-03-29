@@ -8,7 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 type QuestionAnswers = Record<string, string>;
 
 const useQuestionsForm = () => {
-  const { screeningQuestions } = useJob();
+  const {
+    job: { screeningQuestions },
+  } = useJob();
   const dispatch = useDispatch<AppDispatch>();
   const { screeningQuestions: savedAnswers } = useSelector(
     (state: RootState) => state.applicationModalData.applicationData,

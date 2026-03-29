@@ -20,7 +20,7 @@ const ApplicationMethods = {
 };
 
 const JobApplication = () => {
-  const job = useJob();
+  const { job } = useJob();
   const dispatch = useDispatch<AppDispatch>();
   const { user } = useContext(AuthContext);
   const router = useRouter();

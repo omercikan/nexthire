@@ -13,7 +13,9 @@ const JobMap = dynamic(() => import("./JobMap"), {
 
 const JobMapWrapper = () => {
   const {
-    employer: { city, profilePhoto },
+    job: {
+      employer: { city, profilePhoto },
+    },
   } = useJob();
   const { ref, inView } = useInView({ triggerOnce: true });
 

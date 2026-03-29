@@ -6,7 +6,9 @@ import { useJob } from "@/features/jobs/context/JobContext";
 
 const JobAbout = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const { jobDescription, jobTitle } = useJob();
+  const {
+    job: { jobDescription, jobTitle },
+  } = useJob();
 
   useEffect(() => {
     const handleResize = () => {

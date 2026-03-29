@@ -11,8 +11,10 @@ const ModalHeader = () => {
     (state: RootState) => state.applyModalScreen,
   );
   const {
-    jobTitle,
-    employer: { companyName },
+    job: {
+      jobTitle,
+      employer: { companyName },
+    },
   } = useJob();
 
   const handleCloseModal = () => dispatch(setExitModalState(true));

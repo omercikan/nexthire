@@ -31,7 +31,7 @@ const renderSocialIcon = (url: string, index: number): ReactElement => {
 };
 
 const CompanyCard = () => {
-  const job = useJob();
+  const { job } = useJob();
 
   const {
     category,

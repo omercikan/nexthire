@@ -18,7 +18,7 @@ const JobSkills = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { applyScroll } = useScroll();
-  const job = useJob();
+  const { job } = useJob();
   const skills = [job.category, job.careerLevel, job.workType, job.experience];
 
   const handleItemFilter = (text: string) => {
