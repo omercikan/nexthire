@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import { JobService } from "./job.service";
 import { Job } from "../../shared/models/Job";
 import { connectRedis } from "../../config/redis";
+import { Resume } from "../../shared/models/Resume";
+import { Application } from "../../shared/models/Application";
 
 export class JobEvents {
   private jobService: JobService;
@@ -35,45 +37,71 @@ export class JobEvents {
 
   getJob = async (req: Request, res: Response, next: NextFunction) => {
     const { jobId } = req.params;
+    const userId = req.user?.id;
 
     try {
       const cacheKey = `job:${jobId}`;
       const redis = connectRedis.getClient();
 
-      const cachedJob = await redis.get(cacheKey);
+      const cachedData = await redis.get(cacheKey);
       let job;
+      let relatedJobs;
+      let resumes;
+      let hasApplied = false;
 
-      if (cachedJob) {
-        job = JSON.parse(cachedJob);
+      if (cachedData) {
+        const parsed = JSON.parse(cachedData);
+        job = parsed.job;
+        relatedJobs = parsed.relatedJobs;
+
+        if (userId) {
+          const [resumeData, applicationData] = await Promise.all([
+            Resume.find({ userId }),
+            Application.exists({ candidateId: userId, jobId }),
+          ]);
+          resumes = resumeData;
+          hasApplied = !!applicationData;
+        }
       } else {
         const employerFields =
           "profilePhoto companyName categories companySize _id city email phoneNumber website socialPlatforms foundedDate";
 
-        job = await Job.findById(jobId)
+        const jobData = await Job.findById(jobId)
           .populate("employer", employerFields)
           .lean();
 
-        if (!job) {
+        if (!jobData) {
           return res.status(404).json({ message: "Job listing not found." });
         }
 
-        const { employerId, ...rest } = job;
-        job = rest;
+        const [resumeData, relatedJobsData, applicationData] =
+          await Promise.all([
+            userId ? Resume.find({ userId }) : Promise.resolve([]),
+            Job.find({
+              _id: { $ne: jobId },
+              category: jobData.category,
+            })
+              .limit(3)
+              .populate("employer", "profilePhoto companyName _id")
+              .select(
+                "jobTitle category location workType experience _id employerId",
+              )
+              .lean({ virtuals: true }),
+            userId
+              ? Application.exists({ candidateId: userId, jobId })
+              : Promise.resolve(null),
+          ]);
 
-        await redis.setex(cacheKey, 3600, JSON.stringify(job));
+        const { employerId, ...rest } = jobData;
+        job = rest;
+        resumes = resumeData;
+        relatedJobs = relatedJobsData;
+        hasApplied = !!applicationData;
+
+        await redis.setex(cacheKey, 3600, JSON.stringify({ job, relatedJobs }));
       }
 
-      const relatedJobs = await Job.find({
-        _id: { $ne: jobId },
-        category: job.category,
-        location: job.location,
-      })
-        .limit(3)
-        .populate("employer", "profilePhoto companyName _id")
-        .select("jobTitle category location workType experience _id employerId")
-        .lean({ virtuals: true });
-
-      return res.json({ job, relatedJobs });
+      return res.json({ job, relatedJobs, resumes, hasApplied });
     } catch (error) {
       next(error);
     }

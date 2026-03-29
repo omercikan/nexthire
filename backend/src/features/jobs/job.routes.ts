@@ -4,6 +4,7 @@ import { validateRequest } from "../../shared/middlewares/validateRequest";
 import z from "zod";
 import { authMiddleware } from "../../shared/middlewares/auth";
 import { roleMiddleware } from "../../shared/middlewares/role";
+import { optionalAuthMiddleware } from "../../shared/middlewares/optionalAuthMiddleware";
 
 const router = express.Router();
 
@@ -76,6 +77,7 @@ router.get(
 
 router.get(
   "/:jobId",
+  optionalAuthMiddleware,
   validateRequest(z.object({ jobId: z.string("jobId is required") }), "params"),
   getJob,
 );
