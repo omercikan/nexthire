@@ -3,17 +3,17 @@ import DownloadButton from "../../applicationModal/modalBody/resume/resumeItem/D
 import { FaRegFileAlt } from "react-icons/fa";
 
 const SubmittedResume = ({
-  resumeUrl,
-  resumeFileName,
+  fileUrl,
+  fileName,
 }: {
-  resumeUrl: string;
-  resumeFileName: string;
+  fileUrl: string;
+  fileName: string;
 }) => {
   return (
     <DownloadButton
       isView={true}
-      url={resumeUrl}
-      fileName={resumeFileName}
+      fileName={fileName}
+      url={fileUrl}
       className="h-max w-max mt-2.5 max-lg:mt-6"
       isViewClassName="flex items-center gap-x-1 text-[#4045ef] sm:hover:underline text-sm font-medium"
       isViewContent={

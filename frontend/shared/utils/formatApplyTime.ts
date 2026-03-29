@@ -5,5 +5,5 @@ import "dayjs/locale/tr";
 dayjs.extend(relativeTime);
 dayjs.locale("tr");
 
-export const formatApplyTime = (time: string | number): string =>
+export const formatApplyTime = (time: string | number | Date): string =>
   dayjs(time).fromNow();

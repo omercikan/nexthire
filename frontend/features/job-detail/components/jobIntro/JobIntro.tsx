@@ -8,24 +8,11 @@ import PlaceholderCompanyLogo from "@/public/assets/company.png";
 import { formatApplyTime } from "@/shared/utils/formatApplyTime";
 import IntroRight from "./IntroSectionRight/IntroRight";
 import { useJob } from "@/features/jobs/context/JobContext";
+import SubmittedResume from "./PostApplication/SubmittedResume";
+import ApplicationTimeline from "./PostApplication/ApplicationStatus/ApplicationTimeline";
 
 const JobIntro = () => {
-  const job = useJob();
-
-  //* Current user *//
-  // const { user } = useContext(AuthContext);
-
-  //* job data and isLoading *//
-
-  //* Application status data *//
-  // const {
-  //   data,
-  //   isLoading: isApplyLoading,
-  //   isFetching,
-  // } = useGetApplicationQuery({
-  //   candidateId: user?._id ?? "",
-  //   postId: postId,
-  // });
+  const { job, appliedData, totalApplicationCount } = useJob();
 
   return (
     <section className="bg-[#F2F5FC] py-17.5 mt-[79.43px]">
@@ -86,11 +73,13 @@ const JobIntro = () => {
                 </time>
               </div>
 
-              {/* <div>
+              <div>
                 <span className="text-sm text-[#696969]">
-                  {job?.totalAppliedText}
+                  {totalApplicationCount !== 0
+                    ? `${totalApplicationCount}${totalApplicationCount > 100 ? "+" : ""} kişi başvurdu`
+                    : "Henüz başvuru yok"}
                 </span>
-              </div> */}
+              </div>
             </div>
 
             <IntroLink
@@ -117,19 +106,17 @@ const JobIntro = () => {
           </div>
         </div>
 
-        <IntroRight />
-        {/* {!job?.appliedData ? (
-        ) : (
+        {appliedData ? (
           <SubmittedResume
-            resumeFileName={job.appliedData.fileName}
-            resumeUrl={job.appliedData.resume}
+            fileUrl={appliedData.resume.url}
+            fileName={appliedData.resume.originalName}
           />
-        )} */}
+        ) : (
+          <IntroRight />
+        )}
       </div>
 
-      {/* {job?.appliedData && (
-        <ApplicationTimeline statusList={job?.appliedData?.status} />
-      )} */}
+      {appliedData && <ApplicationTimeline statusList={appliedData.status} />}
     </section>
   );
 };
