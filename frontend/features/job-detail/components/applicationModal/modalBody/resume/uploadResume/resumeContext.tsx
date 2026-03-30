@@ -1,9 +1,11 @@
 import { AuthContext } from "@/features/auth/authContext";
+import { useJob } from "@/features/jobs/context/JobContext";
 import { RootState } from "@/shared/redux/store";
 import { validateResume } from "@/shared/utils/validateResume";
 import { nanoid } from "@reduxjs/toolkit";
 import { createContext, ReactNode, useContext, useState } from "react";
 import { useSelector } from "react-redux";
+import { Resume as SavedResume } from "@/features/jobs/context/JobContext";
 
 type Resume = Partial<
   File & {
@@ -15,17 +17,24 @@ type Resume = Partial<
 >;
 
 interface ResumeContextType {
-  resumes: Resume[];
+  resumes: (Resume | SavedResume)[];
   errorMessage: string;
   isValid: boolean;
   handleResume: (resume: Resume | undefined) => void;
 }
 
+export const getResumeName = (resume: Resume | SavedResume): string => {
+  if ("originalName" in resume) return resume.originalName;
+  return resume.name ?? "";
+};
+
 const ResumeContext = createContext<ResumeContextType | null>(null);
 
 export const ResumeProvider = ({ children }: { children: ReactNode }) => {
   const { user } = useContext(AuthContext);
-  const [resumes, setResumes] = useState<Resume[]>([]);
+  const { resumes: savedResumes } = useJob();
+  const [resumes, setResumes] =
+    useState<(Resume | SavedResume)[]>(savedResumes);
   const [errorMessage, setErrorMessage] = useState("");
   const { selectedResume } = useSelector(
     (state: RootState) => state.applicationModalData,
