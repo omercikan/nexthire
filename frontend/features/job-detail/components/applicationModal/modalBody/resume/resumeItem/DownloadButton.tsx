@@ -41,7 +41,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
       responseType: "blob",
     });
 
-    fileDownload(data, fileName || String(findDownloadResume?.name));
+    fileDownload(data, fileName || String((findDownloadResume as File)?.name));
   };
 
   return (

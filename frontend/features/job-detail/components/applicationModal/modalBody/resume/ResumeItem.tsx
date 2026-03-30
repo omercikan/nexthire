@@ -6,7 +6,7 @@ import RadioButton from "./resumeItem/RadioButton";
 import { useSelector } from "react-redux";
 import { RootState } from "@/shared/redux/store";
 import useSelectResume from "@/shared/hooks/useSelectResume";
-import { useResume } from "./uploadResume/resumeContext";
+import { getResumeName, useResume } from "./uploadResume/resumeContext";
 
 const ResumeItem = ({
   resume: { fileName, size, createdAt, _id },
@@ -25,8 +25,13 @@ const ResumeItem = ({
 
   useEffect(() => {
     if (resumes.length > prevResumesLength.current) {
-      const { _id, name, createdAt } = resumes[0];
-      setSelectedResumeData("", String(_id), name, createdAt as Date);
+      const { _id, createdAt } = resumes[0];
+      setSelectedResumeData(
+        "",
+        String(_id),
+        getResumeName(resumes[0]),
+        createdAt as Date,
+      );
     }
 
     prevResumesLength.current = resumes.length;
@@ -66,7 +71,7 @@ const ResumeItem = ({
 
         {isDisplaySelect ? (
           <div className="flex items-center gap-x-3 max-[425px]:gap-x-0 pe-1.5">
-            <DownloadButton fileID={_id} isView={false} />
+            <DownloadButton fileID={_id} fileName={fileName} isView={false} />
 
             <span className="w-[0.5px] bg-[#E8E8E8] h-10 inline-block me-1 max-[430px]:me-3 max-[430px]:ms-1"></span>
 
@@ -75,6 +80,7 @@ const ResumeItem = ({
         ) : (
           <DownloadButton
             fileID={_id}
+            fileName={fileName}
             isView={true}
             className="h-full py-5 px-5 ms-6 border-s border-s-[#E8E8E8] hover:bg-[#F3F3F3] rounded-e-[12.8px] transition-colors duration-300"
           />

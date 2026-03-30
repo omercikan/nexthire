@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import ResumeItem from "./ResumeItem";
 import ShowMoreResumes from "./ShowMoreResumes";
 import { RootState } from "@/shared/redux/store";
-import { useResume } from "./uploadResume/resumeContext";
+import { getResumeName, useResume } from "./uploadResume/resumeContext";
 import { calculateCVSize } from "@/shared/utils/calculateCvSize";
 
 const ResumeList = () => {
@@ -21,7 +21,7 @@ const ResumeList = () => {
             <ResumeItem
               key={i}
               resume={{
-                fileName: String(resume.name),
+                fileName: getResumeName(resume),
                 _id: String(resume._id),
                 size: calculateCVSize(Number(resume.size)),
                 createdAt: resume.createdAt,
@@ -37,7 +37,7 @@ const ResumeList = () => {
             <ResumeItem
               key={resume._id}
               resume={{
-                fileName: String(resume.name),
+                fileName: getResumeName(resume),
                 _id: String(resume._id),
                 size: calculateCVSize(Number(resume.size)),
                 createdAt: resume.createdAt,
