@@ -50,8 +50,10 @@ export const ResumeProvider = ({ children }: { children: ReactNode }) => {
     const errorMessage = validateResume(resume as File);
     if (errorMessage) return setErrorMessage(errorMessage);
 
+    const newResume = Object.assign(resume, { _id: nanoid() });
+
     setResumes((prev) => {
-      const updated = [Object.assign(resume, { _id: nanoid() }), ...prev];
+      const updated = [newResume, ...prev];
       if (updated.length > 6) {
         updated.pop();
       }
@@ -61,7 +63,7 @@ export const ResumeProvider = ({ children }: { children: ReactNode }) => {
 
     setSelectedResumeData(
       "",
-      String(resume._id),
+      newResume._id,
       getResumeName(resume),
       resume.createdAt as Date,
     );

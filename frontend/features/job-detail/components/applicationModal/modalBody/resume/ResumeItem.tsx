@@ -37,11 +37,7 @@ const ResumeItem = ({
 
   const handleSelectResume = () => {
     if (isDisplaySelect) {
-      if (!isMatchResumeID) {
-        setSelectedResumeData("", _id, fileName, createdAt as Date);
-      } else {
-        setSelectedResumeData("Lütfen bir özgeçmiş seçin", "", "", null);
-      }
+      setSelectedResumeData("", _id, fileName, createdAt as Date);
     }
   };
 
