@@ -6,6 +6,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import { createContext, ReactNode, useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import { Resume as SavedResume } from "@/features/jobs/context/JobContext";
+import useSelectResume from "@/shared/hooks/useSelectResume";
 
 type Resume = Partial<
   File & {
@@ -21,6 +22,7 @@ interface ResumeContextType {
   errorMessage: string;
   isValid: boolean;
   handleResume: (resume: Resume | undefined) => void;
+  setResumes: React.Dispatch<React.SetStateAction<(Resume | SavedResume)[]>>;
 }
 
 export const getResumeName = (resume: Resume | SavedResume): string => {
@@ -39,6 +41,7 @@ export const ResumeProvider = ({ children }: { children: ReactNode }) => {
   const { selectedResume } = useSelector(
     (state: RootState) => state.applicationModalData,
   );
+  const [setSelectedResumeData] = useSelectResume();
 
   const handleResume = (resume: Resume | undefined) => {
     if (!user) return;
@@ -55,6 +58,14 @@ export const ResumeProvider = ({ children }: { children: ReactNode }) => {
 
       return updated;
     });
+
+    setSelectedResumeData(
+      "",
+      String(resume._id),
+      getResumeName(resume),
+      resume.createdAt as Date,
+    );
+
     setErrorMessage("");
   };
 
@@ -64,6 +75,7 @@ export const ResumeProvider = ({ children }: { children: ReactNode }) => {
         resumes,
         errorMessage,
         handleResume,
+        setResumes,
         isValid: !!resumes.length && !errorMessage && !!selectedResume,
       }}
     >
