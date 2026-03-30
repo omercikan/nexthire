@@ -1,6 +1,9 @@
 import ResumeItem from "../../resume/ResumeItem";
 import SummaryContent from "../SummaryContent";
-import { useResume } from "../../resume/uploadResume/resumeContext";
+import {
+  getResumeName,
+  useResume,
+} from "../../resume/uploadResume/resumeContext";
 import { useSelector } from "react-redux";
 import { RootState } from "@/shared/redux/store";
 import { calculateCVSize } from "@/shared/utils/calculateCvSize";
@@ -23,7 +26,7 @@ const SummaryResume = () => {
       <div className="w-85.5 max-sm:w-auto mt-4">
         <ResumeItem
           resume={{
-            fileName: findSelectedResume?.name as string,
+            fileName: getResumeName(findSelectedResume as File),
             size: calculateCVSize(Number(findSelectedResume?.size)),
             _id: findSelectedResume?._id as string,
           }}

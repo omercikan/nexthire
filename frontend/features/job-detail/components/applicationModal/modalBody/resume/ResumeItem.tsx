@@ -1,4 +1,3 @@
-import React, { useEffect, useRef } from "react";
 import { CVDataFields } from "@/shared/types/resume";
 import ResumeContent from "./resumeItem/ResumeContent";
 import DownloadButton from "./resumeItem/DownloadButton";
@@ -6,6 +5,7 @@ import RadioButton from "./resumeItem/RadioButton";
 import { useSelector } from "react-redux";
 import { RootState } from "@/shared/redux/store";
 import useSelectResume from "@/shared/hooks/useSelectResume";
+import { useEffect } from "react";
 import { getResumeName, useResume } from "./uploadResume/resumeContext";
 
 const ResumeItem = ({
@@ -21,11 +21,11 @@ const ResumeItem = ({
   const isMatchResumeID = selectedResume == _id;
   const [setSelectedResumeData] = useSelectResume();
   const { resumes } = useResume();
-  const prevResumesLength = useRef(resumes.length);
 
   useEffect(() => {
-    if (resumes.length > prevResumesLength.current) {
-      const { _id, createdAt } = resumes[0];
+    const { _id, createdAt } = resumes[0];
+
+    if (selectedResume === "") {
       setSelectedResumeData(
         "",
         String(_id),
@@ -33,9 +33,7 @@ const ResumeItem = ({
         createdAt as Date,
       );
     }
-
-    prevResumesLength.current = resumes.length;
-  }, [resumes, setSelectedResumeData]);
+  }, [resumes, selectedResume, setSelectedResumeData]);
 
   const handleSelectResume = () => {
     if (isDisplaySelect) {
