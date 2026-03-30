@@ -30,6 +30,7 @@ const JobDetail = ({ params }: JobDetailProps) => {
   return (
     <JobDetailWrapper
       job={data.job}
+      resumes={data.resumes}
       appliedData={data.appliedData}
       totalApplicationCount={data.totalApplicationCount}
     />

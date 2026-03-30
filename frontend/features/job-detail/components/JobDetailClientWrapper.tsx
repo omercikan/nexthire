@@ -13,6 +13,7 @@ import ApplicationModalWrapper from "./applicationModal/ApplicationModalWrapper"
 import {
   AppliedData,
   JobContextProvider,
+  Resume,
 } from "@/features/jobs/context/JobContext";
 import { ResumeProvider } from "./applicationModal/modalBody/resume/uploadResume/resumeContext";
 
@@ -29,10 +30,12 @@ interface JobDetailWrapperProps {
   job: JobData;
   appliedData: AppliedData;
   totalApplicationCount: number;
+  resumes: Resume[];
 }
 
 const JobDetailWrapper: React.FC<JobDetailWrapperProps> = ({
   job,
+  resumes,
   appliedData,
   totalApplicationCount,
 }) => {
@@ -41,6 +44,7 @@ const JobDetailWrapper: React.FC<JobDetailWrapperProps> = ({
       job={job}
       appliedData={appliedData}
       totalApplicationCount={totalApplicationCount}
+      resumes={resumes}
     >
       <main>
         <Toaster position="top-right" />
