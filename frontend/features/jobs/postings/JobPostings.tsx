@@ -9,14 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/shared/redux/store";
 
 const JobPostings = () => {
-  const { data, filtersItem, isFetching } = useJobActions();
+  const { data } = useJobActions();
   const { perPage } = useSelector((state: RootState) => state.filtersSlice);
   const dispatch = useDispatch();
 
   return (
     <div className="flex-[calc(67.2%+.0625rem)] max-md:w-full">
       <>
-        {!filtersItem?.length && (
+        {(data?.totalCount[0]?.count as number) > 0 ? (
           <div
             className="flex gap-2 items-center cursor-pointer group w-max min-[1025px]:hidden"
             onClick={(e) => {
@@ -29,13 +29,11 @@ const JobPostings = () => {
               Filtreleri Göster
             </span>
           </div>
-        )}
+        ) : null}
 
         <FilterBar />
 
-        <ResultNavigator
-          dataLength={isFetching ? 0 : (data?.totalCount[0]?.count as number)}
-        />
+        <ResultNavigator dataLength={data?.totalCount[0]?.count as number} />
       </>
 
       <JobList />
