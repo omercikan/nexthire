@@ -3,6 +3,7 @@ import LoaderSkeleton from "@/shared/components/ui/LoaderSkeleton";
 import JobItem from "../JobItem";
 import { useSelector } from "react-redux";
 import { RootState } from "@/shared/redux/store";
+import JobResultContent from "./JobResultContent";
 
 const JobList = () => {
   const {
@@ -10,7 +11,7 @@ const JobList = () => {
     favoriteData,
     isFetching: isDefaultDataFetching,
   } = useJobActions();
-  const { isFetching: isFilterDataFetching } = useSelector(
+  const { isFetching: isFilterDataFetching, filtersItem } = useSelector(
     (state: RootState) => state.jobFilters,
   );
   const jobData = data?.data;
@@ -32,9 +33,10 @@ const JobList = () => {
       );
     case !jobData?.length && !isFilterDataFetching:
       return (
-        <div className="bg-[#D4E1F5] text-[#1967D2] p-3.75 mb-7.5 rounded-lg">
-          <p>Aramana uygun bir sonuç bulunamadı. 😔</p>
-        </div>
+        <JobResultContent
+          isFilterDataFetching={!!filtersItem.length}
+          hasAnyJobs={!!jobData?.length}
+        />
       );
     default:
       return jobData?.map((job) => (
