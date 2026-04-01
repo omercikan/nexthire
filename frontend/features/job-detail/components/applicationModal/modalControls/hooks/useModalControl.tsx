@@ -2,7 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/shared/redux/store";
 import { updateStep } from "../../slices/modalControlSlice";
 import { useJob } from "@/features/jobs/context/JobContext";
-import { useResume } from "../../modalBody/resume/uploadResume/resumeContext";
+import {
+  getResumeName,
+  useResume,
+} from "../../modalBody/resume/uploadResume/resumeContext";
 import { useContext } from "react";
 import { AuthContext } from "@/features/auth/authContext";
 import { useParams, useRouter } from "next/navigation";
@@ -21,7 +24,7 @@ const useModalControl = (isValid: boolean) => {
   const { job } = useJob();
   const hasScreeningQuestions = job.screeningQuestions?.length ? true : false;
   const { user } = useContext(AuthContext);
-  const { resumes } = useResume();
+  const { resumes, removedResumeNames } = useResume();
   const params = useParams() as { slug: string[] };
   const [sendApplicationApi, { isLoading }] = useSendApplicationMutation();
   const multipleDispatch = useMultipleDispatch();
@@ -59,10 +62,11 @@ const useModalControl = (isValid: boolean) => {
       );
 
       const payload = {
-        selectedResumeName: selectedResume?.name,
+        selectedResumeName: getResumeName(selectedResume!),
         applicationData,
         userId: user?._id,
         employerId: job.employer._id,
+        removedResumeNames,
         jobId,
       };
 
