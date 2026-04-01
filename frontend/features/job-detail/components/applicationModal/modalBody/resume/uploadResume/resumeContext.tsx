@@ -21,6 +21,7 @@ interface ResumeContextType {
   resumes: (Resume | SavedResume)[];
   errorMessage: string;
   isValid: boolean;
+  removedResumeNames: string[];
   handleResume: (resume: Resume | undefined) => void;
   setResumes: React.Dispatch<React.SetStateAction<(Resume | SavedResume)[]>>;
 }
@@ -42,6 +43,7 @@ export const ResumeProvider = ({ children }: { children: ReactNode }) => {
     (state: RootState) => state.applicationModalData,
   );
   const [setSelectedResumeData] = useSelectResume();
+  const [removedResumeNames, setRemovedResumeNames] = useState<string[]>([]);
 
   const handleResume = (resume: Resume | undefined) => {
     if (!user) return;
@@ -55,6 +57,16 @@ export const ResumeProvider = ({ children }: { children: ReactNode }) => {
     setResumes((prev) => {
       const updated = [newResume, ...prev];
       if (updated.length > 6) {
+        if (savedResumes.length > 0) {
+          const removedResumeName = (
+            updated.findLast((resume) => resume) as SavedResume
+          ).fileName;
+
+          if (typeof removedResumeName !== "undefined") {
+            setRemovedResumeNames([...removedResumeNames, removedResumeName]);
+          }
+        }
+
         updated.pop();
       }
 
@@ -78,6 +90,7 @@ export const ResumeProvider = ({ children }: { children: ReactNode }) => {
         errorMessage,
         handleResume,
         setResumes,
+        removedResumeNames,
         isValid: !!resumes.length && !errorMessage && !!selectedResume,
       }}
     >
