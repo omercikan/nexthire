@@ -6,6 +6,7 @@ export const applicationSchema = z.object({
   jobId: z.string().min(1),
 
   selectedResumeName: z.string().min(1),
+  removedResumeNames: z.array(z.string()).default([]),
   applicationData: z.object({
     email: z.email(),
     phone: z.string().min(1),
