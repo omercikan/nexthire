@@ -19,7 +19,7 @@ import { updateStep } from "@/features/job-detail/components/applicationModal/sl
 interface JobItemProps {
   _id: string;
   jobTitle: string;
-  location: string;
+  jobLocation: string;
   careerLevel: string;
   category: string;
   workType: string;
@@ -116,12 +116,12 @@ const JobItem = ({
             <span
               onClick={(e) => {
                 e.preventDefault();
-                handleFilterAction({ key: "location", value: job.location });
+                handleFilterAction({ key: "location", value: job.jobLocation });
               }}
               className="flex items-center text-[#696969] hover:text-[#202124] text-sm transition-colors duration-300 cursor-pointer"
             >
               <SlLocationPin className="me-1.25" size={18} />
-              {job.location}
+              {job.jobLocation}
             </span>
           </div>
 

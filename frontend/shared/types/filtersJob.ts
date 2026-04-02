@@ -11,7 +11,7 @@ export interface FilterData {
   data: {
     _id: string;
     jobTitle: string;
-    location: string;
+    jobLocation: string;
     careerLevel: string;
     category: string;
     workType: string;
