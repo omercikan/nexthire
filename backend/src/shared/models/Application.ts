@@ -10,6 +10,7 @@ const ApplicationSchema = new Schema(
     resume: {
       url: String,
       originalName: String,
+      fileName: String,
       size: Number,
     },
     screeningQuestions: [
