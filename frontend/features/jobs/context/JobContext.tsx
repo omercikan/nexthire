@@ -21,10 +21,10 @@ export interface AppliedData {
 }
 
 export interface JobContextProviderProps {
-  job: JobData;
-  appliedData: AppliedData;
-  totalApplicationCount: number;
-  resumes: Resume[];
+  job: Partial<JobData>;
+  appliedData?: AppliedData;
+  totalApplicationCount?: number;
+  resumes?: Resume[];
   children?: React.ReactNode;
 }
 

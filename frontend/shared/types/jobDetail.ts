@@ -24,7 +24,7 @@ export interface JobData {
   introductionUrl: string;
   jobDescription: string;
   jobTitle: string;
-  location: string;
+  jobLocation: string;
   maxSalary: string;
   minSalary: string;
   salaryPeriod: string;
@@ -34,7 +34,7 @@ export interface JobData {
   applicationAddress: string;
   screeningQuestions: JobScreeningQuestions[];
 
-  employer: {
+  employer: Partial<{
     profilePhoto: string;
     companyName: string;
     categories: string[];
@@ -46,5 +46,5 @@ export interface JobData {
     website: string;
     socialPlatforms: { _id: string; platform: string; url: string }[];
     foundedDate: string;
-  };
+  }>;
 }

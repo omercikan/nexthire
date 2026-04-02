@@ -13,7 +13,6 @@ import { setFilters } from "@/shared/redux/slices/filtersData";
 import FavoriteItem from "@/features/jobs/postings/components/Favorite/FavoriteItem";
 import useMultipleDispatch from "@/shared/hooks/useMultipleDispatch";
 import { JobContextProvider } from "../../context/JobContext";
-import { JobData } from "@/shared/types/jobDetail";
 import { updateStep } from "@/features/job-detail/components/applicationModal/slices/modalControlSlice";
 
 interface JobItemProps {
@@ -70,7 +69,7 @@ const JobItem = ({
       key={job._id}
       className="p-7.5 max-[1200px]:p-3.75 mb-7.5 border border-[#ECEDF2] rounded-lg hover:shadow-[0_6px_15px_0_rgba(64,79,104,0.05)] transition-shadow duration-300 relative group"
     >
-      <JobContextProvider job={job as JobData}>
+      <JobContextProvider job={job}>
         <FavoriteItem isFavorite={favoriteData.includes(job._id)} />
       </JobContextProvider>
 
