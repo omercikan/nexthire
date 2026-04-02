@@ -59,7 +59,7 @@ router.post(
     z.object({
       jobId: z.string("jobId is required"),
       userId: z.string("jobId is required"),
-      companyLocation: z.string("companyLocation is required"),
+      jobLocation: z.string("jobLocation is required"),
       jobTitle: z.string("jobTitle is required"),
       jobCategory: z.string("jobTitle is required"),
       isFavorite: z.boolean("isFavorite must be true or false"),
