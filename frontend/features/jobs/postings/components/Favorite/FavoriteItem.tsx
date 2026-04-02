@@ -5,21 +5,15 @@ import { useJob } from "@/features/jobs/context/JobContext";
 
 const FavoriteItem = ({ isFavorite }: { isFavorite: boolean }) => {
   const {
-    job: {
-      _id,
-      jobTitle,
-      category,
-      location,
-      employer: { city, profilePhoto },
-    },
+    job: { _id, jobTitle, category, jobLocation, employer },
   } = useJob();
   const handleFavoriteJob = useFavoriteJob({
-    companyLocation: city ?? location,
-    companyLogo: profilePhoto,
+    jobLocation: jobLocation ?? "",
+    companyLogo: employer?.profilePhoto ?? "",
     isFavorite,
-    jobCategory: category,
-    jobId: _id,
-    jobTitle,
+    jobCategory: category ?? "",
+    jobId: _id ?? "",
+    jobTitle: jobTitle ?? "",
   });
 
   return (

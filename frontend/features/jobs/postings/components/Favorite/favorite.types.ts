@@ -1,7 +1,7 @@
 export interface FavoriteItemProps {
   userId?: string;
   jobId: string;
-  companyLocation: string;
+  jobLocation: string;
   companyLogo: string;
   jobTitle: string;
   jobCategory: string;
