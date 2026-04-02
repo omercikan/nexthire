@@ -1,7 +1,7 @@
 export const JOB_QUERY_OPTIONS = {
   populatePath: "employer",
   populateFields: "profilePhoto companyName -_id",
-  selectFields: "jobTitle location category workType careerLevel employerId",
+  selectFields: "jobTitle jobLocation category workType careerLevel employerId",
 } as const;
 
 export const FILTER_JOB_PIPELINE = {

@@ -15,7 +15,7 @@ const jobSchema = new Schema(
     gender: { type: String, required: true },
     salaryPeriod: { type: String, required: true },
     educationLevel: { type: String, required: true },
-    location: { type: String, required: true },
+    jobLocation: { type: String, required: true },
     applicationMethod: {
       type: String,
       required: true,
