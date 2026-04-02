@@ -1,8 +1,11 @@
 import * as z from "zod";
+import { jobLocationSchema } from "./jobLocationValidation";
 
 export const shareJobFormSchema = z
   .object({
     jobTitle: z.string().nonempty("Pozisyon başlığı zorunludur"),
+
+    jobLocation: jobLocationSchema,
 
     jobDescription: z
       .string()
