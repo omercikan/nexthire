@@ -2,7 +2,14 @@ import { NextFunction, Request, Response } from "express";
 import { UploadApiResponse } from "cloudinary";
 import { Resume } from "../../../shared/models/Resume";
 import { Application } from "../../../shared/models/Application";
-import { getNewFiles, uploadResumesToCloudinary } from "./application.service";
+import {
+  copyToApplications,
+  getNewFiles,
+  uploadResumesToCloudinary,
+} from "./application.service";
+import { v2 as cloud } from "cloudinary";
+import { fixFileName } from "../../../shared/utils/fixFileName";
+import { replaceFileName } from "./application.helper";
 
 interface ApplicationData {
   email: string;
@@ -13,6 +20,7 @@ interface ApplicationData {
 interface RequestBody {
   selectedResumeName: string;
   applicationData: ApplicationData;
+  removedResumeNames: string[];
   userId: string;
   employerId: string;
   jobId: string;
@@ -21,8 +29,14 @@ interface RequestBody {
 export class JobApplication {
   applyJob = async (req: Request, res: Response, next: NextFunction) => {
     const files = req.files as Express.Multer.File[];
-    const { selectedResumeName, applicationData, userId, employerId, jobId } =
-      req.body.data as RequestBody;
+    const {
+      selectedResumeName,
+      applicationData,
+      removedResumeNames,
+      userId,
+      employerId,
+      jobId,
+    } = req.body.data as RequestBody;
 
     try {
       const existingResumes = await Resume.find({ userId });
@@ -32,7 +46,9 @@ export class JobApplication {
 
       if (newFiles.length > 0) {
         uploadedResumes = await Promise.all(
-          newFiles.map(uploadResumesToCloudinary),
+          newFiles.map((resume) =>
+            uploadResumesToCloudinary(resume, "resumes"),
+          ),
         );
 
         await Resume.insertMany(
@@ -46,23 +62,29 @@ export class JobApplication {
         );
       }
 
-      const resumeFromDB = existingResumes.find(
-        (resume) => resume.originalName === selectedResumeName,
+      const resumeFromDB = existingResumes.find((resume) =>
+        fixFileName(resume.originalName).includes(selectedResumeName),
       );
 
-      const resumeFromUpload = uploadedResumes.find(
-        (_, i) => newFiles[i].originalname === selectedResumeName,
+      const resumeFromUpload = uploadedResumes.find((_, i) =>
+        newFiles[i].originalname.includes(selectedResumeName),
       );
 
       const selectedResume = resumeFromDB
         ? {
             originalName: resumeFromDB.originalName,
+            fileName: resumeFromDB.fileName,
             size: resumeFromDB.size,
             url: resumeFromDB.fileUrl,
           }
         : resumeFromUpload
           ? {
               originalName: selectedResumeName,
+              fileName: replaceFileName(
+                resumeFromUpload.public_id,
+                "resumes/",
+                "applications/",
+              ),
               size: resumeFromUpload.bytes,
               url: resumeFromUpload.secure_url,
             }
@@ -72,6 +94,11 @@ export class JobApplication {
         return next(new Error("Selected resume not found"));
       }
 
+      const applicationResumeUrl = await copyToApplications(
+        selectedResume.url,
+        selectedResume.fileName,
+      );
+
       await Application.create({
         candidateId: userId,
         employerId,
@@ -79,8 +106,15 @@ export class JobApplication {
         email: applicationData.email,
         phone: applicationData.phone,
         screeningQuestions: applicationData.screeningQuestions,
-        resume: selectedResume,
+        resume: { ...selectedResume, url: applicationResumeUrl },
       });
+
+      if (removedResumeNames.length > 0) {
+        await Promise.all([
+          Resume.deleteMany({ userId, fileName: { $in: removedResumeNames } }),
+          cloud.api.delete_resources(removedResumeNames),
+        ]);
+      }
 
       return res
         .status(201)
