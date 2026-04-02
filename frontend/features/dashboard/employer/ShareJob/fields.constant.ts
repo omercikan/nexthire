@@ -130,6 +130,15 @@ export const SHARE_JOB_FIELDS = [
     field: "text",
     placeholder: "Varsa tanıtım videosu bağlantısını giriniz",
   },
+
+  {
+    id: 12,
+    label: "İş Konumu",
+    name: "jobLocation",
+    type: "input",
+    field: "text",
+    placeholder: "İşin bulunduğu konumu giriniz",
+  },
 ];
 
 export type ShareJobFields = typeof SHARE_JOB_FIELDS;

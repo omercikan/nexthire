@@ -13,4 +13,5 @@ export const SHARE_JOB_DEFAULT_VALUES = {
   careerLevel: "",
   educationLevel: "",
   introductionUrl: "",
+  jobLocation: "",
 };
