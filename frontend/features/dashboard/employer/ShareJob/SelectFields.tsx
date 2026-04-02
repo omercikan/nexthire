@@ -1,5 +1,5 @@
 import { HiOutlineChevronUpDown } from "react-icons/hi2";
-import { formFields, shareJobFormSchemaType } from "./formValidation";
+import { formFields, shareJobFormSchemaType } from "./validations/formValidation";
 import { ShareJobFields } from "./fields.constant";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 

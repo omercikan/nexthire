@@ -1,7 +1,7 @@
 import CustomInput from "@/shared/components/ui/CustomInput";
 import { ShareJobFields } from "./fields.constant";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { formFields, shareJobFormSchemaType } from "./formValidation";
+import { formFields, shareJobFormSchemaType } from "./validations/formValidation";
 
 interface InputFieldProps {
   inputFields: ShareJobFields;

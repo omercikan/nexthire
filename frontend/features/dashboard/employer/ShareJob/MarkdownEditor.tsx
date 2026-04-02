@@ -1,6 +1,6 @@
 import { commands } from "@uiw/react-md-editor";
 import { useFormContext } from "react-hook-form";
-import { shareJobFormSchemaType } from "./formValidation";
+import { shareJobFormSchemaType } from "./validations/formValidation";
 import dynamic from "next/dynamic";
 
 import "@uiw/react-md-editor/markdown-editor.css";
