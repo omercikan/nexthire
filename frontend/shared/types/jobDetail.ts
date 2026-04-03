@@ -33,6 +33,7 @@ export interface JobData {
   applicationMethod: ApplicationMethod;
   applicationAddress: string;
   screeningQuestions: JobScreeningQuestions[];
+  status: "draft" | "published" | "closed";
 
   employer: Partial<{
     profilePhoto: string;
