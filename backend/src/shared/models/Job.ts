@@ -43,6 +43,16 @@ const jobSchema = new Schema(
         { _id: false },
       ),
     ],
+    status: {
+      type: String,
+      enum: ["draft", "published", "closed"],
+      default: "draft",
+    },
+    publishedAt: { type: Date, default: null },
+    expiresAt: {
+      type: Date,
+      default: () => new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+    },
   },
   {
     timestamps: true,
@@ -68,7 +78,7 @@ jobSchema.virtual("employer", {
   justOne: true,
 });
 
-jobSchema.index({ createdAt: -1 });
+jobSchema.index({ status: 1, createdAt: -1 });
 jobSchema.index({ employerId: 1 });
 
 export const Job = model("jobs", jobSchema);
