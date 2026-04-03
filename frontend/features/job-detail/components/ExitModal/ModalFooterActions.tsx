@@ -1,9 +1,14 @@
 import CustomButton from "@/shared/components/ui/CustomButton";
 import useMultipleDispatch from "@/shared/hooks/useMultipleDispatch";
 import { resetApplicationData } from "@/shared/redux/slices/applicationModal/modalData";
-import { resetProgressBarValue } from "@/shared/redux/slices/applicationModal/progressBar";
-import { changeShowMoreResumes, setApplicationModal, setExitModalState } from "@/shared/redux/slices/touch";
+import {
+  changeShowMoreResumes,
+  setApplicationModal,
+  setExitModalState,
+} from "@/shared/redux/slices/touch";
 import React, { memo } from "react";
+import { updateStep } from "../applicationModal/slices/modalControlSlice";
+import { useResume } from "../applicationModal/modalBody/resume/uploadResume/resumeContext";
 
 const ModalFooterActions = ({
   isSmallBreakpoint,
@@ -13,16 +18,20 @@ const ModalFooterActions = ({
   closeModalFunc: () => { payload: boolean; type: "touch/setExitModalState" };
 }) => {
   const multipleDispatch = useMultipleDispatch();
+  const { setResumes } = useResume();
 
   const handleExitApplication = () => {
     document.body.style.overflow = "visible";
     multipleDispatch([
       setExitModalState(false),
+      updateStep(1),
       setApplicationModal(false),
       resetApplicationData(),
-      resetProgressBarValue(),
       changeShowMoreResumes(false),
     ]);
+    setResumes((resumes) =>
+      resumes.filter((resume) => "originalName" in resume),
+    );
   };
 
   return (
