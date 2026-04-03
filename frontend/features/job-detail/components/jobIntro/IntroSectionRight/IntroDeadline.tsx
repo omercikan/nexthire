@@ -2,7 +2,7 @@ import { useJob } from "@/features/jobs/context/JobContext";
 import dayjs from "dayjs";
 
 const IntroDeadline = () => {
-  const job = useJob();
+  const { job } = useJob();
 
   return (
     <>

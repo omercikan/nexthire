@@ -6,7 +6,7 @@ import { useJob } from "@/features/jobs/context/JobContext";
 dayjs.locale("tr");
 
 const JobOverview = () => {
-  const job = useJob();
+  const { job } = useJob();
 
   return (
     <aside className="bg-[#f5f7fc] p-7.5 max-[992px]:p-5 rounded-lg h-max mb-7.5">
@@ -25,7 +25,7 @@ const JobOverview = () => {
             icon: ICONS.location,
             id: 2,
             text: "Konum",
-            value: job.location ?? "Belirtilmemiş",
+            value: job.jobLocation ?? "Belirtilmemiş",
           },
 
           {
@@ -46,7 +46,7 @@ const JobOverview = () => {
             icon: ICONS.experience,
             id: 5,
             text: "Deneyim",
-            value: job.experience,
+            value: job.experience ?? "",
           },
 
           {
@@ -60,14 +60,14 @@ const JobOverview = () => {
             icon: ICONS.qualification,
             id: 7,
             text: "Eğitim düzeyi",
-            value: job.educationLevel,
+            value: job.educationLevel ?? "",
           },
 
           {
             icon: ICONS.level,
             id: 8,
             text: "Kariyer seviyesi",
-            value: job.careerLevel,
+            value: job.careerLevel ?? "",
           },
         ]}
       />
