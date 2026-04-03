@@ -101,9 +101,7 @@ const UserModal = () => {
 
             <li className="header-user-modal-links">
               {user ? (
-                <button onClick={() => handleLogout(user._id)}>
-                  Çıkış Yap
-                </button>
+                <button onClick={handleLogout}>Çıkış Yap</button>
               ) : (
                 <Link href="mailto:nexthire00@gmail.com">Bize Ulaşın</Link>
               )}
