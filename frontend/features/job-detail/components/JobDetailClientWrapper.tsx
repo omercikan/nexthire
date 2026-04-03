@@ -16,6 +16,9 @@ import {
   Resume,
 } from "@/features/jobs/context/JobContext";
 import { ResumeProvider } from "./applicationModal/modalBody/resume/uploadResume/resumeContext";
+import JobDraftActions from "./JobDraftActions";
+import { PiWarningCircle } from "react-icons/pi";
+import { LuEye } from "react-icons/lu";
 
 const ApplicationStatusModal = dynamic(
   () =>
@@ -47,6 +50,19 @@ const JobDetailWrapper: React.FC<JobDetailWrapperProps> = ({
       resumes={resumes}
     >
       <main>
+        <JobDraftActions
+          containerClassName="border-y border-y-[#dedede]"
+          wrapperClassName="max-[375px]:flex-col"
+          info={
+            <div>
+              <span className="text-xs flex items-center py-1 px-3 gap-2 text-[#063ad7] bg-[#e8effc] w-max rounded-md font-medium">
+                <LuEye />
+                Önizleme Modu
+              </span>
+            </div>
+          }
+        />
+
         <Toaster position="top-right" />
         <ResumeProvider>
           <JobIntro />
@@ -61,7 +77,6 @@ const JobDetailWrapper: React.FC<JobDetailWrapperProps> = ({
             <JobAbout />
             <JobMapWrapper />
           </div>
-
           <div className="flex-[32.3%] max-lg:flex-none">
             <JobOverview />
             {job && (
@@ -72,6 +87,17 @@ const JobDetailWrapper: React.FC<JobDetailWrapperProps> = ({
             )}
           </div>
         </div>
+
+        <JobDraftActions
+          containerClassName="border-t border-t-[#dedede] bottom-0"
+          wrapperClassName="max-[600px]:justify-center"
+          info={
+            <p className="text-[#636363] flex items-center gap-2 text-sm">
+              <PiWarningCircle />
+              Bu ilan yayınlandıktan sonra 30 gün boyunca aktif kalacaktır.
+            </p>
+          }
+        />
       </main>
     </JobContextProvider>
   );
