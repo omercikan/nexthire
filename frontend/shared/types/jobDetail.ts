@@ -34,6 +34,7 @@ export interface JobData {
   applicationAddress: string;
   screeningQuestions: JobScreeningQuestions[];
   status: "draft" | "published" | "closed";
+  publishedAt: Date;
 
   employer: Partial<{
     profilePhoto: string;
