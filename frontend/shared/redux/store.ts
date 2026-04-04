@@ -8,7 +8,7 @@ import { touch } from "./slices/touch";
 import { loading } from "../hooks/job-filter/loadingSlice";
 import { applicationModalDataSlice } from "./slices/applicationModal/modalData";
 import { cvIdSlice } from "./slices/applicationModal/cvIdSlice";
-import { jobDetailReducer } from "@/features/job-detail/slices/jobDetailSlice";
+import { jobDataReducer } from "@/features/job-detail/slices/jobDataSlice";
 import { applyModalScreenReducer } from "./slices/applicationModal/screenSize";
 import { userDashboardSlice } from "@/features/dashboard/slices/userDashboardSlice";
 import { featuredJobsApi } from "./services/featuredJobsApi";
@@ -44,7 +44,7 @@ export const store = configureStore({
     loading: loading.reducer,
     applicationModalData: applicationModalDataSlice.reducer,
     cvIdSlice: cvIdSlice.reducer,
-    jobDetail: jobDetailReducer,
+    jobDataSlice: jobDataReducer,
     applyModalScreen: applyModalScreenReducer,
     userDashboard: userDashboardSlice.reducer,
     resumeSlice: resumeSlice.reducer,
