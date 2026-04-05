@@ -1,4 +1,4 @@
-import { Job } from "@/shared/types/employer/open-jobs.types";
+import { JobData } from "@/shared/types/jobDetail";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const jobApi = createApi({
@@ -7,9 +7,9 @@ export const jobApi = createApi({
     baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/employer`,
   }),
   endpoints: (builder) => ({
-    createJob: builder.mutation<Job, Partial<Job>>({
-      query: (data) => ({
-        url: "/create-job",
+    publishJob: builder.mutation<JobData, { data: Partial<JobData>; jobId?: string }>({
+      query: ({ data, jobId }) => ({
+        url: jobId ? `/publish-job?jobId=${jobId}` : "/publish-job",
         method: "POST",
         body: data,
         credentials: "include",
@@ -18,4 +18,4 @@ export const jobApi = createApi({
   }),
 });
 
-export const { useCreateJobMutation } = jobApi;
+export const { usePublishJobMutation } = jobApi;
