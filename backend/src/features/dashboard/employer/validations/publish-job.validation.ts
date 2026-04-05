@@ -1,5 +1,9 @@
 import * as z from "zod";
 
+export const publishJobSchema = z.object({
+  jobId: z.string().regex(/^[a-f\d]{24}$/i, "Invalid job ID"),
+});
+
 export const createJobSchema = z
   .object({
     jobTitle: z.string().nonempty("Job title is required"),
@@ -7,7 +11,7 @@ export const createJobSchema = z
     jobDescription: z
       .string()
       .nonempty(
-        "Please provide a detailed job description and responsibilities"
+        "Please provide a detailed job description and responsibilities",
       ),
 
     category: z.string().nonempty("Please select a job category"),
@@ -29,7 +33,7 @@ export const createJobSchema = z
       .nonempty("Minimum salary is required")
       .refine(
         (val) => !val.startsWith("-"),
-        "Minimum salary must be zero or greater"
+        "Minimum salary must be zero or greater",
       ),
 
     maxSalary: z
@@ -37,7 +41,7 @@ export const createJobSchema = z
       .nonempty("Maximum salary is required")
       .refine(
         (val) => !val.startsWith("-"),
-        "Maximum salary must be zero or greater"
+        "Maximum salary must be zero or greater",
       ),
 
     experience: z
@@ -47,7 +51,7 @@ export const createJobSchema = z
     careerLevel: z
       .string()
       .nonempty(
-        "Please specify the appropriate career level for this position"
+        "Please specify the appropriate career level for this position",
       ),
 
     educationLevel: z
@@ -64,7 +68,7 @@ export const createJobSchema = z
       error:
         "A valid application address must be provided based on the selected application method",
       path: ["applicationAddress"],
-    }
+    },
   )
   .refine((val) => Number(val.minSalary) <= Number(val.maxSalary), {
     error: "The minimum salary cannot exceed the maximum salary",
