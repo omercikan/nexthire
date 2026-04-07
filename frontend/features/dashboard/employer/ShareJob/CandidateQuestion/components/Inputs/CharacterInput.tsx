@@ -1,7 +1,10 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Label from "../Label";
-import { AppDispatch } from "@/shared/redux/store";
-import { updateQuestion } from "../../slice/candidateQuestionSlice";
+import { AppDispatch, RootState } from "@/shared/redux/store";
+import {
+  selectQuestionById,
+  updateQuestion,
+} from "../../slice/candidateQuestionSlice";
 import { useState } from "react";
 
 interface CharacterInputProps {
@@ -18,7 +21,12 @@ const CharacterInput: React.FC<CharacterInputProps> = ({
   cardId,
 }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const [characterLimit, setCharacterLimit] = useState("");
+  const question = useSelector((state: RootState) =>
+    selectQuestionById(state, cardId),
+  );
+  const [characterLimit, setCharacterLimit] = useState(
+    question.characterLimit ?? "",
+  );
 
   const handleUpdateStates = (value: string) => {
     setCharacterLimit(value);
@@ -41,6 +49,7 @@ const CharacterInput: React.FC<CharacterInputProps> = ({
         placeholder={placeholder}
         min={min}
         max={max}
+        value={question.characterLimit}
         onChange={(e) => handleUpdateStates(e.target.value)}
       />
 
