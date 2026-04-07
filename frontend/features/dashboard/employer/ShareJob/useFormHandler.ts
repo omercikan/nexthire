@@ -1,20 +1,30 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { shareJobFormSchema, shareJobFormSchemaType } from "./formValidation";
+import {
+  formFields,
+  shareJobFormSchema,
+  shareJobFormSchemaType,
+} from "./validations/formValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SHARE_JOB_DEFAULT_VALUES } from "./defaultValues.constant";
 import { SHARE_JOB_FIELDS } from "./fields.constant";
-import { useCreateJobMutation } from "../services/jobApi";
-import { useContext } from "react";
+import { usePublishJobMutation } from "../services/jobApi";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "@/features/auth/authContext";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { selectAllQuestions } from "./CandidateQuestion/slice/candidateQuestionSlice";
+import { RootState } from "@/shared/redux/store";
+import { ApplicationMethod } from "@/shared/types/jobDetail";
 
 const useFormHandler = () => {
-  const [createJob] = useCreateJobMutation();
+  const [publishJob] = usePublishJobMutation();
   const { user } = useContext(AuthContext);
   const screeningQuestions = useSelector(selectAllQuestions);
+  const { editedJobData } = useSelector(
+    (state: RootState) => state.jobDataSlice,
+  );
+  const params = useSearchParams();
 
   const methods = useForm<shareJobFormSchemaType>({
     defaultValues: SHARE_JOB_DEFAULT_VALUES,
@@ -24,13 +34,54 @@ const useFormHandler = () => {
 
   const {
     register,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isDirty },
     setValue,
     watch,
     handleSubmit,
   } = methods;
 
   const router = useRouter();
+
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (isDirty) e.preventDefault();
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [isDirty]);
+
+  useEffect(() => {
+    const action = params.get("action");
+    const jobId = params.get("jobId");
+
+    if (!editedJobData) return;
+
+    if (action === "edit" && jobId) {
+      for (const data in editedJobData) {
+        const editedData = data as formFields;
+
+        if (data in SHARE_JOB_DEFAULT_VALUES) {
+          setValue(data as formFields, editedJobData[editedData], {
+            shouldDirty: true,
+          });
+        }
+      }
+
+      if (editedJobData.applicationMethod) {
+        const methodMap: Record<string, string> = {
+          NextHire: "NextHire üzerinden",
+          external_link: "Kendi sitemiz üzerinden",
+          email: "E-posta ile",
+        };
+
+        const mappedValue = methodMap[editedJobData.applicationMethod];
+
+        if (mappedValue)
+          setValue("applicationMethod", mappedValue, { shouldDirty: true });
+      }
+    }
+  }, [params, setValue, editedJobData]);
 
   const onSubmit: SubmitHandler<shareJobFormSchemaType> = async (values) => {
     function includesValue(value: string) {
@@ -45,10 +96,12 @@ const useFormHandler = () => {
           return question.characterLimit ? true : false;
         case "Çoklu Seçim":
           return question.options?.every((val) => val !== "");
+        default:
+          return false;
       }
     });
 
-    const applicationMethod = includesValue("NextHire")
+    const applicationMethod: ApplicationMethod = includesValue("NextHire")
       ? "NextHire"
       : includesValue("Kendi")
         ? "external_link"
@@ -63,11 +116,9 @@ const useFormHandler = () => {
 
     try {
       if (!questionValidations) return;
-
-      const res = await createJob(data).unwrap();
-
+      const res = await publishJob({ data }).unwrap();
       if (res) {
-        router.push(`/is-ilani/${values.jobTitle}/${res._id}?action=preview`);
+        router.push(`/is-ilani/${res._id}`);
       }
     } catch {
       toast.error(
