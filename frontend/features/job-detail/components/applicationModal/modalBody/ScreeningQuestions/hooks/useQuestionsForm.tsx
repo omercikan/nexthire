@@ -34,12 +34,12 @@ const useQuestionsForm = () => {
   } = methods;
 
   // Total number of questions marked as required
-  const requiredQuestionsCount = screeningQuestions.filter(
+  const requiredQuestionsCount = screeningQuestions?.filter(
     (item) => item.required === true,
   ).length;
 
   // Required questions that have been answered by the user
-  const answeredRequiredQuestions = screeningQuestions.filter(
+  const answeredRequiredQuestions = screeningQuestions?.filter(
     (item) => item.required && watch(item.question),
   );
 
@@ -48,7 +48,7 @@ const useQuestionsForm = () => {
 
   // Returns true when all required questions have been answered
   const areRequiredFieldsFilled =
-    requiredQuestionsCount === answeredRequiredQuestions.length;
+    requiredQuestionsCount === answeredRequiredQuestions?.length;
 
   useEffect(() => {
     // Subscribes to form value changes and syncs answers to the Redux store

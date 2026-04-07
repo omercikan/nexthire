@@ -25,7 +25,7 @@ const ScreeningQuestions = () => {
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit((values) => values)}>
           <div className="px-6 flex flex-col gap-4">
-            {screeningQuestions.map((item) => {
+            {screeningQuestions?.map((item) => {
               switch (item.type) {
                 case "Sayı":
                   return (
