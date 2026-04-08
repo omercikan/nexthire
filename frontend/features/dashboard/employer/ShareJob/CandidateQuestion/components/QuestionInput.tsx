@@ -1,9 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Label from "./Label";
-import { updateQuestion } from "../slice/candidateQuestionSlice";
+import { selectQuestionById, updateQuestion } from "../slice/candidateQuestionSlice";
+import { RootState } from "@/shared/redux/store";
 
 const CandidateQuestionInput = ({ cardId }: { cardId: string }) => {
   const dispatch = useDispatch();
+  const {question} = useSelector((state: RootState) => selectQuestionById(state, cardId))
 
   return (
     <div>
@@ -12,6 +14,7 @@ const CandidateQuestionInput = ({ cardId }: { cardId: string }) => {
       <input
         type="text"
         id="question"
+        value={question}
         placeholder="Sorunuzu girin..."
         className="candidate-question-input w-full"
         onChange={(e) =>
