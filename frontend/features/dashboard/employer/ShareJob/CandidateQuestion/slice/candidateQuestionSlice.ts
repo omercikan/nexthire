@@ -24,6 +24,7 @@ export const candidateQuestionSlice = createSlice({
   initialState,
   reducers: {
     updateQuestion: questionsAdapter.updateOne,
+    setManyQuestion: questionsAdapter.setMany,
     addScreeningQuestions: questionsAdapter.addOne,
     removeScreeningQuestion: questionsAdapter.removeOne,
   },
@@ -31,6 +32,7 @@ export const candidateQuestionSlice = createSlice({
 
 export const {
   updateQuestion,
+  setManyQuestion,
   addScreeningQuestions,
   removeScreeningQuestion,
 } = candidateQuestionSlice.actions;
