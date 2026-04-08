@@ -8,15 +8,22 @@ import {
   updateQuestion,
 } from "../slice/candidateQuestionSlice";
 
+interface Option {
+  id: string;
+  value: string;
+}
+
 const useMultipleInput = (cardId: string) => {
   const dispatch = useDispatch<AppDispatch>();
   const question = useSelector((state: RootState) =>
     selectQuestionById(state, cardId),
   );
-  const [options, setOptions] = useState<{ id: string; value: string }[]>([
-    { id: nanoid(), value: "" },
-    { id: nanoid(), value: "" },
-  ]);
+  const [options, setOptions] = useState<Option[]>(
+    question.options?.map((option) => ({
+      id: nanoid(),
+      value: option,
+    })) as Option[],
+  );
 
   const addOption = () => {
     if (options.length === 10) {
@@ -50,10 +57,29 @@ const useMultipleInput = (cardId: string) => {
   };
 
   const removeOption = (id: string) => {
-    setOptions((prev) => prev.filter((option) => option.id !== id));
+    const newOptions = options.filter((option) => option.id !== id);
+    setOptions(newOptions);
+
+    const optionValues = newOptions.map((option) => option.value);
+
+    dispatch(
+      updateQuestion({
+        id: cardId,
+        changes: {
+          options: optionValues,
+        },
+      }),
+    );
   };
 
-  return { options, setOptions, addOption, updateOption, removeOption };
+  return {
+    options,
+    question,
+    setOptions,
+    addOption,
+    updateOption,
+    removeOption,
+  };
 };
 
 export default useMultipleInput;

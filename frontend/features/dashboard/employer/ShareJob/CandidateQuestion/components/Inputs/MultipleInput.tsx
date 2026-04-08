@@ -4,7 +4,7 @@ import { CandidateQuestionIcons } from "../../icon/icon";
 import useMultipleInput from "../../hooks/useMultipleInput";
 
 const MultipleInput = ({ cardId }: { cardId: string }) => {
-  const { options, addOption, updateOption, removeOption } =
+  const { options, question, addOption, updateOption, removeOption } =
     useMultipleInput(cardId);
 
   return (
@@ -16,8 +16,13 @@ const MultipleInput = ({ cardId }: { cardId: string }) => {
           <div key={option.id}>
             <div className="flex items-center justify-between gap-2">
               <input
-                className={`candidate-question-input w-full ${!options[i].value ? "candidate-question-input-error" : ""}`}
+                className={`candidate-question-input w-full ${
+                  !options[i].value && !question.options?.[i]
+                    ? "candidate-question-input-error"
+                    : ""
+                }`}
                 placeholder={`Seçenek ${i + 1}`}
+                value={question.options?.[i] ?? ""}
                 onChange={(e) => updateOption(e.target.value, i)}
               />
 
@@ -31,8 +36,10 @@ const MultipleInput = ({ cardId }: { cardId: string }) => {
               )}
             </div>
 
-            {!options[i].value && (
-              <p className="text-[#D91B1B] text-sm mt-1 mb-2">bu alan boş bırakılamaz</p>
+            {!options[i].value && !question.options?.[i] && (
+              <p className="text-[#D91B1B] text-sm mt-1 mb-2">
+                bu alan boş bırakılamaz
+              </p>
             )}
           </div>
         ))}
