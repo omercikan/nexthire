@@ -20,11 +20,11 @@ interface QuestionCardProps {
 }
 
 const QuestionCard: FC<QuestionCardProps> = ({ index, cardId }) => {
-  const [selectAnswerType, setSelectAnswerType] = useState("Kısa Metin");
-  const [showAnswerList, setShowAnswerList] = useState(false);
   const question = useSelector((state: RootState) =>
     selectQuestionById(state, cardId),
   );
+  const [selectAnswerType, setSelectAnswerType] = useState(question.type ?? "Kısa Metin");
+  const [showAnswerList, setShowAnswerList] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
 
   return (
