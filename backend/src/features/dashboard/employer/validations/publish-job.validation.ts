@@ -2,6 +2,7 @@ import * as z from "zod";
 
 export const publishJobSchema = z.object({
   jobId: z.string().regex(/^[a-f\d]{24}$/i, "Invalid job ID"),
+  action: z.enum(["draft", "published", "closed"]),
 });
 
 export const createJobSchema = z

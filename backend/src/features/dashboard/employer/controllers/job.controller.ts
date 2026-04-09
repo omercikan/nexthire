@@ -5,10 +5,14 @@ import { connectRedis } from "../../../../config/redis";
 export class Job {
   async createJob(req: Request, res: Response, next: NextFunction) {
     const body = req.body;
-    const { jobId } = req.query;
+    const { jobId, action } = req.query;
 
     const employerFields =
       "profilePhoto companyName categories companySize _id city email phoneNumber website socialPlatforms foundedDate";
+
+    const sanitizedData = Object.fromEntries(
+      Object.entries(body).filter(([_, k]) => Boolean(k)),
+    );
 
     try {
       const redis = connectRedis.getClient();
@@ -28,7 +32,7 @@ export class Job {
 
         const updatedJob = await JobModel.findByIdAndUpdate(
           String(jobId),
-          { status: "published", publishedAt: Date.now() },
+          { ...sanitizedData, status: action, publishedAt: Date.now() },
           { new: true },
         )
           .populate("employer", employerFields)
@@ -42,10 +46,6 @@ export class Job {
 
         return res.status(200).json(updatedJob);
       }
-
-      const sanitizedData = Object.fromEntries(
-        Object.entries(body).filter(([_, k]) => Boolean(k)),
-      );
 
       const createdJob = await JobModel.create(sanitizedData);
       const populatedJob = await createdJob.populate(
