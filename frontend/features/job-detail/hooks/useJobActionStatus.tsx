@@ -30,6 +30,7 @@ const useJobActionStatus = () => {
     try {
       await publishJobMutation({
         data: { status: "published" },
+        action: "published",
         jobId: job._id,
       }).unwrap();
 
