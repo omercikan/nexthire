@@ -8,15 +8,14 @@ import {
 } from "../slice/candidateQuestionSlice";
 import useJobEditMode from "../../hooks/useJobEditMode";
 import { useEffect } from "react";
-import { AppDispatch, RootState } from "@/shared/redux/store";
+import { AppDispatch } from "@/shared/redux/store";
+import useJobEditData from "../../hooks/useJobEditData";
 
 const CandidateQuestion = () => {
   const screeningQuestions = useSelector(selectAllQuestions);
   const isEditMode = useJobEditMode();
   const dispatch = useDispatch<AppDispatch>();
-  const { editedJobData } = useSelector(
-    (state: RootState) => state.jobDataSlice,
-  );
+  const editedJobData = useJobEditData();
 
   useEffect(() => {
     if (isEditMode) {

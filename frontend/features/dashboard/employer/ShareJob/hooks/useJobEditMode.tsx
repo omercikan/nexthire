@@ -1,18 +1,15 @@
-import { RootState } from "@/shared/redux/store";
 import { useSearchParams } from "next/navigation";
-import { useSelector } from "react-redux";
+import useJobEditData from "./useJobEditData";
 
 const useJobEditMode = () => {
   const params = useSearchParams();
   const action = params.get("action");
   const jobId = params.get("jobId");
-  const { editedJobData } = useSelector(
-    (state: RootState) => state.jobDataSlice,
-  );
 
-  if (!editedJobData) return false;
+  const currentEditedData = useJobEditData();
+  if (!currentEditedData) return false;
 
-  if (action === "edit" && jobId) return true;
+  if (action === "edit" && jobId && currentEditedData.status === "draft") return true;
   else return false;
 };
 
