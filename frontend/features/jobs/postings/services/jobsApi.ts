@@ -1,6 +1,7 @@
 import { FilterData } from "@/shared/types/filtersJob";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { FilterJobQueryArgs } from "./jobsApi.types";
+import { JobData } from "@/shared/types/jobDetail";
 
 export const jobsApi = createApi({
   reducerPath: "jobsApi",
@@ -12,6 +13,14 @@ export const jobsApi = createApi({
       query: ({ page }) => ({
         method: "GET",
         url: `/?page=${page}`,
+      }),
+    }),
+
+    getJob: builder.query<{ job: JobData }, string>({
+      query: (jobId) => ({
+        method: "GET",
+        url: `/${jobId}`,
+        credentials: "include",
       }),
     }),
 
@@ -40,4 +49,5 @@ export const jobsApi = createApi({
   }),
 });
 
-export const { useGetJobsQuery, useLazyFilterJobQuery } = jobsApi;
+export const { useGetJobsQuery, useGetJobQuery, useLazyFilterJobQuery } =
+  jobsApi;
