@@ -7,9 +7,18 @@ export const jobApi = createApi({
     baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/employer`,
   }),
   endpoints: (builder) => ({
-    publishJob: builder.mutation<JobData, { data: Partial<JobData>; jobId?: string }>({
-      query: ({ data, jobId }) => ({
-        url: jobId ? `/publish-job?jobId=${jobId}` : "/publish-job",
+    publishJob: builder.mutation<
+      JobData,
+      {
+        data: Partial<JobData>;
+        jobId?: string;
+        action?: "draft" | "published" | "closed";
+      }
+    >({
+      query: ({ data, jobId, action }) => ({
+        url: jobId
+          ? `/publish-job?jobId=${jobId}&action=${action}`
+          : "/publish-job",
         method: "POST",
         body: data,
         credentials: "include",
