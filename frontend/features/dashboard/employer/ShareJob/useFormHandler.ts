@@ -14,17 +14,18 @@ import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { selectAllQuestions } from "./CandidateQuestion/slice/candidateQuestionSlice";
-import { RootState } from "@/shared/redux/store";
 import { ApplicationMethod } from "@/shared/types/jobDetail";
+import useJobEditMode from "./hooks/useJobEditMode";
+import useJobEditData from "./hooks/useJobEditData";
 
 const useFormHandler = () => {
   const [publishJob] = usePublishJobMutation();
   const { user } = useContext(AuthContext);
   const screeningQuestions = useSelector(selectAllQuestions);
-  const { editedJobData } = useSelector(
-    (state: RootState) => state.jobDataSlice,
-  );
   const params = useSearchParams();
+
+  const currentEditedData = useJobEditData();
+  const isEditMode = useJobEditMode();
 
   const methods = useForm<shareJobFormSchemaType>({
     defaultValues: SHARE_JOB_DEFAULT_VALUES,
@@ -44,44 +45,39 @@ const useFormHandler = () => {
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (isDirty) e.preventDefault();
+      if (isDirty && !currentEditedData) e.preventDefault();
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }, [isDirty]);
+  }, [isDirty, currentEditedData]);
 
   useEffect(() => {
-    const action = params.get("action");
-    const jobId = params.get("jobId");
-
-    if (!editedJobData) return;
-
-    if (action === "edit" && jobId) {
-      for (const data in editedJobData) {
+    if (isEditMode) {
+      for (const data in currentEditedData) {
         const editedData = data as formFields;
 
         if (data in SHARE_JOB_DEFAULT_VALUES) {
-          setValue(data as formFields, editedJobData[editedData], {
+          setValue(data as formFields, currentEditedData[editedData], {
             shouldDirty: true,
           });
         }
       }
 
-      if (editedJobData.applicationMethod) {
+      if (currentEditedData?.applicationMethod) {
         const methodMap: Record<string, string> = {
           NextHire: "NextHire üzerinden",
           external_link: "Kendi sitemiz üzerinden",
           email: "E-posta ile",
         };
 
-        const mappedValue = methodMap[editedJobData.applicationMethod];
+        const mappedValue = methodMap[currentEditedData.applicationMethod];
 
         if (mappedValue)
           setValue("applicationMethod", mappedValue, { shouldDirty: true });
       }
     }
-  }, [params, setValue, editedJobData]);
+  }, [params, setValue, isEditMode, currentEditedData]);
 
   const onSubmit: SubmitHandler<shareJobFormSchemaType> = async (values) => {
     function includesValue(value: string) {
@@ -96,6 +92,8 @@ const useFormHandler = () => {
           return question.characterLimit ? true : false;
         case "Çoklu Seçim":
           return question.options?.every((val) => val !== "");
+        case "Evet / Hayır":
+          return true;
         default:
           return false;
       }
@@ -116,7 +114,11 @@ const useFormHandler = () => {
 
     try {
       if (!questionValidations) return;
-      const res = await publishJob({ data }).unwrap();
+      const res = await publishJob({
+        data,
+        jobId: isEditMode ? (params.get("jobId") as string) : undefined,
+        action: "draft",
+      }).unwrap();
       if (res) {
         router.push(`/is-ilani/${res._id}`);
       }
