@@ -4,6 +4,7 @@ import { AuthContext } from "@/features/auth/authContext";
 import CandidateOverviewPage from "@/features/dashboard/candidate/OverviewPage/OverviewPage";
 import CandidateProfile from "@/features/dashboard/candidate/Profile/CandidateProfile";
 import CandidateResume from "@/features/dashboard/candidate/Resumes/components/Resume/CandidateResume";
+import EmployerOverview from "@/features/dashboard/employer/Overview/components/Overview";
 import EmployerProfile from "@/features/dashboard/employer/Profile/EmployerProfile";
 import EmployerShareJob from "@/features/dashboard/employer/ShareJob/ShareJob";
 import { usePathname } from "next/navigation";
@@ -22,6 +23,12 @@ const DashboardContent = () => {
       path: "/hesabim/genel-bakis",
       renderComponent: <CandidateOverviewPage />,
       role: "candidate",
+    },
+
+    {
+      path: "/hesabim/genel-bakis",
+      renderComponent: <EmployerOverview />,
+      role: "employer",
     },
 
     {
