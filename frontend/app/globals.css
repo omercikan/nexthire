@@ -572,3 +572,13 @@ html {
 .candidate-question-input-error {
   @apply border-[#D91B1B]! focus:ring-[#D91B1B]/25!;
 }
+
+/* Remove focus outline from Recharts elements */
+.recharts-wrapper,
+.recharts-wrapper *,
+.recharts-surface,
+.recharts-surface *,
+.recharts-layer,
+.recharts-sector {
+  outline: none !important;
+}
