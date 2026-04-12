@@ -2,6 +2,7 @@ import { useContext } from "react";
 import StatCard from "./StatCard/StatCard";
 import { AuthContext } from "@/features/auth/authContext";
 import AnalyticsCharts from "./Chart/AnalyticsCharts";
+import RecentActivity from "./RecentActivity/RecentActivity";
 
 const Overview = () => {
   const { user } = useContext(AuthContext);
@@ -16,6 +17,12 @@ const Overview = () => {
 
       <StatCard />
       <AnalyticsCharts />
+
+      <div className="grid lg:grid-cols-3 gap-6 mt-6">
+        <RecentActivity />
+
+        <div>Quick Actions</div>
+      </div>
     </div>
   );
 };
