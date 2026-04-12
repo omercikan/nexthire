@@ -56,7 +56,7 @@ const activityList = [
 
 const RecentActivity = () => {
   return (
-    <div className="bg-white p-6 shadow-lg rounded-2xl border border-[#e2e5e8] col-span-2">
+    <div className="bg-white p-6 shadow-lg rounded-2xl border border-[#e2e5e8] lg:col-span-2">
       <div className="max-[425px]:text-center">
         <h2 className="text-[#0f171f] font-semibold">Son Etkinlikler</h2>
         <p className="text-[#5b646f] text-sm mt-1">
