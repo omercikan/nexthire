@@ -1,9 +1,9 @@
-import { model, Schema } from "mongoose";
+import { InferSchemaType, model, Schema } from "mongoose";
 
 const ApplicationSchema = new Schema(
   {
-    candidateId: { type: Schema.Types.ObjectId, ref: "users", required: true },
-    employerId: { type: Schema.Types.ObjectId, ref: "users", required: true },
+    candidateId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    employerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     jobId: { type: Schema.Types.ObjectId, ref: "jobs", required: true },
     email: { type: String, required: true },
     phone: { type: String, required: true },
@@ -24,7 +24,15 @@ const ApplicationSchema = new Schema(
         {
           value: {
             type: String,
-            enum: ["pending", "reviewed", "accepted", "rejected"],
+            enum: [
+              "pending",
+              "reviewed",
+              "accepted",
+              "rejected",
+              "scheduled",
+              "interviewed",
+              "hired",
+            ],
           },
           changedAt: {
             type: Date,
@@ -39,3 +47,5 @@ const ApplicationSchema = new Schema(
 );
 
 export const Application = model("application", ApplicationSchema);
+
+export type IApplication = InferSchemaType<typeof ApplicationSchema>;
