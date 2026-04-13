@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { InferSchemaType, model, Schema } from "mongoose";
 
 const jobSchema = new Schema(
   {
@@ -48,6 +48,7 @@ const jobSchema = new Schema(
       enum: ["draft", "published", "closed"],
       default: "draft",
     },
+    views: { type: Number, default: 0 },
     publishedAt: { type: Date, default: null },
     expiresAt: {
       type: Date,
@@ -82,3 +83,5 @@ jobSchema.index({ status: 1, createdAt: -1 });
 jobSchema.index({ employerId: 1 });
 
 export const Job = model("jobs", jobSchema);
+
+export type IJob = InferSchemaType<typeof jobSchema>;
