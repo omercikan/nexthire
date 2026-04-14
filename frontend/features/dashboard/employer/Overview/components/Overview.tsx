@@ -4,10 +4,12 @@ import { AuthContext } from "@/features/auth/authContext";
 import AnalyticsCharts from "./Chart/AnalyticsCharts";
 import RecentActivity from "./RecentActivity/RecentActivity";
 import QuickActions from "./QuickActions/QuickActions";
+import useEmployerOverview from "../hooks/useEmployerOverview";
 
 const Overview = () => {
   const { user } = useContext(AuthContext);
   const firstName = user?.fullname.split(" ")[0];
+  const { stats, isLoading } = useEmployerOverview();
 
   return (
     <div>
@@ -16,7 +18,7 @@ const Overview = () => {
         durum.
       </p>
 
-      <StatCard />
+      <StatCard stats={stats} isLoading={isLoading} />
       <AnalyticsCharts />
 
       <div className="grid lg:grid-cols-3 gap-6 mt-6">
