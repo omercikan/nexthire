@@ -26,7 +26,7 @@ const StatCardItem: React.FC<StatCardItemProps> = (props) => {
 
   return (
     <div className="flex-1 max-sm:text-center border border-[#e2e5e8] bg-white shadow-lg rounded-2xl py-6 px-5">
-      <div className="flex justify-between items-center">
+      <div className="flex max-sm:flex-col-reverse max-sm:gap-y-2 justify-between items-center">
         <div className="bg-[#E6F1FB] p-2.5 rounded-xl w-max max-sm:mx-auto">
           <Icon color="0073d5" size={20} />
         </div>
@@ -34,7 +34,7 @@ const StatCardItem: React.FC<StatCardItemProps> = (props) => {
         {!isLoading ? (
           <div
             className={cn(
-              "flex items-center gap-1 font-medium text-xs",
+              "flex items-center gap-1 font-medium text-xs max-sm:self-end",
               isPositiveDelta ? "text-[#5bb661]" : "text-[#cc272e]",
             )}
           >
@@ -47,7 +47,7 @@ const StatCardItem: React.FC<StatCardItemProps> = (props) => {
             {delta.toString().replace("-", "")}
           </div>
         ) : (
-          <div className="animate-pulse rounded-md bg-gray-300 w-10 h-5" />
+          <div className="animate-pulse rounded-md max-sm:self-end bg-gray-300 w-10 h-5" />
         )}
       </div>
 
@@ -55,7 +55,7 @@ const StatCardItem: React.FC<StatCardItemProps> = (props) => {
         {!isLoading ? (
           <p className="text-[#0f171f] text-2xl font-bold">{dataText}</p>
         ) : (
-          <p className="animate-pulse rounded-md bg-gray-300 w-7 h-7" />
+          <p className="animate-pulse max-sm:mx-auto rounded-md bg-gray-300 w-7 h-7" />
         )}
         <p className="text-[#5b646f] text-sm mt-1 whitespace-nowrap">
           {dataDescription}
