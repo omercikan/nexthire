@@ -34,6 +34,7 @@ import { chatData } from "@/features/chat/slice/chatData-slice";
 import optionMenuReducer from "@/features/chat/components/OptionsMenu/slice/optionMenuSlice";
 import candidateQuestionReducer from "@/features/dashboard/employer/ShareJob/CandidateQuestion/slice/candidateQuestionSlice";
 import { modalControlSlice } from "@/features/job-detail/components/applicationModal/slices/modalControlSlice";
+import { overviewApi } from "@/features/dashboard/employer/Overview/service/overview-api";
 
 export const store = configureStore({
   reducer: {
@@ -71,6 +72,7 @@ export const store = configureStore({
     [jobApi.reducerPath]: jobApi.reducer,
     [jobsApi.reducerPath]: jobsApi.reducer,
     [EmployerProfileAPI.reducerPath]: EmployerProfileAPI.reducer,
+    [overviewApi.reducerPath]: overviewApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -89,6 +91,7 @@ export const store = configureStore({
       jobApi.middleware,
       jobsApi.middleware,
       EmployerProfileAPI.middleware,
+      overviewApi.middleware,
     ]),
 });
 
