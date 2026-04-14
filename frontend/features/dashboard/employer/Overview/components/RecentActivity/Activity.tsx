@@ -1,5 +1,6 @@
 import { formatApplyTime } from "@/shared/utils/formatApplyTime";
 import { ActivityStatus } from "./types";
+import { StatusLabels } from "@/shared/utils/job-status";
 
 function Avatar({ fullname }: { fullname: string }) {
   const splitName = fullname.split(" ");
@@ -14,25 +15,27 @@ function Avatar({ fullname }: { fullname: string }) {
 
 function FullName({ fullname }: { fullname: string }) {
   return (
-    <strong className="font-medium text-sm text-[#0f171f] whitespace-nowrap text-ellipsis overflow-hidden">{fullname}</strong>
+    <strong className="font-medium text-sm text-[#0f171f] whitespace-nowrap text-ellipsis overflow-hidden">
+      {fullname}
+    </strong>
   );
 }
 
 function Badge({ status }: { status: ActivityStatus }) {
   const statusStyles: Record<ActivityStatus, string> = {
-    "Başvurdu": "bg-blue-500/10 text-blue-400",
-    "İncelendi": "bg-yellow-500/10 text-yellow-400",
-    "Kısa Listeye Alındı": "bg-purple-500/10 text-purple-400",
-    "Mülakat Planlandı": "bg-orange-500/10 text-orange-400",
-    "Mülakat Yapıldı": "bg-cyan-500/10 text-cyan-400",
-    "İşe Alındı": "bg-green-500/10 text-green-400",
-    "Reddedildi": "bg-red-500/10 text-red-400",
+    pending: "bg-blue-500/10 text-blue-400",
+    reviewed: "bg-yellow-500/10 text-yellow-400",
+    shortlisted: "bg-purple-500/10 text-purple-400",
+    scheduled: "bg-orange-500/10 text-orange-400",
+    interviewed: "bg-cyan-500/10 text-cyan-400",
+    hired: "bg-green-500/10 text-green-400",
+    rejected: "bg-red-500/10 text-red-400",
   };
   return (
     <span
       className={`px-2 py-0.5 rounded-full font-medium text-xs whitespace-nowrap text-ellipsis overflow-hidden w-max ${statusStyles[status]}`}
     >
-      {status}
+      {StatusLabels[status]}
     </span>
   );
 }
@@ -45,10 +48,12 @@ function ActivityItem({ children }: { children: React.ReactNode }) {
   return <div>{children}</div>;
 }
 
-function ActivityTime({ time }: { time: number }) {
+function ActivityTime({ time }: { time: Date }) {
   return (
     <div>
-      <span className="text-[#5b646f] text-xs whitespace-nowrap text-ellipsis overflow-hidden">{formatApplyTime(time)}</span>
+      <span className="text-[#5b646f] text-xs whitespace-nowrap text-ellipsis overflow-hidden">
+        {formatApplyTime(time)}
+      </span>
     </div>
   );
 }
