@@ -9,7 +9,8 @@ import useEmployerOverview from "../hooks/useEmployerOverview";
 const Overview = () => {
   const { user } = useContext(AuthContext);
   const firstName = user?.fullname.split(" ")[0];
-  const { stats, isLoading } = useEmployerOverview();
+  const { stats, applicantTrends, jobPerformance, isLoading } =
+    useEmployerOverview();
 
   return (
     <div>
@@ -19,7 +20,10 @@ const Overview = () => {
       </p>
 
       <StatCard stats={stats} isLoading={isLoading} />
-      <AnalyticsCharts />
+      <AnalyticsCharts
+        applicantTrendsData={applicantTrends}
+        jobPerformanceData={jobPerformance}
+      />
 
       <div className="grid lg:grid-cols-3 gap-6 mt-6">
         <RecentActivity />

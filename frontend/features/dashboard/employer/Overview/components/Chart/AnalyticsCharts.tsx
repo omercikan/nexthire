@@ -1,25 +1,15 @@
 import { AreaChart, Area, BarChart, Bar } from "recharts";
 import Chart from "./Chart";
 
-const applicantTrendsData = [
-  { month: "Oca", applications: 650 },
-  { month: "Şub", applications: 780 },
-  { month: "Mar", applications: 920 },
-  { month: "Nis", applications: 1020 },
-  { month: "May", applications: 1100 },
-  { month: "Haz", applications: 1270 },
-];
+interface AnalyticsChartsProps {
+  applicantTrendsData: { month: string; applications: number }[];
+  jobPerformanceData: { job: string; views: number; applications: number }[];
+}
 
-const jobPerformanceData = [
-  { job: "Frontend Dev", views: 1240, applications: 89 },
-  { job: "UX Designer", views: 980, applications: 67 },
-  { job: "Product Mgr", views: 856, applications: 52 },
-  { job: "Data Analyst", views: 720, applications: 41 },
-  { job: "DevOps Eng", views: 650, applications: 38 },
-  { job: "SecOps", views: 650, applications: 383 },
-];
-
-const AnalyticsCharts = () => {
+const AnalyticsCharts = ({
+  jobPerformanceData,
+  applicantTrendsData,
+}: AnalyticsChartsProps) => {
   return (
     <div className="grid grid-cols-2 max-[992px]:grid-cols-1! gap-6">
       <Chart
