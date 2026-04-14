@@ -53,16 +53,19 @@ export class OverviewController {
         scheduledInterviewsData - lastWeekScheduledInterviews;
 
       return res.json({
-        totalJobs: totalJobsData,
-        totalJobsDelta,
-        activeJobs: activeJobsData,
-        activeListingsDelta,
-        totalApplications: totalApplicationsData,
-        thisMonthApplications,
-        newApplicants: newApplicantsData,
-        newApplicantsDelta,
-        scheduledInterviews: scheduledInterviewsData,
-        scheduledInterviewsDelta,
+        stats: {
+          totalJobs: totalJobsData,
+          totalJobsDelta,
+          activeJobs: activeJobsData,
+          activeListingsDelta,
+          totalApplications: totalApplicationsData,
+          thisMonthApplications,
+          newApplicants: newApplicantsData,
+          newApplicantsDelta,
+          scheduledInterviews: scheduledInterviewsData,
+          scheduledInterviewsDelta,
+        },
+
         applicantTrends,
         jobPerformance,
         recentActivity: formattedRecentActivity,
