@@ -2,6 +2,14 @@
 
 :root {
   --primary-color: #4045ef;
+  --foreground: oklch(0.145 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+}
+
+@theme {
+  --color-primary: var(--primary-color);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
 }
 
 img {
