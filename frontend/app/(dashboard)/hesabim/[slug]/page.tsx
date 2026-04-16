@@ -4,6 +4,7 @@ import { AuthContext } from "@/features/auth/authContext";
 import CandidateOverviewPage from "@/features/dashboard/candidate/OverviewPage/OverviewPage";
 import CandidateProfile from "@/features/dashboard/candidate/Profile/CandidateProfile";
 import CandidateResume from "@/features/dashboard/candidate/Resumes/components/Resume/CandidateResume";
+import EmployerJobsPanel from "@/features/dashboard/employer/Jobs/EmployerJobsPanel";
 import EmployerOverview from "@/features/dashboard/employer/Overview/components/Overview";
 import EmployerProfile from "@/features/dashboard/employer/Profile/EmployerProfile";
 import EmployerShareJob from "@/features/dashboard/employer/ShareJob/ShareJob";
@@ -52,6 +53,12 @@ const DashboardContent = () => {
     {
       path: "/hesabim/is-paylas",
       renderComponent: <EmployerShareJob />,
+      role: "employer",
+    },
+
+    {
+      path: "/hesabim/islerim",
+      renderComponent: <EmployerJobsPanel />,
       role: "employer",
     },
   ];
