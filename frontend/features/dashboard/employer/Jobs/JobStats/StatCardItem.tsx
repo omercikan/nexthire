@@ -8,7 +8,7 @@ interface StatCardItemProps {
 
 const StatCardItem = ({ label, value, className }: StatCardItemProps) => {
   return (
-    <div className="py-3 px-4 rounded-lg bg-white border border-border flex-1">
+    <div className="py-3 px-4 rounded-lg bg-white border border-border flex-1 max-sm:text-center">
       <p className="text-xs font-medium uppercase text-muted-foreground">
         {label}
       </p>
