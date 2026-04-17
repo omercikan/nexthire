@@ -3,7 +3,7 @@ import JobStatCards from "./JobStats/JobStatCards";
 
 const EmployerJobsPanel = () => {
   return (
-    <main className="container">
+    <main className="lg:container">
       <JobListingsHeader />
       <JobStatCards />
     </main>
