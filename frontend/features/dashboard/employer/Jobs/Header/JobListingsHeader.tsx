@@ -6,7 +6,7 @@ const JobListingsHeader = () => {
   const router = useRouter();
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex max-sm:flex-col max-sm:gap-5 sm:items-center sm:justify-between">
       <div>
         <h1 className="text-2xl font-bold text-foreground">İş İlanları</h1>
         <p className="mt-1 text-sm text-muted-foreground">
@@ -15,7 +15,7 @@ const JobListingsHeader = () => {
       </div>
 
       <CustomButton
-        className="inline-flex items-center gap-2 px-4! rounded-lg! font-medium text-sm"
+        className="inline-flex items-center gap-2 px-4! rounded-lg! font-medium text-sm max-sm:justify-center"
         handleClick={() => router.push("/hesabim/is-paylas")}
       >
         <LuPlus />
