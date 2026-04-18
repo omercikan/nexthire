@@ -15,12 +15,15 @@ const CustomInput = ({
 }: CustomInputProps) => {
   return (
     <div className={`w-full ${wrapperClass}`}>
-      <label
-        htmlFor={props.name}
-        className={`block mb-1.5 ${labelClass ?? ""}`}
-      >
-        {label}
-      </label>
+      {label && (
+        <label
+          htmlFor={props.name}
+          className={`block mb-1.5 ${labelClass ?? ""}`}
+        >
+          {label}
+        </label>
+      )}
+
       <div className="relative">
         <span
           className={`auth-input__span left-3 ${
