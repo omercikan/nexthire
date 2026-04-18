@@ -14,7 +14,7 @@ function FilterMenuWrapper({
 }: React.ComponentProps<"div">) {
   return (
     <div
-      className={cn("relative", className)}
+      className={cn("relative max-sm:w-full", className)}
       {...props}
       onClick={(e) => e.stopPropagation()}
     />
@@ -125,7 +125,7 @@ const JobFilterSelect = () => {
   }, []);
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 max-sm:mt-4">
       <FilterMenu
         className="w-32.5"
         options={[
