@@ -35,6 +35,7 @@ import optionMenuReducer from "@/features/chat/components/OptionsMenu/slice/opti
 import candidateQuestionReducer from "@/features/dashboard/employer/ShareJob/CandidateQuestion/slice/candidateQuestionSlice";
 import { modalControlSlice } from "@/features/job-detail/components/applicationModal/slices/modalControlSlice";
 import { overviewApi } from "@/features/dashboard/employer/Overview/service/overview-api";
+import { jobFiltersSlice } from "@/features/dashboard/employer/Jobs/JobFilters/jobListFiltersSlice";
 
 export const store = configureStore({
   reducer: {
@@ -58,6 +59,7 @@ export const store = configureStore({
     optionMenuSlice: optionMenuReducer,
     candidateQuestionSlice: candidateQuestionReducer,
     modalControlSlice: modalControlSlice.reducer,
+    jobListFilters: jobFiltersSlice.reducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [favoritesApi.reducerPath]: favoritesApi.reducer,
