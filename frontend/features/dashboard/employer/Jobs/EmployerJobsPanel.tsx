@@ -1,4 +1,5 @@
 import JobListingsHeader from "./Header/JobListingsHeader";
+import JobFilters from "./JobFilters/JobFilters";
 import JobStatCards from "./JobStats/JobStatCards";
 
 const EmployerJobsPanel = () => {
@@ -6,6 +7,7 @@ const EmployerJobsPanel = () => {
     <main className="lg:container">
       <JobListingsHeader />
       <JobStatCards />
+      <JobFilters />
     </main>
   );
 };
