@@ -10,11 +10,13 @@ const CustomButton = ({
   circularColor,
   handleClick,
   children,
+  ref,
 }: CustomButtonProps) => {
   return (
     <button
       type={type}
       disabled={isSubmitting}
+      ref={ref}
       className={`custom__button ${className ? className : ""}`}
       onClick={(e) => {
         e.stopPropagation();

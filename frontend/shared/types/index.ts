@@ -1,4 +1,4 @@
-import { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
+import { ChangeEvent, InputHTMLAttributes, ReactNode, RefObject } from "react";
 
 //! General properties interface of the layout component !//
 export interface LayoutComponentProps {
@@ -63,6 +63,7 @@ export interface CustomButtonProps {
   circularColor?: string;
   handleClick?: React.MouseEventHandler<HTMLButtonElement>;
   children?: ReactNode;
+  ref?: RefObject<HTMLButtonElement | null>;
 }
 
 //! Success component properties interface for reset email page !//
