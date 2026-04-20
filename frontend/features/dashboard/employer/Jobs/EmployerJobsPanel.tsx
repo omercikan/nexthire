@@ -1,5 +1,6 @@
 import JobListingsHeader from "./Header/JobListingsHeader";
 import JobFilters from "./JobFilters/JobFilters";
+import JobList from "./JobList/JobList";
 import JobStatCards from "./JobStats/JobStatCards";
 
 const EmployerJobsPanel = () => {
@@ -8,6 +9,7 @@ const EmployerJobsPanel = () => {
       <JobListingsHeader />
       <JobStatCards />
       <JobFilters />
+      <JobList />
     </main>
   );
 };
