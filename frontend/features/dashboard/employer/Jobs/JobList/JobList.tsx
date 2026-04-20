@@ -1,4 +1,6 @@
+import { cn } from "@/shared/libs/utils";
 import JobIListItem from "./JobListItem";
+import NoneJobContent from "./NoneJobContent";
 
 const mockJobs = [
   {
@@ -95,13 +97,22 @@ const JobList = () => {
   return (
     <div className="mt-6">
       <div>
-        <p className="text-muted-foreground text-sm">8 sonuç gösteriliyor</p>
+        <p className="text-muted-foreground text-sm">
+          {mockJobs.length} sonuç gösteriliyor
+        </p>
       </div>
 
-      <div className="mt-4 grid gap-4 md:grid-cols-2">
-        {mockJobs.map((job) => (
-          <JobIListItem key={job._id} job={job} />
-        ))}
+      <div
+        className={cn(
+          "mt-4 grid gap-4",
+          mockJobs.length ? "md:grid-cols-2" : "grid-cols-1",
+        )}
+      >
+        {mockJobs.length ? (
+          mockJobs.map((job) => <JobIListItem key={job._id} job={job} />)
+        ) : (
+          <NoneJobContent />
+        )}
       </div>
     </div>
   );
