@@ -13,8 +13,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { setMenuId, setMenuPosition } from "./JobListMenuSlice";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRef } from "react";
+import { MouseEventHandler, useRef } from "react";
 import useClickOutside from "@/shared/hooks/useClickOutside";
+import useJobActions from "./useJobActions";
 
 function Divider() {
   return <div className="border border-border my-1 -mx-1" />;
@@ -65,10 +66,12 @@ function MenuItem({
   icon: Icon,
   text,
   className,
+  onClick,
 }: {
   icon: IconType;
   text: string;
   className?: string;
+  onClick?: MouseEventHandler<HTMLLIElement>;
 }) {
   return (
     <li
@@ -76,6 +79,7 @@ function MenuItem({
         "flex items-center gap-2 px-2 py-1.5 text-sm text-foreground hover:bg-[#edf2f8] rounded-md whitespace-nowrap cursor-pointer",
         className,
       )}
+      onClick={onClick}
     >
       <Icon />
       {text}
@@ -95,6 +99,7 @@ const JobListItemMenu = ({
   );
   const menuRef = useRef<HTMLDivElement | null>(null);
   const dispatch = useDispatch<AppDispatch>();
+  const { handleViewApplications } = useJobActions(jobId);
 
   useClickOutside(menuRef, () => {
     if (openMenuId !== jobId) return;
@@ -128,7 +133,11 @@ const JobListItemMenu = ({
               menuPostion === "top" ? "bottom-full mb-1" : "mt-1",
             )}
           >
-            <MenuItem icon={LuUserSearch} text="Başvuruları Gör" />
+            <MenuItem
+              icon={LuUserSearch}
+              text="Başvuruları Gör"
+              onClick={handleViewApplications}
+            />
             <Divider />
 
             <MenuItem icon={LuPencil} text="Düzenle" />
