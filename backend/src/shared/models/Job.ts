@@ -45,7 +45,7 @@ const jobSchema = new Schema(
     ],
     status: {
       type: String,
-      enum: ["draft", "published", "closed"],
+      enum: ["draft", "published", "passive"],
       default: "draft",
     },
     views: { type: Number, default: 0 },
