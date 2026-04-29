@@ -49,6 +49,7 @@ const UserSchema = new Schema(
     IntroductionVideoURL: String,
     companyAbout: String,
     categories: [{ type: String }],
+    department: String,
 
     // Common areas
     personalDataConsent: {
