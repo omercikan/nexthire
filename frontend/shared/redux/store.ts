@@ -37,6 +37,7 @@ import { modalControlSlice } from "@/features/job-detail/components/applicationM
 import { overviewApi } from "@/features/dashboard/employer/Overview/service/overview-api";
 import { jobFiltersSlice } from "@/features/dashboard/employer/Jobs/JobFilters/jobListFiltersSlice";
 import { jobListMenuSlice } from "@/features/dashboard/employer/Jobs/JobList/JobListMenuSlice";
+import { employerJobsApi } from "@/features/dashboard/employer/Jobs/services/employerJobsApi";
 
 export const store = configureStore({
   reducer: {
@@ -77,6 +78,7 @@ export const store = configureStore({
     [jobsApi.reducerPath]: jobsApi.reducer,
     [EmployerProfileAPI.reducerPath]: EmployerProfileAPI.reducer,
     [overviewApi.reducerPath]: overviewApi.reducer,
+    [employerJobsApi.reducerPath]: employerJobsApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -96,6 +98,7 @@ export const store = configureStore({
       jobsApi.middleware,
       EmployerProfileAPI.middleware,
       overviewApi.middleware,
+      employerJobsApi.middleware,
     ]),
 });
 
