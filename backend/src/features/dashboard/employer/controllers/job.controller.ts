@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { Job as JobModel } from "../../../../shared/models/Job";
 import { connectRedis } from "../../../../config/redis";
+import { jobService } from "../services/job.service";
 
 export class Job {
   async createJob(req: Request, res: Response, next: NextFunction) {
@@ -60,6 +61,22 @@ export class Job {
       );
 
       return res.status(201).json(populatedJob);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getEmployerJobs(req: Request, res: Response, next: NextFunction) {
+    const { page = 1 } = req.query;
+    const employerId = req.user.id;
+
+    try {
+      const [jobs, stats] = await Promise.all([
+        jobService.getEmployerJobs(employerId, Number(page)),
+        jobService.getEmployerStats(employerId),
+      ]);
+
+      return res.json({ jobs, stats });
     } catch (error) {
       next(error);
     }
