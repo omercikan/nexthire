@@ -7,10 +7,11 @@ import {
 } from "../validations/publish-job.validation";
 import { roleMiddleware } from "../../../../shared/middlewares/role";
 import { authMiddleware } from "../../../../shared/middlewares/auth";
+import z from "zod";
 
 const router = express.Router();
 
-const { createJob } = new Job();
+const { createJob, getEmployerJobs } = new Job();
 
 router.post(
   "/publish-job",
@@ -24,6 +25,22 @@ router.post(
     return validateRequest(schema, target)(req, res, next);
   },
   createJob,
+);
+
+router.get(
+  "/jobs/employer",
+  authMiddleware,
+  roleMiddleware("employer"),
+  validateRequest(
+    z.object({
+      page: z
+        .string()
+        .refine((val) => Number(val) > 0, "page must be greater than 0")
+        .default("1"),
+    }),
+    "query",
+  ),
+  getEmployerJobs,
 );
 
 export default router;
