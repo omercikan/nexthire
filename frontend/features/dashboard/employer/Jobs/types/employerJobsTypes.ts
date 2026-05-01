@@ -3,10 +3,11 @@ export interface JobSummary {
   jobTitle: string;
   category: string;
   workType: string;
-  status: string;
+  status: "draft" | "published" | "passive";
   createdAt: Date;
   location: string;
   applicants: number;
+  department: string;
 }
 
 export interface JobStats {
