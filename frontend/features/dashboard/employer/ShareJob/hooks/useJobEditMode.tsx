@@ -9,7 +9,7 @@ const useJobEditMode = () => {
   const currentEditedData = useJobEditData();
   if (!currentEditedData) return false;
 
-  if (action === "edit" && jobId && currentEditedData.status === "draft") return true;
+  if (action === "edit" && jobId) return true;
   else return false;
 };
 
