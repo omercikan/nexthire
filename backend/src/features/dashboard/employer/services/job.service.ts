@@ -21,18 +21,11 @@ export class JobService {
       { $skip: skip },
       { $limit: limit },
       {
-        $project: {
-          _id: 1,
-          jobTitle: 1,
-          category: 1,
-          department: 1,
-          location: "$jobLocation",
-          workType: 1,
+        $addFields: {
           applicants: { $size: "$applications" },
-          status: 1,
-          createdAt: 1,
         },
       },
+      { $project: { applications: 0 } },
     ]);
   }
 
