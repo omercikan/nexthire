@@ -76,7 +76,7 @@ export class Job {
         jobService.getEmployerStats(employerId),
       ]);
 
-      return res.json({ jobs, stats });
+      return res.json({ jobs, stats, totalPages: Math.ceil(stats.total / 10) });
     } catch (error) {
       next(error);
     }
