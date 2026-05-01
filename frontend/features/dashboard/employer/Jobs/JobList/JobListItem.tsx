@@ -4,18 +4,7 @@ import { IconType } from "react-icons/lib";
 import { LuBuilding2, LuMapPin, LuUsers, LuCalendar } from "react-icons/lu";
 import { statusMap, workTypeMap } from "./jobListingMaps";
 import JobListItemMenu from "./JobListItemMenu";
-
-interface JobIListItemProps {
-  _id: string;
-  jobTitle: string;
-  department: string;
-  location: string;
-  workType: string;
-  category: string;
-  applicants: number;
-  createdAt: Date;
-  status: "draft" | "published" | "passive";
-}
+import { Job } from "../types/employerJobsTypes";
 
 function JobHeading({
   jobTitle,
@@ -109,7 +98,7 @@ function JobStatItem({
   );
 }
 
-const JobIListItem = ({ job }: { job: JobIListItemProps }) => {
+const JobIListItem = ({ job }: { job: Job }) => {
   const splitWorkType = job.workType.split(" ");
   const findWorkTypeMap =
     splitWorkType.length > 1
@@ -121,10 +110,10 @@ const JobIListItem = ({ job }: { job: JobIListItemProps }) => {
       <div className="flex justify-between">
         <div>
           <JobHeading jobTitle={job.jobTitle} status={job.status} />
-          <JobMeta department={job.department} location={job.location} />
+          <JobMeta department={job.department} location={job.jobLocation} />
         </div>
 
-        <JobListItemMenu jobStatus={job.status} jobId={job._id} />
+        <JobListItemMenu jobStatus={job.status} job={job} />
       </div>
 
       <div className="flex flex-wrap gap-2 mt-4">
