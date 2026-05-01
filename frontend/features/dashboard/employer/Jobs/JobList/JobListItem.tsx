@@ -65,9 +65,13 @@ function JobMeta({
 }) {
   return (
     <div className="flex items-center gap-1.5 mt-2.5">
-      <JobMetaLabel icon={LuBuilding2} label={department} />
-      <span className="mx-1 text-[#d1d5db]">/</span>
-      <JobMetaLabel icon={LuMapPin} label={location} />
+      {!!department && <JobMetaLabel icon={LuBuilding2} label={department} />}
+
+      {!!department && !!location && (
+        <span className="mx-1 text-[#d1d5db]">/</span>
+      )}
+
+      {!!location && <JobMetaLabel icon={LuMapPin} label={location} />}
     </div>
   );
 }
