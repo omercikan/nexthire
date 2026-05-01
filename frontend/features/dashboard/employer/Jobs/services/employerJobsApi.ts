@@ -12,6 +12,7 @@ export const employerJobsApi = createApi({
       {
         jobs: JobSummary[];
         stats: JobStats | null;
+        totalPages: number;
       },
       { page: string }
     >({
