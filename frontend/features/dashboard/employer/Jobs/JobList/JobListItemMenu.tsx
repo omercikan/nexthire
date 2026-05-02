@@ -16,6 +16,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { MouseEventHandler, useRef } from "react";
 import useClickOutside from "@/shared/hooks/useClickOutside";
 import useJobActions from "./useJobActions";
+import { Job } from "../types/employerJobsTypes";
+import useApplicationAction from "../JobApplicationsDrawer/hooks/useApplicationAction";
 
 function Divider() {
   return <div className="border border-border my-1 -mx-1" />;
@@ -89,20 +91,22 @@ function MenuItem({
 
 const JobListItemMenu = ({
   jobStatus,
-  jobId,
+  job,
 }: {
   jobStatus: string;
-  jobId: string;
+  job: Job;
 }) => {
   const { openMenuId, menuPostion } = useSelector(
     (state: RootState) => state.jobListMenu,
   );
   const menuRef = useRef<HTMLDivElement | null>(null);
   const dispatch = useDispatch<AppDispatch>();
-  const { handleViewApplications } = useJobActions(jobId);
+
+  const { handleViewApplications } = useJobActions(job?._id);
+  const { handleEditJob } = useApplicationAction();
 
   useClickOutside(menuRef, () => {
-    if (openMenuId !== jobId) return;
+    if (openMenuId !== job?._id) return;
     dispatch(setMenuId(""));
     document.body.style.overflow = "visible";
   });
@@ -110,14 +114,14 @@ const JobListItemMenu = ({
   return (
     <div
       className={cn(
-        "invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all relative",
-        openMenuId === jobId && "visible opacity-100",
+        "invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all relative z-1",
+        openMenuId === job?._id && "visible opacity-100",
       )}
       ref={menuRef}
     >
-      <MenuButton jobId={jobId} openMenuId={openMenuId} />
+      <MenuButton jobId={job?._id} openMenuId={openMenuId} />
 
-      {openMenuId === jobId && (
+      {openMenuId === job?._id && (
         <AnimatePresence mode="wait">
           <motion.ul
             initial={{
@@ -140,7 +144,11 @@ const JobListItemMenu = ({
             />
             <Divider />
 
-            <MenuItem icon={LuPencil} text="Düzenle" />
+            <MenuItem
+              icon={LuPencil}
+              text="Düzenle"
+              onClick={() => handleEditJob(job)}
+            />
             <MenuItem
               icon={LuTrash2}
               text="Sil"
