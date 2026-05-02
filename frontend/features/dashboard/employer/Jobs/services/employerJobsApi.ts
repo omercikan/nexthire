@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { JobStats, JobSummary } from "../types/employerJobsTypes";
+import { JobStats, Job } from "../types/employerJobsTypes";
 
 export const employerJobsApi = createApi({
   reducerPath: "employerJobsApi",
@@ -10,7 +10,7 @@ export const employerJobsApi = createApi({
   endpoints: (builder) => ({
     getEmployerJobs: builder.query<
       {
-        jobs: JobSummary[];
+        jobs: Job[];
         stats: JobStats | null;
         totalPages: number;
       },
