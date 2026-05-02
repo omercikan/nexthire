@@ -130,7 +130,7 @@ const JobFilterSelect = () => {
         className="w-32.5"
         options={[
           { label: "Tüm Durumlar", value: "all" },
-          { label: "Aktif", value: "active" },
+          { label: "Aktif", value: "published" },
           { label: "Pasif", value: "passive" },
           { label: "Taslak", value: "draft" },
         ]}
