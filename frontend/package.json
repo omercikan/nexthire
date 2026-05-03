@@ -22,7 +22,7 @@
     "@reduxjs/toolkit": "^2.6.1",
     "@types/lodash": "^4.17.23",
     "@uiw/react-md-editor": "^4.0.11",
-    "axios": "^1.13.5",
+    "axios": "^1.15.0",
     "dayjs": "^1.11.13",
     "emoji-picker-react": "^4.18.0",
     "firebase": "^11.6.0",
