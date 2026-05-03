@@ -1,6 +1,12 @@
 <p align="center">
- <img width="355" height="112" alt="NextHire (3)-Photoroom" src="https://github.com/user-attachments/assets/81cc2882-ff3a-445e-8084-d82e34f55f9f" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/48bcaf97-1ebe-4050-ac4f-706d699a3ba8" />
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/138ff2fa-f7f9-4b0e-90c5-4d058890cea2" />
+    <img width="350" alt="NextHire Logo" src="https://github.com/user-attachments/assets/2bffa3ca-69b6-4375-9211-9da097f70f5a" />
+  </picture>
 </p>
+
+---
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License"/></a>
