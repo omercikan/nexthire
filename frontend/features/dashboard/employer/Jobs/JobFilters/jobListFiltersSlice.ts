@@ -29,7 +29,11 @@ export const jobFiltersSlice = createSlice({
     ) => {
       Object.assign(state.filters, action.payload);
     },
+
+    clearFilters: (state) => {
+      state.filters = initialState.filters;
+    },
   },
 });
 
-export const { setFilters } = jobFiltersSlice.actions;
+export const { setFilters, clearFilters } = jobFiltersSlice.actions;
