@@ -1,11 +1,14 @@
 import CustomInput from "@/shared/components/ui/CustomInput";
-import { AppDispatch } from "@/shared/redux/store";
+import { AppDispatch, RootState } from "@/shared/redux/store";
 import { LuSearch } from "react-icons/lu";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setFilters } from "./jobListFiltersSlice";
 
 const JobSearchInput = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const { searchTerm } = useSelector(
+    (state: RootState) => state.jobListFilters.filters,
+  );
 
   return (
     <CustomInput
@@ -14,6 +17,7 @@ const JobSearchInput = () => {
       placeholder="Pozisyon, departman veya lokasyon ara..."
       wrapperClass="flex-1"
       onChange={(e) => dispatch(setFilters({ searchTerm: e.target.value }))}
+      value={searchTerm}
     />
   );
 };
