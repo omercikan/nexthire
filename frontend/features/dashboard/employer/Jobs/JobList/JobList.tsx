@@ -6,7 +6,8 @@ import JobListPagination from "./JobListPagination";
 import JobCardSkeleton from "./JobCardSkeleton";
 
 const JobList = () => {
-  const { isLoading, jobs, totalPages, page } = useEmployerJobsData();
+  const { isLoading, jobs, totalPages, page, isFiltered } =
+    useEmployerJobsData();
 
   return (
     <div className="mt-6">
@@ -33,7 +34,7 @@ const JobList = () => {
             {jobs.length ? (
               jobs.map((job) => <JobIListItem key={job._id} job={job} />)
             ) : (
-              <NoneJobContent />
+              <NoneJobContent isFiltered={isFiltered} />
             )}
           </div>
 
