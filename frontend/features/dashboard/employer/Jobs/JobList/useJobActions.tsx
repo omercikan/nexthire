@@ -1,7 +1,12 @@
 import { AppDispatch } from "@/shared/redux/store";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { setMenuId } from "./JobListMenuSlice";
+import { setDeleteModal, setMenuId } from "./JobListMenuSlice";
+
+interface DeleteModalValues {
+  open: boolean;
+  jobId: string | null;
+}
 
 const useJobActions = (jobId: string) => {
   const router = useRouter();
@@ -12,7 +17,15 @@ const useJobActions = (jobId: string) => {
     dispatch(setMenuId(""));
   };
 
-  return { handleViewApplications };
+  const handleDeleteModal = (modalValue: DeleteModalValues) => {
+    dispatch(setDeleteModal(modalValue));
+    dispatch(setMenuId(""));
+  };
+
+  return {
+    handleViewApplications,
+    handleDeleteModal,
+  };
 };
 
 export default useJobActions;

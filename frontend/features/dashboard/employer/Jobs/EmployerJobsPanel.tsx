@@ -4,10 +4,17 @@ import JobApplicationsDrawer from "./JobApplicationsDrawer/JobApplicationsDrawer
 import JobFilters from "./JobFilters/JobFilters";
 import JobList from "./JobList/JobList";
 import JobStatCards from "./JobStats/JobStatCards";
+import DeleteJobModal from "./Modal/DeleteJobModal";
+import { useSelector } from "react-redux";
+import { RootState } from "@/shared/redux/store";
+import { AnimatePresence } from "framer-motion";
 
 const EmployerJobsPanel = () => {
   const searchParams = useSearchParams();
   const jobId = searchParams.get("jobId");
+  const { open } = useSelector(
+    (state: RootState) => state.jobListMenu.deleteModal,
+  );
 
   return (
     <main className="lg:container">
@@ -17,6 +24,10 @@ const EmployerJobsPanel = () => {
       <JobList />
 
       <JobApplicationsDrawer open={!!jobId} jobId={jobId ?? ""} />
+
+      <AnimatePresence>
+        {open && <DeleteJobModal key="delete-modal" />}
+      </AnimatePresence>
     </main>
   );
 };

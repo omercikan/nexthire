@@ -102,7 +102,7 @@ const JobListItemMenu = ({
   const menuRef = useRef<HTMLDivElement | null>(null);
   const dispatch = useDispatch<AppDispatch>();
 
-  const { handleViewApplications } = useJobActions(job?._id);
+  const { handleViewApplications, handleDeleteModal } = useJobActions(job?._id);
   const { handleEditJob } = useApplicationAction();
 
   useClickOutside(menuRef, () => {
@@ -153,6 +153,7 @@ const JobListItemMenu = ({
               icon={LuTrash2}
               text="Sil"
               className="text-[#e7000b] hover:bg-[#e7000b]/10"
+              onClick={() => handleDeleteModal({ open: true, jobId: job._id })}
             />
 
             <Divider />
