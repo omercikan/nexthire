@@ -3,8 +3,9 @@ import { JobStats, Job } from "../types/employerJobsTypes";
 
 export const employerJobsApi = createApi({
   reducerPath: "employerJobsApi",
+  tagTypes: ["EmployerJobs"],
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/employer/jobs/employer`,
+    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/employer/jobs`,
     credentials: "include",
   }),
   endpoints: (builder) => ({
@@ -17,13 +18,32 @@ export const employerJobsApi = createApi({
       { page: string }
     >({
       query: ({ page }) => ({
-        url: "/",
+        url: "/employer",
         method: "GET",
         params: { page },
       }),
       keepUnusedDataFor: 5,
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.jobs.map(({ _id }) => ({
+                type: "EmployerJobs" as const,
+                id: _id,
+              })),
+              { type: "EmployerJobs", id: "LIST" },
+            ]
+          : [{ type: "EmployerJobs", id: "LIST" }],
+    }),
+
+    deleteEmployerJob: builder.mutation<void, { jobId: string }>({
+      query: ({ jobId }) => ({
+        method: "DELETE",
+        url: `/${jobId}`,
+      }),
+      invalidatesTags: [{ type: "EmployerJobs", id: "LIST" }],
     }),
   }),
 });
 
-export const { useGetEmployerJobsQuery } = employerJobsApi;
+export const { useGetEmployerJobsQuery, useDeleteEmployerJobMutation } =
+  employerJobsApi;
