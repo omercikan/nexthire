@@ -2,6 +2,9 @@ import { Request, Response, NextFunction } from "express";
 import { Job as JobModel } from "../../../../shared/models/Job";
 import { connectRedis } from "../../../../config/redis";
 import { jobService } from "../services/job.service";
+import { Application } from "../../../../shared/models/Application";
+import { FavoriteJob } from "../../../../shared/models/FavoriteJob";
+import mongoose from "mongoose";
 
 export class Job {
   async createJob(req: Request, res: Response, next: NextFunction) {
@@ -85,6 +88,37 @@ export class Job {
       return res.json({ jobs, stats, totalPages: Math.ceil(stats.total / 10) });
     } catch (error) {
       next(error);
+    }
+  }
+
+  async deleteEmployerJob(req: Request, res: Response, next: NextFunction) {
+    const { jobId } = req.params;
+    const employerId = req.user.id;
+    const session = await mongoose.startSession();
+    session.startTransaction();
+
+    console.log({ jobId, employerId });
+
+    try {
+      const job = await JobModel.findOne({ _id: jobId, employerId }).session(
+        session,
+      );
+
+      if (!job) return res.status(404).json({ message: "Job not found." });
+
+      await Promise.all([
+        JobModel.deleteOne({ _id: jobId }).session(session),
+        Application.deleteMany({ jobId }).session(session),
+        FavoriteJob.deleteMany({ jobId }).session(session),
+      ]);
+
+      await session.commitTransaction();
+      return res.status(204).send();
+    } catch (error) {
+      await session.abortTransaction();
+      next(error);
+    } finally {
+      session.endSession();
     }
   }
 }
