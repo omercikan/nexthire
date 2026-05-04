@@ -66,6 +66,6 @@ export const useEmployerJobsData = () => {
     totalPages: data?.totalPages ?? 1,
     isLoading,
     page,
-    isFiltered: !!searchTerm || !!status || !!sort,
+    isFiltered: !!searchTerm || status !== "all" || sort !== "newest",
   };
 };
