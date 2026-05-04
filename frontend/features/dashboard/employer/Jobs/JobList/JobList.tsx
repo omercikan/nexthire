@@ -6,7 +6,7 @@ import JobListPagination from "./JobListPagination";
 import JobCardSkeleton from "./JobCardSkeleton";
 
 const JobList = () => {
-  const { isLoading, jobs, totalPages, page, isFiltered } =
+  const { isLoading, jobs, totalPages, page, stats, isFiltered } =
     useEmployerJobsData();
 
   return (
@@ -38,7 +38,7 @@ const JobList = () => {
             )}
           </div>
 
-          {!!jobs.length && (
+          {!!jobs.length && Number(stats?.total) > 10 && (
             <JobListPagination totalPages={totalPages} currentPage={page} />
           )}
         </>
