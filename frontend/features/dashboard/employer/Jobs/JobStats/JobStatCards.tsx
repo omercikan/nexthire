@@ -26,7 +26,7 @@ const JobStatCards = () => {
       />
       <StatCardItem
         label="Taslak"
-        value={stats?.passive ?? 0}
+        value={stats?.draft ?? 0}
         className="text-amber-600"
         isLoading={isLoading}
       />
