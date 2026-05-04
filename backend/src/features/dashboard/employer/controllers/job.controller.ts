@@ -70,6 +70,12 @@ export class Job {
     const { page = 1 } = req.query;
     const employerId = req.user.id;
 
+    const jobs = await JobModel.countDocuments({ employerId });
+
+    if (jobs === 0) {
+      return res.json({ jobs: [], stats: null, totalPages: 0 });
+    }
+
     try {
       const [jobs, stats] = await Promise.all([
         jobService.getEmployerJobs(employerId, Number(page)),
