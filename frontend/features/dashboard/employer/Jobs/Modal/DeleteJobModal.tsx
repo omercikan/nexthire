@@ -7,7 +7,8 @@ import useJobModal from "./useJobModal";
 import { motion } from "framer-motion";
 
 const DeleteJobModal = () => {
-  const { job, handleClose } = useJobModal();
+  const { job, handleClose, handleDeleteJob, isLoadingDeleteJob } =
+    useJobModal();
 
   return (
     <motion.div
@@ -61,7 +62,12 @@ const DeleteJobModal = () => {
             handleClick={handleClose}
           />
 
-          <CustomButton className="flex-1 px-6! py-3! rounded-2xl! text-[14px] font-medium text-white bg-[#E02424]! hover:bg-[#C81E1E]! transition-colors duration-200 flex items-center justify-center gap-2">
+          <CustomButton
+            className="flex-1 px-6! py-3! rounded-2xl! text-[14px] font-medium text-white bg-[#E02424]! hover:bg-[#C81E1E]! transition-colors duration-200 flex items-center justify-center gap-2"
+            handleClick={handleDeleteJob}
+            isSubmitting={isLoadingDeleteJob}
+            circularColor="#fff"
+          >
             <LuTrash2 />
             Evet, Sil
           </CustomButton>
