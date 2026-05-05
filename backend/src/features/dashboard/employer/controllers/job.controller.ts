@@ -97,8 +97,6 @@ export class Job {
     const session = await mongoose.startSession();
     session.startTransaction();
 
-    console.log({ jobId, employerId });
-
     try {
       const job = await JobModel.findOne({ _id: jobId, employerId }).session(
         session,
