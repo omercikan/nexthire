@@ -119,4 +119,34 @@ export class Job {
       session.endSession();
     }
   }
+
+  async toggleJobStatus(req: Request, res: Response, next: NextFunction) {
+    const { jobId } = req.params;
+    const employerId = req.user.id;
+
+    try {
+      const job = await JobModel.findOne({ _id: jobId, employerId });
+
+      if (!job) {
+        return res.status(404).json({ message: "Job not found." });
+      }
+
+      const jobStatus = job.status;
+      const updatedStatus =
+        job.status === "published" ? "passive" : "published";
+
+      job.status = updatedStatus;
+      await job.save();
+
+      return res.json({
+        success: true,
+        data: {
+          jobId: job._id,
+          status: job.status,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
 }

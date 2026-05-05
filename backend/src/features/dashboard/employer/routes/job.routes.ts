@@ -11,7 +11,8 @@ import z from "zod";
 
 const router = express.Router();
 
-const { createJob, getEmployerJobs, deleteEmployerJob } = new Job();
+const { createJob, getEmployerJobs, deleteEmployerJob, toggleJobStatus } =
+  new Job();
 
 router.post(
   "/publish-job",
@@ -56,6 +57,21 @@ router.delete(
     "params",
   ),
   deleteEmployerJob,
+);
+
+router.patch(
+  "/jobs/:jobId",
+  authMiddleware,
+  roleMiddleware("employer"),
+  validateRequest(
+    z.object({
+      jobId: z
+        .string("jobId is required")
+        .min(20, "jobId must be 20 characters long"),
+    }),
+    "params",
+  ),
+  toggleJobStatus,
 );
 
 export default router;
