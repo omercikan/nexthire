@@ -102,7 +102,8 @@ const JobListItemMenu = ({
   const menuRef = useRef<HTMLDivElement | null>(null);
   const dispatch = useDispatch<AppDispatch>();
 
-  const { handleViewApplications, handleDeleteModal } = useJobActions(job?._id);
+  const { handleViewApplications, handleDeleteModal, handleUpdateStatus } =
+    useJobActions(job?._id);
   const { handleEditJob } = useApplicationAction();
 
   useClickOutside(menuRef, () => {
@@ -160,6 +161,7 @@ const JobListItemMenu = ({
             <MenuItem
               icon={jobStatus !== "published" ? LuEye : LuEyeOff}
               text={jobStatus !== "published" ? "Aktif Yap" : "Pasife Al"}
+              onClick={handleUpdateStatus}
             />
           </motion.ul>
         </AnimatePresence>
