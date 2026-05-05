@@ -42,8 +42,28 @@ export const employerJobsApi = createApi({
       }),
       invalidatesTags: [{ type: "EmployerJobs", id: "LIST" }],
     }),
+
+    updateJobStatus: builder.mutation<
+      {
+        success: boolean;
+        data: {
+          jobId: string;
+          status: string;
+        };
+      },
+      { jobId: string }
+    >({
+      query: ({ jobId }) => ({
+        method: "PATCH",
+        url: `/${jobId}`,
+      }),
+      invalidatesTags: [{ type: "EmployerJobs", id: "LIST" }],
+    }),
   }),
 });
 
-export const { useGetEmployerJobsQuery, useDeleteEmployerJobMutation } =
-  employerJobsApi;
+export const {
+  useGetEmployerJobsQuery,
+  useDeleteEmployerJobMutation,
+  useUpdateJobStatusMutation,
+} = employerJobsApi;
