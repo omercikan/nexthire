@@ -4,7 +4,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface modalDataState {
   email: string;
   phone: string;
-  screeningQuestions: { question: string; answer: string }[];
+  screeningQuestions: {
+    question: string;
+    answer: string;
+    knockout: boolean;
+    knockoutAnswer: string;
+  }[];
 }
 
 interface ApplicationStatus {

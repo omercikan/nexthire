@@ -14,6 +14,7 @@ import toast from "react-hot-toast";
 import { setApplicationStatus } from "@/shared/redux/slices/applicationModal/modalData";
 import { setApplicationModal } from "@/shared/redux/slices/touch";
 import useMultipleDispatch from "@/shared/hooks/useMultipleDispatch";
+import { Candidate } from "@/shared/types/models/candidate";
 
 const useModalControl = (isValid: boolean) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -23,7 +24,7 @@ const useModalControl = (isValid: boolean) => {
   } = useSelector((state: RootState) => state);
   const { job } = useJob();
   const hasScreeningQuestions = job.screeningQuestions?.length ? true : false;
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext) as { user: Candidate };
   const { resumes, removedResumeNames } = useResume();
   const params = useParams() as { slug: string[] };
   const [sendApplicationApi, { isLoading }] = useSendApplicationMutation();
@@ -63,9 +64,17 @@ const useModalControl = (isValid: boolean) => {
 
       const payload = {
         selectedResumeName: getResumeName(selectedResume!),
-        applicationData,
+        applicationData: {
+          ...applicationData,
+          fullname: user?.fullname,
+          title: user.title,
+          profilePhoto: user.profilePhoto,
+          city: user.city,
+          lastWorkPlace: user.lastWorkPlace,
+          experienceTime: user.experienceTime,
+        },
         userId: user?._id,
-        employerId: job.employer._id,
+        employerId: job.employer?._id,
         removedResumeNames,
         jobId,
       };
@@ -76,7 +85,7 @@ const useModalControl = (isValid: boolean) => {
         await sendApplicationApi({ jobId, formData }).unwrap();
         multipleDispatch([
           setApplicationStatus({
-            companyName: job.employer.companyName,
+            companyName: job.employer?.companyName ?? "",
             status: "applied",
           }),
           setApplicationModal(false),

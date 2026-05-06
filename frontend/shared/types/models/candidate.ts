@@ -18,6 +18,8 @@ export interface Candidate extends User {
   title: string;
   profilePhoto: string;
   profilePhotoId: string;
+  lastWorkPlace: string;
+  experienceTime: string;
   // favoriteEmployers: FavoriteDataFields[];
   // favoriteJobs: FavoriteDataFields[];
   // uploadedResumes: CVDataFields[];
