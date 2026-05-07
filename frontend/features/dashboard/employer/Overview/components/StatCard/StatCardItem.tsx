@@ -44,7 +44,7 @@ const StatCardItem: React.FC<StatCardItemProps> = (props) => {
               <statIcons.TrendingDown />
             )}
             {isPositiveDelta ? "+" : "-"}
-            {delta.toString().replace("-", "")}
+            {delta?.toString().replace("-", "")}
           </div>
         ) : (
           <div className="animate-pulse rounded-md max-sm:self-end bg-gray-300 w-10 h-5" />
