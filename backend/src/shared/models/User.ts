@@ -35,6 +35,8 @@ const UserSchema = new Schema(
     gender: { type: String, required: false },
     age: { type: String, required: false },
     title: { type: String, required: false },
+    lastWorkPlace: String,
+    experienceTime: String,
 
     // Employer fields
     companyName: String,
