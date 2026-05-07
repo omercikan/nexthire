@@ -5,8 +5,14 @@ const ApplicationSchema = new Schema(
     candidateId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     employerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     jobId: { type: Schema.Types.ObjectId, ref: "jobs", required: true },
+    fullname: { type: String, required: true },
+    title: String,
+    profilePhoto: { type: String, required: false },
     email: { type: String, required: true },
     phone: { type: String, required: true },
+    city: String,
+    lastWorkPlace: String,
+    experienceTime: String,
     resume: {
       url: String,
       originalName: String,
@@ -17,6 +23,8 @@ const ApplicationSchema = new Schema(
       {
         question: String,
         answer: { type: Schema.Types.Mixed },
+        knockout: Boolean,
+        knockoutAnswer: { type: String, required: false },
       },
     ],
     status: {
@@ -29,6 +37,7 @@ const ApplicationSchema = new Schema(
               "reviewed",
               "accepted",
               "rejected",
+              "auto_rejected",
               "scheduled",
               "interviewed",
               "hired",

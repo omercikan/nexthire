@@ -8,6 +8,12 @@ export const applicationSchema = z.object({
   selectedResumeName: z.string().min(1),
   removedResumeNames: z.array(z.string()).default([]),
   applicationData: z.object({
+    fullname: z.string().min(1),
+    title: z.string().optional(),
+    profilePhoto: z.string().optional(),
+    city: z.string().optional(),
+    lastWorkPlace: z.string().optional(),
+    experienceTime: z.string().optional(),
     email: z.email(),
     phone: z.string().min(1),
     screeningQuestions: z
