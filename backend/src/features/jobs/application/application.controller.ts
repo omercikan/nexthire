@@ -103,9 +103,7 @@ export class JobApplication {
         candidateId: userId,
         employerId,
         jobId,
-        email: applicationData.email,
-        phone: applicationData.phone,
-        screeningQuestions: applicationData.screeningQuestions,
+        ...applicationData,
         resume: { ...selectedResume, url: applicationResumeUrl },
       });
 
