@@ -24,6 +24,7 @@ export interface ApplicantStatus {
 }
 
 export interface Applicant {
+  _id: string;
   candidateId: string;
   profilePhoto: string;
   fullname: string;
