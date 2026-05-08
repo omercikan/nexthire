@@ -38,6 +38,7 @@ import { overviewApi } from "@/features/dashboard/employer/Overview/service/over
 import { jobFiltersSlice } from "@/features/dashboard/employer/Jobs/JobFilters/jobListFiltersSlice";
 import { jobListMenuSlice } from "@/features/dashboard/employer/Jobs/JobList/JobListMenuSlice";
 import { employerJobsApi } from "@/features/dashboard/employer/Jobs/services/employerJobsApi";
+import { applicantsApi } from "@/features/dashboard/employer/Jobs/services/applicantsApi";
 
 export const store = configureStore({
   reducer: {
@@ -79,6 +80,7 @@ export const store = configureStore({
     [EmployerProfileAPI.reducerPath]: EmployerProfileAPI.reducer,
     [overviewApi.reducerPath]: overviewApi.reducer,
     [employerJobsApi.reducerPath]: employerJobsApi.reducer,
+    [applicantsApi.reducerPath]: applicantsApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -99,6 +101,7 @@ export const store = configureStore({
       EmployerProfileAPI.middleware,
       overviewApi.middleware,
       employerJobsApi.middleware,
+      applicantsApi.middleware,
     ]),
 });
 
