@@ -55,6 +55,8 @@ const ApplicationSchema = new Schema(
   { timestamps: true },
 );
 
+ApplicationSchema.index({ jobId: 1, employerId: 1, createdAt: -1 });
+
 export const Application = model("application", ApplicationSchema);
 
 export type IApplication = InferSchemaType<typeof ApplicationSchema>;
