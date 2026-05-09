@@ -1,15 +1,49 @@
 import { Request, Response, NextFunction } from "express";
 import { Application } from "../../../../shared/models/Application";
 
+interface QueryRequestParams {
+  page: string;
+  search: string;
+  status: string;
+}
+
 class ApplicantController {
   async getApplicants(req: Request, res: Response, next: NextFunction) {
     const { jobId } = req.params;
-    const { page = 1 } = req.query;
+    const {
+      page = 1,
+      search,
+      status,
+    } = req.query as unknown as QueryRequestParams;
     const limit = 10;
     const skip = (Number(page) - 1) * limit;
     const employerId = req.user.id;
+    const trimmedSearch = search?.trim();
 
-    const filter = { jobId, employerId };
+    const andConditions = [];
+
+    if (trimmedSearch) {
+      andConditions.push({
+        $or: [
+          { fullname: { $regex: trimmedSearch, $options: "i" } },
+          { title: { $regex: trimmedSearch, $options: "i" } },
+        ],
+      });
+    }
+
+    if (status) {
+      andConditions.push({
+        $expr: {
+          $eq: [{ $arrayElemAt: ["$status.value", -1] }, status],
+        },
+      });
+    }
+
+    const filter = {
+      ...(andConditions.length > 0 && { $and: andConditions }),
+      jobId,
+      employerId,
+    };
 
     try {
       const [applicants, total] = await Promise.all([

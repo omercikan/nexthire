@@ -22,6 +22,19 @@ router.get(
   validateRequest(
     z.object({
       page: z.coerce.number().min(1).default(1),
+      search: z.string().trim().optional(),
+      status: z
+        .enum([
+          "pending",
+          "reviewed",
+          "accepted",
+          "rejected",
+          "auto_rejected",
+          "scheduled",
+          "interviewed",
+          "hired",
+        ])
+        .optional(),
     }),
     "query",
   ),
