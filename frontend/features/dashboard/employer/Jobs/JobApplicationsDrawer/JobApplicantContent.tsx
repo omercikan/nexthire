@@ -14,6 +14,8 @@ import { GoXCircle } from "react-icons/go";
 import EmptyApplicants from "./EmptyApplicants";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useRef } from "react";
+import { useSearchParams } from "next/navigation";
+import EmptyFilterResult from "./EmptyFilterResult";
 
 interface JobApplicantContentProps {
   applicantsData: Applicant[] | undefined;
@@ -35,6 +37,13 @@ const JobApplicantContent = ({
     rootMargin: "300px",
   });
   const triggeredRef = useRef(false);
+  const params = useSearchParams();
+  const search = params.get("search");
+  const status = params.get("status");
+
+  useEffect(() => {
+    triggeredRef.current = true;
+  }, [search, status]);
 
   useEffect(() => {
     if (!inView) {
@@ -44,13 +53,22 @@ const JobApplicantContent = ({
 
     if (triggeredRef.current) return;
 
-    if (hasNextPage && !isFetching) {
-      triggeredRef.current = true;
-      setPage((p) => p + 1);
-    }
-  }, [inView, hasNextPage, isFetching, setPage]);
+    if (!inView || !hasNextPage || isFetching) return;
 
-  if (!isLoading && applicantsData?.length === 0) {
+    triggeredRef.current = true;
+    setPage((p) => p + 1);
+  }, [inView, hasNextPage, isFetching, isLoading, setPage]);
+
+  if (
+    !isFetching &&
+    !isLoading &&
+    (params.get("search") || params.get("status")) &&
+    applicantsData?.length === 0
+  ) {
+    return <EmptyFilterResult />;
+  }
+
+  if (!isLoading && !isFetching && applicantsData?.length === 0) {
     return <EmptyApplicants />;
   }
 
