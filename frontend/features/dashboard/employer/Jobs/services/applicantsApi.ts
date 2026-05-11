@@ -15,12 +15,12 @@ export const applicantsApi = createApi({
         data: Applicant[];
         hasNextPage: boolean;
       },
-      { jobId: string; page: number }
+      { jobId: string; page: number; search?: string; status?: string }
     >({
-      query: ({ jobId, page }) => ({
+      query: ({ jobId, page, search, status }) => ({
         method: "GET",
         url: `/${jobId}/applicants`,
-        params: { page },
+        params: { page, search, status },
       }),
     }),
   }),
