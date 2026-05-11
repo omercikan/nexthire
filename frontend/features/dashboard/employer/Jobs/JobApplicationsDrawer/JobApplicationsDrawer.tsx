@@ -6,6 +6,7 @@ import DrawerStatusFilter from "./DrawerStatusFilter";
 import ApplicantSkeleton from "./ApplicantSkeleton";
 import JobApplicantContent from "./JobApplicantContent";
 import useApplicantsData from "./hooks/useApplicantsData";
+import { useEffect, useRef } from "react";
 
 function DrawerWrapper({ children }: { children: React.ReactNode }) {
   return (
@@ -30,13 +31,26 @@ const JobApplicationsDrawer = ({
   open: boolean;
 }) => {
   const router = useRouter();
-  const { applicants, isFetching, isLoading, hasNextPage, setPage } =
-    useApplicantsData();
+  const {
+    applicants,
+    applicantsData,
+    isFetching,
+    isLoading,
+    hasNextPage,
+    setPage,
+  } = useApplicantsData();
+  const hasApplicants = useRef(false);
 
   const handleCloseDrawer = () => {
     router.replace("/hesabim/islerim", { scroll: false });
     document.body.style.overflow = "visible";
   };
+
+  useEffect(() => {
+    if (applicantsData && applicantsData.count > 0) {
+      hasApplicants.current = true;
+    }
+  }, [applicantsData]);
 
   return (
     <AnimatePresence>
@@ -52,9 +66,9 @@ const JobApplicationsDrawer = ({
           <DrawerWrapper>
             <DrawerHeader handleCloseDrawer={handleCloseDrawer} jobId={jobId} />
 
-            {(isLoading || applicants.length > 0) && (
+            {hasApplicants.current && (
               <div className="px-5 py-4 border-b border-b-border">
-                <DrawerSearch />
+                <DrawerSearch setPage={setPage} />
                 <DrawerStatusFilter />
               </div>
             )}
