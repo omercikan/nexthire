@@ -1,5 +1,17 @@
 import { InferSchemaType, model, Schema } from "mongoose";
 
+const statusEnum = [
+  "pending",
+  "reviewed",
+  "accepted",
+  "rejected",
+  "auto_rejected",
+  "scheduled",
+  "shortlisted",
+  "interviewed",
+  "hired",
+];
+
 const ApplicationSchema = new Schema(
   {
     candidateId: { type: Schema.Types.ObjectId, ref: "User", required: true },
@@ -32,17 +44,7 @@ const ApplicationSchema = new Schema(
         {
           value: {
             type: String,
-            enum: [
-              "pending",
-              "reviewed",
-              "accepted",
-              "rejected",
-              "auto_rejected",
-              "scheduled",
-              "shortlisted",
-              "interviewed",
-              "hired",
-            ],
+            enum: statusEnum,
           },
           changedAt: {
             type: Date,
@@ -52,11 +54,21 @@ const ApplicationSchema = new Schema(
       ],
       default: () => [{ value: "pending", changedAt: new Date() }],
     },
+    currentStatus: {
+      type: String,
+      enum: statusEnum,
+      default: "pending",
+    },
   },
   { timestamps: true },
 );
 
-ApplicationSchema.index({ jobId: 1, employerId: 1, createdAt: -1 });
+ApplicationSchema.index({
+  jobId: 1,
+  employerId: 1,
+  currentStatus: 1,
+  createdAt: -1,
+});
 
 export const Application = model("application", ApplicationSchema);
 

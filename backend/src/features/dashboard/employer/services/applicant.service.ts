@@ -35,11 +35,7 @@ class ApplicantService {
     }
 
     if (status && status !== "new") {
-      andConditions.push({
-        $expr: {
-          $eq: [{ $arrayElemAt: ["$status.value", -1] }, status],
-        },
-      });
+      andConditions.push({ currentStatus: status });
     }
 
     const filters: ApplicantFilters = {
@@ -79,12 +75,7 @@ class ApplicantService {
       {
         $facet: {
           statusCounts: [
-            {
-              $addFields: {
-                lastStatus: { $arrayElemAt: ["$status.value", -1] },
-              },
-            },
-            { $group: { _id: "$lastStatus", count: { $sum: 1 } } },
+            { $group: { _id: "$currentStatus", count: { $sum: 1 } } },
             { $project: { _id: 0, status: "$_id", count: 1 } },
           ],
 
