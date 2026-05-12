@@ -14,6 +14,7 @@ export const applicantsApi = createApi({
         count: number;
         data: Applicant[];
         hasNextPage: boolean;
+        statusCounts: { count: number; status: string }[];
       },
       { jobId: string; page: number; search?: string; status?: string }
     >({
