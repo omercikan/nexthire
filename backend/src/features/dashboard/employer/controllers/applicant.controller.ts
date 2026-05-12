@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { Application } from "../../../../shared/models/Application";
+import { Types } from "mongoose";
 
 interface QueryRequestParams {
   page: string;
@@ -31,7 +32,12 @@ class ApplicantController {
       });
     }
 
-    if (status) {
+    const last24h = new Date(Date.now() - 1000 * 60 * 60 * 24);
+    if (status === "new") {
+      andConditions.push({ createdAt: { $gte: last24h } });
+    }
+
+    if (status && status !== "new") {
       andConditions.push({
         $expr: {
           $eq: [{ $arrayElemAt: ["$status.value", -1] }, status],
@@ -46,7 +52,7 @@ class ApplicantController {
     };
 
     try {
-      const [applicants, total] = await Promise.all([
+      const [applicants, total, statusCountResults] = await Promise.all([
         Application.find(filter)
           .select("-__v")
           .sort({ createdAt: -1, _id: -1 })
@@ -54,7 +60,46 @@ class ApplicantController {
           .limit(limit)
           .lean(),
         Application.countDocuments(filter),
+        Application.aggregate([
+          {
+            $match: {
+              jobId: new Types.ObjectId(jobId),
+              employerId: new Types.ObjectId(employerId),
+              ...(!!trimmedSearch && { $and: andConditions }),
+            },
+          },
+          {
+            $facet: {
+              statusCounts: [
+                {
+                  $addFields: {
+                    lastStatus: { $arrayElemAt: ["$status.value", -1] },
+                  },
+                },
+                { $group: { _id: "$lastStatus", count: { $sum: 1 } } },
+                { $project: { _id: 0, status: "$_id", count: 1 } },
+              ],
+
+              newCount: [
+                { $match: { createdAt: { $gte: last24h } } },
+                { $count: "count" },
+              ],
+            },
+          },
+        ]),
       ]);
+
+      const statusCounts = statusCountResults[0].statusCounts;
+      const newCount = statusCountResults[0].newCount[0]?.count || 0;
+
+      const allCount = statusCounts.reduce(
+        (acc: number, item: { count: number }) => acc + item.count,
+        0,
+      );
+      statusCounts.unshift(
+        { status: "all", count: allCount },
+        { status: "new", count: newCount },
+      );
 
       const totalPages = Math.ceil(total / limit);
 
@@ -63,6 +108,7 @@ class ApplicantController {
         count: total,
         data: applicants,
         hasNextPage: Number(page) < totalPages,
+        statusCounts,
       });
     } catch (error) {
       next(error);
