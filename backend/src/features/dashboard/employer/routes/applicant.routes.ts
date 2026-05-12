@@ -32,7 +32,9 @@ router.get(
           "auto_rejected",
           "scheduled",
           "interviewed",
+          "shortlisted",
           "hired",
+          "new",
         ])
         .optional(),
     }),
