@@ -69,7 +69,9 @@ const JobApplicationsDrawer = ({
             {hasApplicants.current && (
               <div className="px-5 py-4 border-b border-b-border">
                 <DrawerSearch setPage={setPage} />
-                <DrawerStatusFilter />
+                <DrawerStatusFilter
+                  statusCounts={applicantsData?.statusCounts}
+                />
               </div>
             )}
 
