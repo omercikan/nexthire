@@ -39,6 +39,7 @@ const ApplicationSchema = new Schema(
               "rejected",
               "auto_rejected",
               "scheduled",
+              "shortlisted",
               "interviewed",
               "hired",
             ],
