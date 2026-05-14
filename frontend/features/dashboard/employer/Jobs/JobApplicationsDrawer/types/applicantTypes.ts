@@ -16,10 +16,13 @@ export interface ApplicantStatus {
   value:
     | "pending"
     | "reviewed"
+    | "accepted"
     | "shortlisted"
     | "scheduled"
     | "rejected"
-    | "auto_rejected";
+    | "auto_rejected"
+    | "interviewed"
+    | "hired";
   changedAt: Date;
 }
 
