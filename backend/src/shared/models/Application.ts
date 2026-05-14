@@ -42,6 +42,7 @@ const ApplicationSchema = new Schema(
     status: {
       type: [
         {
+          _id: false,
           value: {
             type: String,
             enum: statusEnum,
