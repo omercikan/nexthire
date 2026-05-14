@@ -5,19 +5,25 @@ import { IconType } from "react-icons/lib";
 
 function ApplicationActionButton({
   icon: Icon,
-  tooltip,
+  isActive = false,
+  activeIconColor = "",
+  activeTooltip = "",
+  inActiveTooltip,
   className,
   onClick,
 }: {
   icon: IconType;
-  tooltip: string;
+  isActive?: boolean;
+  activeIconColor?: string;
+  activeTooltip?: string;
+  inActiveTooltip: string;
   className: string;
   onClick?: () => void;
 }) {
   return (
     <div>
       <Tooltip
-        title={tooltip}
+        title={isActive ? activeTooltip : inActiveTooltip}
         arrow
         slotProps={{
           tooltip: {
@@ -39,7 +45,11 @@ function ApplicationActionButton({
             )}
             handleClick={onClick}
           >
-            <Icon size={14} />
+            <Icon
+              style={{ fill: isActive ? "currentColor" : "" }}
+              size={14}
+              color={isActive ? activeIconColor : ""}
+            />
           </CustomButton>
         </span>
       </Tooltip>

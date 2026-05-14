@@ -7,6 +7,7 @@ import {
   LuStar,
   LuUser,
 } from "react-icons/lu";
+
 import ApplicationStatus from "./ApplicationStatus";
 import { formatApplyTime } from "@/shared/utils/formatApplyTime";
 import ApplicationActionButton from "./ApplicationActionButton";
@@ -132,33 +133,44 @@ const JobApplicantContent = ({
               {!!item.screeningQuestions.length && (
                 <ApplicationActionButton
                   icon={LuClipboardList}
-                  tooltip="Cevapları Gör"
+                  inActiveTooltip="Cevapları Gör"
                   className="hover:text-[#0073d5]!"
                 />
               )}
 
               <ApplicationActionButton
                 icon={LuFileText}
-                tooltip="CV Görüntüle"
+                inActiveTooltip="CV Görüntüle"
                 className="hover:text-[#0073d5]!"
                 onClick={() => item.resume?.url && window.open(item.resume.url)}
               />
 
               <ApplicationActionButton
+                isActive={item.status.some((s) => s.value === "shortlisted")}
+                activeIconColor="009966"
                 icon={LuStar}
-                tooltip="Kısa Listeye Al"
+                activeTooltip="Kısa Listeden Çıkar"
+                inActiveTooltip="Kısa Listeye Al"
                 className="hover:text-[#009966]!"
               />
 
               <ApplicationActionButton
+                isActive={item.status.some(
+                  (s) => s.value === "interviewed" || s.value === "scheduled",
+                )}
+                activeIconColor="4f39f6"
                 icon={LuCalendar}
-                tooltip="Mülakata Al"
+                activeTooltip="Mülakatı Düzenle"
+                inActiveTooltip="Mülakata Al"
                 className="hover:text-[#4f39f6]!"
               />
 
               <ApplicationActionButton
+                isActive={item.status.some((s) => s.value === "rejected")}
+                activeIconColor="#fb2c3680"
                 icon={GoXCircle}
-                tooltip="Reddet"
+                activeTooltip=""
+                inActiveTooltip="Reddet"
                 className="hover:text-[#fb2c36]!"
               />
             </div>
