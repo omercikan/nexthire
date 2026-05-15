@@ -7,6 +7,7 @@ export const applicantsApi = createApi({
     baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/employer/jobs`,
     credentials: "include",
   }),
+  tagTypes: ["Applicant"],
   endpoints: (builder) => ({
     getApplicants: builder.query<
       {
@@ -23,8 +24,30 @@ export const applicantsApi = createApi({
         url: `/${jobId}/applicants`,
         params: { page, search, status },
       }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.data.map(({ candidateId }) => ({
+                type: "Applicant" as const,
+                id: candidateId,
+              })),
+              { type: "Applicant", id: "LIST" },
+            ]
+          : [{ type: "Applicant", id: "LIST" }],
+    }),
+
+    updateApplicantStatus: builder.mutation({
+      query: ({ jobId, status, candidateId }) => ({
+        method: "PATCH",
+        url: `/${jobId}/status`,
+        body: { status, candidateId },
+      }),
+      invalidatesTags: (result, error, { candidateId }) => [
+        { type: "Applicant", id: candidateId },
+      ],
     }),
   }),
 });
 
-export const { useGetApplicantsQuery } = applicantsApi;
+export const { useGetApplicantsQuery, useUpdateApplicantStatusMutation } =
+  applicantsApi;

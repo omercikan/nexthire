@@ -38,6 +38,7 @@ const JobApplicationsDrawer = ({
     isLoading,
     hasNextPage,
     setPage,
+    updateApplicant,
   } = useApplicantsData();
   const hasApplicants = useRef(false);
 
@@ -78,6 +79,7 @@ const JobApplicationsDrawer = ({
             <div className="p-2 flex-1 visible-scrollbar">
               {!isLoading ? (
                 <JobApplicantContent
+                  updateApplicant={updateApplicant}
                   applicantsData={applicants}
                   isLoading={isLoading}
                   isFetching={isFetching}

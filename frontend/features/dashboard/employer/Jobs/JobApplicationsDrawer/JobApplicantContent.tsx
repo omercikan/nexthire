@@ -17,6 +17,7 @@ import { useInView } from "react-intersection-observer";
 import { useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import EmptyFilterResult from "./EmptyFilterResult";
+import useApplicantActions from "./hooks/useApplicantActions";
 
 interface JobApplicantContentProps {
   applicantsData: Applicant[] | undefined;
@@ -24,6 +25,7 @@ interface JobApplicantContentProps {
   isFetching: boolean;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   hasNextPage: boolean;
+  updateApplicant: (updatedApplicant: Applicant) => void;
 }
 
 const JobApplicantContent = ({
@@ -32,6 +34,7 @@ const JobApplicantContent = ({
   isLoading,
   isFetching,
   hasNextPage,
+  updateApplicant,
 }: JobApplicantContentProps) => {
   const { ref, inView } = useInView({
     threshold: 0,
@@ -41,6 +44,8 @@ const JobApplicantContent = ({
   const params = useSearchParams();
   const search = params.get("search");
   const status = params.get("status");
+  const { handleUpdateApplicantStatus, isStatusLoading } =
+    useApplicantActions();
 
   useEffect(() => {
     triggeredRef.current = true;
@@ -141,8 +146,17 @@ const JobApplicantContent = ({
               <ApplicationActionButton
                 icon={LuFileText}
                 inActiveTooltip="CV Görüntüle"
-                className="hover:text-[#0073d5]!"
-                onClick={() => item.resume?.url && window.open(item.resume.url)}
+                className={`hover:text-[#0073d5]! ${isStatusLoading ? "pointer-events-none cursor-not-allowed!" : ""}`}
+                onClick={() => {
+                  if (item.resume.url) window.open(item.resume.url);
+
+                  handleUpdateApplicantStatus(
+                    item.jobId,
+                    item.candidateId,
+                    "reviewed",
+                    updateApplicant,
+                  );
+                }}
               />
 
               <ApplicationActionButton
