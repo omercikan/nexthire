@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Applicant } from "../types/applicantTypes";
 import useApplicantsApi from "./useApplicantsApi";
@@ -41,6 +41,25 @@ const useApplicantsData = () => {
     }
   }, [applicantsData?.data]);
 
+  const updateApplicant = useCallback(
+    (updated: Applicant) => {
+      setApplicants((prev) =>
+        prev
+          .filter((a) => {
+            const isSame = a._id === updated._id;
+
+            if (isSame) {
+              return updated.currentStatus === status;
+            }
+
+            return true;
+          })
+          .map((a) => (a._id === updated._id ? updated : a)),
+      );
+    },
+    [status],
+  );
+
   return {
     applicants,
     hasNextPage: applicantsData?.hasNextPage,
@@ -50,6 +69,7 @@ const useApplicantsData = () => {
     page,
     setPage,
     setApplicants,
+    updateApplicant,
   };
 };
 
