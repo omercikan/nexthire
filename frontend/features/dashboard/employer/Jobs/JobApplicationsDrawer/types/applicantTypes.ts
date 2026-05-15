@@ -29,15 +29,20 @@ export interface ApplicantStatus {
 export interface Applicant {
   _id: string;
   candidateId: string;
+  employerId: string;
+  jobId: string;
   profilePhoto: string;
+  city: string;
   fullname: string;
   title: string;
   lastWorkPlace: string;
   experienceTime: string;
   createdAt: Date;
+  updatedAt: Date;
   resume: Resume;
   phone: string;
   email: string;
   screeningQuestions: ScreeningQuestion[];
   status: ApplicantStatus[];
+  currentStatus: string;
 }
