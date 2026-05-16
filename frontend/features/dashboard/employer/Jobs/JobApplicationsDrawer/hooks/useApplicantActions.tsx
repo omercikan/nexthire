@@ -3,7 +3,9 @@ import { useUpdateApplicantStatusMutation } from "../../services/applicantsApi";
 import { Applicant, ApplicantStatus } from "../types/applicantTypes";
 import toast from "react-hot-toast";
 
-const useApplicantActions = () => {
+const useApplicantActions = (
+  updateApplicant: (updatedApplicant: Applicant) => void,
+) => {
   const [updateStatus, { isLoading: isStatusLoading }] =
     useUpdateApplicantStatusMutation();
 
@@ -12,7 +14,6 @@ const useApplicantActions = () => {
       jobId: string,
       candidateId: string,
       status: ApplicantStatus["value"],
-      updateApplicant: (updatedApplicant: Applicant) => void,
       errorMessage?: string,
     ) => {
       if (isStatusLoading) return;
@@ -32,7 +33,7 @@ const useApplicantActions = () => {
         console.error("Failed to update applicant status", error);
       }
     },
-    [updateStatus, isStatusLoading],
+    [updateStatus, updateApplicant, isStatusLoading],
   );
 
   return { handleUpdateApplicantStatus, isStatusLoading };
