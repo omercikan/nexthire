@@ -45,16 +45,12 @@ const useApplicantsData = () => {
     (updated: Applicant) => {
       setApplicants((prev) =>
         prev
+          .map((a) => (a._id === updated._id ? updated : a))
           .filter((a) => {
-            const isSame = a._id === updated._id;
-
-            if (isSame) {
-              return updated.currentStatus === status;
-            }
-
-            return true;
-          })
-          .map((a) => (a._id === updated._id ? updated : a)),
+            if (!status) return true;
+            if (status === "new") return true;
+            return a.currentStatus === status;
+          }),
       );
     },
     [status],
