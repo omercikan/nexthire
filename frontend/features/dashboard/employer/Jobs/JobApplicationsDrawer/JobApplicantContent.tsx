@@ -45,7 +45,7 @@ const JobApplicantContent = ({
   const search = params.get("search");
   const status = params.get("status");
   const { handleUpdateApplicantStatus, isStatusLoading } =
-    useApplicantActions();
+    useApplicantActions(updateApplicant);
 
   useEffect(() => {
     triggeredRef.current = true;
@@ -154,7 +154,6 @@ const JobApplicantContent = ({
                     item.jobId,
                     item.candidateId,
                     "reviewed",
-                    updateApplicant,
                   );
                 }}
               />
@@ -166,6 +165,20 @@ const JobApplicantContent = ({
                 activeTooltip="Kısa Listeden Çıkar"
                 inActiveTooltip="Kısa Listeye Al"
                 className="hover:text-[#009966]!"
+                onClick={() => {
+                  const isShortlisted = item.status.some(
+                    (s) => s.value === "shortlisted",
+                  );
+
+                  handleUpdateApplicantStatus(
+                    item.jobId,
+                    item.candidateId,
+                    "shortlisted",
+                    isShortlisted
+                      ? "Aday kısa listeden çıkarılamadı. Lütfen tekrar deneyin."
+                      : "Aday kısa listeye eklenemedi. Lütfen tekrar deneyin.",
+                  );
+                }}
               />
 
               <ApplicationActionButton
