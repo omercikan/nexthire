@@ -5,7 +5,7 @@ interface Resume {
   size: number;
 }
 
-interface ScreeningQuestion {
+export interface ScreeningQuestion {
   question: string;
   answer: string;
   knockout: boolean;
@@ -46,3 +46,8 @@ export interface Applicant {
   status: ApplicantStatus[];
   currentStatus: string;
 }
+
+export type CurrentApplication = Pick<
+  Applicant,
+  "profilePhoto" | "fullname" | "title" | "lastWorkPlace" | "screeningQuestions"
+>;
