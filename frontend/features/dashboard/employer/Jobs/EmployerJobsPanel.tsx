@@ -12,6 +12,7 @@ import { AnimatePresence } from "framer-motion";
 const EmployerJobsPanel = () => {
   const searchParams = useSearchParams();
   const jobId = searchParams.get("jobId");
+  const applicationId = searchParams.get("applicationId");
   const { open } = useSelector(
     (state: RootState) => state.jobListMenu.deleteModal,
   );
@@ -23,7 +24,11 @@ const EmployerJobsPanel = () => {
       <JobFilters />
       <JobList />
 
-      <JobApplicationsDrawer open={!!jobId} jobId={jobId ?? ""} />
+      <JobApplicationsDrawer
+        open={!!jobId}
+        jobId={jobId ?? ""}
+        applicationId={applicationId ?? ""}
+      />
 
       <AnimatePresence>
         {open && <DeleteJobModal key="delete-modal" />}

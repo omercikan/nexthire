@@ -6,7 +6,9 @@ import DrawerStatusFilter from "./DrawerStatusFilter";
 import ApplicantSkeleton from "./ApplicantSkeleton";
 import JobApplicantContent from "./JobApplicantContent";
 import useApplicantsData from "./hooks/useApplicantsData";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import ApplicationQuestions from "./ApplicationQuestions/ApplicationQuestions";
+import { CurrentApplication } from "./types/applicantTypes";
 
 function DrawerWrapper({ children }: { children: React.ReactNode }) {
   return (
@@ -25,10 +27,12 @@ function DrawerWrapper({ children }: { children: React.ReactNode }) {
 
 const JobApplicationsDrawer = ({
   jobId,
+  applicationId,
   open,
 }: {
   jobId: string;
   open: boolean;
+  applicationId: string;
 }) => {
   const router = useRouter();
   const {
@@ -41,11 +45,37 @@ const JobApplicationsDrawer = ({
     updateApplicant,
   } = useApplicantsData();
   const hasApplicants = useRef(false);
+  const [currentApplication, setCurrentApplication] =
+    useState<CurrentApplication | null>(null);
 
   const handleCloseDrawer = () => {
     router.replace("/hesabim/islerim", { scroll: false });
     document.body.style.overflow = "visible";
   };
+
+  useEffect(() => {
+    if (!applicationId) return setCurrentApplication(null);
+
+    const found = applicants?.find((a) => a._id === applicationId);
+
+    if (found) {
+      const {
+        fullname,
+        profilePhoto,
+        title,
+        lastWorkPlace,
+        screeningQuestions,
+      } = found;
+
+      setCurrentApplication({
+        fullname,
+        profilePhoto,
+        title,
+        lastWorkPlace,
+        screeningQuestions,
+      });
+    }
+  }, [applicationId, applicants]);
 
   useEffect(() => {
     if (applicantsData && applicantsData.count > 0) {
@@ -93,6 +123,15 @@ const JobApplicationsDrawer = ({
               )}
             </div>
           </DrawerWrapper>
+
+          <AnimatePresence mode="wait">
+            {!!applicationId &&
+              open &&
+              !!currentApplication &&
+              !!currentApplication?.screeningQuestions.length && (
+                <ApplicationQuestions applicant={currentApplication} />
+              )}
+          </AnimatePresence>
         </motion.div>
       )}
     </AnimatePresence>
