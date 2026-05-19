@@ -44,8 +44,11 @@ const JobApplicantContent = ({
   const params = useSearchParams();
   const search = params.get("search");
   const status = params.get("status");
-  const { handleUpdateApplicantStatus, isStatusLoading } =
-    useApplicantActions(updateApplicant);
+  const {
+    handleUpdateApplicantStatus,
+    handleOpenQuestionsMenu,
+    isStatusLoading,
+  } = useApplicantActions(updateApplicant);
 
   useEffect(() => {
     triggeredRef.current = true;
@@ -140,6 +143,7 @@ const JobApplicantContent = ({
                   icon={LuClipboardList}
                   inActiveTooltip="Cevapları Gör"
                   className="hover:text-[#0073d5]!"
+                  onClick={() => handleOpenQuestionsMenu(item._id)}
                 />
               )}
 

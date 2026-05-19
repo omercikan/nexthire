@@ -2,12 +2,15 @@ import { useCallback } from "react";
 import { useUpdateApplicantStatusMutation } from "../../services/applicantsApi";
 import { Applicant, ApplicantStatus } from "../types/applicantTypes";
 import toast from "react-hot-toast";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const useApplicantActions = (
   updateApplicant: (updatedApplicant: Applicant) => void,
 ) => {
   const [updateStatus, { isLoading: isStatusLoading }] =
     useUpdateApplicantStatusMutation();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
   const handleUpdateApplicantStatus = useCallback(
     async (
@@ -36,7 +39,18 @@ const useApplicantActions = (
     [updateStatus, updateApplicant, isStatusLoading],
   );
 
-  return { handleUpdateApplicantStatus, isStatusLoading };
+  const handleOpenQuestionsMenu = (applicationId: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    params.set("applicationId", applicationId);
+    router.replace(`?${params.toString()}`, { scroll: false });
+  };
+
+  return {
+    handleUpdateApplicantStatus,
+    handleOpenQuestionsMenu,
+    isStatusLoading,
+  };
 };
 
 export default useApplicantActions;
