@@ -7,7 +7,7 @@ import {
 import { convertMonths, monthNames } from "../utils/convert-months";
 
 interface PopulatedApplication {
-  candidateId: { fullname: string };
+  fullname: string;
   jobId: { jobTitle: string };
   status: { value: string; changedAt: Date }[];
   updatedAt: Date;
@@ -212,8 +212,7 @@ export class EmployerOverviewService {
   recentActivity = async (userId: string) => {
     return await Application.find({ employerId: userId })
       .sort({ updatedAt: -1 })
-      .select("status updatedAt")
-      .populate("candidateId", "fullname")
+      .select("status updatedAt fullname")
       .populate("jobId", "jobTitle")
       .limit(6)
       .lean<PopulatedApplication[]>();
@@ -221,7 +220,7 @@ export class EmployerOverviewService {
 
   formatRecentActivity = (activities: PopulatedApplication[]) => {
     return activities.map((activity) => ({
-      fullname: activity.candidateId.fullname,
+      fullname: activity.fullname,
       jobTitle: activity.jobId.jobTitle,
       status: activity.status.at(-1)?.value,
       updatedAt: activity.updatedAt,
