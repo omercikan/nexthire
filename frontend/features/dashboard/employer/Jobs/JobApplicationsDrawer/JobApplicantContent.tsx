@@ -2,8 +2,10 @@ import Image from "next/image";
 import { Applicant } from "./types/applicantTypes";
 import {
   LuCalendar,
+  LuCircleCheck,
   LuClipboardList,
   LuFileText,
+  LuShieldAlert,
   LuStar,
   LuUser,
 } from "react-icons/lu";
@@ -18,6 +20,11 @@ import { useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import EmptyFilterResult from "./EmptyFilterResult";
 import useApplicantActions from "./hooks/useApplicantActions";
+import {
+  getIsPassed,
+  getKnockoutQuestions,
+  getPassedCount,
+} from "./utils/screeningUtils";
 
 interface JobApplicantContentProps {
   applicantsData: Applicant[] | undefined;
@@ -84,6 +91,10 @@ const JobApplicantContent = ({
   return (
     <>
       {applicantsData?.map((item) => {
+        const knockoutQuestions = getKnockoutQuestions(item.screeningQuestions);
+        const passedCount = getPassedCount(knockoutQuestions);
+        const isPassed = getIsPassed(passedCount, knockoutQuestions);
+
         return (
           <div
             key={item._id}
@@ -113,6 +124,12 @@ const JobApplicantContent = ({
                   createdAt={item.createdAt}
                   status={item.status}
                 />
+
+                {item.status.at(length - 1)?.value === "rejected" && (
+                  <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border text-[10px] px-1.5 font-medium text-red-600 bg-red-50 border-[#ffc9c9]">
+                    <LuShieldAlert /> Oto. Red
+                  </span>
+                )}
               </div>
 
               <p className="text-muted-foreground text-xs truncate">
@@ -135,6 +152,23 @@ const JobApplicantContent = ({
                   {formatApplyTime(item.createdAt)}
                 </span>
               </div>
+
+              {item.screeningQuestions.length > 0 && (
+                <button
+                  className={`${isPassed ? "text-emerald-700 bg-emerald-50 hover:bg-emerald-100" : "text-red-700 bg-red-50 hover:bg-red-100"} whitespace-nowrap font-medium transition-colors duration-300 rounded-lg py-1.5 px-2.5 text-xs mt-2 flex items-center gap-1.5`}
+                  onClick={() => handleOpenQuestionsMenu(item._id)}
+                >
+                  {isPassed ? (
+                    <>
+                      <LuCircleCheck size={14} /> <span>Eleme başarılı</span>
+                    </>
+                  ) : (
+                    <>
+                      <LuShieldAlert size={14} /> <span>Eleme başarısız</span>
+                    </>
+                  )}
+                </button>
+              )}
             </div>
 
             <div className="flex ms-auto gap-4 shrink-0">
