@@ -19,10 +19,6 @@ export interface DashboardLinkItem {
   isRender?: boolean;
 }
 
-export interface DashboardLinkItemProps extends DashboardLinkItem {
-  activeLinkFunc: () => void;
-  pathname: string;
-}
 
 export interface SidebarImageProps {
   width: number;

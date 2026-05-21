@@ -2,21 +2,21 @@ import { AppDispatch, RootState } from "@/shared/redux/store";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { DashboardLinkItemProps } from "../../types/dashboard.types";
 import { setActiveText } from "../../slices/userDashboardSlice";
+import { usePathname } from "next/navigation";
+import { DashboardLinkItem as DashboardLinkItemProps } from "../../types/dashboard.types";
 
 const DashboardLinkItem = ({
   linkId,
   href,
   linkText,
   icon: Icon,
-  activeLinkFunc,
-  pathname,
 }: DashboardLinkItemProps) => {
   const { collapseMenu, breakpoint } = useSelector(
-    (state: RootState) => state.userDashboard
+    (state: RootState) => state.userDashboard,
   );
   const dispatch = useDispatch<AppDispatch>();
+  const pathname = usePathname();
 
   useEffect(() => {
     const findActiveText = href === pathname ? linkText : "";
@@ -33,7 +33,6 @@ const DashboardLinkItem = ({
         className={`h-[60px] ps-4 w-full flex items-center gap-5 font-medium text-lg transition-colors duration-300 hover:text-[#1814F3] ${
           pathname === href ? "text-[#1814F3]" : "text-[#55557C]"
         }`}
-        onClick={activeLinkFunc}
       >
         <Icon size={25} />
 
