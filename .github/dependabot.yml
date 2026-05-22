@@ -1,22 +1,37 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/"
+    directory: "/frontend"
     schedule:
       interval: "weekly"
       day: "monday"
       time: "09:00"
       timezone: "Europe/Istanbul"
-
     groups:
       vulnerabilities-and-updates:
         patterns:
           - "*"
-
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
+    labels:
+      - "dependencies"
+      - "automated"
 
+  - package-ecosystem: "npm"
+    directory: "/backend"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/Istanbul"
+    groups:
+      vulnerabilities-and-updates:
+        patterns:
+          - "*"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     labels:
       - "dependencies"
       - "automated"
