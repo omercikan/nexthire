@@ -40,7 +40,7 @@ function ApplicationActionButton({
         <span className="inline-flex">
           <CustomButton
             className={cn(
-              "bg-transparent! p-0! text-muted-foreground!",
+              "bg-transparent! p-0! text-muted-foreground! w-7 h-7 rounded-full! inline-flex justify-center items-center hover:bg-[#EDF2F8]!",
               className,
             )}
             handleClick={onClick}

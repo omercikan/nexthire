@@ -171,12 +171,12 @@ const JobApplicantContent = ({
               )}
             </div>
 
-            <div className="flex ms-auto gap-4 shrink-0">
+            <div className="flex gap-0.5 ms-auto shrink-0">
               {!!item.screeningQuestions.length && (
                 <ApplicationActionButton
                   icon={LuClipboardList}
                   inActiveTooltip="Cevapları Gör"
-                  className="hover:text-[#0073d5]!"
+                  className={`hover:text-[#0073d5]! ${isPassed && knockoutQuestions.length > 0 ? "text-emerald-600! hover:text-emerald-600! hover:bg-emerald-50!" : "text-red-500! hover:text-red-500! hover:bg-red-50!"}`}
                   onClick={() => handleOpenQuestionsMenu(item._id)}
                 />
               )}
@@ -184,9 +184,9 @@ const JobApplicantContent = ({
               <ApplicationActionButton
                 icon={LuFileText}
                 inActiveTooltip="CV Görüntüle"
-                className={`hover:text-[#0073d5]! ${isStatusLoading ? "pointer-events-none cursor-not-allowed!" : ""}`}
+                className={`hover:text-[#0073d5]! ${item.status.some((s) => s.value === "reviewed") ? "text-[#0073d5]!" : ""} ${isStatusLoading ? "pointer-events-none cursor-not-allowed!" : ""}`}
                 onClick={() => {
-                  if (item.resume.url) window.open(item.resume.url);
+                  if (item.resume?.url) window.open(item.resume.url);
 
                   handleUpdateApplicantStatus(
                     item.jobId,
