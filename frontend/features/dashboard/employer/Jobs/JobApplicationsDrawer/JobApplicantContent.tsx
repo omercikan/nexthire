@@ -98,7 +98,7 @@ const JobApplicantContent = ({
         return (
           <div
             key={item._id}
-            className="p-3 flex gap-3 border border-transparent hover:border-border rounded-[10px] transition-colors min-w-0"
+            className="p-3 flex max-[425px]:flex-col max-[425px]:items-center max-[425px]:text-center gap-3 border border-transparent hover:border-border rounded-[10px] transition-colors min-w-0"
           >
             {item.profilePhoto ? (
               <Image
@@ -114,8 +114,8 @@ const JobApplicantContent = ({
               </div>
             )}
 
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2">
+            <div className="min-w-0 max-[425px]:flex max-[425px]:flex-col max-[425px]:items-center flex-1">
+              <div className="flex max-[425px]:flex-col-reverse items-center gap-2">
                 <strong className="text-foreground font-medium text-sm truncate">
                   {item.fullname}
                 </strong>
@@ -171,7 +171,7 @@ const JobApplicantContent = ({
               )}
             </div>
 
-            <div className="flex gap-0.5 ms-auto shrink-0">
+            <div className="flex gap-0.5 min-[425px]:ms-auto shrink-0">
               {!!item.screeningQuestions.length && (
                 <ApplicationActionButton
                   icon={LuClipboardList}
