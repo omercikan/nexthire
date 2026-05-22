@@ -22,12 +22,10 @@ jobs:
           compat-lookup: true
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Dependabot auto-approve
+      - name: Dependabot auto-merge (Patch)
         if: steps.dependabot-metadata.outputs.update-type == 'version-update:semver-patch'
         run: |
           echo "🔧 A patch update has been detected; it is being merged automatically..."
-          gh pr review --approve "$PR_URL" \
-            --body "✅ Patch update — automatically approved."
           gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
@@ -37,8 +35,6 @@ jobs:
         if: steps.dependabot-metadata.outputs.update-type == 'version-update:semver-minor'
         run: |
           echo "📦 A minor update has been detected; an automatic merge is in progress..."
-          gh pr review --approve "$PR_URL" \
-            --body "✅ Minor update — automatically approved."
           gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
@@ -48,6 +44,8 @@ jobs:
         if: steps.dependabot-metadata.outputs.update-type == 'version-update:semver-major'
         run: |
           echo "🚨 Major update — manual review required"
+          gh label create "major-update" --color "d93f0b" --description "Major version update" || true
+          gh label create "needs-review" --color "fbca04" --description "Needs manual review" || true
           gh pr edit "$PR_URL" --add-label "major-update,needs-review"
           gh pr comment "$PR_URL" \
             --body "⚠️ **Major update** — this PR will not be merged automatically. Manual review is required."
