@@ -125,7 +125,7 @@ const JobApplicantContent = ({
                   status={item.status}
                 />
 
-                {item.status.at(length - 1)?.value === "rejected" && (
+                {item.status.some((s) => s.value === "auto_rejected") && (
                   <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border text-[10px] px-1.5 font-medium text-red-600 bg-red-50 border-[#ffc9c9]">
                     <LuShieldAlert /> Oto. Red
                   </span>
