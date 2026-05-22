@@ -234,9 +234,23 @@ const JobApplicantContent = ({
                 isActive={item.status.some((s) => s.value === "rejected")}
                 activeIconColor="#fb2c3680"
                 icon={GoXCircle}
-                activeTooltip=""
+                activeTooltip="Geri Al"
                 inActiveTooltip="Reddet"
                 className="hover:text-[#fb2c36]!"
+                onClick={() => {
+                  const isRejected = item.status.some(
+                    (s) => s.value === "rejected",
+                  );
+
+                  handleUpdateApplicantStatus(
+                    item.jobId,
+                    item.candidateId,
+                    "rejected",
+                    isRejected
+                      ? "Adayın reddi geri alınamadı. Lütfen tekrar deneyin."
+                      : "Aday reddedilemedi. Lütfen tekrar deneyin.",
+                  );
+                }}
               />
             </div>
           </div>
