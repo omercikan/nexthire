@@ -125,11 +125,12 @@ const JobApplicantContent = ({
                   status={item.status}
                 />
 
-                {item.status.some((s) => s.value === "auto_rejected") && (
-                  <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border text-[10px] px-1.5 font-medium text-red-600 bg-red-50 border-[#ffc9c9]">
-                    <LuShieldAlert /> Oto. Red
-                  </span>
-                )}
+                {item.status.some((s) => s.value === "auto_rejected") &&
+                  knockoutQuestions.length > 0 && (
+                    <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border text-[10px] px-1.5 font-medium text-red-600 bg-red-50 border-[#ffc9c9]">
+                      <LuShieldAlert /> Oto. Red
+                    </span>
+                  )}
               </div>
 
               <p className="text-muted-foreground text-xs truncate">
@@ -153,7 +154,7 @@ const JobApplicantContent = ({
                 </span>
               </div>
 
-              {item.screeningQuestions.length > 0 && (
+              {knockoutQuestions.length > 0 && (
                 <button
                   className={`${isPassed ? "text-emerald-700 bg-emerald-50 hover:bg-emerald-100" : "text-red-700 bg-red-50 hover:bg-red-100"} whitespace-nowrap font-medium transition-colors duration-300 rounded-lg py-1.5 px-2.5 text-xs mt-2 flex items-center gap-1.5`}
                   onClick={() => handleOpenQuestionsMenu(item._id)}
@@ -176,7 +177,7 @@ const JobApplicantContent = ({
                 <ApplicationActionButton
                   icon={LuClipboardList}
                   inActiveTooltip="Cevapları Gör"
-                  className={`hover:text-[#0073d5]! ${isPassed && knockoutQuestions.length > 0 ? "text-emerald-600! hover:text-emerald-600! hover:bg-emerald-50!" : "text-red-500! hover:text-red-500! hover:bg-red-50!"}`}
+                  className={`hover:text-[#0073d5]! ${knockoutQuestions.length > 0 ? (isPassed ? "text-emerald-600! hover:text-emerald-600! hover:bg-emerald-50!" : "text-red-500! hover:text-red-500! hover:bg-red-50!") : ""}`}
                   onClick={() => handleOpenQuestionsMenu(item._id)}
                 />
               )}
