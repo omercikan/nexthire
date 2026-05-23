@@ -51,11 +51,8 @@ const JobApplicantContent = ({
   const params = useSearchParams();
   const search = params.get("search");
   const status = params.get("status");
-  const {
-    handleUpdateApplicantStatus,
-    handleOpenQuestionsMenu,
-    isStatusLoading,
-  } = useApplicantActions(updateApplicant);
+  const { handleUpdateApplicantStatus, handleOpenSubDrawer, isStatusLoading } =
+    useApplicantActions(updateApplicant);
 
   useEffect(() => {
     triggeredRef.current = true;
@@ -157,7 +154,7 @@ const JobApplicantContent = ({
               {knockoutQuestions.length > 0 && (
                 <button
                   className={`${isPassed ? "text-emerald-700 bg-emerald-50 hover:bg-emerald-100" : "text-red-700 bg-red-50 hover:bg-red-100"} whitespace-nowrap font-medium transition-colors duration-300 rounded-lg py-1.5 px-2.5 text-xs mt-2 flex items-center gap-1.5`}
-                  onClick={() => handleOpenQuestionsMenu(item._id)}
+                  onClick={() => handleOpenSubDrawer(item._id, "questions")}
                 >
                   {isPassed ? (
                     <>
@@ -178,7 +175,7 @@ const JobApplicantContent = ({
                   icon={LuClipboardList}
                   inActiveTooltip="Cevapları Gör"
                   className={`hover:text-[#0073d5]! ${knockoutQuestions.length > 0 ? (isPassed ? "text-emerald-600! hover:text-emerald-600! hover:bg-emerald-50!" : "text-red-500! hover:text-red-500! hover:bg-red-50!") : ""}`}
-                  onClick={() => handleOpenQuestionsMenu(item._id)}
+                  onClick={() => handleOpenSubDrawer(item._id, "questions")}
                 />
               )}
 
@@ -229,6 +226,7 @@ const JobApplicantContent = ({
                 activeTooltip="Mülakatı Düzenle"
                 inActiveTooltip="Mülakata Al"
                 className="hover:text-[#4f39f6]!"
+                onClick={() => handleOpenSubDrawer(item._id, "interview")}
               />
 
               <ApplicationActionButton

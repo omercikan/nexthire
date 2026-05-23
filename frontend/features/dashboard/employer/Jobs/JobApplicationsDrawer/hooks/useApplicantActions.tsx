@@ -39,17 +39,20 @@ const useApplicantActions = (
     [updateStatus, updateApplicant, isStatusLoading],
   );
 
-  const handleOpenQuestionsMenu = (applicationId: string) => {
+  const handleOpenSubDrawer = (
+    applicationId: string,
+    action: "questions" | "interview",
+  ) => {
     const params = new URLSearchParams(searchParams.toString());
 
     params.set("applicationId", applicationId);
-    params.set("action", "questions");
+    params.set("action", action);
     router.replace(`?${params.toString()}`, { scroll: false });
   };
 
   return {
     handleUpdateApplicantStatus,
-    handleOpenQuestionsMenu,
+    handleOpenSubDrawer,
     isStatusLoading,
   };
 };
