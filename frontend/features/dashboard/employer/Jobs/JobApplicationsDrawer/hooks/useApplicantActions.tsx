@@ -43,6 +43,7 @@ const useApplicantActions = (
     const params = new URLSearchParams(searchParams.toString());
 
     params.set("applicationId", applicationId);
+    params.set("action", "questions");
     router.replace(`?${params.toString()}`, { scroll: false });
   };
 

@@ -27,6 +27,7 @@ const EmployerJobsPanel = () => {
       <JobApplicationsDrawer
         open={!!jobId}
         jobId={jobId ?? ""}
+        currentMenuAction={searchParams.get("action") ?? ""}
         applicationId={applicationId ?? ""}
       />
 

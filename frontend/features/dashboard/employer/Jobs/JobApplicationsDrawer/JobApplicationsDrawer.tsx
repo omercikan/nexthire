@@ -29,10 +29,12 @@ const JobApplicationsDrawer = ({
   jobId,
   applicationId,
   open,
+  currentMenuAction,
 }: {
   jobId: string;
   open: boolean;
   applicationId: string;
+  currentMenuAction: string;
 }) => {
   const router = useRouter();
   const {
@@ -126,7 +128,7 @@ const JobApplicationsDrawer = ({
 
           <AnimatePresence mode="wait">
             {!!applicationId &&
-              open &&
+              currentMenuAction === "questions" &&
               !!currentApplication &&
               !!currentApplication?.screeningQuestions.length && (
                 <ApplicationQuestions applicant={currentApplication} />

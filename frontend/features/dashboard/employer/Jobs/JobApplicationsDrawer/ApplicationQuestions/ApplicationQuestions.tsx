@@ -44,6 +44,7 @@ const ApplicationQuestions = ({
   const handleCloseDrawer = (action: "back" | "close") => {
     const params = new URLSearchParams(window.location.search);
     params.delete("applicationId");
+    params.delete("action");
 
     if (action === "close") {
       params.delete("jobId");
