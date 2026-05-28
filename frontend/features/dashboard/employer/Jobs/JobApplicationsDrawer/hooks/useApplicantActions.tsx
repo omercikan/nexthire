@@ -42,11 +42,15 @@ const useApplicantActions = (
   const handleOpenSubDrawer = (
     applicationId: string,
     action: "questions" | "interview",
+    mode: string = "",
   ) => {
     const params = new URLSearchParams(searchParams.toString());
 
     params.set("applicationId", applicationId);
     params.set("action", action);
+
+    if (mode !== "") params.set("mode", mode);
+
     router.replace(`?${params.toString()}`, { scroll: false });
   };
 
