@@ -226,7 +226,18 @@ const JobApplicantContent = ({
                 activeTooltip="Mülakatı Düzenle"
                 inActiveTooltip="Mülakata Al"
                 className="hover:text-[#4f39f6]!"
-                onClick={() => handleOpenSubDrawer(item._id, "interview")}
+                onClick={() =>
+                  handleOpenSubDrawer(
+                    item._id,
+                    "interview",
+                    item.status.some(
+                      (s) =>
+                        s.value === "interviewed" || s.value === "scheduled",
+                    )
+                      ? "interview_edit"
+                      : "create_interview",
+                  )
+                }
               />
 
               <ApplicationActionButton
