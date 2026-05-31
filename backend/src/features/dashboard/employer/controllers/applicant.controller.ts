@@ -52,6 +52,58 @@ class ApplicantController {
       next(error);
     }
   }
+
+  async updateStatus(req: Request, res: Response, next: NextFunction) {
+    const employerId = req.user.id;
+    const { jobId } = req.params;
+    const { status, candidateId } = req.body;
+
+    try {
+      const applicant = await Application.findOne({
+        employerId,
+        candidateId,
+        jobId,
+      }).select("-__v");
+
+      if (!applicant) {
+        return res.status(404).json({ message: "Applicant not found." });
+      }
+
+      const toggleableStatuses = ["shortlisted", "rejected"];
+
+      if (toggleableStatuses.includes(status)) {
+        const shortlistedIndex = applicant.status.findIndex(
+          (s) => s.value === status,
+        );
+
+        if (shortlistedIndex !== -1) {
+          applicant.status.splice(shortlistedIndex, 1);
+
+          const lastStatus = applicant.status[applicant.status.length - 1];
+          applicant.currentStatus = lastStatus?.value ?? "pending";
+
+          await applicant.save();
+          return res.json(applicant);
+        }
+      }
+
+      if (applicant.currentStatus === status) {
+        return res.json(applicant);
+      }
+
+      applicant.status.push({
+        value: status,
+        changedAt: new Date(),
+      });
+
+      applicant.currentStatus = status;
+      await applicant.save();
+
+      return res.json(applicant);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export const Applicant = new ApplicantController();
