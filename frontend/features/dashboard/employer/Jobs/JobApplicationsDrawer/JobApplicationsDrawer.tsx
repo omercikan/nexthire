@@ -9,6 +9,7 @@ import useApplicantsData from "./hooks/useApplicantsData";
 import { useEffect, useRef, useState } from "react";
 import ApplicationQuestions from "./ApplicationQuestions/ApplicationQuestions";
 import { CurrentApplication } from "./types/applicantTypes";
+import InterviewSchedulerDrawer from "./InterviewScheduler/InterviewSchedulerDrawer";
 
 function DrawerWrapper({ children }: { children: React.ReactNode }) {
   return (
@@ -132,6 +133,12 @@ const JobApplicationsDrawer = ({
               !!currentApplication &&
               !!currentApplication?.screeningQuestions.length && (
                 <ApplicationQuestions applicant={currentApplication} />
+              )}
+
+            {!!applicationId &&
+              currentMenuAction === "interview" &&
+              !!currentApplication && (
+                <InterviewSchedulerDrawer applicant={currentApplication} />
               )}
           </AnimatePresence>
         </motion.div>
