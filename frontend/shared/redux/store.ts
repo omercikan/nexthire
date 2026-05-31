@@ -39,6 +39,7 @@ import { jobFiltersSlice } from "@/features/dashboard/employer/Jobs/JobFilters/j
 import { jobListMenuSlice } from "@/features/dashboard/employer/Jobs/JobList/JobListMenuSlice";
 import { employerJobsApi } from "@/features/dashboard/employer/Jobs/services/employerJobsApi";
 import { applicantsApi } from "@/features/dashboard/employer/Jobs/services/applicantsApi";
+import interviewSchedulerReducer from "@/features/dashboard/employer/Jobs/JobApplicationsDrawer/InterviewScheduler/interviewSchedulerSlice";
 
 export const store = configureStore({
   reducer: {
@@ -64,6 +65,7 @@ export const store = configureStore({
     modalControlSlice: modalControlSlice.reducer,
     jobListFilters: jobFiltersSlice.reducer,
     jobListMenu: jobListMenuSlice.reducer,
+    interviewScheduler: interviewSchedulerReducer,
     [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
     [bestCompaniesApi.reducerPath]: bestCompaniesApi.reducer,
     [favoritesApi.reducerPath]: favoritesApi.reducer,
