@@ -4,6 +4,8 @@ interface InterviewSchedulerErrors {
   scheduledAt: string;
   scheduledTime: string;
   type: string;
+  meetingLink: string;
+  location: string;
 }
 
 interface InterviewSchedulerState {
@@ -27,6 +29,8 @@ const initialState: InterviewSchedulerState = {
     scheduledAt: "",
     scheduledTime: "",
     type: "",
+    meetingLink: "",
+    location: "",
   },
 };
 
@@ -90,6 +94,9 @@ export const {
   setLocation,
   setNotes,
   resetScheduler,
+  setError,
+  clearError,
+  clearAllErrors,
 } = interviewSchedulerSlice.actions;
 
 export default interviewSchedulerSlice.reducer;
