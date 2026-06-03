@@ -6,7 +6,7 @@ interface FormFieldProps {
   label: string;
   required?: boolean;
   error?: string;
-  onClick: () => void;
+  onClick?: () => void;
   buttonContent?: ReactNode;
   buttonClassName?: string;
   children: React.ReactNode;
