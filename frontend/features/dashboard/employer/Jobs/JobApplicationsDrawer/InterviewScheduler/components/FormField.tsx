@@ -1,4 +1,5 @@
 import CustomButton from "@/shared/components/ui/CustomButton";
+import { cn } from "@/shared/libs/utils";
 import { ReactNode } from "react";
 
 interface FormFieldProps {
@@ -7,6 +8,7 @@ interface FormFieldProps {
   error?: string;
   onClick: () => void;
   buttonContent: ReactNode;
+  buttonClassName?: string;
   children: React.ReactNode;
 }
 
@@ -16,6 +18,7 @@ const FormField = ({
   error,
   onClick,
   buttonContent,
+  buttonClassName = "",
   children,
 }: FormFieldProps) => {
   return (
@@ -28,7 +31,10 @@ const FormField = ({
       </label>
 
       <CustomButton
-        className={`py-2! px-3! w-full shadow-xs flex items-center gap-2 bg-transparent! hover:bg-[#f3f5f8]! text-muted-foreground! hover:text-black! text-sm rounded-md! border ${error ? "border-red-600" : "border-border"}`}
+        className={cn(
+          `py-2! px-3! w-full shadow-xs flex items-center gap-2 bg-transparent! hover:bg-[#f3f5f8]! text-muted-foreground! hover:text-black! text-sm rounded-md! border ${error ? "border-red-600" : "border-border"}`,
+          buttonClassName,
+        )}
         handleClick={onClick}
       >
         {buttonContent}
