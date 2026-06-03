@@ -46,3 +46,5 @@ export const TIME_SLOTS = [
   "17:30",
   "18:00",
 ] as const;
+
+export type TimeSlot = (typeof TIME_SLOTS)[number];
