@@ -7,12 +7,14 @@ import { useEmployerJobsData } from "../../hooks/useEmployerJobsData";
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { LuCalendar, LuUser, LuChevronDown, LuClock } from "react-icons/lu";
+
 import InterviewDateTimeScheduler from "./components/InterviewDateTimeScheduler";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/shared/redux/store";
 import { resetScheduler } from "./interviewSchedulerSlice";
 import FormField from "./components/FormField";
 import TimeSlotPicker from "./components/TimeSlotPicker";
+import InterviewTypePicker from "./components/InterviewTypePicker";
 
 const InterviewSchedulerDrawer = ({
   applicant,
@@ -29,6 +31,7 @@ const InterviewSchedulerDrawer = ({
   );
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
   const [isOpenTime, setIsOpenTime] = useState(false);
+  // const [type, setType] = useState<"online" | "in_person">("online");
 
   const actionMode = searchParams.get("mode");
   const jobId = searchParams.get("jobId");
@@ -153,6 +156,19 @@ const InterviewSchedulerDrawer = ({
             <AnimatePresence>
               {isOpenTime && <TimeSlotPicker setIsOpenTime={setIsOpenTime} />}
             </AnimatePresence>
+          </FormField>
+
+          <FormField
+            required
+            label="Mülakat Türü"
+            onClick={() => {
+              setIsOpenTime((prev) => !prev);
+              if (isOpenCalendar) setIsOpenCalendar(false);
+            }}
+            error={errors.scheduledTime}
+            buttonClassName="w-[150px]"
+          >
+            <InterviewTypePicker />
           </FormField>
         </div>
       </motion.aside>
