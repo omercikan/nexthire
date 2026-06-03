@@ -3,7 +3,7 @@ import { AppDispatch, RootState } from "@/shared/redux/store";
 import { BsCameraVideo } from "react-icons/bs";
 import { LuBuilding2 } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
-import { setType } from "../interviewSchedulerSlice";
+import { clearError, setType } from "../interviewSchedulerSlice";
 import { cn } from "@/shared/libs/utils";
 
 type PickerType = "online" | "in_person";
@@ -24,11 +24,17 @@ const InterviewTypePicker = () => {
   const dispatch = useDispatch<AppDispatch>();
   const type = useSelector((state: RootState) => state.interviewScheduler.type);
 
+  const handleClick = (type: PickerType) => {
+    dispatch(setType(type));
+    dispatch(clearError("meetingLink"));
+    dispatch(clearError("location"));
+  };
+
   return (
     <div className="grid grid-cols-2 gap-2">
       <CustomButton
         className={getButtonClassName("online", type)}
-        handleClick={() => dispatch(setType("online"))}
+        handleClick={() => handleClick("online")}
       >
         <BsCameraVideo size={16} strokeWidth={0.5} />
         Online
@@ -36,7 +42,7 @@ const InterviewTypePicker = () => {
 
       <CustomButton
         className={getButtonClassName("in_person", type)}
-        handleClick={() => dispatch(setType("in_person"))}
+        handleClick={() => handleClick("in_person")}
       >
         <LuBuilding2 size={16} />
         Yüz Yüze
