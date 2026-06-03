@@ -6,15 +6,28 @@ import Image from "next/image";
 import { useEmployerJobsData } from "../../hooks/useEmployerJobsData";
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { LuCalendar, LuUser, LuChevronDown, LuClock } from "react-icons/lu";
+import {
+  LuCalendar,
+  LuUser,
+  LuChevronDown,
+  LuClock,
+  LuLink2,
+  LuMapPin,
+} from "react-icons/lu";
 
 import InterviewDateTimeScheduler from "./components/InterviewDateTimeScheduler";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/shared/redux/store";
-import { resetScheduler } from "./interviewSchedulerSlice";
+import {
+  clearError,
+  resetScheduler,
+  setLocation,
+  setMeetingLink,
+} from "./interviewSchedulerSlice";
 import FormField from "./components/FormField";
 import TimeSlotPicker from "./components/TimeSlotPicker";
 import InterviewTypePicker from "./components/InterviewTypePicker";
+import CustomInput from "@/shared/components/ui/CustomInput";
 
 const InterviewSchedulerDrawer = ({
   applicant,
@@ -26,12 +39,10 @@ const InterviewSchedulerDrawer = ({
   const { jobs } = useEmployerJobsData();
 
   const dispatch = useDispatch<AppDispatch>();
-  const { scheduledAt, scheduledTime, errors } = useSelector(
-    (state: RootState) => state.interviewScheduler,
-  );
+  const { scheduledAt, scheduledTime, type, meetingLink, location, errors } =
+    useSelector((state: RootState) => state.interviewScheduler);
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
   const [isOpenTime, setIsOpenTime] = useState(false);
-  // const [type, setType] = useState<"online" | "in_person">("online");
 
   const actionMode = searchParams.get("mode");
   const jobId = searchParams.get("jobId");
@@ -158,17 +169,42 @@ const InterviewSchedulerDrawer = ({
             </AnimatePresence>
           </FormField>
 
+          <FormField required label="Mülakat Türü" error={errors.type}>
+            <InterviewTypePicker />
+          </FormField>
+
           <FormField
             required
-            label="Mülakat Türü"
-            onClick={() => {
-              setIsOpenTime((prev) => !prev);
-              if (isOpenCalendar) setIsOpenCalendar(false);
-            }}
-            error={errors.scheduledTime}
+            label={type === "online" ? "Toplantı Linki" : "Konum"}
             buttonClassName="w-[150px]"
           >
-            <InterviewTypePicker />
+            <CustomInput
+              placeholder={
+                type === "online"
+                  ? "https://meet.google.com/..."
+                  : "Levent, İstanbul"
+              }
+              className="px-9! rounded-md! shadow-xs placeholder:text-muted-foreground text-foreground focus:outline-none focus:border-[#0073d5]! focus:ring-3 focus:ring-[#0073d5]/50"
+              icon={type === "online" ? <LuLink2 /> : <LuMapPin />}
+              value={(type === "online" ? meetingLink : location) ?? ""}
+              error={type === "online" ? errors.meetingLink : errors.location}
+              onChange={(e) => {
+                const value = e.target.value;
+
+                dispatch(
+                  type === "online"
+                    ? setMeetingLink(value)
+                    : setLocation(value),
+                );
+
+                if (value) {
+                  dispatch(
+                    clearError(type === "online" ? "meetingLink" : "location"),
+                  );
+                }
+              }}
+              iconSpanClass="text-muted-foreground!"
+            />
           </FormField>
         </div>
       </motion.aside>
