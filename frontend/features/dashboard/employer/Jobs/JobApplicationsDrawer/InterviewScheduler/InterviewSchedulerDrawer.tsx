@@ -6,12 +6,13 @@ import Image from "next/image";
 import { useEmployerJobsData } from "../../hooks/useEmployerJobsData";
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { LuCalendar, LuUser } from "react-icons/lu";
+import { LuCalendar, LuUser, LuChevronDown, LuClock } from "react-icons/lu";
 import InterviewDateTimeScheduler from "./components/InterviewDateTimeScheduler";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/shared/redux/store";
 import { resetScheduler } from "./interviewSchedulerSlice";
 import FormField from "./components/FormField";
+import TimeSlotPicker from "./components/TimeSlotPicker";
 
 const InterviewSchedulerDrawer = ({
   applicant,
@@ -23,10 +24,11 @@ const InterviewSchedulerDrawer = ({
   const { jobs } = useEmployerJobsData();
 
   const dispatch = useDispatch<AppDispatch>();
-  const { scheduledAt, errors } = useSelector(
+  const { scheduledAt, scheduledTime, errors } = useSelector(
     (state: RootState) => state.interviewScheduler,
   );
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
+  const [isOpenTime, setIsOpenTime] = useState(false);
 
   const actionMode = searchParams.get("mode");
   const jobId = searchParams.get("jobId");
@@ -70,6 +72,7 @@ const InterviewSchedulerDrawer = ({
         onClick={(e) => {
           e.stopPropagation();
           if (isOpenCalendar) setIsOpenCalendar(false);
+          if (isOpenTime) setIsOpenTime(false);
         }}
         className="fixed right-0 top-0 h-full w-full border-l border-l-border bg-white sm:max-w-100 flex flex-col"
         role="dialog"
@@ -106,11 +109,13 @@ const InterviewSchedulerDrawer = ({
           <FormField
             required
             label="Tarih"
-            onClick={() => setIsOpenCalendar((prev) => !prev)}
+            onClick={() => {
+              setIsOpenCalendar((prev) => !prev);
+              if (isOpenTime) setIsOpenTime(false);
+            }}
             error={errors.scheduledAt}
             buttonContent={
               <>
-                {" "}
                 <LuCalendar size={16} color="4D5660" />
                 {scheduledAt ? scheduledAt : "Tarih seçin"}
               </>
@@ -120,6 +125,33 @@ const InterviewSchedulerDrawer = ({
               {isOpenCalendar && (
                 <InterviewDateTimeScheduler setIsOpen={setIsOpenCalendar} />
               )}
+            </AnimatePresence>
+          </FormField>
+
+          <FormField
+            required
+            label="Saat"
+            onClick={() => {
+              setIsOpenTime((prev) => !prev);
+              if (isOpenCalendar) setIsOpenCalendar(false);
+            }}
+            error={errors.scheduledTime}
+            buttonClassName="w-[150px]"
+            buttonContent={
+              <div className="flex items-center justify-between w-full">
+                <div className="flex items-center gap-2">
+                  <LuClock size={16} color="4D5660" />
+                  <span className={scheduledTime ? "text-foreground" : ""}>
+                    {scheduledTime ? scheduledTime : "Saat seçin"}
+                  </span>
+                </div>
+
+                <LuChevronDown size={16} color="4D5660" opacity={0.5} />
+              </div>
+            }
+          >
+            <AnimatePresence>
+              {isOpenTime && <TimeSlotPicker setIsOpenTime={setIsOpenTime} />}
             </AnimatePresence>
           </FormField>
         </div>
