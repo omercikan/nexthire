@@ -9,7 +9,7 @@ interface InterviewSchedulerErrors {
 interface InterviewSchedulerState {
   scheduledAt: string | null;
   scheduledTime: string | null;
-  type: "online" | "in_person" | null;
+  type: "online" | "in_person";
   meetingLink: string | null;
   location: string | null;
   notes: string | null;
@@ -19,7 +19,7 @@ interface InterviewSchedulerState {
 const initialState: InterviewSchedulerState = {
   scheduledAt: null,
   scheduledTime: null,
-  type: null,
+  type: "online",
   meetingLink: null,
   location: null,
   notes: null,
@@ -42,7 +42,7 @@ export const interviewSchedulerSlice = createSlice({
       state.scheduledTime = action.payload;
     },
 
-    setType: (state, action: PayloadAction<"online" | "in_person" | null>) => {
+    setType: (state, action: PayloadAction<"online" | "in_person">) => {
       state.type = action.payload;
       state.meetingLink = null;
       state.location = null;
