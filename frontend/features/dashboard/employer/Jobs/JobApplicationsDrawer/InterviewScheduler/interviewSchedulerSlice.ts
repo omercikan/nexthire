@@ -39,7 +39,7 @@ export const interviewSchedulerSlice = createSlice({
     },
 
     setScheduledTime: (state, action: PayloadAction<string | null>) => {
-      state.scheduledAt = action.payload;
+      state.scheduledTime = action.payload;
     },
 
     setType: (state, action: PayloadAction<"online" | "in_person" | null>) => {
