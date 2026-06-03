@@ -7,7 +7,7 @@ interface FormFieldProps {
   required?: boolean;
   error?: string;
   onClick: () => void;
-  buttonContent: ReactNode;
+  buttonContent?: ReactNode;
   buttonClassName?: string;
   children: React.ReactNode;
 }
@@ -30,15 +30,17 @@ const FormField = ({
         {label} {required && <span className="text-[#e7000b]">*</span>}
       </label>
 
-      <CustomButton
-        className={cn(
-          `py-2! px-3! w-full shadow-xs flex items-center gap-2 bg-transparent! hover:bg-[#f3f5f8]! text-muted-foreground! hover:text-black! text-sm rounded-md! border ${error ? "border-red-600" : "border-border"}`,
-          buttonClassName,
-        )}
-        handleClick={onClick}
-      >
-        {buttonContent}
-      </CustomButton>
+      {buttonContent && (
+        <CustomButton
+          className={cn(
+            `py-2! px-3! w-full shadow-xs flex items-center gap-2 bg-transparent! hover:bg-[#f3f5f8]! text-muted-foreground! hover:text-black! text-sm rounded-md! border ${error ? "border-red-600" : "border-border"}`,
+            buttonClassName,
+          )}
+          handleClick={onClick}
+        >
+          {buttonContent}
+        </CustomButton>
+      )}
 
       {children}
 
