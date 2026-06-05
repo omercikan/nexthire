@@ -29,6 +29,7 @@ import FormField from "./components/FormField";
 import TimeSlotPicker from "./components/TimeSlotPicker";
 import InterviewTypePicker from "./components/InterviewTypePicker";
 import CustomInput from "@/shared/components/ui/CustomInput";
+import InterviewActions from "./components/InterviewActions";
 
 const InterviewSchedulerDrawer = ({
   applicant,
@@ -120,7 +121,7 @@ const InterviewSchedulerDrawer = ({
           )}
         </div>
 
-        <div className="flex-1 flex flex-col gap-y-5 overflow-y-auto px-5 py-4">
+        <div className="flex-1 flex flex-col gap-y-5 visible-scrollbar px-5 py-4">
           <FormField
             required
             label="Tarih"
@@ -225,6 +226,8 @@ const InterviewSchedulerDrawer = ({
             />
           </FormField>
         </div>
+
+        <InterviewActions actionMode={actionMode} handleClose={handleClose} />
       </motion.aside>
     </motion.div>
   );
