@@ -23,6 +23,7 @@ import {
   resetScheduler,
   setLocation,
   setMeetingLink,
+  setNotes,
 } from "./interviewSchedulerSlice";
 import FormField from "./components/FormField";
 import TimeSlotPicker from "./components/TimeSlotPicker";
@@ -204,6 +205,23 @@ const InterviewSchedulerDrawer = ({
                 }
               }}
               iconSpanClass="text-muted-foreground!"
+            />
+          </FormField>
+
+          <FormField
+            labelClass="gap-1!"
+            label={
+              <>
+                Notlar
+                <span className="text-muted-foreground">(isteğe bağlı)</span>
+              </>
+            }
+          >
+            <textarea
+              className="candidate-question-input py-2! border-border! placeholder:text-muted-foreground field-sizing-content min-h-16 resize-none modal-scrollbar text-foreground focus:border-[#0073d5]! focus:ring-[#0073d5]/50! bg-transparent! shadow-xs w-full"
+              placeholder="Mülakat hakkında notlar..."
+              rows={3}
+              onChange={(e) => dispatch(setNotes(e.target.value))}
             />
           </FormField>
         </div>
