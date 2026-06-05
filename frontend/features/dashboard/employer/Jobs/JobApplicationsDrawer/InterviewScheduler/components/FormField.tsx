@@ -3,7 +3,8 @@ import { cn } from "@/shared/libs/utils";
 import { ReactNode } from "react";
 
 interface FormFieldProps {
-  label: string;
+  label: string | ReactNode;
+  labelClass?: string;
   required?: boolean;
   error?: string;
   onClick?: () => void;
@@ -14,6 +15,7 @@ interface FormFieldProps {
 
 const FormField = ({
   label,
+  labelClass = "",
   required,
   error,
   onClick,
@@ -25,7 +27,7 @@ const FormField = ({
     <div className="relative">
       <label
         htmlFor="date"
-        className="flex gap-2 text-sm text-[#050c13] font-medium mb-2"
+        className={`flex gap-2 text-sm text-[#050c13] font-medium mb-2 ${labelClass}`}
       >
         {label} {required && <span className="text-[#e7000b]">*</span>}
       </label>
