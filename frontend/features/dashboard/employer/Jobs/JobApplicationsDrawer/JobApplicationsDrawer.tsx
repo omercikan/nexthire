@@ -68,6 +68,7 @@ const JobApplicationsDrawer = ({
         title,
         lastWorkPlace,
         screeningQuestions,
+        createdAt,
       } = found;
 
       setCurrentApplication({
@@ -76,6 +77,7 @@ const JobApplicationsDrawer = ({
         title,
         lastWorkPlace,
         screeningQuestions,
+        createdAt,
       });
     }
   }, [applicationId, applicants]);
