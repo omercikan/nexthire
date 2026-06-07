@@ -30,6 +30,7 @@ import TimeSlotPicker from "./components/TimeSlotPicker";
 import InterviewTypePicker from "./components/InterviewTypePicker";
 import CustomInput from "@/shared/components/ui/CustomInput";
 import InterviewActions from "./components/InterviewActions";
+import CancelInterviewModal from "./components/CancelInterviewModal";
 
 const InterviewSchedulerDrawer = ({
   applicant,
@@ -45,6 +46,7 @@ const InterviewSchedulerDrawer = ({
     useSelector((state: RootState) => state.interviewScheduler);
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
   const [isOpenTime, setIsOpenTime] = useState(false);
+  const [isCancelInterview, setIsCancelInterview] = useState(false);
 
   const actionMode = searchParams.get("mode");
   const jobId = searchParams.get("jobId");
@@ -227,8 +229,24 @@ const InterviewSchedulerDrawer = ({
           </FormField>
         </div>
 
-        <InterviewActions actionMode={actionMode} handleClose={handleClose} />
+        <InterviewActions
+          actionMode={actionMode}
+          handleClose={handleClose}
+          setIsCancelInterview={setIsCancelInterview}
+        />
       </motion.aside>
+
+      <AnimatePresence>
+        {isCancelInterview && (
+          <CancelInterviewModal
+            profilePhoto={applicant.profilePhoto}
+            username={applicant.fullname}
+            title={applicant.title}
+            appliedAt={applicant.createdAt}
+            setIsCancelInterview={setIsCancelInterview}
+          />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
