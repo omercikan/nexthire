@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import "dayjs/locale/tr";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { useDispatch, useSelector } from "react-redux";
-import { setScheduledDate } from "../interviewSchedulerSlice";
+import { setError, setScheduledDate } from "../interviewSchedulerSlice";
 import toast from "react-hot-toast";
 import CalendarCell from "./CalendarCell";
 
@@ -115,6 +115,8 @@ const CalendarTable = ({
         ),
       ),
     );
+
+    dispatch(setError({ scheduledAt: "" }));
     setIsOpen((prev) => !prev);
   };
 
