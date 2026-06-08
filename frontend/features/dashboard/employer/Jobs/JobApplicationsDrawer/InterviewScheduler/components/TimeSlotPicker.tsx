@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TIME_SLOTS, TimeSlot } from "../constants/dateConstants";
 import { LuCheck, LuChevronUp, LuChevronDown } from "react-icons/lu";
 import { AppDispatch, RootState } from "@/shared/redux/store";
-import { setScheduledTime } from "../interviewSchedulerSlice";
+import { setError, setScheduledTime } from "../interviewSchedulerSlice";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import useScrollControls from "../hooks/useScrollControls";
 
@@ -29,6 +29,7 @@ const TimeSlotPicker = ({
 
   const handleSelectTime = (time: string) => {
     dispatch(setScheduledTime(time));
+    dispatch(setError({ scheduledTime: "" }));
     setIsOpenTime(false);
   };
 
