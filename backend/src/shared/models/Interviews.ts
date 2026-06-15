@@ -9,13 +9,12 @@ export interface IStatusHistory {
 
 export interface IInterview extends Document {
   candidateId: mongoose.Types.ObjectId;
-  candidateName: string;
   interviewerId: mongoose.Types.ObjectId;
-  interviewerName: string;
   scheduledAt: string;
   time: string;
   type: "online" | "in_person";
   meetingLink?: string;
+  location?: string;
   positionId?: mongoose.Types.ObjectId;
   positionTitle: string;
   notes?: string;
@@ -28,13 +27,12 @@ export interface IInterview extends Document {
 const InterviewSchema = new Schema<IInterview>(
   {
     candidateId: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    candidateName: { type: String, required: true },
     interviewerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    interviewerName: { type: String, required: true },
     scheduledAt: { type: String, required: true },
     time: { type: String, required: true },
     type: { type: String, enum: ["online", "in_person"], required: true },
     meetingLink: { type: String },
+    location: { type: String },
     positionId: { type: Schema.Types.ObjectId, ref: "Job" },
     positionTitle: { type: String, required: true },
     notes: { type: String },
