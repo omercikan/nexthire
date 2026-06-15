@@ -1,0 +1,351 @@
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>NextHire | Mülakat Bildirimi</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6fb;
+      font-family: Arial, sans-serif;
+      color: #0f1724;
+    "
+  >
+    <table
+      role="presentation"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      style="background-color: #f4f6fb; padding: 40px 0"
+    >
+      <tr>
+        <td align="center">
+          <table
+            role="presentation"
+            width="600"
+            cellpadding="0"
+            cellspacing="0"
+            style="
+              background-color: #ffffff;
+              border-radius: 8px;
+              border: 1px solid #e5e7eb;
+            "
+          >
+            <!-- HEADER -->
+            <tr>
+              <td
+                align="center"
+                style="
+                  padding: 30px 20px;
+                  background-color: #f8f9ff;
+                  border-bottom: 1px solid #e5e7eb;
+                "
+              >
+                <img
+                  src="https://res.cloudinary.com/dvolwkh6r/image/upload/v1744909581/nexthire_d27rhv.png"
+                  alt="NextHire Logo"
+                  width="160"
+                  style="display: block; margin-bottom: 12px"
+                />
+                <!-- create -->
+                {{#if (eq action "create")}}
+                  <div style="color: #6b7280; font-size: 14px">
+                    🗓️ Yeni mülakat planlandı
+                  </div>
+                {{/if}}
+                <!-- update -->
+                {{#if (eq action "update")}}
+                  <div style="color: #6b7280; font-size: 14px">
+                    ✏️ Mülakat güncellendi
+                  </div>
+                {{/if}}
+                <!-- delete / cancel -->
+                {{#if (eq action "delete")}}
+                  <div style="color: #6b7280; font-size: 14px">
+                    ❌ Mülakat iptal edildi
+                  </div>
+                {{/if}}
+              </td>
+            </tr>
+
+            <!-- BODY -->
+            <tr>
+              <td style="padding: 40px 40px 20px">
+                <h1 style="font-size: 22px; margin: 0 0 16px">
+                  <!-- create -->
+                  {{#if (eq action "create")}}
+                    <span style="color: #4045ef">Merhaba {{fullname}},</span>
+                  {{/if}}
+                  <!-- update -->
+                  {{#if (eq action "update")}}
+                    <span style="color: #f59e0b">Merhaba {{fullname}},</span>
+                  {{/if}}
+                  <!-- delete -->
+                  {{#if (eq action "delete")}}
+                    <span style="color: #ef4444">Merhaba {{fullname}},</span>
+                  {{/if}}
+                </h1>
+
+                <!-- Description -->
+                {{#if (eq action "create")}}
+                  <p
+                    style="font-size: 15px; line-height: 1.7; color: #374151; margin: 0 0 24px"
+                  >
+                    <strong>{{positionTitle}}</strong>
+                    pozisyonu için mülakat randevunuz oluşturuldu. Aşağıdaki
+                    detayları inceleyebilirsiniz.
+                  </p>
+                {{/if}}
+                {{#if (eq action "update")}}
+                  <p
+                    style="font-size: 15px; line-height: 1.7; color: #374151; margin: 0 0 24px"
+                  >
+                    <strong>{{positionTitle}}</strong>
+                    pozisyonu için planlanan mülakatınızın bilgileri
+                    güncellendi. Lütfen yeni detayları kontrol edin.
+                  </p>
+                {{/if}}
+                {{#if (eq action "delete")}}
+                  <p
+                    style="font-size: 15px; line-height: 1.7; color: #374151; margin: 0 0 24px"
+                  >
+                    <strong>{{positionTitle}}</strong>
+                    pozisyonu için planlanmış mülakatınız iptal edildi.
+                    {{#if cancelReason}}
+                      <br /><br />
+                      <strong>İptal sebebi:</strong>
+                      {{cancelReason}}
+                    {{/if}}
+                  </p>
+                {{/if}}
+
+                <!-- Interview Detail Card (create & update) -->
+                {{#unless (eq action "delete")}}
+                  <table
+                    role="presentation"
+                    width="100%"
+                    cellpadding="0"
+                    cellspacing="0"
+                    style="
+                    margin: 8px 0 24px;
+                    background-color: #f9fafb;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 6px;
+                  "
+                  >
+                    <tr>
+                      <td style="padding: 24px">
+
+                        <!-- Date & Time -->
+                        <table
+                          width="100%"
+                          cellpadding="0"
+                          cellspacing="0"
+                          style="margin-bottom: 16px"
+                        >
+                          <tr>
+                            <td width="50%" style="padding-right: 8px">
+                              <div
+                                style="font-size: 12px; color: #6b7280; margin-bottom: 4px"
+                              >📅 Tarih</div>
+                              <div
+                                style="font-size: 15px; font-weight: bold; color: #0f1724"
+                              >{{scheduledAt}}</div>
+                            </td>
+                            <td width="50%" style="padding-left: 8px">
+                              <div
+                                style="font-size: 12px; color: #6b7280; margin-bottom: 4px"
+                              >🕐 Saat</div>
+                              <div
+                                style="font-size: 15px; font-weight: bold; color: #0f1724"
+                              >{{time}}</div>
+                            </td>
+                          </tr>
+                        </table>
+
+                        <!-- Type & Position -->
+                        <table
+                          width="100%"
+                          cellpadding="0"
+                          cellspacing="0"
+                          style="margin-bottom: 16px"
+                        >
+                          <tr>
+                            <td width="50%" style="padding-right: 8px">
+                              <div
+                                style="font-size: 12px; color: #6b7280; margin-bottom: 4px"
+                              >📋 Mülakat Türü</div>
+                              <div
+                                style="font-size: 15px; font-weight: bold; color: #0f1724"
+                              >
+                                {{#if (eq type "online")}}🌐 Online{{else}}🏢
+                                  Yüz Yüze{{/if}}
+                              </div>
+                            </td>
+                            <td width="50%" style="padding-left: 8px">
+                              <div
+                                style="font-size: 12px; color: #6b7280; margin-bottom: 4px"
+                              >💼 Pozisyon</div>
+                              <div
+                                style="font-size: 15px; font-weight: bold; color: #0f1724"
+                              >{{positionTitle}}</div>
+                            </td>
+                          </tr>
+                        </table>
+
+                        <!-- Location (only if in_person) -->
+                        {{#if location}}
+                          <table
+                            width="100%"
+                            cellpadding="0"
+                            cellspacing="0"
+                            style="margin-bottom: 16px"
+                          >
+                            <tr>
+                              <td>
+                                <div
+                                  style="font-size: 12px; color: #6b7280; margin-bottom: 4px"
+                                >📍 Konum</div>
+                                <div
+                                  style="font-size: 15px; font-weight: bold; color: #0f1724"
+                                >{{location}}</div>
+                              </td>
+                            </tr>
+                          </table>
+                        {{/if}}
+
+                        <!-- Meeting Link (only if online) -->
+                        {{#if meetingLink}}
+                          <table
+                            width="100%"
+                            cellpadding="0"
+                            cellspacing="0"
+                            style="margin-bottom: 16px"
+                          >
+                            <tr>
+                              <td>
+                                <div
+                                  style="font-size: 12px; color: #6b7280; margin-bottom: 8px"
+                                >🔗 Toplantı Linki</div>
+                                <a
+                                  href="{{meetingLink}}"
+                                  target="_blank"
+                                  style="
+                                background-color: #4045ef;
+                                color: #ffffff;
+                                text-decoration: none;
+                                padding: 12px 22px;
+                                border-radius: 6px;
+                                display: inline-block;
+                                font-weight: bold;
+                                font-size: 14px;
+                              "
+                                >
+                                  Toplantıya Katıl
+                                </a>
+                              </td>
+                            </tr>
+                          </table>
+                        {{/if}}
+
+                        <!-- Notes -->
+                        {{#if notes}}
+                          <table width="100%" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td
+                                style="padding-top: 16px; border-top: 1px solid #e5e7eb"
+                              >
+                                <div
+                                  style="font-size: 12px; color: #6b7280; margin-bottom: 4px"
+                                >📝 Notlar</div>
+                                <div
+                                  style="font-size: 14px; color: #374151; line-height: 1.6"
+                                >{{notes}}</div>
+                              </td>
+                            </tr>
+                          </table>
+                        {{/if}}
+
+                      </td>
+                    </tr>
+                  </table>
+                {{/unless}}
+
+                <!-- Cancellation card -->
+                {{#if (eq action "delete")}}
+                  <table
+                    role="presentation"
+                    width="100%"
+                    cellpadding="0"
+                    cellspacing="0"
+                    style="
+                    margin: 8px 0 24px;
+                    background-color: #fff5f5;
+                    border: 1px solid #fecaca;
+                    border-radius: 6px;
+                  "
+                  >
+                    <tr>
+                      <td align="center" style="padding: 24px">
+                        <div
+                          style="font-size: 36px; margin-bottom: 8px"
+                        >❌</div>
+                        <div
+                          style="font-size: 15px; font-weight: bold; color: #ef4444"
+                        >
+                          Mülakatınız iptal edildi
+                        </div>
+                        <div
+                          style="font-size: 13px; color: #6b7280; margin-top: 6px"
+                        >
+                          Herhangi bir sorunuz varsa işvereninizle iletişime
+                          geçebilirsiniz.
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                {{/if}}
+
+                <p
+                  style="font-size: 14px; color: #6b7280; line-height: 1.6; margin: 16px 0 0"
+                >
+                  Bu e-posta otomatik olarak gönderilmiştir ve
+                  yanıtlanmamalıdır. Eğer bu bildirimi yanlışlıkla aldıysanız,
+                  dikkate almayabilirsiniz.
+                </p>
+              </td>
+            </tr>
+
+            <!-- FOOTER -->
+            <tr>
+              <td
+                align="center"
+                style="
+                  padding: 24px;
+                  background-color: #f9fafc;
+                  font-size: 14px;
+                  color: #6b7280;
+                "
+              >
+                Yardım için
+                <a
+                  href="mailto:support@nexthire.com"
+                  style="color: #4045ef; text-decoration: none"
+                >
+                  support@nexthire.com
+                </a>
+                <br />
+                <div style="color: #9ca3af; font-size: 13px; margin-top: 10px">
+                  &copy;
+                  {{year}}
+                  NextHire. Tüm hakları saklıdır.
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
