@@ -4,6 +4,9 @@ import hbs, {
   NodemailerExpressHandlebarsOptions,
 } from "nodemailer-express-handlebars";
 import config from "../../config/index";
+import Handlebars from "handlebars";
+
+Handlebars.registerHelper("eq", (a, b) => a === b);
 
 const {
   email_service: { host, port, secure, auth },
