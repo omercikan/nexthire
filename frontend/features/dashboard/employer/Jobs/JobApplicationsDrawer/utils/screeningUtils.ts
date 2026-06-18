@@ -1,14 +1,14 @@
 import { ScreeningQuestion } from "../types/applicantTypes";
 
 export const getKnockoutQuestions = (screeningQuestions: ScreeningQuestion[]) =>
-  screeningQuestions.filter((q) => q.knockout === true);
+  screeningQuestions?.filter((q) => q.knockout === true);
 
 export const getNonKnockoutQuestions = (
   screeningQuestions: ScreeningQuestion[],
 ) => screeningQuestions.filter((q) => q.knockout === false);
 
 export const getPassedCount = (knockoutQuestions: ScreeningQuestion[]) =>
-  knockoutQuestions.reduce((count, q) => {
+  knockoutQuestions?.reduce((count, q) => {
     if (typeof q.knockoutAnswer === "object") {
       const knockoutAnswers = q.knockoutAnswer as string[];
       const userAnswers = q.answer as unknown as string[];
@@ -33,4 +33,4 @@ export const isQuestionPassed = (question: ScreeningQuestion): boolean => {
 export const getIsPassed = (
   passedCount: number,
   knockoutQuestions: ScreeningQuestion[],
-) => passedCount === knockoutQuestions.length;
+) => passedCount === knockoutQuestions?.length;
