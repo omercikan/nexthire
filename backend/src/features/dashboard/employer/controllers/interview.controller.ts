@@ -31,7 +31,7 @@ class InterviewController {
           interviewerId,
 
           scheduledAt: data.scheduledAt,
-          time: data.time,
+          scheduledTime: data.scheduledTime,
           type: data.type,
           meetingLink: data.meetingLink,
           location: data.location,
@@ -52,7 +52,7 @@ class InterviewController {
       ]);
 
       await publisher("interview:create", {
-        candidateEmail: "omercikan37@gmail.com",
+        candidateEmail: candidate.email,
         interviewerEmail: employer.email,
         candidateName: candidate.fullname,
         interviewerName: employer.fullname,
