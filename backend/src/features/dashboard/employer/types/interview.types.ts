@@ -3,7 +3,7 @@ export interface CreateInterviewRequest {
   positionId?: string;
 
   scheduledAt: string;
-  time: string;
+  scheduledTime: string;
 
   type: "online" | "in_person";
   meetingLink?: string;

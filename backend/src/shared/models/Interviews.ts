@@ -11,7 +11,7 @@ export interface IInterview extends Document {
   candidateId: mongoose.Types.ObjectId;
   interviewerId: mongoose.Types.ObjectId;
   scheduledAt: string;
-  time: string;
+  scheduledTime: string;
   type: "online" | "in_person";
   meetingLink?: string;
   location?: string;
@@ -29,7 +29,7 @@ const InterviewSchema = new Schema<IInterview>(
     candidateId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     interviewerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     scheduledAt: { type: String, required: true },
-    time: { type: String, required: true },
+    scheduledTime: { type: String, required: true },
     type: { type: String, enum: ["online", "in_person"], required: true },
     meetingLink: { type: String },
     location: { type: String },
