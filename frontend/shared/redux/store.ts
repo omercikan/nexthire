@@ -40,6 +40,7 @@ import { jobListMenuSlice } from "@/features/dashboard/employer/Jobs/JobList/Job
 import { employerJobsApi } from "@/features/dashboard/employer/Jobs/services/employerJobsApi";
 import { applicantsApi } from "@/features/dashboard/employer/Jobs/services/applicantsApi";
 import interviewSchedulerReducer from "@/features/dashboard/employer/Jobs/JobApplicationsDrawer/InterviewScheduler/interviewSchedulerSlice";
+import { interviewApi } from "@/features/dashboard/employer/Jobs/JobApplicationsDrawer/InterviewScheduler/InterviewApi";
 
 export const store = configureStore({
   reducer: {
@@ -83,6 +84,7 @@ export const store = configureStore({
     [overviewApi.reducerPath]: overviewApi.reducer,
     [employerJobsApi.reducerPath]: employerJobsApi.reducer,
     [applicantsApi.reducerPath]: applicantsApi.reducer,
+    [interviewApi.reducerPath]: interviewApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -104,6 +106,7 @@ export const store = configureStore({
       overviewApi.middleware,
       employerJobsApi.middleware,
       applicantsApi.middleware,
+      interviewApi.middleware,
     ]),
 });
 
