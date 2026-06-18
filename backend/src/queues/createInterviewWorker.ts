@@ -18,7 +18,7 @@ import { sendMail } from "../shared/services/emailService";
         action: "create",
         positionTitle: data.positionTitle,
         scheduledAt: data.scheduledAt,
-        time: data.time,
+        scheduledTime: data.scheduledTime,
         type: data.type,
         meetingLink: data.meetingLink,
         location: data.location,
