@@ -151,7 +151,7 @@ const JobApplicantContent = ({
                 </span>
               </div>
 
-              {knockoutQuestions.length > 0 && (
+              {knockoutQuestions?.length > 0 && (
                 <button
                   className={`${isPassed ? "text-emerald-700 bg-emerald-50 hover:bg-emerald-100" : "text-red-700 bg-red-50 hover:bg-red-100"} whitespace-nowrap font-medium transition-colors duration-300 rounded-lg py-1.5 px-2.5 text-xs mt-2 flex items-center gap-1.5`}
                   onClick={() => handleOpenSubDrawer(item._id, "questions")}
@@ -170,7 +170,7 @@ const JobApplicantContent = ({
             </div>
 
             <div className="flex gap-0.5 min-[425px]:ms-auto shrink-0">
-              {!!item.screeningQuestions.length && (
+              {!!item.screeningQuestions?.length && (
                 <ApplicationActionButton
                   icon={LuClipboardList}
                   inActiveTooltip="Cevapları Gör"
