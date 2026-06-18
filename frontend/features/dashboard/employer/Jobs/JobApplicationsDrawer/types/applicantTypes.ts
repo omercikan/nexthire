@@ -49,6 +49,7 @@ export interface Applicant {
 
 export type CurrentApplication = Pick<
   Applicant,
+  | "candidateId"
   | "profilePhoto"
   | "fullname"
   | "title"
