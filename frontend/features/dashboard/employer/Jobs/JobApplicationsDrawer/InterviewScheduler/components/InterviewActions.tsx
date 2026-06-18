@@ -1,23 +1,33 @@
 import CustomButton from "@/shared/components/ui/CustomButton";
 import { Dispatch, SetStateAction } from "react";
 import { IoCloseOutline } from "react-icons/io5";
+import useInterviewApi from "../hooks/useInterviewApi";
 
-interface InterviewActionsProps {
+export interface InterviewActionsProps {
   actionMode: string | null;
   handleClose: () => void;
   setIsCancelInterview: Dispatch<SetStateAction<boolean>>;
+  interview: {
+    candidateId: string;
+    positionId: string;
+    positionTitle: string;
+  };
 }
 
 const InterviewActions = ({
   actionMode,
   handleClose,
   setIsCancelInterview,
+  interview,
 }: InterviewActionsProps) => {
+  const { handleInterview } = useInterviewApi();
+
   return (
     <div className="flex flex-col gap-2 sticky bottom-0 bg-[#eff2f5]/30 px-5 py-4 border-t border-t-border">
       <CustomButton
         text={actionMode === "interview_edit" ? "Güncelle" : "Mülakatı Planla"}
         className="py-2.5! px-4! shadow-xs whitespace-nowrap font-medium w-full rounded-lg! bg-[#0072D5]! hover:bg-[#0072D5]/90! text-sm"
+        handleClick={() => handleInterview(actionMode, interview)}
       />
 
       <div className="flex gap-2">
