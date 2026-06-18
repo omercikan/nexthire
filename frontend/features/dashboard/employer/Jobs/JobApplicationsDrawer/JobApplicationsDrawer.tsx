@@ -63,6 +63,7 @@ const JobApplicationsDrawer = ({
 
     if (found) {
       const {
+        candidateId,
         fullname,
         profilePhoto,
         title,
@@ -72,6 +73,7 @@ const JobApplicationsDrawer = ({
       } = found;
 
       setCurrentApplication({
+        candidateId,
         fullname,
         profilePhoto,
         title,

@@ -233,6 +233,11 @@ const InterviewSchedulerDrawer = ({
           actionMode={actionMode}
           handleClose={handleClose}
           setIsCancelInterview={setIsCancelInterview}
+          interview={{
+            candidateId: applicant.candidateId,
+            positionTitle: currentJob?.jobTitle ?? "",
+            positionId: currentJob?._id ?? "",
+          }}
         />
       </motion.aside>
 
