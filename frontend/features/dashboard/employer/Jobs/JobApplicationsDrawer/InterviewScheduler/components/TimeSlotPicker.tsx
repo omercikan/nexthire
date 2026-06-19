@@ -5,11 +5,14 @@ import { AppDispatch, RootState } from "@/shared/redux/store";
 import { setError, setScheduledTime } from "../interviewSchedulerSlice";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import useScrollControls from "../hooks/useScrollControls";
+import { createPortal } from "react-dom";
 
 const TimeSlotPicker = ({
   setIsOpenTime,
+  cords,
 }: {
   setIsOpenTime: Dispatch<SetStateAction<boolean>>;
+  cords: { top: number; left: number; width: number };
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const scheduledTime = useSelector(
@@ -44,8 +47,14 @@ const TimeSlotPicker = ({
       itemHeight * index - ulRef.current.clientHeight / 2 + itemHeight / 2;
   }, [scheduledTime, ulRef]);
 
-  return (
-    <div className="w-37.5 relative">
+  return createPortal(
+    <div
+      className="w-37.5 fixed z-51"
+      style={{
+        top: scrollTop > 0 ? cords.top + 8 : cords.top,
+        left: cords.left,
+      }}
+    >
       <button
         className="bg-white text-black absolute w-full left-0 text-center top-0 flex justify-center z-10 rounded-t-md border-x border-t border-border py-1"
         style={{ visibility: scrollTop > 0 ? "visible" : "hidden" }}
@@ -84,7 +93,8 @@ const TimeSlotPicker = ({
       >
         <LuChevronDown />
       </button>
-    </div>
+    </div>,
+    document.body,
   );
 };
 

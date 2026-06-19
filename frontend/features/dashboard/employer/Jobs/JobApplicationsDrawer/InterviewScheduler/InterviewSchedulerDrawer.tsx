@@ -4,7 +4,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { CurrentApplication } from "../types/applicantTypes";
 import Image from "next/image";
 import { useEmployerJobsData } from "../../hooks/useEmployerJobsData";
-import { useMemo, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   LuCalendar,
@@ -51,6 +51,25 @@ const InterviewSchedulerDrawer = ({
   const actionMode = searchParams.get("mode");
   const jobId = searchParams.get("jobId");
 
+  const timeButtonRef = useRef<HTMLButtonElement>(null);
+  const [timeButtonCords, setTimeButtonCords] = useState({
+    top: 0,
+    left: 0,
+    width: 150,
+  });
+
+  useLayoutEffect(() => {
+    if (!isOpenTime || !timeButtonRef.current) return;
+
+    const rect = timeButtonRef.current.getBoundingClientRect();
+
+    setTimeButtonCords({
+      top: rect.bottom,
+      left: rect.left,
+      width: rect.width,
+    });
+  }, [isOpenTime]);
+
   // State cleanup function to close the drawer via URL
   const handleClose = () => {
     const params = new URLSearchParams(searchParams.toString());
@@ -59,6 +78,9 @@ const InterviewSchedulerDrawer = ({
     params.delete("mode");
     router.replace(`?${params.toString()}`, { scroll: false });
     dispatch(resetScheduler());
+
+    if (isOpenTime) setIsOpenTime(false);
+    if (isOpenCalendar) setIsOpenCalendar(false);
   };
 
   const currentJob = useMemo(() => {
@@ -123,7 +145,9 @@ const InterviewSchedulerDrawer = ({
           )}
         </div>
 
-        <div className="flex-1 flex flex-col gap-y-5 visible-scrollbar px-5 py-4">
+        <div
+          className={`flex-1 flex flex-col gap-y-5 visible-scrollbar ${isOpenTime ? "pointer-events-none" : ""} px-5 py-4`}
+        >
           <FormField
             required
             label="Tarih"
@@ -149,6 +173,7 @@ const InterviewSchedulerDrawer = ({
           <FormField
             required
             label="Saat"
+            buttonRef={timeButtonRef}
             onClick={() => {
               setIsOpenTime((prev) => !prev);
               if (isOpenCalendar) setIsOpenCalendar(false);
@@ -169,7 +194,12 @@ const InterviewSchedulerDrawer = ({
             }
           >
             <AnimatePresence>
-              {isOpenTime && <TimeSlotPicker setIsOpenTime={setIsOpenTime} />}
+              {isOpenTime && (
+                <TimeSlotPicker
+                  cords={timeButtonCords}
+                  setIsOpenTime={setIsOpenTime}
+                />
+              )}
             </AnimatePresence>
           </FormField>
 

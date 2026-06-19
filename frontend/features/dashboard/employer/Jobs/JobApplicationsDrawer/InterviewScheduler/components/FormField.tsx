@@ -1,6 +1,6 @@
 import CustomButton from "@/shared/components/ui/CustomButton";
 import { cn } from "@/shared/libs/utils";
-import { ReactNode } from "react";
+import { ReactNode, RefObject } from "react";
 
 interface FormFieldProps {
   label: string | ReactNode;
@@ -11,6 +11,7 @@ interface FormFieldProps {
   buttonContent?: ReactNode;
   buttonClassName?: string;
   children: React.ReactNode;
+  buttonRef?: RefObject<HTMLButtonElement | null>;
 }
 
 const FormField = ({
@@ -22,6 +23,7 @@ const FormField = ({
   buttonContent,
   buttonClassName = "",
   children,
+  buttonRef,
 }: FormFieldProps) => {
   return (
     <div className="relative">
@@ -38,6 +40,7 @@ const FormField = ({
             `py-2! px-3! w-full shadow-xs flex items-center gap-2 bg-transparent! hover:bg-[#f3f5f8]! text-muted-foreground! hover:text-black! text-sm rounded-md! border ${error ? "border-red-600" : "border-border"}`,
             buttonClassName,
           )}
+          ref={buttonRef}
           handleClick={onClick}
         >
           {buttonContent}
