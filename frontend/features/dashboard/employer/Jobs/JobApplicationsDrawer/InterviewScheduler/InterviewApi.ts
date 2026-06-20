@@ -17,12 +17,12 @@ export const interviewApi = createApi({
     }),
 
     getInterview: builder.query<
-      CreateInterviewRequest,
-      { candidateId: string; positionId: string }
+      Omit<CreateInterviewRequest, "candidateId"> & { _id: string },
+      { interviewId: string }
     >({
-      query: ({ candidateId, positionId }) => ({
+      query: ({ interviewId }) => ({
         method: "GET",
-        url: `/interview?candidateId=${candidateId}&positionId=${positionId}`,
+        url: `/interview/${interviewId}`,
       }),
     }),
   }),

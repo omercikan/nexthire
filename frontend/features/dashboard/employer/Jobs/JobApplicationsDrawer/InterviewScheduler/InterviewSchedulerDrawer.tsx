@@ -70,10 +70,7 @@ const InterviewSchedulerDrawer = ({
   });
 
   const { data: interview } = useGetInterviewQuery(
-    {
-      candidateId: applicant.candidateId,
-      positionId: searchParams.get("jobId") ?? "",
-    },
+    { interviewId: applicant.interviewId },
     { skip: actionMode !== "interview_edit" || !searchParams.get("jobId") },
   );
 
