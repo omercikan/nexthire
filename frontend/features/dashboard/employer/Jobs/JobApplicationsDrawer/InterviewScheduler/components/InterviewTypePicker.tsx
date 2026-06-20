@@ -3,7 +3,12 @@ import { AppDispatch, RootState } from "@/shared/redux/store";
 import { BsCameraVideo } from "react-icons/bs";
 import { LuBuilding2 } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
-import { clearError, setType } from "../interviewSchedulerSlice";
+import {
+  clearError,
+  setLocation,
+  setMeetingLink,
+  setType,
+} from "../interviewSchedulerSlice";
 import { cn } from "@/shared/libs/utils";
 
 type PickerType = "online" | "in_person";
@@ -20,12 +25,41 @@ const getButtonClassName = (
   );
 };
 
-const InterviewTypePicker = () => {
+const InterviewTypePicker = ({
+  editedInterview,
+}: {
+  editedInterview: {
+    type: "online" | "in_person";
+    meetingLink: string;
+    location: string;
+  };
+}) => {
   const dispatch = useDispatch<AppDispatch>();
   const type = useSelector((state: RootState) => state.interviewScheduler.type);
 
   const handleClick = (type: PickerType) => {
     dispatch(setType(type));
+
+    if (editedInterview.type) {
+      const { meetingLink, location } = editedInterview;
+
+      if (
+        editedInterview.type === "online" &&
+        type === "online" &&
+        meetingLink
+      ) {
+        dispatch(setMeetingLink(meetingLink));
+      }
+
+      if (
+        editedInterview.type === "in_person" &&
+        type === "in_person" &&
+        location
+      ) {
+        dispatch(setLocation(location));
+      }
+    }
+
     dispatch(clearError("meetingLink"));
     dispatch(clearError("location"));
   };
