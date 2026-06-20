@@ -17,6 +17,7 @@ const ApplicationSchema = new Schema(
     candidateId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     employerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     jobId: { type: Schema.Types.ObjectId, ref: "jobs", required: true },
+    interviewId: { type: Schema.Types.ObjectId, ref: "Interview" },
     fullname: { type: String, required: true },
     title: String,
     profilePhoto: { type: String, required: false },
