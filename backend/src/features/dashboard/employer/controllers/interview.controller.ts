@@ -63,6 +63,33 @@ class InterviewController {
       next(error);
     }
   }
+
+  async getInterview(
+    req: Request<{ interviewId: string }>,
+    res: Response,
+    next: NextFunction,
+  ) {
+    const { interviewId } = req.params;
+    const interviewerId = req.user.id;
+
+    try {
+      const interview = await Interview.findOne({
+        _id: interviewId,
+        interviewerId,
+      }).select(
+        "scheduledAt scheduledTime type meetingLink location positionId positionTitle notes",
+      );
+
+      if (!interview) {
+        res.status(404).json({ message: "Interview not found" });
+        return;
+      }
+
+      res.status(200).json(interview);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export const interviewController = new InterviewController();
