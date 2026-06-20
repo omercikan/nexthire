@@ -25,31 +25,30 @@ class InterviewController {
         return;
       }
 
-      const [interview, application] = await Promise.all([
-        Interview.create({
-          candidateId: data.candidateId,
-          interviewerId,
+      const interview = await Interview.create({
+        candidateId: data.candidateId,
+        interviewerId,
 
-          scheduledAt: data.scheduledAt,
-          scheduledTime: data.scheduledTime,
-          type: data.type,
-          meetingLink: data.meetingLink,
-          location: data.location,
+        scheduledAt: data.scheduledAt,
+        scheduledTime: data.scheduledTime,
+        type: data.type,
+        meetingLink: data.meetingLink,
+        location: data.location,
 
-          positionId: data.positionId,
-          positionTitle: data.positionTitle,
-          notes: data.notes,
+        positionId: data.positionId,
+        positionTitle: data.positionTitle,
+        notes: data.notes,
 
-          statusHistory: [{ status: "scheduled", changedBy: interviewerId }],
-        }),
-        Application.updateOne(
-          { candidateId: candidate.id, jobId: data.positionId },
-          {
-            $push: { status: { value: "scheduled", changedAt: new Date() } },
-            $set: { currentStatus: "scheduled" },
-          },
-        ),
-      ]);
+        statusHistory: [{ status: "scheduled", changedBy: interviewerId }],
+      });
+
+      await Application.updateOne(
+        { candidateId: candidate.id, jobId: data.positionId },
+        {
+          $push: { status: { value: "scheduled", changedAt: new Date() } },
+          $set: { currentStatus: "scheduled", interviewId: interview._id },
+        },
+      );
 
       await publisher("interview:create", {
         candidateEmail: candidate.email,
