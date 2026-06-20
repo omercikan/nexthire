@@ -4,7 +4,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { CurrentApplication } from "../types/applicantTypes";
 import Image from "next/image";
 import { useEmployerJobsData } from "../../hooks/useEmployerJobsData";
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   LuCalendar,
@@ -24,6 +24,9 @@ import {
   setLocation,
   setMeetingLink,
   setNotes,
+  setScheduledDate,
+  setScheduledTime,
+  setType,
 } from "./interviewSchedulerSlice";
 import FormField from "./components/FormField";
 import TimeSlotPicker from "./components/TimeSlotPicker";
@@ -31,6 +34,7 @@ import InterviewTypePicker from "./components/InterviewTypePicker";
 import CustomInput from "@/shared/components/ui/CustomInput";
 import InterviewActions from "./components/InterviewActions";
 import CancelInterviewModal from "./components/CancelInterviewModal";
+import { useGetInterviewQuery } from "./InterviewApi";
 
 const InterviewSchedulerDrawer = ({
   applicant,
@@ -42,8 +46,15 @@ const InterviewSchedulerDrawer = ({
   const { jobs } = useEmployerJobsData();
 
   const dispatch = useDispatch<AppDispatch>();
-  const { scheduledAt, scheduledTime, type, meetingLink, location, errors } =
-    useSelector((state: RootState) => state.interviewScheduler);
+  const {
+    scheduledAt,
+    scheduledTime,
+    type,
+    meetingLink,
+    location,
+    notes,
+    errors,
+  } = useSelector((state: RootState) => state.interviewScheduler);
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
   const [isOpenTime, setIsOpenTime] = useState(false);
   const [isCancelInterview, setIsCancelInterview] = useState(false);
@@ -57,6 +68,25 @@ const InterviewSchedulerDrawer = ({
     left: 0,
     width: 150,
   });
+
+  const { data: interview } = useGetInterviewQuery(
+    {
+      candidateId: applicant.candidateId,
+      positionId: searchParams.get("jobId") ?? "",
+    },
+    { skip: actionMode !== "interview_edit" || !searchParams.get("jobId") },
+  );
+
+  useEffect(() => {
+    if (interview && actionMode === "interview_edit") {
+      dispatch(setScheduledDate(interview.scheduledAt));
+      dispatch(setScheduledTime(interview.scheduledTime));
+      dispatch(setType(interview.type));
+      dispatch(setMeetingLink(interview.meetingLink ?? ""));
+      dispatch(setLocation(interview.location ?? ""));
+      dispatch(setNotes(interview.notes ?? ""));
+    }
+  }, [interview, actionMode, dispatch]);
 
   useLayoutEffect(() => {
     if (!isOpenTime || !timeButtonRef.current) return;
@@ -204,7 +234,13 @@ const InterviewSchedulerDrawer = ({
           </FormField>
 
           <FormField required label="Mülakat Türü" error={errors.type}>
-            <InterviewTypePicker />
+            <InterviewTypePicker
+              editedInterview={{
+                type: interview?.type ?? "online",
+                meetingLink: interview?.meetingLink ?? "",
+                location: interview?.location ?? "",
+              }}
+            />
           </FormField>
 
           <FormField
@@ -255,6 +291,7 @@ const InterviewSchedulerDrawer = ({
               placeholder="Mülakat hakkında notlar..."
               rows={3}
               onChange={(e) => dispatch(setNotes(e.target.value))}
+              value={notes ? notes : ""}
             />
           </FormField>
         </div>
