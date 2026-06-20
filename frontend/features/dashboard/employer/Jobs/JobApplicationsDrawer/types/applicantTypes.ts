@@ -30,6 +30,7 @@ export interface Applicant {
   _id: string;
   candidateId: string;
   employerId: string;
+  interviewId: string;
   jobId: string;
   profilePhoto: string;
   city: string;
@@ -50,6 +51,7 @@ export interface Applicant {
 export type CurrentApplication = Pick<
   Applicant,
   | "candidateId"
+  | "interviewId"
   | "profilePhoto"
   | "fullname"
   | "title"
