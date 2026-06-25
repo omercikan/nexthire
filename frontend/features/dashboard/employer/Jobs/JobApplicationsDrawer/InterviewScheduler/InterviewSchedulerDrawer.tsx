@@ -4,7 +4,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { CurrentApplication } from "../types/applicantTypes";
 import Image from "next/image";
 import { useEmployerJobsData } from "../../hooks/useEmployerJobsData";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   LuCalendar,
@@ -24,9 +24,6 @@ import {
   setLocation,
   setMeetingLink,
   setNotes,
-  setScheduledDate,
-  setScheduledTime,
-  setType,
 } from "./interviewSchedulerSlice";
 import FormField from "./components/FormField";
 import TimeSlotPicker from "./components/TimeSlotPicker";
@@ -34,7 +31,7 @@ import InterviewTypePicker from "./components/InterviewTypePicker";
 import CustomInput from "@/shared/components/ui/CustomInput";
 import InterviewActions from "./components/InterviewActions";
 import CancelInterviewModal from "./components/CancelInterviewModal";
-import { useGetInterviewQuery } from "./InterviewApi";
+import useEditInterviewData from "./hooks/useEditInterviewData";
 
 const InterviewSchedulerDrawer = ({
   applicant,
@@ -69,21 +66,7 @@ const InterviewSchedulerDrawer = ({
     width: 150,
   });
 
-  const { data: interview } = useGetInterviewQuery(
-    { interviewId: applicant.interviewId },
-    { skip: actionMode !== "interview_edit" || !searchParams.get("jobId") },
-  );
-
-  useEffect(() => {
-    if (interview && actionMode === "interview_edit") {
-      dispatch(setScheduledDate(interview.scheduledAt));
-      dispatch(setScheduledTime(interview.scheduledTime));
-      dispatch(setType(interview.type));
-      dispatch(setMeetingLink(interview.meetingLink ?? ""));
-      dispatch(setLocation(interview.location ?? ""));
-      dispatch(setNotes(interview.notes ?? ""));
-    }
-  }, [interview, actionMode, dispatch]);
+  const interview = useEditInterviewData(applicant.interviewId, actionMode);
 
   useLayoutEffect(() => {
     if (!isOpenTime || !timeButtonRef.current) return;

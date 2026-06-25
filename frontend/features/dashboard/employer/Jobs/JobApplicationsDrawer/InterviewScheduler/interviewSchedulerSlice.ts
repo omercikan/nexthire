@@ -64,6 +64,13 @@ export const interviewSchedulerSlice = createSlice({
       state.notes = action.payload;
     },
 
+    setInterview: (
+      state,
+      action: PayloadAction<Omit<InterviewSchedulerState, "errors">>,
+    ) => {
+      Object.assign(state, action.payload);
+    },
+
     resetScheduler: () => initialState,
 
     setError: (
@@ -93,6 +100,7 @@ export const {
   setMeetingLink,
   setLocation,
   setNotes,
+  setInterview,
   resetScheduler,
   setError,
   clearError,
