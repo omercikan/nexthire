@@ -32,6 +32,7 @@ import CustomInput from "@/shared/components/ui/CustomInput";
 import InterviewActions from "./components/InterviewActions";
 import CancelInterviewModal from "./components/CancelInterviewModal";
 import useEditInterviewData from "./hooks/useEditInterviewData";
+import { InterviewEditContextProvider } from "./context/InterviewEditContext";
 
 const InterviewSchedulerDrawer = ({
   applicant,
@@ -102,204 +103,211 @@ const InterviewSchedulerDrawer = ({
     actionMode === "interview_edit" ? "Mülakatı Düzenle" : "Mülakat Planla";
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ type: "tween", ease: "easeOut", duration: 0.25 }}
-      className="fixed inset-0 z-50 bg-black/50"
-      onClick={(e) => {
-        e.stopPropagation();
-        handleClose();
-      }}
-      role="presentation"
+    <InterviewEditContextProvider
+      actionMode={actionMode}
+      interviewId={applicant.interviewId}
     >
-      <motion.aside
-        initial={{ x: "100%" }}
-        animate={{ x: 0 }}
-        exit={{ x: "100%" }}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         transition={{ type: "tween", ease: "easeOut", duration: 0.25 }}
+        className="fixed inset-0 z-50 bg-black/50"
         onClick={(e) => {
           e.stopPropagation();
-          if (isOpenCalendar) setIsOpenCalendar(false);
-          if (isOpenTime) setIsOpenTime(false);
+          handleClose();
         }}
-        className="fixed right-0 top-0 h-full w-full border-l border-l-border bg-white sm:max-w-100 flex flex-col"
-        role="dialog"
-        aria-label={titleText}
+        role="presentation"
       >
-        <div className="flex items-center justify-between border-b border-b-border py-4 px-5">
-          <h2 className="text-base font-semibold text-foreground">
-            {titleText}
-          </h2>
-
-          <CustomButton
-            className="p-0! bg-transparent! text-lg text-[#4B5157]! hover:text-black!"
-            aria-label="Kapat"
-            handleClick={handleClose}
-          >
-            <IoCloseOutline />
-          </CustomButton>
-        </div>
-
-        <div className="border-b border-b-border px-5 py-4">
-          <ApplicantMetaCard applicant={applicant} />
-
-          {currentJob && (
-            <p className="mt-3 text-xs text-muted-foreground">
-              Pozisyon:{" "}
-              <span className="font-medium text-foreground">
-                {currentJob.jobTitle}
-              </span>
-            </p>
-          )}
-        </div>
-
-        <div
-          className={`flex-1 flex flex-col gap-y-5 visible-scrollbar ${isOpenTime ? "pointer-events-none" : ""} px-5 py-4`}
-        >
-          <FormField
-            required
-            label="Tarih"
-            onClick={() => {
-              setIsOpenCalendar((prev) => !prev);
-              if (isOpenTime) setIsOpenTime(false);
-            }}
-            error={errors.scheduledAt}
-            buttonContent={
-              <>
-                <LuCalendar size={16} color="4D5660" />
-                {scheduledAt ? scheduledAt : "Tarih seçin"}
-              </>
-            }
-          >
-            <AnimatePresence>
-              {isOpenCalendar && (
-                <InterviewDateTimeScheduler setIsOpen={setIsOpenCalendar} />
-              )}
-            </AnimatePresence>
-          </FormField>
-
-          <FormField
-            required
-            label="Saat"
-            buttonRef={timeButtonRef}
-            onClick={() => {
-              setIsOpenTime((prev) => !prev);
-              if (isOpenCalendar) setIsOpenCalendar(false);
-            }}
-            error={errors.scheduledTime}
-            buttonClassName="w-[150px]"
-            buttonContent={
-              <div className="flex items-center justify-between w-full">
-                <div className="flex items-center gap-2">
-                  <LuClock size={16} color="4D5660" />
-                  <span className={scheduledTime ? "text-foreground" : ""}>
-                    {scheduledTime ? scheduledTime : "Saat seçin"}
-                  </span>
-                </div>
-
-                <LuChevronDown size={16} color="4D5660" opacity={0.5} />
-              </div>
-            }
-          >
-            <AnimatePresence>
-              {isOpenTime && (
-                <TimeSlotPicker
-                  cords={timeButtonCords}
-                  setIsOpenTime={setIsOpenTime}
-                />
-              )}
-            </AnimatePresence>
-          </FormField>
-
-          <FormField required label="Mülakat Türü" error={errors.type}>
-            <InterviewTypePicker
-              editedInterview={{
-                type: interview?.type ?? "online",
-                meetingLink: interview?.meetingLink ?? "",
-                location: interview?.location ?? "",
-              }}
-            />
-          </FormField>
-
-          <FormField
-            required
-            label={type === "online" ? "Toplantı Linki" : "Konum"}
-            buttonClassName="w-[150px]"
-          >
-            <CustomInput
-              placeholder={
-                type === "online"
-                  ? "https://meet.google.com/..."
-                  : "Levent, İstanbul"
-              }
-              className="px-9! rounded-md! shadow-xs placeholder:text-muted-foreground text-foreground focus:outline-none focus:border-[#0073d5]! focus:ring-3 focus:ring-[#0073d5]/50"
-              icon={type === "online" ? <LuLink2 /> : <LuMapPin />}
-              value={(type === "online" ? meetingLink : location) ?? ""}
-              error={type === "online" ? errors.meetingLink : errors.location}
-              onChange={(e) => {
-                const value = e.target.value;
-
-                dispatch(
-                  type === "online"
-                    ? setMeetingLink(value)
-                    : setLocation(value),
-                );
-
-                if (value) {
-                  dispatch(
-                    clearError(type === "online" ? "meetingLink" : "location"),
-                  );
-                }
-              }}
-              iconSpanClass="text-muted-foreground!"
-            />
-          </FormField>
-
-          <FormField
-            labelClass="gap-1!"
-            label={
-              <>
-                Notlar
-                <span className="text-muted-foreground">(isteğe bağlı)</span>
-              </>
-            }
-          >
-            <textarea
-              className="candidate-question-input py-2! border-border! placeholder:text-muted-foreground field-sizing-content min-h-16 resize-none modal-scrollbar text-foreground focus:border-[#0073d5]! focus:ring-[#0073d5]/50! bg-transparent! shadow-xs w-full"
-              placeholder="Mülakat hakkında notlar..."
-              rows={3}
-              onChange={(e) => dispatch(setNotes(e.target.value))}
-              value={notes ? notes : ""}
-            />
-          </FormField>
-        </div>
-
-        <InterviewActions
-          actionMode={actionMode}
-          handleClose={handleClose}
-          setIsCancelInterview={setIsCancelInterview}
-          interview={{
-            candidateId: applicant.candidateId,
-            positionTitle: currentJob?.jobTitle ?? "",
-            positionId: currentJob?._id ?? "",
+        <motion.aside
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "100%" }}
+          transition={{ type: "tween", ease: "easeOut", duration: 0.25 }}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (isOpenCalendar) setIsOpenCalendar(false);
+            if (isOpenTime) setIsOpenTime(false);
           }}
-        />
-      </motion.aside>
+          className="fixed right-0 top-0 h-full w-full border-l border-l-border bg-white sm:max-w-100 flex flex-col"
+          role="dialog"
+          aria-label={titleText}
+        >
+          <div className="flex items-center justify-between border-b border-b-border py-4 px-5">
+            <h2 className="text-base font-semibold text-foreground">
+              {titleText}
+            </h2>
 
-      <AnimatePresence>
-        {isCancelInterview && (
-          <CancelInterviewModal
-            profilePhoto={applicant.profilePhoto}
-            username={applicant.fullname}
-            title={applicant.title}
-            appliedAt={applicant.createdAt}
+            <CustomButton
+              className="p-0! bg-transparent! text-lg text-[#4B5157]! hover:text-black!"
+              aria-label="Kapat"
+              handleClick={handleClose}
+            >
+              <IoCloseOutline />
+            </CustomButton>
+          </div>
+
+          <div className="border-b border-b-border px-5 py-4">
+            <ApplicantMetaCard applicant={applicant} />
+
+            {currentJob && (
+              <p className="mt-3 text-xs text-muted-foreground">
+                Pozisyon:{" "}
+                <span className="font-medium text-foreground">
+                  {currentJob.jobTitle}
+                </span>
+              </p>
+            )}
+          </div>
+
+          <div
+            className={`flex-1 flex flex-col gap-y-5 visible-scrollbar ${isOpenTime ? "pointer-events-none" : ""} px-5 py-4`}
+          >
+            <FormField
+              required
+              label="Tarih"
+              onClick={() => {
+                setIsOpenCalendar((prev) => !prev);
+                if (isOpenTime) setIsOpenTime(false);
+              }}
+              error={errors.scheduledAt}
+              buttonContent={
+                <>
+                  <LuCalendar size={16} color="4D5660" />
+                  {scheduledAt ? scheduledAt : "Tarih seçin"}
+                </>
+              }
+            >
+              <AnimatePresence>
+                {isOpenCalendar && (
+                  <InterviewDateTimeScheduler setIsOpen={setIsOpenCalendar} />
+                )}
+              </AnimatePresence>
+            </FormField>
+
+            <FormField
+              required
+              label="Saat"
+              buttonRef={timeButtonRef}
+              onClick={() => {
+                setIsOpenTime((prev) => !prev);
+                if (isOpenCalendar) setIsOpenCalendar(false);
+              }}
+              error={errors.scheduledTime}
+              buttonClassName="w-[150px]"
+              buttonContent={
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-2">
+                    <LuClock size={16} color="4D5660" />
+                    <span className={scheduledTime ? "text-foreground" : ""}>
+                      {scheduledTime ? scheduledTime : "Saat seçin"}
+                    </span>
+                  </div>
+
+                  <LuChevronDown size={16} color="4D5660" opacity={0.5} />
+                </div>
+              }
+            >
+              <AnimatePresence>
+                {isOpenTime && (
+                  <TimeSlotPicker
+                    cords={timeButtonCords}
+                    setIsOpenTime={setIsOpenTime}
+                  />
+                )}
+              </AnimatePresence>
+            </FormField>
+
+            <FormField required label="Mülakat Türü" error={errors.type}>
+              <InterviewTypePicker
+                editedInterview={{
+                  type: interview?.type ?? "online",
+                  meetingLink: interview?.meetingLink ?? "",
+                  location: interview?.location ?? "",
+                }}
+              />
+            </FormField>
+
+            <FormField
+              required
+              label={type === "online" ? "Toplantı Linki" : "Konum"}
+              buttonClassName="w-[150px]"
+            >
+              <CustomInput
+                placeholder={
+                  type === "online"
+                    ? "https://meet.google.com/..."
+                    : "Levent, İstanbul"
+                }
+                className="px-9! rounded-md! shadow-xs placeholder:text-muted-foreground text-foreground focus:outline-none focus:border-[#0073d5]! focus:ring-3 focus:ring-[#0073d5]/50"
+                icon={type === "online" ? <LuLink2 /> : <LuMapPin />}
+                value={(type === "online" ? meetingLink : location) ?? ""}
+                error={type === "online" ? errors.meetingLink : errors.location}
+                onChange={(e) => {
+                  const value = e.target.value;
+
+                  dispatch(
+                    type === "online"
+                      ? setMeetingLink(value)
+                      : setLocation(value),
+                  );
+
+                  if (value) {
+                    dispatch(
+                      clearError(
+                        type === "online" ? "meetingLink" : "location",
+                      ),
+                    );
+                  }
+                }}
+                iconSpanClass="text-muted-foreground!"
+              />
+            </FormField>
+
+            <FormField
+              labelClass="gap-1!"
+              label={
+                <>
+                  Notlar
+                  <span className="text-muted-foreground">(isteğe bağlı)</span>
+                </>
+              }
+            >
+              <textarea
+                className="candidate-question-input py-2! border-border! placeholder:text-muted-foreground field-sizing-content min-h-16 resize-none modal-scrollbar text-foreground focus:border-[#0073d5]! focus:ring-[#0073d5]/50! bg-transparent! shadow-xs w-full"
+                placeholder="Mülakat hakkında notlar..."
+                rows={3}
+                onChange={(e) => dispatch(setNotes(e.target.value))}
+                value={notes ? notes : ""}
+              />
+            </FormField>
+          </div>
+
+          <InterviewActions
+            actionMode={actionMode}
+            handleClose={handleClose}
             setIsCancelInterview={setIsCancelInterview}
+            interview={{
+              candidateId: applicant.candidateId,
+              positionTitle: currentJob?.jobTitle ?? "",
+              positionId: currentJob?._id ?? "",
+            }}
           />
-        )}
-      </AnimatePresence>
-    </motion.div>
+        </motion.aside>
+
+        <AnimatePresence>
+          {isCancelInterview && (
+            <CancelInterviewModal
+              profilePhoto={applicant.profilePhoto}
+              username={applicant.fullname}
+              title={applicant.title}
+              appliedAt={applicant.createdAt}
+              setIsCancelInterview={setIsCancelInterview}
+            />
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </InterviewEditContextProvider>
   );
 };
 
