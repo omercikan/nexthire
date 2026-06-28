@@ -25,8 +25,26 @@ export const interviewApi = createApi({
         url: `/interview/${interviewId}`,
       }),
     }),
+
+    editInterview: builder.mutation<
+      {
+        success: true;
+        data: CreateInterviewRequest;
+        message: string;
+      },
+      { interviewId: string; updateData: Partial<CreateInterviewRequest> }
+    >({
+      query: ({ interviewId, updateData }) => ({
+        url: `/interviews/${interviewId}`,
+        method: "PATCH",
+        body: updateData,
+      }),
+    }),
   }),
 });
 
-export const { useCreateInterviewMutation, useGetInterviewQuery } =
-  interviewApi;
+export const {
+  useCreateInterviewMutation,
+  useGetInterviewQuery,
+  useEditInterviewMutation,
+} = interviewApi;
