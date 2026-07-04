@@ -5,7 +5,7 @@ import { roleMiddleware } from "../../../../shared/middlewares/role";
 import { validateRequest } from "../../../../shared/middlewares/validateRequest";
 import {
   createInterviewSchema,
-  getInterviewParamsSchema,
+  interviewParamsSchema,
 } from "../validations/interview.validation";
 
 const router = express.Router();
@@ -22,7 +22,7 @@ router.get(
   "/interview/:interviewId",
   authMiddleware,
   roleMiddleware("employer"),
-  validateRequest(getInterviewParamsSchema, "params"),
+  validateRequest(interviewParamsSchema, "params"),
   interviewController.getInterview,
 );
 
