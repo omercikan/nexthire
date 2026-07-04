@@ -6,6 +6,7 @@ import { validateRequest } from "../../../../shared/middlewares/validateRequest"
 import {
   createInterviewSchema,
   interviewParamsSchema,
+  updateInterviewSchema,
 } from "../validations/interview.validation";
 
 const router = express.Router();
@@ -24,6 +25,16 @@ router.get(
   roleMiddleware("employer"),
   validateRequest(interviewParamsSchema, "params"),
   interviewController.getInterview,
+);
+
+router.patch(
+  "/interviews/:interviewId",
+  authMiddleware,
+  roleMiddleware("employer"),
+  validateRequest(interviewParamsSchema, "params"),
+  validateRequest(updateInterviewSchema, "body"),
+
+  interviewController.updateInterview,
 );
 
 export default router;

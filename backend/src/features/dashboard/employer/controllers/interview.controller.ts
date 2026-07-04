@@ -90,6 +90,63 @@ class InterviewController {
       next(error);
     }
   }
+
+  async updateInterview(
+    req: Request<{ interviewId: string }, {}>,
+    res: Response,
+    next: NextFunction,
+  ) {
+    const interviewerId = req.user.id;
+    const { interviewId } = req.params;
+    const updateData = req.body;
+
+    try {
+      const interview = await Interview.findOneAndUpdate(
+        { _id: interviewId, interviewerId },
+        updateData,
+        { new: true },
+      )
+        .select("-_id -__v -status -statusHistory -interviewerId")
+        .populate("candidateId", "email fullname")
+        .populate("interviewerId", "email fullname");
+
+      if (!interview) {
+        return res
+          .status(404)
+          .json({ success: false, message: "Interview not found" });
+      }
+
+      const mailContext = {
+        action: "update",
+        candidateSubject: "NextHire - Mülakatınız Güncellendi",
+        interviewerSubject: "NextHire - Mülakat Güncellendi",
+        positionTitle: interview.positionTitle,
+        scheduledAt: interview.scheduledAt,
+        scheduledTime: interview.scheduledTime,
+        type: interview.type,
+        meetingLink: interview.meetingLink,
+        location: interview.location,
+        notes: interview.notes,
+        year: new Date().getFullYear(),
+      };
+
+      await publisher("interview:events", {
+        candidateEmail: interview.candidateId.email,
+        interviewerEmail: interview.interviewerId.email,
+        candidateName: interview.candidateId.fullname,
+        interviewerName: interview.interviewerId.fullname,
+        ...mailContext,
+      });
+
+      return res.json({
+        success: true,
+        data: interview,
+        message: "The interview has been successfully updated.",
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export const interviewController = new InterviewController();
