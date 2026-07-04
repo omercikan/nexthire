@@ -1,11 +1,12 @@
-import { connectRabbitMQ } from "../config/rabbit";
+import { rabbitMQService } from "../config/rabbit";
 import { getIO } from "../config/socketManager";
 import logger from "../shared/utils/logger";
+import { runWorker } from "../shared/utils/runWorker";
 
 const io = getIO();
 
-(async () => {
-  const channel = await connectRabbitMQ("ai:response");
+const startConsumer = async () => {
+  const channel = await rabbitMQService.getChannel("ai:response");
 
   channel.consume(
     "ai:response",
@@ -31,4 +32,6 @@ const io = getIO();
     },
     { noAck: false },
   );
-})();
+};
+
+runWorker("LLMResponseWorker", startConsumer);

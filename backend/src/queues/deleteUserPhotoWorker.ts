@@ -1,9 +1,10 @@
 import { v2 as cloud } from "cloudinary";
 import config from "../config";
 import { connectDatabase } from "../config/db";
-import { connectRabbitMQ } from "../config/rabbit";
+import { rabbitMQService } from "../config/rabbit";
 import logger from "../shared/utils/logger";
 import { User } from "../shared/models/User";
+import { runWorker } from "../shared/utils/runWorker";
 
 const queue = "deletePhoto";
 
@@ -13,9 +14,9 @@ const {
 
 cloud.config({ cloud_name, api_key, api_secret });
 
-(async () => {
+const startConsumer = async () => {
   await connectDatabase();
-  const channel = await connectRabbitMQ(queue);
+  const channel = await rabbitMQService.getChannel(queue);
 
   channel.consume(
     queue,
@@ -44,4 +45,6 @@ cloud.config({ cloud_name, api_key, api_secret });
     },
     { noAck: false },
   );
-})();
+};
+
+runWorker("DeleteResumeWorker", startConsumer);

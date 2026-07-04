@@ -1,13 +1,15 @@
 import { connectDatabase } from "../config/db";
-import { connectRabbitMQ } from "../config/rabbit";
+import { rabbitMQService } from "../config/rabbit";
 import { sendMail } from "../shared/services/emailService";
+import logger from "../shared/utils/logger";
+import { runWorker } from "../shared/utils/runWorker";
 
 const QUEUE_NAME = "interview:events";
 
-(async () => {
+const startConsumer = async () => {
   const [_, channel] = await Promise.all([
     connectDatabase(),
-    connectRabbitMQ(QUEUE_NAME),
+    rabbitMQService.getChannel(QUEUE_NAME),
   ]);
 
   channel.consume(QUEUE_NAME, async (msg) => {
@@ -45,4 +47,6 @@ const QUEUE_NAME = "interview:events";
       channel.nack(msg, false, false);
     }
   });
-})();
+};
+
+runWorker("InterviewEventsWorker", startConsumer);

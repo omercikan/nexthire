@@ -1,13 +1,14 @@
 import { connectDatabase } from "../config/db";
-import { connectRabbitMQ } from "../config/rabbit";
+import { rabbitMQService } from "../config/rabbit";
 import { Resume } from "../shared/models/Resume";
 import logger from "../shared/utils/logger";
 import { v2 as cloud } from "cloudinary";
+import { runWorker } from "../shared/utils/runWorker";
 
-(async () => {
+const startConsumer = async () => {
   await connectDatabase();
 
-  const channel = await connectRabbitMQ("replaceResumeQueue");
+  const channel = await rabbitMQService.getChannel("replaceResumeQueue");
 
   channel.consume("replaceResumeQueue", async (msg) => {
     if (!msg) return;
@@ -33,4 +34,6 @@ import { v2 as cloud } from "cloudinary";
       channel.nack(msg, false, false);
     }
   });
-})();
+};
+
+runWorker("ReplaceResumeeWorker", startConsumer);

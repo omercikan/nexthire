@@ -1,12 +1,13 @@
-import { connectRabbitMQ } from "../config/rabbit";
+import { rabbitMQService } from "../config/rabbit";
 import { sendMail } from "../shared/services/emailService";
 import { connectDatabase } from "../config/db";
 import config from "../config/index";
+import { runWorker } from "../shared/utils/runWorker";
 
-(async () => {
+const startConsumer = async () => {
   await connectDatabase();
 
-  const channel = await connectRabbitMQ("emailQueue");
+  const channel = await rabbitMQService.getChannel("emailQueue");
 
   channel.consume("emailQueue", async (msg) => {
     if (!msg) return;
@@ -29,4 +30,6 @@ import config from "../config/index";
       channel.nack(msg, false, false);
     }
   });
-})();
+};
+
+runWorker("EmailWorker", startConsumer);

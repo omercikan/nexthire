@@ -1,8 +1,9 @@
 import { v2 as cloud } from "cloudinary";
-import { connectRabbitMQ } from "../config/rabbit";
 import { connectDatabase } from "../config/db";
 import config from "../config";
 import logger from "../shared/utils/logger";
+import { rabbitMQService } from "../config/rabbit";
+import { runWorker } from "../shared/utils/runWorker";
 
 const {
   cloudinary: { cloud_name, api_key, api_secret },
@@ -10,10 +11,10 @@ const {
 
 cloud.config({ cloud_name, api_key, api_secret });
 
-(async () => {
+const startConsumer = async () => {
   await connectDatabase();
 
-  const channel = await connectRabbitMQ("deleteResumesQueue");
+  const channel = await rabbitMQService.getChannel("deleteResumesQueue");
 
   channel.consume("deleteResumesQueue", async (msg) => {
     if (!msg) return;
@@ -32,4 +33,6 @@ cloud.config({ cloud_name, api_key, api_secret });
       channel.nack(msg, false, false);
     }
   });
-})();
+};
+
+runWorker("DeleteResumeWorker", startConsumer);
