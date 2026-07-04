@@ -2,20 +2,22 @@ import { connectDatabase } from "../config/db";
 import { connectRabbitMQ } from "../config/rabbit";
 import { sendMail } from "../shared/services/emailService";
 
+const QUEUE_NAME = "interview:events";
+
 (async () => {
   const [_, channel] = await Promise.all([
     connectDatabase(),
-    connectRabbitMQ("interview:create"),
+    connectRabbitMQ(QUEUE_NAME),
   ]);
 
-  channel.consume("interview:create", async (msg) => {
+  channel.consume(QUEUE_NAME, async (msg) => {
     if (!msg) return;
 
     try {
       const data = JSON.parse(msg.content.toString());
 
       const mailContext = {
-        action: "create",
+        action: data.action,
         positionTitle: data.positionTitle,
         scheduledAt: data.scheduledAt,
         scheduledTime: data.scheduledTime,
@@ -27,24 +29,14 @@ import { sendMail } from "../shared/services/emailService";
       };
 
       await Promise.all([
-        sendMail(
-          data.candidateEmail,
-          "NextHire - Mülakatınız Planlandı",
-          "interview",
-          {
-            fullname: data.candidateName,
-            ...mailContext,
-          },
-        ),
-        sendMail(
-          data.interviewerEmail,
-          "NextHire - Mülakat Oluşturuldu",
-          "interview",
-          {
-            fullname: data.interviewerName,
-            ...mailContext,
-          },
-        ),
+        sendMail(data.candidateEmail, data.candidateSubject, "interview", {
+          fullname: data.candidateName,
+          ...mailContext,
+        }),
+        sendMail(data.interviewerEmail, data.interviewerSubject, "interview", {
+          fullname: data.interviewerName,
+          ...mailContext,
+        }),
       ]);
 
       channel.ack(msg);
