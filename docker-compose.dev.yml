@@ -1,4 +1,48 @@
 services:
+
+  # =========================
+  # IDENTITY SERVICE
+  # =========================
+  identity-service:
+    build: ./services/identity-service
+    container_name: identity-service-dev
+    ports:
+      - "8081:8080"
+    environment:
+      DB_URL: ${IDENTITY_DB_URL}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+    depends_on:
+      identity-db:
+        condition: service_healthy
+    networks:
+      - nexthire-network
+
+
+  # =========================
+  # IDENTITY DATABASE
+  # =========================
+  identity-db:
+    image: postgres:16
+    container_name: identity-db-dev
+    environment:
+      POSTGRES_DB: identity_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5435:5432"
+    volumes:
+      - identity-db-data-dev:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d identity_db" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - nexthire-network
+
+
   # --- BACKEND (Node.js/Express) ---
   backend:
     build:
@@ -11,7 +55,7 @@ services:
     ports:
       - "5000:5000"
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:5000/health || exit 1"]
+      test: [ "CMD-SHELL", "curl -f http://localhost:5000/health || exit 1" ]
       interval: 30s
       timeout: 5s
       retries: 3
@@ -25,11 +69,11 @@ services:
       redis:
         condition: service_healthy
     networks:
-      - app_network
+      - nexthire-network
 
   # --- MESSAGE BROKER (RabbitMQ) ---
   rabbitmq:
-    image: rabbitmq:3-management
+    image: rabbitmq:4-management
     container_name: rabbitmq
     restart: unless-stopped
     ports:
@@ -41,9 +85,9 @@ services:
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq/
     networks:
-      - app_network
+      - nexthire-network
     healthcheck:
-      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      test: [ "CMD", "rabbitmq-diagnostics", "ping" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -68,7 +112,7 @@ services:
       backend:
         condition: service_started
     networks:
-      - app_network
+      - nexthire-network
 
   # --- AI SERVICE (PYTHON) ---
   ai-service:
@@ -84,7 +128,7 @@ services:
     ports:
       - "8000:8000"
     networks:
-      - app_network
+      - nexthire-network
 
   # --- WORKER (PYTHON RabbitMQ Consumer for AI) ---
   ai-worker:
@@ -97,7 +141,7 @@ services:
       - ./ai-service/.env
     command: python -m app.workers.llm_consumer
     networks:
-      - app_network
+      - nexthire-network
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -114,9 +158,9 @@ services:
     volumes:
       - redis-data:/data
     networks:
-      - app_network
+      - nexthire-network
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: [ "CMD", "redis-cli", "ping" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -129,15 +173,16 @@ services:
     ports:
       - "5540:5540"
     networks:
-      - app_network
+      - nexthire-network
     depends_on:
       - redis
 
 volumes:
   rabbitmq_data:
+  identity-db-data-dev:
   redis-data:
     driver: local
 
 networks:
-  app_network:
+  nexthire-network:
     driver: bridge
