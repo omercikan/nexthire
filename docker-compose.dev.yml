@@ -12,7 +12,12 @@ services:
       DB_URL: ${IDENTITY_DB_URL}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
-
+      JWT_SECRET: ${JWT_SECRET}
+    volumes:
+      - ./services/identity-service/src:/app/src
+      - identity-target:/app/target
+      - maven-cache:/root/.m2
+    command: mvn spring-boot:run
     depends_on:
       identity-db:
         condition: service_healthy
@@ -182,6 +187,8 @@ volumes:
   identity-db-data-dev:
   redis-data:
     driver: local
+  identity-target:
+  maven-cache:
 
 networks:
   nexthire-network:
