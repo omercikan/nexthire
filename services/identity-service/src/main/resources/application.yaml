@@ -6,3 +6,14 @@ spring:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+
+security:
+  jwt:
+    secret-key: ${JWT_SECRET}
+    access-expiration: 900000
+    refresh-expiration: 604800000
