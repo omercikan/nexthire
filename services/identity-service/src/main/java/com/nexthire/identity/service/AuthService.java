@@ -13,6 +13,10 @@ import com.nexthire.identity.messaging.event.CandidateCreatedEvent;
 import com.nexthire.identity.messaging.event.EmployerCreatedEvent;
 import com.nexthire.identity.messaging.producer.IdentityEventProducer;
 import com.nexthire.identity.repository.IdentityRepository;
+import com.nexthire.identity.util.CookieUtil;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,6 +31,7 @@ public class AuthService {
     private final IdentityMapper userMapper;
     private final EventMapper eventMapper;
     private final IdentityEventProducer identityEventProducer;
+    private final CookieUtil cookieUtil;
 
     public LoginResponse login(LoginRequest request) {
         Identity identity = identityRepository
@@ -95,5 +100,21 @@ public class AuthService {
         }
 
         return savedIdentity;
+    }
+
+    public void logout(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] cookies = request.getCookies();
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("access_token")) {
+                    cookieUtil.deleteCookie(response, cookie.getName());
+                }
+
+                if (cookie.getName().equals("refresh_token")) {
+                    cookieUtil.deleteCookie(response, cookie.getName());
+                }
+            }
+        }
     }
 }
