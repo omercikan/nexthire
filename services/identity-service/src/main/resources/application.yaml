@@ -17,3 +17,14 @@ security:
     secret-key: ${JWT_SECRET}
     access-expiration: 900000
     refresh-expiration: 604800000
+
+rabbitmq:
+  exchange: identity.exchange
+
+  queue:
+    candidate: candidate.queue
+    employer: employer.queue
+
+  routing-key:
+    candidate-created: candidate.created
+    employer-created: employer.created
