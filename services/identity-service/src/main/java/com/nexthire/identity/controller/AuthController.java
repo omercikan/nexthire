@@ -7,6 +7,8 @@ import com.nexthire.identity.dto.RegisterRequest;
 import com.nexthire.identity.entity.Identity;
 import com.nexthire.identity.service.AuthService;
 import com.nexthire.identity.util.CookieUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -45,4 +47,11 @@ public class AuthController {
         Identity identity = authService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(identity));
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<ApiResponse<Void>> logout(HttpServletRequest request, HttpServletResponse response) {
+        authService.logout(request, response);
+        return ResponseEntity.ok(ApiResponse.success(null));
+    }
+
 }
