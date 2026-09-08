@@ -28,7 +28,7 @@ public class AuthService {
     private final JwtService jwtService;
     private final IdentityRepository identityRepository;
     private final PasswordEncoder passwordEncoder;
-    private final IdentityMapper userMapper;
+    private final IdentityMapper identityMapper;
     private final EventMapper eventMapper;
     private final IdentityEventProducer identityEventProducer;
     private final CookieUtil cookieUtil;
@@ -62,7 +62,7 @@ public class AuthService {
 
         String hashedPassword = passwordEncoder.encode(request.password());
 
-        Identity identity = userMapper.toEntity(
+        Identity identity = identityMapper.toIdentityEntity(
                 request.email(),
                 hashedPassword,
                 request.role()
