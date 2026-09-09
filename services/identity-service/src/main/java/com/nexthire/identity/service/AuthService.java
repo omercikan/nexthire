@@ -5,6 +5,7 @@ import com.nexthire.identity.dto.LoginRequest;
 import com.nexthire.identity.dto.LoginResponse;
 import com.nexthire.identity.dto.RegisterRequest;
 import com.nexthire.identity.entity.Identity;
+import com.nexthire.identity.entity.RefreshToken;
 import com.nexthire.identity.exception.EmailAlreadyExists;
 import com.nexthire.identity.exception.UserNotFound;
 import com.nexthire.identity.mapper.EventMapper;
@@ -13,7 +14,10 @@ import com.nexthire.identity.messaging.event.CandidateCreatedEvent;
 import com.nexthire.identity.messaging.event.EmployerCreatedEvent;
 import com.nexthire.identity.messaging.producer.IdentityEventProducer;
 import com.nexthire.identity.repository.IdentityRepository;
+import com.nexthire.identity.repository.RefreshTokenRepository;
+import com.nexthire.identity.util.ClientIpResolver;
 import com.nexthire.identity.util.CookieUtil;
+import com.nexthire.identity.util.DeviceInfoResolver;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,11 +31,14 @@ public class AuthService {
 
     private final JwtService jwtService;
     private final IdentityRepository identityRepository;
+    private final RefreshTokenRepository refreshTokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final IdentityMapper identityMapper;
     private final EventMapper eventMapper;
     private final IdentityEventProducer identityEventProducer;
     private final CookieUtil cookieUtil;
+    private final ClientIpResolver clientIpResolver;
+    private final DeviceInfoResolver deviceInfoResolver;
 
     public LoginResponse login(LoginRequest request) {
         Identity identity = identityRepository
@@ -51,6 +58,16 @@ public class AuthService {
         String refreshToken = jwtService.generateRefreshToken(
                 identity.getId()
         );
+
+        RefreshToken refreshTokenEntity = identityMapper.toRefreshTokenEntity(
+                identity,
+                refreshToken,
+                jwtService.getRefreshExpiration(),
+                deviceInfoResolver.getDeviceInfo(),
+                clientIpResolver.getClientIp()
+        );
+
+        refreshTokenRepository.save(refreshTokenEntity);
 
         return new LoginResponse(accessToken, refreshToken);
     }
