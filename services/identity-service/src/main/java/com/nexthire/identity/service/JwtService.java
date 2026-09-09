@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ public class JwtService {
     @Value("${security.jwt.access-expiration}")
     private long accessExpiration;
 
+    @Getter
     @Value("${security.jwt.refresh-expiration}")
     private long refreshExpiration;
 
