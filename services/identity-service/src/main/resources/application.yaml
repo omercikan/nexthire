@@ -28,3 +28,6 @@ rabbitmq:
   routing-key:
     candidate-created: candidate.created
     employer-created: employer.created
+
+server:
+  forward-headers-strategy: framework
