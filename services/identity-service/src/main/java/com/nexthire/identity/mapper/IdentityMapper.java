@@ -6,6 +6,7 @@ import com.nexthire.identity.entity.RefreshToken;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Component
 public class IdentityMapper {
@@ -21,7 +22,7 @@ public class IdentityMapper {
     }
 
     public RefreshToken toRefreshTokenEntity(
-            Identity identityEntity,
+            UUID userId,
             String tokenHash,
             long expiresAt,
             String deviceInfo,
@@ -30,7 +31,7 @@ public class IdentityMapper {
         RefreshToken refreshToken = new RefreshToken();
 
         refreshToken.setTokenHash(tokenHash);
-        refreshToken.setUserId(identityEntity.getId());
+        refreshToken.setUserId(userId);
         refreshToken.setExpiresAt(new Date(System.currentTimeMillis() + expiresAt));
         refreshToken.setDeviceInfo(deviceInfo);
         refreshToken.setIpAddress(ipAddress);
