@@ -1,6 +1,7 @@
 package com.nexthire.identity.service;
 
 import com.nexthire.identity.Role;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -31,7 +32,7 @@ public class JwtService {
             String email,
             UUID userId,
             Role role
-            ) {
+    ) {
         Map<String, Object> claims = new HashMap<>();
 
         claims.put("userId", userId);
@@ -40,14 +41,37 @@ public class JwtService {
         return buildToken(claims, email, accessExpiration);
     }
 
-    public String generateRefreshToken(UUID userId) {
+    public String generateRefreshToken(
+            UUID userId,
+            String email,
+            Role role
+    ) {
 
         Map<String, Object> claims = new HashMap<>();
 
         claims.put("userId", userId);
+        claims.put("role", role);
         claims.put("type", "refresh");
 
-        return buildToken(claims, userId.toString(), refreshExpiration);
+        return buildToken(claims, email, refreshExpiration);
+    }
+
+    public boolean isTokenExpired(String token) {
+        Claims claims = extractAllClaims(token);
+        return claims.getExpiration().before(new Date());
+    }
+
+    public Claims extractClaims(String token) {
+        return extractAllClaims(token);
+
+    }
+
+    private Claims extractAllClaims(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(getSigningKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     private String buildToken(
