@@ -56,11 +56,13 @@ public class AuthService {
         );
 
         String refreshToken = jwtService.generateRefreshToken(
-                identity.getId()
+                identity.getId(),
+                identity.getEmail(),
+                identity.getRole()
         );
 
         RefreshToken refreshTokenEntity = identityMapper.toRefreshTokenEntity(
-                identity,
+                identity.getId(),
                 refreshToken,
                 jwtService.getRefreshExpiration(),
                 deviceInfoResolver.getDeviceInfo(),
