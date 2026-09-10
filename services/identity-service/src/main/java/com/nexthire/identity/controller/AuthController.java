@@ -6,6 +6,7 @@ import com.nexthire.identity.dto.LoginResponse;
 import com.nexthire.identity.dto.RegisterRequest;
 import com.nexthire.identity.entity.Identity;
 import com.nexthire.identity.service.AuthService;
+import com.nexthire.identity.service.RefreshTokenService;
 import com.nexthire.identity.util.CookieUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final AuthService authService;
+    private final RefreshTokenService refreshTokenService;
     private final CookieUtil cookieUtil;
 
     @PostMapping("/login")
@@ -54,4 +56,17 @@ public class AuthController {
         return ResponseEntity.ok(ApiResponse.success(null));
     }
 
+    @PostMapping("/refresh")
+    public ResponseEntity<ApiResponse<Void>> refresh(HttpServletRequest request, HttpServletResponse response) {
+        LoginResponse token = refreshTokenService.refreshToken(request);
+
+        ResponseCookie accessCookie = cookieUtil.createAccessCookie(token.accessToken());
+        ResponseCookie refreshCookie = cookieUtil.createRefreshCookie(token.refreshToken());
+
+        return ResponseEntity
+                .ok()
+                .header(HttpHeaders.SET_COOKIE, accessCookie.toString())
+                .header(HttpHeaders.SET_COOKIE, refreshCookie.toString())
+                .body(ApiResponse.success(null));
+    }
 }
