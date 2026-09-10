@@ -31,4 +31,11 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(ApiResponse.error((Objects.requireNonNull(ex.getFieldError())).getDefaultMessage()));
     }
+
+    @ExceptionHandler(InvalidRefreshToken.class)
+    public ResponseEntity<ApiResponse<Object>> handleInvalidRefreshToken(InvalidRefreshToken ex) {
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(ApiResponse.error(ex.getMessage()));
+    }
 }
