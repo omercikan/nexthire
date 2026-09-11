@@ -24,6 +24,9 @@
   <a href="https://socket.io/"><img src="https://img.shields.io/badge/Socket.io-010101?style=flat-square&logo=socket.io&logoColor=white" alt="Socket.IO"/></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"/></a>
   <a href="https://www.rabbitmq.com/"><img src="https://img.shields.io/badge/RabbitMQ-FF6600?style=flat-square&logo=rabbitmq&logoColor=white" alt="RabbitMQ"/></a>
+  <a href="https://spring.io/projects/spring-boot"><img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat-square&logo=springboot&logoColor=white" alt="Spring Boot"/></a>
+  <a href="https://www.postgresql.org/"><img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL"/></a>
+  <a href="https://firebase.google.com/"><img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black" alt="Firebase"/></a>
 </p>
 
 <p align="center">
@@ -34,31 +37,41 @@
 
 ## 📌 About the Project
 
-**NextHire** is a comprehensive job platform designed to make the recruitment process more secure, transparent, and fair.
+**NextHire** is a comprehensive job platform (Turkish market, UI in Turkish) designed to make the recruitment process more secure, transparent, and fair.
 
 Traditional job platforms often keep listings open for months, sometimes for promotion or audience growth, and volunteer-based or inactive postings can clutter candidate dashboards unnecessarily. NextHire addresses these issues by providing a centralized system where employers can post jobs, candidates can apply, and all interactions are managed efficiently.
 
-The platform supports **role-based access** (Candidate, Employer, Admin), **smart job filtering**, **resume uploads**, **application tracking**, and a **subscription system**, ensuring that both candidates and employers have a smooth and reliable experience.
+The platform supports **role-based access** (Candidate, Employer), **smart job filtering & favorites**, **resume uploads**, **end-to-end application & interview tracking**, and a **built-in AI career assistant**, ensuring that both candidates and employers have a smooth and reliable experience.
+
+The system is evolving from a two-service (backend + AI) setup into a **microservice architecture**: a dedicated **Identity Service** (Java/Spring Boot) is currently being built out alongside the existing Node.js backend to own authentication and identity concerns going forward (see [Identity Service](#-identity-service-in-progress) below).
 
 ---
 
 ## 🌟 Features
 
 ### ✅ Current Features
-- Role-based authentication (Candidate, Employer, Admin)
-- Smart filtering & featured job listings
-- Resume upload & application system
-- Subscription system
-- Dashboard
-- Real-time communication via Socket.IO
-- AI-powered features via Python microservice
-- Asynchronous job processing with RabbitMQ + Pika
-- Redis-based caching and session management
+- Role-based authentication (Candidate, Employer) with JWT access/refresh tokens stored in HTTP-only cookies
+- Google sign-in (NextAuth + Google OAuth) that auto-registers candidates on the backend
+- Smart job filtering, favorites, and featured job listings
+- Job detail pages with an embedded location map (Leaflet)
+- Resume upload/replace/delete (Cloudinary storage) and application tracking
+- Employer dashboard: job posting, applicant management, interview scheduling with automated email notifications, and stats overview
+- Candidate dashboard: profile management, resume management, application overview
+- OTP-based email verification & password reset
+- Real-time updates via Socket.IO
+- AI career assistant (chat widget with file upload) backed by a Python/FastAPI microservice, with a two-layer guard (keyword filter + LLM intent classification) that keeps the assistant on job/career topics
+- Asynchronous processing with RabbitMQ (emails, resume/photo cleanup, interview notifications, AI chat) consumed by dedicated Node.js and Python workers
+- Redis-based caching
+- Newsletter subscription, blog content, and featured companies served via Firebase/Firestore
+- CI/CD pipeline (GitHub Actions) that builds and publishes Docker images for frontend, backend, and AI service
+
+### 🧪 In Progress
+- **Identity Service** — standalone Spring Boot microservice (own PostgreSQL database) for auth/identity, publishing `candidate.created` / `employer.created` events over RabbitMQ. It is not yet wired into the Node.js backend or frontend, and is not part of the production Docker Compose / CI pipeline yet.
 
 ### 🚀 Planned Features
-- AI integration (expanded)
+- Wiring the Identity Service into the rest of the platform (backend event consumers, frontend calls) and retiring the duplicated auth logic in the Node backend
 - Company scores (based on candidate feedback)
-- Smart job recommendations
+- Smart, AI-driven job recommendations
 - Transparent interview flow
 - Mobile App (iOS & Android after web release)
 
@@ -67,20 +80,25 @@ The platform supports **role-based access** (Candidate, Employer, Admin), **smar
 ## ⚙️ Technologies Used
 
 ### 🎨 Frontend
-- **React 19.2.3**
-- **Next.js 16.1.6 (App Router + Turbopack)**
+- **React 19.2.8**
+- **Next.js 16.3.4 (App Router + Turbopack)**
 - **TypeScript 5.8.2**
 - **Tailwind CSS 4** + **SCSS**
-- **Redux Toolkit + RTK Query**
-- **Material UI (MUI)**
-- **React Hook Form + Zod**
+- **Redux Toolkit + React Redux**
+- **Material UI (MUI)** + **MUI X Charts**
+- **React Hook Form + Zod** (+ Formik/Yup used in some legacy forms)
+- **NextAuth** – Google OAuth sign-in
+- **Firebase (Auth/Firestore)** – blogs, featured companies, newsletter subscriptions
 - **Axios**
+- **Leaflet + React-Leaflet** – job location maps
+- **pdfjs-dist** – in-browser resume/CV preview
 - **Framer Motion**
 - **React Hot Toast**
 - **Lottie Animations**
 - **Swiper**
 - **React Icons**
 - **DayJS**
+- **EmailJS**
 - **Socket.IO Client** – Real-time bidirectional communication
 - **Jest + React Testing Library**
 
@@ -88,21 +106,36 @@ The platform supports **role-based access** (Candidate, Employer, Admin), **smar
 - **Node.js**
 - **Express.js 5**
 - **TypeScript**
-- **MongoDB**
+- **MongoDB (Mongoose)**
 - **Socket.IO** – Real-time event-driven communication
-- **Redis** – Caching & session management
-- **RabbitMQ** – Message broker for async task queuing
-- **Nodemon**
-- **CORS**
-- **Dotenv**
-- **Helmet** – Security headers for HTTP
+- **Redis (ioredis)** – Caching & session management
+- **RabbitMQ (amqplib)** – Message broker for async task queuing, consumed by dedicated worker processes
+- **JWT + bcrypt** – Authentication (access/refresh tokens)
+- **Cloudinary + Multer** – Resume/photo storage
+- **Nodemailer + express-handlebars** – Templated transactional emails (OTP, interview notifications)
+- **Winston** – Logging
+- **Zod** – Validation
+- **express-rate-limit + Helmet** – API hardening
 - **ESLint + Prettier**
+
+### 🆔 Identity Service (in progress)
+
+A standalone microservice under `services/identity-service`, intended to own authentication/identity going forward and gradually replace the auth logic currently living in the Node backend.
+
+- **Java 26**
+- **Spring Boot 4.1** (Web, Security, Validation, Data JPA, Spring Cloud OpenFeign)
+- **PostgreSQL** – dedicated identity database
+- **JJWT** – JWT issuing/parsing
+- **Spring AMQP** – publishes `candidate.created` / `employer.created` events to RabbitMQ
+- **Maven**
 
 ### 🤖 AI Service
 
-NextHire includes a Python-based AI service responsible for asynchronous AI workloads.
+NextHire includes a Python/FastAPI AI service responsible for the AI career-assistant chat.
 
-Currently, the service supports chat interactions. Future updates will expand its capabilities to include:
+It exposes a synchronous REST endpoint (`POST /api/v1/ai/ask`) and also consumes chat requests asynchronously from RabbitMQ, pushing responses back to the frontend in real time via the backend's Socket.IO layer. A two-layer guard (keyword pre-filter + LLM-based intent classification) keeps the assistant scoped to job/career topics.
+
+Future updates will expand its capabilities to include:
 
 - Resume analysis
 - Candidate scoring
@@ -111,15 +144,17 @@ Currently, the service supports chat interactions. Future updates will expand it
 
 Technologies:
 
-- Python
+- Python 3.11
+- FastAPI + Uvicorn (served via Gunicorn in production)
+- OpenAI SDK (pointed at an OpenAI-compatible LLM router; model: `moonshotai/Kimi-K2-Instruct-0905`)
+- Tenacity – retry handling for LLM calls
 - Pika (RabbitMQ client)
-- RabbitMQ
-- FastAPI *(API layer – planned)*
-- Uvicorn *(ASGI server – planned)*
 
 ### 🐳 DevOps
 - **Docker**
-- **Docker Compose (Development Environment)**
+- **Docker Compose** (development & production environments)
+- **GitHub Actions** – CI/CD, builds and pushes Docker images for frontend, backend, and AI service
+- **Dependabot** – automated dependency updates
 - **RedisInsight** – Redis GUI for development
 
 ---
@@ -128,29 +163,40 @@ Technologies:
 
 NextHire follows a **microservice-oriented architecture** with asynchronous task processing using RabbitMQ and background workers.
 
-The system separates real-time user operations from heavy processing tasks such as AI analysis and background jobs.
+The system separates real-time user operations from heavy processing tasks such as AI analysis and background jobs. A dedicated **Identity Service** (Java/Spring Boot) is being introduced alongside the Node.js backend; it currently runs independently with its own PostgreSQL database and publishes identity events to RabbitMQ, ahead of being wired into the rest of the system.
 
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                     CLIENT (Browser)                    │
-│              Next.js 16 + Socket.IO Client              │
+│              Next.js 16 + Socket.IO Client               │
 └──────────────────────────┬──────────────────────────────┘
                            │ HTTP / WebSocket
 ┌──────────────────────────▼──────────────────────────────┐
 │                BACKEND (Node.js / Express 5)            │
 │         REST API + Socket.IO + RabbitMQ Producer        │
-│                    Redis Cache Layer                    │
+│                    Redis Cache Layer                     │
 └──────────┬─────────────────────────────┬────────────────┘
            │ AMQP (RabbitMQ)             │ AMQP (RabbitMQ)
 ┌──────────▼──────────┐     ┌────────────▼─────────────────┐
 │   Node.js Worker    │     │     AI Service (Python)      │
-│  (RabbitMQ Consumer)│     │   Pika LLM Consumer Worker   │
+│  (RabbitMQ Consumer)│     │  FastAPI + Pika LLM Worker   │
 └─────────────────────┘     └──────────────────────────────┘
            │
 ┌──────────▼──────────┐
 │  MongoDB Atlas      │
 │  (Cloud Database)   │
 └─────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│         IDENTITY SERVICE (Java / Spring Boot)            │
+│     Auth REST API + RabbitMQ Producer (own DB)           │
+│              ── standalone, in progress ──               │
+└──────────────────────────┬──────────────────────────────┘
+                           │
+                ┌──────────▼──────────┐
+                │  PostgreSQL         │
+                │  (identity_db)      │
+                └─────────────────────┘
 ```
 
 ---
@@ -187,15 +233,19 @@ NextHire uses **Docker Compose** for backend development.
 
 ## 🐳 Docker Services Overview
 
-| Service        | Technology              | Port(s)        | Description                          |
-|----------------|-------------------------|----------------|--------------------------------------|
-| `backend`      | Node.js + Express       | `5000`         | REST API + Socket.IO server          |
-| `worker`       | Node.js (ts-node)       | —              | RabbitMQ consumer for backend tasks  |
-| `ai-service`   | Python                  | —              | Python AI processing service         |
-| `ai-worker`    | Python + Pika           | —              | Python RabbitMQ consumer for AI tasks|
-| `rabbitmq`     | RabbitMQ 3 Management   | `5672` `15672` | Message broker + management UI       |
-| `redis`        | Redis Latest            | `6379`         | Cache & session store                |
-| `redisinsight` | RedisInsight            | `5540`         | Redis GUI for development            |
+| Service           | Technology              | Port(s)        | Description                              |
+|--------------------|-------------------------|----------------|-------------------------------------------|
+| `identity-service` | Java + Spring Boot      | `8081`         | Standalone auth/identity microservice (in progress) |
+| `identity-db`      | PostgreSQL 16           | `5435`         | Database for `identity-service`           |
+| `backend`          | Node.js + Express       | `5000`         | REST API + Socket.IO server               |
+| `worker`           | Node.js (ts-node)       | —              | RabbitMQ consumer for backend tasks       |
+| `ai-service`       | Python + FastAPI        | `8000`         | AI processing service (REST + async)      |
+| `ai-worker`        | Python + Pika           | —              | Python RabbitMQ consumer for AI chat      |
+| `rabbitmq`         | RabbitMQ 4 Management   | `5672` `15672` | Message broker + management UI            |
+| `redis`            | Redis Latest            | `6379`         | Cache & session store                     |
+| `redisinsight`     | RedisInsight            | `5540`         | Redis GUI for development                 |
+
+> ℹ️ `identity-service` and `identity-db` run in the development Compose file but are **not yet integrated** with the backend/frontend, and are **not yet part of the production Compose file or CI pipeline**.
 
 ---
 
@@ -206,13 +256,24 @@ git clone https://github.com/omercikan/nexthire-job-platform.git
 cd nexthire-job-platform
 ```
 
-## 2️⃣ Start Backend Services with Docker
+## 2️⃣ Configure Environment Variables
+
+The Docker Compose setup expects env files that are not committed to the repo:
+
+- `backend/.env.dev` – backend environment variables
+- `ai-service/.env` – AI service environment variables (LLM provider `BASE_URL` / `HF_TOKEN`, `RABBITMQ_URL`, etc.)
+- Root `.env` (or exported shell vars) for the Identity Service and its database: `IDENTITY_DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `JWT_SECRET`
+
+Create these based on what each service reads from `process.env` / `getenv()` before starting Docker Compose.
+
+## 3️⃣ Start Backend Services with Docker
 
 ### This will start:
 
+- Identity Service (Java/Spring Boot) + its PostgreSQL database — **standalone, not yet wired into the rest of the app**
 - Backend API (Node.js + Express + Socket.IO)
 - Node.js Worker (RabbitMQ Consumer)
-- AI Service (Python + Pika RabbitMQ Consumer)
+- AI Service (Python/FastAPI)
 - AI Worker (Python + Pika RabbitMQ Consumer)
 - RabbitMQ (Message Broker with Management UI)
 - Redis (Cache)
@@ -248,7 +309,7 @@ docker compose -f docker-compose.dev.yml down
 docker compose -f docker-compose.dev.yml down -v
 ```
 
-## 3️⃣ Run Frontend Locally
+## 4️⃣ Run Frontend Locally
 
 ```bash
 cd frontend
@@ -264,6 +325,8 @@ npm run dev
 |----------------------|----------------------------------------|
 | Frontend (Next.js)   | http://localhost:3000                  |
 | Backend API          | http://localhost:5000                  |
+| Identity Service     | http://localhost:8081                  |
+| AI Service           | http://localhost:8000                  |
 | RabbitMQ Management  | http://localhost:15672                 |
 | RedisInsight         | http://localhost:5540                  |
 
@@ -275,21 +338,24 @@ npm run dev
 nexthire-job-platform
 │
 ├── frontend
-│   ├── app                    # Next.js App Router pages
-│   ├── features               # Feature-based UI modules
-│   ├── shared                 # Shared components, hooks, utils
+│   ├── app                    # Next.js App Router pages (routes are in Turkish)
+│   ├── features               # Feature-based UI modules (auth, jobs, dashboard, chat, home, job-detail)
+│   ├── shared                 # Shared components, hooks, utils, Redux slices
 │   ├── public                 # Static assets
 │   ├── Dockerfile             # Production container config
 │   └── package.json
 │
 ├── backend
 │   ├── src
-│   │   ├── features           # Domain-based modules (auth, jobs, users, etc.)
-│   │   ├── queues             # RabbitMQ producers / consumers
+│   │   ├── features           # Domain-based modules (auth, dashboard, jobs, users)
+│   │   │   ├── auth            # Candidate/employer register+login, Google auth, OTP, password reset
+│   │   │   ├── dashboard       # Candidate & employer dashboards (profile, resumes, jobs, applicants, interviews)
+│   │   │   └── jobs            # Job listings, filters, favorites, applications
+│   │   ├── queues             # RabbitMQ producers / consumers (email, resume/photo cleanup, interviews, AI chat)
 │   │   │
 │   │   └── shared
-│   │   |   ├── middlewares    # Express middlewares
-│   │   |   ├── models         # Mongoose models
+│   │   |   ├── middlewares    # Express middlewares (auth, role, rate limiting, validation)
+│   │   |   ├── models         # Mongoose models (User, Job, Application, Resume, Interviews, Otp, ...)
 │   │   |   ├── services       # Shared business services
 │   │   |   ├── utils          # Helper utilities
 │   │   |   └── config         # App configuration
@@ -302,16 +368,34 @@ nexthire-job-platform
 │
 ├── ai-service
 │   ├── app
-│   │   ├── workers            # RabbitMQ consumers for AI tasks
-│   │   ├── services           # AI processing logic
+│   │   ├── api/v1              # FastAPI routers (chat "ask" endpoint)
+│   │   ├── core                # Configuration
+│   │   ├── services             # LLM client, guard/intent filtering, RabbitMQ client
+│   │   ├── workers              # RabbitMQ consumer for async AI chat
 │   │   └── main.py
 │   │
 │   ├── Dockerfile
 │   ├── Dockerfile.dev
 │   └── requirements.txt
 │
+├── services
+│   └── identity-service        # Java/Spring Boot auth microservice (in progress, standalone)
+│       ├── src/main/java/com/nexthire/identity
+│       │   ├── config           # Security & password config
+│       │   ├── controller       # AuthController (login/register/logout/refresh)
+│       │   ├── service          # Auth, JWT, refresh-token services
+│       │   ├── entity           # Identity, RefreshToken (JPA)
+│       │   ├── repository       # Spring Data JPA repositories
+│       │   └── messaging        # RabbitMQ config, producer, and events (candidate/employer created)
+│       ├── src/main/resources/application.yaml
+│       ├── Dockerfile
+│       └── pom.xml
+│
 ├── docker-compose.dev.yml     # Development environment
+├── docker-compose.prod.yml    # Production environment (frontend, backend, rabbitmq)
+├── .github/workflows          # CI/CD (Docker image build & push, Dependabot auto-merge)
 ├── README.md
+├── SECURITY.md
 └── LICENSE
 ```
 ---
@@ -321,12 +405,15 @@ nexthire-job-platform
 ### The development environment is intentionally hybrid:
 
 - **Backend (Node.js)** → Dockerized
+- **Identity Service (Java/Spring Boot)** → Dockerized, standalone (own Postgres DB, not yet consumed by other services)
 - **AI Service (Python/FastAPI)** → Dockerized
 - **Workers (Node.js + Python)** → Dockerized
 - **RabbitMQ + Redis** → Dockerized
 - **Frontend (Next.js)** → Local development
 
 > This setup ensures optimal developer experience, faster hot reload, and better performance for the frontend.
+>
+> ⚠️ **Note on production:** `docker-compose.prod.yml` currently only defines `frontend`, `backend`, and `rabbitmq`. The Identity Service, AI service, and Redis are not yet part of the production Compose file or the CI image-build pipeline — treat them as development/in-progress until that catches up.
 
 ---
 
@@ -347,16 +434,26 @@ npm run type-check   # Run TypeScript type checking
 #### Backend
 
 ```bash
-npm run dev      # Start development with nodemon
-npm run build    # Compile TypeScript
-npm start        # Start production server
-npm run lint     # Run ESLint checks
+npm run dev            # Start development with nodemon
+npm run build          # Compile TypeScript (+ copy email templates)
+npm start              # Start production server
+npm run lint           # Run ESLint checks
+npm run type-check     # Run TypeScript type checking in watch mode
+npm run start-worker   # Start the RabbitMQ worker process (compiled)
 ```
 
 #### AI Service
 
 ```bash
-python -m app.workers.llm_consumer  # Start RabbitMQ LLM consumer worker
+uvicorn app.main:app --reload        # Start the FastAPI dev server (REST "ask" endpoint)
+python -m app.workers.llm_consumer   # Start the RabbitMQ LLM consumer worker
+```
+
+#### Identity Service
+
+```bash
+mvn spring-boot:run   # Start the Spring Boot dev server (as used in docker-compose.dev.yml)
+mvn clean package      # Build the executable jar (as used in the Dockerfile)
 ```
 
 ---
