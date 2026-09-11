@@ -48,6 +48,50 @@ services:
       - nexthire-network
 
 
+  # =========================
+  # USER SERVICE
+  # =========================
+  user-service:
+    build: ./services/user-service
+    container_name: user-service-dev
+    ports:
+      - "8082:8080"
+    environment:
+      DB_URL: ${USER_DB_URL}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./services/user-service/src:/app/src
+    depends_on:
+      identity-db:
+        condition: service_healthy
+    networks:
+      - nexthire-network
+
+
+  # =========================
+  # USER DATABASE
+  # =========================
+  user-db:
+    image: postgres:16
+    container_name: user-db-dev
+    environment:
+      POSTGRES_DB: user_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5436:5432"
+    volumes:
+      - user-db-data-dev:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d user_db" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - nexthire-network
+
+
   # --- BACKEND (Node.js/Express) ---
   backend:
     build:
@@ -185,6 +229,7 @@ services:
 volumes:
   rabbitmq_data:
   identity-db-data-dev:
+  user-db-data-dev:
   redis-data:
     driver: local
   identity-target:
