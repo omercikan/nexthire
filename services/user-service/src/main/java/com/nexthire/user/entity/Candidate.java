@@ -2,14 +2,14 @@ package com.nexthire.user.entity;
 
 import com.nexthire.user.enums.Role;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
+@Data
 @Entity
 @Table(name = "candidates")
 public class Candidate {
