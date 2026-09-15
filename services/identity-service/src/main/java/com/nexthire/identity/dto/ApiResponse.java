@@ -16,6 +16,10 @@ public record ApiResponse<T>(
         return new ApiResponse<>(true, new Date(), null, data);
     }
 
+    public static <T> ApiResponse<T> success(String message) {
+        return new ApiResponse<>(true, new Date(), message, null);
+    }
+
     public static <T> ApiResponse<T> error(String message) {
         return new ApiResponse<>(false, new Date(), message, null);
     }
