@@ -12,6 +12,13 @@ spring:
       ddl-auto: update
       show-sql: true
 
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: nexthire
+    password: nexthire
+    virtual-host: /
+
 security:
   jwt:
     secret-key: ${JWT_SECRET}
@@ -23,11 +30,13 @@ rabbitmq:
 
   queue:
     candidate: candidate.queue
-    employer: employer.queue
+    candidate-created-success: candidate-created-success
+    candidate-dlq: candidate.created-failed
 
   routing-key:
     candidate-created: candidate.created
-    employer-created: employer.created
+    candidate-created-success: candidate.created.success
+    candidate-dlq: candidate.created-failed
 
 server:
   forward-headers-strategy: framework
