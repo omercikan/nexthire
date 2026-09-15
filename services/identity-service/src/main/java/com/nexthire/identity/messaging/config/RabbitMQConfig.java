@@ -19,14 +19,14 @@ public class RabbitMQConfig {
     @Value("${rabbitmq.queue.candidate}")
     private String candidateQueue;
 
-    @Value("${rabbitmq.queue.employer}")
-    private String employerQueue;
-
     @Value("${rabbitmq.routing-key.candidate-created}")
     private String candidateCreatedRoutingKey;
 
-    @Value("${rabbitmq.routing-key.employer-created}")
-    private String employerCreatedRoutingKey;
+    @Value("${rabbitmq.queue.candidate-created-success}")
+    private String candidateCreatedQueue;
+
+    @Value("${rabbitmq.routing-key.candidate-created-success}")
+    private String candidateCreatedSuccessRoutingKey;
 
     @Bean
     public Queue candidateQueue() {
@@ -34,8 +34,8 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Queue employerQueue() {
-        return new Queue(employerQueue);
+    public Queue candidateCreatedQueue() {
+        return new Queue(candidateCreatedQueue, true);
     }
 
     @Bean
@@ -52,11 +52,11 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Binding employerBinding() {
+    public Binding CandidateUserCreatedBinding() {
         return BindingBuilder
-                .bind(employerQueue())
+                .bind(candidateCreatedQueue())
                 .to(exchange())
-                .with(employerCreatedRoutingKey);
+                .with(candidateCreatedSuccessRoutingKey);
     }
 
     @Bean
