@@ -11,3 +11,23 @@ spring:
     hibernate:
       ddl-auto: update
       show-sql: true
+
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: nexthire
+    password: nexthire
+    virtual-host: /
+
+rabbitmq:
+  exchange: identity.exchange
+
+  queue:
+    candidate: candidate.queue
+    candidate-created-success: candidate-created-success
+    candidate-dlq: candidate.created-failed
+
+  routing-key:
+    candidate-created: candidate.created
+    candidate-created-success: candidate.created.success
+    candidate-dlq: candidate.created-failed
