@@ -63,6 +63,8 @@ services:
     volumes:
       - ./services/user-service/src:/app/src
     depends_on:
+      rabbitmq:
+        condition: service_healthy
       identity-db:
         condition: service_healthy
     networks:
