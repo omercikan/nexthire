@@ -1,6 +1,7 @@
 package com.nexthire.identity.entity;
 
 import com.nexthire.identity.Role;
+import com.nexthire.identity.enums.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -31,4 +32,8 @@ public class Identity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private Status status = Status.PENDING;
 }
