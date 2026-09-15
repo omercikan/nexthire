@@ -46,8 +46,8 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<Identity>> register(@Valid @RequestBody RegisterRequest request) {
-        Identity identity = authService.register(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(identity));
+        authService.register(request);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(ApiResponse.success("Hesabınız oluşturuluyor.."));
     }
 
     @PostMapping("/logout")
