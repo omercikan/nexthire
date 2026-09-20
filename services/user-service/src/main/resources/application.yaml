@@ -24,10 +24,20 @@ rabbitmq:
 
   queue:
     candidate: candidate.queue
-    candidate-created-success: candidate-created-success
-    candidate-dlq: candidate.created-failed
+    candidate-created-success: candidate.created.success
+    candidate-dlq: candidate.created.failed
+
+    employer: employer.queue
+    employer-dlq: employer.created.failed
+    employer-created-success: employer.created.success
+
 
   routing-key:
     candidate-created: candidate.created
+    candidate-dlq: candidate.created.failed
     candidate-created-success: candidate.created.success
-    candidate-dlq: candidate.created-failed
+
+    employer-created: employer.created
+    employer-dlq: employer.created.failed
+    employer-created-success: employer.created.success
+
