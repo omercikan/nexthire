@@ -1,6 +1,7 @@
 package com.nexthire.identity.messaging.listener;
 
 import com.nexthire.identity.messaging.event.CandidateCreatedEvent;
+import com.nexthire.identity.messaging.event.EmployerCreatedEvent;
 import com.nexthire.identity.service.IdentityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -14,6 +15,11 @@ public class DLQListener {
 
     @RabbitListener(queues = "${rabbitmq.queue.candidate-dlq}")
     public void handleCreateUserFailed(CandidateCreatedEvent event) {
+        identityService.failed(event.email());
+    }
+
+    @RabbitListener(queues = "${rabbitmq.queue.employer-dlq}")
+    public void handleEmployerUserFailed(EmployerCreatedEvent event) {
         identityService.failed(event.email());
     }
 }
