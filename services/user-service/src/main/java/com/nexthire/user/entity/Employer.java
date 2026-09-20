@@ -2,12 +2,14 @@ package com.nexthire.user.entity;
 
 import com.nexthire.user.enums.Role;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+@Data
 @Entity
 @Table(name = "employers")
 public class Employer {
@@ -84,13 +86,13 @@ public class Employer {
     @Column(name = "failed_time", nullable = false)
     private Long failedTime = 0L;
 
-    @Column(name = "company_about", nullable = false)
+    @Column(name = "company_about")
     private String companyAbout;
 
-    @Column(name = "founded_date", nullable = false)
+    @Column(name = "founded_date")
     private LocalDate foundedDate;
 
-    @Column(name = "company_size", nullable = false)
+    @Column(name = "company_size")
     private String companySize;
 
     @Column(name = "created_at", nullable = false, updatable = false)

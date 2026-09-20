@@ -1,0 +1,19 @@
+package com.nexthire.user.messaging.event;
+
+import com.nexthire.user.enums.Role;
+
+public record EmployerCreatedEvent(
+        Role role,
+        String email,
+        String password,
+        String fullName,
+        String phoneNumber,
+        String companyName,
+        String district,
+        String taxCity,
+        String taxOffice,
+        String taxNumber,
+        Boolean emailConsent,
+        Boolean personalDataConsent
+) {
+}
