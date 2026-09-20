@@ -16,6 +16,8 @@ public class RabbitMQConfig {
     @Value("${rabbitmq.exchange}")
     private String exchange;
 
+    // CANDIDATE \\
+
     @Value("${rabbitmq.queue.candidate}")
     private String candidateQueue;
 
@@ -28,6 +30,20 @@ public class RabbitMQConfig {
     @Value("${rabbitmq.routing-key.candidate-created-success}")
     private String candidateCreatedSuccessRoutingKey;
 
+    // EMPLOYER \\
+
+    @Value("${rabbitmq.queue.employer}")
+    private String employerQueue;
+
+    @Value("${rabbitmq.queue.employer-created-success}")
+    private String employerCreatedQueue;
+
+    @Value("${rabbitmq.routing-key.employer-created}")
+    private String employerCreatedRoutingKey;
+
+    @Value("${rabbitmq.routing-key.employer-created-success}")
+    private String employerCreatedSuccessRoutingKey;
+
     @Bean
     public Queue candidateQueue() {
         return new Queue(candidateQueue);
@@ -36,6 +52,16 @@ public class RabbitMQConfig {
     @Bean
     public Queue candidateCreatedQueue() {
         return new Queue(candidateCreatedQueue, true);
+    }
+
+    @Bean
+    public Queue employerQueue() {
+        return new Queue(employerQueue, true);
+    }
+
+    @Bean
+    public Queue employerCreatedQueue() {
+        return new Queue(employerCreatedQueue, true);
     }
 
     @Bean
@@ -52,11 +78,27 @@ public class RabbitMQConfig {
     }
 
     @Bean
+    public Binding employerBinding() {
+        return BindingBuilder
+                .bind(employerQueue())
+                .to(exchange())
+                .with(employerCreatedRoutingKey);
+    }
+
+    @Bean
     public Binding CandidateUserCreatedBinding() {
         return BindingBuilder
                 .bind(candidateCreatedQueue())
                 .to(exchange())
                 .with(candidateCreatedSuccessRoutingKey);
+    }
+
+    @Bean
+    public Binding EmployerUserCreatedBinding() {
+        return BindingBuilder
+                .bind(employerCreatedQueue())
+                .to(exchange())
+                .with(employerCreatedSuccessRoutingKey);
     }
 
     @Bean
