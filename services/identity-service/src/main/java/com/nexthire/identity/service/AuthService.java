@@ -74,7 +74,7 @@ public class AuthService {
         return new LoginResponse(accessToken, refreshToken);
     }
 
-    public Identity register(RegisterRequest request) {
+    public void register(RegisterRequest request) {
         if (identityRepository.existsByEmail(request.email())) {
             throw new EmailAlreadyExists();
         }
@@ -100,12 +100,12 @@ public class AuthService {
             identityEventProducer.publishCandidateCreated(candidateCreatedEvent);
 
         } else if (savedIdentity.getRole() == Role.EMPLOYER) {
-
             EmployerCreatedEvent employerCreatedEvent = eventMapper.toCreateEmployerEvent(
                     savedIdentity.getRole(),
                     savedIdentity.getEmail(),
                     hashedPassword,
                     request.fullName(),
+                    request.phoneNumber(),
                     request.companyName(),
                     request.district(),
                     request.taxCity(),
@@ -117,8 +117,6 @@ public class AuthService {
 
             identityEventProducer.publishEmployerCreated(employerCreatedEvent);
         }
-
-        return savedIdentity;
     }
 
     public void logout(HttpServletRequest request, HttpServletResponse response) {

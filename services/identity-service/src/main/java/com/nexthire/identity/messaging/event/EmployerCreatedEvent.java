@@ -7,6 +7,7 @@ public record EmployerCreatedEvent(
         String email,
         String password,
         String fullName,
+        String phoneNumber,
         String companyName,
         String district,
         String taxCity,
