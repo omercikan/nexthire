@@ -37,6 +37,18 @@ public class RabbitMQConfig {
     @Value("${rabbitmq.routing-key.candidate-dlq}")
     private String candidateDLQRoutingKey;
 
+    @Value("${rabbitmq.queue.employer}")
+    private String employerQueue;
+
+    @Value("${rabbitmq.queue.employer-dlq}")
+    private String employerDLQQueue;
+
+    @Value("${rabbitmq.routing-key.employer-created}")
+    private String employerCreatedRoutingKey;
+
+    @Value("${rabbitmq.routing-key.employer-dlq}")
+    private String employerDLQRoutingKey;
+
     private final RabbitListenerContainerFactoryUtil rabbitListenerContainerFactoryUtil;
 
     @Bean
@@ -47,6 +59,16 @@ public class RabbitMQConfig {
     @Bean
     public Queue candidateDLQQueue() {
         return new Queue(candidateDLQQueue, true);
+    }
+
+    @Bean
+    public Queue employerQueue() {
+        return new Queue(employerQueue, true);
+    }
+
+    @Bean
+    public Queue employerDLQQueue() {
+        return new Queue(employerDLQQueue, true);
     }
 
     @Bean
@@ -68,6 +90,22 @@ public class RabbitMQConfig {
                 .bind(candidateDLQQueue())
                 .to(exchange())
                 .with(candidateDLQRoutingKey);
+    }
+
+    @Bean
+    public Binding employerBinding() {
+        return BindingBuilder
+                .bind(employerQueue())
+                .to(exchange())
+                .with(employerCreatedRoutingKey);
+    }
+
+    @Bean
+    public Binding employerDLQBinding() {
+        return BindingBuilder
+                .bind(employerDLQQueue())
+                .to(exchange())
+                .with(employerDLQRoutingKey);
     }
 
     @Bean
@@ -93,6 +131,20 @@ public class RabbitMQConfig {
                         connectionFactory,
                         rabbitTemplate,
                         candidateDLQRoutingKey,
+                        converter()
+                );
+    }
+
+    @Bean(name = "employerRabbitListenerContainerFactory")
+    public SimpleRabbitListenerContainerFactory employerRabbitListenerContainerFactory(
+            ConnectionFactory connectionFactory,
+            RabbitTemplate rabbitTemplate
+    ) {
+        return rabbitListenerContainerFactoryUtil
+                .rabbitListenerContainerFactory(
+                        connectionFactory,
+                        rabbitTemplate,
+                        employerDLQRoutingKey,
                         converter()
                 );
     }
