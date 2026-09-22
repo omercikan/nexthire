@@ -3,7 +3,8 @@ package com.nexthire.identity.service;
 import com.nexthire.identity.Role;
 import com.nexthire.identity.dto.LoginRequest;
 import com.nexthire.identity.dto.LoginResponse;
-import com.nexthire.identity.dto.RegisterRequest;
+import com.nexthire.identity.dto.RegisterCandidateRequest;
+import com.nexthire.identity.dto.RegisterEmployerRequest;
 import com.nexthire.identity.entity.Identity;
 import com.nexthire.identity.entity.RefreshToken;
 import com.nexthire.identity.exception.EmailAlreadyExists;
@@ -24,6 +25,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -74,49 +77,54 @@ public class AuthService {
         return new LoginResponse(accessToken, refreshToken);
     }
 
-    public void register(RegisterRequest request) {
-        if (identityRepository.existsByEmail(request.email())) {
-            throw new EmailAlreadyExists();
-        }
+    public UUID registerCandidate(RegisterCandidateRequest request) {
+        assertEmailNotTaken(request.email());
 
-        String hashedPassword = passwordEncoder.encode(request.password());
-
-        Identity identity = identityMapper.toIdentityEntity(
+        Identity savedIdentity = createAndSaveIdentity(
                 request.email(),
-                hashedPassword,
-                request.role()
+                request.password(),
+                Role.CANDIDATE
         );
 
-        Identity savedIdentity = identityRepository.save(identity);
+        CandidateCreatedEvent candidateCreatedEvent = eventMapper.toCreateCandidateEvent(
+                savedIdentity.getRole(),
+                savedIdentity.getEmail(),
+                savedIdentity.getHashedPassword(),
+                request.fullName()
+        );
 
-        if (savedIdentity.getRole() == Role.CANDIDATE) {
-            CandidateCreatedEvent candidateCreatedEvent = eventMapper.toCreateCandidateEvent(
-                    savedIdentity.getRole(),
-                    savedIdentity.getEmail(),
-                    hashedPassword,
-                    request.fullName()
-            );
+        identityEventProducer.publishCandidateCreated(candidateCreatedEvent);
 
-            identityEventProducer.publishCandidateCreated(candidateCreatedEvent);
+        return savedIdentity.getId();
+    }
 
-        } else if (savedIdentity.getRole() == Role.EMPLOYER) {
-            EmployerCreatedEvent employerCreatedEvent = eventMapper.toCreateEmployerEvent(
-                    savedIdentity.getRole(),
-                    savedIdentity.getEmail(),
-                    hashedPassword,
-                    request.fullName(),
-                    request.phoneNumber(),
-                    request.companyName(),
-                    request.district(),
-                    request.taxCity(),
-                    request.taxOffice(),
-                    request.taxNumber(),
-                    request.emailConsent(),
-                    request.personalDataConsent()
-            );
+    public UUID registerEmployer(RegisterEmployerRequest request) {
+        assertEmailNotTaken(request.email());
 
-            identityEventProducer.publishEmployerCreated(employerCreatedEvent);
-        }
+        Identity savedIdentity = createAndSaveIdentity(
+                request.email(),
+                request.password(),
+                Role.EMPLOYER
+        );
+
+        EmployerCreatedEvent employerCreatedEvent = eventMapper.toCreateEmployerEvent(
+                savedIdentity.getRole(),
+                savedIdentity.getEmail(),
+                savedIdentity.getHashedPassword(),
+                request.fullName(),
+                request.phoneNumber(),
+                request.companyName(),
+                request.district(),
+                request.taxCity(),
+                request.taxOffice(),
+                request.taxNumber(),
+                request.emailConsent(),
+                request.personalDataConsent()
+        );
+
+        identityEventProducer.publishEmployerCreated(employerCreatedEvent);
+
+        return savedIdentity.getId();
     }
 
     public void logout(HttpServletRequest request, HttpServletResponse response) {
@@ -133,5 +141,23 @@ public class AuthService {
                 }
             }
         }
+    }
+
+    private void assertEmailNotTaken(String email) {
+        if(identityRepository.existsByEmail(email)) {
+            throw new EmailAlreadyExists();
+        }
+    }
+
+    private Identity createAndSaveIdentity(String email, String rawPassword, Role role) {
+        String hashedPassword = passwordEncoder.encode(rawPassword);
+
+        Identity identity = identityMapper.toIdentityEntity(
+                email,
+                hashedPassword,
+                role
+        );
+
+        return identityRepository.save(identity);
     }
 }
