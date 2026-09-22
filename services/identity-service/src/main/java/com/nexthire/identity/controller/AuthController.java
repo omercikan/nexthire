@@ -1,10 +1,7 @@
 package com.nexthire.identity.controller;
 
-import com.nexthire.identity.dto.ApiResponse;
-import com.nexthire.identity.dto.LoginRequest;
-import com.nexthire.identity.dto.LoginResponse;
-import com.nexthire.identity.dto.RegisterRequest;
-import com.nexthire.identity.entity.Identity;
+import com.nexthire.identity.dto.*;
+import com.nexthire.identity.messaging.sse.RegisterStatusEmitterRegistry;
 import com.nexthire.identity.service.AuthService;
 import com.nexthire.identity.service.RefreshTokenService;
 import com.nexthire.identity.util.CookieUtil;
@@ -12,14 +9,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseCookie;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+
+import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -29,6 +24,7 @@ public class AuthController {
     private final AuthService authService;
     private final RefreshTokenService refreshTokenService;
     private final CookieUtil cookieUtil;
+    private final RegisterStatusEmitterRegistry registerStatusEmitterRegistry;
 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<Void>> login(@RequestBody LoginRequest request) {
@@ -44,10 +40,26 @@ public class AuthController {
                 .body(ApiResponse.success(null));
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<ApiResponse<Identity>> register(@Valid @RequestBody RegisterRequest request) {
-        authService.register(request);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(ApiResponse.success("Hesabınız oluşturuluyor.."));
+    @PostMapping("/register/candidate")
+    public ResponseEntity<ApiResponse<Object>> registerCandidate(@Valid @RequestBody RegisterCandidateRequest request) {
+        UUID identityId = authService.registerCandidate(request);
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .body(ApiResponse.success(Map.of(
+                        "status", "PENDING",
+                        "identityId", identityId
+                )));
+    }
+
+    @PostMapping("/register/employer")
+    public ResponseEntity<ApiResponse<Object>> registerEmployer(@Valid @RequestBody RegisterEmployerRequest request) {
+        UUID identityId = authService.registerEmployer(request);
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .body(ApiResponse.success(Map.of(
+                        "status", "PENDING",
+                        "identityId", identityId
+                )));
     }
 
     @PostMapping("/logout")
@@ -57,7 +69,7 @@ public class AuthController {
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<ApiResponse<Void>> refresh(HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<ApiResponse<Void>> refresh(HttpServletRequest request) {
         LoginResponse token = refreshTokenService.refreshToken(request);
 
         ResponseCookie accessCookie = cookieUtil.createAccessCookie(token.accessToken());
@@ -68,5 +80,10 @@ public class AuthController {
                 .header(HttpHeaders.SET_COOKIE, accessCookie.toString())
                 .header(HttpHeaders.SET_COOKIE, refreshCookie.toString())
                 .body(ApiResponse.success(null));
+    }
+
+    @GetMapping(value = "/register/stream/{identityId}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public SseEmitter registerStream(@PathVariable UUID identityId) {
+        return registerStatusEmitterRegistry.register(identityId);
     }
 }
