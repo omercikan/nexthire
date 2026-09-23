@@ -11,10 +11,11 @@ import java.util.UUID;
 @Component
 public class IdentityMapper {
 
-    public Identity toIdentityEntity(String email, String hashedPassword, Role role) {
+    public Identity toIdentityEntity(String email, String fullName, String hashedPassword, Role role) {
         Identity identityEntity = new Identity();
 
         identityEntity.setEmail(email);
+        identityEntity.setFullName(fullName);
         identityEntity.setHashedPassword(hashedPassword);
         identityEntity.setRole(role);
 

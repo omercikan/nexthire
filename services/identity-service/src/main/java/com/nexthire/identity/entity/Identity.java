@@ -24,6 +24,10 @@ public class Identity {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @NotBlank(message = "fullName is required")
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
+
     @NotBlank(message = "Password is required")
     @Column(nullable = false)
     private String hashedPassword;

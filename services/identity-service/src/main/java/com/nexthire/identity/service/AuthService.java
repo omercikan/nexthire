@@ -82,6 +82,7 @@ public class AuthService {
 
         Identity savedIdentity = createAndSaveIdentity(
                 request.email(),
+                request.fullName(),
                 request.password(),
                 Role.CANDIDATE
         );
@@ -103,6 +104,7 @@ public class AuthService {
 
         Identity savedIdentity = createAndSaveIdentity(
                 request.email(),
+                request.fullName(),
                 request.password(),
                 Role.EMPLOYER
         );
@@ -144,16 +146,17 @@ public class AuthService {
     }
 
     private void assertEmailNotTaken(String email) {
-        if(identityRepository.existsByEmail(email)) {
+        if (identityRepository.existsByEmail(email)) {
             throw new EmailAlreadyExists();
         }
     }
 
-    private Identity createAndSaveIdentity(String email, String rawPassword, Role role) {
+    private Identity createAndSaveIdentity(String email, String fullName, String rawPassword, Role role) {
         String hashedPassword = passwordEncoder.encode(rawPassword);
 
         Identity identity = identityMapper.toIdentityEntity(
                 email,
+                fullName,
                 hashedPassword,
                 role
         );
