@@ -13,6 +13,8 @@ services:
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
     volumes:
       - ./services/identity-service/src:/app/src
       - identity-target:/app/target
@@ -20,6 +22,8 @@ services:
     command: mvn spring-boot:run
     depends_on:
       identity-db:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     networks:
       - nexthire-network

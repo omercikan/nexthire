@@ -2,6 +2,11 @@ spring:
   application:
     name: identity-service
 
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
@@ -29,6 +34,8 @@ rabbitmq:
   exchange: identity.exchange
 
   queue:
+    notification-email: notification.email.queue
+
     candidate: candidate.queue
     candidate-created-success: candidate.created.success
     candidate-dlq: candidate.created.failed
@@ -38,6 +45,8 @@ rabbitmq:
     employer-created-success: employer.created.success
 
   routing-key:
+    notification-email: notification.email.send
+
     candidate-created: candidate.created
     candidate-created-success: candidate.created.success
     candidate-dlq: candidate.created.failed
