@@ -44,6 +44,13 @@ public class RabbitMQConfig {
     @Value("${rabbitmq.routing-key.employer-created-success}")
     private String employerCreatedSuccessRoutingKey;
 
+    // NOTIFICATION EMAIL \\
+    @Value("${rabbitmq.queue.notification-email}")
+    private String notificationEmailQueue;
+
+    @Value("${rabbitmq.routing-key.notification-email}")
+    private String notificationEmailRoutingKey;
+
     @Bean
     public Queue candidateQueue() {
         return new Queue(candidateQueue);
@@ -62,6 +69,11 @@ public class RabbitMQConfig {
     @Bean
     public Queue employerCreatedQueue() {
         return new Queue(employerCreatedQueue, true);
+    }
+
+    @Bean
+    public Queue notificationEmailQueue() {
+        return new Queue(notificationEmailQueue, true);
     }
 
     @Bean
@@ -99,6 +111,14 @@ public class RabbitMQConfig {
                 .bind(employerCreatedQueue())
                 .to(exchange())
                 .with(employerCreatedSuccessRoutingKey);
+    }
+
+    @Bean
+    public Binding NotificationEmailBinding() {
+        return BindingBuilder
+                .bind(notificationEmailQueue())
+                .to(exchange())
+                .with(notificationEmailRoutingKey);
     }
 
     @Bean
