@@ -12,7 +12,9 @@ public class RedisConfig {
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
-        GenericJacksonJsonRedisSerializer serializer = GenericJacksonJsonRedisSerializer.builder().build();
+        GenericJacksonJsonRedisSerializer serializer = GenericJacksonJsonRedisSerializer.builder()
+                .enableUnsafeDefaultTyping()
+                .build();
 
         RedisTemplate<String, Object> template = new RedisTemplate<>();
 
@@ -20,7 +22,7 @@ public class RedisConfig {
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(serializer);
         template.setHashKeySerializer(new StringRedisSerializer());
-        template.setHashValueSerializer(new StringRedisSerializer());
+        template.setHashValueSerializer(serializer);
 
         return template;
     }
