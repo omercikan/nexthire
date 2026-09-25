@@ -57,3 +57,6 @@ rabbitmq:
 
 server:
   forward-headers-strategy: framework
+
+client:
+  url: ${CLIENT_URL}

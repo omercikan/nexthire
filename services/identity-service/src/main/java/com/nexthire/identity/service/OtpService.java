@@ -8,6 +8,7 @@ import com.nexthire.identity.messaging.producer.NotificationEventProducer;
 import com.nexthire.identity.redis.model.OtpData;
 import com.nexthire.identity.repository.IdentityRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,9 @@ import java.util.concurrent.TimeUnit;
 @Service
 @RequiredArgsConstructor
 public class OtpService {
+
+    @Value("${client.url}")
+    private String clientUrl;
 
     private static final Duration OTP_TTL = Duration.ofMinutes(5);
     private static final int MAX_ATTEMPTS = 5;
@@ -49,6 +53,8 @@ public class OtpService {
 
         String resetToken = generateResetToken(email);
 
+        String verificationLink = String.format("%s/sifre-sifirla?vt=%s", clientUrl, resetToken);
+
         notificationEventProducer.publishEmailNotification(
                 new EmailNotificationEvent(
                         email,
@@ -56,7 +62,8 @@ public class OtpService {
                         Map.of(
                                 "code", code,
                                 "resetToken", resetToken,
-                                "fullName", fullName != null ? fullName : ""
+                                "fullName", fullName != null ? fullName : "",
+                                "verificationLink", verificationLink
                         )
                 )
         );
