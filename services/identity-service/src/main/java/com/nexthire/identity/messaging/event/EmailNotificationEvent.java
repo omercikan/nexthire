@@ -7,6 +7,6 @@ import java.util.Map;
 public record EmailNotificationEvent(
         String to,
         EmailTemplate template,
-        Map<String, String> variables
+        Map<String, Object> variables
 ) {
 }
