@@ -1,3 +1,31 @@
 spring:
   application:
     name: notification-service
+
+  mail:
+    host: ${SMTP_HOST}
+    port: ${SMTP_PORT}
+    username: ${SMTP_USERNAME}
+    password: ${SMTP_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: nexthire
+    password: nexthire
+    virtual-host: /
+
+rabbitmq:
+  exchange: identity-exchange
+
+  queue:
+    notification-email: notification.email.queue
+
+  routing-key:
+    notification-email: notification.email.send
