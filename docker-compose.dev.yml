@@ -13,6 +13,7 @@ services:
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
+      CLIENT_URL: ${CLIENT_URL}
       REDIS_HOST: redis
       REDIS_PORT: 6379
     volumes:
@@ -97,6 +98,24 @@ services:
     networks:
       - nexthire-network
 
+  # =========================
+  # NOTIFCATION SERVICE
+  # =========================
+  notification-service:
+    build: ./services/notification-service
+    container_name: notification-service-dev
+    environment:
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+    volumes:
+      - ./services/notification-service/src:/app/src
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - nexthire-network
 
   # --- BACKEND (Node.js/Express) ---
   backend:
