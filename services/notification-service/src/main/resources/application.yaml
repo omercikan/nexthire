@@ -29,3 +29,8 @@ rabbitmq:
 
   routing-key:
     notification-email: notification.email.send
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL}
