@@ -1,6 +1,36 @@
 services:
 
   # =========================
+  # API GATEWAY
+  # =========================
+  api-gateway:
+    build: ./gateway
+    container_name: api-gateway-dev
+    ports:
+      - "8080:8080"
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+      EUREKA_SERVER_URL: ${EUREKA_SERVER_URL}
+    volumes:
+      - ./gateway/src:/app/src
+      - gateway-target:/app/target
+      - maven-cache:/root/.m2
+    command: mvn spring-boot:run
+    networks:
+      - nexthire-network
+
+  # =========================
+  # EUREKA SERVER
+  # =========================
+  eureka-server:
+    build: ./eureka-server
+    container_name: eureka-server-dev
+    ports:
+      - "8761:8761"
+    networks:
+      - nexthire-network
+
+  # =========================
   # IDENTITY SERVICE
   # =========================
   identity-service:
@@ -14,6 +44,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
       CLIENT_URL: ${CLIENT_URL}
+      EUREKA_SERVER_URL: ${EUREKA_SERVER_URL}
       REDIS_HOST: redis
       REDIS_PORT: 6379
     volumes:
@@ -65,6 +96,7 @@ services:
       DB_URL: ${USER_DB_URL}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
+      EUREKA_SERVER_URL: ${EUREKA_SERVER_URL}
     volumes:
       - ./services/user-service/src:/app/src
     depends_on:
@@ -109,6 +141,7 @@ services:
       SMTP_PORT: ${SMTP_PORT}
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
+      EUREKA_SERVER_URL: ${EUREKA_SERVER_URL}
     volumes:
       - ./services/notification-service/src:/app/src
     depends_on:
@@ -258,6 +291,7 @@ volumes:
   redis-data:
     driver: local
   identity-target:
+  gateway-target:
   maven-cache:
 
 networks:
