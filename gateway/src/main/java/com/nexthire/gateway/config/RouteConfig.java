@@ -51,6 +51,11 @@ public class RouteConfig {
                                 .filter(jwtAuthenticationFilter.filter())
                                 .filter(lb("IDENTITY-SERVICE"))
                                 .build()
+                ).and(
+                        route("public-otp")
+                                .route(path("/api/otp/**"), http())
+                                .filter(lb("IDENTITY-SERVICE"))
+                                .build()
                 );
 
     }
