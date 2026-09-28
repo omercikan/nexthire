@@ -41,3 +41,7 @@ rabbitmq:
     employer-dlq: employer.created.failed
     employer-created-success: employer.created.success
 
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL}
