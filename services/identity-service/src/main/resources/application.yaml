@@ -60,3 +60,8 @@ server:
 
 client:
   url: ${CLIENT_URL}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL}
