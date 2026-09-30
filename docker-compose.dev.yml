@@ -11,6 +11,7 @@ services:
     environment:
       JWT_SECRET: ${JWT_SECRET}
       EUREKA_SERVER_URL: ${EUREKA_SERVER_URL}
+      CLIENT_URL: ${CLIENT_URL}
     volumes:
       - ./gateway/src:/app/src
       - gateway-target:/app/target

@@ -9,3 +9,6 @@ eureka:
 
 jwt:
   secret: ${JWT_SECRET}
+
+client:
+  url: ${CLIENT_URL}
