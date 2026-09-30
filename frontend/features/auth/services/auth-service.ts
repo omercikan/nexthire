@@ -1,14 +1,9 @@
+import { baseApi } from "@/shared/api/baseApi";
 import { User } from "@/shared/types";
-import { Employer } from "@/shared/types/models/employer";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { Result } from "@/shared/types/api/apiResponse";
+import { RegisterEmployerReqeust } from "@/shared/types/api/registerEmployer";
 
-export const authServiceApi = createApi({
-  reducerPath: "authServiceApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/api/`,
-    credentials: "include",
-  }),
-  tagTypes: ["User"],
+export const authServiceApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createCandidate: builder.mutation<
       { message: string },
@@ -43,19 +38,11 @@ export const authServiceApi = createApi({
     }),
 
     createEmployer: builder.mutation<
-      Employer,
-      Omit<
-        Employer,
-        | "createdAt"
-        | "updatedAt"
-        | "_id"
-        | "companyLogo"
-        | "emailVerified"
-        | "role"
-      >
+      Result<{ status: string; identityId: string }>,
+      RegisterEmployerReqeust
     >({
       query: (data) => ({
-        url: "auth/register-employer",
+        url: "/auth/register/employer",
         method: "POST",
         body: data,
       }),
