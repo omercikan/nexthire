@@ -25,7 +25,7 @@ public class Employer {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
 
     @Column(name = "phone_number", nullable = false)
