@@ -105,7 +105,6 @@ public class AuthService {
         Identity savedIdentity = createAndSaveIdentity(
                 request.email(),
                 request.fullName(),
-                request.password(),
                 Role.EMPLOYER
         );
 
@@ -158,6 +157,16 @@ public class AuthService {
                 email,
                 fullName,
                 hashedPassword,
+                role
+        );
+
+        return identityRepository.save(identity);
+    }
+
+    private Identity createAndSaveIdentity(String email, String fullName, Role role) {
+        Identity identity = identityMapper.toIdentityEntity(
+                email,
+                fullName,
                 role
         );
 

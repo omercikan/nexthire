@@ -7,16 +7,15 @@ public record RegisterEmployerRequest(
         @Email(message = "Invalid email format")
         String email,
 
-        @NotBlank(message = "Password is required")
-        @Size(min = 8, message = "Password must be at least 8 characters")
-        String password,
-
         @NotBlank(message = "Full name is required")
         @Size(min = 2, max = 100, message = "Full name must be between 2 and 100 characters")
         String fullName,
 
         @NotBlank(message = "Phone number is required")
-        @Pattern(regexp = "^\\+?[0-9]{10,13}$", message = "Invalid phone number format")
+        @Pattern(
+                regexp = "^0\\d{3}(?: ?\\d{3} ?\\d{2} ?\\d{2})$",
+                message = "Invalid phone number format"
+        )
         String phoneNumber,
 
         @NotBlank(message = "Company name is required")

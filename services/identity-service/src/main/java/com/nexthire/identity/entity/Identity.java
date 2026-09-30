@@ -28,9 +28,8 @@ public class Identity {
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
-    @NotBlank(message = "Password is required")
-    @Column(nullable = false)
-    private String hashedPassword;
+    @Column(name = "hashed_password")
+    private String hashedPassword = null;
 
     @NotNull(message = "Role is required")
     @Enumerated(EnumType.STRING)

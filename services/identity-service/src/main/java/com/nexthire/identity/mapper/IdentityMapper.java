@@ -22,6 +22,16 @@ public class IdentityMapper {
         return identityEntity;
     }
 
+    public Identity toIdentityEntity(String email, String fullName, Role role) {
+        Identity identityEntity = new Identity();
+
+        identityEntity.setEmail(email);
+        identityEntity.setFullName(fullName);
+        identityEntity.setRole(role);
+
+        return identityEntity;
+    }
+
     public RefreshToken toRefreshTokenEntity(
             UUID userId,
             String tokenHash,
