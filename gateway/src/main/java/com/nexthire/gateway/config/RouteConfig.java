@@ -48,7 +48,6 @@ public class RouteConfig {
                 ).and(
                         route("protected-register-stream")
                                 .route(path("/api/auth/register/stream/**"), http())
-                                .filter(jwtAuthenticationFilter.filter())
                                 .filter(lb("IDENTITY-SERVICE"))
                                 .build()
                 ).and(
