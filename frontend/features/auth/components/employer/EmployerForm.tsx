@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MdOutlineEmail } from "react-icons/md";
 import {
   DistrictsJsonInterface,
@@ -33,6 +33,9 @@ import {
   useLoginEmployerMutation,
 } from "../../services/auth-service";
 import { Employer } from "@/shared/types/models/employer";
+import toast from "react-hot-toast";
+import useEventSource from "@/shared/hooks/useEventSource";
+import { HttpStatusCode } from "axios";
 
 const inter = Inter({
   subsets: ["latin-ext"],
@@ -58,6 +61,7 @@ const EmployerForm = () => {
     setValue,
     watch,
     reset,
+    setError,
     formState: { isSubmitting, errors },
   } = useForm<EmployerFormType>({
     mode: "onChange",
@@ -72,10 +76,22 @@ const EmployerForm = () => {
     ),
   });
   const router = useRouter();
+  const { openStream, closeStream } = useEventSource();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const [isWaiting, setIsWaiting] = useState(false);
+  const isBusy = isSubmitting || isWaiting;
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    };
+  }, []);
 
   const onSubmit: SubmitHandler<EmployerFormType> = async (values) => {
     const {
-      fullname,
+      fullName,
       phone,
       email,
       password,
@@ -91,7 +107,7 @@ const EmployerForm = () => {
 
     if (isRegisteredRoute) {
       const registeredData = {
-        fullname,
+        fullName,
         phoneNumber: phone,
         email,
         companyName,
@@ -104,33 +120,92 @@ const EmployerForm = () => {
         personalDataConsent: checkboxSecond,
       };
 
-      const res = await manageAuthApi(
-        () => createEmployer(registeredData as Employer).unwrap(),
-        reset,
-        {
-          case: "This email address is already in use.",
-          message: "Girdiğiniz e-posta adresi kullanılmakta.",
-        },
-        false,
-      );
+      try {
+        const res = await createEmployer(registeredData as Employer).unwrap();
 
-      if (res) {
-        setRegistered(true);
+        const identityId = res?.data?.identityId;
+        if (!identityId) {
+          toast.error("Kayıt sırasında bir hata oluştu.");
+          return;
+        }
+
+        setIsWaiting(true);
+
+        const finish = () => {
+          if (timeoutRef.current) clearTimeout(timeoutRef.current);
+          timeoutRef.current = null;
+          closeStream();
+          setIsWaiting(false);
+        };
+
+        timeoutRef.current = setTimeout(() => {
+          toast.error(
+            "İşlem beklenenden uzun sürdü. Lütfen daha sonra tekrar deneyin.",
+          );
+          finish();
+        }, 30_000);
+
+        const event = openStream(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/auth/register/stream/${identityId}`,
+        );
+
+        event.onerror = () => {
+          toast.error("Bağlantı kesildi. Lütfen tekrar deneyin.");
+          finish();
+        };
+
+        event.addEventListener("register-status", (e) => {
+          let status: string;
+
+          try {
+            status = JSON.parse(e.data);
+          } catch {
+            status = e.data;
+          }
+
+          if (status === "PENDING") return;
+
+          switch (status) {
+            case "ACTIVE":
+              setRegistered(true);
+              break;
+            case "FAILED":
+              toast.error(
+                "Hesabınız oluşturulamadı. Lütfen daha sonra tekrar deneyiniz.",
+              );
+              break;
+            default:
+              toast.error(
+                "Sistemsel bir sorun yüzünden hesabınızı oluşturamıyoruz lütfen 24 saat içinde tekrar deneyiniz.",
+              );
+          }
+
+          finish();
+        });
+      } catch (err) {
+        const error = err as { status: HttpStatusCode };
+
+        if (error.status === HttpStatusCode.Conflict) {
+          setError("email", {
+            type: "server",
+            message: "Bu e-posta adresi ile kayıtlı bir hesap zaten var.",
+          });
+          return;
+        }
+
+        toast.error("Kayıt sırasında bir hata oluştu.");
+        return;
       }
     } else {
       await manageAuthApi(
         () => loginEmployer({ email, password: String(password) }).unwrap(),
         reset,
-        {
-          case: "Email or Password invalid",
-          message: "E-posta veya Şifre hatalı.",
-        },
         true,
         "/",
       );
-    }
 
-    router.refresh();
+      router.refresh();
+    }
   };
 
   const handleChangeCheckbox = (
@@ -161,12 +236,12 @@ const EmployerForm = () => {
             {isRegisteredRoute && (
               <>
                 <AuthInput
-                  error={errors.fullname?.message}
+                  error={errors.fullName?.message}
                   placeholder="Ömer Çıkan"
                   label="Ad Soyad"
                   icon={<MdOutlineEmail />}
-                  readOnly={isSubmitting}
-                  {...register("fullname")}
+                  readOnly={isBusy}
+                  {...register("fullName")}
                 />
 
                 <div className="my-4">
@@ -178,7 +253,7 @@ const EmployerForm = () => {
                     {...register("phone")}
                     value={formatTurkishPhoneNumber(watch("phone") as string)}
                     error={errors.phone?.message}
-                    readOnly={isSubmitting}
+                    readOnly={isBusy}
                   />
                 </div>
               </>
@@ -191,7 +266,7 @@ const EmployerForm = () => {
               }
               label="E-posta"
               icon={<MdOutlineEmail />}
-              readOnly={isSubmitting}
+              readOnly={isBusy}
               {...register("email")}
             />
 
@@ -203,7 +278,7 @@ const EmployerForm = () => {
                   icon={<GrSecure />}
                   type={hidePassword ? "password" : "text"}
                   label="Şifre"
-                  readOnly={isSubmitting}
+                  readOnly={isBusy}
                   extraIcon={hidePassword ? <VscEyeClosed /> : <VscEye />}
                   handleClickPasswordDisplay={() =>
                     setHidePassword(!hidePassword)
@@ -228,7 +303,7 @@ const EmployerForm = () => {
                     placeholder="NextHire"
                     label="Şirket Adı"
                     icon={<MdOutlineEmail />}
-                    readOnly={isSubmitting}
+                    readOnly={isBusy}
                     {...register("companyName")}
                   />
                 </div>
@@ -237,7 +312,7 @@ const EmployerForm = () => {
                   <AuthSelect
                     data={cities}
                     defaultValue="İl Seçiniz"
-                    isSubmitting={isSubmitting}
+                    isSubmitting={isBusy}
                     className="!px-[11px] !pr-9"
                     {...register("city")}
                     error={errors.city?.message}
@@ -250,7 +325,7 @@ const EmployerForm = () => {
                     error={errors.district?.message}
                     data={districts}
                     defaultValue="İlçe Seçiniz"
-                    isSubmitting={isSubmitting}
+                    isSubmitting={isBusy}
                     className="!px-[11px] !pr-9"
                     {...register("district")}
                   />
@@ -268,7 +343,7 @@ const EmployerForm = () => {
                     }
                     data={cities}
                     defaultValue="Vergi Dairesi İli Seçiniz"
-                    isSubmitting={isSubmitting}
+                    isSubmitting={isBusy}
                     className="!px-[11px] !pr-9"
                     {...register("taxCity")}
                   />
@@ -277,7 +352,7 @@ const EmployerForm = () => {
                     error={errors.taxOffice?.message}
                     data={taxOfficies}
                     defaultValue="Vergi Dairesi Seçiniz"
-                    isSubmitting={isSubmitting}
+                    isSubmitting={isBusy}
                     className="!px-[11px] !pr-9"
                     {...register("taxOffice")}
                   />
@@ -290,7 +365,7 @@ const EmployerForm = () => {
                   value={watch("taxNumber")}
                   {...register("taxNumber")}
                   error={errors.taxNumber?.message}
-                  readOnly={isSubmitting}
+                  readOnly={isBusy}
                   className="none-spin-button !px-[11px]"
                   min={0}
                   maxLength={10}
@@ -298,7 +373,7 @@ const EmployerForm = () => {
 
                 <div className="mt-4">
                   <AuthCheckbox
-                    isSubmitting={isSubmitting}
+                    isSubmitting={isBusy}
                     text="E-posta yoluyla bilgilendirme almayı kabul ediyorum."
                     handleChange={(e) =>
                       handleChangeCheckbox("checkboxFirst", e)
@@ -310,7 +385,7 @@ const EmployerForm = () => {
 
                 <div className="my-4">
                   <AuthCheckbox
-                    isSubmitting={isSubmitting}
+                    isSubmitting={isBusy}
                     handleChange={(e) =>
                       handleChangeCheckbox("checkboxSecond", e)
                     }
@@ -328,7 +403,7 @@ const EmployerForm = () => {
             )}
 
             <CustomButton
-              isSubmitting={isSubmitting}
+              isSubmitting={isBusy}
               text={isRegisteredRoute ? "Kayıt Ol" : "Giriş Yap"}
               className="mt-4"
             />
