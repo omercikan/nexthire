@@ -109,7 +109,7 @@ export interface User {
   email: string;
   createdAt: string;
   updatedAt: string;
-  fullname: string;
+  fullName: string;
   phoneNumber: string;
   emailVerified: boolean;
   failedAttempts: number;

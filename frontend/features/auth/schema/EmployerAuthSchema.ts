@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const EmployerAuthSchema = z.object({
-  fullname: z
+  fullName: z
     .string()
     .nonempty("Ad ve soyad zorunludur")
     .refine((val) => {
