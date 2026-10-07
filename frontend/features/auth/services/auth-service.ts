@@ -62,24 +62,24 @@ export const authServiceApi = baseApi.injectEndpoints({
     }),
 
     verifyOtp: builder.mutation<
-      { message: string; status: boolean },
+      { message: string; status: string },
       { token: string; code: string }
     >({
       query: ({ token, code }) => ({
-        url: "/auth/otp",
+        url: "/otp/verify-otp",
         method: "POST",
-        body: { token, code },
+        body: { resetToken: token, code },
       }),
     }),
 
     refreshOtp: builder.mutation<
-      { message: string; status: boolean; email: string },
-      { token: string }
+      Result<{ status: string }>,
+      { resetToken: string }
     >({
-      query: ({ token }) => ({
-        method: "PATCH",
-        url: "/auth/otp/refresh",
-        body: { token },
+      query: ({ resetToken }) => ({
+        method: "POST",
+        url: "/otp/refresh",
+        body: { resetToken },
       }),
     }),
 
@@ -100,13 +100,15 @@ export const authServiceApi = baseApi.injectEndpoints({
       }),
     }),
 
-    sendResetEmail: builder.mutation<{ message: string }, { email: string }>({
-      query: ({ email }) => ({
-        url: "auth/email/send-otp",
-        method: "POST",
-        body: { email },
-      }),
-    }),
+    sendResetEmail: builder.mutation<{ resetToken: string }, { email: string }>(
+      {
+        query: ({ email }) => ({
+          url: "/otp/forgot-password",
+          method: "POST",
+          body: { email },
+        }),
+      },
+    ),
   }),
 });
 
