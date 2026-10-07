@@ -9,7 +9,8 @@ import {
 } from "../../services/auth-service";
 import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
-import useAuth from "../../hooks/useAuth";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
+import { Result } from "@/shared/types/api/apiResponse";
 
 const OtpVerification = ({
   setIsSuccessOtp,
@@ -24,11 +25,10 @@ const OtpVerification = ({
   const [isExpiredOtp, setIsExpiredOtp] = useState(false);
   const [emptyIndex, setEmptyIndex] = useState(Array(6).fill("0"));
   const [refreshOtp] = useRefreshOtpMutation();
-  const { manageAuthApi } = useAuth();
 
   const handleOtpInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    index: number
+    index: number,
   ) => {
     const value = e.target.value;
     if (!/^\d*$/.test(value)) {
@@ -46,7 +46,7 @@ const OtpVerification = ({
 
   const handleOtpInputKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>,
-    index: number
+    index: number,
   ) => {
     if (e.key === "Backspace") {
       if (otpValues[index]) {
@@ -68,59 +68,39 @@ const OtpVerification = ({
 
     try {
       setEmptyIndex(otpValues);
-      if (otpCode.length === 6 && verifyToken!.length === 20) {
-        const verifyOtpRes = await verifyOtp({
+      if (otpCode.length === 6) {
+        await verifyOtp({
           token: String(verifyToken),
           code: otpCode,
         }).unwrap();
 
-        if (verifyOtpRes) {
-          setIsSuccessOtp(true);
-          toast.dismiss();
-        }
+        setIsSuccessOtp(true);
+        toast.dismiss();
       }
     } catch (err) {
-      const error = err as { data: { message: string } };
+      const { data: error } = err as Result<{ data: { status: string } }>;
 
-      switch (error.data.message) {
-        case "OTP not found":
-          return toast.error("Geçersiz doğrulama bağlantısı.", {
-            id: "otpError",
-          });
-        case "OTP expired":
-          setIsExpiredOtp(true);
-          return toast.error(
-            "Doğrulama kodunun süresi doldu. Yeni bir kod isteyebilirsiniz.",
-            { id: "otpError" }
-          );
-        default:
-          return toast.error("Geçersiz doğrulama kodu.", { id: "otpError" });
+      toast.error(getErrorMessage(err), { id: "otpError" });
+
+      if (error?.data.status === "EXPIRED") {
+        setIsExpiredOtp(true);
       }
     }
   };
 
   const handleRefreshOtp = async () => {
-    const refreshOtpRes = await manageAuthApi(
-      () => refreshOtp({ token: String(verifyToken) }).unwrap(),
-      () => false,
-      { case: "OTP not found", message: "Geçersiz doğrulama bağlantısı." },
-      false
-    );
+    try {
+      await refreshOtp({
+        resetToken: String(verifyToken),
+      }).unwrap();
 
-    if (refreshOtpRes) {
-      const email = refreshOtpRes.email.split("@");
-      const [name, domain] = email;
-
-      const maskedEmail = `${name.slice(0, 2)}${"*".repeat(
-        name.length - 2
-      )}${name.slice(length - 2)}@${domain}`;
-
-      toast.success(
-        `Yeni Doğrulama bağlantısı ${maskedEmail} adresine başarıyla gönderildi.`,
-        { duration: 3000 }
-      );
+      toast.success(`Yeni Doğrulama bağlantısı başarıyla gönderildi.`, {
+        duration: 3000,
+      });
       toast.dismiss("otpError");
       setIsExpiredOtp(false);
+    } catch (err) {
+      toast.error(getErrorMessage(err), { id: "otpError" });
     }
   };
 
@@ -153,8 +133,8 @@ const OtpVerification = ({
               ref={(el) => {
                 otpRefs.current[index] = el;
               }}
-              className={`w-[71px] h-[71px] !px-4 rounded-[20px] none-spin-button text-2xl text-[#757575] text-center border-[1.4] border-[#DDDDDD] focus:border-[var(--primary-color)] focus:border-2 transition-colors duration-300 outline-none ${
-                emptyIndex[index] === "" ? "!border-red-500 !border-2" : ""
+              className={`w-17.75 h-17.75 px-4! rounded-[20px] none-spin-button text-2xl text-[#757575] text-center border-[1.4] border-[#DDDDDD] focus:border-(--primary-color) focus:border-2 transition-colors duration-300 outline-none ${
+                emptyIndex[index] === "" ? "border-red-500! border-2!" : ""
               }`}
               onChange={(e) => handleOtpInputChange(e, index)}
               onKeyDown={(e) => handleOtpInputKeyDown(e, index)}
@@ -164,7 +144,7 @@ const OtpVerification = ({
 
         {isExpiredOtp && (
           <button
-            className="my-5 float-end text-[var(--primary-color)] text-sm"
+            className="my-5 float-end text-(--primary-color) text-sm"
             type="button"
             onClick={handleRefreshOtp}
           >
