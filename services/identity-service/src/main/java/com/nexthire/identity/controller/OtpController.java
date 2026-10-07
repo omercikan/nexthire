@@ -2,7 +2,9 @@ package com.nexthire.identity.controller;
 
 import com.nexthire.identity.dto.ApiResponse;
 import com.nexthire.identity.dto.ForgotPasswordRequest;
+import com.nexthire.identity.dto.RefreshOtpRequest;
 import com.nexthire.identity.dto.VerifyOtpRequest;
+import com.nexthire.identity.enums.OtpRefreshResult;
 import com.nexthire.identity.enums.OtpVerificationResult;
 import com.nexthire.identity.service.OtpService;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +46,19 @@ public class OtpController {
             case INVALID_CODE -> ResponseEntity.badRequest().body(ApiResponse.error("Kod hatalı", otpResult));
             case EXPIRED -> ResponseEntity.badRequest().body(ApiResponse.error("Kod süresi dolmuş", otpResult));
             case TOO_MANY_ATTEMPTS -> ResponseEntity.status(429).body(ApiResponse.error("Çok fazla deneme yapıldı", otpResult));
+        };
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<?> refreshOtp(@RequestBody RefreshOtpRequest request) {
+        OtpRefreshResult result = otpService.refreshOtp(request.resetToken());
+
+        Map<String, OtpRefreshResult> otpResult = Map.of("status", result);
+
+        return switch (result) {
+            case SUCCESS -> ResponseEntity.ok().build();
+            case INVALID_LINK -> ResponseEntity.badRequest().body(ApiResponse.error("Geçersiz bağlantı", otpResult));
+            case EXPIRED -> ResponseEntity.badRequest().body(ApiResponse.error("Kod süresi dolmuş", otpResult));
         };
     }
 }

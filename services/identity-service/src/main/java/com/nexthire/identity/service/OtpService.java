@@ -2,6 +2,7 @@ package com.nexthire.identity.service;
 
 import com.nexthire.identity.entity.Identity;
 import com.nexthire.identity.enums.EmailTemplate;
+import com.nexthire.identity.enums.OtpRefreshResult;
 import com.nexthire.identity.enums.OtpVerificationResult;
 import com.nexthire.identity.messaging.event.EmailNotificationEvent;
 import com.nexthire.identity.messaging.producer.NotificationEventProducer;
@@ -28,6 +29,7 @@ public class OtpService {
     private String clientUrl;
 
     private static final Duration OTP_TTL = Duration.ofMinutes(5);
+    private static final Duration REFRESH_TOKEN_TTL = Duration.ofMinutes(60);
     private static final int MAX_ATTEMPTS = 5;
     private static final String OTP_KEY_PREFIX = "identity-service:otp:";
 
@@ -117,7 +119,7 @@ public class OtpService {
         redisTemplate.opsForValue().set(
                 "reset-token:" + resetToken,
                 email,
-                OTP_TTL
+                REFRESH_TOKEN_TTL
         );
 
         return resetToken;
@@ -131,5 +133,23 @@ public class OtpService {
         }
 
         return verifyOtp(email, code);
+    }
+
+    public OtpRefreshResult refreshOtp(String resetToken) {
+        String email = (String) redisTemplate.opsForValue().get("reset-token:" + resetToken);
+
+        if (email == null) {
+            return OtpRefreshResult.EXPIRED;
+        }
+
+        Optional<Identity> identity = identityRepository.findByEmail(email);
+
+        if (identity.isEmpty()) {
+            return OtpRefreshResult.INVALID_LINK;
+        }
+
+        generateAndSendOtp(email, identity.get().getFullName());
+
+        return OtpRefreshResult.SUCCESS;
     }
 }
