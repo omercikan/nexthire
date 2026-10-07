@@ -1,5 +1,6 @@
 package com.nexthire.identity.controller;
 
+import com.nexthire.identity.dto.ApiResponse;
 import com.nexthire.identity.dto.ForgotPasswordRequest;
 import com.nexthire.identity.dto.VerifyOtpRequest;
 import com.nexthire.identity.enums.OtpVerificationResult;
@@ -36,11 +37,13 @@ public class OtpController {
                 request.code()
         );
 
+        Map<String, OtpVerificationResult> otpResult = Map.of("status", result);
+
         return switch (result) {
             case SUCCESS -> ResponseEntity.ok().build();
-            case INVALID_CODE -> ResponseEntity.badRequest().body("Kod hatalı");
-            case EXPIRED -> ResponseEntity.badRequest().body("Kod süresi dolmuş");
-            case TOO_MANY_ATTEMPTS -> ResponseEntity.status(429).body("Çok fazla deneme yapıldı");
+            case INVALID_CODE -> ResponseEntity.badRequest().body(ApiResponse.error("Kod hatalı", otpResult));
+            case EXPIRED -> ResponseEntity.badRequest().body(ApiResponse.error("Kod süresi dolmuş", otpResult));
+            case TOO_MANY_ATTEMPTS -> ResponseEntity.status(429).body(ApiResponse.error("Çok fazla deneme yapıldı", otpResult));
         };
     }
 }
